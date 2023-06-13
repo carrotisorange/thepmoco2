@@ -98,7 +98,7 @@ class OwnerShowComponent extends Component
 
     public function submitForm()
     {
-        sleep(1);
+        
 
         $validatedData = $this->validate();
         
@@ -177,7 +177,7 @@ class OwnerShowComponent extends Component
 
     public function removeCredentials()
     {
-        sleep(1);
+        
 
         User::where('email', $this->owner_details->email)
         ->delete();
@@ -209,7 +209,7 @@ class OwnerShowComponent extends Component
 
     public function resetPassword()
     {
-        sleep(1);
+        
         
         $new_password = app('App\Http\Controllers\UserController')->generate_temporary_username();
 

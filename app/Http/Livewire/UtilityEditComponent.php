@@ -153,7 +153,7 @@ class UtilityEditComponent extends Component
 
     public function postUtilities()
     {
-        sleep(1);
+        
 
        // update utility status
         Utility::where('property_uuid', $this->property_uuid)

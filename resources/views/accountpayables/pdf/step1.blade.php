@@ -107,4 +107,22 @@
     </tbody>
 </table>
 
+<p><b>Approved by:</b> 
+    @if($accountpayable->approver_id)
+    {{ $accountpayable->approver_1->name }},<br>
+    {{ $accountpayable->approver_1->role->role }}
+    @else
+    NA
+    @endif
+</p>
+
+<p><b>Approved by:</b>
+    @if($accountpayable->approver2_id)
+    {{ $accountpayable->approver_2->name }},<br>
+    {{ $accountpayable->approver_2->role->role }}
+    @else
+    NA
+    @endif
+</p>
+
 @endsection

@@ -18,16 +18,14 @@
             
             
                 <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                    <div class="mt-3">
-                        {{ $collections->links() }}
-                    </div>
+                   
                     <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                         <!-- Selected row actions, only show when rows are selected. -->
                         <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
             
                         </div>
             
-                       @include('portals.tenants.tables.collections')
+                       @include('tables.collections')
                     </div>
                     {{-- <button type="button"
                         class="mb-5 inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Select

@@ -6,23 +6,23 @@ use App\Http\Controllers\PointController;
 use App\Http\Controllers\SubscriptionController;
 
 //All routes for user
-Route::prefix('user')->group(function(){
+Route::prefix('user/{user:username}')->group(function(){
     //routes for user crud operations
-    Route::patch('{user}/update',[UserController::class, 'update']);
+    Route::patch('/update',[UserController::class, 'update']);
 
-    Route::get('{user}/unlock', [UserController::class, 'unlock']);
+    Route::get('/unlock', [UserController::class, 'unlock']);
 
-    Route::get('{user}/edit',[UserController::class, 'edit'])->name('profile');
+    Route::get('/edit',[UserController::class, 'edit'])->name('profile');
 
-    Route::get('{user}/subscriptions/{external_id:external_id?}',[SubscriptionController::class, 'index'])->name('subscription');
+    Route::get('/subscriptions/{external_id:external_id?}',[SubscriptionController::class, 'index'])->name('subscription');
 
-    Route::post('{user}/subscriptions/{external_id:external:id}/unsubscribe',[SubscriptionController::class, 'unsubscribe'])->name('subscription');
+    Route::post('/subscriptions/{external_id:external:id}/unsubscribe',[SubscriptionController::class, 'unsubscribe'])->name('subscription');
 
-    //route for point crud operations
-    Route::get('point',[PointController::class, 'index'])->name('point');
-
-    Route::get('{user}/export/{portfolio}',[UserController::class, 'export']);
+    Route::get('/export/{portfolio}',[UserController::class, 'export']);
 });
+
+ //route for point crud operations
+ Route::get('point',[PointController::class, 'index'])->name('point');
 
 Route::get('users',[UserController::class, 'show_all_users'])->name('user');
 

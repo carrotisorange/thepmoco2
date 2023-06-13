@@ -52,7 +52,7 @@ class CheckoutComponent extends Component
 
     public function processPayment()
     {
-        sleep(1);
+        
 
         $validatedData = $this->validate();
 

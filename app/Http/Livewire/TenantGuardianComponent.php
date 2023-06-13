@@ -41,7 +41,7 @@ class TenantGuardianComponent extends Component
 
     public function submitForm()
     {
-        sleep(1);
+        
 
         //validate inputs
         $validated_data = $this->validate();

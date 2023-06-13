@@ -2,7 +2,10 @@
 @section('title', 'Acknowledgement Receipt')
 @section('content')
 <p>
-    Reference #: {{ $reference_no }}
+    Tenant: {{ $tenant }}
+</p>
+<p>
+    {{-- Reference #: {{ $reference_no }} --}}
 </p>
 <p>
     AR #: {{ $ar_no }}
@@ -13,14 +16,10 @@
 <p>
     Amount Paid: {{ number_format($amount, 2) }}
 </p>
-<p>
-    Tenant: {{ $tenant }}
-</p>
 
 <p>
     Mode of Payment: {{ $mode_of_payment }}
 </p>
-
 
 
 @if($mode_of_payment === 'cheque')
@@ -39,11 +38,9 @@
 </p>
 @endif
 
-
 <p>
-    Unpaid Bills: {{ number_format(($balance->sum('bill') - $balance->sum('initial_payment')),2)}}
+    Unpaid Bills: {{ number_format($balance,2)}}
 </p>
-<br>
 <p>
     <b>Payments Breakdown</b>
 </p>
@@ -51,6 +48,7 @@
 <p>
 <table class="">
     <tr>
+        <x-th>#</x-th>
         <x-th>Bill #</x-th>
         <x-th>Date Posted</x-th>
         <x-th>Unit</x-th>
@@ -59,9 +57,10 @@
         <x-th>Amount</x-th>
     </tr>
 
-    @foreach($collections as $item)
+    @foreach($collections as $index => $item)
     <tbody class="bg-white divide-y divide-gray-200">
     <tr>
+        <x-td>{{ $index+1 }}</x-td>
         <x-td>{{ $item->bill->bill_no }}</x-td>
 
         <x-td>{{ Carbon\Carbon::parse($item->bill->created_at)->format('M d, Y') }}</x-td>

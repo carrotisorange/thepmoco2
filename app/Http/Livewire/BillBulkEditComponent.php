@@ -48,7 +48,7 @@ class BillBulkEditComponent extends Component
 
     public function removeBills()
     {
-        sleep(1);
+        
 
         foreach($this->selectedBills as $bill=>$val ){
             Bill::destroy($bill);
@@ -64,7 +64,7 @@ class BillBulkEditComponent extends Component
 
     public function postBills()
     {
-        sleep(1);
+        
     
 
         $validatedData = $this->validate();
@@ -88,7 +88,7 @@ class BillBulkEditComponent extends Component
 
     public function updateBill($id)
     {
-        sleep(1);
+        
 
         $validatedData = $this->validate();
 

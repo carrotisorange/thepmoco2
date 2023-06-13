@@ -18,16 +18,11 @@ use DB;
 
 class OwnerCollectionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Property $property, owner $owner)
     {
         return view('owners.collections.index',[
-         'owner' => Owner::find($owner->uuid),
-         'collections' => app('App\Http\Controllers\OwnerController')->show_owner_collections($owner->uuid),
+          'owner' => Owner::find($owner->uuid),
+          'collections' => app('App\Http\Controllers\OwnerCollectionController')->get_owner_collections($property->uuid, $owner->uuid),
         ]);
     }
 
@@ -65,15 +60,10 @@ class OwnerCollectionController extends Controller
 
      public function view(Property $property, Owner $owner, Collection $collection)
      {
-     $balance = app('App\Http\Controllers\OwnerBillController')->get_owner_balance($collection->owner_uuid);
-
-     $units = DeedOfSale::where('owner_uuid', $owner->uuid)->get();
 
      $data = $this->get_collection_data(
         $owner,
         $collection,
-        $units,
-        $balance,
      );
 
      $folder_path = 'owners.collections.export';
@@ -83,10 +73,18 @@ class OwnerCollectionController extends Controller
      return $pdf->stream($owner->owner.'-ar.pdf');
      }
 
-     public function get_collection_data($owner, $collection, $balance, $units)
+     public function get_collection_data($owner, $collection)
      {
         $aggregated_collection = Collection::where('property_uuid', $collection->property_uuid)->where('owner_uuid', $owner->uuid)->where('is_posted', 1)->where('ar_no', $collection->ar_no);
-      return [
+        $unpaid_bills =  Bill::where('owner_uuid', $owner->uuid)->sum('bill');
+        $paid_bills = Collection::where('owner_uuid', $owner->uuid)->where('is_posted', 1)->sum('collection');
+
+        if($unpaid_bills<=0){
+            $balance = 0;
+        }else{
+            $balance = $unpaid_bills - $paid_bills;
+        }
+        return [
          'created_at' => $collection->updated_at,
          'reference_no' => $owner->bill_reference_no,
          'owner' => $owner->owner,
@@ -101,28 +99,15 @@ class OwnerCollectionController extends Controller
          'date_deposited' => $collection->updated_at,
          'collections' => $aggregated_collection->get(),
          'balance' => $balance,
-         'units' => $units
+         'units' => DeedOfSale::where('owner_uuid', $owner->uuid)->where('status', 'active')->get()
       ];
      }
 
-     
-   public function attachment(Property $property, Owner $owner, AcknowledgementReceipt $ar)
-   {
-      $attachment = $ar->attachment;
-
-      return Storage::download(($attachment), 'AR_'.$ar->ar_no.'_'.$ar->owner->owner.'.png');
-   }
-
-   public function proof_of_payment(Property $property, Owner $owner, AcknowledgementReceipt $ar)
-   {
-      $proof_of_payment = $ar->proof_of_payment;
-
-      return Storage::download(($proof_of_payment), 'AR_'.$ar->ar_no.'_'.$ar->owner->owner.'.png');
-   }
-
     public function update(Request $request, Property $property, Owner $owner, $batch_no)
     {
-         $ar_no = app('App\Http\Controllers\AcknowledgementReceiptController')->get_latest_ar(Session::get('property'));
+        Property::find($property->uuid)->collections()->where('owner_uuid', $owner->uuid)->where('is_posted', 0)->where('batch_no', '!=', $batch_no)->forceDelete();
+
+         $ar_no = app('App\Http\Controllers\AcknowledgementReceiptController')->get_latest_ar($property->uuid);
 
          $counter = $this->get_selected_bills_count($batch_no);
       
@@ -154,10 +139,10 @@ class OwnerCollectionController extends Controller
 
          app('App\Http\Controllers\AcknowledgementReceiptController')
          ->store( 
-                '',
-                $owner->uuid,
+                 '',
+                  $owner->uuid,
                   Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->sum('collection'),
-                  Session::get('property'),
+                  $property->uuid,
                   auth()->user()->id,
                   $ar_no,
                   $request->form,
@@ -170,30 +155,10 @@ class OwnerCollectionController extends Controller
                   $request->proof_of_payment,
          );
 
-         app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);
+         app('App\Http\Controllers\PointController')->store($property->uuid, auth()->user()->id,
+         Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);
          
-         return redirect('/property/'.Session::get('property').'/owner/'.$owner->uuid.'/collections')->with('success', 'Success!');
+         return redirect('/property/'.$property->uuid.'/owner/'.$owner->uuid.'/collections')->with('success','Success!');
 
-    }
-
-    public function destroy(Property $property, Owner $owner, $batch_no)
-    {
-
-        Collection::where('owner_uuid', $owner->uuid)
-        ->when($batch_no, function ($query) use ($batch_no) {
-        $query->where('batch_no', $batch_no);
-        })
-        ->where('is_posted', 0)
-        ->delete();
-
-        Bill::where('owner_uuid', $owner->uuid)
-        ->when($batch_no, function ($query) use ($batch_no) {
-        $query->where('batch_no', $batch_no);
-        })
-        ->update([
-        'batch_no' => null
-        ]);
-
-        return redirect('/property/'.Session::get('property').'/owner/'.$owner->uuid.'/bills');
     }
 }

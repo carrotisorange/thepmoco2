@@ -132,6 +132,7 @@
 
                             </tbody>
                             @endforelse
+                           @if($collections->count())
                             <tr>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
@@ -141,24 +142,17 @@
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
                                 <?php
-                                    $property_collections_count = App\Models\Collection::where('tenant_uuid', $item->tenant_uuid)->count();
-                                ?>
+                                                                $property_collections_count = App\Models\Collection::where('tenant_uuid', $item->tenant_uuid)->count();
+                                                            ?>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                               {{ number_format($collections->sum('amount'), 2) }} ({{ $property_collections_count }})
+                                    {{ number_format($collections->sum('amount'), 2) }} ({{ $property_collections_count }})
                                 </td>
                             </tr>
+                           @endif
                         </table>
                     </div>
-
-                    {{-- <button type="button"
-                        class="mb-5 inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Select
-                        All</button> --}}
                 </div>
             </div>
         </div>
-
-        {{-- <div class="px-4 mt-5 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
-            {{ $collections->links() }}
-        </div> --}}
     </div>
 </x-tenant-portal-layout>

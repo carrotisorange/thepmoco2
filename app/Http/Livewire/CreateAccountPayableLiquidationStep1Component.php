@@ -119,7 +119,7 @@ class CreateAccountPayableLiquidationStep1Component extends Component
         try{
              foreach ($this->particulars as $particular) {
                 $particular->update([
-                     'item' => $particular->item,
+                    'item' => $particular->item,
                     'quantity' => $particular->quantity,
                     'unit_uuid' => $particular->unit_uuid,
                     'vendor_id' => $particular->vendor_id,
@@ -129,29 +129,13 @@ class CreateAccountPayableLiquidationStep1Component extends Component
                 ]);
                 session()->flash('success', 'Success!');
             }
-            // foreach ($this->particulars->where('id', $id) as $particular) {
-            //     AccountPayableLiquidationParticular::where('batch_no', $this->batch_no)
-            //     ->where('id', $id)
-            //     ->update([
-            //         'item' => $particular->item,
-            //         'quantity' => $particular->quantity,
-            //         'unit_uuid' => $particular->unit_uuid,
-            //         'vendor_id' => $particular->vendor_id,
-            //         'price' => $particular->price,
-            //         'or_number' => $particular->or_number,
-            //         'total' => $particular->quantity * $particular->price,
-            //     ]);
-
-            // session()->flash('success', 'Success!');
-            // }
-            
+             
        }catch(\Exception $e){
             session()->flash('error', $e);
        }
     }
 
     public function removeParticular($id){
-        // sleep(1);
         
         AccountPayableLiquidationParticular::where('id', $id)->delete();
 

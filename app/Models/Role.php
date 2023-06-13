@@ -9,9 +9,9 @@ class Role extends Model
 {
     use HasFactory;
 
-    public function users()
+    public function user_property()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function property(){

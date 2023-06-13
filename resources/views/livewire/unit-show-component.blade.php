@@ -11,11 +11,7 @@
                     <button
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
                         id="dropdownButton" data-dropdown-toggle="unitCreateDropdown" type="button">
-                        <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                            fill="currentColor" aria-hidden="true">
-                            <path
-                                d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                        </svg>
+                       
                         Add
                         <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
@@ -193,18 +189,20 @@
                     </div>
                     <div class="hidden p-4 purple rounded-lg dark:bg-gray-800" id="inventories" role="tabpanel"
                         aria-labelledby="inventories-tab">
-                    <button type="button" wire:loading.remove
-                        onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/inventory/{{ Str::random(8) }}/create'"
-                        class="rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+                        <button type="button"
+                            onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/inventory/{{ Str::random(8) }}/create'"
+                            class="rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
 
-                        <i class="fa-solid fa-pen-to-square"></i>&nbsp; Update
-                    </button>
-                    &nbsp;
-                    <a target="_blank"
-                        href='/property/{{ $this->unit_details->property_uuid }}/unit/{{ $this->unit_details->uuid }}/inventory/{{ Str::random(8) }}/export'"
-                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                        <i class="fa-solid fa-download"></i> &nbsp; Export
-                    </a>
+                            Update
+                        </button>
+
+                        <a target="_blank"
+                            href='/property/{{ $this->unit_details->property_uuid }}/unit/{{ $this->unit_details->uuid }}/inventory/{{ Str::random(8) }}/export'"
+                        class=" inline-flex items-center justify-center rounded-md border border-transparent
+                            bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400
+                            focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                            Export
+                        </a>
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
@@ -215,9 +213,9 @@
                                         class="absolute top-0 left-12 flex h-12 items-center space-x-3 purple sm:left-16">
 
                                     </div>
-                                    
+
                                     @if($inventories->count())
-                                    
+
                                     @include('units.tables.inventories')
                                     @else
                                     <div class="mt-10 text-center mb-10">
@@ -230,18 +228,14 @@
                                         <h3 class="mt-2 text-sm font-medium text-gray-900">No inventories</h3>
 
                                         <div class="mt-6">
-                                            <button type="button" wire:loading.remove
-                                       onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/inventory/{{ Str::random(8) }}/create'"
+                                            <button type="button"
+                                                onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/inventory/{{ Str::random(8) }}/create'"
                                                 class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                                                <!-- Heroicon name: mini/plus -->
-                                                <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                    <path
-                                                        d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                                                </svg>
-                                                Add an inventory
+                                         
+
+                                               New inventory
                                             </button>
-                                           
+
                                         </div>
                                     </div>
                                     @endif
@@ -277,19 +271,15 @@
                                         <h3 class="mt-2 text-sm font-medium text-gray-900">No owners</h3>
 
                                         <div class="mt-6">
-                                            <button type="button" wire:loading.remove
-                                               onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/owner/{{ Str::random(8) }}/create'"
+                                            <button type="button"
+                                                onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/owner/{{ Str::random(8) }}/create'"
                                                 class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                                                <!-- Heroicon name: mini/plus -->
-                                                <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                    <path
-                                                        d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                                                </svg>
-                                                Add an owner
+                                         
+
+                                               New owner
                                             </button>
 
-                                          
+
                                         </div>
                                     </div>
                                     @endif
@@ -345,19 +335,15 @@
                                         <h3 class="mt-2 text-sm font-medium text-gray-900">No tenants</h3>
 
                                         <div class="mt-6">
-                                            <button type="button" wire:loading.remove
-                                           onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/tenant/{{ Str::random(8) }}/create'"
+                                            <button type="button"
+                                                onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/tenant/{{ Str::random(8) }}/create'"
                                                 class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                                                <!-- Heroicon name: mini/plus -->
-                                                <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                    <path
-                                                        d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                                                </svg>
-                                                Add a tenant
+                                 
+
+                                              New tenant
                                             </button>
 
-                                            
+
                                         </div>
                                     </div>
                                     @endif
@@ -395,19 +381,15 @@
                                         <h3 class="mt-2 text-sm font-medium text-gray-900">No guests</h3>
 
                                         <div class="mt-6">
-                                            <button type="button" wire:loading.remove
-                                               onclick="window.location.href='/property/{{ Session::get('property') }}/calendar'"
+                                            <button type="button"
+                                                onclick="window.location.href='/property/{{ Session::get('property') }}/calendar'"
                                                 class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                                                <!-- Heroicon name: mini/plus -->
-                                                <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                    <path
-                                                        d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                                                </svg>
-                                                Add a guest
+                         
+
+                                                New guest
                                             </button>
 
-                                                                                  </div>
+                                        </div>
                                     </div>
                                     @endif
 
@@ -443,19 +425,14 @@
                                         <h3 class="mt-2 text-sm font-medium text-gray-900">No concerns</h3>
 
                                         <div class="mt-6">
-                                            <button type="button" wire:loading.remove
-                                            onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/concern/{{ Str::random(8) }}/create'"
+                                            <button type="button"
+                                                onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/concern/{{ Str::random(8) }}/create'"
                                                 class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                                                <!-- Heroicon name: mini/plus -->
-                                                <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                    <path
-                                                        d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                                                </svg>
-                                                Add a concern
+                                
+                                              New concern
                                             </button>
 
-                                            
+
                                         </div>
                                     </div>
                                     @endif
@@ -491,22 +468,13 @@
                                         <h3 class="mt-2 text-sm font-medium text-gray-900">No utilities</h3>
 
                                         <div class="mt-6">
-                                            <button type="button" wire:loading.remove
-                                                wire:click="redirectToTheCreateUtilitiesPage"
+                                            <button type="button" wire:click="redirectToTheCreateUtilitiesPage"
                                                 class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                                                <!-- Heroicon name: mini/plus -->
-                                                <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                    <path
-                                                        d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                                                </svg>
-                                                Add a utility reading
+                           
+
+                                              New utility reading
                                             </button>
 
-                                            <button type="button" wire:loading disabled
-                                                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                Loading...
-                                            </button>
 
                                         </div>
                                     </div>
@@ -546,13 +514,9 @@
                                             <button type="button"
                                                 onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ $unit_details->uuid }}/bills'"
                                                 class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                                                <!-- Heroicon name: mini/plus -->
-                                                <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                    <path
-                                                        d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                                                </svg>
-                                                Add a bill
+                                         
+
+                                             New bill
                                             </button>
                                         </div>
                                     </div>

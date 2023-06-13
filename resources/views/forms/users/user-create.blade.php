@@ -74,17 +74,11 @@
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200 bg-white">
-                                    @foreach ($features as $item)
+                                    {{-- @foreach ($features as $item)
                                     <tr>
                                         <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">
-                                            <!-- Selected row marker, only show when row is selected. -->
-
-
-                                            {{-- <input type="checkbox"
-                                                class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6"> --}}
-
-                                        </td>
-                                        <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
+                                                                  </td>
+                                       
                                         <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">
                                             {{ $item->feature }}
                                         </td>
@@ -107,7 +101,7 @@
 
                                     </tr>
 
-                                    @endforeach
+                                    @endforeach --}}
                                 </tbody>
                             </table>
                         </div>

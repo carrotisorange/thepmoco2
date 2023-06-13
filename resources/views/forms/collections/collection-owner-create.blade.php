@@ -8,7 +8,7 @@
                 <x-th>#</x-th>
                 <x-th>Date posted</x-th>
                 <x-th>Particular</x-th>
-                <x-th>Unit</x-th>
+                {{-- <x-th>Unit</x-th> --}}
                 <x-th>Period</x-th>
                 <x-th>Amount Due</x-th>
                 <x-th>Payment</x-th>
@@ -21,7 +21,7 @@
                 <x-td>{{Carbon\Carbon::parse($bill->created_at)->format('M d,Y')}}
                 </x-td>
                 <x-td>{{$bill->particular->particular }}</x-td>
-                <x-td>{{$bill->unit->unit }}</x-td>
+                {{-- <x-td>{{$bill->unit->unit }}</x-td> --}}
                 <x-td>{{Carbon\Carbon::parse($bill->start)->format('M d,
                     Y').'-'.Carbon\Carbon::parse($bill->end)->format('M d, Y') }}
                 </x-td>

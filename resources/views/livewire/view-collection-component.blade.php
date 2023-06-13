@@ -4,12 +4,12 @@
     </x-slot>
     <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
         <div
-            class="relative transform overflow-hidden rounded-lgpx-4 pt-5 pb-4 text-left transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+            class="relative transform overflow-hidden rounded-lgpx-4 pt-5 pb-4 text-left transition-all  sm:w-full sm:max-w-sm sm:p-6">
             <div>
 
                 <div class="mt-3 text-center sm:mt-5">
                     <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">View Collection
-                        
+
                     </h3>
                     <div class="mt-2">
 
@@ -48,8 +48,7 @@
                     @if($collection->tenant_uuid)
                     <label class="text-sm" for="start">Tenant</label>
                     <input type="text" value="{{ $collection->tenant->tenant }}" readonly
-                        class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    >
+                        class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     @elseif($collection->owner_uuid)
                     <label class="text-sm" for="start">Owner</label>
                     <input type="text" value="{{ $collection->owner->owner }}" readonly
@@ -63,7 +62,7 @@
                     @endif
                 </div>
 
-              <div class="mt-5 sm:mt-6">
+                <div class="mt-5 sm:mt-6">
                     <label class="text-sm" for="mode_of_payment">Mode of payment</label>
                     <x-form-select id="mode_of_payment" name="mode_of_payment" wire:model="mode_of_payment" class="">
                         <option value="">Select one</option>
@@ -110,7 +109,7 @@
                     @enderror
                 </div>
                 @elseif($mode_of_payment === 'cheque')
-                                <div class="mt-5 sm:mt-6">
+                <div class="mt-5 sm:mt-6">
                     <label class="text-sm" for="start">Cheque No</label>
                     <input type="text" id="cheque_no" wire:model="cheque_no"
                         class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -131,11 +130,12 @@
                     @enderror
                 </div>
 
-                
+
 
                 <div class="mt-5 sm:mt-6">
                     <label class="text-sm" for="interaction_id">Interaction</label>
-                    {{ App\Models\Collection::where('property_uuid', $collection->property_uuid)->where('ar_no', $collection->ar_no)->get() }}
+                    {{ App\Models\Collection::where('property_uuid', $collection->property_uuid)->where('ar_no',
+                    $collection->ar_no)->get() }}
                     {{-- <x-form-select id="interaction_id" name="interaction_id" wire:model="interaction_id" class="">
                         <option value="">Select one</option>
                         @foreach($interactions as $interaction)
@@ -155,14 +155,11 @@
 
                 <div class="mt-5 sm:mt-6">
 
-                    <button type="button" wire:click="closeView" wire:loading.remove
+                    <button type="button" wire:click="closeView"
                         class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
-                        <i class="fa-solid fa-arrow-right"></i>&nbsp Close
+                        Close
                     </button>
-                    <button type="button" wire:loading wire:target="closeView" disabled
-                        class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
-                        Loading...
-                    </button>
+
                 </div>
             </form>
         </div>

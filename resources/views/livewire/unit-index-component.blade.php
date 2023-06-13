@@ -7,43 +7,38 @@
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 @if($sortBy || $orderBy || $search || $status_id || $category_id || $building_id)
-                <button type="button" wire:click="clearFilters()" wire:loading.remove
+                <button type="button" wire:click="clearFilters()"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                    <i class="fa-solid fa-delete-left"></i> &nbsp
+                  
                     Clear Filters
                 </button>
                 @endif
 
-                <button type="button" data-modal-toggle="instructions-create-unit-modal" wire:loading.remove
+                <button type="button" data-modal-toggle="instructions-create-unit-modal"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                    <i class="fa-solid fa-plus"></i> &nbsp New unit
+                    New unit
                 </button>
 
                 @if($view === 'list')
-                <button type="button" wire:click="changeView('thumbnail')" wire:loading.remove
+                <button type="button" wire:click="changeView('thumbnail')"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                    <i class="fa-solid fa-image"></i> &nbsp
+                  
                     View as Thumbnail
 
                 </button>
                 @else
-                <button type="button" wire:click="changeView('list')" wire:loading.remove
+                <button type="button" wire:click="changeView('list')"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                    <i class="fa-solid fa-list"></i> &nbsp
+                  
                     View as List
                 </button>
                 @endif
 
-                <button type="button" wire:loading disabled
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                    Loading...
-
-                </button>
 
                 @if($units->count())
-                <button type="button" wire:click="editUnits" wire:loading.remove
+                <button type="button" wire:click="editUnits"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                    <i class="fa-solid fa-pen-to-square"></i> &nbsp Edit
+                   Edit
                     Units</button>
                 @endif
 
@@ -143,7 +138,7 @@
                 <div class="mt-5">
                     {{ $units->links() }}
 
-                
+
                 </div>
 
             </div>
@@ -262,13 +257,9 @@
                         <div class="mt-6">
                             <button type="button" data-modal-toggle="instructions-create-unit-modal"
                                 class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                                <!-- Heroicon name: mini/plus -->
-                                <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                    fill="currentColor" aria-hidden="true">
-                                    <path
-                                        d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                                </svg>
-                                Add your first unit
+
+
+                                New unit
                             </button>
                         </div>
                     </div>

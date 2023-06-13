@@ -220,7 +220,7 @@ class TenantShowComponent extends Component
 
     public function removeCredentials()
     {
-        sleep(1);
+        
 
         User::where('email', $this->tenant_details->email)
         ->delete();

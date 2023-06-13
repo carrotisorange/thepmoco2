@@ -2,14 +2,14 @@
     <thead class="bg-gray-50">
         <tr>
             <x-th>#</x-th>
+            <x-th>BATCH NO</x-th>
             <x-th>REQUESTED ON</x-th>
             <x-th>REQUESTED BY</x-th>
-            <x-th>BATCH NO</x-th>
+         
             <x-th>UNITS</x-th>
-            {{-- <x-th>VENDORS</x-th>
-            <x-th>PARTICULARS</x-th> --}}
+            <x-th>PARTICULARS</x-th>
             <x-th>AMOUNT</x-th>
-            <x-th></x-th>
+            {{-- <x-th></x-th> --}}
             <x-th></x-th>
         </tr>
     </thead>
@@ -17,10 +17,12 @@
         @foreach($accountpayables as $index => $accountpayable)
         <tr>
             <x-td>{{ $index+1 }}</x-td>
+            <x-td>{{ $accountpayable->batch_no }} ({{ App\Models\AccountPayableParticular::where('batch_no',
+                    $accountpayable->batch_no)->count(); }})</x-td>
             <x-td>{{ Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}</x-td>
                         <?php $firstName= explode(' ', $accountpayable->requester->name); ?>
             <x-td>{{ Str::limit($firstName[0], 10) }}</x-td>
-            <x-td>{{ $accountpayable->batch_no }} ({{ App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->count(); }})</x-td>
+     
             <x-td>
                 <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->limit(2)->get()->unique('unit_uuid'); ?>
                 @foreach ($particulars as $particular)
@@ -43,16 +45,23 @@
                 NA
                 @endif
                 @endforeach
-            </x-td>
+            </x-td>--}}
 
             <x-td>
                 <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->limit(2)->get() ;?>
                 @foreach ($particulars as $particular)
                 {{ Str::limit($particular->item, 10) }},
                 @endforeach
-            </x-td> --}}
+            </x-td> 
             {{-- <x-td>{{ $accountpayable->status }}</x-td> --}}
-            <x-td>{{ number_format($accountpayable->amount, 2) }}
+            <?php 
+                $amount = App\Models\AccountPayableParticular::
+                where('batch_no', $accountpayable->batch_no)
+                ->sum('total')
+                
+            ;?>
+           
+            <x-td>{{ number_format($amount, 2) }}
               @if($accountpayable->status === 'released')
                <span title="released"
                     class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -94,20 +103,20 @@
                 @endif
       
             </x-td>
-            <x-td>
+            {{-- <x-td>
                 <button data-modal-target="view-accountpayable-modal-{{$accountpayable->id}}" data-modal-toggle="view-accountpayable-modal-{{$accountpayable->id}}"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
                     type="button">
                     View Particulars
                 </button>
-            </x-td>
+            </x-td> --}}
             <x-td>
                 <button id="dropdownDefaultButton({{ $accountpayable->id }})({{ $accountpayable->id }})" data-dropdown-placement="left-end"
                     data-dropdown-toggle="dropdown({{ $accountpayable->id }})"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium
                     text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2
                     sm:w-auto"
-                    type="button">Action <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor"
+                    type="button">Options <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor"
                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                     </svg></button>
@@ -164,49 +173,52 @@
                         </li>
                         <li>
                             @can('accountownerandmanager')
-                            @if($accountpayable->status === 'released')
-                            <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View
-                                Request</a>
-                            @else
-                            <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-3"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Approve/Reject
-                                Request</a>
-                            @endif
+                                @if($accountpayable->status === 'released')
+                                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View
+                                    Request</a>
+                                @else
+                                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-1"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit
+                                    Request</a>
+                                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-3"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Approve/Reject
+                                    Request</a>
+                                @endif
                             @elsecan('accountpayable')
-                            @if($accountpayable->status === 'released')
-                            <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View
-                                Request</a>
-                            @elseif($accountpayable->status === 'approved by ap')
-                            <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-6"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Upload
-                                Payment </a>
-                            @else
-                            <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-5"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Approve/Reject
-                                Request</a>
-                            @endif
+                                @if($accountpayable->status === 'released')
+                                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View
+                                    Request</a>
+                                @elseif($accountpayable->status === 'approved by ap')
+                                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-6"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Upload
+                                    Payment </a>
+                                @else
+                                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-5"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Approve/Reject
+                                    Request</a>
+                                @endif
                             @elsecan('ancillary')
-                            @if($accountpayable->status === 'released')
-                            <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View
-                                Request</a>
-                            @else
-                            <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-1"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit
-                                Request</a>
-                            @endif
-                            @else
-                            @if($accountpayable->status === 'released')
-                            <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View
-                                Request</a>
-                            @else
-                            <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-1"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit
-                                Request</a>
-                            @endif
+                                @if($accountpayable->status === 'released')
+                                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View
+                                    Request</a>
+                                @else
+                                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-1"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit
+                                    Request</a>
+                                @endif
+                                @else
+                                @if($accountpayable->status === 'released')
+                                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View
+                                    Request</a>
+                                @else
+                                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-1"
+                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit
+                                    Request</a>
+                                @endif
                             @endcan
                         </li>
 
@@ -219,8 +231,7 @@
         <tr>
             <x-td><b>Total</b></x-td>
             <x-th></x-th>
-            {{-- <x-th></x-th>
-            <x-th></x-th> --}}
+            <x-th></x-th>
             <x-th></x-th>
             <x-th></x-th>
             <x-th></x-th>

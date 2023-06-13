@@ -50,7 +50,8 @@ class AccountPayableCreateStep1Component extends Component
 
     public $first_approver;
     public $second_approver;
-    
+
+
     public function mount($accountpayable)
     {
         $this->request_for = 'payment/purchase';
@@ -68,6 +69,7 @@ class AccountPayableCreateStep1Component extends Component
         $this->vendor = $accountpayable->vendor;
         $this->delivery_at = Carbon::parse($this->delivery_at)->format('Y-m-d');
         $this->particulars = $this->get_particulars();
+        $this->amount = AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->sum('total');
 
     }
 
@@ -78,26 +80,18 @@ class AccountPayableCreateStep1Component extends Component
             'particulars.*.quantity' => 'nullable',
             'particulars.*.price' => 'nullable',
             'particulars.*.total' => 'nullable',
-            'particulars.*.file' => 'nullable',
+            // 'particulars.*.file' => 'nullable',
             'particulars.*.unit_uuid' => 'nullable',
             'particulars.*.vendor_id' => 'nullable',
-            // 'quotation1' => 'nullable | max:102400',
-            // 'quotation2' => 'nullable | max:102400',
-            // 'quotation3' => 'nullable | max:102400',
-            // 'selected_quotation' => ['required_with:quotation1'],
         ];
     }
 
     public function updated($propertyName){
-
         $this->validateOnly($propertyName);
-
     }
 
     public function submitForm()
     {
-        sleep(1);
-
         $this->validate([
              'quotation1' => 'nullable | max:102400',
              'quotation2' => 'nullable | max:102400',
@@ -202,9 +196,9 @@ class AccountPayableCreateStep1Component extends Component
 
     public function addNewParticular(){
 
-        sleep(1);
-
         app('App\Http\Controllers\AccountPayableParticularController')->store($this->batch_no);
+
+        $this->particulars = $this->get_particulars();
 
         return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-1')->with('success', 'Success!');
 
@@ -235,7 +229,7 @@ class AccountPayableCreateStep1Component extends Component
     }
 
     public function removeParticular($id){
-        sleep(1);
+        
         
         AccountPayableParticular::where('id', $id)->delete();
 
@@ -244,7 +238,7 @@ class AccountPayableCreateStep1Component extends Component
 
     public function cancelRequest(){
 
-        sleep(1);
+        
 
        $batch_no = AccountPayable::find($this->accountpayable->id)->batch_no;
 
@@ -255,11 +249,11 @@ class AccountPayableCreateStep1Component extends Component
         return redirect('/property/'.$this->property->uuid.'/accountpayable')->with('success','Success!');
     }
 
-    public function updateParticular($id){
+    public function updateParticulars(){
         try{
-            foreach ($this->particulars->where('id', $id) as $particular) {
-                AccountPayableParticular::where('batch_no', $this->batch_no)
-                ->where('id', $id)
+            foreach ($this->particulars as $particular) {      
+              $particular
+                // ->where('id', $id)
                 ->update([
                     'unit_uuid' => $particular->unit_uuid,
                     'vendor_id' => $particular->vendor_id,
@@ -269,6 +263,8 @@ class AccountPayableCreateStep1Component extends Component
                     'batch_no' => $this->batch_no,
                     'total' => $particular->quantity * $particular->price,
                 ]);
+
+            $this->amount = AccountPayableParticular::where('batch_no', $this->accountpayable->batch_no)->sum('total');
 
             session()->flash('success', 'Success!');
             }
@@ -285,7 +281,7 @@ class AccountPayableCreateStep1Component extends Component
 
     public function deleteAccountPayable($accountpayableId){
 
-      sleep(1);
+      
 
       $batch_no = AccountPayable::find($accountpayableId)->batch_no;
 

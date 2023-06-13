@@ -29,7 +29,7 @@ class DeedOfSaleBackoutComponent extends Component
 
     public function submitForm()
     {
-        sleep(1);
+        
 
         try{
 

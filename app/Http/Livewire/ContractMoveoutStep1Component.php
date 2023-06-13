@@ -45,7 +45,7 @@ class ContractMoveoutStep1Component extends Component
 
     public function submitForm()
     {
-        sleep(1);
+        
 
         $validatedData = $this->validate();
    

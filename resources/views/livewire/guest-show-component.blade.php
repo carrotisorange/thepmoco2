@@ -9,15 +9,11 @@
             </div>
             <div class="lg:col-start-5 lg:col-span-9">
                 <div class="flex justify-end">
-                    <a href="/property/{{ $property->uuid }}/guest/{{ $guest_details->uuid }}/booking" wire:loading.remove target="_blank"
+                    <a href="/property/{{ $property->uuid }}/guest/{{ $guest_details->uuid }}/booking" target="_blank"
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                        <i class="fa-solid fa-download"></i> &nbsp; Export
+                        Export
                     </a>
-                    <button type="button" wire:loading disabled wire:target="exportGuest"
-                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        Loading...
-                    </button>
-                    &nbsp;
+
                     <button
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
                         id="dropdownButton" data-dropdown-toggle="ownerCreateDropdown" type="button">Add
@@ -30,23 +26,26 @@
                     <div id="ownerCreateDropdown"
                         class="text-left hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
                         <ul class="py-1" aria-labelledby="dropdownButton">
-                             <li>
-                                <a href="#/" data-modal-toggle="create-bill-modal" class="block py-2 px-4 text-sm
+                            <li>
+                                <a href="#/" data-modal-toggle="create-bill-modal"
+                                    class="block py-2 px-4 text-sm
                                                                                 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
                                                                                 dark:text-gray-200 dark:hover:text-white">
                                     New bill
                                 </a>
                             </li>
-                          
+
                             <li>
-                                <a href="#/" data-modal-toggle="create-booking-modal" class="block py-2 px-4 text-sm
+                                <a href="#/" data-modal-toggle="create-booking-modal"
+                                    class="block py-2 px-4 text-sm
                                                                                 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
                                                                                 dark:text-gray-200 dark:hover:text-white">
                                     New booking
                                 </a>
                             </li>
-                             <li>
-                                <a href="/property/{{ $this->guest_details->property_uuid }}/guest/{{ $guest_details->uuid }}/bills" class="block py-2 px-4 text-sm
+                            <li>
+                                <a href="/property/{{ $this->guest_details->property_uuid }}/guest/{{ $guest_details->uuid }}/bills"
+                                    class="block py-2 px-4 text-sm
                                                                                 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
                                                                                 dark:text-gray-200 dark:hover:text-white">
                                     New collection
@@ -86,9 +85,9 @@
                         <li class="mr-2" role="presentation">
                             <button
                                 class="font-bold inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                                id="bookings-tab" data-tabs-target="#bookings" type="button"
-                                role="tab" aria-controls="bookings" aria-selected="false">Bookings
-                                </button>
+                                id="bookings-tab" data-tabs-target="#bookings" type="button" role="tab"
+                                aria-controls="bookings" aria-selected="false">Bookings
+                            </button>
                         </li>
 
                         <li class="mr-2" role="presentation">
@@ -114,12 +113,12 @@
                             <form method="POST" wire:submit.prevent="updateGuest()" class="w-full"
                                 enctype="multipart/form-data">
                                 <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-8">
-                                    
+
                                     <div class="sm:col-span-8">
                                         <div
                                             class="bg-white relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                                             <label for="guest" class="block text-xs font-medium text-gray-900">
-                                                 Guest
+                                                Guest
                                             </label>
                                             <input type="text" wire:model.debounce.500ms="guest"
                                                 class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
@@ -128,7 +127,7 @@
                                         </div>
                                     </div>
 
-            
+
 
                                     <div class="sm:col-span-4">
                                         <div
@@ -159,19 +158,16 @@
 
                                 </div>
                                 <div class="mt-5 flex justify-end">
-                                    <button type="button" data-modal-toggle="warning-destroy-guest-modal" wire:loading.remove
+                                    <button type="button" data-modal-toggle="warning-destroy-guest-modal"
                                         class="inline-flex items-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
                                         Delete
                                     </button>
-                                    &nbsp;
-                                    <button type="submit" wire:loading.remove wire:target="updateGuest"
+
+                                    <button type="submit" wire:target="updateGuest"
                                         class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         Update
                                     </button>
-                                    <button type="submit" disabled wire:loading wire:target="updateGuest"
-                                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                        Loading...
-                                    </button>
+
                                 </div>
                             </form>
                         </div>
@@ -203,13 +199,9 @@
                                         <div class="mt-6">
                                             <button type="button" data-modal-toggle="create-additional-guest-modal"
                                                 class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                                                <!-- Heroicon name: mini/plus -->
-                                                <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                    <path
-                                                        d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                                                </svg>
-                                                Add another booking
+                                           
+
+                                                New booking
                                             </button>
 
                                         </div>
@@ -227,7 +219,7 @@
                             Pay Bills</x-button>
 
                         <x-button data-modal-toggle="create-bill-modal">
-                                Add Bill</x-button>
+                            New Bill</x-button>
 
                         <x-button data-modal-toggle="create-particular-modal">
                             Add Particular</x-button>
@@ -244,9 +236,10 @@
                                     @include('tables.bills')
                                     @else
                                     <div class=" mt-10 text-center mb-10">
-                                        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                                            aria-hidden="true">
-                                            <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24"
+                                            stroke="currentColor" aria-hidden="true">
+                                            <path vector-effect="non-scaling-stroke" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="2"
                                                 d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
                                         </svg>
                                         <h3 class="mt-2 text-sm font-medium text-gray-900">No bills</h3>
@@ -254,18 +247,11 @@
                                         <div class="mt-6">
                                             <button type="button" data-modal-toggle="create-bill-modal"
                                                 class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                                                <!-- Heroicon name: mini/plus -->
-                                                <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                                    aria-hidden="true">
-                                                    <path
-                                                        d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                                                </svg>
+                        
+
                                                 Create first bill
                                             </button>
-                                            <button type="button" wire:loading disabled
-                                                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                Loading...
-                                            </button>
+
                                         </div>
                                     </div>
                                     @endif

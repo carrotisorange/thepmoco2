@@ -45,12 +45,13 @@
                @enderror
             </div>
 
-        
+
             <div class="lg:col-span-1">
                <label for="property" class="block text-md font-medium text-gray-700"> What's your property name?
                </label>
                <div class="mt-2">
-                  <input type="text" wire:model="property" autocomplete="property" placeholder="The New Property Condominium"
+                  <input type="text" wire:model="property" autocomplete="property"
+                     placeholder="The New Property Condominium"
                      class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-10 w-full sm:text-md border-gray-300 rounded-md">
                </div>
                @error('property')
@@ -152,26 +153,20 @@
                @enderror
             </div> --}}
          </div>
-      
+
 
          <div class="flex justify-end mt-5">
-            <button type="button" wire:click="cancel" wire:loading.remove
-               class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+            <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
+               href="{{ url()->previous() }}">
                Cancel
-            </button>
-
-            <button type="button" wire:loading disabled 
-               class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-               Loading...
-            </button>
-
-            @if($barangay)
-            <button type="button" wire:click="create" wire:loading.remove
+            </a>
+         
+            <button type="button" wire:click="create"
                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                Create
             </button>
-            @endif
+         
          </div>
-      <div>
+         <div>
    </form>
 </div>

@@ -198,25 +198,7 @@ class TenantBillCreateComponent extends Component
       return redirect('/property/'.$this->property->uuid.'/tenant/'.$this->tenant->uuid.'/bills/'.$collection_batch_no.'/pay');
    }
 
-     public function unpayBills()
-     {
-         Bill::whereIn('id', $this->selectedBills)
-         ->update([
-            'status' => 'unpaid',
-            'initial_payment' => 0
-         ]);
 
-         $collection_batch_no = Collection::where('bill_id', $this->selectedBills[0])->pluck('batch_no');
-
-         AcknowledgementReceipt::where('collection_batch_no', $collection_batch_no)->delete();
-
-         Collection::whereIn('bill_id', $this->selectedBills)->delete();
-
-          $this->selectedBills = [];
-
-          return redirect('/tenant/'.$this->tenant->uuid.'/bills')->with('success', 'Success!');
-
-     }
 
    public function updatedSelectAll($value)
    {

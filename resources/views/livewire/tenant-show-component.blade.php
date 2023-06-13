@@ -9,12 +9,7 @@
                 <div class="flex justify-end">
                     <button
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
-                        id="dropdownButton" data-dropdown-toggle="tenantCreateDropdown" type="button"><svg
-                            class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                            fill="currentColor" aria-hidden="true">
-                            <path
-                                d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                        </svg>Add
+                        id="dropdownButton" data-dropdown-toggle="tenantCreateDropdown" type="button">Add
                         <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
@@ -32,8 +27,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#/" data-modal-toggle="create-concern-modal"
-                                    class=" block py-2 px-4 text-sm
+                                <a href="#/" data-modal-toggle="create-concern-modal" class=" block py-2 px-4 text-sm
                                                     text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
                                                     dark:text-gray-200 dark:hover:text-white">
                                     New concern
@@ -87,19 +81,11 @@
                     <div class="mt-5 flex items-center justify-center">
                         <p class="mt-5 text-lg text-center text-gray-700">
                             {{-- @if(!App\Models\User::where('email', $tenant_details->email)->count()) --}}
-                            <button type="button" wire:click="sendCredentials" wire:loading.remove
+                            <button type="button" wire:click="sendCredentials"
                                 class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
                                 Send access to tenant
                             </button>
-                            <button type="button" disabled wire:target="sendCredentials" wire:loading
-                                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                                Loading...
-                            </button>
-                            {{-- @else
-                        <p class="mt-5 text-lg text-center text-gray-700">
-                            Username: <br><span class="font-bold ">{{ $username }}</span>
-                        </p>
-                        @endif --}}
+                          
                         </p>
                     </div>
 
@@ -261,16 +247,7 @@
                                         <button type="submit" form="updateTenant"
                                             class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
 
-                                            <svg wire:loading wire:target="submitForm"
-                                                class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                                    stroke-width="4">
-                                                </circle>
-                                                <path class="opacity-75" fill="currentColor"
-                                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                                                </path>
-                                            </svg>
+                                           
                                             Update
                                         </button>
                                     </p>
@@ -309,20 +286,11 @@
                                     <p class="mt-1 text-sm text-gray-500">You're almost there!</p>
                                     <div class="mt-6">
                                         <button type="button" wire:click="redirectToTheCreateContractPage"
-                                            wire:loading.remove
                                             class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                                            <!-- Heroicon name: mini/plus -->
-                                            <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                <path
-                                                    d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                                            </svg>
-                                            Add a contract
+                                         
+                                            New contract
                                         </button>
-                                        <button type="button" wire:loading disabled
-                                            class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                            Loading...
-                                        </button>
+                                       
                                     </div>
                                 </div>
                                 @endif
@@ -361,20 +329,11 @@
                                     <p class="mt-1 text-sm text-gray-500">You're almost there!</p>
                                     <div class="mt-6">
                                         <button type="button" data-modal-toggle="create-guardian-modal"
-                                            wire:loading.remove
                                             class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                                            <!-- Heroicon name: mini/plus -->
-                                            <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                <path
-                                                    d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                                            </svg>
-                                            Add a guardian
+                                        
+                                                New guardian
                                         </button>
-                                        <button type="button" wire:loading disabled
-                                            class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                            Loading...
-                                        </button>
+                                       
                                     </div>
                                 </div>
                                 @endif
@@ -410,20 +369,11 @@
                                     <p class="mt-1 text-sm text-gray-500">You're almost there!</p>
                                     <div class="mt-6">
                                         <button type="button" wire:click="redirectToTheCreateReferencePage"
-                                            wire:loading.remove
                                             class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                                            <!-- Heroicon name: mini/plus -->
-                                            <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                <path
-                                                    d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                                            </svg>
-                                            Add a reference
+                                        
+                                           New reference
                                         </button>
-                                        <button type="button" wire:loading disabled
-                                            class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                            Loading...
-                                        </button>
+                                      
                                     </div>
                                 </div>
                                 @endif
@@ -457,20 +407,11 @@
                                     <p class="mt-1 text-sm text-gray-500">You're almost there!</p>
                                     <div class="mt-6">
                                         <button type="button" data-modal-toggle="create-concern-modal"
-                                          
                                             class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                                            <!-- Heroicon name: mini/plus -->
-                                            <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                <path
-                                                    d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                                            </svg>
-                                            Add a concern
+                           
+                                           New concern
                                         </button>
-                                        <button type="button" wire:loading disabled
-                                            class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                            Loading...
-                                        </button>
+                                      
 
                                     </div>
                                 </div>
@@ -485,7 +426,11 @@
 
                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-
+      <button type="button" wire:click="redirectToTheCreateBillPage"
+                                    class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+                                
+                                    Pay Bills
+                                </button>
                             <div
                                 class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg bg-gray-50">
                                 <!-- Selected row actions, only show when rows are selected. -->
@@ -493,20 +438,7 @@
 
                                 </div>
                                 @if($bills->count())
-                                <button type="button" wire:click="redirectToTheCreateBillPage" wire:loading.remove
-                                    class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                                    <!-- Heroicon name: mini/plus -->
-                                    <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                        <path
-                                            d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                                    </svg>
-                                    Pay Bills
-                                </button>
-                                <button type="button" wire:loading disabled
-                                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                    Loading...
-                                </button>
+                        
                                 @include('tables.bills')
                                 @else
                                 <div class=" mt-10 text-center mb-10">
@@ -520,20 +452,11 @@
                                     <p class="mt-1 text-sm text-gray-500">You're almost there!</p>
                                     <div class="mt-6">
                                         <button type="button" wire:click="redirectToTheCreateBillPage"
-                                            wire:loading.remove
                                             class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                                            <!-- Heroicon name: mini/plus -->
-                                            <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                <path
-                                                    d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                                            </svg>
-                                            Add a bill
+                                
+                                           New bill
                                         </button>
-                                        <button type="button" wire:loading disabled
-                                            class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                            Loading...
-                                        </button>
+                                       
                                     </div>
                                 </div>
                                 @endif
@@ -601,20 +524,11 @@
                                     <p class="mt-1 text-sm text-gray-500">You're almost there!</p>
                                     <div class="mt-6">
                                         <button type="button" wire:click="redirectToTheCreateBillPage"
-                                            wire:loading.remove
                                             class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                                            <!-- Heroicon name: mini/plus -->
-                                            <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                <path
-                                                    d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                                            </svg>
-                                            Add a collection
+                                
+                                          New collection
                                         </button>
-                                        <button type="button" wire:loading disabled
-                                            class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                            Loading...
-                                        </button>
+                                      
                                     </div>
                                 </div>
                                 @endif

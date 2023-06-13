@@ -100,28 +100,11 @@
         <h3 class="mt-2 text-sm font-medium text-gray-900">No properties</h3>
         <p class="mt-1 text-sm text-gray-500">Get started by creating a new property.</p>
         <div class="mt-6">
-            <button type="button" wire:loading wire:target="submitForm" disabled
-                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                Loading...
-            </button>
-            <button type="submit" wire:click="submitForm()" wire:loading.remove
+           
+            <button type="submit" wire:click="submitForm()"
                 class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 
-                <svg wire:loading wire:target="submitForm" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
-                    </circle>
-                    <path class="opacity-75" fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                    </path>
-                </svg>
-                <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                    fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd"
-                        d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                        clip-rule="evenodd" />
-                </svg>
-                Create your first property
+              New property
             </button>
         </div>
     </div>
@@ -139,24 +122,16 @@
             @if($search || $sortBy || $filterByPropertyType)
             <button type="button" wire:click="clearFilters"
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-                &nbsp; Clear
-                Filters</button>
+                Clear Filters</button>
             @endif
-
-            <a href="/user/{{ auth()->user()->id }}/export/portfolio"  wire:loading.remove target="_blank"
+            <a href="/user/{{ auth()->user()->id }}/export/portfolio" target="_blank"
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-                <i class="fa-solid fa-download"></i> &nbsp Export Portfolio
+                Export Portfolio
             </a>
 
-            <button type="button" wire:loading disabled 
+            <button type="button" wire:click="createNewProperty"
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-                Loading...
-            </button>
-
-            <button type="button" wire:click="createNewProperty" wire:loading.remove
-                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-                <i class="fa-solid fa-circle-plus"></i> &nbsp; New
-                property</button>
+                New property</button>
 
         </div>
     </div>
@@ -207,11 +182,10 @@
             <select id="limitDisplayTo" wire:model="limitDisplayTo"
                 class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                 <option value="" selected>Limit display to</option>
-                @for ($i = 1; $i <= $totalPropertyCount; $i++) 
-                    @if($i%4==0 || $i==$totalPropertyCount) 
-                        <option value="{{ $i }}">{{ $i }}</option>
+                @for ($i = 1; $i <= $totalPropertyCount; $i++) @if($i%4==0 || $i==$totalPropertyCount) <option
+                    value="{{ $i }}">{{ $i }}</option>
                     @endif
-                @endfor
+                    @endfor
             </select>
 
         </div>

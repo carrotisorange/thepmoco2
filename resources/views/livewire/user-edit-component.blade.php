@@ -76,6 +76,26 @@
                                         @enderror
                                     </div>
 
+                                    <div class="col-span-6 sm:col-span-2">
+                                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                                            <input type="email" wire:model.lazy="email" autocomplete="email"
+                                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                                            @error('email')
+                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+
+                                        
+                                    <div class="col-span-6 sm:col-span-2">
+                                        <label for="username" class="block text-sm font-medium text-gray-700">Mobile
+                                            Number</label>
+                                        <input type="text" wire:model.lazy="mobile_number" autocomplete="mobile_number"
+                                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                                        @error('mobile_number')
+                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+
                                     <div class="col-span-2">
                                         <label for="gender"
                                             class="block text-sm font-medium text-gray-700">Gender</label>
@@ -94,24 +114,8 @@
                                         @enderror
                                     </div>
 
-                                    <div class="col-span-6 sm:col-span-2">
-                                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                                        <input type="email" wire:model.lazy="email" autocomplete="email"
-                                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                                        @error('email')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
-                                    </div>
+                               
 
-                                    <div class="col-span-6 sm:col-span-2">
-                                        <label for="username" class="block text-sm font-medium text-gray-700">Mobile
-                                            Number</label>
-                                        <input type="text" wire:model.lazy="mobile_number" autocomplete="mobile_number"
-                                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                                        @error('mobile_number')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
-                                    </div>
 
                                     @if($user_id == auth()->user()->id)
                                     <div class="col-span-6 sm:col-span-2">
@@ -126,7 +130,7 @@
                                     @endif
 
                                     @can('accountownerandmanager')
-                                    <div class="col-span-2">
+                                    {{-- <div class="col-span-2">
                                         <label for="status"
                                             class="block text-sm font-medium text-gray-700">Status</label>
 
@@ -146,7 +150,7 @@
                                         @error('status')
                                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                         @enderror
-                                    </div>
+                                    </div> --}}
 
                                     <div class="col-span-2">
                                         <label for="role_id"
@@ -169,7 +173,7 @@
 
                                 </div>
 
-                                @can('accountownerandmanager')
+                                {{-- @can('accountownerandmanager')
                                 <h1 class="text-xl font-semibold text-gray-900">Restrictions</h1>
                                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
 
@@ -189,7 +193,7 @@
 
 
                             </form>
-                            @endcan
+                            @endcan --}}
 
                         </div>
 
@@ -199,15 +203,11 @@
                                 Cancel
                             </a>
 
-                            <button type="submit" wire:click="updateUser()" wire:loading.remove wire:target="updateUser"
+                            <button type="submit" wire:click="updateUser()" wire:target="updateUser"
                                 class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 Update
                             </button>
 
-                            <button type="button" disabled wire:loading
-                                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                Loading...
-                            </button>
                         </div>
                     </div>
 

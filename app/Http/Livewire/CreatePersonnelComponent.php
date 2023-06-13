@@ -35,7 +35,7 @@ class CreatePersonnelComponent extends Component
     $is_user_exists = User::where('email', $this->email)->pluck('id')->first();
 
     
-        $is_role_exists = UserProperty::where('user_id', $is_user_exists)->where('role_id', $this->role_id)->pluck('id')->first();
+        $is_role_exists = UserProperty::where('property_uuid',$this->property->uuid)->where('user_id', $is_user_exists)->where('role_id', $this->role_id)->pluck('id')->first();
 
         if($is_role_exists){
             return redirect(url()->previous())->with('error', 'Role already exists!');

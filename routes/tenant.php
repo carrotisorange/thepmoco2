@@ -4,14 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PortalTenantController;
 use App\Http\Controllers\TenantController;
 
-//Routes for tenant
-// Route::domain('{username}.' . env('APP_URL'))->group(function () {
-//     Route::get('posts', function () {
-//         return 'Second subdomain landing page';
-//     });
-// });
-
-Route::prefix('{role_id}/tenant/{user}')->group(function(){
+Route::prefix('{role_id}/tenant/{user:username}')->group(function(){
     Route::controller(PortalTenantController::class)->group(function () {
         Route::get('/', 'index')->name('tenant-dashboard');
         Route::get('contracts','show_contracts')->name('tenant-contracts');

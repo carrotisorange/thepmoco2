@@ -44,7 +44,7 @@ class BillDraftComponent extends Component
 
     public function postBills(){
         
-        sleep(1);
+        
 
         if($this->bill_to == 'tenant'){
             if($this->isBillSplit == 'yes'){

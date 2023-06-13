@@ -108,7 +108,7 @@
                 </div>
                 @endif
 
-                <div class="col-span-2">
+                <div class="col-span-1">
 
                     <label class="block text-sm font-medium text-gray-700"> You may upload the deposit slip here
                         here.
@@ -119,7 +119,7 @@
                             <div class="flex text-sm text-gray-600">
                                 <label for="attachment"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                    <span wire:loading.remove>Attach a deposit slip</span>
+                                    <span>Upload a file</span>
                                     <span wire:loading>Loading...</span>
                                     <input form="edit-form" name="attachment" id="attachment" type="file"
                                         class="sr-only" wire:model="attachment">
@@ -148,7 +148,7 @@
 
 
                 </div>
-                <div class="col-span-2">
+                <div class="col-span-1">
 
                     <label class="block text-sm font-medium text-gray-700"> You may upload the proof of payment
                         here.
@@ -159,7 +159,7 @@
                             <div class="flex text-sm text-gray-600">
                                 <label for="proof_of_payment"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                    <span wire:loading.remove>Attach a proof of payment</span>
+                                    <span>Upload a file</span>
                                     <span wire:loading>Loading...</span>
                                     <input form="edit-form" name="proof_of_payment" id="proof_of_payment" type="file"
                                         class="sr-only" wire:model="proof_of_payment">
@@ -208,10 +208,11 @@
             href="/property/{{ Session::get('property') }}/owner/{{ $owner->uuid }}/collection/{{ $batch_no }}">
             Cancel
         </a>
-        <x-button form="edit-form" type="button"
+       <button type="button" form="edit-form"
+            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             onclick="this.form.submit(); this.disabled = true; this.value = 'Submitting the form';">
             Confirm Payment
-        </x-button>
+        </button>
     </div>
 
 
