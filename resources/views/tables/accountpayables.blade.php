@@ -225,6 +225,7 @@
                 </div>
             </x-td>
             @livewire('view-accountpayable-component',['accountpayable' => $accountpayable], key($accountpayable->id))
+            @livewire('delete-accountpayable-component',['accountpayable' => $accountpayable], key($accountpayable->id))
         </tr>
         @endforeach
         <tr>

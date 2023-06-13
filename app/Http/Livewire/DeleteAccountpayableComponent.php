@@ -6,7 +6,7 @@ use Livewire\Component;
 use App\Models\AccountPayable;
 use App\Models\AccountPayableParticular;
 
-class DeleteAccountPayableModal extends Component
+class DeleteAccountpayableComponent extends Component
 {
     public AccountPayable $accountpayable;
 
@@ -23,6 +23,6 @@ class DeleteAccountPayableModal extends Component
 
     public function render()
     {
-        return view('livewire.delete-account-payable-modal');
+        return view('livewire.delete-accountpayable-component');
     }
 }
