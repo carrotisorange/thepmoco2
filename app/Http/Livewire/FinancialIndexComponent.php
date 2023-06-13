@@ -3,31 +3,13 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use DB;
-use Session;
-use Carbon\Carbon;
-use PDF;
-use App\Models\Property;
+use App\Models\Collection;
 
 class FinancialIndexComponent extends Component
 {
     public $property;
     
     public $filter='daily';
-
-    public function downloadCashflowReports(){
-
-        
-
-        return redirect('/property/'.$this->property->uuid.'/financial/cashflow/export/'.$this->filter);
-    }
-
-    public function downloadFinancialReports(){
-
-        
-
-        return redirect('/property/'.$this->property->uuid.'/financial/financial/export/'.$this->filter);
-    }
 
     public function render()
     {
@@ -50,15 +32,9 @@ class FinancialIndexComponent extends Component
         
         $cashflows = $collections->merge($accountpayables);
 
-        $total_occupancy = app('App\Http\Controllers\PropertyFinancialController')->get_total_occupancy($this->property);
-
         $total_occupancy_rent = app('App\Http\Controllers\PropertyFinancialController')->get_total_occupancy_rent($this->property);
 
-        $total_vacancy = app('App\Http\Controllers\PropertyFinancialController')->get_total_vacancy($this->property);
-
         $total_vacancy_rent = app('App\Http\Controllers\PropertyFinancialController')->get_total_vacancy_rent($this->property);
-
-        $total_occupied = app('App\Http\Controllers\PropertyFinancialController')->get_total_occupied($this->property);
 
         $total_occupied_rent = app('App\Http\Controllers\PropertyFinancialController')->get_total_occupied_rent($this->property);
 
@@ -73,6 +49,11 @@ class FinancialIndexComponent extends Component
         $billed_rent = app('App\Http\Controllers\PropertyFinancialController')->get_total_billed_rent($this->property);
 
         $actual_revenue_collected = app('App\Http\Controllers\PropertyFinancialController')->get_actual_revenue_collected($this->property);
+
+        //financial reports
+        $revenues = Collection::where('property_uuid', $this->property->uuid)->get();
+
+        ddd($revenues);
 
         return view('livewire.financial-index-component',[
               'cashflows' => $cashflows,

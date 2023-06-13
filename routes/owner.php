@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OwnerPortalController;
 use App\Http\Controllers\OwnerController;
 
-Route::prefix('{role_id:id}/owner/{user}')->group(function(){
+Route::prefix('{role_id:id}/owner/{user:username}')->group(function(){
     Route::controller(OwnerPortalController::class)->group(function () {
         Route::get('/', 'index')->name('owner-dashboard');
         Route::get('/units','show_units')->name('owner-units');

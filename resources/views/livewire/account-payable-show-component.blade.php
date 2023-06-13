@@ -93,7 +93,7 @@
                                         {{ $accountpayable->requester->name }}
                                     </td>
                                 </tr>
-                                <tr>
+                                {{-- <tr>
                                     <th scope="col"
                                         class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
                                         Status
@@ -101,7 +101,7 @@
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         {{ $accountpayable->status }}
                                     </td>
-                                </tr>
+                                </tr> --}}
                                 {{--
                                 <tr>
                                     <th scope="col"

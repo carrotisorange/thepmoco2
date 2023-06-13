@@ -136,7 +136,7 @@ class PropertyGuestController extends Controller
 
          app('App\Http\Controllers\PointController')->store($property->uuid, auth()->user()->id, Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);
 
-         $this->send_payment_to_guest($guest, $ar_no, $request->form, $request->created_at, User::find(auth()->user()->id)->name, User::find(auth()->user()->id)->role->role, Collection::where('guest_uuid',$guest->uuid)->where('batch_no', $batch_no)->get());
+        //  $this->send_payment_to_guest($guest, $ar_no, $request->form, $request->created_at, User::find(auth()->user()->id)->name, User::find(auth()->user()->id)->role->role, Collection::where('guest_uuid',$guest->uuid)->where('batch_no', $batch_no)->get());
    
          return redirect('/property/'.$property->uuid.'/guest/'.$guest->uuid)->with('success', 'Success!');
 
@@ -213,8 +213,7 @@ class PropertyGuestController extends Controller
            $collection->ar_no);
 
            
-          $unpaid_bills = Bill::where('guest_uuid', $guest->uuid)->whereIn('status',
-          ['unpaid','partially_paid'])->sum('bill');
+          $unpaid_bills = $unpaid_bills = Bill::where('tenant_uuid', $guest->uuid)->sum('bill');
           $paid_bills = Collection::where('guest_uuid', $guest->uuid)->where('is_posted', 1)->sum('collection');
 
             if($unpaid_bills<=0){ 
