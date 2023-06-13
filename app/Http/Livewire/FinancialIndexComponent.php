@@ -53,7 +53,6 @@ class FinancialIndexComponent extends Component
         //financial reports
         $revenues = Collection::where('property_uuid', $this->property->uuid)->get();
 
-        ddd($revenues);
 
         return view('livewire.financial-index-component',[
               'cashflows' => $cashflows,
