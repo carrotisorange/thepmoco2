@@ -264,6 +264,8 @@ class AccountPayableCreateStep1Component extends Component
                     'total' => $particular->quantity * $particular->price,
                 ]);
 
+            $this->amount = AccountPayableParticular::where('batch_no', $this->accountpayable->batch_no)->sum('total');
+
             session()->flash('success', 'Success!');
             }
             
