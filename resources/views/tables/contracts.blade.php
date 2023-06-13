@@ -1,37 +1,4 @@
-<<<<<<< HEAD
-<style>
-table {
-  border: ;
-  table-layout: fixed;
-  width: 100%;
-}
-
-th,
-td {
-  border: ;
-  width: 100px;
-  overflow: hidden;
-  padding: 0;
-  
-}
-</style>
-
-
-<table class="text-sm text-left text-gray-500 dark:text-gray-400 pr-36">
-    <col style="width:30px">
-    <col style="width:100px">
-    <col style="width:100px">
-    <col style="width:100px">
-    <col style="width:100px">
-    <col style="width:100px">
-    <col style="width:80px">
-    <col style="width:100px">
-    <col style="width:50px">
-    <col style="width:120px">
-
-=======
 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
->>>>>>> 45dfd71bd6b9260de2878ccad8ebc0e15553856d
     <thead class="bg-gray-50">
         <tr>
             <x-th>#</x-th>
@@ -41,10 +8,7 @@ td {
             <x-th>PERIOD COVERED</x-th>
             <x-th>RENT/MO</x-th>
             <x-th>STATUS</x-th>
-<<<<<<< HEAD
             <x-th>INTERACTION</x-th>
-=======
-            {{-- <x-th>INTERACTION</x-th> --}}
             {{-- <x-th>CONTRACT</x-th> --}}
 >>>>>>> 45dfd71bd6b9260de2878ccad8ebc0e15553856d
             <x-th></x-th>
@@ -60,8 +24,7 @@ td {
                 </x-td>
 =======
             <x-td> {{ $index+1 }} </x-td>
-            <x-td>{{ Str::limit($contract->uuid, 10) }}</x-td>
->>>>>>> 45dfd71bd6b9260de2878ccad8ebc0e15553856d
+            <x-td>{{ $contract->uuid }}</x-td>
             <x-td>
                 <a class="text-blue-500 text-decoration-line: underline"
                     href="/property/{{ Session::get('property') }}/unit/{{ $contract->unit->uuid }}">
