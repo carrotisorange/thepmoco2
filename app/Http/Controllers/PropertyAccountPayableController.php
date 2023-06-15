@@ -32,8 +32,7 @@ class PropertyAccountPayableController extends Controller
 
     public function get_accountpayables($property_uuid, $status, $created_at, $request_for, $limitDisplayTo, $search){
 
-        return Property::find(Session::get('property'))->accountpayables()
-     
+        return Property::find($property_uuid)->accountpayables()
         ->when($status, function ($query, $status) {
         $query->where('status', $status);
         })

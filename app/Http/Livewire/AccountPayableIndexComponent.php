@@ -12,7 +12,7 @@ class AccountPayableIndexComponent extends Component
 {
     public $property;
 
-    public $status;
+    public $status = 'pending';
     public $created_at;
     public $request_for;
     public $limitDisplayTo;
@@ -34,8 +34,6 @@ class AccountPayableIndexComponent extends Component
     }
 
     public function exportAccountPayables(){
-       
-      
        return redirect('/property/'.$this->property->uuid.'/accountpayable/export/'.$this->status.'/'.$this->created_at.'/'.$this->request_for.'/'.$this->limitDisplayTo);
     }
 
