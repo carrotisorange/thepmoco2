@@ -110,67 +110,10 @@
 
     <div>
 
-        {{-- <div class="px-4 sm:px-6 lg:px-8">
-
-            <div class="mt-8 flex flex-col">
-                <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                        <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                            <table class="min-w-full divide-y divide-gray-300">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th scope="col"
-                                            class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                                            Operating Expense from Account Payables</th>
-                                        <th scope="col"
-                                            class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                        </th>
-                                    </tr>
-
-                                </thead>
-                                <tbody class="divide-y divide-gray-200 bg-white">
-                                    <tr>
-                                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
-                                            1.
-                                        </td>
-                                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
-                                            value
-                                        </td>
-
-
-                                    </tr>
-                                    <tr>
-                                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
-                                            Total Expense
-                                        </td>
-                                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
-                                            Value
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
-                                            Net Profit
-                                        </td>
-                                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
-                                            Value
-                                        </td>
-                                    </tr>
-
-
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        --}}
-
         <div class="py-8 px-4 sm:px-6 lg:px-8">
             <div class="sm:flex sm:items-center">
                 <div class="sm:flex-auto">
-                    {{-- <h1 class="text-xl font-semibold text-gray-900">Property Finanacial Reporting</h1> --}}
+                    <h1 class="text-xl font-semibold text-gray-900">I. Revenue (Collections) as of the current year</h1>
 
                 </div>
                 <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
@@ -184,80 +127,108 @@
                    
                 </div>
             </div>
-            <div class="mt-8 flex ">
+            <div class="mt-8 flex">
                 <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                         <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                             <table class="min-w-full divide-y divide-gray-300">
                                 <thead class="bg-gray-50">
                                     <tr>
-                                        <th scope="col"
+                                        {{-- <th scope="col"
                                             class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900 ">
-                                            I. Revenue (Collections)</th>
+                                          </th> --}}
                                         <th scope="col"
                                             class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
                                             Particular</th>
                                         <th scope="col"
                                             class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                            Amount
                                         </th>
 
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200 bg-white">
-                                    <tr>
-                                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
-                                        </td>
-                                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
-                                            Particular</td>
-                                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
-                                            Amount</td>
-
-                                    </tr>
-                                    <tr>
-                                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
-                                        </td>
-                                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
-                                            Particular</td>
-                                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
-                                            Amount</td>
-
-                                    </tr>
-
-                                    <thead class="bg-gray-50">
+                                    @foreach ($revenues as $revenue)
                                         <tr>
-                                            <th scope="col"
-                                                class="font-bold text-base whitespace-nowrap px-2 py-3.5 text-left  text-gray-900 ">
-                                                II. Gross Revenue (Collections)</th>
-                                            <th scope="col"
-                                                class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                            </th>
-                                            <th scope="col"
-                                                class="font-bold text-base whitespace-nowrap px-2 py-3.5 text-left  text-gray-900">
-                                                Amount</th>
-
+                                            {{-- <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                                            </td> --}}
+                                            <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                                {{ $revenue->particular }}</td>
+                                            <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                                {{ number_format($revenue->amount, 2) }}</td>
+                                        
                                         </tr>
-                                    </thead>
-                                <tbody class="divide-y divide-gray-200 bg-white">
-                                    <tr>
-                                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
-                                        </td>
-                                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
-                                            Tax Rate</td>
-                                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
-                                            Amount</td>
+                                    @endforeach
+                                   
+                                </tbody>
 
-                                    </tr>
-                                    <tr>
-                                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
-                                        </td>
-                                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
-                                            Net Revenue</td>
-                                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
-                                            Amount</td>
+                                                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+{{-- 
+        <div class="py-8 px-4 sm:px-6 lg:px-8">
+                    <div class="sm:flex sm:items-center">
+                        <div class="sm:flex-auto">
+                            <h1 class="text-xl font-semibold text-gray-900">II. Operating Expenses as of the current year</h1>
+                
+                        </div>
+                        <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+        
+                
+                
+                        </div>
+                    </div>
+                    <div class="mt-8 flex">
+                        <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                                <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                    <table class="min-w-full divide-y divide-gray-300">
+                                        <thead class="bg-gray-50">
+                                            <tr>
+                                                {{-- <th scope="col"
+                                                    class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900 ">
+                                                </th> --}}
+                                                <th scope="col"
+                                                    class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                    Particular</th>
+                                                <th scope="col"
+                                                    class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                    Amount
+                                                </th>
+                
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-gray-200 bg-white">
+                                            @foreach ($revenues as $revenue)
+                                            <tr>
+                                                {{-- <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                                                </td> --}}
+                                                <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                                    {{ $revenue->particular }}</td>
+                                                <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                                    {{ number_format($revenue->amount, 2) }}</td>
+                
+                                            </tr>
+                                            @endforeach
+                
+                                        </tbody>
+                
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                </div> --}}
 
-                                    </tr>
+        
 
-                                    <thead class="bg-gray-50">
+                       
+                                    {{-- <thead class="bg-gray-50">
                                         <tr>
                                             <th scope="col"
                                                 class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900 ">
@@ -281,17 +252,8 @@
                                             Amount</td>
 
                                     </tr>
-
-                                    <tr>
-                                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
-                                        </td>
-                                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
-                                            Particular</td>
-                                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
-                                            Amount</td>
-
-                                    </tr>
-
+                                </tbody>
+                                    
                                     <tr>
                                         <td
                                             class="font-bold text-base whitespace-nowrap py-2 pl-4 pr-3  text-gray-500 sm:pl-6">
@@ -318,17 +280,11 @@
                                         </tr>
                                     </thead>
 
+ --}}
 
 
 
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                        
 
 
 
