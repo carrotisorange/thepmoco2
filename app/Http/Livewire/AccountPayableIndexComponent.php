@@ -12,7 +12,7 @@ class AccountPayableIndexComponent extends Component
 {
     public $property;
 
-    public $status = 'pending';
+    public $status;
     public $created_at;
     public $request_for;
     public $limitDisplayTo;

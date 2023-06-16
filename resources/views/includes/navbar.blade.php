@@ -1,5 +1,5 @@
-<nav aria-label="Sidebar" class="hidden md:block md:flex-shrink-0 md:bg-white overflow-y-auto h-screen">
-    <div class="relative flex w-22 flex-col space-y-3 p-3 mb-20">
+<nav aria-label="Sidebar" class="hidden md:block md:flex-shrink-0 md:bg-white overflow-auto h-screen">
+    <div class="relative flex w-22 flex-col space-y-3 p-3">
         <!-- Dashboard -->
 
         <x-nav-link href="/property/{{ Session::get('property') }}" :active="request()->routeIs('dashboard')">
@@ -316,9 +316,5 @@
         @endif
 
         <div class="font-medium leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Utilities</div>
-
-
-
-
     </div>
 </nav>

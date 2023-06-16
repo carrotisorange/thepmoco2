@@ -5,7 +5,7 @@
     @include('layouts.head')
 </head>
 
-<body class="h-full overflow-hidden font-body">
+<body class="h-full font-body">
     <div class="flex h-full flex-col">
         <!-- Top nav-->
         <nav x-data="{ open: false }" class="bg-white p-3 border-b border-gray-100">
@@ -87,8 +87,7 @@
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <x-dropdown-link :href="route('logout')"
-                                        onclick="event.preventDefault();
-                                                                                            this.closest('form').submit();">
+                                        onclick="event.preventDefault(); this.closest('form').submit();">
                                         Log Out
                                     </x-dropdown-link>
                                 </form>
@@ -125,11 +124,11 @@
             <!-- Narrow sidebar-->
             @include('includes.navbar')
             <main class="flex-1 pb-8 h-screen y-screen overflow-y-scroll">
-                <div class="mt-3">
-                    @include('layouts.notifications')
+                <div class="mt-1">
                     {{ $slot }}
                 </div>
-                <div class="mb-12">
+                <div class="mb-1">
+                      @include('layouts.notifications')
                     @include('layouts.footer')
                 </div>
             </main>
