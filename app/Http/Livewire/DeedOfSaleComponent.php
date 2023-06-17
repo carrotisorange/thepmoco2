@@ -11,7 +11,6 @@ use Livewire\Component;
 
 class DeedOfSaleComponent extends Component
 {
-
     use WithFileUploads;
 
     public $property;
