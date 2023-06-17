@@ -76,14 +76,16 @@ class FinancialIndexComponent extends Component
         ->orderBy('amount', 'desc')
         ->get();
 
-        // $expenses = DB::table('liquidations')
-        //   ->select(DB::raw("SUM(collections.collection) as amount"), 'particulars.particular as particular')
-        //   ->join('bills','collections.bill_id', 'bills.id')
-        //   ->join('particulars', 'bills.particular_id', 'particulars.id')
-        //   ->where('collections.property_uuid', $this->property->uuid)
-        //   ->whereYear('collections.updated_at', Carbon::now()->format('Y'))
-        //   ->groupBy('bills.particular_id')
-        //   ->get();
+        $expenses = DB::table('account_payable_liquidations')
+          ->select(DB::raw("SUM(account_payable_liquidation_particulars.total) as amount"), 'account_payable_liquidation_particulars.item as particular')
+          ->join('account_payable_liquidation_particulars','account_payable_liquidations.batch_no', 'account_payable_liquidation_particulars.batch_no')
+          ->join('account_payables','account_payable_liquidations.batch_no', 'account_payables.batch_no')
+          ->where('account_payables.property_uuid', $this->property->uuid)
+          ->whereYear('account_payable_liquidations.created_at', Carbon::now()->format('Y'))
+          ->whereNotNull('account_payable_liquidations.approved_by')
+          ->groupBy('account_payable_liquidation_particulars.item')
+          ->orderBy('amount', 'desc')
+          ->get();
 
         return view('livewire.financial-index-component',[
               'cashflows' => $cashflows,
@@ -95,7 +97,8 @@ class FinancialIndexComponent extends Component
               'collected_rent' => $collected_rent, 
               'billed_rent' => $billed_rent,
               'actual_revenue_collected' => $actual_revenue_collected,
-              'revenues' => $revenues
+              'revenues' => $revenues,
+              'expenses' => $expenses
 
         ]);
     }
