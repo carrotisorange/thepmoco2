@@ -8,7 +8,7 @@
             <div>
 
                 <div class="mt-3 text-center sm:mt-5">
-                    <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Edit Unit
+                    <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Edit Deed Of Sale
 
                     </h3>
                     <div class="mt-2">
@@ -17,6 +17,27 @@
                 </div>
             </div>
             <form wire:submmit.prevent="updateDeedofsale">
+
+                <div class="mt-5 sm:mt-6">
+                        <label class="text-sm" for="guardian">Turnover on</label>
+                        <input type="date" id="turnover_at" wire:model="turnover_at"
+                            class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="" required>
+                        @error('turnover_at')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                <div class="mt-5 sm:mt-6">
+                    <label class="text-sm" for="guardian">Purchasing Price</label>
+                    <input type="number" step="0.001" id="price" wire:model="price"
+                        class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="" required>
+                    @error('price')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+
 
                 <div class="mt-5 sm:mt-6">
                     <label for="contract" class="block text-sm font-medium leading-6 text-gray-900">Leasing
@@ -32,7 +53,7 @@
                             file found</a>
                         @endif
 
-                        {{-- <input id="contaa" type="file" class="" wire:model="contract"> --}}
+                        <input id="contract" type="file" class="" wire:model="contract">
 
                     </div>
                 </div>
@@ -49,6 +70,8 @@
                             class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">No
                             file found</a>
                         @endif
+
+                        <input id="title" type="file" class="" wire:model="title">
                     </div>
                 </div>
 
@@ -65,6 +88,8 @@
                             class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">No
                             file found</a>
                         @endif
+
+                        <input id="tax_declaration" type="file" class="" wire:model="tax_declaration">
                     </div>
                 </div>
 
@@ -81,6 +106,8 @@
                             class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">No
                             file found</a>
                         @endif
+                        
+                        <input id="deed_of_sales" type="file" class="" wire:model="deed_of_sales">
                     </div>
                 </div>
 
@@ -97,6 +124,8 @@
                             class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">No
                             file found</a>
                         @endif
+
+                        <input id="contract_to_sell" type="file" class="" wire:model="contract_to_sell">
                     </div>
                 </div>
 
@@ -113,11 +142,16 @@
                             class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">No
                             file found</a>
                         @endif
+
+                        <input id="certificate_of_membership" type="file" class="" wire:model="certificate_of_membership">
                     </div>
                 </div>
 
                 <div class="mt-5 sm:mt-6">
-
+                    <button type="button" wire:click="updateDeedofsale"
+                        class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
+                        Update
+                    </button>
                 </div>
             </form>
         </div>
