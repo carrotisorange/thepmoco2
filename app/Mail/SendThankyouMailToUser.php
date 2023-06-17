@@ -31,7 +31,7 @@ class SendThankyouMailToUser extends Mailable
     public function build()
     {
         return $this->subject('Welcome Email')
-            ->from('admin@thepmo.co')
+            ->from(['cheskaoraleelacio@thepmo.co', 'landleybernardo@thepmo.co'])
             ->markdown('emails.sendthankyoumailtouser');
     }
 }
