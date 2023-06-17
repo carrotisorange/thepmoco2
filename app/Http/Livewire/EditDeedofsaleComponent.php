@@ -50,13 +50,8 @@ class EditDeedofsaleComponent extends Component
 
     public function updateDeedofsale(){
         
-        try{
-            $validated = $this->validate();
-        }catch(\Exception $e){
-            ddd($e);
-        }
-       
-
+        $validated = $this->validate();
+  
         if ($this->contract === null) {
             $contract = $this->deedofsale->contract;
         }else{
