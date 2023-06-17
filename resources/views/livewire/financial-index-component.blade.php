@@ -134,9 +134,10 @@
                             <table class="min-w-full divide-y divide-gray-300">
                                 <thead class="bg-gray-50">
                                     <tr>
-                                        {{-- <th scope="col"
+                                        <th scope="col"
                                             class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900 ">
-                                          </th> --}}
+                                            #
+                                          </th>
                                         <th scope="col"
                                             class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
                                             Particular</th>
@@ -148,10 +149,11 @@
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200 bg-white">
-                                    @foreach ($revenues as $revenue)
+                                    @foreach ($revenues as $index => $revenue)
                                         <tr>
-                                            {{-- <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
-                                            </td> --}}
+                                            <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                                                {{ $index+1 }}
+                                            </td>
                                             <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
                                                 {{ $revenue->particular }}</td>
                                             <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
@@ -161,6 +163,21 @@
                                     @endforeach
                                    
                                 </tbody>
+                                <tbody class="divide-y divide-gray-200 bg-white">
+                                  
+                                    <tr>
+                                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                            Total</td>
+                                       
+                                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                           </td>
+                                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                            {{ number_format($revenues->sum('amount'), 2) }}</td>
+                                
+                                    </tr>
+                                 
+                                
+                                </tbody>
 
                                                             </table>
                         </div>
@@ -169,6 +186,147 @@
             </div>
             
         </div>
+
+        <div class="py-8 px-4 sm:px-6 lg:px-8">
+                    <div class="sm:flex sm:items-center">
+                        <div class="sm:flex-auto">
+                            <h1 class="text-xl font-semibold text-gray-900">II. Operating Expenses as of the current year</h1>
+                
+                        </div>
+                        <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+                            {{-- <button type="button" wire:click="downloadFinancialReports"
+                                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                
+                                Export
+                
+                            </button> --}}
+                
+                
+                        </div>
+                    </div>
+                    <div class="mt-8 flex">
+                        <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                                <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                    <table class="min-w-full divide-y divide-gray-300">
+                                        <thead class="bg-gray-50">
+                                            <tr>
+                                                <th scope="col"
+                                                    class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900 ">
+                                                    #
+                                                </th>
+                                                <th scope="col"
+                                                    class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                    Particular</th>
+                                                <th scope="col"
+                                                    class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                    Amount
+                                                </th>
+                
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-gray-200 bg-white">
+                                            @foreach ($expenses as $index => $expense)
+                                            <tr>
+                                                <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                                                    {{ $index+1 }}
+                                                </td>
+                                                <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                                    {{ $expense->particular }}</td>
+                                                <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                                    {{ number_format($expense->amount, 2) }}</td>
+                
+                                            </tr>
+                                            @endforeach
+                
+                                        </tbody>
+                                    <tbody class="divide-y divide-gray-200 bg-white">
+                                  
+                                    <tr>
+                                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                            Total</td>
+                                       <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                            </td>
+                                     
+                                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                            {{ number_format($expenses->sum('amount'), 2) }}</td>
+                                
+                                    </tr>
+                                 
+                                
+                                </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                </div>
+
+                        <div class="py-8 px-4 sm:px-6 lg:px-8">
+                    <div class="sm:flex sm:items-center">
+                        <div class="sm:flex-auto">
+                            <h1 class="text-xl font-semibold text-gray-900">III. Net Income as of the current year</h1>
+                
+                        </div>
+                        <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+                            {{-- <button type="button" wire:click="downloadFinancialReports"
+                                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                
+                                Export
+                
+                            </button> --}}
+                
+                
+                        </div>
+                    </div>
+                    <div class="mt-8 flex">
+                        <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                                <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                    <table class="min-w-full divide-y divide-gray-300">
+                                        <thead class="bg-gray-50">
+                                            <tr>
+                                              
+                                                <th scope="col"
+                                                    class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                    Total Revenue(Collection)</th>
+                                                <th scope="col"
+                                                    class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                    Total Operating Expenses
+                                                </th>
+                                                <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900 ">
+                                                    Net Income
+                                                </th>
+                
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-gray-200 bg-white">
+                                          
+                                            <tr>
+                                              
+                                                <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                                   {{ number_format($revenues->sum('amount'), 2) }}</td>
+                                                <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                                 {{ number_format($expenses->sum('amount'), 2) }}</td>
+                                                 <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                                                {{ number_format($revenues->sum('amount') - $expenses->sum('amount'), 2) }}
+                                                </td>
+                
+                                            </tr>
+                                          
+                
+                                        </tbody>
+                                  
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                </div>
+
+
 
 
         
