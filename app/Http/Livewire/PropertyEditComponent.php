@@ -36,6 +36,9 @@ class PropertyEditComponent extends Component
     public $note_to_bill;
     public $note_to_transient;
 
+    public $title;
+    public $business_permit;
+
     public function mount($property_details)
     {
         $this->property = $property_details->property;
@@ -73,7 +76,9 @@ class PropertyEditComponent extends Component
             'facebook_page' => 'required',
             'telephone' => 'required',
             'note_to_bill' => 'nullable',
-            'note_to_transient' => 'nullable'
+            'note_to_transient' => 'nullable',
+            'title' => 'nullable | max:102400',
+            'business_permit' => 'nullable | max:102400',
         ];
     }
 
@@ -84,13 +89,12 @@ class PropertyEditComponent extends Component
 
     public function submitForm(Request $request)
     {   
-        
 
-        $validatedData = $this->validate();
+        $validated = $this->validate();
         
         try{
-            DB::transaction(function () use ($validatedData, $request){
-              $this->update_property($validatedData, $request);
+            DB::transaction(function () use ($validated, $request){
+              $this->update_property($validated, $request);
             });
 
             app('App\Http\Controllers\ActivityController')->store($this->property_details->uuid, auth()->user()->id,'updates',1);
@@ -102,17 +106,43 @@ class PropertyEditComponent extends Component
         }
     }
 
-    public function update_property($validatedData, $request)
+    public function update_property($validated, $request)
     {
-         if($this->thumbnail)
-         {
-            $validatedData['thumbnail'] = $this->thumbnail->store('thumbnails');
-         }else
-         {
-            $validatedData['thumbnail'] = 'thumbnails/thumbnail.png';
-         }
+        if ($this->thumbnail === null) {
+            $thumbnail = $this->property_details->thumbnail;
+        }else{
+            $thumbnail = $this->thumbnail->store('thumbnails');
+        }
 
-         $this->property_details->update($validatedData);
+        if ($this->title === null) {
+            $title = $this->property_details->title;
+        }else{
+            $title = $this->title->store('titles');
+        }
+
+        if ($this->business_permit === null) {
+            $business_permit = $this->property_details->business_permit;
+        }else{
+            $business_permit = $this->business_permit->store('business_permits');
+        }
+
+        $validated['thumbnail'] = $thumbnail;
+        $validated['title'] = $title;
+        $validated['business_permit'] = $business_permit;
+
+        $this->property_details->update($validated);
+    }
+
+    public function removeThumbnail(){
+        $this->thumbnail = '';
+    }
+
+    public function removeTitle(){
+        $this->title = '';
+    }
+
+    public function removeBusinessPermit(){
+        $this->business_permit = '';
     }
     
     public function render()

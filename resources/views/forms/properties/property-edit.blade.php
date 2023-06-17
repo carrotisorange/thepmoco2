@@ -277,6 +277,130 @@
                     </div>
 
                 </div>
+
+                 <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                    <label for="status" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                        Thumbnail <br>
+                        @if($property_details->thumbnail)
+                        <a href="{{ asset('/storage/'.$property_details->thumbnail) }}" target="_blank"
+                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View the uploaded thumbnail</a>
+                            @else
+                            <span>No thumbnail was uploaded</span>
+                            @endif
+                    </label>
+                    <div class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
+                        <div class="space-y-1 text-center">
+                     
+                            <div class="flex text-sm text-gray-600">
+                                <label for="thumbnail"
+                                    class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                    <span>Upload a file</span>
+                                    <span wire:loading>Loading...</span>
+                                    <input id="thumbnail" type="file" class="sr-only" wire:model="thumbnail">
+                                </label>
+                    
+                            </div>
+                            <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
+                            @if($thumbnail)
+                            <span class="text-red-500 text-xs mt-2">
+                               </span>
+                                <a href="#/" wire:click="removeThumbnail()">Remove the uploaded
+                                    file.</a></span>
+                            @endif
+                    
+                        </div>
+                    </div>
+                    @error('thumbnail')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @else
+                    @if ($thumbnail)
+                    <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i></p>
+                    @endif
+                    @enderror
+
+                </div>
+
+                <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                    <label for="title" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                       Title <br>
+                       @if($property_details->title)<a href="{{ asset('/storage/'.$property_details->title) }}" target="_blank"
+                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View the uploaded title</a>
+                       @else
+                      <span>No title was uploaded</span>
+                        @endif
+                    </label>
+                    <div class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
+                        <div class="space-y-1 text-center">
+                    
+                            <div class="flex text-sm text-gray-600">
+                                <label for="title"
+                                    class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                    <span>Upload a file</span>
+                                    <span wire:loading>Loading...</span>
+                                    <input id="title" type="file" class="sr-only" wire:model="title">
+                                </label>
+                    
+                            </div>
+                            <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
+                            @if($title)
+                            <span class="text-red-500 text-xs mt-2">
+                                <a href="#/" wire:click="removeTitle()">Remove the uploaded
+                                    file.</a></span>
+                            @endif
+                    
+                        </div>
+                    </div>
+                    @error('title')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @else
+                    @if ($title)
+                    <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i></p>
+                    @endif
+                    @enderror
+                </div>
+
+                <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                    <label for="business_permit" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                       Business Permit <br>
+                    
+                       @if($property_details->business_permit)
+                       <a href="{{ asset('/storage/'.$property_details->business_permit) }}" target="_blank"
+                            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View the uploaded business
+                            permit</a>
+                            @else
+                           <span>No business permit was uploaded</span>
+                       @endif
+                    </label>
+                    <div class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
+                        <div class="space-y-1 text-center">
+                
+                            <div class="flex text-sm text-gray-600">
+                                <label for="business_permit"
+                                    class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                    <span>Upload a file</span>
+                                    <span wire:loading>Loading...</span>
+                                    <input id="business_permit" type="file" class="sr-only" wire:model="business_permit">
+                                </label>
+                
+                            </div>
+                            <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
+                            @if($business_permit)
+                            <span class="text-red-500 text-xs mt-2">
+                                <a href="#/" wire:click="removeBusinessPermit()">Remove the uploaded
+                                    file.</a></span>
+                            @endif
+                
+                        </div>
+                    </div>
+                    @error('business_permit')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @else
+                    @if ($business_permit)
+                    <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i></p>
+                    @endif
+                    @enderror
+                
+                </div>
             </div>
             <div class="pt-5">
                 <div class="flex justify-end">
