@@ -172,6 +172,12 @@
                                 id="bills-tab" data-tabs-target="#bills" type="button" role="tab" aria-controls="bills"
                                 aria-selected="false">Bills</button>
                         </li>
+                        <li role="presentation">
+                            <button
+                                class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                id="collections-tab" data-tabs-target="#collections" type="button" role="tab" aria-controls="collections"
+                                aria-selected="false">Collections</button>
+                        </li>
                         <li class="mr-2" role="presentation">
                             <button
                                 class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
@@ -526,6 +532,37 @@
 
                             </div>
 
+                        </div>
+                    </div>
+
+                    <div class="hidden p-4 purple rounded-lg dark:bg-gray-800" id="collections" role="tabpanel" aria-labelledby="collections-tab">
+                        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                    
+                                <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                    <!-- Selected row actions, only show when rows are selected. -->
+                                    <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 purple sm:left-16">
+                    
+                                    </div>
+                                    @if($collections->count())
+                                    @include('tables.collections')
+                                    @else
+                                    <div class="mt-10 text-center mb-10">
+                                        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                            aria-hidden="true">
+                                            <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                                        </svg>
+                                        <h3 class="mt-2 text-sm font-medium text-gray-900">No collections</h3>
+                    
+                                    </div>
+                                    @endif
+                    
+                                </div>
+                    
+                            </div>
+                    
                         </div>
                     </div>
                 </div>

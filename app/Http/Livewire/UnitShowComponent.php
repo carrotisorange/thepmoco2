@@ -8,7 +8,7 @@ use DB;
 use Session;
 use App\Models\Utility;
 use App\Models\Concern;
-use App\Models\DeedOfSale;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use App\Models\UnitInventory;
 
@@ -170,7 +170,7 @@ class UnitShowComponent extends Component
 
     public function render()
     {
-              $utilities = Utility::isposted()
+            $utilities = Utility::isposted()
               ->select('*', 'units.unit as unit_name' )
               ->join('units', 'utilities.unit_uuid', 'units.uuid')
               ->where('utilities.property_uuid', $this->unit_details->property_uuid)
@@ -178,6 +178,29 @@ class UnitShowComponent extends Component
               ->orderBy('start_date', 'desc')
               ->orderByRaw('LENGTH(unit_name) ASC')->orderBy('unit_name', 'asc')
               ->get();
+
+            $revenues = DB::table('collections')
+            ->select(DB::raw("SUM(collections.collection) as amount"), 'particulars.particular as particular')
+            ->join('bills','collections.bill_id', 'bills.id')
+            ->join('particulars', 'bills.particular_id', 'particulars.id')
+            ->where('collections.property_uuid', $this->unit_details->property_uuid)
+            ->where('collections.unit_uuid', $this->unit_details->uuid)
+            ->whereYear('collections.updated_at', Carbon::now()->format('Y'))
+            ->groupBy('bills.particular_id')
+            ->orderBy('amount', 'desc')
+            ->get();
+
+            $expenses = DB::table('account_payable_liquidations')
+            ->select(DB::raw("SUM(account_payable_liquidation_particulars.total) as amount"), 'account_payable_liquidation_particulars.item as particular')
+            ->join('account_payable_liquidation_particulars','account_payable_liquidations.batch_no', 'account_payable_liquidation_particulars.batch_no')
+            ->join('account_payables','account_payable_liquidations.batch_no', 'account_payables.batch_no')
+            ->where('account_payables.property_uuid', $this->unit_details->property_uuid)
+            ->where('account_payable_liquidation_particulars.unit_uuid', $this->unit_details->uuid)
+            ->whereYear('account_payable_liquidations.created_at', Carbon::now()->format('Y'))
+            ->whereNotNull('account_payable_liquidations.approved_by')
+            ->groupBy('account_payable_liquidation_particulars.item')
+            ->orderBy('amount', 'desc')
+            ->get();
 
         return view('livewire.unit-show-component',[
             'buildings' => app('App\Http\Controllers\PropertyBuildingController')->index($this->unit_details->property_uuid),
@@ -192,7 +215,10 @@ class UnitShowComponent extends Component
             'total_uncollected_bills' => app('App\Http\Controllers\BillController')->get_unit_bills($this->unit_details->uuid ,null,'unpaid'),
             'utilities' => $utilities,
             'concerns' => Concern::where('unit_uuid', $this->unit_details->uuid)->get(),
-            'inventories' => UnitInventory::where('unit_uuid', $this->unit_details->uuid)->where('contract_uuid', '')->get()
+            'inventories' => UnitInventory::where('unit_uuid', $this->unit_details->uuid)->where('contract_uuid', '')->get(),
+            'collections' => app('App\Http\Controllers\UnitController')->get_unit_collections($this->unit_details->property_uuid, $this->unit_details->uuid),
+            'revenues' => $revenues,
+            'expenses' => $expenses
         ]);
     }
 }
