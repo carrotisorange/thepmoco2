@@ -1470,7 +1470,7 @@
 
                 </div>
 
-                <div class="mr-5 mt-10 col-span-4">
+                <div class="mr-16 mt-10 col-span-4">
                     <h2 class="p-3 font-semibold text-xl text-gray-700"> Expiring Contracts</h2>
                     <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -1489,9 +1489,8 @@
 
                     </div>
                 </div>
-            </div>
 
-            <div class="mt-20 lg:flex lg: sm:my-10  col-span-2">
+                <div class="mt-20 lg:flex lg: sm:my-10 col-span-2">
                 <div class="bg-purple-200 rounded-lg shadow-md w-full">
                     <div class="flex justify-end items-end pr-5 pt-6">
 
@@ -1553,7 +1552,13 @@
                 </div>
 
 
+            </div>                                
+
+
+
             </div>
+
+            
 
         </div>
 

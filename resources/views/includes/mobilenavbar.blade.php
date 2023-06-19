@@ -1,4 +1,4 @@
-<div class="pt-4 pb-1 border-t border-gray-200 overflow-y-auto h-screen mb-20">
+<div class="pt-4 pb-1 border-t border-gray-200 overflow-y-auto h-screen pb-20">
     <div class="pt-2 pb-3 space-y-1">
         @if(Session::get('property'))
         <x-dropdown-link href="/property/{{ Session::get('property') }}">

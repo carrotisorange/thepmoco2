@@ -1,4 +1,4 @@
-<nav aria-label="Sidebar" class="hidden md:block md:flex-shrink-0 md:bg-white overflow-auto h-screen">
+<nav aria-label="Sidebar" class="hidden md:block md:flex-shrink-0 md:bg-white overflow-auto h-screen pb-20">
     <div class="relative flex w-22 flex-col space-y-3 p-3">
         <!-- Dashboard -->
 
