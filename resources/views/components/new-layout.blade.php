@@ -5,7 +5,7 @@
     @include('layouts.head')
 </head>
 
-<body class="h-full font-body">
+<body class="h-full overflow-hidden">
     <div class="flex h-full flex-col">
         <!-- Top nav-->
         <nav x-data="{ open: false }" class="bg-white p-3 border-b border-gray-100">
