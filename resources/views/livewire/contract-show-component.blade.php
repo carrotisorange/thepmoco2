@@ -154,7 +154,7 @@
                                     <span class="ml-2 w-0 flex-1 truncate">Unit Inventory</span>
                                 </div>
                                 <div class="ml-4 flex-shrink-0">
-                                    <a href="/property/{{ $contract->property_uuid }}/unit/{{ $contract->unit_uuid }}/contract/{{ $contract->uuid }}/inventory/export"
+                                    <a href="/property/{{ $contract->property_uuid }}/unit/{{ $contract->unit_uuid }}/contract/{{ $contract->uuid }}/inventory/export" target="_blank"
                                         class="font-medium text-indigo-600 hover:text-indigo-500">Download</a>
                                 </div>
                             </li>
@@ -170,7 +170,7 @@
                                     <span class="ml-2 w-0 flex-1 truncate">Statements of Account</span>
                                 </div>
                                 <div class="ml-4 flex-shrink-0">
-                                    <a href="/property/{{ $contract->property_uuid }}/tenant/{{ $contract->tenant_uuid }}/bill/export"
+                                    <a href="/property/{{ $contract->property_uuid }}/tenant/{{ $contract->tenant_uuid }}/bill/export" 
                                         class="font-medium text-indigo-600 hover:text-indigo-500">Download</a>
                                 </div>
                             </li>
