@@ -5,7 +5,7 @@
     @include('layouts.head')
 </head>
 
-<body class="h-full font-body">
+<body class="h-full overflow-hidden">
     <div class="flex h-full flex-col">
         <!-- Top nav-->
         <nav x-data="{ open: false }" class="bg-white p-3 border-b border-gray-100">
@@ -22,7 +22,7 @@
                         </div>
 
                         <div class="hidden space-x-3 sm:-my-px sm:ml-10 sm:flex">
-                            <h1 class="text-xl py-5 tracking-tight font-medium leading-tight text-gray-700">
+                            <h1 class="text-xl pt-2 tracking-tight font-medium leading-tight text-gray-700">
                                 @if (Session::has('property'))
                                 {{ App\Models\Property::find(Session::get('property'))->property.'
                                 '.App\Models\Property::find(Session::get('property'))->type->type }}

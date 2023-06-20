@@ -11,7 +11,7 @@ use App\Models\Floor;
 use DB;
 use App\Models\Owner;
 
-use App\Models\Plan;
+use App\Models\Collection;
 
 class UnitController extends Controller
 {
@@ -156,5 +156,16 @@ class UnitController extends Controller
             return redirect('/property/'.Session::get('property').'/unit')->with('success', 'Success!');
         }
        
+    }
+
+    public function get_unit_collections($property_uuid, $unit_uuid){
+        return Collection::
+        select('*', DB::raw("SUM(collection) as collection"),DB::raw("count(collection) as count") )
+        ->where('property_uuid', $property_uuid)
+        ->where('unit_uuid', $unit_uuid)
+        ->where('is_posted', 1)
+        ->groupBy('ar_no')
+        ->orderBy('ar_no', 'desc')
+        ->get();
     }
 }

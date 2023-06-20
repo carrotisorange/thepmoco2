@@ -39,97 +39,207 @@
                 </div>
 
 
-                <div class="mt-5 sm:mt-6">
-                    <label for="contract" class="block text-sm font-medium leading-6 text-gray-900">Leasing
-                        Contract</label>
-                    <div class="mt-2 flex items-center gap-x-3">
-                        <i class="fa-solid fa-file-contract"></i>
-                        @if($deedofsale->contract)
-                        <a href="{{ asset('/storage/'.$deedofsale->contract) }}" target="_blank"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">View</a>
-                        @else
-                        <a href="#/"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">No
-                            file found</a>
-                        @endif
-
-                        <input id="contract" type="file" class="" wire:model="contract">
-
+              <div class="sm:col-span-3">
+                    <label for="contract" class="block mt-3 text-sm font-medium leading-6 text-gray-900">Contract</label>
+                    @if(!$deedofsale->contract)
+                    <span>No file is uploaded. </span>
+                    @else
+                    <a target="_blank" href="{{ asset('/storage/'.$deedofsale->contract) }}">View file</a>
+                
+                    @endif
+                    <div class="mt-2 flex justify-center rounded-md border-2 border-gray-300">
+                        <div class="space-y-1 text-center">
+                
+                            <div class="flex text-sm text-gray-600">
+                                <label for="contract"
+                                    class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
+                                    <span>Upload a file</span>
+                                    <input id="contract" name="contract" type="file" wire:model="contract" class="sr-only">
+                                </label>
+                
+                            </div>
+                            <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                            <p class="text-center">
+                                @error('contract')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @else
+                            @if($contract)
+                            <p class="text-green-500 text-xs mt-2">File has been uploaded!</p>
+                            @endif
+                            @enderror
+                            </p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="mt-5 sm:mt-6">
-                    <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Title</label>
-                    <div class="mt-2 flex items-center gap-x-3">
-                        <i class="fa-solid fa-file-contract"></i>
-                        @if($deedofsale->title)
-                        <a href="{{ asset('/storage/'.$deedofsale->title) }}" target="_blank"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">View</a>
-                        @else
-                        <a href="#/"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">No
-                            file found</a>
-                        @endif
-
-                        <input id="title" type="file" class="" wire:model="title">
+               <div class="sm:col-span-3">   
+                    <label for="title" class="block mt-3 text-sm font-medium leading-6 text-gray-900">Title</label>
+                    @if(!$deedofsale->title)
+                    <span>No file is uploaded. </span>
+                    @else
+                    <a target="_blank" href="{{ asset('/storage/'.$deedofsale->title) }}">View file</a>
+                    
+                    @endif
+                   <div class="mt-2 flex justify-center rounded-md border-2 border-gray-300">
+                        <div class="space-y-1 text-center">
+                           
+                            <div class="flex text-sm text-gray-600">
+                                <label for="title"
+                                    class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
+                                    <span>Upload a file</span>
+                                    <input id="title" name="title" type="file" wire:model="title" class="sr-only">
+                                </label>
+           
+                            </div>
+                            <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                            <p class="text-center">
+                                @error('title')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @else
+                            @if($title)
+                            <p class="text-green-500 text-xs mt-2">File has been uploaded!</p>
+                            @endif
+                            @enderror
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="sm:col-span-3">   
+                    <label for="tax_declaration" class="block mt-3 text-sm font-medium leading-6 text-gray-900">Tax Declaration</label>
+                    @if(!$deedofsale->tax_declaration)
+                    <span>No file is uploaded. </span>
+                    @else
+                    <a target="_blank" href="{{ asset('/storage/'.$deedofsale->tax_declaration) }}">View file</a>
+                    
+                    @endif
+                   <div class="mt-2 flex justify-center rounded-md border-2 border-gray-300">
+                        <div class="space-y-1 text-center">
+                           
+                            <div class="flex text-sm text-gray-600">
+                                <label for="tax_declaration"
+                                    class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
+                                    <span>Upload a file</span>
+                                    <input id="tax_declaration" name="tax_declaration" type="file" wire:model="tax_declaration" class="sr-only">
+                                </label>
+           
+                            </div>
+                            <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                            <p class="text-center">
+                                @error('tax_declaration')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @else
+                            @if($tax_declaration)
+                            <p class="text-green-500 text-xs mt-2">File has been uploaded!</p>
+                            @endif
+                            @enderror
+                            </p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="mt-5 sm:mt-6">
-                    <label for="tax_declaration" class="block text-sm font-medium leading-6 text-gray-900">Tax
-                        Declaration</label>
-                    <div class="mt-2 flex items-center gap-x-3">
-                        <i class="fa-solid fa-file-contract"></i>
-                        @if($deedofsale->tax_declaration)
-                        <a href="{{ asset('/storage/'.$deedofsale->tax_declaration) }}" target="_blank"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">View</a>
-                        @else
-                        <a href="#/"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">No
-                            file found</a>
-                        @endif
-
-                        <input id="tax_declaration" type="file" class="" wire:model="tax_declaration">
+                <div class="sm:col-span-3">   
+                    <label for="deed_of_sales" class="block mt-3 text-sm font-medium leading-6 text-gray-900">Deeds of Sale</label>
+                    @if(!$deedofsale->deed_of_sales)
+                    <span>No file is uploaded. </span>
+                    @else
+                    <a target="_blank" href="{{ asset('/storage/'.$deedofsale->deed_of_sales) }}">View file</a>
+                    
+                    @endif
+                   <div class="mt-2 flex justify-center rounded-md border-2 border-gray-300">
+                        <div class="space-y-1 text-center">
+                           
+                            <div class="flex text-sm text-gray-600">
+                                <label for="deed_of_sales"
+                                    class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
+                                    <span>Upload a file</span>
+                                    <input id="deed_of_sales" name="deed_of_sales" type="file" wire:model="deed_of_sales" class="sr-only">
+                                </label>
+           
+                            </div>
+                            <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                            <p class="text-center">
+                                @error('deed_of_sales')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @else
+                            @if($deed_of_sales)
+                            <p class="text-green-500 text-xs mt-2">File has been uploaded!</p>
+                            @endif
+                            @enderror
+                            </p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="mt-5 sm:mt-6">
-                    <label for="deed_of_sales" class="block text-sm font-medium leading-6 text-gray-900">Deed of
-                        Sales</label>
-                    <div class="mt-2 flex items-center gap-x-3">
-                        <i class="fa-solid fa-file-contract"></i>
-                        @if($deedofsale->deed_of_sales)
-                        <a href="{{ asset('/storage/'.$deedofsale->deed_of_sales) }}" target="_blank"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">View</a>
-                        @else
-                        <a href="#/"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">No
-                            file found</a>
-                        @endif
+                <div class="sm:col-span-3">
+                   
+                    <label for="contract_to_sell" class="block mt-3 text-sm font-medium leading-6 text-gray-900">Contract to Sell</label>
+                    @if(!$deedofsale->contract_to_sell)
+                    <span>No file is uploaded. </span>
+                    @else
+                    <a target="_blank" href="{{ asset('/storage/'.$deedofsale->contract_to_sell) }}">View file</a>
+                    
+                    @endif
+                   <div class="mt-2 flex justify-center rounded-md border-2 border-gray-300">
+                        <div class="space-y-1 text-center">
+                           
+                            <div class="flex text-sm text-gray-600">
+                                <label for="contract_to_sell"
+                                    class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
+                                    <span>Upload a file</span>
+                                    <input id="contract_to_sell" name="contract_to_sell" type="file" wire:model="contract_to_sell" class="sr-only">
+                                </label>
+           
+                            </div>
+                            <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                            <p class="text-center">
+                                @error('contract_to_sell')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @else
+                            @if($contract_to_sell)
+                            <p class="text-green-500 text-xs mt-2">File has been uploaded!</p>
+                            @endif
+                            @enderror
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sm:col-span-3">
+                   
+                
+                    <label for="certificate_of_membership" class="block mt-3 text-sm font-medium leading-6 text-gray-900">Certificate of Membership</label>
+                    @if(!$deedofsale->certificate_of_membership)
+                    <span>No file is uploaded. </span>
+                    @else
+                    <a target="_blank" href="{{ asset('/storage/'.$deedofsale->certificate_of_membership) }}">View file</a>
+                    
+                    @endif
+                   <div class="mt-2 flex justify-center rounded-md border-2 border-gray-300">
+                        <div class="space-y-1 text-center">
+                           
+                            <div class="flex text-sm text-gray-600">
+                                <label for="certificate_of_membership"
+                                    class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
+                                    <span>Upload a file</span>
+                                    <input id="certificate_of_membership" name="certificate_of_membership" type="file" wire:model="certificate_of_membership" class="sr-only">
+                                </label>
+           
+                            </div>
+                            <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                            <p class="text-center">
+                                @error('certificate_of_membership')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @else
+                            @if($certificate_of_membership)
+                            <p class="text-green-500 text-xs mt-2">File has been uploaded!</p>
+                            @endif
+                            @enderror
+                            </p>
+                        </div>
+                    </div>
+                </div>
                         
-                        <input id="deed_of_sales" type="file" class="" wire:model="deed_of_sales">
-                    </div>
-                </div>
-
-                <div class="mt-5 sm:mt-6">
-                    <label for="contract_to_sell" class="block text-sm font-medium leading-6 text-gray-900">Contract to
-                        Sell</label>
-                    <div class="mt-2 flex items-center gap-x-3">
-                        <i class="fa-solid fa-file-contract"></i>
-                        @if($deedofsale->contract_to_sell)
-                        <a href="{{ asset('/storage/'.$deedofsale->contract_to_sell) }}" target="_blank"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">View</a>
-                        @else
-                        <a href="#/"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">No
-                            file found</a>
-                        @endif
-
-                        <input id="contract_to_sell" type="file" class="" wire:model="contract_to_sell">
-                    </div>
-                </div>
-
-                <div class="mt-5 sm:mt-6">
+                {{-- <div class="mt-5 sm:mt-6">
                     <label for="certificate_of_membership"
                         class="block text-sm font-medium leading-6 text-gray-900">Certificate of Membership</label>
                     <div class="mt-2 flex items-center gap-x-3">
@@ -145,7 +255,7 @@
 
                         <input id="certificate_of_membership" type="file" class="" wire:model="certificate_of_membership">
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="mt-5 sm:mt-6">
                     <button type="button" wire:click="updateDeedofsale"

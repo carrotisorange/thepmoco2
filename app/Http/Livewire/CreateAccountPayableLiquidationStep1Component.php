@@ -121,7 +121,7 @@ class CreateAccountPayableLiquidationStep1Component extends Component
                 $particular->update([
                     'item' => $particular->item,
                     'quantity' => $particular->quantity,
-                    'unit_uuid' => $particular->unit_uuid,
+                    'unit_uuid' => $this->unit_uuid,
                     'vendor_id' => $particular->vendor_id,
                     'price' => $particular->price,
                     'or_number' => $particular->or_number,
