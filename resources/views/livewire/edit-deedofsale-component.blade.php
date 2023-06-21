@@ -2,23 +2,11 @@
     <x-slot name="id">
         edit-deedofsale-modal-{{$deedofsale->uuid}}
     </x-slot>
-    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-        <div
-            class="relative transform overflow-hidden rounded-lgpx-4 pt-5 pb-4 text-left transition-all  sm:w-full sm:max-w-sm sm:p-6">
-            <div>
+   <h1 class="text-center font-medium">Edit Deed of Sales</h1>
+    <div class="p-5">
+            <form wire:submmit.prevent="updateDeedofsale" class="-mt-5">
 
-                <div class="mt-3 text-center sm:mt-5">
-                    <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Edit Deed Of Sale
-
-                    </h3>
-                    <div class="mt-2">
-
-                    </div>
-                </div>
-            </div>
-            <form wire:submmit.prevent="updateDeedofsale">
-
-                <div class="mt-5 sm:mt-6">
+                <div class="mt-2 sm:mt-2">
                         <label class="text-sm" for="guardian">Turnover on</label>
                         <input type="date" id="turnover_at" wire:model="turnover_at"
                             class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -28,7 +16,7 @@
                         @enderror
                     </div>
 
-                <div class="mt-5 sm:mt-6">
+                <div class="mt-2 sm:mt-2">
                     <label class="text-sm" for="guardian">Purchasing Price</label>
                     <input type="number" step="0.001" id="price" wire:model="price"
                         class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -38,18 +26,18 @@
                     @enderror
                 </div>
 
-
-                <div class="mt-5 sm:mt-6">
+            
+                <div class="mt-2 sm:mt-2">
                     <label for="contract" class="block text-sm font-medium leading-6 text-gray-900">Leasing
                         Contract</label>
-                    <div class="mt-2 flex items-center gap-x-3">
+                    <div class="flex justify-center items-center gap-x-3 ">
                         <i class="fa-solid fa-file-contract"></i>
                         @if($deedofsale->contract)
                         <a href="{{ asset('/storage/'.$deedofsale->contract) }}" target="_blank"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">View</a>
+                            class="rounded-md px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300">View</a>
                         @else
                         <a href="#/"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">No
+                            class="rounded-md px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300">No
                             file found</a>
                         @endif
 
@@ -58,16 +46,16 @@
                     </div>
                 </div>
 
-                <div class="mt-5 sm:mt-6">
+                <div class="mt-2 sm:mt-2">
                     <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Title</label>
-                    <div class="mt-2 flex items-center gap-x-3">
+                    <div class="flex justify-center items-center gap-x-3 ">
                         <i class="fa-solid fa-file-contract"></i>
                         @if($deedofsale->title)
                         <a href="{{ asset('/storage/'.$deedofsale->title) }}" target="_blank"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">View</a>
+                            class="rounded-md px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300">View</a>
                         @else
                         <a href="#/"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">No
+                            class="rounded-md px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300">No
                             file found</a>
                         @endif
 
@@ -75,17 +63,17 @@
                     </div>
                 </div>
 
-                <div class="mt-5 sm:mt-6">
+                <div class="mt-2 sm:mt-2">
                     <label for="tax_declaration" class="block text-sm font-medium leading-6 text-gray-900">Tax
                         Declaration</label>
-                    <div class="mt-2 flex items-center gap-x-3">
+                    <div class="flex justify-center items-center gap-x-3 ">
                         <i class="fa-solid fa-file-contract"></i>
                         @if($deedofsale->tax_declaration)
                         <a href="{{ asset('/storage/'.$deedofsale->tax_declaration) }}" target="_blank"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">View</a>
+                            class="rounded-md px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300">View</a>
                         @else
                         <a href="#/"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">No
+                            class="rounded-md px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300">No
                             file found</a>
                         @endif
 
@@ -93,17 +81,17 @@
                     </div>
                 </div>
 
-                <div class="mt-5 sm:mt-6">
+                <div class="mt-2 sm:mt-2">
                     <label for="deed_of_sales" class="block text-sm font-medium leading-6 text-gray-900">Deed of
                         Sales</label>
-                    <div class="mt-2 flex items-center gap-x-3">
+                    <div class="flex justify-center items-center gap-x-3 ">
                         <i class="fa-solid fa-file-contract"></i>
                         @if($deedofsale->deed_of_sales)
                         <a href="{{ asset('/storage/'.$deedofsale->deed_of_sales) }}" target="_blank"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">View</a>
+                            class="rounded-md px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300">View</a>
                         @else
                         <a href="#/"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">No
+                            class="rounded-md px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300">No
                             file found</a>
                         @endif
                         
@@ -111,17 +99,17 @@
                     </div>
                 </div>
 
-                <div class="mt-5 sm:mt-6">
+                <div class="mt-2 sm:mt-2">
                     <label for="contract_to_sell" class="block text-sm font-medium leading-6 text-gray-900">Contract to
                         Sell</label>
-                    <div class="mt-2 flex items-center gap-x-3">
+                    <div class="flex justify-center items-center gap-x-3 ">
                         <i class="fa-solid fa-file-contract"></i>
                         @if($deedofsale->contract_to_sell)
                         <a href="{{ asset('/storage/'.$deedofsale->contract_to_sell) }}" target="_blank"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">View</a>
+                            class="rounded-md px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300">View</a>
                         @else
                         <a href="#/"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">No
+                            class="rounded-md px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300">No
                             file found</a>
                         @endif
 
@@ -129,23 +117,24 @@
                     </div>
                 </div>
 
-                <div class="mt-5 sm:mt-6">
+                <div class="mt-2 sm:mt-2">
                     <label for="certificate_of_membership"
                         class="block text-sm font-medium leading-6 text-gray-900">Certificate of Membership</label>
-                    <div class="mt-2 flex items-center gap-x-3">
+                    <div class="flex justify-center items-center gap-x-3 ">
                         <i class="fa-solid fa-file-contract"></i>
                         @if($deedofsale->certificate_of_membership)
                         <a href="{{ asset('/storage/'.$deedofsale->certificate_of_membership) }}" target="_blank"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">View</a>
+                            class="rounded-md px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300">View</a>
                         @else
                         <a href="#/"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">No
+                            class="rounded-md px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300">No
                             file found</a>
                         @endif
 
                         <input id="certificate_of_membership" type="file" class="" wire:model="certificate_of_membership">
                     </div>
                 </div>
+
 
                 <div class="mt-5 sm:mt-6">
                     <button type="button" wire:click="updateDeedofsale"
@@ -154,6 +143,5 @@
                     </button>
                 </div>
             </form>
-        </div>
-    </div>
+</div>
 </x-modal-component>
