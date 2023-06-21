@@ -23,11 +23,7 @@
                         <p class="text-sm font-medium text-gray-900">Remaining Amount to get the ROI
                         </p>
                         <p class="mt-1 text-2xl font-semibold text-gray-500">
-                            {{
-                            App\Http\Controllers\CollectionController::shortNumber($unit_details->price
-                            -
-                            $total_collected_bills)
-                            }}
+                            {{ App\Http\Controllers\CollectionController::shortNumber($unit_details->price - $total_collected_bills) }}
                         </p>
                     </div>
                 </div>
@@ -152,65 +148,41 @@
                                         class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
                                         Particular</th>
                                     <th scope="col"
-                                        class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                        class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Amount
                                         </th>
 
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200 bg-white">
+                                @foreach ($revenues as $revenue)
+                                    
+                             
                                 <tr>
                                     <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">   
                                     </td>
                                     <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
-                                        Particular</td>
+                                        {{ $revenue->particular }}</td>
                                     <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
-                                        Amount</td>
+                                        {{ number_format($revenue->amount, 2)}}</td>
 
                                 </tr>
-                                <tr>
-                                    <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">   
-                                    </td>
-                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
-                                        Particular</td>
-                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
-                                        Amount</td>
-
-                                </tr>
-
-                                <thead class="bg-gray-50">
-                                <tr>
-                                    <th scope="col"
-                                        class="font-bold text-base whitespace-nowrap px-2 py-3.5 text-left  text-gray-900 ">
-                                        II. Gross Revenue (Collections)</th>
-                                    <th scope="col"
-                                        class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                        </th>
-                                    <th scope="col"
-                                        class="font-bold text-base whitespace-nowrap px-2 py-3.5 text-left  text-gray-900">
-                                        Amount</th>
-
-                                </tr>
-                            </thead>
+                               @endforeach
+                            
+                            </tbody>
                             <tbody class="divide-y divide-gray-200 bg-white">
+                            
                                 <tr>
-                                    <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">   
+                                    <td class="font-bold text-base whitespace-nowrap py-2 pl-4 pr-3  text-gray-500 sm:pl-6">
+                                        Total Revenues</td>
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
                                     </td>
-                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
-                                       Tax Rate</td>
-                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
-                                        Amount</td>
-
+                                    <td class="font-bold text-base whitespace-nowrap px-2 py-2 text-gray-900">
+                                        {{ number_format($revenues->sum('amount'), 2)}}</td>
+                            
                                 </tr>
-                                <tr>
-                                    <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">   
-                                    </td>
-                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
-                                       Net Revenue</td>
-                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
-                                        Amount</td>
-
-                                </tr>
-
+                            </tbody>
+                          
+                            <tbody>
                                 <thead class="bg-gray-50">
                                 <tr>
                                     <th scope="col"
@@ -220,41 +192,37 @@
                                         class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
                                         Particular</th>
                                     <th scope="col"
-                                        class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                        class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Amount
                                         </th>
 
                                 </tr>
+                                @foreach ($expenses as $expense)
+                                
+                                
+                                <tr>
+                                    <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                                    </td>
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                        {{ $expense->particular }}</td>
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
+                                        {{ number_format($expense->amount, 2)}}</td>
+                                
+                                </tr>
+                                @endforeach
                             </thead>
+                            </tbody>
                             <tbody class="divide-y divide-gray-200 bg-white">
-                                <tr>
-                                    <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">   
-                                    </td>
-                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
-                                       Particular</td>
-                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
-                                        Amount</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">   
-                                    </td>
-                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
-                                       Particular</td>
-                                    <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
-                                        Amount</td>
-
-                                </tr>
-
+                                
                                 <tr>
                                     <td class="font-bold text-base whitespace-nowrap py-2 pl-4 pr-3  text-gray-500 sm:pl-6">   
                                     Total Operating Expenses</td>
                                     <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
                                       </td>
                                     <td class="font-bold text-base whitespace-nowrap px-2 py-2 text-gray-900">
-                                    Amount</td>
+                                     {{ number_format($expenses->sum('amount'), 2)}}</td>
 
                                 </tr>
+                                </tbody>
 
                                 <thead class="bg-gray-50">
                                 <tr>
@@ -266,7 +234,7 @@
                                         </th>
                                     <th scope="col"
                                         class="font-bold text-base whitespace-nowrap px-2 py-3.5 text-left text-gray-900">
-                                        Amount</th>
+                                         {{ number_format($revenues->sum('amount')-$expenses->sum('amount'), 2)}}</th>
 
                                 </tr>
                             </thead>

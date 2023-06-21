@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Collection;
 use DB;
 use Carbon\Carbon;
 
@@ -51,20 +50,6 @@ class FinancialIndexComponent extends Component
         $billed_rent = app('App\Http\Controllers\PropertyFinancialController')->get_total_billed_rent($this->property);
 
         $actual_revenue_collected = app('App\Http\Controllers\PropertyFinancialController')->get_actual_revenue_collected($this->property);
-
-
-// SELECT
-// collections.bill_id AS Collection_ID,
-// bills.id AS Bills_ID,
-// particulars.particular,
-// sum(collections.collection) AS Collections
-// FROM collections join bills join particulars
-// ON collections.bill_id = bills.id AND bills.particular_id = particulars.id
-// WHERE collections.property_uuid = 'c0a3db6c-6c2e-47c2-8142-c6ffc9567c92'
-// AND collections.updated_at >= '2022-01-01' AND collections.updated_at <= '2023-01-01' GROUP BY particulars.id;
-
-        //financial reports
-        // $revenues = Collection::where('property_uuid', $this->property->uuid)->get();
 
         $revenues = DB::table('collections')
         ->select(DB::raw("SUM(collections.collection) as amount"), 'particulars.particular as particular')
