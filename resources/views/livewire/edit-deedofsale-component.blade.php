@@ -46,16 +46,16 @@
                     </div>
                 </div>
 
-                <div class="mt-5 sm:mt-6">
+                <div class="mt-2 sm:mt-2">
                     <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Title</label>
-                    <div class="mt-2 flex items-center gap-x-3">
+                    <div class="flex justify-center items-center gap-x-3">
                         <i class="fa-solid fa-file-contract"></i>
                         @if($deedofsale->title)
                         <a href="{{ asset('/storage/'.$deedofsale->title) }}" target="_blank"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">View</a>
+                            class="rounded-md  px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">View</a>
                         @else
                         <a href="#/"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">No
+                            class="rounded-md  px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">No
                             file found</a>
                         @endif
 
@@ -63,17 +63,17 @@
                     </div>
                 </div>
 
-                <div class="mt-5 sm:mt-6">
+                <div class="mt-2 sm:mt-2">
                     <label for="tax_declaration" class="block text-sm font-medium leading-6 text-gray-900">Tax
                         Declaration</label>
-                    <div class="mt-2 flex items-center gap-x-3">
+                    <div class="flex justify-center items-center gap-x-3">
                         <i class="fa-solid fa-file-contract"></i>
                         @if($deedofsale->tax_declaration)
                         <a href="{{ asset('/storage/'.$deedofsale->tax_declaration) }}" target="_blank"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">View</a>
+                            class="rounded-md  px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">View</a>
                         @else
                         <a href="#/"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">No
+                            class="rounded-md  px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">No
                             file found</a>
                         @endif
 
@@ -81,17 +81,17 @@
                     </div>
                 </div>
 
-                <div class="mt-5 sm:mt-6">
+                <div class="mt-2 sm:mt-2">
                     <label for="deed_of_sales" class="block text-sm font-medium leading-6 text-gray-900">Deed of
                         Sales</label>
-                    <div class="mt-2 flex items-center gap-x-3">
+                    <div class="flex justify-center items-center gap-x-3">
                         <i class="fa-solid fa-file-contract"></i>
                         @if($deedofsale->deed_of_sales)
                         <a href="{{ asset('/storage/'.$deedofsale->deed_of_sales) }}" target="_blank"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">View</a>
+                            class="rounded-md px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">View</a>
                         @else
                         <a href="#/"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">No
+                            class="rounded-md px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">No
                             file found</a>
                         @endif
                         
@@ -99,17 +99,17 @@
                     </div>
                 </div>
 
-                <div class="mt-5 sm:mt-6">
+                <div class="mt-2 sm:mt-2">
                     <label for="contract_to_sell" class="block text-sm font-medium leading-6 text-gray-900">Contract to
                         Sell</label>
-                    <div class="mt-2 flex items-center gap-x-3">
+                    <div class="flex justify-center items-center gap-x-3">
                         <i class="fa-solid fa-file-contract"></i>
                         @if($deedofsale->contract_to_sell)
                         <a href="{{ asset('/storage/'.$deedofsale->contract_to_sell) }}" target="_blank"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">View</a>
+                            class="rounded-md px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">View</a>
                         @else
                         <a href="#/"
-                            class="rounded-md bg-purple-500 px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">No
+                            class="rounded-md px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-purple-500">No
                             file found</a>
                         @endif
 
@@ -117,7 +117,7 @@
                     </div>
                 </div>
 
-                <div class="mt-5 sm:mt-6">
+                <div class="mt-2 sm:mt-2">
                     <label for="certificate_of_membership"
                         class="block text-sm font-medium leading-6 text-gray-900">Certificate of Membership</label>
                     <div class="flex justify-center items-center gap-x-3 ">
@@ -133,7 +133,7 @@
 
                         <input id="certificate_of_membership" type="file" class="" wire:model="certificate_of_membership">
                     </div>
-                </div> --}}
+                </div>
 
 
                 <div class="mt-5 sm:mt-6">
