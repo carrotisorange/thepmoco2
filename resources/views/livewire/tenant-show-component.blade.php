@@ -22,6 +22,14 @@
                             <li>
                                 <a href="/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/bills"
                                     class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
+                                                                                                                                                        dark:text-gray-200 dark:hover:text-white">
+                                    New bill
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/bills"
+                                    class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
                                                                                                                             dark:text-gray-200 dark:hover:text-white">
                                     New collection
                                 </a>

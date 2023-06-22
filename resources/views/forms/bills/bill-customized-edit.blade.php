@@ -20,9 +20,9 @@
                 <tr>
                     <x-td>{{ $index+1 }}</x-td>
                     <x-td>
-                        <div class="flex items-center">
+                        {{-- <div class="flex items-center">
                             <x-input type="checkbox" wire:model="selectedBills.{{ $bill->id }}" />
-                        </div>
+                        </div> --}}
                     </x-td>
                     <x-td>{{ $bill->unit->unit.'-'.$bill->bill_no }}</x-td>
                     <?php

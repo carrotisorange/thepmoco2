@@ -83,33 +83,6 @@ class BillIndexComponent extends Component
       }
    }
 
-   public function removeBills()
-   {
-      
-
-      $random_str = Str::random(8);
-       
-      // if(!Bill::whereIn('id', $this->selectedBills)->where('status', 'unpaid')->delete())
-      // {
-      //    $this->selectedBills = [];
-
-      //    return back()->with('error', 'Bill cannot be deleted.');
-      // }
-
-      $bills = Bill::whereIn('id', $this->selectedBills)->get();
-
-      Bill::where('property_uuid', $this->property->uuid)->whereIn('id', $this->selectedBills)
-      ->update([
-         'batch_no' => $random_str
-      ]);
-
-      //Bill::destroy($this->selectedBills);
-
-      // return back()->with('success', 'Success!');
-
-      return redirect('/property/'.$this->property->uuid.'/bill/'.$random_str.'/delete/'.$bills->count());
-   }
-
    public function clearFilters()
    {
       $this->search = '';
@@ -185,21 +158,6 @@ class BillIndexComponent extends Component
       }
     }
 
-   public function unpayBills()
-   {
-      $this->update_bill();
-
-      $collection_batch_no = Collection::where('bill_id', $this->selectedBills[0])->pluck('batch_no');
-
-      app('App\Http\Controllers\AcknowledgementReceiptController')->destroy($collection_batch_no);
-
-      $this->delete_collection();
-
-      $this->selectedBills = [];
-
-      return redirect('/property/'.$this->property->uuid.'/bills')->with('success','Success!');
-        
-   }
 
    public function storeParticular(){
       
@@ -245,7 +203,6 @@ class BillIndexComponent extends Component
 
    public function storeBills(){
 
-      
 
       $attributes = $this->validate();
 
