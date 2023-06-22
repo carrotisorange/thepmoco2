@@ -122,6 +122,39 @@
                     @enderror
                 </div>
 
+                <div class="sm:col-span-3">
+                <label for="contract" class="block mt-3 text-sm font-medium leading-6 text-gray-900">Contract</label>
+                @if(!$contract->contract)
+                <span>No file is uploaded. </span>
+                @else
+                <a target="_blank" href="{{ asset('/storage/'.$contract->contract) }}">View file</a>
+            
+                @endif
+                <div class="mt-2 flex justify-center rounded-md border-2 border-gray-300">
+                    <div class="space-y-1 text-center">
+            
+                        <div class="flex text-sm text-gray-600">
+                            <label for="tenant_contract"
+                                class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
+                                <span>Upload a file</span>
+                                <input id="tenant_contract" name="tenant_contract" type="file" wire:model="tenant_contract" class="sr-only">
+                            </label>
+            
+                        </div>
+                        <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                        <p class="text-center">
+                            @error('contract')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @else
+                        @if($tenant_contract)
+                        <p class="text-green-500 text-xs mt-2">File has been uploaded!</p>
+                        @endif
+                        @enderror
+                        </p>
+                    </div>
+                </div>
+            </div>
+
                 <div class="mt-5 sm:mt-6">
 
                     <button type="button" wire:click="updateContract"

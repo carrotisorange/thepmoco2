@@ -2,8 +2,9 @@
     <thead class="bg-gray-50">
         <tr>
             <x-th>#</x-th>
+               <x-th>REQUESTED ON</x-th>
             <x-th>BATCH NO</x-th>
-            <x-th>REQUESTED ON</x-th>
+         
             <x-th>REQUESTED BY</x-th>
          
             <x-th>UNITS</x-th>
@@ -17,9 +18,10 @@
         @foreach($accountpayables as $index => $accountpayable)
         <tr>
             <x-td>{{ $index+1 }}</x-td>
+            <x-td>{{ Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}</x-td>
             <x-td>{{ $accountpayable->batch_no }} ({{ App\Models\AccountPayableParticular::where('batch_no',
                     $accountpayable->batch_no)->count(); }})</x-td>
-            <x-td>{{ Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}</x-td>
+        
                         <?php $firstName= explode(' ', $accountpayable->requester->name); ?>
             <x-td>{{ Str::limit($firstName[0], 10) }}</x-td>
      

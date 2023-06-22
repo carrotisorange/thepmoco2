@@ -32,7 +32,7 @@
             @if($active_contracts->count())
             <div class="mt-5 sm:mt-6">
                 <label class="text-sm" for="">Select a particular</label>
-                <select wire:model.debounce.500ms="particular_id"
+                <select wire:model="particular_id"
                     class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     <option value="">Please select one</option>
                     @foreach ($particulars as $item)
@@ -53,7 +53,7 @@
 
             <div class="mt-2 sm:mt-6">
                 <label class="text-sm" for="">Start Date</label>
-                <input type="date" id="start" wire:model.debounce.500ms="start"
+                <input type="date" id="start" wire:model="start"
                     class="bg-white block p-4 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Search for unit" required>
                 @error('start')
@@ -63,7 +63,7 @@
 
             <div class="mt-5 sm:mt-6">
                 <label class="text-sm" for="">End Date</label>
-                <input type="date" id="end" wire:model.debounce.500ms="end"
+                <input type="date" id="end" wire:model="end"
                     class="bg-white block p-4 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Search for unit" required>
                 @error('end')
@@ -71,19 +71,19 @@
                 @enderror
             </div>
 
+            @if($particular_id != 1)
             <div class="mt-5 sm:mt-6">
                 <label class="text-sm" for="kwh">Amount</label>
-                <input type="number" step="0.001" id="bill" wire:model.debounce.500ms="bill"
+                <input type="number" step="0.001" id="bill" wire:model="bill"
                     class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="" required>
                 @error('bill')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
             </div>
-
+            @endif
 
             <div class="mt-5 sm:mt-6">
-
                 <button type="button" wire:click="storeBills"
                     class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
                     Confirm

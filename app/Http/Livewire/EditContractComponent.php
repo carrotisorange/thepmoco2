@@ -8,10 +8,13 @@ use App\Models\Interaction;
 use App\Models\Property;
 use Carbon\Carbon;
 use App\Models\Unit;
+use Livewire\WithFileUploads;
 
 class EditContractComponent extends Component
 {
     public Contract $contract;
+
+    use WithFileUploads;
 
     //input variables
     public $unit_uuid;
@@ -20,6 +23,8 @@ class EditContractComponent extends Component
     public $status;
     public $rent;
     public $interaction_id;
+
+    public $tenant_contract;
 
     public function mount($contract){
         $this->unit_uuid = $contract->unit_uuid;
@@ -37,7 +42,7 @@ class EditContractComponent extends Component
     protected function rules()
     {
         return [
-            // 'contract' => 'nullable|mimes:jpg,bmp,png,pdf,docx|max:10240',
+            // 'tenant_contract' => 'nullable|mimes:jpg,bmp,png,pdf,docx|max:10240',
             'unit_uuid' => 'required',
             'start' => 'required|date',
             'rent' => 'required',
@@ -55,6 +60,14 @@ class EditContractComponent extends Component
     public function updateContract(){
         
         $validated = $this->validate();
+
+         if ($this->tenant_contract === null) {
+            $tenant_contract = $this->contract->contract;
+         }else{
+            $tenant_contract = $this->tenant_contract->store('contracts');
+         }
+
+         $validated['contract'] = $tenant_contract;
    
         Contract::where('uuid', $this->contract->uuid)
         ->update($validated);
