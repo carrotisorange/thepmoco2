@@ -71,7 +71,7 @@ class PropertyIndexComponent extends Component
         ->join('types', 'type_id', 'types.id')
         ->select('*')
         ->where('user_id', auth()->user()->id)
-        ->where('properties.status', 'active')
+        ->where('user_properties.is_approved',1)
         ->when($this->search, function($query){
         $query->where('property','like', '%'.$this->search.'%');
         }) 
