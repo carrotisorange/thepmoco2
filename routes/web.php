@@ -60,6 +60,36 @@ Route::get('/bill-delete-demo', function(){
     return view('help.bill-delete-demo');
 });
 
+
+//proprent
+
+Route::get('/proprent', function(){
+    return view('proprent.proprent');
+});
+
+Route::get('/select-role', function(){
+    return view('proprent.select-role');
+});
+
+Route::get('/sign-in', function(){
+    return view('proprent.sign-in');
+});
+
+Route::get('/sign-up', function(){
+    return view('proprent.sign-up');
+});
+
+Route::get('/results', function(){
+    return view('proprent.results');
+});
+
+Route::get('/room', function(){
+    return view('proprent.room');
+});
+
+
+
+
 //show this route if a user tries to access broken links
 Route::fallback(function () {
     return view('layouts.not-found');
