@@ -23,6 +23,24 @@
 
       </a>
     </div>
+
+     <!-- Article 22 -->
+     <div class="my-5">
+      <a href="/How-To-Be-An-Environmentally-Friendly-Rental-Property" class="grid grid-cols-4 rounded-sm">
+
+        <!-- Icon -->
+        <div class="col-span-1">
+        <img src="{{ asset('/brands/landing/article22.jpg') }}" class="h-full w-full">
+        </div>
+  
+        <!-- Title -->
+        <div class="col-span-3">
+          <p class="ml-1 underline text-gray-700 text-xs">How To Be An Environmentally Friendly Rental Property </div>
+  
+
+      </a>
+    </div>
+
     
     <!-- Article 21 -->
     <div class="my-5">

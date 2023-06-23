@@ -40,6 +40,19 @@
         <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
             
             <div class="lg:flex">
+                <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article14.jpg') }}" alt="asian family">
+
+                <div class="flex flex-col justify-between py-6 lg:mx-6">
+                <a href="How-Smart-Landlords-Keep-Tenants-Happy-So-They-Dont-Move-Out" class="mt-2 block">
+                    <p class="text-base font-semibold text-gray-900">How Smart Landlords Keep Tenants Happy So They Don't Move Out</p>
+                    <p class="mt-3 text-sm text-gray-500">
+                    Landlords are the hardest people to deal with, right? They're always asking for more money, they never clean up after themselves, and</p>
+                </a>
+                    <span class="text-sm text-gray-500 dark:text-gray-300">23 February 2023</span>
+                </div>
+            </div>
+
+            <div class="lg:flex">
                 <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article13.jpeg') }}" alt="door with multiple locks">
 
                 <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -132,18 +145,7 @@
                 </div>
             </div>
 
-            <div class="lg:flex">
-                <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article6.jpg') }}" alt="two people talking in a restaurant">
-
-                <div class="flex flex-col justify-between py-6 lg:mx-6">
-                <a href="Why-Digitalization-is-the-best-strategy-for-2023" class="mt-2 block">
-              <p class="text-base font-semibold text-gray-900">Why Digitalization is the best strategy for 2023</p>
-              <p class="mt-3 text-sm text-gray-500">
-              Digitalization is a strategic approach to business that seeks to leverage the power of digital technologies to achieve business objectives.</p>
-            </a>
-                    <span class="text-sm text-gray-500 dark:text-gray-300">26 January 2023</span>
-                </div>
-            </div>
+            
 
             
 

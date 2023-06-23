@@ -250,6 +250,10 @@ Route::get('/How-To-Reduce-Water-Wastage-in-multiple-unit-buildings-for-sustaina
     return view('landing.articles.article21');
 });
 
+Route::get('/How-To-Be-An-Environmentally-Friendly-Rental-Property', function(){
+    return view('landing.articles.article22');
+});
+
 
 
 

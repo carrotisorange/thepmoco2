@@ -38,6 +38,18 @@
     </a>
 </div>
         <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
+
+            <div class="lg:flex">
+                <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article22.jpg') }}" alt="hand throwing paper in a garbage can">
+
+                <div class="flex flex-col justify-between py-6 lg:mx-6">
+                <a href="How-To-Be-An-Environmentally-Friendly-Rental-Property" class="mt-2 block">
+                    <p class="text-base font-semibold text-gray-900">How To Be An Environmentally Friendly Rental Property</p>
+                    <p class="mt-3 text-sm text-gray-500">
+                    How to reduce solid waste in your rental property and make environmentally friendly conscious choices.</a>    
+                    <span class="text-sm text-gray-500 dark:text-gray-300">23 June 2023</span>
+                </div>
+            </div>
             
             <div class="lg:flex">
                 <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article21.jpg') }}" alt="man washing hands">
@@ -131,19 +143,7 @@
                 </div>
             </div>
 
-            <div class="lg:flex">
-                <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article14.jpg') }}" alt="asian family">
-
-                <div class="flex flex-col justify-between py-6 lg:mx-6">
-                <a href="How-Smart-Landlords-Keep-Tenants-Happy-So-They-Dont-Move-Out" class="mt-2 block">
-                    <p class="text-base font-semibold text-gray-900">How Smart Landlords Keep Tenants Happy So They Don't Move Out</p>
-                    <p class="mt-3 text-sm text-gray-500">
-                    Landlords are the hardest people to deal with, right? They're always asking for more money, they never clean up after themselves, and</p>
-                </a>
-                    <span class="text-sm text-gray-500 dark:text-gray-300">23 February 2023</span>
-                </div>
-            </div>
-
+            
             
 
            
