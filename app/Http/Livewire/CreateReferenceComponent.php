@@ -32,7 +32,7 @@ class CreateReferenceComponent extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function storeReference(){
+    public function submitButton(){
 
        $validated = $this->validate();
 

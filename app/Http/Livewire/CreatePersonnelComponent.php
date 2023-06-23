@@ -21,7 +21,7 @@ class CreatePersonnelComponent extends Component
     public $email;
     public $mobile_number;
 
-   public function storePersonnel(){
+   public function submitButton(){
 
     $this->validate([
         'email' => ['required', 'string', 'email', 'max:255'],

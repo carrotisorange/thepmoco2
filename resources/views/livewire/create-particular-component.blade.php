@@ -16,7 +16,7 @@
                     </div>
                 </div>
             </div>
-            <form wire:submmit.prevent="storeParticular">
+            <form wire:submmit.prevent="submitButton">
 
                 <div class="mt-5 sm:mt-6">
                     <label class="text-sm" for="birthdate">Particular</label>
@@ -30,7 +30,7 @@
 
                 <div class="mt-5 sm:mt-6">
 
-                    <button type="button" wire:click="storeParticular"
+                    <button type="button" wire:click="submitButton"
                         class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
                         Confirm
                     </button>

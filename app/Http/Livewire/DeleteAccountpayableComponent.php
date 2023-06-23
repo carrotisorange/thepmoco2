@@ -10,7 +10,7 @@ class DeleteAccountpayableComponent extends Component
 {
     public AccountPayable $accountpayable;
 
-    public function deleteAccountPayable(){
+    public function submitButton(){
     
       $batch_no = AccountPayable::find($this->accountpayable->id)->batch_no;
 

@@ -31,7 +31,7 @@ class CreateUnitInventoryComponent extends Component
        $this->validateOnly($propertyName);
     }
 
-    public function storeUnitInventory()
+    public function submitButton()
     {
         $validated = $this->validate();
 

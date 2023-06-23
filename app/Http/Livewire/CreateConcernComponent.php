@@ -39,7 +39,7 @@ class CreateConcernComponent extends Component
        $this->validateOnly($propertyName);
     }
 
-    public function storeConcern(){
+    public function submitButton(){
 
         $validated = $this->validate();
      
