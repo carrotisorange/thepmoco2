@@ -40,6 +40,19 @@
         <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
             
             <div class="lg:flex">
+                <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article20.jpeg') }}" alt="girl holding a laptop facing an electric fan">
+
+                <div class="flex flex-col justify-between py-6 lg:mx-6">
+                <a href="How-to-Reduce-Energy-Consumption-in-a-Rental-Property" class="mt-2 block">
+                    <p class="text-base font-semibold text-gray-900">How to Reduce Energy Consumption in a Rental Property</p>
+                    <p class="mt-3 text-sm text-gray-500">
+                    Lower utility bills benefit the environment, and potentially attract energy-conscious tenants.</p>
+                </a>    
+                    <span class="text-sm text-gray-500 dark:text-gray-300">23 June 2023</span>
+                </div>
+            </div>
+
+            <div class="lg:flex">
                 <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article19.webp') }}" alt="businessman signing a contract">
 
                 <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -131,18 +144,7 @@
                 </div>
             </div>
 
-            <div class="lg:flex">
-                <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article12.jpg') }}" alt="family cuddling on a bed">
-
-                <div class="flex flex-col justify-between py-6 lg:mx-6">
-                <a href="How-Digital-Systems-Improve-Tenant-Retention-and-Satisfaction" class="mt-2 block">
-              <p class="text-base font-semibold text-gray-900">How Digital Systems Improve Tenant Retention and Satisfaction</p>
-              <p class="mt-3 text-sm text-gray-500">
-              When you own a building, you want to make sure that it is running smoothly. You also want to keep your tenants happy and satisfied </p>
-            </a>
-                    <span class="text-sm text-gray-500 dark:text-gray-300">16 February 2023</span>
-                </div>
-            </div>
+           
 
             
 

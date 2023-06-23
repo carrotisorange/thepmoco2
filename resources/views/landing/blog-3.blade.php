@@ -40,6 +40,19 @@
         <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
 
             <div class="lg:flex">
+                <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article4.jpg') }}" alt="person holding an open sign">
+
+                <div class="flex flex-col justify-between py-6 lg:mx-6">
+                <a href="Secret-Recipe-For-Brand-Building-As-Small-Business" class="mt-2 block">
+              <p class="text-base font-semibold text-gray-900">Secret Recipe For Brand Building As Small Business.</p>
+              <p class="mt-3 text-sm text-gray-500">
+              In today's marketplace, it's hard for small businesses to stand out from the crowd. But there is one thing that every small business has in common:</p>
+            </a>
+                    <span class="text-sm text-gray-500 dark:text-gray-300">19 January 2023</span>
+                </div>
+            </div>
+
+            <div class="lg:flex">
                 <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article3.jpg') }}" alt="4 people in a meeting">
 
                 <div class="flex flex-col justify-between py-6 lg:mx-6">

@@ -242,6 +242,11 @@ Route::get('/How-to-Maximize-Profits-and-Minimize-Stress-when-Managing-Rental-Pr
     return view('landing.articles.article19');
 });
 
+Route::get('/How-to-Reduce-Energy-Consumption-in-a-Rental-Property', function(){
+    return view('landing.articles.article20');
+});
+
+
 
 
 
