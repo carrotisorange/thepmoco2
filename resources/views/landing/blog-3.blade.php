@@ -40,6 +40,19 @@
         <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
 
             <div class="lg:flex">
+                <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article5.jpg') }}" alt="hand holding a pc mouse">
+
+                <div class="flex flex-col justify-between py-6 lg:mx-6">
+                <a href="What-do-we-offer-as-a-SaaS-company-to-property-managers-and-owners" class="mt-2 block">
+              <p class="text-base font-semibold text-gray-900">What do we offer as a SaaS company to property managers and owners in The Property Manager Online?</p>
+              <p class="mt-3 text-sm text-gray-500">
+              Property managers, real estate agents, and owners of property are always looking for ways to improve the efficiency with which they do their jobs.</p>
+            </a>
+                    <span class="text-sm text-gray-500 dark:text-gray-300">23 January 2023</span>
+                </div>
+            </div>
+
+            <div class="lg:flex">
                 <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article4.jpg') }}" alt="person holding an open sign">
 
                 <div class="flex flex-col justify-between py-6 lg:mx-6">

@@ -40,6 +40,19 @@
         <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
             
             <div class="lg:flex">
+                <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article21.jpg') }}" alt="man washing hands">
+
+                <div class="flex flex-col justify-between py-6 lg:mx-6">
+                <a href="How-To-Reduce-Water-Wastage-in-multiple-unit-buildings-for-sustainable-operations" class="mt-2 block">
+                    <p class="text-base font-semibold text-gray-900">How To Reduce Water Wastage in multiple unit buildings for sustainable operations</p>
+                    <p class="mt-3 text-sm text-gray-500">
+                    Improving water management in multiple-unit buildings is essential for both conservation efforts and reducing operational costs.</p>
+                </a>    
+                    <span class="text-sm text-gray-500 dark:text-gray-300">23 June 2023</span>
+                </div>
+            </div>
+
+            <div class="lg:flex">
                 <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article20.jpeg') }}" alt="girl holding a laptop facing an electric fan">
 
                 <div class="flex flex-col justify-between py-6 lg:mx-6">
@@ -131,18 +144,7 @@
                 </div>
             </div>
 
-            <div class="lg:flex">
-                <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article13.jpeg') }}" alt="door with multiple locks">
-
-                <div class="flex flex-col justify-between py-6 lg:mx-6">
-                <a href="How-to-Improve-Building-Security-to-Make-Residents-Feel-Safe" class="mt-2 block">
-              <p class="text-base font-semibold text-gray-900">How to Improve Building Security to Make Residents Feel Safe</p>
-              <p class="mt-3 text-sm text-gray-500">
-              Improving building security can involve a variety of measures, some of which include:</p>
-            </a>
-                    <span class="text-sm text-gray-500 dark:text-gray-300">20 February 2023</span>
-                </div>
-            </div>
+            
 
            
 

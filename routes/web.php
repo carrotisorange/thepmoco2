@@ -246,6 +246,10 @@ Route::get('/How-to-Reduce-Energy-Consumption-in-a-Rental-Property', function(){
     return view('landing.articles.article20');
 });
 
+Route::get('/How-To-Reduce-Water-Wastage-in-multiple-unit-buildings-for-sustainable-operations', function(){
+    return view('landing.articles.article21');
+});
+
 
 
 

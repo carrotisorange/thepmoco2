@@ -37,7 +37,7 @@ Here are some practical steps you can take to achieve energy efficiency: read mo
       <div class="pt-20 px-4 lg:px-0 text-gray-700 max-w-screen-md mx-auto text-lg leading-relaxed">
 
       <p class="pb-6 mt-10">
-      Electricity consumption during the summer tend to increase due to the frequent and longer use of air condition units
+        Electricity consumption during the summer tend to increase due to the frequent and longer use of air condition units
         and other cooling appliances. Reducing energy consumption in a building especially a rental property is crucial for a
         sustainable operations. Lower utility bills benefit the environment, and potentially attract energy-conscious tenants.
         Here are some practical steps you can take to achieve energy efficiency:
@@ -92,7 +92,7 @@ Here are some practical steps you can take to achieve energy efficiency: read mo
 
         <x-ad-section-template>
         </x-ad-section-template>
-        
+
         <li class="pb-6 mt-10 font-bold">Opt for energy-efficient appliances:</li>
         <p>When replacing appliances, choose models with high energy efficiency
         ratings (e.g., Energy Star certified). This applies to refrigerators, dishwashers, washing machines, and other

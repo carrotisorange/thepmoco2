@@ -24,6 +24,24 @@
       </a>
     </div>
     
+    <!-- Article 21 -->
+    <div class="my-5">
+      <a href="/How-To-Reduce-Water-Wastage-in-multiple-unit-buildings-for-sustainable-operations" class="grid grid-cols-4 rounded-sm">
+
+        <!-- Icon -->
+        <div class="col-span-1">
+        <img src="{{ asset('/brands/landing/article21.jpg') }}" class="h-full w-full">
+        </div>
+  
+        <!-- Title -->
+        <div class="col-span-3">
+          <p class="ml-1 underline text-gray-700 text-xs">How To Reduce Water Wastage in multiple unit buildings for sustainable operations</p>
+        </div>
+  
+
+      </a>
+    </div>
+
     <!-- Article 20 -->
     <div class="my-5">
       <a href="/How-to-Reduce-Energy-Consumption-in-a-Rental-Property" class="grid grid-cols-4 rounded-sm">
