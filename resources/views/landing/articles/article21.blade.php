@@ -3,7 +3,7 @@
 @section('description', 'Improving water management in multiple-unit buildings is essential for both conservation efforts
 and reducing operational costs.')
 
-@section('og-url','https://thepropertymanager.online/How-to-Maximize-Profits-and-Minimize-Stress-when-Managing-Rental-Properties')
+@section('og-url','https://thepropertymanager.online//How-To-Reduce-Water-Wastage-in-multiple-unit-buildings-for-sustainable-operations')
 @section('og-title','How To Reduce Water Wastage in multiple unit buildings for sustainable operations')
 @section('og-description','Improving water management in multiple-unit buildings is essential for both conservation efforts and reducing operational costs. read more...')
 @section('og-image','https://images.pexels.com/photos/5495066/pexels-photo-5495066.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
