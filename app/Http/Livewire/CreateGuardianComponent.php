@@ -32,7 +32,7 @@ class CreateGuardianComponent extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function storeguardian(){
+    public function submitButton(){
 
        $validated = $this->validate();
 

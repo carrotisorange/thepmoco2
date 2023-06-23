@@ -53,7 +53,7 @@
 
             <div class="mt-5 sm:mt-6">
                 @can('accountownerandmanager')
-                <button type="button" wire:click="storePersonnel"
+                <button type="button" wire:click="submitButton"
                     class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
                     Confirm
                 </button>

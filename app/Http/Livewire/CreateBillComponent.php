@@ -42,7 +42,7 @@ class CreateBillComponent extends Component
       $this->validateOnly($propertyName);
     }
 
-    public function storeBill(){
+    public function submitButton(){
         
 
         $validated = $this->validate();
