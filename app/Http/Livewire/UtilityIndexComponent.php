@@ -33,7 +33,9 @@ class UtilityIndexComponent extends Component
     public $totalUnitsCount;
 
     public $kwh;
+
     public $filter_date;
+    public $start_date;
     public $end_date;
     public $min_charge;
 
@@ -43,6 +45,7 @@ class UtilityIndexComponent extends Component
         $this->totalUtilitiesCount = Property::find(Session::get('property'))->utilities->count();
         $this->totalUnitsCount = Property::find($this->property_uuid)->units()->count();
         $this->filter_date = Carbon::parse(Property::find($this->property_uuid)->utilities()->orderBy('start_date', 'desc')->pluck('start_date')->first())->format('Y-m-d');
+        $this->start_date = Carbon::now()->format('Y-m-d');
         $this->end_date = Carbon::now()->addMonth()->format('Y-m-d');
         $this->limitDisplayTo = 10;
     }
