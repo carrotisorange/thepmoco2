@@ -5,7 +5,7 @@
     <div class="p-6 text-center">
 
         <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete
-            this bill ({{ $bill->unit->unit.'-'.$bill->bill_no}})?</h3>
+            this bill ({{$bill->bill_no}})?</h3>
 
         <div class="mt-5 mb-5 sm:mt-6">
             <p class="text-sm text-left" for="concern">Reason for deletion</p>
