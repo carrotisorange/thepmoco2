@@ -154,7 +154,7 @@ class BillController extends Controller
 
     public function show_unit_bills($unit_uuid)
     {
-        return Bill::where('unit_uuid', $unit_uuid)->where('is_posted', 1)->orderBy('created_at', 'desc')->get();
+        return Bill::where('unit_uuid', $unit_uuid)->where('is_posted', 1)->where('bill','>', 0)->orderBy('created_at','desc')->get();
     }
     
     public function update_bill_amount_due($bill_id, $status)
