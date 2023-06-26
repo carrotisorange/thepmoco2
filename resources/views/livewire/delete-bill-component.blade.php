@@ -16,18 +16,18 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-        @can('accountownerandmanager')
+        {{-- @can('accountownerandmanager') --}}
         <button type="button" wire:click="deleteBill({{ $bill->id }})"
             class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
             Yes, I'm sure
         </button>
-        @else
+        {{-- @else
         <button type="button" disabled
             class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
          Yes, I'm sure
         </button>
         <p class="text-left text-red-500 text-xs mt-2">This feature is locked. Please contact your manager.</p>
-        @endcan
+        @endcan --}}
 
       
     </div>
