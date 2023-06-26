@@ -1,7 +1,7 @@
 <table class="w-full mb-10 text-sm text-left text-gray-500 dark:text-gray-400">
     <thead class="bg-gray-50">
         <tr>
-            <x-th>#</x-th>
+            {{-- <x-th>#</x-th> --}}
                <x-th>REQUESTED ON</x-th>
             <x-th>BATCH NO</x-th>
          
@@ -17,7 +17,7 @@
     <tbody class="bg-white divide-y divide-gray-200">
         @foreach($accountpayables as $index => $accountpayable)
         <tr>
-            <x-td>{{ $index+1 }}</x-td>
+            {{-- <x-td>{{ $index+1 }}</x-td> --}}
             <x-td>{{ Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}</x-td>
             <x-td>{{ $accountpayable->batch_no }} ({{ App\Models\AccountPayableParticular::where('batch_no',
                     $accountpayable->batch_no)->count(); }})</x-td>
@@ -226,7 +226,7 @@
         @endforeach
         <tr>
             <x-td><b>Total</b></x-td>
-            <x-th></x-th>
+            {{-- <x-th></x-th> --}}
             <x-th></x-th>
             <x-th></x-th>
             <x-th></x-th>
