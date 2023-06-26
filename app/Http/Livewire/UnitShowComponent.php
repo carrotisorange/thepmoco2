@@ -2,6 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\AccountPayableLiquidation;
+use App\Models\AccountPayableLiquidationParticular;
+use App\Models\AccountPayableParticular;
 use Livewire\Component;
 use Illuminate\Validation\Rule;
 use DB;
@@ -11,6 +14,7 @@ use App\Models\Concern;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use App\Models\UnitInventory;
+use App\Models\Collection;
 
 
 class UnitShowComponent extends Component
@@ -159,6 +163,11 @@ class UnitShowComponent extends Component
         app('App\Http\Controllers\PropertyConcernController')->destroy($this->unit_details->uuid);
         app('App\Http\Controllers\PropertyBillController')->destroy($this->unit_details->uuid);
         app('App\Http\Controllers\PropertyUnitController')->destroy($this->unit_details->uuid);
+        Collection::where('unit_uuid', $this->unit_details->uuid)->delete();
+        UnitInventory::where('unit_uuid', $this->unit_details->uuid)->delete();
+        AccountPayableLiquidation::where('unit_uuid', $this->unit_details->uuid)->delete();
+        AccountPayableLiquidationParticular::where('unit_uuid', $this->unit_details->uuid)->delete();
+        AccountPayableParticular::where('unit_uuid', $this->unit_details->uuid)->delete();
 
         return redirect('/property/'.$this->unit_details->property_uuid.'/unit/')->with('success', 'Success!');
     }
