@@ -136,7 +136,7 @@
             @enderror
         </div>
 
-        <div class="sm:col-span-6">
+        <div class="sm:col-span-2">
             <div
                 class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="is_the_unit_for_rent_to_tenant" class="block text-xs font-medium text-gray-900">Is the
@@ -159,7 +159,7 @@
         </div>
 
         @if ($is_the_unit_for_rent_to_tenant == 1)
-        <div class="sm:col-span-6">
+        <div class="sm:col-span-2">
             <div
                 class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="rent_type" class="block text-xs font-medium text-gray-900">Rent type
@@ -180,7 +180,7 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-        <div class="sm:col-span-6">
+        <div class="sm:col-span-2">
             <div
                 class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                 <label for="rent_duration" class="block text-xs font-medium text-gray-900">Rent Duration
@@ -271,6 +271,33 @@
         @endif
 
         @endif
+
+        <div class="sm:col-span-3">
+            <div
+                class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                <label for="transient_discount" class="block text-xs font-medium text-gray-900">
+                    Management Fee
+                </label>
+                <input type="number" wire:model="" step="0.001"
+                    value=""
+                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                    placeholder="">
+            </div>
+        </div>
+
+        <div class="sm:col-span-3">
+            <div
+                class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                <label for="transient_discount" class="block text-xs font-medium text-gray-900">
+                    Marketing Fee
+                </label>
+                <input type="number" wire:model="" step="0.001"
+                    value=""
+                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
+                    placeholder="">
+            </div>
+        </div>
+
     </div>
     <div class="mt-10 flex justify-end">
         <button type="button" data-modal-toggle="warning-destroy-unit-modal"
