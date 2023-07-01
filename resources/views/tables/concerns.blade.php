@@ -27,11 +27,11 @@
                 @endif
             </x-td>
             <x-td>
-                    <a href="/property/{{ $concern->property_uuid }}/unit/{{ $concern->unit_uuid }}/concerns"
+            <a href="/property/{{ $concern->property_uuid }}/unit/{{ $concern->unit_uuid }}/concerns"
                         class="text-blue-500 text-decoration-line: underline" target="_blank"">{{ $concern->unit->unit }}</a>
                                       </x-td>
             <x-td>{{ $concern->subject }}
-            @if($concern->status === 'active')
+            @if($concern->status === 'closed')
             <span title="{{ $concern->status }}" class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                 <i class="fa-solid fa-circle-check"></i>
             </span>
