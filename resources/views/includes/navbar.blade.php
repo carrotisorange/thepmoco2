@@ -1,4 +1,4 @@
-<nav aria-label="Sidebar" class="hidden md:block md:flex-shrink-0 md:bg-white overflow-auto h-screen pb-20">
+<nav aria-label="Sidebar" class="hidden md:block md:flex-shrink-0 md:bg-white overflow-auto h-screen pb-32">
     <div class="relative flex w-22 flex-col space-y-3 p-3">
         <!-- Dashboard -->
 
@@ -316,5 +316,21 @@
         @endif
 
         <div class="font-medium leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Utilities</div>
+
+        
+        
+       
+        <x-nav-link href="">
+
+            <span class="sr-only">Remittance</span>
+            <img class="h-8 w-auto" src="{{ asset('/brands/remittance.png') }}" fill="none" viewBox="0 0 24 24"
+                stroke-width="2" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+        </x-nav-link>
+        
+
+        <div class="font-medium leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Remittance</div>
+
     </div>
 </nav>

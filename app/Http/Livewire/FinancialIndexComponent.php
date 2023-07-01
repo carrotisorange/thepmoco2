@@ -56,7 +56,7 @@ class FinancialIndexComponent extends Component
         ->join('bills','collections.bill_id', 'bills.id')
         ->join('particulars', 'bills.particular_id', 'particulars.id')
         ->where('collections.property_uuid', $this->property->uuid)
-        ->whereYear('collections.updated_at', Carbon::now()->format('Y'))
+        ->whereMonth('collections.updated_at', Carbon::now()->format('M'))
         ->groupBy('bills.particular_id')
         ->orderBy('amount', 'desc')
         ->get();
@@ -66,7 +66,7 @@ class FinancialIndexComponent extends Component
           ->join('account_payable_liquidation_particulars','account_payable_liquidations.batch_no', 'account_payable_liquidation_particulars.batch_no')
           ->join('account_payables','account_payable_liquidations.batch_no', 'account_payables.batch_no')
           ->where('account_payables.property_uuid', $this->property->uuid)
-          ->whereYear('account_payable_liquidations.created_at', Carbon::now()->format('Y'))
+          ->whereMonth('account_payable_liquidations.created_at', Carbon::now()->format('M'))
           ->whereNotNull('account_payable_liquidations.approved_by')
           ->groupBy('account_payable_liquidation_particulars.item')
           ->orderBy('amount', 'desc')

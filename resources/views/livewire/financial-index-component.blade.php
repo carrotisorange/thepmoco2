@@ -190,7 +190,7 @@
         <div class="py-8 px-4 sm:px-6 lg:px-8">
                     <div class="sm:flex sm:items-center">
                         <div class="sm:flex-auto">
-                            <h1 class="text-xl font-semibold text-gray-900">II. Operating Expenses as of the current year</h1>
+                            <h1 class="text-xl font-semibold text-gray-900">II. Operating Expenses as of the current month</h1>
                 
                         </div>
                         <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
@@ -266,7 +266,7 @@
                         <div class="py-8 px-4 sm:px-6 lg:px-8">
                     <div class="sm:flex sm:items-center">
                         <div class="sm:flex-auto">
-                            <h1 class="text-xl font-semibold text-gray-900">III. Net Income as of the current year</h1>
+                            <h1 class="text-xl font-semibold text-gray-900">III. Net Income as of the current month</h1>
                 
                         </div>
                         <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
