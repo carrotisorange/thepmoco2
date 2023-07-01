@@ -275,7 +275,7 @@
                         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
                             <div
-                                class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg bg-gray-50">
+                                class="h-screen mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg bg-gray-50">
                                 <!-- Selected row actions, only show when rows are selected. -->
                                 <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 sm:left-16">
 
