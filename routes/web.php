@@ -67,26 +67,29 @@ Route::get('/proprent', function(){
     return view('proprent.proprent');
 });
 
-Route::get('/select-role', function(){
+Route::get('/proprent/select-role', function(){
     return view('proprent.select-role');
 });
 
-Route::get('/sign-in', function(){
+Route::get('/proprent/sign-in', function(){
     return view('proprent.sign-in');
 });
 
-Route::get('/sign-up', function(){
+Route::get('/proprent/sign-up', function(){
     return view('proprent.sign-up');
 });
 
-Route::get('/results', function(){
+Route::get('proprent/results', function(){
     return view('proprent.results');
 });
 
-Route::get('/room', function(){
+Route::get('proprent/room', function(){
     return view('proprent.room');
 });
 
+Route::get('proprent/reservation', function(){
+    return view('proprent.reservation');
+});
 
 
 

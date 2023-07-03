@@ -97,44 +97,28 @@ body {
     </header>
 
     <!-- Static sidebar for desktop -->
-    <div class=" md:fixed md:inset-y-0 right-0 md:flex md:w-96 md:flex-col ">
+    <div class="py-10 md:fixed md:inset-y-0 right-0 md:flex md:w-96 md:flex-col ">
         <!-- Sidebar component, swap this element with another sidebar if you like -->
-        <div class="-ml-10 mx-6 flex flex-grow flex-col overflow-y-auto bg-white pt-5">
+        <div class="ml-5 lg:-ml-10 mx-6 flex flex-grow flex-col overflow-y-auto bg-white pt-5">
             <div class="py-20 mt-5 flex flex-1 flex-col">
     
                 <div class="py-8 px-7 mx-auto border border-gray-400 rounded-md">
-                    <h1 class="font-light text-sm">Room Details </h1>
-          
-            
-                    <div class="grid grid-cols-2">
-                        <div class="cols-start-1">
-                            <h3 class="mt-4 text-xl font-bold text-gray-900">Unit Room 1</h3>
-                        </div>
-                    </div>
-            
-                    <p class="font-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vitae mattis massa, in convallis ligula. Aliquam erat volutpat.</p>
-
-                    <div class="flex justify-between">
-                    <p class="mt-4 text-xs font-medium text-gray-700">Start Date: <span class="font-light" >06/30/23</span></p>
-                    <p class="mt-4 text-xs font-medium text-gray-700">End Date: <span class="font-light" >06/30/23</span></p>
-                    </div>
-
-                    <div class="flex justify-between">
-                    <p class="mt-2 text-sm font-medium text-gray-700">Security Deposit: <span class="font-light">1000</span></p>
-                    <p class="mt-2 text-sm font-medium text-gray-700">Advanced Rent: <span class="font-light">1000</span></p>
-                    </div>
-
-                    <div class="grid grid-cols-2">
-                        <div>
-                            <p class="mt-6 font-bold text-md text-2xl"><span>₱</span> 1000</p>
-                            Total Price
-                        </div>
+      
+                    
                     <div>
+                            <p class="py-6 font-bold text-md text-2xl"><span>₱</span> 1000 <span class="text-base font-light">Unit Price</span></p>
+                            
+                        </div>
+                 
+            
+                    <p class="py-1 font-light text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vitae mattis massa, in convallis ligula. Aliquam erat volutpat.</p>
     
-                    <div class="mt-6 flex justify-center items-center space-x-2">
-                    <button class="text-white bg-yellow-400 p-2 rounded-lg text-sm">Reserve</button>
-                        <button class="text-white bg-yellow-400 p-2 rounded-lg text-sm">Message</button>
+                    <div class="w-full mt-6">
+                    <!-- change to message button once reserved -->
+                    <a href="/proprent/reservation"><button class="w-full text-white bg-yellow-300 p-2 rounded-lg text-sm">Reserve</button></a>
                     </div>
+
+                    <p class="py-2 text-center font-medium text-sm">You won't be charged yet.</p>
                 </div>
             
             </div>
@@ -179,7 +163,7 @@ body {
 
 
  <!-- Image gallery -->
- <div class="h-full lg:col-span-7 lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:mt-0">
+ <div class="h-96 lg:col-span-7 lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:mt-0">
           <h2 class="sr-only">Images</h2>
 
           <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
@@ -187,31 +171,31 @@ body {
           <div class="swiper mySwiper">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
-                <img class="object-cover w-full h-full" src="{{ asset('/brands/proprent/room-sample.jpg') }}"
+                <img class="object-cover w-full h-96" src="{{ asset('/brands/proprent/room-sample.jpg') }}"
                   alt="image" />
               </div>
               <div class="swiper-slide">
-                <img class="object-cover w-full h-full" src="{{ asset('/brands/proprent/room-sample.jpg') }}"
+                <img class="object-cover w-full h-96" src="{{ asset('/brands/proprent/room-sample.jpg') }}"
                   alt="image" />
               </div>
               <div class="swiper-slide">
-                <img class="object-cover w-full h-full" src="{{ asset('/brands/proprent/room-sample.jpg') }}"
+                <img class="object-cover w-full h-96" src="{{ asset('/brands/proprent/room-sample.jpg') }}"
                   alt="image" />
               </div>
               <div class="swiper-slide">
-                <img class="object-cover w-full h-full" src="{{ asset('/brands/proprent/room-sample.jpg') }}"
+                <img class="object-cover w-full h-96" src="{{ asset('/brands/proprent/room-sample.jpg') }}"
                   alt="image" />
               </div>
               <div class="swiper-slide">
-                <img class="object-cover w-full h-full" src="{{ asset('/brands/proprent/room-sample.jpg') }}"
+                <img class="object-cover w-full h-96" src="{{ asset('/brands/proprent/room-sample.jpg') }}"
                   alt="image" />
               </div>
               <div class="swiper-slide">
-                <img class="object-cover w-full h-full" src="{{ asset('/brands/proprent/room-sample.jpg') }}"
+                <img class="object-cover w-full h-96" src="{{ asset('/brands/proprent/room-sample.jpg') }}"
                   alt="image" />
               </div>
               <div class="swiper-slide">
-                <img class="object-cover w-full h-full" src="{{ asset('/brands/proprent/room-sample.jpg') }}"
+                <img class="object-cover w-full h-96" src="{{ asset('/brands/proprent/room-sample.jpg') }}"
                   alt="image" />
               </div>
             </div>
@@ -232,56 +216,70 @@ body {
         </div>
 
                         </div>
-        <div class="mt-10">
-      <h2 class="mb-10 text-lg font-bold">About this Unit </h2>  
+      <div class="mt-10">
+      <h2 class="text-xl font-bold">Name of Place/Unit</h2>  
+      <p class="font-light text-sm py-2"> <span><span class="font-medium">6</span> bedrooms</span> <span><span class="font-medium">6</span> beds</span> <span><span class="font-medium">6</span> baths</span> </p>
 
-      
-      <div class="mt-5 grid grid-cols-2">
-
-       <!-- amenities -->
-<h1 class="mb-10 inline-flex">
-<img width="26" height="26" src="https://img.icons8.com/fluency-systems-regular/48/exterior.png" alt="exterior"/>
-<span class="font-light text-sm">Apartment</span>
-</h1>
-
-<h1 class="mb-10 inline-flex">
-<img width="26" height="26" src="https://img.icons8.com/fluency-systems-regular/48/bed.png" alt="bed"/>
-<span class="font-light text-sm">2 Bedrooms</span>
-</h1>
-
-<h1 class="mb-10 inline-flex">
-<img width="26" height="26" src="https://img.icons8.com/fluency-systems-regular/48/calendar--v1.png" alt="calendar--v1"/>
-<span class="font-light text-sm">0 months minimum stay</span>
-</h1>
-
-<h1 class="mb-10 inline-flex">
-<img width="26" height="26" src="https://img.icons8.com/fluency-systems-regular/48/tv.png" alt="tv"/>
-<span class="font-light text-sm">Furnished</span>
-</h1>
-
-<h1 class="mb-10 inline-flex">
-<img width="26" height="26" src="https://img.icons8.com/fluency-systems-regular/48/wi-fi-good.png" alt="wi-fi-good"/>
-<span class="font-light text-sm">Wifi</span>
-</h1>
-
-<h1 class="mb-10 inline-flex">
-<img width="26" height="26" src="https://img.icons8.com/fluency-systems-regular/48/shower-and-tub.png" alt="shower-and-tub"/>
-<span class="font-light text-sm">1 Bathroom</span>
-</h1>
-
-<h1 class="mb-10 inline-flex">
-<img width="26" height="26" src="https://img.icons8.com/fluency-systems-regular/48/parking.png" alt="parking"/>
-<span class="font-light text-sm">Parking</span>
-</h1>
-
-
-</div>
-
-      <h2 class="mt-5 mb-10 text-lg font-bold">Room Details </h2> 
-        <p class="text-sm font-light">Location is near lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non purus vitae massa sollicitudin ultrices. Aenean mollis tincidunt leo. Nunc auctor magna ut convallis gravida. Cras porttitor orci arcu, eu facilisis lacus facilisis vel. Aenean pulvinar urna vel est tempor, vel tristique sem sagittis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec fringilla tellus ligula, et ullamcorper eros ultricies nec</p>
+      <div class="mt-6 border border-t border-gray-200"></div>
+      <!-- description -->
+      <div class="font-light text-base py-4">
+      Come and stay in this beautifully designed beach-front villa in a peaceful beach setting in one of the most iconic residential beach areas in all of DA NANG CITY. Whether you’re in town for a business trip, a family vacation, or a weekend getaway with good friends, this is a perfect spot for your group. 
       </div>
-       
-      <div class="my-10">
+
+      <div class="mt-6 border border-t border-gray-200"></div>
+      
+      <h2 class="text-lg font-bold pt-4 pb-7">Room Details</h2> 
+      <div class="grid grid-cols-2">
+        
+
+          <!-- amenities -->
+          <h1 class="mb-10 inline-flex">
+          <img width="26" height="26" src="https://img.icons8.com/fluency-systems-regular/48/exterior.png" alt="exterior"/>
+          <span class="font-light text-sm">Apartment</span>
+          </h1>
+
+          <h1 class="mb-10 inline-flex">
+          <img width="26" height="26" src="https://img.icons8.com/fluency-systems-regular/48/bed.png" alt="bed"/>
+          <span class="font-light text-sm">2 Bedrooms</span>
+          </h1>
+
+          <h1 class="mb-10 inline-flex">
+          <img width="26" height="26" src="https://img.icons8.com/fluency-systems-regular/48/calendar--v1.png" alt="calendar--v1"/>
+          <span class="font-light text-sm">0 months minimum stay</span>
+          </h1>
+
+          <h1 class="mb-10 inline-flex">
+          <img width="26" height="26" src="https://img.icons8.com/fluency-systems-regular/48/tv.png" alt="tv"/>
+          <span class="font-light text-sm">Furnished</span>
+          </h1>
+
+          <h1 class="mb-10 inline-flex">
+          <img width="26" height="26" src="https://img.icons8.com/fluency-systems-regular/48/wi-fi-good.png" alt="wi-fi-good"/>
+          <span class="font-light text-sm">Wifi</span>
+          </h1>
+
+          <h1 class="mb-10 inline-flex">
+          <img width="26" height="26" src="https://img.icons8.com/fluency-systems-regular/48/shower-and-tub.png" alt="shower-and-tub"/>
+          <span class="font-light text-sm">1 Bathroom</span>
+          </h1>
+
+          <h1 class="mb-10 inline-flex">
+          <img width="26" height="26" src="https://img.icons8.com/fluency-systems-regular/48/parking.png" alt="parking"/>
+          <span class="font-light text-sm">Parking</span>
+          </h1>
+        </div>
+
+        <button class="border border-gray-200 p-3">Show more Amenities</button>
+      </div>
+
+      <div class="mt-6 border border-t border-gray-200"></div>
+
+      <h2 class="text-lg font-bold pt-4 pb-7">No reviews yet</h2> 
+
+      <div class="mt-6 border border-t border-gray-200"></div>
+
+      <h2 class="text-lg font-bold pt-4 pb-7">Where you'll be</h2> 
+      <div class="">
         <img class="w-full" src="https://snazzy-maps-cdn.azureedge.net/assets/232526-sample-map-style.png?v=20180925120645" alt="shower-and-tub"/> 
       </div>
     </div>
