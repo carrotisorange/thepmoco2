@@ -6,6 +6,8 @@ use Livewire\Component;
 use App\Models\User;
 use App\Models\UserProperty;
 use Illuminate\Validation\Rule;
+use App\Models\UserRestriction;
+use DB;
 
 class EditPersonnelComponent extends Component
 {
@@ -17,25 +19,35 @@ class EditPersonnelComponent extends Component
     public $email;
     public $role_id;
     public $is_approved;
+    public $user_restrictions;
 
     public function mount($personnel){
         $this->name = $personnel->user->name;
         $this->email = $personnel->user->email;
         $this->role_id = $personnel->role_id;
         $this->is_approved = $personnel->is_approved;
+        $this->user_restrictions = $this->get_user_restrictions();
+    }
+
+    protected function rules()
+    {
+        return [
+            'user_restrictions.*.is_approved' => 'nullable',
+        ];
+    }
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
+
+    public function get_user_restrictions(){
+        return UserRestriction::where('user_id', $this->personnel->user->id)->get();
     }
 
     public function updateButton(){
 
         $is_email_exists = User::where('email', $this->email)->count();
-
-        // if($is_email_exists){
-        //     $is_role_exists = UserProperty::where('property_uuid', $this->property->uuid)->where('user_id', $this->personnel->user_id)->where('role_id', $this->role_id)->pluck('id')->first();
-            
-        //     if($is_role_exists){
-        //         return redirect(url()->previous())->with('error', 'Role already exists!');
-        //     }
-        // }
         
         $validatedUserData = $this->validate([
             'name' => 'required',
@@ -52,6 +64,16 @@ class EditPersonnelComponent extends Component
     
         UserProperty::where('id', $this->personnel->id)
         ->update($validatedUserPropertyData);
+
+        app('App\Http\Controllers\UserRestrictionController')->store($this->property->uuid, $this->personnel->user->id);
+
+        $this->validate();
+
+        DB::transaction(function () {
+            foreach($this->user_restrictions as $unit_restriction) {
+                $unit_restriction->save();
+            }
+        });
 
         return redirect(url()->previous())->with('success', 'Success!');
     }

@@ -20,7 +20,6 @@ class UnitEditBulkComponent extends Component
     public $property;
     public $batch_no;
 
-
     public $search;
     public $units;
 
@@ -109,8 +108,6 @@ class UnitEditBulkComponent extends Component
 
     public function removeUnits()
     {
-        
-
         foreach($this->selectedUnits as $unit => $val){
             if(Contract::where('property_uuid', $this->property->uuid)->where('unit_uuid', $unit)->count() || DeedOfSale::where('property_uuid', $this->property->uuid)->where('unit_uuid', $unit)->count())
             {

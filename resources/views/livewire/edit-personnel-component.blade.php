@@ -75,6 +75,32 @@
                 </div>
 
                 <div class="mt-5 sm:mt-6">
+                
+                <fieldset>
+                  <label class="text-sm" for="is_approved">Restrictions</label>
+                  @foreach($user_restrictions as $index => $user_restriction)
+                  <div wire:key="user-restriction-{{ $user_restriction->id }}">
+                    <div class="space-y-5 mt-4">
+                      
+                        <div class="relative flex items-start">
+                            <div class="flex h-6 items-center">
+                                <input wire:model="user_restrictions.{{ $index }}.is_approved" type="checkbox" @if($user_restriction->is_approved) checked @endif
+                                    class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                            </div>
+                            <div class="ml-3 text-sm leading-6">
+                                <label for="comments" class="font-medium text-gray-900"><span class="font-bold">{{ $user_restriction->restriction->restriction }}</span> {{ $user_restriction->feature->feature}}</label>
+                                {{-- <p id="comments-description" class="text-gray-500">Get notified when someones posts a comment on a
+                                    posting.</p> --}}
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                    @endforeach
+                </fieldset>
+                    
+                </div>
+
+                <div class="mt-5 sm:mt-6">
                     @can('accountownerandmanager')
                     <button type="button" wire:target="updateButton" wire:click="updateButton"
                         class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
