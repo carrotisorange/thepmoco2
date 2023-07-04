@@ -196,6 +196,9 @@
                         : 'Select one' }}>
                         long_term
                     </option>
+                    <option value="short_term" {{ old('rent_duration', $rent_duration)=='short_term' ? 'selected' : 'Select one' }}>
+                        short_term
+                    </option>
                 </select>
             </div>
             @error('rent_duration')
