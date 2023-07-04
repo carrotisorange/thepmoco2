@@ -62,19 +62,20 @@ body {
                     <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute w-60 px-5 py-3 dark:bg-gray-800 bg-white rounded-lg shadow border dark:border-transparent mt-5">
                       <ul class="space-y-3 dark:text-white">
                         <li class="font-medium">
-                          <a href="#" class="text-sm text-gray-900 flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-indigo-700">
+                          <a href="/proprent/profile" class="text-sm text-gray-900 flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-indigo-700">
                             <div class="mr-3">
                               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                             </div>
-                            Account
+                            Profile
                           </a>
                         </li>
+                        <!-- dont show if tenant -->
                         <li class="font-medium">
-                          <a href="#" class="text-sm text-gray-900 flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-indigo-700">
+                          <a href="/proprent/all-listings" class="text-sm text-gray-900 flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-indigo-700">
                             <div class="mr-3">
                               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                             </div>
-                            Setting
+                            Listing
                           </a>
                         </li>
                         <hr class="dark:border-gray-700">
@@ -95,80 +96,3 @@ body {
           </ul>
         </nav>
     </header>
-
-
-                   
-
-                   
-
-    <div class=" p-6  flex items-center justify-center">
-    <div class="mt-10 mx-auto">
-
-    <div>
-    <!-- <h2 class="ml-4 font-semibold text-xl text-gray-600">Task Name</h2> -->
-
-      <div class="bg-white  p-4 px-4 md:p-8 mb-6">
-        <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
-          <div class="text-gray-600">
-            <p class="font-medium text-lg">Post a Listing</p>
-            <p>Please fill out all the fields.</p>
-          </div>
-
-          <div class="lg:col-span-2">
-            <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-6">
-              <div class="md:col-span-3">
-                  <label for="project_name">Location</label> 
-                  <input type="text" name="project_name" id="project_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
-              </div>
-             
-              <div class="md:col-span-3">
-                  <label for="date">Choose Amenities </label>
-                  <input type="text" name="date" id="date" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
-              </div>
-
-              <div class="md:col-span-3">
-                <label for="scope_of_work">Contact Number</label>
-                <input type="text" name="scope_of_work" id="scope_of_work" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
-              </div>
-
-              <div class="md:col-span-3">
-                <label for="scope_of_work">Email</label>
-                <input type="text" name="scope_of_work" id="scope_of_work" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
-              </div>
-
-              <div class="md:col-span-3">
-                  <label for="project_name">Start Date</label> 
-                  <input type="text" name="project_name" id="project_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
-              </div>
-             
-              <div class="md:col-span-3">
-                  <label for="date">End Date</label>
-                  <input type="text" name="date" id="date" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
-              </div>
-                
-              <div class="md:col-span-3">
-                  <label for="project_name">Security Deposit</label> 
-                  <input type="text" name="project_name" id="project_name" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
-              </div>
-             
-              <div class="md:col-span-3">
-                  <label for="date">Advanced Rent</label>
-                  <input type="text" name="date" id="date" class="h-10 border mt-1 rounded px-4 w-full bg-gray-50" value="" />
-              </div>
-             
-         
-
-              <div class="md:col-span-6 text-right">
-                <div class="inline-flex items-end">
-                  <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded">Submit</button>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-                    </body>
-                    </html>
