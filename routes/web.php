@@ -79,6 +79,10 @@ Route::get('/proprent/sign-up', function(){
     return view('proprent.sign-up');
 });
 
+Route::get('/proprent/profile', function(){
+    return view('proprent.profile');
+});
+
 Route::get('proprent/results', function(){
     return view('proprent.results');
 });
@@ -89,6 +93,14 @@ Route::get('proprent/room', function(){
 
 Route::get('proprent/reservation', function(){
     return view('proprent.reservation');
+});
+
+Route::get('proprent/upload-listing', function(){
+    return view('proprent.upload-listing');
+});
+
+Route::get('proprent/all-listings', function(){
+    return view('proprent.all-listings');
 });
 
 

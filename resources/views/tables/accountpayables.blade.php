@@ -123,30 +123,29 @@
                         aria-labelledby="dropdownDefaultButton({{ $accountpayable->id }})">
                         <li>
                             @if($accountpayable->status === 'released')
-                            @if(App\Models\AccountPayableLiquidation::where('batch_no',
-                            $accountpayable->batch_no)->whereNotNull('approved_by')->count())
-                            <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/liquidation/step-2"
-                                target="_blank"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Liquidated</a>
-                            @else
-
-                            @cannot('manager')
-                            <form
-                                action="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/liquidation/step-1"
-                                method="POST">
-                                @csrf
-                                <button type="submit"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Create
-                                    Liquidation</button>
-                            </form>
-                            @else
-                            <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/liquidation/step-2"
-                                target="_blank"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Approve/Reject
-                                Liquidation</a>
-                            @endcannot
-
-                            @endif
+                                @if(App\Models\AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->whereNotNull('approved_by')->count())
+                                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/liquidation/step-2"  target="_blank" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Liquidated</a>
+                                @else
+                                    @cannot('manager')
+                                    <form  action="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/liquidation/step-1" method="POST">
+                                        @csrf
+                                        <button type="submit" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Create Liquidation</button>
+                                    </form>
+                                    @else
+                                     @if(App\Models\AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->count())
+                                        <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/liquidation/step-2"
+                                            target="_blank" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                            Approve/Reject Liquidation
+                                        </a>
+                                     @else
+                                        {{-- <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/liquidation/step-2"
+                                            target="_blank" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                            Approve/Reject Liquidation
+                                        </a> --}}
+                                     @endif
+                                 
+                                    @endcannot
+                                @endif
                             @endif
                         </li>
                         <li>

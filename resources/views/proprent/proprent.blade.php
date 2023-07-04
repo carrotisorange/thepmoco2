@@ -59,13 +59,13 @@ body {
         <ul class="hidden space-x-2 lg:inline-flex items-center">
 
             <li class="rounded-2xl py-1">
-                <a href="sign-in" class="text-purple-900 text-base font-bold flex items-center px-2 hover:text-yellow-300">
+                <a href="/proprent/sign-in" class="text-purple-900 text-base font-bold flex items-center px-2 hover:text-yellow-300">
                     Sign In
                 </a>
             </li>
 
             <li id="yellow" class="rounded-2xl py-1">
-                <a href="/select-role" class="font-bold text-sm flex items-center px-2 text-white">
+                <a href="/proprent/select-role" class="font-bold text-sm flex items-center px-2 text-white">
                     Sign Up
                 </a>
             </li>
@@ -200,24 +200,22 @@ body {
         <div id="dropdown" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 910px);">
             <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
             <li>
-                <button type="button" class="inline-flex py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mockups</button>
+                <button type="button" class="inline-flex py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Apartment</button>
             </li>
             <li>
-                <button type="button" class="inline-flex py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Templates</button>
+                <button type="button" class="inline-flex py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dormitory</button>
             </li>
             <li>
-                <button type="button" class="inline-flex py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Design</button>
+                <button type="button" class="inline-flex py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Transient</button>
             </li>
             <li>
-                <button type="button" class="inline-flex py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Logos</button>
+                <button type="button" class="inline-flex py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Vacation</button>
             </li>
             </ul>
         </div>
         <div class="relative w-full">
-            <a href="results">
             <input type="search" id="search-dropdown" class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-yellow-500 focus:border-yellow-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-yellow-500" placeholder="Search by City...  " required="">
-            </a>
-            <button type="submit" id="purple" class="absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-red-300 rounded-r-lg border border-red-100 hover:bg-red-200 focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
+            <button type="submit" id="purple" onClick="location.href='/proprent/results'" class="absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-red-300 rounded-r-lg border border-red-100 hover:bg-red-200 focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
                 <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 <span class="sr-only">Search</span>
             </button>

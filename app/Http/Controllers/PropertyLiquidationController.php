@@ -15,7 +15,7 @@ class PropertyLiquidationController extends Controller
 {
     public function step1(Property $property, AccountPayable $accountPayable){
 
-        if(auth()->user()->role_id !== 9){
+        // if(auth()->user()->role_id !== 9){
             $particulars = AccountPayableParticular::where('batch_no', $accountPayable->batch_no)->get();
 
             if(!AccountPayableLiquidationParticular::where('batch_no', $accountPayable->batch_no)->count()){
@@ -40,9 +40,9 @@ class PropertyLiquidationController extends Controller
                 'property' => $property,
                 'accountpayable' => $accountPayable,
             ]);
-        }else{
-            return redirect('/property/'.$property->uuid.'/accountpayable/'.$accountPayable->id.'/liquidation/step-2');
-        }
+        // }else{
+        //     return redirect('/property/'.$property->uuid.'/accountpayable/'.$accountPayable->id.'/liquidation/step-2');
+        // }
 
     }
 

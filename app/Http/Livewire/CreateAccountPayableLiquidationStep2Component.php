@@ -16,7 +16,6 @@ class CreateAccountPayableLiquidationStep2Component extends Component
     }
 
     public function approveLiquidation(){
-        
 
         AccountPayableLiquidation::where('batch_no', $this->accountpayable->batch_no)
         ->update([
