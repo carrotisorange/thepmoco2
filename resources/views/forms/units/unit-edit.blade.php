@@ -278,10 +278,10 @@
         <div class="sm:col-span-3">
             <div
                 class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="transient_discount" class="block text-xs font-medium text-gray-900">
+                <label for="management_fee" class="block text-xs font-medium text-gray-900">
                     Management Fee
                 </label>
-                <input type="number" wire:model="" step="0.001"
+                <input type="number" wire:model="management_fee" step="0.001"
                     value=""
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                     placeholder="">
@@ -291,10 +291,10 @@
         <div class="sm:col-span-3">
             <div
                 class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="transient_discount" class="block text-xs font-medium text-gray-900">
+                <label for="marketing_fee" class="block text-xs font-medium text-gray-900">
                     Marketing Fee
                 </label>
-                <input type="number" wire:model="" step="0.001"
+                <input type="number" wire:model="marketing_fee" step="0.001"
                     value=""
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                     placeholder="">

@@ -67,7 +67,7 @@ class TenantBillController extends Controller
 
     public function get_bill_data($tenant, $due_date, $penalty, $note)
     {
-         $unpaid_bills = Bill::where('tenant_uuid', $tenant->uuid)->whereIn('status', ['unpaid','partially_paid'])->sum('bill');
+         $unpaid_bills = Bill::where('tenant_uuid', $tenant->uuid)->sum('bill');
          $paid_bills = Collection::where('tenant_uuid', $tenant->uuid)->where('is_posted', 1)->sum('collection');
 
         if($unpaid_bills<=0){ 

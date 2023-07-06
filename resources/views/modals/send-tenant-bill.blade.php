@@ -49,7 +49,7 @@
                         <x-label for="due_date">
                             Total Unpaid Bills
                         </x-label>
-                        {{ number_format($unpaid_bills->sum('bill') -  $unpaid_bills->sum('initial_payment'), 2) }} ({{ $unpaid_bills->count() }} bills)
+                        {{ number_format(App\Models\Bill::where('tenant_uuid', $tenant->uuid)->sum('bill') -  App\Models\Collection::where('tenant_uuid', $tenant->uuid)->sum('collection'), 2) }} ({{ $unpaid_bills->count() }} bills)
 
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                             Penalty After Due Date
                         </x-label>
                         <x-form-input id="penalty" type="number" step="0.001"
-                            value="{{ old('penalty', (($unpaid_bills->sum('bill')-$unpaid_bills->sum('initial_payment'))*.1)) }}" name="penalty" min="0" />
+                            value="{{ (App\Models\Bill::where('tenant_uuid', $tenant->uuid)->sum('bill') -  App\Models\Collection::where('tenant_uuid', $tenant->uuid)->sum('collection'))*.1  }}" name="penalty" min="0" />
                         @error('penalty')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror

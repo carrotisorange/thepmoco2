@@ -123,7 +123,7 @@ class OwnerBillController extends Controller
 
     public function get_bill_data($owner, $due_date, $penalty, $note)
     {
-        $unpaid_bills = Bill::where('owner_uuid', $owner->uuid)->whereIn('status', ['unpaid','partially_paid'])->sum('bill');
+        $unpaid_bills = Bill::where('owner_uuid', $owner->uuid)->sum('bill');
         $paid_bills = Collection::where('owner_uuid', $owner->uuid)->where('is_posted', 1)->sum('collection');
 
         if($unpaid_bills<=0){ 
