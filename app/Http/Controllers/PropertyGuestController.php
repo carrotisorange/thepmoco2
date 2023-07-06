@@ -323,8 +323,7 @@ class PropertyGuestController extends Controller
 
     public function get_bill_data($guest, $due_date, $penalty, $note)
     {
-          $unpaid_bills = Bill::where('guest_uuid', $guest->uuid)->whereIn('status',
-          ['unpaid','partially_paid'])->sum('bill');
+          $unpaid_bills = Bill::where('guest_uuid', $guest->uuid)->sum('bill');
           $paid_bills = Collection::where('guest_uuid', $guest->uuid)->where('is_posted', 1)->sum('collection');
 
         if($unpaid_bills<=0){ 

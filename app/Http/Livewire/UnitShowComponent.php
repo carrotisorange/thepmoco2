@@ -38,6 +38,8 @@ class UnitShowComponent extends Component
     public $transient_rent;
     public $transient_discount;
     public $rent_duration;
+    public $marketing_fee;
+    public $management_fee;
 
     public $view = 'listView';
 
@@ -60,6 +62,8 @@ class UnitShowComponent extends Component
         $this->transient_rent = $unit_details->transient_rent;
         $this->transient_discount = $unit_details->transient_discount;
         $this->rent_duration = $unit_details->rent_duration;
+        $this->management_fee = $unit_details->management_fee;
+        $this->marketing_fee = $unit_details->marketing_fee;
     }
     
     protected function rules()
@@ -81,7 +85,8 @@ class UnitShowComponent extends Component
             'transient_discount' => ['required_if:rent_duration,transient'],
             'rent' => ['required_if:rent_duration,long_term'],
             'discount' => ['required_if:rent_duration,long_term'],
-          
+            'management_fee' => ['required'],
+            'marketing_fee' => ['required']
             ];
     }
 
