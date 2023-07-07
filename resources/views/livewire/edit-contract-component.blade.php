@@ -19,7 +19,7 @@
             <form wire:submmit.prevent="updateContract">
                 <div class="mt-5 sm:mt-6">
                     <label class="text-sm" for="tenant">Tenant</label>
-                    <input type="text" readonly value="{{ $contract->tenant->tenant }}"
+                    <input type="text" readonly value="{{ App\Models\Tenant::find($contract->tenant_uuid)->tenant }}"
                         class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="" required>
 

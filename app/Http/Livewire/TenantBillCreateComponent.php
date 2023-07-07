@@ -99,8 +99,7 @@ class TenantBillCreateComponent extends Component
             $this->bill = ($this->bill)-($marketing_fee + $management_fee);
          }
 
-        
-
+      
           Bill::create([
             'bill_no' => $bill_no,
             'unit_uuid' => $this->unit_uuid,
