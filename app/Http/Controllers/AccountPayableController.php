@@ -27,7 +27,7 @@ class AccountPayableController extends Controller
 
     public function store(Property $property, $request_for, $batch_no){
 
-        $this->authorize('is_account_payable_create_allowed');
+        // $this->authorize('is_account_payable_create_allowed');
 
         $generated_batch_no = auth()->user()->id.'-'.sprintf('%08d', AccountPayable::where('property_uuid',$property->uuid)->where('status', '!=', 'unknown')->count()).'-'.$batch_no;
 
@@ -206,7 +206,7 @@ class AccountPayableController extends Controller
     }
     public function store_step_1($property_uuid, $request_for, $created_at, $due_date, $requester_id, $batch_no, $amount){
 
-    $this->authorize('is_account_payable_create_allowed');
+    // $this->authorize('is_account_payable_create_allowed');
            
     return AccountPayable::updateOrCreate(
         [

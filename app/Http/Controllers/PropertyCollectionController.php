@@ -16,7 +16,7 @@ class PropertyCollectionController extends Controller
     {
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',11);
         
-        $this->authorize('is_account_receivable_read_allowed');
+        //$this->authorize('is_account_receivable_read_allowed');
     
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
         

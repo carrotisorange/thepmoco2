@@ -14,6 +14,7 @@ use DB;
 use App\Models\Property;
 use App\Models\Particular;
 use App\Models\PropertyParticular;
+use App\Models\Unit;
 
 
 class TenantBillCreateComponent extends Component
@@ -84,19 +85,23 @@ class TenantBillCreateComponent extends Component
 
    public function storeBill(){
 
-      
-
       $this->validate();
 
       try {
 
          $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no($this->property->uuid);
+          $marketing_fee = Unit::find($this->unit_uuid)->marketing_fee;
+          $management_fee = Unit::find($this->unit_uuid)->management_fee;
 
          if($this->particular_id === '8'){
             $this->bill *=-1;
+         }else{
+            $this->bill = ($this->bill)-($marketing_fee + $management_fee);
          }
-         
-         Bill::create([
+
+        
+
+          Bill::create([
             'bill_no' => $bill_no,
             'unit_uuid' => $this->unit_uuid,
             'particular_id' => $this->particular_id,
@@ -110,6 +115,39 @@ class TenantBillCreateComponent extends Component
             'tenant_uuid' => $this->tenant->uuid,
             'is_posted' => true
          ]);
+
+        
+          if($this->particular_id === '1'){
+            Bill::create([
+               'bill_no' => $bill_no+1,
+               'unit_uuid' => $this->unit_uuid,
+               'particular_id' => 71,
+               'start' => $this->start,
+               'end' => $this->end,
+               'bill' => $marketing_fee,
+               'reference_no' => $this->tenant->reference_no,
+               'due_date' => Carbon::parse($this->start)->addDays(7),
+               'user_id' => auth()->user()->id,
+               'property_uuid' => $this->property->uuid,
+               'tenant_uuid' => $this->tenant->uuid,
+               'is_posted' => true
+            ]);
+
+            Bill::create([
+               'bill_no' => $bill_no+2,
+               'unit_uuid' => $this->unit_uuid,
+               'particular_id' => 72,
+               'start' => $this->start,
+               'end' => $this->end,
+               'bill' => $management_fee,
+               'reference_no' => $this->tenant->reference_no,
+               'due_date' => Carbon::parse($this->start)->addDays(7),
+               'user_id' => auth()->user()->id,
+               'property_uuid' => $this->property->uuid,
+               'tenant_uuid' => $this->tenant->uuid,
+               'is_posted' => true
+            ]);
+          }
 
             // app('App\Http\Controllers\BillController')->store($this->property->uuid, auth()->user()->id, 1, 3);
 
@@ -156,8 +194,7 @@ class TenantBillCreateComponent extends Component
    }
 
    public function payBills()
-   {
-      
+   {      
 
       $collection_ar_no = Property::find($this->property->uuid)->acknowledgementreceipts->max('ar_no')+1;
 
@@ -235,7 +272,6 @@ class TenantBillCreateComponent extends Component
       ->select('status', DB::raw('count(*) as count'))
       ->groupBy('status')
       ->get();
-
 
 
       $unpaid_bills = Tenant::find($this->tenant->uuid)

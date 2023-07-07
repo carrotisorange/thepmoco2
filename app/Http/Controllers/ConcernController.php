@@ -30,7 +30,7 @@ class ConcernController extends Controller
      */
     public function create()
     {
-        $this->authorize('is_concern_create_allowed');
+       // $this->authorize('is_concern_create_allowed');
 
         return view('tenants.concerns.create');
     }
@@ -54,9 +54,9 @@ class ConcernController extends Controller
      */
     public function show($property_uuid, Concern $concern)
     {
-        $this->authorize('is_concern_read_allowed');
+        //$this->authorize('is_concern_read_allowed');
 
-        $this->authorize('is_concern_update_allowed');
+        //$this->authorize('is_concern_update_allowed');
 
         app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'opens one',13);
         
@@ -73,7 +73,7 @@ class ConcernController extends Controller
      */
     public function edit(Concern $concern)
     {
-        $this->authorize('is_concern_update_allowed');
+       // $this->authorize('is_concern_update_allowed');
     }
 
     /**
@@ -96,6 +96,6 @@ class ConcernController extends Controller
      */
     public function destroy(Concern $concern)
     {
-        $this->authorize('is_concern_delete_allowed');
+      // $this->authorize('is_concern_delete_allowed');
     }
 }
