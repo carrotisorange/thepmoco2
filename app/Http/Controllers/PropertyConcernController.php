@@ -12,7 +12,7 @@ class PropertyConcernController extends Controller
     {
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',13);
 
-        $this->authorize('is_concern_read_allowed');
+        //$this->authorize('is_concern_read_allowed');
 
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
 
@@ -23,7 +23,7 @@ class PropertyConcernController extends Controller
 
     public function destroy($unit_uuid){
 
-        $this->authorize('is_concern_delete_allowed');
+      // $this->authorize('is_concern_delete_allowed');
 
         Concern::where('unit_uuid', $unit_uuid)->delete();
     }

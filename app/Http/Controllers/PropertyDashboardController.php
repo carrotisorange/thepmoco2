@@ -10,7 +10,7 @@ class PropertyDashboardController extends Controller
     {        
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',1);
 
-        $this->authorize('is_portfolio_read_allowed');
+        // $this->authorize('is_portfolio_read_allowed');
 
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
 

@@ -39,7 +39,7 @@ class TenantCollectionController extends Controller
     }
 
     public function edit(Property $property, Tenant $tenant, $batch_no)
-    {
+    {   
       $collections = Bill::where('tenant_uuid', $tenant->uuid)
       ->where('batch_no', $batch_no)
       ->get();

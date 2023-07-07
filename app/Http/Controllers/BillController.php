@@ -136,7 +136,7 @@ class BillController extends Controller
 
     public function create(Unit $unit, Tenant $tenant, Contract $contract)
     {
-        $this->authorize('is_account_receivable_create_allowed');
+        // $this->authorize('is_account_receivable_create_allowed');
 
         $bills = Tenant::find($tenant->uuid)->bills;
        
@@ -172,7 +172,7 @@ class BillController extends Controller
 
     public function destroy($id)
     {    
-        $this->authorize('is_account_receivable_delete_allowed');
+        // $this->authorize('is_account_receivable_delete_allowed');
 
         $bill = Bill::where('id', $id);
         if($bill->delete()){

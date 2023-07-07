@@ -63,7 +63,7 @@ class PropertyController extends Controller
 
     public function create($random_str)
     {
-        $this->authorize('is_portfolio_create_allowed');
+        // $this->authorize('is_portfolio_create_allowed');
         
         return view('properties.create', [
             'random_str' => $random_str,
@@ -447,7 +447,7 @@ class PropertyController extends Controller
 
     public function show(Property $property)
     {  
-        $this->authorize('is_portfolio_read_allowed');
+        // $this->authorize('is_portfolio_read_allowed');
 
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',1);
 
@@ -476,7 +476,7 @@ class PropertyController extends Controller
 
     public function edit(Property $property)
     { 
-        $this->authorize('is_portfolio_update_allowed');
+        // $this->authorize('is_portfolio_update_allowed');
 
         return view('properties.edit',[
             'property_details' => $property,
@@ -485,7 +485,7 @@ class PropertyController extends Controller
 
     public function destroy($uuid)
     {
-        $this->authorize('is_portfolio_delete_allowed');
+        // $this->authorize('is_portfolio_delete_allowed');
 
         if(!auth()->user()->role_id == '5')
         {

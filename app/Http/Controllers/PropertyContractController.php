@@ -12,7 +12,7 @@ class PropertyContractController extends Controller
 {
     public function index(Property $property){
 
-        $this->authorize('is_contract_read_allowed');
+        // $this->authorize('is_contract_read_allowed');
 
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',5);
 
@@ -30,7 +30,7 @@ class PropertyContractController extends Controller
 
     public function show(Property $property, Unit $unit, Tenant $tenant, Contract $contract){
 
-        $this->authorize('is_contract_read_allowed');
+        // $this->authorize('is_contract_read_allowed');
 
         return view('properties.contracts.show',[
             'contract' => $contract,
