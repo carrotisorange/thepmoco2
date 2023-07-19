@@ -167,6 +167,26 @@
 
                         </div>
 
+                        <div class="col-span-3 sm:col-span-3">
+                            <label for="availability_date" class="block text-sm font-medium text-gray-700">Available Date 
+                                </label>
+                            <input type="date" wire:model="availability_date" autocomplete="availability_date"
+                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                            @error('availability_date')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="col-span-3 sm:col-span-3">
+                            <label for="availability_time" class="block text-sm font-medium text-gray-700">Available Time
+                                </label>
+                            <input type="time" wire:model="availability_time" autocomplete="availability_time"
+                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                            @error('availability_time')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @enderror
+                        </div>
+
                         <div class="col-span-3 sm:col-span-2">
                             <label for="assessed_at" class="block text-sm font-medium text-gray-700">Concern assessed
                                 on</label>
