@@ -23,6 +23,8 @@ class PortalTenantConcernComponent extends Component
     public $unit_uuid;
     public $concern;
     public $image;
+    public $availability_time;
+    public $availability_date;
 
 
     public function updated($propertyName)
@@ -37,7 +39,9 @@ class PortalTenantConcernComponent extends Component
             'category_id' => ['required', Rule::exists('concern_categories', 'id')],
             'unit_uuid' => ['required', Rule::exists('units', 'uuid')],
             'concern' => 'required',
-            'image' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            'image' => 'required | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            'availability_date' => 'required',
+            'availability_time' => 'required'
             ];
     }
 
@@ -61,10 +65,8 @@ class PortalTenantConcernComponent extends Component
         $validatedData['reference_no'] = auth()->user()->id.'_'.Str::random(8);
         $validatedData['property_uuid'] = Unit::findOrFail($this->unit_uuid)->property_uuid;
 
-        if($this->image)
-        {
-          $validatedData['image'] = $this->image->store('concerns');
-        }
+        $validatedData['image'] = $this->image->store('concerns');
+        
 
         $concern_id = Concern::create($validatedData)->id;
 

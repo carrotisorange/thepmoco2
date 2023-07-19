@@ -97,11 +97,33 @@
                                             @enderror
                                         </div>
 
+                                        <div class="sm:col-span-3">
+                                            <label for="availability_date" class="block text-sm font-medium text-gray-700">
+                                                Date Available </label>
+                                            <div class="mt-1 flex rounded-md shadow-sm">
+                                                <input wire:model="availability_date" type="date" value="{{ old('availability_date') }}"
+                                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700  rounded-md">
+                                            </div>
+                                            @error('availability_date')
+                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+
+                                        <div class="sm:col-span-3">
+                                            <label for="availability_time" class="block text-sm font-medium text-gray-700">
+                                                Time Available </label>
+                                            <div class="mt-1 flex rounded-md shadow-sm">
+                                                <input wire:model="availability_time" type="time" value="{{ old('availability_time') }}"
+                                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700  rounded-md">
+                                            </div>
+                                            @error('availability_time')
+                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                            @enderror
+                                        </div>
 
                                         <div class="col-span-6">
-                                            <label class="block text-sm font-medium text-gray-700"> Please attach the
-                                                certificate of
-                                                membership
+                                            <label class="block text-sm font-medium text-gray-700"> Please attach an image of your concern
+                                            
                                             </label>
                                             <div
                                                 class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">

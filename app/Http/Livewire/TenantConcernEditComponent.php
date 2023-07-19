@@ -25,6 +25,8 @@ class TenantConcernEditComponent extends Component
     public $unit_uuid;
     public $concern;
     public $initial_assessment;
+    public $availability_time;
+    public $availability_date;
 
     public function mount($concern_details)
     {
@@ -43,6 +45,8 @@ class TenantConcernEditComponent extends Component
         $this->assessed_at = $concern_details->assessed_at;
         $this->action_taken = $concern_details->action_taken;
         $this->initial_assessment = $concern_details->initial_assessment;
+        $this->availability_time = $concern_details->availability_time;
+        $this->availability_date = $concern_details->availability_date;
     }
 
     protected function rules()
@@ -55,7 +59,9 @@ class TenantConcernEditComponent extends Component
             'category_id' => ['nullable'],
             'urgency' => ['nullable'],
             'status' => ['required'],
-            'initial_assessment' => 'nullable'
+            'initial_assessment' => 'nullable',
+            'availability_time' => 'nullable',
+            'availability_date' => 'nullable'
         ];
     }
 
