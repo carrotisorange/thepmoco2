@@ -7,10 +7,13 @@ use App\Models\ConcernCategory;
 use App\Models\Tenant;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
-use App\Models\Notification;
+use Illuminate\Support\Facades\Notification;
 use Str;
 use App\Models\Unit;
 use App\Models\Concern;
+use App\Models\UserProperty;
+use App\Notifications\NotifyAdminOnConcernReportedByTenant;
+use App\Models\User;
 
 class PortalTenantConcernComponent extends Component
 {
@@ -47,16 +50,13 @@ class PortalTenantConcernComponent extends Component
 
     public function submitForm()
     {
-        
-
         $validatedData = $this->validate();
 
         $concern_id = $this->store_concern($validatedData);
 
-       $this->store_notification();
+        $this->store_notification();
 
-        return redirect('/'.$this->user->role_id.'/tenant/'. auth()->user()->username
-        .'/concerns/'.$concern_id.'/success')->with('success', 'Success!');
+        return redirect('/'.$this->user->role_id.'/tenant/'. auth()->user()->username.'/concerns/'.$concern_id.'/success')->with('success', 'Success!');
     }
 
     public function store_concern($validatedData)
@@ -75,14 +75,17 @@ class PortalTenantConcernComponent extends Component
 
     public function store_notification()
     {
-        //    Notification::create([
-        //    'type' => 'concern',
-        //    'user_id' => $this->user->id,
-        //    'details' => 'reported a concern.',
-        //    'status' => 'pending',
-        //    'role_id' => $this->user->role_id,
-        //    'property_uuid' => Tenant::find($this->user->tenant_uuid)->property->uuid
-        //    ]);
+        $property_uuid = Unit::findOrFail($this->unit_uuid)->property_uuid;
+
+        $user_id = UserProperty::where('property_uuid', $property_uuid)
+        ->where('is_approved',1)
+        ->where('role_id', 9)
+        ->pluck('user_id')
+        ->first();
+
+        $user = User::find($user_id);
+
+        Notification::send($user, new NotifyAdminOnConcernReportedByTenant($user));
     }
 
     public function render()

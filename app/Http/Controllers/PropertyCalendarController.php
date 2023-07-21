@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Models\Unit;
 use Carbon\Carbon;
 use App\Models\Booking;
+use Illuminate\Validation\Rule;
 
 class PropertyCalendarController extends Controller
 {
@@ -49,8 +50,7 @@ class PropertyCalendarController extends Controller
     }
 
     public function store(Request $request){
-        
-        
+
         $validated = $request->validate([
             'guest' => 'required|string',
             'email' => ['required', 'string', 'email', 'max:255'],
@@ -58,15 +58,15 @@ class PropertyCalendarController extends Controller
             'movein_at' => 'required',
             'moveout_at' => 'required|after:movein_at',
             'unit_uuid' => 'required',
-            'property_uuid' => 'required'
+            'property_uuid' => 'required',
+            'agent_id' => ['nullable', Rule::exists('agents', 'id')],
         ]);
 
         $start = strtotime($request->movein_at); // convert to timestamps
         $end = strtotime($request->moveout_at); // convert to timestamps
         $days = (int)(($end - $start)/86400);
 
-        $price = (Unit::find($request->unit_uuid)->transient_rent * $days) -
-        Unit::find($request->unit_uuid)->transient_discount;
+        $price = (Unit::find($request->unit_uuid)->transient_rent * $days) - Unit::find($request->unit_uuid)->transient_discount;
 
         $guest_uuid = app('App\Http\Controllers\PropertyController')->generate_uuid();
 
@@ -91,7 +91,8 @@ class PropertyCalendarController extends Controller
             $request->property_uuid,
             $request->movein_at,
             $request->moveout_at,
-            $price
+            $price,
+            $request->agent_id
         );
 
         $particular_id = 1; //rent 
@@ -114,16 +115,8 @@ class PropertyCalendarController extends Controller
         ]);
     }
 
-    public function store_booking($booking_uuid, $guest_uuid, $unit_uuid, $property_uuid, $movein_at, $moveout_at, $price){
+    public function store_booking($booking_uuid, $guest_uuid, $unit_uuid, $property_uuid, $movein_at, $moveout_at, $price, $agent_id){
         Booking::create(
-        // [
-        //     'movein_at' => $movein_at,
-        //     'moveout_at' => $moveout_at,
-        //     'price' => $price,
-        //     'unit_uuid' => $unit_uuid,
-        //     'property_uuid' => $property_uuid,
-        // ]
-        // ,    
         [
             'uuid' => $booking_uuid,
             'guest_uuid' => $guest_uuid,
@@ -132,20 +125,13 @@ class PropertyCalendarController extends Controller
             'movein_at' => $movein_at,
             'moveout_at' => $moveout_at,
             'price' => $price,
+            'agent_id' => $agent_id
         ]);
     }
 
     public function store_guest($guest_uuid, $guest, $email, $mobile_number, $movein_at, $moveout_at, $unit_uuid, $property_uuid, $price){
         
         $guest = Guest::create(
-            // [
-            //     'unit_uuid' => $unit_uuid,
-            //     'property_uuid' => $property_uuid,
-            //     'guest' => $guest,
-            //     'movein_at' => $movein_at,
-            //     'moveout_at' => $moveout_at,
-            // ]
-            // ,
             [
                 'uuid' => $guest_uuid,
                 'guest' => $guest,

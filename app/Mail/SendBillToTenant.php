@@ -9,6 +9,7 @@ use Illuminate\Queue\SerializesModels;
 use Session;
 use Carbon\Carbon;
 
+
 class SendBillToTenant extends Mailable
 {
     use Queueable, SerializesModels;
@@ -34,7 +35,7 @@ class SendBillToTenant extends Mailable
     {
           return $this->subject(Session::get('property_name').' - Statements of Account as of '.Carbon::parse(Carbon::now())->format('M d, Y'))
            ->from(auth()->user()->email)
-          ->markdown('emails.sendbilltotenant', [
+           ->markdown('emails.sendbilltotenant', [
           ]);
     }
 }
