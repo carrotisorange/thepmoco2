@@ -142,6 +142,9 @@
                                 }}>
                                 long_term
                             </option>
+                            <option value="short_term" {{ 'units' .$index.'rent_duration'==='short_term' ? 'selected' : '' }}>
+                                short_term
+                            </option>
 
 
                         </x-table-select>
