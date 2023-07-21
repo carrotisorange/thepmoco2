@@ -39,6 +39,16 @@
                                             <input type="hidden" name="property_uuid" id="property_uuid"
                                                 value="{{ $property->uuid }}" class="form-control" required>
 
+                               
+                                            <label for="">Agent</label>
+                                            <select class="form-control" name="agent_id" id="agent_id">
+                                                <option value="">Select an agent</option>
+                                                @foreach ($agents as $agent)
+                                                    <option value="{{ $agent->id }}">{{ $agent->agent }} - {{ $agent->referral_code }}</option>
+                                                @endforeach
+                                            </select>    
+                                            <span id="agentIdError" class="text-danger text-sm"></span>                        
+                                            <br>
                                             <label for="">Guest</label>
                                             <input type="text" name="guest" id="guest" class="form-control">
                                             <span id="guestError" class="text-danger text-sm"></span>

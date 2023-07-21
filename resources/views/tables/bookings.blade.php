@@ -9,6 +9,7 @@
             <x-th>Check-in</x-th>
             <x-th>Check-out</x-th>
             <x-th>Status</x-th>
+            <x-th>Agent</x-th>    
             <x-th></x-th>
         </tr>
     </thead>
@@ -27,6 +28,13 @@
             <x-td>{{Carbon\Carbon::parse($booking->movein_at)->format('M d, Y')}}</x-td>
             <x-td>{{Carbon\Carbon::parse($booking->moveout_at)->format('M d, Y')}}</x-td>
             <x-td>{{ $booking->status }}</x-td>
+            <x-td>
+                @if($booking->agent_id)
+                {{ $booking->agent->agent }}
+                @else
+                NA
+                @endif
+            </x-td>
             <x-td>
                 <button data-modal-target="edit-booking-modal-{{$booking->uuid}}"
                     data-modal-toggle="edit-booking-modal-{{$booking->uuid}}"

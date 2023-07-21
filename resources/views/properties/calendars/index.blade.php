@@ -92,14 +92,14 @@
                         var unit_uuid = $('#unit_uuid').val();
                         var movein_at = moment(start).format('YYYY-MM-DD');
                         var moveout_at = moment(end).format('YYYY-MM-DD');
-               
+                        var agent_id = $('#agent_id').val();
                         
                         $.ajax({
                             url:"{{ route('calendar.store') }}",
                             type:"POST",
                             dataType: 'json',
                             data:{
-                                guest, email, mobile_number, movein_at, moveout_at, unit_uuid, property_uuid,
+                                guest, email, mobile_number, movein_at, moveout_at, unit_uuid, property_uuid,agent_id
                             },
                             success:function(response){
                                 $('#bookingModal').modal('hide')
@@ -117,6 +117,7 @@
                                 document.getElementById("email").value = "";
                                 document.getElementById("mobile_number").value = "";
                                 document.getElementById("unit_uuid").value = "";
+                                document.getElementById("agent_id").value = "";
                
                             },
                             error:function(error){     
@@ -128,7 +129,7 @@
                                     $('#emailError').html(error.responseJSON.errors.email);
                                     $('#mobileNumberError').html(error.responseJSON.errors.mobile_number);
                                     $('#unitUuidError').html(error.responseJSON.errors.unit_uuid);
-
+                                    $('#agentIdError').html(error.responseJSON.errors.agent_id);
                                 }
                             }
                         });

@@ -28,4 +28,8 @@ class Booking extends Model
     public function property(){
         return $this->belongsTo(Property::class, 'property_uuid');
     }
+
+    public function agent(){
+        return $this->belongsTo(Agent::class, 'agent_id');
+    }
 }
