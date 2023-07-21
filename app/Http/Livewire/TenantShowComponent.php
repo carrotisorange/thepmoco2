@@ -12,7 +12,7 @@ use Session;
 use App\Models\Wallet;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
-use App\Models\Guardian;
+use App\Models\Collection;
 
 class TenantShowComponent extends Component
 {
@@ -238,7 +238,7 @@ class TenantShowComponent extends Component
         app('App\Http\Controllers\TenantConcernController')->destroy($this->tenant_details->uuid);
         app('App\Http\Controllers\TenantConcernController')->destroy($this->tenant_details->uuid);
         app('App\Http\Controllers\TenantBillController')->destroy($this->tenant_details->uuid);
-        app('App\Http\Controllers\TenantCollectionController')->destroy_collection_from_tenant_page($this->tenant_details->uuid);
+        Collection::where('tenant_uuid', $this->tenant_details->uuid)->delete();
         app('App\Http\Controllers\PropertyTenantController')->destroy($this->tenant_details->uuid);
         User::where('tenant_uuid', $this->tenant_details->uuid)->delete();
 
