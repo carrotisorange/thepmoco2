@@ -76,7 +76,7 @@ class TenantPortalBillComponent extends Component
     }
 
     public function render()
-    {
+    {        
         $statuses = Bill::where('tenant_uuid', $this->tenant->uuid)
         ->groupBy('status')
         ->get();
@@ -107,6 +107,7 @@ class TenantPortalBillComponent extends Component
            'bills' => Bill::orderBy('bill_no', 'desc')
            ->where('tenant_uuid', $this->tenant->uuid)
            ->where('is_posted', true)
+           ->whereNotIn('particular_id',['71', '72'])
            ->when($this->status, function($query){
            $query->whereIn('status', [$this->status]);
             })
