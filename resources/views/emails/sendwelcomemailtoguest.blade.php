@@ -5,7 +5,7 @@
 Thank you for choosing {{ $details['property_name'] }}. It is our pleasure to confirm 
 the following reservation. 
 
-<br><br>Cancellation Policy: Deposits are non-refundable but can be rebooked with surcharge.
+<br>Cancellation Policy: Deposits are non-refundable but can be rebooked with surcharge.
 {{-- Please be advise us if any changes need to be made to this reservation ny calling us at {{ $details['property_mobile'] }}. --}}
 <br><br>
 
