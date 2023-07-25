@@ -5,7 +5,6 @@
 Thank you for choosing {{ $details['property_name'] }}. It is our pleasure to confirm 
 the following reservation. 
 
-<br>Cancellation Policy: Deposits are non-refundable but can be rebooked with surcharge.
 {{-- Please be advise us if any changes need to be made to this reservation ny calling us at {{ $details['property_mobile'] }}. --}}
 <br><br>
 
@@ -30,6 +29,8 @@ the following reservation.
     <br>
     Email: {{ $details['property_email'] }}
 </p>
+<br>
+<br>Cancellation Policy: Deposits are non-refundable but can be rebooked with surcharge.
 Sincerely,
 <br>
 {{ auth()->user()->name }}

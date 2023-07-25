@@ -192,7 +192,12 @@
                                         {{ $item->particular->particular}}
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        {{ number_format($item->bill, 2) }}
+                                        <?php 
+                                            $marketing_fee = App\Models\Unit::find($item->unit_uuid)->marketing_fee;
+                                            $management_fee = App\Models\Unit::find($item->unit_uuid)->management_fee;
+                                            
+                                            $other_fees = $marketing_fee + $management_fee ?>
+                                        {{ number_format($item->bill+$other_fees, 2) }}
                                         @if($item->status === 'paid')
                                         <span title="paid"
                                             class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
