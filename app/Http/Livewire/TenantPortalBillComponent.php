@@ -104,20 +104,22 @@ class TenantPortalBillComponent extends Component
         $bills = app('App\Http\Controllers\PortalTenantController')->get_bills($this->tenant->uuid);
 
         return view('livewire.tenant-portal-bill-component',[
-           'bills' => Bill::orderBy('bill_no', 'desc')
-           ->where('tenant_uuid', $this->tenant->uuid)
-           ->where('is_posted', true)
-           ->whereNotIn('particular_id',['71', '72'])
-           ->when($this->status, function($query){
-           $query->whereIn('status', [$this->status]);
-            })
-            ->when($this->start_date, function($query){
-                $query->whereBetween('start', [$this->start_date, $this->end_date]);
-            })
-            ->when($this->end_date, function($query){
-                $query->whereBetween('end', [$this->start_date, $this->end_date]);
-            })
-            ->get(),
+           'bills' =>   app('App\Http\Controllers\TenantController')->show_tenant_bills($this->tenant->uuid),
+           
+        //    Bill::orderBy('bill_no', 'desc')
+        //    ->where('tenant_uuid', $this->tenant->uuid)
+        //    ->where('is_posted', true)
+        // //    ->whereNotIn('particular_id',['71', '72'])
+        //    ->when($this->status, function($query){
+        //    $query->whereIn('status', [$this->status]);
+        //     })
+        //     ->when($this->start_date, function($query){
+        //         $query->whereBetween('start', [$this->start_date, $this->end_date]);
+        //     })
+        //     ->when($this->end_date, function($query){
+        //         $query->whereBetween('end', [$this->start_date, $this->end_date]);
+        //     })
+        //     ->get(),
             'total' => ($unpaid_bills + $partially_paid_bills) - $paid_bills,
             'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
             'statuses' => $statuses,
