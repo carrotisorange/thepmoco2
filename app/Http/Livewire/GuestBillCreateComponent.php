@@ -85,8 +85,6 @@ class GuestBillCreateComponent extends Component
 
    public function storeBill(){
 
-      
-
       $this->validate();
 
       try {
@@ -156,8 +154,7 @@ class GuestBillCreateComponent extends Component
 
    public function payBills()
    {
-      
-
+   
       $collection_ar_no = Property::find($this->property->uuid)->acknowledgementreceipts->max('ar_no')+1;
 
       $collection_batch_no = Carbon::now()->timestamp.''.$collection_ar_no;

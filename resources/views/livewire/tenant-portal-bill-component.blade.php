@@ -158,6 +158,7 @@
                             @forelse ($bills as $item)
                             <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
                                 <!-- Selected: "bg-gray-50" -->
+                                @if($item->particular_id != 71 && $item->particular_id != 72)
                                 <tr>
                                     <td class="relative w-12 px-6 sm:w-16 sm:px-8">
                                         @if($item->status != 'paid')
@@ -232,6 +233,7 @@
 
 
                                 </tr>
+                                @endif
                             </tbody>
                             @empty
                             <tr>
