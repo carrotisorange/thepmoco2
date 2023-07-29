@@ -167,6 +167,8 @@
                                 'female' }}</option>
                             <option value="male" {{ old('gender')=='male' ? 'selected' : 'Select one' }}>{{
                                 'male' }}</option>
+                            <option value="LGBTQ" {{ old('gender')=='LGBTQ' ? 'selected' : 'Select one' }}>{{
+                                'LGBTQ' }}</option>    
                         </select>
                         @error('gender')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
