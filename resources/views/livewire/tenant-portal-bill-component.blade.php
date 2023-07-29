@@ -222,13 +222,13 @@
                                         </span>
                                         @endif
                                     </td>
+                                    
                                     <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">
-                                        {{ number_format(App\Models\Collection::where('bill_id',
-                                        $item->id)->sum('collection'), 2) }}
+                                        {{ number_format(App\Models\Collection::where('bill_id', $item->id)->sum('collection'), 2) }}
                                     </td>
+                                   
                                     <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">
-                                        {{ number_format(($item->bill-App\Models\Collection::where('bill_id',
-                                        $item->id)->sum('collection')), 2) }}
+                                        {{ number_format((($item->bill + $other_fees)-App\Models\Collection::where('bill_id',$item->id)->sum('collection')), 2) }}
                                     </td>
 
 
@@ -250,13 +250,9 @@
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
 
-
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{
-                                    number_format($bills->sum('bill'), 2) }}</td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{
-                                    number_format($bills->sum('initial_payment'), 2) }}</td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{
-                                    number_format(($bills->sum('bill')-$bills->sum('initial_payment')), 2) }}</td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ number_format(App\Models\Bill::where('tenant_uuid', $item->tenant_uuid)->where('is_posted', 1)->sum('bill'), 2) }}</td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ number_format(App\Models\Collection::where('bill_id', $item->id)->sum('collection'), 2) }}</td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ number_format((App\Models\Bill::where('tenant_uuid', $item->tenant_uuid)->where('is_posted', 1)->sum('bill')-App\Models\Collection::where('bill_id', $item->id)->sum('collection')), 2) }}</td>
                             </tr>
 
                         </table>
