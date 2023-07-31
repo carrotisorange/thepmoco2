@@ -36,16 +36,29 @@
     @foreach($bills as $index=> $item)
 
     <tr>
-        @if ($item->bill-App\Models\Collection::where('bill_id', $item->id)->sum('collection') > 0)
-        <x-td>{{ $index+1 }}</x-td>
-        <x-td>{{ $item->unit->unit.'-'.$item->bill_no}}</x-td>
-        <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}</x-td>
-        <x-td>{{ $item->unit->unit }}</x-td>
-        <x-td>{{ Str::limit($item->particular->particular, 15) }}</x-td>
-        <x-td>{{ Carbon\Carbon::parse($item->start)->format('M d,
-            Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }} </x-td>
-        <x-td>{{ number_format(($item->bill-App\Models\Collection::where('bill_id', $item->id)->sum('collection')),2) }}
-        </x-td>
+        @if($item->particular_id != 71 && $item->particular_id != 72)
+            @if ($item->bill-App\Models\Collection::where('bill_id', $item->id)->sum('collection') > 0)
+            <x-td>{{ $index+1 }}</x-td>
+            <x-td>{{ $item->unit->unit.'-'.$item->bill_no}}</x-td>
+            <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}</x-td>
+            <x-td>{{ $item->unit->unit }}</x-td>
+            <x-td>{{ Str::limit($item->particular->particular, 15) }}</x-td>
+            <x-td>{{ Carbon\Carbon::parse($item->start)->format('M d, Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }} </x-td>
+                <?php 
+                    $marketing_fee = App\Models\Unit::find($item->unit_uuid)->marketing_fee;
+                    $management_fee = App\Models\Unit::find($item->unit_uuid)->management_fee;
+                                            
+                    $other_fees = $marketing_fee + $management_fee 
+                ?>
+            <x-td>
+                @if(Carbon\Carbon::parse($item->created_at) > '2023-07-01 00:00:00')
+                {{ number_format(($item->bill-App\Models\Collection::where('bill_id', $item->id)->sum('collection')),2) }}
+                @else
+                {{ number_format(($item->bill-App\Models\Collection::where('bill_id', $item->id)->sum('collection') + $other_fees),2) }}
+                @endif
+
+            </x-td>
+            @endif
         @endif
     </tr>
     @endforeach

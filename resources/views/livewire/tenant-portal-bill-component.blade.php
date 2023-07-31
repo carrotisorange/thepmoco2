@@ -157,7 +157,7 @@
 
                             @forelse ($bills as $item)
                             <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
-                                <!-- Selected: "bg-gray-50" -->
+                        <!-- Selected: "bg-gray-50" -->
                                 @if($item->particular_id != 71 && $item->particular_id != 72)
                                 <tr>
                                     <td class="relative w-12 px-6 sm:w-16 sm:px-8">
@@ -190,7 +190,12 @@
                                         y').'-'.Carbon\Carbon::parse($item->end)->format('M d, y') }}
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                         @if($item->particular_id === 1)
+                                        Due to unit owner
+                                        @else
                                         {{ $item->particular->particular}}
+                                        @endif
+                                       
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         <?php 
@@ -198,7 +203,12 @@
                                             $management_fee = App\Models\Unit::find($item->unit_uuid)->management_fee;
                                             
                                             $other_fees = $marketing_fee + $management_fee ?>
+                                        @if(Carbon\Carbon::parse($item->created_at) > '2023-07-01 00:00:00')
+                                        {{ number_format($item->bill, 2) }}
+                                        @else
                                         {{ number_format($item->bill+$other_fees, 2) }}
+                                        @endif
+                                      
                                         @if($item->status === 'paid')
                                         <span title="paid"
                                             class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -228,7 +238,12 @@
                                     </td>
                                    
                                     <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">
-                                        {{ number_format((($item->bill + $other_fees)-App\Models\Collection::where('bill_id',$item->id)->sum('collection')), 2) }}
+                                        @if(Carbon\Carbon::parse($item->created_at) > '2023-07-01 00:00:00')
+                                         {{ number_format((($item->bill)-App\Models\Collection::where('bill_id',$item->id)->sum('collection')), 2) }}
+                                        @else
+                                         {{ number_format((($item->bill + $other_fees)-App\Models\Collection::where('bill_id',$item->id)->sum('collection')), 2) }}
+                                        @endif
+                                       
                                     </td>
 
 
