@@ -32,7 +32,7 @@ class PropertyBillController extends Controller
     public function edit(Property $property, $batch_no)
     {
         $particulars = Particular::join('property_particulars', 'particulars.id', 'property_particulars.particular_id')
-        ->where('batch_no', $batch_no)
+
         ->where('property_uuid', $property->uuid)
         ->get();
 
