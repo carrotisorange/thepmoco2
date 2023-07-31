@@ -15,6 +15,7 @@ use App\Models\Tenant;
 use App\Models\Particular;
 use App\Models\PropertyParticular;
 use Illuminate\Support\Str;
+use App\Models\Unit;
 
 class BillIndexComponent extends Component
 {
@@ -203,6 +204,7 @@ class BillIndexComponent extends Component
 
    public function storeBills(){
 
+      sleep(1);
 
       $attributes = $this->validate();
 
@@ -230,14 +232,53 @@ class BillIndexComponent extends Component
                 ->where('tenant_uuid', $tenant_uuid[$i])
                 ->pluck('rent');
 
-            $attributes['unit_uuid']= $unit_uuid[0];
+            $unit_uuid = $unit_uuid[0];
+
+            $attributes['unit_uuid']= $unit_uuid;
             $attributes['tenant_uuid'] = $tenant_uuid[$i];
 
                if($this->particular_id == 1)
                {
-                  $attributes['bill'] = $rent[0];
+               
+                  $marketing_fee = Unit::find($unit_uuid)->marketing_fee;
+                  $management_fee = Unit::find($unit_uuid)->management_fee;
+
+                  $bill = $rent[0];
+
+                  $attributes['bill'] = ($bill)-($marketing_fee + $management_fee);
+
+                  Bill::create([
+                   'bill_no' => $bill_no++,
+                   'unit_uuid' => $unit_uuid,
+                   'particular_id' => 71,
+                   'start' => $this->start,
+                   'end' => $this->end,
+                   'bill' => $marketing_fee,
+                   'reference_no' => $reference_no->bill_reference_no,
+                   'due_date' => Carbon::parse($this->start)->addDays(7),
+                   'user_id' => auth()->user()->id,
+                   'property_uuid' => $this->property->uuid,
+                   'tenant_uuid' => $tenant_uuid[$i],
+                   'batch_no' => $batch_no,
+                  ]);
+
+                  Bill::create([
+                   'bill_no' => $bill_no++,
+                   'unit_uuid' => $unit_uuid,
+                   'particular_id' => 72,
+                   'start' => $this->start,
+                   'end' => $this->end,
+                   'bill' => $management_fee,
+                   'reference_no' => $reference_no->bill_reference_no,
+                   'due_date' => Carbon::parse($this->start)->addDays(7),
+                   'user_id' => auth()->user()->id,
+                   'property_uuid' => $this->property->uuid,
+                   'tenant_uuid' => $tenant_uuid[$i],
+                   'batch_no' => $batch_no,
+                  ]);
+                 
                }
-                
+ 
                if($this->particular_id == 8){
                   $attributes['bill'] = -($this->bill);
                }
@@ -276,7 +317,6 @@ class BillIndexComponent extends Component
 
    public function render()
    {
-
       $particulars = app('App\Http\Controllers\PropertyParticularController')->index($this->property->uuid);
 
       $dates_posted = $this->get_posted_dates(); 
@@ -330,7 +370,6 @@ class BillIndexComponent extends Component
    }
 
    public function exportBills(){
-      
       
       return redirect('/property/'.$this->property->uuid.'/bill/export/status/'.$this->status.'/particular/'.$this->particular.'/date/'.$this->posted_dates);
    }

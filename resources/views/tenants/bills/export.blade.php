@@ -51,10 +51,10 @@
                     $other_fees = $marketing_fee + $management_fee 
                 ?>
             <x-td>
-                @if(Carbon\Carbon::parse($item->created_at) > '2023-07-01 00:00:00')
-                {{ number_format(($item->bill-App\Models\Collection::where('bill_id', $item->id)->sum('collection')),2) }}
-                @else
+                @if(Carbon\Carbon::parse($item->created_at) > '2023-07-01 00:00:00' )
                 {{ number_format(($item->bill-App\Models\Collection::where('bill_id', $item->id)->sum('collection') + $other_fees),2) }}
+                @else
+               {{ number_format(($item->bill-App\Models\Collection::where('bill_id', $item->id)->sum('collection')),2) }}
                 @endif
 
             </x-td>

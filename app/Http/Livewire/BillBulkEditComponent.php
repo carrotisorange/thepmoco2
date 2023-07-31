@@ -48,8 +48,6 @@ class BillBulkEditComponent extends Component
 
     public function removeBills()
     {
-        
-
         foreach($this->selectedBills as $bill=>$val ){
             Bill::destroy($bill);
         }
@@ -64,15 +62,12 @@ class BillBulkEditComponent extends Component
 
     public function postBills()
     {
-        
-    
-
         $validatedData = $this->validate();
 
         try{
 
             Bill::where('batch_no', $this->batch_no)
-            //->where('property_uuid', Session::get('property '))
+            ->where('property_uuid', Session::get('property '))
             ->update([
              'is_posted' => true,
             ]);
@@ -114,9 +109,10 @@ class BillBulkEditComponent extends Component
 
     public function get_bills()
     {
-        return Bill::where('property_uuid', Session::get('property'))
-        ->where('is_posted', false)
-        ->where('batch_no', $this->batch_no)->get();
+        return Bill
+        ::where('is_posted', false)
+        ->where('batch_no', $this->batch_no)
+        ->get();
     }
 
     public function render()
