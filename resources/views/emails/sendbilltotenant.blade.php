@@ -25,7 +25,7 @@ Bills Breakdown
 ?>
 @if($item->particular_id != 71 && $item->particular_id != 72)
 @if ($item->bill-App\Models\Collection::where('bill_id', $item->id)->sum('collection') > 0)
-| {{ $item->bill_no }} | {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }} | {{ $item->unit->unit }} | {{ $item->particular->particular }} | {{ Carbon\Carbon::parse($item->start)->format('M d, Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }} | @if(Carbon\Carbon::parse($item->created_at) > '2023-07-01 00:00:00') {{ number_format((($item->bill)-App\Models\Collection::where('bill_id', $item->id)->sum('collection')),2) }} @else {{ number_format((($item->bill + $other_fees)-App\Models\Collection::where('bill_id', $item->id)->sum('collection')),2) }} @endif  |
+| {{ $item->bill_no }} | {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }} | {{ $item->unit->unit }} | {{ $item->particular->particular }} | {{ Carbon\Carbon::parse($item->start)->format('M d, Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }} | @if(Carbon\Carbon::parse($item->created_at) > '2023-07-01 00:00:00' ) {{ number_format((($item->bill + $other_fees)-App\Models\Collection::where('bill_id', $item->id)->sum('collection')),2) }} @else {{ number_format((($item->bill)-App\Models\Collection::where('bill_id', $item->id)->sum('collection')),2) }}  @endif  |
 @endif
 @endif
 @endforeach

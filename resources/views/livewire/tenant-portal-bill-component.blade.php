@@ -204,9 +204,11 @@
                                             
                                             $other_fees = $marketing_fee + $management_fee ?>
                                         @if(Carbon\Carbon::parse($item->created_at) > '2023-07-01 00:00:00')
-                                        {{ number_format($item->bill, 2) }}
-                                        @else
+
                                         {{ number_format($item->bill+$other_fees, 2) }}
+                                        @else
+                                
+                                        {{ number_format($item->bill, 2) }}
                                         @endif
                                       
                                         @if($item->status === 'paid')
@@ -238,10 +240,11 @@
                                     </td>
                                    
                                     <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">
-                                        @if(Carbon\Carbon::parse($item->created_at) > '2023-07-01 00:00:00')
-                                         {{ number_format((($item->bill)-App\Models\Collection::where('bill_id',$item->id)->sum('collection')), 2) }}
+                                        @if(Carbon\Carbon::parse($item->created_at) > '2023-07-01 00:00:00' )
+                                        {{ number_format((($item->bill + $other_fees)-App\Models\Collection::where('bill_id',$item->id)->sum('collection')), 2) }}
+                                       
                                         @else
-                                         {{ number_format((($item->bill + $other_fees)-App\Models\Collection::where('bill_id',$item->id)->sum('collection')), 2) }}
+                                         {{ number_format((($item->bill)-App\Models\Collection::where('bill_id',$item->id)->sum('collection')), 2) }}
                                         @endif
                                        
                                     </td>

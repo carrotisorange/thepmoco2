@@ -12,7 +12,7 @@ use App\Models\Guest;
 class PropertyBillController extends Controller
 {
     public function index(Property $property, $batch_no=null, $drafts=0){
-                
+
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',10);
 
        // $this->authorize('is_account_receivable_read_allowed');
@@ -31,9 +31,9 @@ class PropertyBillController extends Controller
 
     public function edit(Property $property, $batch_no)
     {
-        $particulars = Particular::join('property_particulars', 'particulars.id',
-        'property_particulars.particular_id')
-        ->where('property_uuid', Session::get('property'))
+        $particulars = Particular::join('property_particulars', 'particulars.id', 'property_particulars.particular_id')
+        ->where('batch_no', $batch_no)
+        ->where('property_uuid', $property->uuid)
         ->get();
 
         return view('bills.edit', [
@@ -58,6 +58,7 @@ class PropertyBillController extends Controller
     }
 
     public function edit_bill(Property $property, Guest $guest, Bill $bill){
+  
         return view('properties.bills.edit', [
             'property' => $property,
             'bill' => $bill
