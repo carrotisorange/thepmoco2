@@ -112,6 +112,9 @@ class BillIndexComponent extends Component
                ->when($start, function($query, $start){
                $query->whereBetween('created_at', [$start, now()]);
                })
+                ->when($this->particular, function($query){
+                $query->where('batch_no', $this->batch_no);
+                })
                ->get();
    }
 

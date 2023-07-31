@@ -67,7 +67,7 @@ class BillBulkEditComponent extends Component
         try{
 
             Bill::where('batch_no', $this->batch_no)
-            ->where('property_uuid', Session::get('property '))
+            ->where('property_uuid', Session::get('property'))
             ->update([
              'is_posted' => true,
             ]);
@@ -83,8 +83,6 @@ class BillBulkEditComponent extends Component
 
     public function updateBill($id)
     {
-        
-
         $validatedData = $this->validate();
 
         try{
