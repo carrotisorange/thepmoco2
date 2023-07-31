@@ -82,7 +82,7 @@ class TenantBillController extends Controller
             'due_date' => $due_date,
             'user' => User::find(auth()->user()->id)->name,
             'role' => User::find(auth()->user()->id)->role->role,
-            'bills' => Bill::where('tenant_uuid', $tenant->uuid)->whereIn('status', ['unpaid','partially_paid'])->get(),
+            'bills' => Bill::where('tenant_uuid', $tenant->uuid)->whereIn('status', ['unpaid','partially_paid'])->orderBy('bill_no', 'desc')->get(),
             'balance' => $balance,
             'balance_after_due_date' => $balance + $penalty,
             'note_to_bill' => $note,

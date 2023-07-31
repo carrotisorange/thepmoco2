@@ -13,6 +13,8 @@ use App\Models\PaymentRequest;
 use Session;
 use Carbon\Carbon;
 use App\Models\Notification;
+use App\Models\Collection;
+use DB;
 
 class PortalTenantController extends Controller
 {
@@ -100,7 +102,12 @@ class PortalTenantController extends Controller
     public function show_collections($role_id, User $user)
     {
         return view('portals.tenants.collections',[
-            'collections' => Tenant::findOrFail($user->tenant_uuid)->acknowledgementreceipts()->orderBy('ar_no','desc')->get()
+            'collections' => Collection::select('*', DB::raw("SUM(collection) as collection"),DB::raw("count(collection) as count"))
+            ->where('tenant_uuid', $user->tenant_uuid)
+            ->where('is_posted', 1)
+            ->groupBy('ar_no')
+            ->orderBy('ar_no', 'desc')
+            ->get()
         ]);
     }
 
