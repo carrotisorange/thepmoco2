@@ -256,6 +256,26 @@ Route::get('/How-To-Be-An-Environmentally-Friendly-Rental-Property', function(){
 
 
 
+Route::get('/propsuite', function(){
+    return view('propsuite.propsuite');
+});
+
+Route::get('/proprent', function(){
+    return view('proprent.proprent');
+});
+
+Route::get('/propman', function(){
+    return view('propman.propman');
+});
+
+Route::get('/propbiz', function(){
+    return view('propbiz.propbiz');
+});
+
+Route::get('/proppay', function(){
+    return view('proppay.proppay');
+});
+
 
 
 Route::get('/demopage', function(){
