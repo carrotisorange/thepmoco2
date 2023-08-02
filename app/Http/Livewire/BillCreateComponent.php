@@ -30,12 +30,19 @@ class BillCreateComponent extends Component
 
     public $isPaymentAllowed = false;
 
-    public function mount($unit)
+    public $isIndividualView = true;
+
+    public $tenant_uuid;
+
+    public $user_type = 'tenant';
+
+    public function mount($unit, $tenant)
     {
         $this->unit_uuid = $unit->uuid;
         $this->end = Carbon::now()->addYear()->format('Y-m-d');
         $this->start = Carbon::now()->format('Y-m-d');
         $this->property_uuid = Session::get('property');
+        $this->tenant_uuid = $tenant->uuid;
     }
 
     protected function rules()

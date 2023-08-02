@@ -49,6 +49,12 @@ class TenantShowComponent extends Component
     public $view = 'listView';
 
     public $isPaymentAllowed = false;
+
+    public $isIndividualView = true;
+
+    public $tenant_uuid;
+
+    public $user_type = 'tenant';
     
 
     public function mount($tenant_details)
@@ -75,6 +81,7 @@ class TenantShowComponent extends Component
         $this->employer = $tenant_details->employer;
         $this->photo_id = $tenant_details->photo_id;
         $this->category = $tenant_details->category;
+        $this->tenant_uuid = $tenant_details->uuid;
     }
 
     protected function rules()

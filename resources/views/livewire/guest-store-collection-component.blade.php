@@ -235,7 +235,7 @@
                                     <x-table-input form="edit-form" name="bill_id_{{ $index }}" type="hidden"
                                         value="{{ $bill->id }}" />
                                     <x-table-input form="edit-form" name="collection_amount_{{ $index }}" step="0.001"
-                                        type="number" required value="{{ $bill->bill-$bill->initial_payment }}" />
+                                        type="number" required value="{{ $bill->bill - App\Models\Collection::where('guest_uuid', $bill->guest_uuid)->where('bill_id', $bill->id)->where('is_posted', 1)->sum('collection') }}" readonly/>
                                 </x-td>
                             </tr>
                             @endforeach

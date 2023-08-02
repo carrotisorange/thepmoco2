@@ -59,6 +59,8 @@ class BillIndexComponent extends Component
 
    public $filter_bill_to;
 
+   public $isIndividualView = false;
+
 
    public function mount($batch_no)
    {

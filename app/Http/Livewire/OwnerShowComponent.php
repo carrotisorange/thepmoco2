@@ -49,6 +49,12 @@ class OwnerShowComponent extends Component
 
     public $isPaymentAllowed = false;
 
+    public $isIndividualView = true;
+
+    public $owner_uuid;
+
+    public $user_type = 'owner';
+
     public function mount($owner_details)
     {
         $this->owner = $owner_details->owner;
@@ -67,6 +73,7 @@ class OwnerShowComponent extends Component
         $this->occupation = $owner_details->occupation;
         $this->employer_address = $owner_details->employer_address;
         $this->bill_reference_no = $owner_details->bill_reference_no;
+        $this->owner_uuid = $owner_details->uuid;
     
     }
 

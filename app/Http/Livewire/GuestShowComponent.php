@@ -35,12 +35,19 @@ class GuestShowComponent extends Component
     public $view = 'listView';
 
     public $isPaymentAllowed = false;
+
+    public $isIndividualView = true;
+
+    public $guest_uuid;
+
+    public $user_type = 'guest';
     
     public function mount($guest_details){
         $this->uuid = $guest_details->uuid;
         $this->guest = $guest_details->guest;
         $this->mobile_number = $guest_details->mobile_number;
         $this->email = $guest_details->email;
+        $this->guest_uuid = $guest_details->uuid;
     }
 
     protected function rules()
