@@ -32,9 +32,9 @@
 
                                         <div class="sm:col-span-6">
                                             <label for="subject" class="block text-sm font-medium text-gray-700">
-                                                Subject (required) </label>
+                                                Subject </label>
                                             <div class="mt-1 flex rounded-md shadow-sm">
-                                                <input wire:model="subject" type="text" value="{{ old('subject') }}"
+                                                <input wire:model="subject" type="text" value="{{ old('subject') }}" placeholder="Statements of Account is not updated."
                                                     class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700  rounded-md">
                                             </div>
                                             @error('subject')
@@ -44,7 +44,7 @@
 
                                         <div class="sm:col-span-2">
                                             <label for="category_id"
-                                                class="block text-sm font-medium text-gray-700">Category: </label>
+                                                class="block text-sm font-medium text-gray-700">Select a category </label>
 
                                             <select wire:model="category_id"
                                                 class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
@@ -63,7 +63,7 @@
 
 
                                         <div class="sm:col-span-3">
-                                            <label for="unit_uuid" class="block text-sm font-medium text-gray-700">Unit:
+                                            <label for="unit_uuid" class="block text-sm font-medium text-gray-700">Select a unit
                                             </label>
 
                                             <select wire:model="unit_uuid"
@@ -84,9 +84,11 @@
 
                                         <div class="sm:col-span-6">
                                             <label for="concern" class="block text-sm font-medium text-gray-700">
-                                                Concern (required)</label>
+                                                Details of the concern</label>
                                             <div class="mt-1">
-                                                <textarea wire:model="concern" rows="3"
+                                                <textarea wire:model="concern" rows="3" 
+                                                placeholder="I am writing to bring to your attention a concern regarding my recent bill. I received my billing statement on {{ Carbon\Carbon::now()->format('M d, Y') }}, and after reviewing it thoroughly, I noticed some discrepancies that I believe require clarification and resolution. 
+                                                The details of the issue are as follows:"
                                                     class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-700 rounded-md"></textarea>
                                             </div>
                                             <p class="mt-2 text-sm text-gray-500">Please share your concern in

@@ -14,6 +14,8 @@ use App\Models\Concern;
 use App\Models\UserProperty;
 use App\Notifications\NotifyAdminOnConcernReportedByTenant;
 use App\Models\User;
+use Carbon\Carbon;
+use App\Models\Contract;
 
 class PortalTenantConcernComponent extends Component
 {
@@ -29,6 +31,10 @@ class PortalTenantConcernComponent extends Component
     public $availability_time;
     public $availability_date;
 
+    public function mount(){
+        $this->availability_date = Carbon::now()->format('Y-m-d');
+        $this->availability_time = Carbon::now()->addHour()->timezone('Asia/Manila')->format('H:i');
+    }
 
     public function updated($propertyName)
     {
@@ -79,7 +85,7 @@ class PortalTenantConcernComponent extends Component
 
         $user_id = UserProperty::where('property_uuid', $property_uuid)
         ->where('is_approved',1)
-        ->where('role_id', 9)
+        ->whereIn('role_id', [1,9])
         ->pluck('user_id')
         ->first();
 
@@ -92,7 +98,7 @@ class PortalTenantConcernComponent extends Component
     {
         return view('livewire.portal-tenant-concern-component',[
             'categories' => ConcernCategory::all(),
-            'units' => Tenant::findOrFail($this->user->tenant_uuid)->contracts
+            'units' => Contract::where('tenant_uuid',$this->user->tenant_uuid)->groupBy('unit_uuid')->distinct('unit_uuid')->get()
         ]);
     }
 }

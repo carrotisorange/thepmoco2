@@ -5,14 +5,15 @@
             @if($isPaymentAllowed)
             <x-td></x-td>
             @endif
-            {{-- <x-td></x-td> --}}
+          
             <x-td></x-td>
             <x-td> </x-td>
             <x-td></x-td>
             <x-td></x-td>
             <x-td></x-td>
             <x-td> </x-td>
-            <x-td><b>{{ number_format($bills->sum('bill'), 2) }}/{{ number_format($bills->sum('initial_payment'), 2) }}/{{ number_format(($bills->sum('bill')-$bills->sum('initial_payment')), 2) }}</b> </x-td>
+            <x-td>
+                <b>{{ number_format($bills->sum('bill'), 2) }}/{{ number_format($bills->sum('initial_payment'), 2) }}/{{ number_format(($bills->sum('bill')-$bills->sum('initial_payment')), 2) }}</b> </x-td>
             <x-td></x-td>
             <x-td></x-td>
         </tr>

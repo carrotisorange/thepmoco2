@@ -100,7 +100,7 @@ class TenantBillCreateComponent extends Component
          }
 
       
-          Bill::create([
+          $bill_id = Bill::insertGetId([
             'bill_no' => $bill_no,
             'unit_uuid' => $this->unit_uuid,
             'particular_id' => $this->particular_id,
@@ -118,6 +118,7 @@ class TenantBillCreateComponent extends Component
         
           if($this->particular_id === '1'){
             Bill::create([
+                'bill_id' => $bill_id,
                'bill_no' => $bill_no+1,
                'unit_uuid' => $this->unit_uuid,
                'particular_id' => 71,
@@ -133,6 +134,7 @@ class TenantBillCreateComponent extends Component
             ]);
 
             Bill::create([
+                'bill_id' => $bill_id,
                'bill_no' => $bill_no+2,
                'unit_uuid' => $this->unit_uuid,
                'particular_id' => 72,

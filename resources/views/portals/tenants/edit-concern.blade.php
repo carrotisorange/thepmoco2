@@ -56,7 +56,7 @@
                                                 Subject </label>
                                             <div class="mt-1 flex rounded-md shadow-sm">
                                                 <input id="initial_assessment" name="initial_assessment" type="text"
-                                                    value="{{ $concern->initial_assessment }}"
+                                                    value="{{ $concern->subject }}"
                                                     class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700  rounded-md">
                                             </div>
                                             @error('initial_assessment')

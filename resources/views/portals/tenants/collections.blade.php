@@ -23,7 +23,7 @@
 
                         </div>
 
-                    @include('tables.collections')
+                        @include('tables.collections')
                     </div>
                 </div>
             </div>

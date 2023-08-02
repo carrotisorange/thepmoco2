@@ -250,7 +250,24 @@ class BillIndexComponent extends Component
 
                   $attributes['bill'] = ($bill)-($marketing_fee + $management_fee);
 
+               }
+ 
+               if($this->particular_id == 8){
+                  $attributes['bill'] = -($this->bill);
+               }
+               
+                $attributes['bill_no'] = $bill_no++;
+                $attributes['reference_no'] = $reference_no->bill_reference_no;
+                $attributes['user_id'] = auth()->user()->id;
+                $attributes['due_date'] = Carbon::parse($this->start)->addDays(7);
+                $attributes['property_uuid'] = $this->property->uuid;
+                $attributes['batch_no'] = $batch_no;
+
+                $bill_id = Bill::insertGetId($attributes);
+               
+                if($this->particular_id == 1){
                   Bill::create([
+                     'bill_id' => $bill_id,
                    'bill_no' => $bill_no++,
                    'unit_uuid' => $unit_uuid,
                    'particular_id' => 71,
@@ -266,6 +283,7 @@ class BillIndexComponent extends Component
                   ]);
 
                   Bill::create([
+                   'bill_id' => $bill_id,
                    'bill_no' => $bill_no++,
                    'unit_uuid' => $unit_uuid,
                    'particular_id' => 72,
@@ -279,21 +297,8 @@ class BillIndexComponent extends Component
                    'tenant_uuid' => $tenant_uuid[$i],
                    'batch_no' => $batch_no,
                   ]);
-                 
-               }
- 
-               if($this->particular_id == 8){
-                  $attributes['bill'] = -($this->bill);
-               }
-               
-                $attributes['bill_no'] = $bill_no++;
-                $attributes['reference_no'] = $reference_no->bill_reference_no;
-                $attributes['user_id'] = auth()->user()->id;
-                $attributes['due_date'] = Carbon::parse($this->start)->addDays(7);
-                $attributes['property_uuid'] = $this->property->uuid;
-                $attributes['batch_no'] = $batch_no;
+                }
 
-                Bill::create($attributes);
                 }
 
                 return redirect('/property/'.$this->property->uuid.'/bill/customized/'.$batch_no.'/edit')->with('success', 'Success!');
