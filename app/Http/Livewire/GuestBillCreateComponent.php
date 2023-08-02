@@ -44,6 +44,12 @@ class GuestBillCreateComponent extends Component
    public $particular;
    public $unit;
 
+   public $isIndividualView = true;
+
+    public $guest_uuid;
+
+    public $user_type = 'guest';
+
    public function removeBills()
    {
       
@@ -62,9 +68,10 @@ class GuestBillCreateComponent extends Component
       return back()->with('success', 'Success!');
    }
 
-   public function mount(){
+   public function mount($guest){
       $this->start = Carbon::parse($this->guest->movein_at)->format('Y-m-d');
       $this->end = Carbon::parse($this->guest->moveout_at)->format('Y-m-d');
+      $this->guest_uuid = $guest->uuid;
    }
 
    protected function rules()

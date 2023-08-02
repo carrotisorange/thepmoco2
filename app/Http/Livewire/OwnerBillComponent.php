@@ -27,6 +27,16 @@ class OwnerBillComponent extends Component
 
       public $isPaymentAllowed = true;
 
+      public $isIndividualView = true;
+
+      public $owner_uuid;
+
+      public $user_type = 'owner';
+
+      public function mount($owner){
+         $this->owner_uuid = $owner->uuid;
+      }
+
      public function removeBills()
      {
        

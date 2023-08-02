@@ -199,18 +199,16 @@
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         <?php 
-                                            $marketing_fee = App\Models\Unit::find($item->unit_uuid)->marketing_fee;
-                                            $management_fee = App\Models\Unit::find($item->unit_uuid)->management_fee;
+                                            $marketing_fee = App\Models\Bill::where('bill_id',$item->id)->pluck('bill')->first();
+                                            $management_fee = App\Models\Bill::where('bill_id',$item->id)->pluck('bill')->first();
                                             
                                             $other_fees = $marketing_fee + $management_fee ?>
-                                        @if(Carbon\Carbon::parse($item->created_at) > '2023-07-01 00:00:00')
+            
 
                                         {{ number_format($item->bill+$other_fees, 2) }}
-                                        @else
+                                   
                                 
-                                        {{ number_format($item->bill, 2) }}
-                                        @endif
-                                      
+                                 
                                         @if($item->status === 'paid')
                                         <span title="paid"
                                             class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -236,17 +234,12 @@
                                     </td>
                                     
                                     <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">
-                                        {{ number_format(App\Models\Collection::where('bill_id', $item->id)->sum('collection'), 2) }}
+                                        {{ number_format(App\Models\Collection::where('tenant_uuid', $item->tenant_uuid)->where('bill_id', $item->id)->where('is_posted',1)->sum('collection'), 2) }}
                                     </td>
                                    
                                     <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">
-                                        @if(Carbon\Carbon::parse($item->created_at) > '2023-07-01 00:00:00' )
-                                        {{ number_format((($item->bill + $other_fees)-App\Models\Collection::where('bill_id',$item->id)->sum('collection')), 2) }}
-                                       
-                                        @else
-                                         {{ number_format((($item->bill)-App\Models\Collection::where('bill_id',$item->id)->sum('collection')), 2) }}
-                                        @endif
-                                       
+                                      
+                                        {{ number_format((($item->bill + $other_fees)-App\Models\Collection::where('tenant_uuid', $item->tenant_uuid)->where('bill_id',$item->id)->where('is_posted', 1)->sum('collection')), 2) }}
                                     </td>
 
 
@@ -269,8 +262,8 @@
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
 
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ number_format(App\Models\Bill::where('tenant_uuid', $item->tenant_uuid)->where('is_posted', 1)->sum('bill'), 2) }}</td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ number_format(App\Models\Collection::where('bill_id', $item->id)->where('is_posted', 1)->sum('collection'), 2) }}</td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ number_format((App\Models\Bill::where('tenant_uuid', $item->tenant_uuid)->where('is_posted', 1)->sum('bill')-App\Models\Collection::where('bill_id', $item->id)->sum('collection')), 2) }}</td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ number_format(App\Models\Collection::where('tenant_uuid', $item->tenant_uuid)->where('is_posted', 1)->sum('collection'), 2) }}</td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ number_format((App\Models\Bill::where('tenant_uuid', $item->tenant_uuid)->where('is_posted', 1)->sum('bill')-App\Models\Collection::where('tenant_uuid', $item->tenant_uuid)->where('is_posted',1)->sum('collection')), 2) }}</td>
                             </tr>
 
                         </table>

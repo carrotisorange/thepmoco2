@@ -1,5 +1,45 @@
 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    @if($isIndividualView)
     <tbody class="bg-white divide-y divide-gray-200">
+        <tr>
+            <x-td><b>Total</b></x-td>
+            @if($isPaymentAllowed)
+            <x-td></x-td>
+            @endif
+    
+            <x-td></x-td>
+            <x-td> </x-td>
+            <x-td></x-td>
+            <x-td></x-td>
+            <x-td></x-td>
+            <x-td> </x-td>
+            <x-td>
+                <b>
+                    @if($user_type === 'tenant')
+                    {{ number_format(App\Models\Bill::where('tenant_uuid', $tenant_uuid)->where('is_posted',1)->sum('bill'), 2) }}/
+                    {{ number_format(App\Models\Collection::where('tenant_uuid', $tenant_uuid)->where('is_posted', 1)->sum('collection'), 2) }}/
+                    {{ number_format((App\Models\Bill::where('tenant_uuid', $tenant_uuid)->where('is_posted',1)->sum('bill')-App\Models\Collection::where('tenant_uuid', $tenant_uuid)->where('is_posted',1)->sum('collection')), 2) }}
+                    @elseif($user_type === 'owner')
+                    {{ number_format(App\Models\Bill::where('owner_uuid', $owner_uuid)->where('is_posted',1)->sum('bill'), 2) }}/
+                    {{ number_format(App\Models\Collection::where('owner_uuid', $owner_uuid)->where('is_posted', 1)->sum('collection'), 2) }}/
+                    {{ number_format((App\Models\Bill::where('owner_uuid', $owner_uuid)->where('is_posted',1)->sum('bill')-App\Models\Collection::where('owner_uuid', $owner_uuid)->where('is_posted',1)->sum('collection')), 2) }}
+                    @elseif($user_type === 'guest')
+                    {{ number_format(App\Models\Bill::where('guest_uuid', $guest_uuid)->where('is_posted',1)->sum('bill'), 2) }}/
+                    {{ number_format(App\Models\Collection::where('guest_uuid', $guest_uuid)->where('is_posted', 1)->sum('collection'), 2) }}/
+                    {{ number_format((App\Models\Bill::where('guest_uuid', $guest_uuid)->where('is_posted',1)->sum('bill')-App\Models\Collection::where('guest_uuid', $guest_uuid)->where('is_posted',1)->sum('collection')), 2) }}
+                    @else
+                    {{ number_format(App\Models\Bill::where('unit_uuid', $unit_uuid)->where('is_posted',1)->sum('bill'), 2) }}/
+                    {{ number_format(App\Models\Collection::where('unit_uuid', $unit_uuid)->where('is_posted', 1)->sum('collection'), 2) }}/
+                    {{ number_format((App\Models\Bill::where('unit_uuid', $unit_uuid)->where('is_posted',1)->sum('bill')-App\Models\Collection::where('unit_uuid', $unit_uuid)->where('is_posted',1)->sum('collection')), 2) }}
+                    @endif
+                </b>
+            </x-td>
+            <x-td></x-td>
+            <x-td></x-td>
+        </tr>
+    </tbody>
+    @else
+ <tbody class="bg-white divide-y divide-gray-200">
         <tr>
             <x-td><b>Total</b></x-td>
             @if($isPaymentAllowed)
@@ -13,11 +53,18 @@
             <x-td></x-td>
             <x-td> </x-td>
             <x-td>
-                <b>{{ number_format($bills->sum('bill'), 2) }}/{{ number_format($bills->sum('initial_payment'), 2) }}/{{ number_format(($bills->sum('bill')-$bills->sum('initial_payment')), 2) }}</b> </x-td>
-            <x-td></x-td>
+                <b>
+                     {{ number_format(App\Models\Bill::where('property_uuid', Session::get('property'))->where('is_posted',1)->sum('bill'), 2) }}/
+                    {{ number_format(App\Models\Collection::where('property_uuid', Session::get('property'))->where('is_posted', 1)->sum('collection'), 2) }}/
+                    {{ number_format((App\Models\Bill::where('property_uuid', Session::get('property'))->where('is_posted',1)->sum('bill')-App\Models\Collection::where('property_uuid', Session::get('property'))->where('is_posted',1)->sum('collection')), 2) }}
+
+                </b>
+            </x-td>
+                
             <x-td></x-td>
         </tr>
     </tbody>
+    @endif
     <thead class="bg-gray-50">
         <tr>
             <x-th>#</x-th>

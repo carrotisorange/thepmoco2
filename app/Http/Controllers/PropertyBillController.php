@@ -54,6 +54,8 @@ class PropertyBillController extends Controller
             'bills' => $bills,
             'view' => 'listView',
             'isPaymentAllowed' => false,
+            'isIndividualView' => false,
+
         ]);
     }
 

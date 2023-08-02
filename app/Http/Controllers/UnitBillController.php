@@ -25,6 +25,9 @@ class UnitBillController extends Controller
           'bills' => app('App\Http\Controllers\BillController')->show_unit_bills($unit->uuid),
           'view' => 'listView',
           'isPaymentAllowed' => false,
+          'isIndividualView' => true,
+          'unit_uuid' => $unit->uuid,
+          'user_type' => 'unit'
          ]);
     }
 

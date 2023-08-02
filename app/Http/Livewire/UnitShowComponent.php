@@ -45,6 +45,12 @@ class UnitShowComponent extends Component
 
     public $isPaymentAllowed = false;
 
+    public $isIndividualView = true;
+
+    public $unit_uuid;
+
+    public $user_type = 'unit';
+
     public function mount($unit_details)
     {
         $this->unit = $unit_details->unit;
@@ -64,6 +70,7 @@ class UnitShowComponent extends Component
         $this->rent_duration = $unit_details->rent_duration;
         $this->management_fee = $unit_details->management_fee;
         $this->marketing_fee = $unit_details->marketing_fee;
+        $this->unit_uuid = $unit_details->uuid;
     }
     
     protected function rules()

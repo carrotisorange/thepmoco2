@@ -44,9 +44,14 @@ class TenantBillCreateComponent extends Component
    public $particular;
    public $unit;
 
+   public $isIndividualView = true;
+
+   public $tenant_uuid;
+
+   public $user_type = 'tenant';
+
    public function removeBills()
    {
-      
 
       if(!Bill::whereIn('id', $this->selectedBills)->where('status', 'unpaid')->delete())
       {
@@ -62,9 +67,10 @@ class TenantBillCreateComponent extends Component
       return back()->with('success', 'Success!');
    }
 
-   public function mount(){
+   public function mount($tenant){
       $this->start = Carbon::now()->format('Y-m-d');
       $this->end = Carbon::now()->addMonth()->format('Y-m-d');
+      $this->tenant_uuid = $tenant->uuid;
    }
 
    protected function rules()
