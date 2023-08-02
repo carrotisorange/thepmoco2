@@ -40,14 +40,13 @@ class PortalTenantController extends Controller
         return view('portals.tenants.bills',[
             'tenant' => Tenant::findOrFail($user->tenant_uuid),
             'unpaid_bills' => app('App\Http\Controllers\TenantBillController')->get_tenant_balance($user->tenant_uuid),
-            ''
         ]);
     }
 
 
     public function get_bills($tenant_uuid)
     {
-          return Bill::where('tenant_uuid', $tenant_uuid)->orderBy('id','desc')->get();
+          return Bill::where('tenant_uuid', $tenant_uuid)->where('is_posted', 1)->orderBy('id','desc')->get();
     }
   
 

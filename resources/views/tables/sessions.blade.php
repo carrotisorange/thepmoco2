@@ -22,8 +22,7 @@
             <x-td>{{ $session->user->name }}</x-td>
             <x-td>{{ $session->user->role->role }}</x-td>
             <x-td>
-                {{Carbon\Carbon::parse($session->created_at)->timezone('Asia/Manila')->format('g:i
-                A')}}
+                {{Carbon\Carbon::parse($session->created_at)->timezone('Asia/Manila')->format('g:i A')}}
             </x-td>
             <x-td>
                 @if($session->updated_at != '')
