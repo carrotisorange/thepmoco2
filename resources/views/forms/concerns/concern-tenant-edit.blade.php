@@ -59,7 +59,7 @@
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                         </div>
 
-                        <div class="col-span-4 sm:col-span-4">
+                        <div class="col-span-4 sm:col-span-6">
                             <label for="subject" class="block text-sm font-medium text-gray-700">
                                 Subject</label>
                             @error('subject')
@@ -69,25 +69,44 @@
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                         </div>
 
-                        <div class="col-span-2 sm:col-span-2">
-                            <fieldset>
-                                <div>
-                                    <label for="about" class="block text-sm font-medium text-gray-700">Image
-                                        Uploaded:
-                                    </label>
-                                    <div class="mt-1">
-                                        @if(!$concern_details->image == null)
-                                        <a href="{{ asset('/storage/'.$concern_details->image) }}" target="_blank"
-                                            class="text-indigo-600 hover:text-indigo-900">View
-                                            Attachment</a>
-                                        @else
-                                        No image attached
-                                        @endif
+                     <div class="col-span-3 sm:col-span-6">
+                        <fieldset>
+                            <div>
+                                <label for="image" class="block text-sm font-medium text-gray-700">Concern Attachment
+                                </label>
+                                <div class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
+                                    <div class="space-y-1 text-center">
+                    
+                                        <div class="flex text-sm text-gray-600">
+                                            <label for="image"
+                                                class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                                <span>No attachment</span>
+                    
+                                                {{-- <input id="image" type="file" class="sr-only" wire:model="image"> --}}
+                    
+                    
+                    
+                                            </label>
+                                            @if(!$concern_details->image == null)
+                                            &nbsp; or &nbsp;
+                    
+                                            <a href="{{ asset('/storage/'.$concern_details->image) }}" target="_blank"
+                                                class="text-indigo-600 hover:text-indigo-900">View
+                                                Attachment</a>
+                                            @endif
+                    
+                                        </div>
+                                        <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
+                    
                                     </div>
-
+                    
+                    
                                 </div>
-                            </fieldset>
-                        </div>
+                              
+                    
+                            </div>
+                        </fieldset>
+                    </div>
 
                         <div class="sm:col-span-2">
                             <label for="category_id" class="block text-sm font-medium text-gray-700">Category:
@@ -287,6 +306,52 @@
                                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                         @enderror
                                     </div>
+
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        
+                        <div class="col-span-3 sm:col-span-6">
+                            <fieldset>
+                                <div>
+                                    <label for="action_taken_image" class="block text-sm font-medium text-gray-700">Attachment
+                                    </label>
+                                   <div class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
+                                    <div class="space-y-1 text-center">
+                                
+                                        <div class="flex text-sm text-gray-600">
+                                            <label for="action_taken_image"
+                                                class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                                <span>Attach a file</span> 
+                                               
+                                                <input id="action_taken_image" type="file" class="sr-only" wire:model="action_taken_image">
+
+                                           
+                                            
+                                            </label>
+                                            @if(!$concern_details->action_taken_image == null)
+                                            &nbsp; or &nbsp;  
+                                           
+                                            <a href="{{ asset('/storage/'.$concern_details->action_taken_image) }}" target="_blank"
+                                                    class="text-indigo-600 hover:text-indigo-900">View
+                                                    Attachment</a>
+                                                    @endif
+                                
+                                        </div>
+                                        <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
+                                
+                                    </div>
+                                
+                                
+                                </div>
+                                @error('action_taken_image')
+                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                @else
+                                @if ($action_taken_image)
+                                <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i></p>
+                                @endif
+                                @enderror
 
                                 </div>
                             </fieldset>
