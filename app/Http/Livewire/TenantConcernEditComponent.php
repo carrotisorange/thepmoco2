@@ -5,11 +5,14 @@ use App\Models\ConcernCategory;
 use Session;
 use Livewire\Component;
 use Illuminate\Validation\Rule;
+use Livewire\WithFileUploads;
 use Carbon\Carbon;
 use DB;
 
 class TenantConcernEditComponent extends Component
 {
+    use WithFileUploads;
+
     public $concern_details;
 
     public $action_taken;
@@ -27,6 +30,7 @@ class TenantConcernEditComponent extends Component
     public $initial_assessment;
     public $availability_time;
     public $availability_date;
+    public $action_taken_image;
 
     public function mount($concern_details)
     {
@@ -47,6 +51,7 @@ class TenantConcernEditComponent extends Component
         $this->initial_assessment = $concern_details->initial_assessment;
         $this->availability_time = $concern_details->availability_time;
         $this->availability_date = $concern_details->availability_date;
+
     }
 
     protected function rules()
@@ -61,7 +66,8 @@ class TenantConcernEditComponent extends Component
             'status' => ['required'],
             'initial_assessment' => 'nullable',
             'availability_time' => 'nullable',
-            'availability_date' => 'nullable'
+            'availability_date' => 'nullable',
+            'action_taken_image' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
         ];
     }
 
@@ -73,21 +79,26 @@ class TenantConcernEditComponent extends Component
     public function submitForm()
     {
        
-        
        $validatedData = $this->validate();
 
        try{
+
+        if($this->action_taken_image)
+        {
+          $validatedData['action_taken_image'] = $this->action_taken_image->store('concerns');
+        }
     
         DB::transaction(function () use ($validatedData){
             $this->concern_details->update($validatedData);
         });
 
+
         app('App\Http\Controllers\ActivityController')->store(Session::get('property'),auth()->user()->id,'updates', 13);
         
-        session()->flash('success', 'Success!');
+            session()->flash('success', 'Success!');
 
        }catch(\Exception $e){
-        session()->flash('error');
+            ddd($e);
        }
     }
 
