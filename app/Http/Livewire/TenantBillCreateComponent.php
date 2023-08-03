@@ -15,6 +15,7 @@ use App\Models\Property;
 use App\Models\Particular;
 use App\Models\PropertyParticular;
 use App\Models\Unit;
+use App\Models\Contract;
 
 
 class TenantBillCreateComponent extends Component
@@ -49,6 +50,15 @@ class TenantBillCreateComponent extends Component
    public $tenant_uuid;
 
    public $user_type = 'tenant';
+
+   public function updatedParticularId(){
+      if($this->particular_id === '1'){
+        $rent = Contract::where('tenant_uuid', $this->tenant->uuid)->where('unit_uuid', $this->unit_uuid)->pluck('rent')->first();
+     
+         $this->bill = $rent;
+
+      }
+   }
 
    public function removeBills()
    {
@@ -101,11 +111,12 @@ class TenantBillCreateComponent extends Component
 
          if($this->particular_id === '8'){
             $this->bill *=-1;
-         }else{
+         }elseif($this->particular_id === '1'){
             $this->bill = ($this->bill)-($marketing_fee + $management_fee);
+         }else{
+            $this->bill = $this->bill;
          }
 
-      
           $bill_id = Bill::insertGetId([
             'bill_no' => $bill_no,
             'unit_uuid' => $this->unit_uuid,

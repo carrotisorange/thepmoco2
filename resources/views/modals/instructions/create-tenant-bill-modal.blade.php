@@ -24,16 +24,11 @@
                     class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     <option value="">Please select one</option>
                     @foreach ($units as $unit)
-                    @if($units->count() == 1)
-                    <option value="{{ $unit->unit->uuid }}" {{ old('unit_uuid')==$unit->unit->uuid?
-                        'selected': 'Select one'
-                        }}>{{ $unit->unit->unit }}</option>
-                    @else
-
-                    <option value="{{ $unit->unit->uuid }}" {{ old('unit_uuid')==$unit->unit->uuid?
-                        'selected': 'Select one'
-                        }}>{{ $unit->unit->unit }}</option>
-                    @endif
+                        @if($units->count() == 1)
+                        <option value="{{ $unit->unit->uuid }}" {{ old('unit_uuid')==$unit->unit->uuid? 'selected': 'Select one' }}>{{ $unit->unit->unit }}</option>
+                        @else
+                        <option value="{{ $unit->unit->uuid }}" {{ old('unit_uuid')==$unit->unit->uuid? 'selected': 'Select one' }}>{{ $unit->unit->unit }}</option>
+                        @endif
                     @endforeach
                 </select>
                 @error('unit_uuid')
@@ -82,7 +77,7 @@
             </div>
 
             <div class="mt-5 sm:mt-6">
-                <label class="text-sm" for="kwh">Amount</label>
+                <label class="text-sm" for="bill">Amount</label>
                 <input type="number" step="0.001" id="bill" wire:model="bill"
                     class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="" required>
@@ -91,9 +86,13 @@
                 @enderror
             </div>
             <div class="mt-5 sm:mt-6">
-                <button type="button" wire:click="storeBill"
+                <button type="button"  wire:loading.remove wire:click="storeBill"
                     class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
                     Confirm
+                </button>
+                <button type="button" wire:loading disabled
+                    class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
+                    Loading...
                 </button>
 
             </div>

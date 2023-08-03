@@ -140,9 +140,9 @@ class BillIndexComponent extends Component
       {
          $bills = $this->get_delinquents();
       }else{
-         if($this->posted_dates == 'monthly'){
+         if($this->posted_dates === 'monthly'){
             $bills = $this->get_bills_per_period(now()->subdays(30));
-         }elseif($this->posted_dates == 'quarterly'){
+         }elseif($this->posted_dates === 'quarterly'){
             $bills = $this->get_bills_per_period(now()->subdays(90));
          }else{
             $bills = $this->get_bills_per_period('');
@@ -209,8 +209,6 @@ class BillIndexComponent extends Component
 
    public function storeBills(){
 
-      sleep(1);
-
       $attributes = $this->validate();
 
       $tenant_uuid = Contract::where('property_uuid', $this->property->uuid)
@@ -242,7 +240,7 @@ class BillIndexComponent extends Component
             $attributes['unit_uuid']= $unit_uuid;
             $attributes['tenant_uuid'] = $tenant_uuid[$i];
 
-               if($this->particular_id == 1)
+               if($this->particular_id === '1')
                {
                
                   $marketing_fee = Unit::find($unit_uuid)->marketing_fee;
@@ -254,7 +252,7 @@ class BillIndexComponent extends Component
 
                }
  
-               if($this->particular_id == 8){
+               if($this->particular_id === '8'){
                   $attributes['bill'] = -($this->bill);
                }
                
@@ -267,7 +265,7 @@ class BillIndexComponent extends Component
 
                 $bill_id = Bill::insertGetId($attributes);
                
-                if($this->particular_id == 1){
+                if($this->particular_id === '1'){
                   Bill::create([
                      'bill_id' => $bill_id,
                    'bill_no' => $bill_no++,
