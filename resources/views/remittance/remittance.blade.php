@@ -22,9 +22,9 @@ h1 {
 
 
 .outer-wrapper {
-    margin: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin: 2px;
+    margin-left: 0px;
+    margin-right: 0px;
     max-width: fit-content;
     max-height: fit-content;
 
@@ -79,7 +79,7 @@ table th, table td {
 
 table td {
     text-align: left;
-    font-size: 15px;
+    font-size: 12px;
     border: 1px solid rgb(177, 177, 177);
     padding-left: 20px;
     
@@ -93,37 +93,37 @@ table td {
 }
 
 .second-col {
-  width: 150px;
-  min-width: 150px;
-  max-width: 150px;
+  width: 100px;
+  min-width: 100px;
+  max-width: 100px;
   left: 100px;
 }
 
 .third-col {
-  width: 200px;
-  min-width: 200px;
-  max-width: 200px;
+  width: 100px;
+  min-width: 100px;
+  max-width: 100px;
   left: 200px;
 }
 
 .fourth-col {
-  width: 250px;
-  min-width: 250px;
-  max-width: 250px;
+  width: 100px;
+  min-width: 100px;
+  max-width: 100px;
   left: 300px;
 }
 
 .fifth-col {
-  width: 300px;
-  min-width: 300px;
-  max-width: 300px;
+  width: 100px;
+  min-width: 100px;
+  max-width: 100px;
   left: 400px;
 }
 
 .sixth-col {
-  width: 300px;
-  min-width: 300px;
-  max-width: 300px;
+  width: 100px;
+  min-width: 100px;
+  max-width: 100px;
   left: 500px;
 }
 
