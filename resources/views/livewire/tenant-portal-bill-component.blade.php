@@ -158,7 +158,7 @@
                             @forelse ($bills as $item)
                             <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
                         <!-- Selected: "bg-gray-50" -->
-                                @if($item->particular_id != 71 && $item->particular_id != 72)
+                                @if($item->particular_id != '71' && $item->particular_id != '72')
                                 <tr>
                                     <td class="relative w-12 px-6 sm:w-16 sm:px-8">
                                         @if($item->status != 'paid')
@@ -199,8 +199,8 @@
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         <?php 
-                                            $marketing_fee = App\Models\Bill::where('bill_id',$item->id)->pluck('bill')->first();
-                                            $management_fee = App\Models\Bill::where('bill_id',$item->id)->pluck('bill')->first();
+                                            $marketing_fee = App\Models\Bill::where('particular_id', '71')->where('bill_id',$item->id)->pluck('bill')->last();
+                                            $management_fee = App\Models\Bill::where('particular_id', '72')->where('bill_id',$item->id)->pluck('bill')->last();
                                             
                                             $other_fees = $marketing_fee + $management_fee ?>
             
