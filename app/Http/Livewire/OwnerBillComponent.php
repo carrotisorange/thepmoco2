@@ -92,7 +92,8 @@ class OwnerBillComponent extends Component
             'collection' => 0,
             'batch_no' => $collection_batch_no,
             'ar_no' => $collection_ar_no,
-            'is_posted' => 0
+            'is_posted' => 0,
+            'created_at' => Carbon::now(),
          ]);
 
          Bill::where('id', $this->selectedBills[$i])

@@ -57,8 +57,7 @@
 
 
                 <p class="mt-2 text-sm text-gray-500">
-                    You've selected {{ count($selectedBills) }} {{ Str::plural('bill', count($selectedBills))}}
-                    amounting to {{ number_format($total) }}...
+                    You've selected {{ count($selectedBills) }} {{ Str::plural('bill', count($selectedBills))}} amounting to {{ number_format($total) }}...
                 </p>
                 @else
                 <p class="mt-2 text-sm text-gray-500">

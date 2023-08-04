@@ -130,42 +130,49 @@ class TenantBillCreateComponent extends Component
             'property_uuid' => $this->property->uuid,
             'tenant_uuid' => $this->tenant->uuid,
             'status' => 'unpaid',
+            'created_at' => Carbon::now(),
             'is_posted' => true
          ]);
 
         
           if($this->particular_id === '1'){
-            Bill::create([
-                'bill_id' => $bill_id,
-               'bill_no' => $bill_no+1,
-               'unit_uuid' => $this->unit_uuid,
-               'particular_id' => 71,
-               'start' => $this->start,
-               'end' => $this->end,
-               'bill' => $marketing_fee,
-               'reference_no' => $this->tenant->reference_no,
-               'due_date' => Carbon::parse($this->start)->addDays(7),
-               'user_id' => auth()->user()->id,
-               'property_uuid' => $this->property->uuid,
-               'tenant_uuid' => $this->tenant->uuid,
-               'is_posted' => true
-            ]);
+           if($marketing_fee>0){
+             Bill::create([
+             'bill_id' => $bill_id,
+             'bill_no' => $bill_no+1,
+             'unit_uuid' => $this->unit_uuid,
+             'particular_id' => 71,
+             'start' => $this->start,
+             'end' => $this->end,
+             'bill' => $marketing_fee,
+             'reference_no' => $this->tenant->reference_no,
+             'due_date' => Carbon::parse($this->start)->addDays(7),
+             'user_id' => auth()->user()->id,
+             'property_uuid' => $this->property->uuid,
+             'tenant_uuid' => $this->tenant->uuid,
+             'is_posted' => true,
+              'created_at' => Carbon::now(),
+             ]);
+           }
 
-            Bill::create([
-                'bill_id' => $bill_id,
-               'bill_no' => $bill_no+2,
-               'unit_uuid' => $this->unit_uuid,
-               'particular_id' => 72,
-               'start' => $this->start,
-               'end' => $this->end,
-               'bill' => $management_fee,
-               'reference_no' => $this->tenant->reference_no,
-               'due_date' => Carbon::parse($this->start)->addDays(7),
-               'user_id' => auth()->user()->id,
-               'property_uuid' => $this->property->uuid,
-               'tenant_uuid' => $this->tenant->uuid,
-               'is_posted' => true
-            ]);
+           if($management_fee>0){
+             Bill::create([
+             'bill_id' => $bill_id,
+             'bill_no' => $bill_no+2,
+             'unit_uuid' => $this->unit_uuid,
+             'particular_id' => 72,
+             'start' => $this->start,
+             'end' => $this->end,
+             'bill' => $management_fee,
+             'reference_no' => $this->tenant->reference_no,
+             'due_date' => Carbon::parse($this->start)->addDays(7),
+             'user_id' => auth()->user()->id,
+             'property_uuid' => $this->property->uuid,
+             'tenant_uuid' => $this->tenant->uuid,
+             'is_posted' => true,
+              'created_at' => Carbon::now(),
+             ]);
+           }
           }
 
             // app('App\Http\Controllers\BillController')->store($this->property->uuid, auth()->user()->id, 1, 3);
@@ -231,7 +238,8 @@ class TenantBillCreateComponent extends Component
             'collection' => 0,
             'batch_no' => $collection_batch_no,
             'ar_no' => $collection_ar_no,
-            'is_posted' => 0
+            'is_posted' => 0,
+             'created_at' => Carbon::now(),
          ]);
 
          Bill::where('id', $this->selectedBills[$i])
