@@ -18,15 +18,15 @@ Bills Breakdown
 | ------------- |------------- |------------- |------------- |------------- |------------- |
 @foreach ($data['bills'] as $item)
 <?php 
-$marketing_fee = App\Models\Bill::where('bill_id',$item->id)->pluck('bill')->first();
-$management_fee = App\Models\Bill::where('bill_id',$item->id)->pluck('bill')->first();
+  $marketing_fee = App\Models\Bill::where('particular_id', '71')->where('bill_id',$item->id)->pluck('bill')->last();
+  $management_fee = App\Models\Bill::where('particular_id', '72')->where('bill_id',$item->id)->pluck('bill')->last();
                                             
     $other_fees = $marketing_fee + $management_fee 
 ?>
-@if($item->particular_id != 71 && $item->particular_id != 72)
-@if ($item->bill-App\Models\Collection::where('bill_id', $item->id)->sum('collection') > 0)
-| {{ $item->bill_no }} | {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }} | {{ $item->unit->unit }} | {{ $item->particular->particular }} | {{ Carbon\Carbon::parse($item->start)->format('M d, Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }} |  {{ number_format((($item->bill + $other_fees)-App\Models\Collection::where('bill_id', $item->id)->sum('collection')),2) }}  |
-@endif
+@if($item->particular_id != '71' && $item->particular_id != '72')
+    @if ($item->bill-App\Models\Collection::where('bill_id', $item->id)->sum('collection') > 0)
+    | {{ $item->bill_no }} | {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }} | {{ $item->unit->unit }} | @if($item->particular_id === 1) Due to unit owner @else {{ $item->particular->particular }} @endif | {{ Carbon\Carbon::parse($item->start)->format('M d, Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }} |  {{ number_format((($item->bill + $other_fees)-App\Models\Collection::where('bill_id', $item->id)->sum('collection')),2) }}  |
+    @endif
 @endif
 @endforeach
 

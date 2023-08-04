@@ -280,6 +280,7 @@ class BillIndexComponent extends Component
                    'property_uuid' => $this->property->uuid,
                    'tenant_uuid' => $tenant_uuid[$i],
                    'batch_no' => $batch_no,
+                   'status' => 'unpaid'
                   ]);
 
                   Bill::create([

@@ -129,6 +129,7 @@ class TenantBillCreateComponent extends Component
             'user_id' => auth()->user()->id,
             'property_uuid' => $this->property->uuid,
             'tenant_uuid' => $this->tenant->uuid,
+            'status' => 'unpaid',
             'is_posted' => true
          ]);
 
