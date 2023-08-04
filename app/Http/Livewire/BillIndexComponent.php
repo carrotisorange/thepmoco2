@@ -262,10 +262,13 @@ class BillIndexComponent extends Component
                 $attributes['due_date'] = Carbon::parse($this->start)->addDays(7);
                 $attributes['property_uuid'] = $this->property->uuid;
                 $attributes['batch_no'] = $batch_no;
+                $attributes['status'] = 'unpaid';
+                $attributes['created_at'] = Carbon::now();
 
                 $bill_id = Bill::insertGetId($attributes);
                
                 if($this->particular_id === '1'){
+                   if($marketing_fee>0){
                   Bill::create([
                      'bill_id' => $bill_id,
                    'bill_no' => $bill_no++,
@@ -280,9 +283,11 @@ class BillIndexComponent extends Component
                    'property_uuid' => $this->property->uuid,
                    'tenant_uuid' => $tenant_uuid[$i],
                    'batch_no' => $batch_no,
-                   'status' => 'unpaid'
+                   'status' => 'unpaid',
+                     'created_at' => Carbon::now(),
                   ]);
-
+               }
+                if($management_fee>0){
                   Bill::create([
                    'bill_id' => $bill_id,
                    'bill_no' => $bill_no++,
@@ -297,7 +302,9 @@ class BillIndexComponent extends Component
                    'property_uuid' => $this->property->uuid,
                    'tenant_uuid' => $tenant_uuid[$i],
                    'batch_no' => $batch_no,
+                    'created_at' => Carbon::now(),
                   ]);
+               }
                 }
 
                 }

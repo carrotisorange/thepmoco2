@@ -178,6 +178,7 @@ class GuestBillCreateComponent extends Component
             'collection' => 0,
             'batch_no' => $collection_batch_no,
             'ar_no' => $collection_ar_no,
+            'created_at' => Carbon::now(),
             'is_posted' => 0
          ]);
 
