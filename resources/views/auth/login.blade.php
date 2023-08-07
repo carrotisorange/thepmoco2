@@ -28,7 +28,7 @@
             <div class="mx-auto w-full max-w-sm lg:w-96">
 
                 <div class="flex justify-center items-center">
-                    <img class="mt-10 mb-5 h-32 w-auto" src="{{ asset('/brands/logo_cropped.png') }}" alt="Workflow">
+                    <img class="mt-10 mb-5 h-32 w-auto" src="{{ asset('/brands/propsuite.png') }}" alt="propsuite logo">
                     
 
                 </div>
