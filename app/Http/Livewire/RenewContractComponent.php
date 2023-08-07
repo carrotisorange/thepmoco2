@@ -32,7 +32,6 @@ class RenewContractComponent extends Component
 
       public function mount($contract_details)
       {
-         $this->contract_details = $contract_details;
          $this->start = Carbon::parse($this->contract_details->start)->format('Y-m-d');
          $this->rent = $contract_details->rent;
          $this->unit  = $contract_details->unit->unit;
@@ -76,7 +75,7 @@ class RenewContractComponent extends Component
 
                $this->update_unit($this->contract_details->unit_uuid);
 
-               $this->send_mail_to_tenant();
+               // $this->send_mail_to_tenant();
 
             });
 
