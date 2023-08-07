@@ -12,7 +12,7 @@ use Carbon\Carbon;
 
 class BillController extends Controller
 {
-    public function store($property_uuid, $unit_uuid, $tenant_uuid, $owner_uuid, $particular_id, $start_date, $end_date, $total_amount_due, $batch_no, $isPosted){
+    public function store($property_uuid, $unit_uuid, $tenant_uuid, $owner_uuid, $particular_id, $start_date, $end_date, $total_amount_due, $batch_no, $posted){
         Bill::create(
         [
             'unit_uuid' => $unit_uuid,
@@ -25,7 +25,7 @@ class BillController extends Controller
             'bill_no'=> $this->get_latest_bill_no($property_uuid),
             'user_id' => auth()->user()->id,
             'due_date' => Carbon::parse($start_date)->addDays(7),
-            'is_posted' => $isPosted,
+            'is_posted' => $posted,
             'tenant_uuid' => $tenant_uuid,
             'owner_uuid' => $owner_uuid
          ]
@@ -154,7 +154,7 @@ class BillController extends Controller
 
     public function show_unit_bills($unit_uuid)
     {
-        return Bill::where('unit_uuid', $unit_uuid)->where('is_posted', 1)->where('bill','>', 0)->orderBy('created_at','desc')->get();
+        return Bill::where('unit_uuid', $unit_uuid)->posted()->where('bill','>', 0)->orderBy('created_at','desc')->get();
     }
     
     public function update_bill_amount_due($bill_id, $status)

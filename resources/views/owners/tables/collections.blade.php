@@ -44,7 +44,7 @@
                 @endif
             </x-td>
             <?php
-                $collections_count = App\Models\Collection::where('batch_no', $item->collection_batch_no)->count();
+                $collections_count = App\Models\Collection::where('batch_no', $item->collection_batch_no)->posted()->count();
             ?>
             <x-td>
                 {{ number_format($item->amount,2) }} ({{ $collections_count }})
@@ -77,7 +77,7 @@
             <x-td></x-td>
             <x-td></x-td>
             <?php
-            $property_collections_count = App\Models\Collection::posted()->where('property_uuid', Session::get('property'))->count();
+            $property_collections_count = App\Models\Collection::where('property_uuid', Session::get('property'))->posted()->count();
         ?>
             <x-td>
                 {{ number_format($collections->sum('amount'), 2) }} ({{ $property_collections_count }})
@@ -101,8 +101,8 @@
         <button type="button"
             onclick="window.location.href='/property/{{ Session::get('property') }}/owner/{{ $owner_details->uuid }}/bills'"
             class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-        
-           New collection
+
+            New collection
         </button>
     </div>
 </div>

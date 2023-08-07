@@ -214,16 +214,16 @@ class PropertyFinancialController extends Controller
     }
 
     public function get_total_collected_rent($property){
-        return Property::find($property->uuid)->bills()->where('is_posted', 1)->wherein('status', ['paid', 'partially_paid'])
+        return Property::find($property->uuid)->bills()->posted()->wherein('status', ['paid', 'partially_paid'])
         ->whereYear('created_at', Carbon::now()->year)
         ->sum('initial_payment');
     }
 
     public function get_total_billed_rent($property){
-        return Property::find($property->uuid)->bills()->where('is_posted', 1)->whereYear('created_at', Carbon::now()->year)->sum('bill');
+        return Property::find($property->uuid)->bills()->posted()->whereYear('created_at', Carbon::now()->year)->sum('bill');
     }
 
     public function get_actual_revenue_collected($property){
-        return Property::find($property->uuid)->collections()->where('is_posted', 1)->whereYear('updated_at', Carbon::now()->year)->sum('collection');
+        return Property::find($property->uuid)->collections()->posted()->whereYear('updated_at', Carbon::now()->year)->sum('collection');
     }
 }

@@ -25,8 +25,8 @@
                         <x-label for="due_date">
                             Due Date
                         </x-label>
-                        <x-form-input id="due_date" type="date" value="{{ Carbon\Carbon::now()->addDay(7)->format('Y-m-d') }}"
-                            name="due_date" />
+                        <x-form-input id="due_date" type="date"
+                            value="{{ Carbon\Carbon::now()->addDay(7)->format('Y-m-d') }}" name="due_date" />
 
                         @error('due_date')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -38,7 +38,8 @@
                         <x-label for="due_date">
                             Total Unpaid Bills
                         </x-label>
-                        {{ number_format(App\Models\Bill::where('owner_uuid', $owner->uuid)->sum('bill') -  App\Models\Collection::where('owner_uuid', $owner->uuid)->sum('collection'), 2) }}
+                        {{ number_format(App\Models\Bill::where('owner_uuid', $owner->uuid)->posted()->sum('bill') -
+                        App\Models\Collection::where('owner_uuid', $owner->uuid)->posted()->sum('collection'), 2) }}
 
                     </div>
                 </div>
@@ -48,7 +49,7 @@
                             Penalty After Due Date
                         </x-label>
                         <x-form-input id="penalty" type="number"
-                            value="{{ (App\Models\Bill::where('owner_uuid', $owner->uuid)->sum('bill') -  App\Models\Collection::where('owner_uuid', $owner->uuid)->sum('collection'))*.1 }}"
+                            value="{{ (App\Models\Bill::where('owner_uuid', $owner->uuid)->posted()->sum('bill') -  App\Models\Collection::where('owner_uuid', $owner->uuid)->posted()->sum('collection'))*.1 }}"
                             name="penalty" min="0" step="0.001" />
                         @error('penalty')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>

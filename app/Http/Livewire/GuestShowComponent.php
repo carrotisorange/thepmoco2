@@ -182,7 +182,7 @@ class GuestShowComponent extends Component
           select('*', DB::raw("SUM(collection) as collection"),DB::raw("count(collection) as count") )
           ->where('property_uuid', $this->property->uuid)
           ->where('guest_uuid', $this->guest_details->uuid)
-          ->where('is_posted', 1)
+          ->posted()
           ->groupBy('ar_no')
           ->orderBy('ar_no', 'desc')
           ->get();

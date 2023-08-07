@@ -98,7 +98,7 @@ class BillIndexComponent extends Component
    public function get_bills_per_period($start){
       return Bill::orderBy('bill_no', 'desc')
                ->where('property_uuid', $this->property->uuid)
-               ->where('is_posted', 1)
+               ->posted()
                ->when($this->status, function($query){
                $query->whereIn('status', [$this->status]);
                })

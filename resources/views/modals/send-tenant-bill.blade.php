@@ -15,7 +15,8 @@
                 </button>
             </div>
 
-            <form class="px-12 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" action="/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}/bill/send">
+            <form class="px-12 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8"
+                action="/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}/bill/send">
                 @csrf
 
                 <h3 class="text-xl font-medium text-gray-900 dark:text-white">Send Unpaid Bills</h3>
@@ -24,8 +25,8 @@
                         <x-label for="due_date">
                             Email
                         </x-label>
-                        <x-form-input id="email" type="email" value="{{ $tenant->email }}" name="email" required/>
-                
+                        <x-form-input id="email" type="email" value="{{ $tenant->email }}" name="email" required />
+
                         @error('due_date')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -49,7 +50,9 @@
                         <x-label for="due_date">
                             Total Unpaid Bills
                         </x-label>
-                         {{ number_format(App\Models\Bill::where('tenant_uuid', $tenant->uuid)->where('is_posted',1)->sum('bill') -  App\Models\Collection::where('tenant_uuid', $tenant->uuid)->where('is_posted', 1)->sum('collection'),2) }}
+                        {{ number_format(App\Models\Bill::where('tenant_uuid',
+                        $tenant->uuid)->posted()->sum('bill') - App\Models\Collection::where('tenant_uuid',
+                        $tenant->uuid)->posted()->sum('collection'),2) }}
                     </div>
                 </div>
                 <div class="mt-5 flex flex-wrap -mx-3 mb-6">
@@ -58,7 +61,8 @@
                             Penalty After Due Date
                         </x-label>
                         <x-form-input id="penalty" type="number" step="0.001"
-                            value="{{ (App\Models\Bill::where('tenant_uuid', $tenant->uuid)->where('is_posted',1)->sum('bill') -  App\Models\Collection::where('tenant_uuid', $tenant->uuid)->where('is_posted',1)->sum('collection'))*.1  }}" name="penalty" min="0" />
+                            value="{{ (App\Models\Bill::where('tenant_uuid', $tenant->uuid)->posted()->sum('bill') -  App\Models\Collection::where('tenant_uuid', $tenant->uuid)->posted()->sum('collection'))*.1  }}"
+                            name="penalty" min="0" />
                         @error('penalty')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -72,8 +76,7 @@
                         <textarea class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300
 appearance-none
 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600
-peer" placeholder="Put your notes here."
-                            name="note_to_bill">{{ $note_to_bill }}</textarea>
+peer" placeholder="Put your notes here." name="note_to_bill">{{ $note_to_bill }}</textarea>
                         @error('note_to_bill')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror

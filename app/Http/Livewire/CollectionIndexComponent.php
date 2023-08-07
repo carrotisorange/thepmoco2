@@ -67,7 +67,7 @@ class CollectionIndexComponent extends Component
         ->when($this->end, function($query){
             $query->orWhereDate('updated_at', $this->end);
         })
-        ->where('is_posted', 1)
+        ->posted()
         ->groupBy('ar_no')
         ->orderBy('ar_no', 'desc')
         ->get();

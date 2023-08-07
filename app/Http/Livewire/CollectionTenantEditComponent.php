@@ -23,7 +23,9 @@ class CollectionTenantEditComponent extends Component
     public $check_no;
     public $created_at;
     public $date_deposited; 
+    public $description;
     public $sendPayment = false;
+
 
     public function mount($collections, $tenant, $batch_no)
     {

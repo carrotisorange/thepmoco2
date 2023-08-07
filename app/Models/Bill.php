@@ -50,6 +50,11 @@ class Bill extends Model
         return $this->belongsTo(Particular::class, 'particular_id');
     }
 
+    public function scopePosted($query)
+    {
+        return $query->where('is_posted', true);
+    }
+
     public static function search($search)
     {
     //   $tenant = Tenant::where('tenant','like', '%'.$search.'%')->pluck('bill_reference_no');

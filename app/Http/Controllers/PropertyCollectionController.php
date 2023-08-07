@@ -32,7 +32,7 @@ class PropertyCollectionController extends Controller
 
     public function export_dcr(Property $property, $date){
 
-        $collections = Collection::where('property_uuid', $property->uuid)->whereDate('updated_at', $date)->where('is_posted',1)->orderBy('ar_no')->distinct()->get();
+        $collections = Collection::where('property_uuid', $property->uuid)->whereDate('updated_at', $date)->posted()->orderBy('ar_no')->distinct()->get();
 
         $data = [
             'collections' => $collections,

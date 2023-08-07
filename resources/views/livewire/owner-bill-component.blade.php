@@ -77,21 +77,41 @@
     {{-- Reference # : <b> {{ $owner->bill_reference_no }}</b>, Security Deposit: <b> {{
         number_format(App\Models\Owner::find($owner->uuid)->wallets()->sum('amount'), 2) }}</b> --}}
 
-    <div class="mt-5">
-        @if($bills)
-        <label for="status" class="block text-sm font-medium text-gray-700">Filter bills</label>
-        <select wire:model.lazy="status" autocomplete="status"
-            class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-
-            @foreach ($statuses as $item)
-            <option value="{{ $item->status }}" {{ $status==$item->status ? 'selected' : 'selected' }}> {{
-                $item->status }} bills
-            </option>
-            @endforeach
-        </select>
-
-        @endif
-    </div>
+    <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+            <div class="sm:col-span-3">
+                @if($bills)
+                <label for="status" class="block text-sm font-medium text-gray-700">Filter status</label>
+                <select wire:model.lazy="status" autocomplete="status"
+                    class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <option value="all" {{ $status=='' ? 'selected' : 'selected' }}> all </option>
+                    <option value="paid" {{ $status=='paid' ? 'selected' : 'selected' }}> paid </option>
+                    <option value="partially_paid" {{ $status=='partially_paid' ? 'selected' : 'selected' }}> partially paid
+                    </option>
+                    <option value="unpaid" {{ $status=='unpaid' ? 'selected' : 'selected' }}> unpaid </option>
+        
+                </select>
+        
+                @endif
+        
+            </div>
+        
+            <div class="sm:col-span-3">
+                @if($bills)
+                <label for="particular" class="block text-sm font-medium text-gray-700">Filter particulars</label>
+                <select wire:model.lazy="particular" autocomplete="particular"
+                    class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        
+                    <option value="">Filter bill particulars</option>
+                    @foreach ($particulars as $item)
+                    <option value="{{ $item->particular_id }}">{{ $item->particular }}</option>
+                    @endforeach
+                </select>
+        
+                @endif
+        
+            </div>
+        
+        </div>
 
     <div class="mt-5">
         <div class="flex flex-row">

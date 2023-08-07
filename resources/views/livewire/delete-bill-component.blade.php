@@ -8,12 +8,12 @@
             this bill ({{$bill->bill_no}})?</h3>
 
         <div class="mt-5 mb-5 sm:mt-6">
-            <p class="text-sm text-left" for="concern">Reason for deletion</p>
+         
             <textarea id="description" rows="4" wire:model="description"
                 class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Write the reason why you want to delete this bill..."></textarea>
             @error('description')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+            <p class="text-red-500 text-xs mt-2 text-left">{{ $message }}</p>
             @enderror
         </div>
         {{-- @can('accountownerandmanager') --}}

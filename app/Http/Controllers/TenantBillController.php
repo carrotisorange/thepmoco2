@@ -28,7 +28,7 @@ class TenantBillController extends Controller
 
     public function show_tenant_bills($tenant_uuid)
     {
-       return Bill::where('tenant_uuid', $tenant_uuid)->where('is_posted', 1)->where('bill','>', 0)->orderBy('created_at','desc')->get();
+       return Bill::where('tenant_uuid', $tenant_uuid)->posted()->where('bill','>', 0)->orderBy('created_at','desc')->get();
     }
 
     public function get_bill_balance($bill_id)
@@ -67,8 +67,8 @@ class TenantBillController extends Controller
 
     public function get_bill_data($tenant, $due_date, $penalty, $note)
     {
-         $unpaid_bills = Bill::where('tenant_uuid', $tenant->uuid)->where('is_posted', 1)->sum('bill');
-         $paid_bills = Collection::where('tenant_uuid', $tenant->uuid)->where('is_posted', 1)->sum('collection');
+         $unpaid_bills = Bill::where('tenant_uuid', $tenant->uuid)->posted()->sum('bill');
+         $paid_bills = Collection::where('tenant_uuid', $tenant->uuid)->posted()->sum('collection');
 
         if($unpaid_bills<=0){ 
             $balance=0; 
@@ -82,7 +82,7 @@ class TenantBillController extends Controller
             'due_date' => $due_date,
             'user' => User::find(auth()->user()->id)->name,
             'role' => User::find(auth()->user()->id)->role->role,
-            'bills' => Bill::where('tenant_uuid', $tenant->uuid)->where('is_posted', 1)->whereIn('status', ['unpaid','partially_paid'])->orderBy('bill_no', 'desc')->get(),
+            'bills' => Bill::where('tenant_uuid', $tenant->uuid)->posted()->whereIn('status', ['unpaid','partially_paid'])->orderBy('bill_no', 'desc')->get(),
             'balance' => $balance,
             'balance_after_due_date' => $balance + $penalty,
             'note_to_bill' => $note,

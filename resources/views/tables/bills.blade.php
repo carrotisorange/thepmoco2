@@ -6,7 +6,7 @@
             @if($isPaymentAllowed)
             <x-td></x-td>
             @endif
-    
+
             <x-td></x-td>
             <x-td> </x-td>
             <x-td></x-td>
@@ -16,21 +16,37 @@
             <x-td>
                 <b>
                     @if($user_type === 'tenant')
-                    {{ number_format(App\Models\Bill::where('tenant_uuid', $tenant_uuid)->where('is_posted',1)->sum('bill'), 2) }}/
-                    {{ number_format(App\Models\Collection::where('tenant_uuid', $tenant_uuid)->where('is_posted', 1)->sum('collection'), 2) }}/
-                    {{ number_format((App\Models\Bill::where('tenant_uuid', $tenant_uuid)->where('is_posted',1)->sum('bill')-App\Models\Collection::where('tenant_uuid', $tenant_uuid)->where('is_posted',1)->sum('collection')), 2) }}
+                    {{ number_format(App\Models\Bill::where('tenant_uuid',
+                    $tenant_uuid)->posted()->sum('bill'), 2) }}/
+                    {{ number_format(App\Models\Collection::where('tenant_uuid',
+                    $tenant_uuid)->posted()->sum('collection'), 2) }}/
+                    {{ number_format((App\Models\Bill::where('tenant_uuid',
+                    $tenant_uuid)->posted()->sum('bill')-App\Models\Collection::where('tenant_uuid',
+                    $tenant_uuid)->posted()->sum('collection')), 2) }}
                     @elseif($user_type === 'owner')
-                    {{ number_format(App\Models\Bill::where('owner_uuid', $owner_uuid)->where('is_posted',1)->sum('bill'), 2) }}/
-                    {{ number_format(App\Models\Collection::where('owner_uuid', $owner_uuid)->where('is_posted', 1)->sum('collection'), 2) }}/
-                    {{ number_format((App\Models\Bill::where('owner_uuid', $owner_uuid)->where('is_posted',1)->sum('bill')-App\Models\Collection::where('owner_uuid', $owner_uuid)->where('is_posted',1)->sum('collection')), 2) }}
+                    {{ number_format(App\Models\Bill::where('owner_uuid',
+                    $owner_uuid)->posted()->sum('bill'), 2) }}/
+                    {{ number_format(App\Models\Collection::where('owner_uuid',
+                    $owner_uuid)->posted()->sum('collection'), 2) }}/
+                    {{ number_format((App\Models\Bill::where('owner_uuid',
+                    $owner_uuid)->posted()->sum('bill')-App\Models\Collection::where('owner_uuid',
+                    $owner_uuid)->posted()->sum('collection')), 2) }}
                     @elseif($user_type === 'guest')
-                    {{ number_format(App\Models\Bill::where('guest_uuid', $guest_uuid)->where('is_posted',1)->sum('bill'), 2) }}/
-                    {{ number_format(App\Models\Collection::where('guest_uuid', $guest_uuid)->where('is_posted', 1)->sum('collection'), 2) }}/
-                    {{ number_format((App\Models\Bill::where('guest_uuid', $guest_uuid)->where('is_posted',1)->sum('bill')-App\Models\Collection::where('guest_uuid', $guest_uuid)->where('is_posted',1)->sum('collection')), 2) }}
+                    {{ number_format(App\Models\Bill::where('guest_uuid',
+                    $guest_uuid)->posted()->sum('bill'), 2) }}/
+                    {{ number_format(App\Models\Collection::where('guest_uuid',
+                    $guest_uuid)->posted()->sum('collection'), 2) }}/
+                    {{ number_format((App\Models\Bill::where('guest_uuid',
+                    $guest_uuid)->posted()->sum('bill')-App\Models\Collection::where('guest_uuid',
+                    $guest_uuid)->posted()->sum('collection')), 2) }}
                     @else
-                    {{ number_format(App\Models\Bill::where('unit_uuid', $unit_uuid)->where('is_posted',1)->sum('bill'), 2) }}/
-                    {{ number_format(App\Models\Collection::where('unit_uuid', $unit_uuid)->where('is_posted', 1)->sum('collection'), 2) }}/
-                    {{ number_format((App\Models\Bill::where('unit_uuid', $unit_uuid)->where('is_posted',1)->sum('bill')-App\Models\Collection::where('unit_uuid', $unit_uuid)->where('is_posted',1)->sum('collection')), 2) }}
+                    {{ number_format(App\Models\Bill::where('unit_uuid', $unit_uuid)->posted()->sum('bill'),
+                    2) }}/
+                    {{ number_format(App\Models\Collection::where('unit_uuid',
+                    $unit_uuid)->posted()->sum('collection'), 2) }}/
+                    {{ number_format((App\Models\Bill::where('unit_uuid',
+                    $unit_uuid)->posted()->sum('bill')-App\Models\Collection::where('unit_uuid',
+                    $unit_uuid)->posted()->sum('collection')), 2) }}
                     @endif
                 </b>
             </x-td>
@@ -39,13 +55,13 @@
         </tr>
     </tbody>
     @else
- <tbody class="bg-white divide-y divide-gray-200">
+    <tbody class="bg-white divide-y divide-gray-200">
         <tr>
             <x-td><b>Total</b></x-td>
             @if($isPaymentAllowed)
             <x-td></x-td>
             @endif
-          
+
             <x-td></x-td>
             <x-td> </x-td>
             <x-td></x-td>
@@ -54,13 +70,17 @@
             <x-td> </x-td>
             <x-td>
                 <b>
-                     {{ number_format(App\Models\Bill::where('property_uuid', Session::get('property'))->where('is_posted',1)->sum('bill'), 2) }}/
-                    {{ number_format(App\Models\Collection::where('property_uuid', Session::get('property'))->where('is_posted', 1)->sum('collection'), 2) }}/
-                    {{ number_format((App\Models\Bill::where('property_uuid', Session::get('property'))->where('is_posted',1)->sum('bill')-App\Models\Collection::where('property_uuid', Session::get('property'))->where('is_posted',1)->sum('collection')), 2) }}
+                    {{ number_format(App\Models\Bill::where('property_uuid',
+                    Session::get('property'))->posted()->sum('bill'), 2) }}/
+                    {{ number_format(App\Models\Collection::where('property_uuid',
+                    Session::get('property'))->posted()->sum('collection'), 2) }}/
+                    {{ number_format((App\Models\Bill::where('property_uuid',
+                    Session::get('property'))->posted()->sum('bill')-App\Models\Collection::where('property_uuid',
+                    Session::get('property'))->posted()->sum('collection')), 2) }}
 
                 </b>
             </x-td>
-                
+
             <x-td></x-td>
         </tr>
     </tbody>
@@ -92,7 +112,7 @@
             <x-td>{{ $index+1 }}</x-td>
             @if($isPaymentAllowed)
             <x-th>
-                @if($bill->status != 'paid')
+                @if(!App\Models\Collection::where('bill_id', $bill->id)->posted()->sum('collection'))
                 <x-input type="checkbox" wire:model="selectedBills" value="{{ $bill->id }}" />
                 @endif
             </x-th>
@@ -107,15 +127,15 @@
                 @if($bill->tenant_uuid)
                 <a title="tenant" class="text-blue-500 text-decoration-line: underline" target="_blank"
                     href="/property/{{ $bill->property_uuid }}/tenant/{{ $bill->tenant_uuid }}">
-                    {{  Str::limit($bill->tenant->tenant,20) }} </a> (T)
+                    {{ Str::limit($bill->tenant->tenant,20) }} </a> (T)
                 @elseif($bill->owner_uuid)
                 <a title="owner" class="text-blue-500 text-decoration-line: underline"
                     href="/property/{{ $bill->property_uuid }}/owner/{{ $bill->owner_uuid }}">
-                    {{  Str::limit($bill->owner->owner,20) }} </a> (O)
+                    {{ Str::limit($bill->owner->owner,20) }} </a> (O)
                 @elseif($bill->guest_uuid)
                 <a title="guest" class="text-blue-500 text-decoration-line: underline"
                     href="/property/{{ $bill->property_uuid }}/guest/{{ $bill->guest_uuid }}">
-                      {{  Str::limit($bill->guest->guest,20) }} </a> (G)
+                    {{ Str::limit($bill->guest->guest,20) }} </a> (G)
                 @else
                 NA
                 @endif
@@ -127,25 +147,23 @@
                 </a>
             </x-td>
             <x-td>
-                {{ Carbon\Carbon::parse($bill->start)->format('M d, Y').'-'.Carbon\Carbon::parse($bill->end)->format('M d, Y') }}
+                {{ Carbon\Carbon::parse($bill->start)->format('M d, Y').'-'.Carbon\Carbon::parse($bill->end)->format('M
+                d, Y') }}
             </x-td>
             <x-td>
-                {{ Str::limit($bill->particular->particular,15) }} </a> 
+                {{ Str::limit($bill->particular->particular,15) }} </a>
             </x-td>
             <x-td>
                 {{ number_format($bill->bill, 2) }}
-                /{{ number_format(App\Models\Collection::where('bill_id', $bill->id)->sum('collection'), 2) }}
-                /{{ number_format(($bill->bill-App\Models\Collection::where('bill_id', $bill->id)->sum('collection')), 2) }}
+                /{{ number_format(App\Models\Collection::where('bill_id',
+                $bill->id)->posted()->sum('collection'), 2) }}
+                /{{ number_format(($bill->bill-App\Models\Collection::where('bill_id',
+                $bill->id)->posted()->sum('collection')), 2) }}
 
-                @if($bill->status === 'paid')
+                @if(App\Models\Collection::where('bill_id', $bill->id)->posted()->sum('collection'))
                 <span title="paid"
                     class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                     <i class="fa-solid fa-circle-check"></i>
-                </span>
-                @elseif($bill->status === 'partially_paid')
-                <span title="partially_paid"
-                    class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
-                    <i class="fa-solid fa-clock"></i>
                 </span>
                 @else
                 <span title="unpaid" class="px-2 text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
@@ -162,22 +180,24 @@
             </x-td>
 
             <x-td>
-             
-                <button data-modal-target="edit-bill-modal-{{$bill->id}}" data-modal-toggle="edit-bill-modal-{{$bill->id}}"
+
+                <button data-modal-target="edit-bill-modal-{{$bill->id}}"
+                    data-modal-toggle="edit-bill-modal-{{$bill->id}}"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
                     type="button">
                     Edit
                 </button>
-            
+
             </x-td>
             <x-td>
-              @if($bill->status === 'unpaid')
-                <button data-modal-target="delete-bill-modal-{{$bill->id}}" data-modal-toggle="delete-bill-modal-{{$bill->id}}"
+                @if($bill->status === 'unpaid')
+                <button data-modal-target="delete-bill-modal-{{$bill->id}}"
+                    data-modal-toggle="delete-bill-modal-{{$bill->id}}"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto"
                     type="button">
                     Delete
                 </button>
-               @endif
+                @endif
             </x-td>
         </tr>
         @livewire('edit-bill-component', ['bill_details' => $bill], key(Carbon\Carbon::now()->timestamp.''.$bill->id))
@@ -186,5 +206,5 @@
     </tbody>
 
     @endif
-    
+
 </table>

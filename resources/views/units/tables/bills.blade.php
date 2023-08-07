@@ -58,8 +58,10 @@
                 </span>
                 @endif
             </x-td>
-            <x-td>{{ number_format(App\Models\Collection::where('bill_id', $item->id)->sum('collection'), 2) }}</x-td>
-            <x-td>{{ number_format(($item->bill-App\Models\Collection::where('bill_id', $item->id)->sum('collection')),
+            <x-td>{{ number_format(App\Models\Collection::where('bill_id', $item->id)->posted()->sum('collection'), 2)
+                }}</x-td>
+            <x-td>{{ number_format(($item->bill-App\Models\Collection::where('bill_id',
+                $item->id)->posted()->sum('collection')),
                 2) }}</x-td>
         </tr>
         @endforeach
@@ -89,8 +91,8 @@
     <div class="mt-6">
         <button type="button" onclick="window.location.href='/property/{{ Session::get('property') }}/bill'"
             class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-        
-           New bill
+
+            New bill
         </button>
     </div>
 </div>

@@ -21,7 +21,7 @@
         <tr>
             <x-td>{{ $index+1 }}</x-td>
             <x-td>{{ $item->ar_no }}</x-td>
-            <x-td> {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}  </x-td>
+            <x-td> {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }} </x-td>
             <x-td>
                 @if($item->date_deposited)
                 {{ Carbon\Carbon::parse($item->date_deposited)->format('M d, Y') }}
@@ -45,7 +45,7 @@
                 @endif
             </x-td>
             <?php
-                $collections_count = App\Models\Collection::where('batch_no', $item->collection_batch_no)->count();
+                $collections_count = App\Models\Collection::where('batch_no', $item->collection_batch_no)->posted()->count();
             ?>
             <x-td>{{ number_format($item->amount,2) }} ({{ $collections_count }}) </x-td>
             <x-td>
@@ -79,7 +79,7 @@
             <x-td></x-td>
             <x-td></x-td>
             <?php
-            $property_collections_count = App\Models\Collection::posted()->where('property_uuid', Session::get('property'))->count();
+            $property_collections_count = App\Models\Collection::p->where('property_uuid', Session::get('property'))->posted()->count();
             ?>
             <x-td>
                 {{ number_format($collections->sum('amount'), 2) }}

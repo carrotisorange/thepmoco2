@@ -5,7 +5,9 @@
 
                 <li class="flex">
                     <div class="flex items-center">
-                        <button onclick="window.location.href='#'" class="text-lg font-medium text-gray-500 hover:text-gray-700" aria-current="page"> Tenants</button>
+                        <button onclick="window.location.href='#'"
+                            class="text-lg font-medium text-gray-500 hover:text-gray-700" aria-current="page">
+                            Tenants</button>
                     </div>
                 </li>
 
@@ -108,8 +110,7 @@
 
                 <div class="col-span-1">
 
-                    <label class="block text-sm font-medium text-gray-700"> You may upload the deposit slip here
-                        here.
+                    <label class="block text-sm font-medium text-gray-700"> You may upload the deposit slip here.
                     </label>
                     <div class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
@@ -183,62 +184,70 @@
                     @endif
                     @enderror
                 </div>
+
             </div>
         </div>
         <div class="mt-5 bg-white-500">
             <div class="relative overflow-x-auto sm:rounded-lg">
-               <form method="POST" id="edit-form" enctype="multipart/form-data"
-                action="/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}/bills/{{ $batch_no }}/pay/update">
-                @method('patch')
-                @csrf
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <x-th>#</x-th>
-                            <x-th>AR #</x-th>
-                            <x-th>Date posted</x-th>
-                            <x-th>Particular</x-th>
-                            {{-- <x-th>Unit</x-th> --}}
-                            <x-th>Period</x-th>
-                            <x-th>Amount Due</x-th>
-                            <x-th>Payment</x-th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($collections as $index => $bill)
-                        <tr>
-                            <x-td>{{ $index+1 }}</x-td>
-                            <x-td>{{ $bill->bill_no }}</x-td>
-                            <x-td>{{Carbon\Carbon::parse($bill->created_at)->format('M d,Y')}}
-                            </x-td>
-                            <x-td>{{$bill->particular->particular }}</x-td>
-                            {{-- <x-td>{{$bill->unit->unit }}</x-td> --}}
-                            <x-td>{{Carbon\Carbon::parse($bill->start)->format('M d,
-                                Y').'-'.Carbon\Carbon::parse($bill->end)->format('M d, Y') }}
-                            </x-td>
-                            <x-td>{{ number_format(($bill->bill-App\Models\Collection::where('bill_id',$bill->id)->where('is_posted',1)->sum('collection')), 2) }}
-                            </x-td>
-                            <x-td>
-                                <x-table-input form="edit-form" name="bill_id_{{ $index }}" type="hidden" value="{{ $bill->id }}" />
-                                <x-table-input form="edit-form" name="collection_amount_{{ $index }}" step="0.001" type="number" value="{{ $bill->bill-App\Models\Collection::where('bill_id', $bill->id)->where('is_posted',1)->sum('collection') }}" required readonly />
-                            </x-td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </form>
+                <form method="POST" id="edit-form" enctype="multipart/form-data"
+                    action="/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}/bills/{{ $batch_no }}/pay/update">
+                    @method('patch')
+                    @csrf
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <x-th>#</x-th>
+                                <x-th>AR #</x-th>
+                                <x-th>Date posted</x-th>
+                                <x-th>Particular</x-th>
+                                {{-- <x-th>Unit</x-th> --}}
+                                <x-th>Period</x-th>
+                                <x-th>Amount Due</x-th>
+                                <x-th>Payment</x-th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($collections as $index => $bill)
+                            <tr>
+                                <x-td>{{ $index+1 }}</x-td>
+                                <x-td>{{ $bill->bill_no }}</x-td>
+                                <x-td>{{Carbon\Carbon::parse($bill->created_at)->format('M d,Y')}}
+                                </x-td>
+                                <x-td>{{$bill->particular->particular }}</x-td>
+                                {{-- <x-td>{{$bill->unit->unit }}</x-td> --}}
+                                <x-td>{{Carbon\Carbon::parse($bill->start)->format('M d,
+                                    Y').'-'.Carbon\Carbon::parse($bill->end)->format('M d, Y') }}
+                                </x-td>
+                                <x-td>{{
+                                    number_format(($bill->bill-App\Models\Collection::where('bill_id',$bill->id)->posted()->sum('collection')),
+                                    2) }}
+                                </x-td>
+                                <x-td>
+                                    <x-table-input form="edit-form" name="bill_id_{{ $index }}" type="hidden"
+                                        value="{{ $bill->id }}" />
+                                    <x-table-input form="edit-form" name="collection_amount_{{ $index }}" step="0.001"
+                                        type="number"
+                                        value="{{ $bill->bill-App\Models\Collection::where('bill_id', $bill->id)->posted()->sum('collection') }}"
+                                        required readonly />
+                                </x-td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </form>
             </div>
         </div>
     </div>
 
     <div class="flex justify-end p-10 mt-5">
         <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-            href="/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}/collection/{{ $batch_no }}">
+            href="/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}/bills">
             Cancel
         </a>
-        <button type="button" form="edit-form" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        <button type="button" form="edit-form"
+            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             onclick="this.form.submit(); this.disabled = true; this.value = 'Submitting the form';">
-            Confirm Payment 
+            Confirm Payment
         </button>
     </div>
 </div>

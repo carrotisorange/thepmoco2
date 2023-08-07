@@ -147,7 +147,7 @@ class TenantController extends Controller
 
     public function show_tenant_bills($tenant_uuid)
     {
-       return Bill::where('tenant_uuid', $tenant_uuid)->where('is_posted', 1)->orderBy('id','desc')->get();
+       return Bill::where('tenant_uuid', $tenant_uuid)->posted()->orderBy('id','desc')->get();
     }
 
     public function show_tenant_collections($tenant_uuid)
