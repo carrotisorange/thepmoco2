@@ -159,7 +159,7 @@ class UtilityEditComponent extends Component
         Utility::where('property_uuid', $this->property_uuid)
         ->where('batch_no', $this->batch_no)
         ->update([
-            'is_posted' => 1
+            'is_posted' => true
         ]);
 
         //store utility parameters

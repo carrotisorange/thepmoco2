@@ -9,6 +9,7 @@ use PDF;
 use Carbon\Carbon;
 use App\Models\AcknowledgementReceipt;
 use Illuminate\Support\Str;
+use App\Models\Collection;
 
 class PropertyCollectionController extends Controller
 {
@@ -31,7 +32,7 @@ class PropertyCollectionController extends Controller
 
     public function export_dcr(Property $property, $date){
 
-        $collections = Property::find($property->uuid)->collections()->whereDate('updated_at', $date)->where('is_posted',1)->orderBy('ar_no')->distinct()->get();
+        $collections = Collection::where('property_uuid', $property->uuid)->whereDate('updated_at', $date)->where('is_posted',1)->orderBy('ar_no')->distinct()->get();
 
         $data = [
             'collections' => $collections,

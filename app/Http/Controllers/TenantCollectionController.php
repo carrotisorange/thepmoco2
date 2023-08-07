@@ -9,8 +9,6 @@ use Illuminate\Http\Request;
 use App\Models\Tenant;
 use App\Models\Collection;
 use App\Models\Property;
-use App\Models\User;
-use Session;
 use DB;
 use App\Models\Bill;
 use App\Models\Contract;
@@ -102,13 +100,15 @@ class TenantCollectionController extends Controller
      }
 
      public function update(Request $request, Property $property, Tenant $tenant, $batch_no)
-     {
-         Property::find($property->uuid)->collections()->where('tenant_uuid', $tenant->uuid)->where('is_posted', 0)->where('batch_no', '!=', $batch_no)->forceDelete();
+     {   
+         //delete previous unposted collections
+         app('App\Http\Controllers\CollectionController')->delete_unposted_collections($tenant->uuid, $batch_no);
 
+         //generate collection acknowledgement receipt no
          $ar_no = app('App\Http\Controllers\AcknowledgementReceiptController')->get_latest_ar($property->uuid);
 
-         $counter = $this->get_selected_bills_count($batch_no, $tenant->uuid);
-      
+         $counter = $this->get_selected_bills_count($batch_no, $tenant->uuid, $property->uuid);
+            
          for($i=0; $i<$counter; $i++)
          {
             $collection = (double) $request->input("collection_amount_".$i);
@@ -175,13 +175,13 @@ class TenantCollectionController extends Controller
 
          }
 
-      public function get_selected_bills_count($batch_no, $tenant_uuid)
+      public function get_selected_bills_count($batch_no, $tenant_uuid, $property_uuid)
       {
-      return Collection::where('property_uuid', Session::get('property'))
-      ->where('tenant_uuid',$tenant_uuid)
-      ->where('batch_no', $batch_no)
-      ->where('is_posted', false)
-      ->max('id');
+         return Collection::where('property_uuid', $property_uuid)
+         ->where('tenant_uuid',$tenant_uuid)
+         ->where('batch_no', $batch_no)
+         ->where('is_posted', 0)
+         ->max('id');
       }
 
      public function send_payment_to_tenant($tenant, $ar_no, $form, $payment_made, $user, $role, $collection)

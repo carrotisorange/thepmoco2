@@ -116,7 +116,7 @@ class ContractCreateComponent extends Component
                   'bill_no'=> app('App\Http\Controllers\BillController')->get_latest_bill_no($this->property_uuid),
                   'user_id' => auth()->user()->id,
                   'due_date' => Carbon::parse($this->start)->addDays(7),
-                  'is_posted' => 1
+                  'is_posted' => true
                   ]
           );
       }
