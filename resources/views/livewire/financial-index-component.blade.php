@@ -386,7 +386,90 @@
 
  --}}
 
+         <!-- rfp  -->
+         <div class="py-8 px-4 sm:px-6 lg:px-8">
+            <h2 class="font-semibold text-xl pb-8">Requests for Purchases</h2>
+            <div class="sm:flex sm:items-center justify-between space-x-4 pb-8">
+                
+                <div class="flex w-full">
+                    <p class="text-sm font-light">Choose Month </p>
 
+                                <select id="month" wire:model="filter"
+                                    class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+
+                                    <option value="January">January</option>
+                                    <option value="February">February</option>
+                                    <option value="March">March</option>
+                                    <option value="April">April</option>
+                                    <option value="May">May</option>
+                                    <option value="June">June</option>
+                                    <option value="July">July</option>
+                                    <option value="August">August</option>
+                                    <option value="September">September</option>
+                                    <option value="October">October</option>
+                                    <option value="November">November</option>
+                                    <option value="December">December</option>
+                                </select>
+
+                </div>
+                <div class="flex w-full">
+                    <p class="text-sm font-light">Choose Year </p>
+                        <select id="year" wire:model="filter"
+                                    class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+
+                                    <option value="2023">2023</option>
+                                    
+                        </select>
+                </div>
+
+                <div class="flex ">
+                    <a class="inline-flex items-center justify-end rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                        Search
+                    </a>
+                </div>
+                     
+            </div>
+
+            <table class="w-full mb-10 text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead class="bg-gray-50">
+                    <tr>
+                        
+                        <x-th>REQUESTED ON</x-th>
+                        <x-th>BATCH NO</x-th>
+                        <x-th>REQUESTED BY</x-th>
+                        <x-th>UNITS</x-th>
+                        <x-th>PARTICULARS</x-th>
+                        <x-th>AMOUNT</x-th>
+                
+                    </tr>
+                </thead>
+                    <tr>
+                    <x-td>Date</x-td>
+                    <x-td>123456</x-td>
+                    <x-td>First Name</x-td>
+                    <x-td>Unit 2</x-td>
+                    <x-td>Rent</x-td>
+                    <x-td>20,300</x-td>
+                
+                    </tr>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                      
+                        <tr>
+                            <x-td><b>Total</b></x-td>
+                            <x-th></x-th>
+                            <x-th></x-th>
+                            <x-th></x-th>
+                            <x-th></x-th>
+                            <x-td><b>{{ number_format($accountpayables->sum('amount'), 2) }}</b></x-td>
+                            <x-th></x-th>
+                        </tr>
+                    </tbody>
+    
+            </table>
+
+
+
+        </div>
 
                         
 

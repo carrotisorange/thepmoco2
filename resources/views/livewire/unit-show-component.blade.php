@@ -184,6 +184,12 @@
                                 id="financials-tab" data-tabs-target="#financials" type="button" role="tab"
                                 aria-controls="settings" aria-selected="false">Financials</button>
                         </li>
+                        <li class="mr-2" role="presentation">
+                            <button
+                                class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                id="remittance-summary-tab" data-tabs-target="#remittance-summary" type="button" role="tab"
+                                aria-controls="remittance-summary" aria-selected="false">Remittance Summary</button>
+                        </li>
                     </ul>
                 </div>
                 <div id="myTabContent">
@@ -314,6 +320,257 @@
 
                         </div>
                     </div>
+                    <div class="p-4 purple rounded-lg dark:bg-gray-800" id="remittance-summary" role="tabpanel"
+                        aria-labelledby="remittance-summary-tab">
+                        <div>
+                        <div class="flex items-center justify-center">
+                                <button class="text-xs text-white bg-purple-500 hover:bg-gray-400 p-2 rounded-lg ">Send Email to Owner</button>
+                        </div>
+                       
+                            
+                            <div class="-mt-10 flex items-center px-8 py-5 border-b">
+                                <div class="w-0 flex-1 pt-0.5">
+                                    <p class="text-sm font-medium text-gray-900">Date
+                                    </p>
+             
+                                </div>
+                            </div>
+
+                            <div class="flex items-center px-8 py-5 border-b">
+                                <div class="w-0 flex-1 pt-0.5">
+                                    <div class="grid grid-cols-2">
+                                        <p class="text-sm font-medium text-gray-900">Amount Collected
+                                        </p>
+                                        <p class="mt-1 text-sm font-base text-gray-500">
+                                            Value
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center px-8 py-5 border-b">
+                                <div class="w-0 flex-1 pt-0.5">
+                                    <div class="grid grid-cols-2">
+                                        <p class="text-sm font-medium text-gray-900">Rent
+                                        </p>
+                                        <p class="mt-1 text-sm font-base text-gray-500">
+                                            Value
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                       
+                            <div class="flex items-center px-8 py-5 border-b">
+                                <div class="w-0 flex-1 pt-0.5">
+                                    <p class="text-sm font-medium text-gray-900">Deductions
+                                    </p>
+                                    <div class="grid grid-cols-2">
+    
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Management Fee
+                                    </p>
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Value
+                                    </p>
+
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Total Project Cost
+                                    </p>
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Value
+                                    </p>
+
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Bank Transfer Fee
+                                    </p>
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Value
+                                    </p>
+
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Purchased Materials/Unit Repairs/Others
+                                    </p>
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Value
+                                    </p>
+
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Total Project Cost
+                                    </p>
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Value
+                                    </p>
+
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Unit Ownership Fee
+                                    </p>
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Value
+                                    </p>
+
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Condo Dues
+                                    </p>
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Value
+                                    </p>
+
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Parking Dues
+                                    </p>
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Value
+                                    </p>
+
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Water
+                                    </p>
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Value
+                                    </p>
+
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Electricity
+                                    </p>
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Value
+                                    </p>
+
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Generator Share
+                                    </p>
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Value
+                                    </p>
+
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Surcharges of Unit Owner
+                                    </p>
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Value
+                                    </p>
+
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Building Insurance
+                                    </p>
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Value
+                                    </p>
+
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Real Property Tax Common Area
+                                    </p>
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Value
+                                    </p>
+
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Housekeeping Fee
+                                    </p>
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Value
+                                    </p>
+
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Laundry Fee
+                                    </p>
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Value
+                                    </p>
+
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Complimentary
+                                    </p>
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Value
+                                    </p>
+
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Internet
+                                    </p>
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Value
+                                    </p>
+
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Special Assessment
+                                    </p>
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Value
+                                    </p>
+
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Materials Recovery Facility
+                                    </p>
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Value
+                                    </p>
+
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Recharge of Fire Extinguisher
+                                    </p>
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Value
+                                    </p>
+
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Environmental Fee
+                                    </p>
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Value
+                                    </p>
+
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Bladder Tank
+                                    </p>
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Value
+                                    </p>
+
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Cause of Magnet
+                                    </p>
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Value
+                                    </p>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+
+                            <div class="flex items-center px-8 py-5 border-b">
+                                <div class="w-0 flex-1 pt-0.5">
+                                    <div class="grid grid-cols-2">
+                                        <p class="text-sm font-medium text-gray-900">Total Deductions
+                                        </p>
+                                        <p class="mt-1 text-sm font-base text-gray-500">
+                                            Value
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center px-8 py-5">
+                                <div class="w-0 flex-1 pt-0.5">
+                                    <div class="grid grid-cols-2">
+                                        <p class="text-sm font-medium text-gray-900">Net Remittance
+                                        </p>
+                                        <p class="mt-1 text-sm font-base text-gray-500">
+                                            Value
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+
+                    </div>
+                </div>
+
+
                     <div class="hidden p-4 purple rounded-lg dark:bg-gray-800" id="tenants" role="tabpanel"
                         aria-labelledby="tenants-tab">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
