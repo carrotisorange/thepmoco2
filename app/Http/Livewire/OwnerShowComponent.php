@@ -269,7 +269,7 @@ class OwnerShowComponent extends Component
             'deed_of_sales' => app('App\Http\Controllers\OwnerController')->show_owner_deed_of_sales($this->owner_details->uuid),
             'enrollees' => app('App\Http\Controllers\OwnerController')->show_owner_enrollees($this->owner_details->uuid),
             'credentials' => User::where('owner_uuid', $this->owner_details->uuid)->get(),
-            'bills' => Bill::where('owner_uuid', $this->owner_details->uuid)->where('is_posted',1)->get(),
+            'bills' => Bill::where('owner_uuid', $this->owner_details->uuid)->posted()->get(),
             'collections' => app('App\Http\Controllers\OwnerCollectionController')->get_owner_collections($this->property->uuid, $this->owner_details->uuid),
             'username' => User::where('owner_uuid', $this->owner_details->uuid)->value('username'),
             'spouse' => Spouse::where('owner_uuid', $this->owner_details->uuid)->get()

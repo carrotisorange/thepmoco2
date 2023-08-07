@@ -363,7 +363,7 @@ class TenantBillCreateComponent extends Component
          'statuses' => $statuses,
          'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
          'unpaid_bills' => app('App\Http\Controllers\TenantBillController')->get_tenant_balance($this->tenant->uuid),
-         'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($this->property->uuid),
+         // 'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($this->property->uuid),
          'units' => app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($this->tenant->uuid),
          'note_to_bill' => $this->property->note_to_bill,
          'particulars' => $particulars

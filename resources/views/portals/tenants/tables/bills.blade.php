@@ -69,10 +69,11 @@
                 @endif
             </x-td>
             <x-td>
-                {{ number_format(App\Models\Collection::where('bill_id', $item->id)->sum('collection'), 2) }}
+                {{ number_format(App\Models\Collection::where('bill_id', $item->id)->posted()->sum('collection'), 2) }}
             </x-td>
             <x-td>
-                {{ number_format(($item->bill-App\Models\Collection::where('bill_id', $item->id)->sum('collection')), 2)
+                {{ number_format(($item->bill-App\Models\Collection::where('bill_id',
+                $item->id)->posted()->sum('collection')), 2)
                 }}
             </x-td>
         </tr>

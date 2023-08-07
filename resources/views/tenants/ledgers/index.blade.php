@@ -104,7 +104,7 @@
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                     {{
                                                     number_format(($item->bill-App\Models\Collection::where('bill_id',
-                                                    $item->id)->sum('collection')), 2) }}
+                                                    $item->id)->posted()->sum('collection')), 2) }}
                                                 </td>
 
                                             </tr>

@@ -46,7 +46,7 @@ class PortalTenantController extends Controller
 
     public function get_bills($tenant_uuid)
     {
-          return Bill::where('tenant_uuid', $tenant_uuid)->where('is_posted', 1)->orderBy('id','desc')->get();
+          return Bill::where('tenant_uuid', $tenant_uuid)->posted()->orderBy('id','desc')->get();
     }
   
 
@@ -103,7 +103,7 @@ class PortalTenantController extends Controller
         return view('portals.tenants.collections',[
             'collections' => Collection::select('*', DB::raw("SUM(collection) as collection"),DB::raw("count(collection) as count"))
             ->where('tenant_uuid', $user->tenant_uuid)
-            ->where('is_posted', 1)
+            ->posted()
             ->groupBy('ar_no')
             ->orderBy('ar_no', 'desc')
             ->get()

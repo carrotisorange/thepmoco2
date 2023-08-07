@@ -57,7 +57,8 @@
 
 
                 <p class="mt-2 text-sm text-gray-500">
-                    You've selected {{ count($selectedBills) }} {{ Str::plural('bill', count($selectedBills))}} amounting to {{ number_format($total) }}...
+                    You've selected {{ count($selectedBills) }} {{ Str::plural('bill', count($selectedBills))}}
+                    amounting to {{ number_format($total) }}...
                 </p>
                 @else
                 <p class="mt-2 text-sm text-gray-500">
@@ -156,7 +157,7 @@
 
                             @forelse ($bills as $item)
                             <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
-                        <!-- Selected: "bg-gray-50" -->
+                                <!-- Selected: "bg-gray-50" -->
                                 @if($item->particular_id != '71' && $item->particular_id != '72')
                                 <tr>
                                     <td class="relative w-12 px-6 sm:w-16 sm:px-8">
@@ -189,25 +190,25 @@
                                         y').'-'.Carbon\Carbon::parse($item->end)->format('M d, y') }}
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                         @if($item->particular_id === 1)
+                                        @if($item->particular_id === 1)
                                         Due to unit owner
                                         @else
                                         {{ $item->particular->particular}}
                                         @endif
-                                       
+
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         <?php 
-                                            $marketing_fee = App\Models\Bill::where('particular_id', '71')->where('bill_id',$item->id)->pluck('bill')->last();
-                                            $management_fee = App\Models\Bill::where('particular_id', '72')->where('bill_id',$item->id)->pluck('bill')->last();
+                                            $marketing_fee = App\Models\Bill::where('particular_id', '71')->where('bill_id',$item->id)->posted()->pluck('bill')->last();
+                                            $management_fee = App\Models\Bill::where('particular_id', '72')->where('bill_id',$item->id)->posted()->pluck('bill')->last();
                                             
                                             $other_fees = $marketing_fee + $management_fee ?>
-            
+
 
                                         {{ number_format($item->bill+$other_fees, 2) }}
-                                   
-                                
-                                 
+
+
+
                                         @if($item->status === 'paid')
                                         <span title="paid"
                                             class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -231,14 +232,19 @@
                                         </span>
                                         @endif
                                     </td>
-                                    
+
                                     <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">
-                                        {{ number_format(App\Models\Collection::where('tenant_uuid', $item->tenant_uuid)->where('bill_id', $item->id)->where('is_posted',1)->sum('collection'), 2) }}
+                                        {{ number_format(App\Models\Collection::where('tenant_uuid',
+                                        $item->tenant_uuid)->where('bill_id',
+                                        $item->id)->posted()->sum('collection'), 2) }}
                                     </td>
-                                   
+
                                     <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">
-                                      
-                                        {{ number_format((($item->bill + $other_fees)-App\Models\Collection::where('tenant_uuid', $item->tenant_uuid)->where('bill_id',$item->id)->where('is_posted', 1)->sum('collection')), 2) }}
+
+                                        {{ number_format((($item->bill +
+                                        $other_fees)-App\Models\Collection::where('tenant_uuid',
+                                        $item->tenant_uuid)->where('bill_id',$item->id)->posted()->sum('collection')),
+                                        2) }}
                                     </td>
 
 
@@ -260,9 +266,16 @@
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"></td>
 
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ number_format(App\Models\Bill::where('tenant_uuid', $item->tenant_uuid)->where('is_posted', 1)->sum('bill'), 2) }}</td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ number_format(App\Models\Collection::where('tenant_uuid', $item->tenant_uuid)->where('is_posted', 1)->sum('collection'), 2) }}</td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ number_format((App\Models\Bill::where('tenant_uuid', $item->tenant_uuid)->where('is_posted', 1)->sum('bill')-App\Models\Collection::where('tenant_uuid', $item->tenant_uuid)->where('is_posted',1)->sum('collection')), 2) }}</td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{
+                                    number_format(App\Models\Bill::where('tenant_uuid',
+                                    $item->tenant_uuid)->posted()->sum('bill'), 2) }}</td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{
+                                    number_format(App\Models\Collection::where('tenant_uuid',
+                                    $item->tenant_uuid)->posted()->sum('collection'), 2) }}</td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{
+                                    number_format((App\Models\Bill::where('tenant_uuid',
+                                    $item->tenant_uuid)->posted()->sum('bill')-App\Models\Collection::where('tenant_uuid',
+                                    $item->tenant_uuid)->posted()->sum('collection')), 2) }}</td>
                             </tr>
 
                         </table>

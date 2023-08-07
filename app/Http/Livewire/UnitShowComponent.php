@@ -191,7 +191,7 @@ class UnitShowComponent extends Component
 
     public function render()
     {
-            $utilities = Utility::isposted()
+            $utilities = Utility::posted()
               ->select('*', 'units.unit as unit_name' )
               ->join('units', 'utilities.unit_uuid', 'units.uuid')
               ->where('utilities.property_uuid', $this->unit_details->property_uuid)

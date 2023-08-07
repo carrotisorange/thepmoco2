@@ -40,7 +40,7 @@
     @foreach($bills as $index => $item)
 
     <tr>
-        @if ($item->bill-App\Models\Collection::where('bill_id', $item->id)->sum('collection') > 0)
+        @if ($item->bill-App\Models\Collection::where('bill_id', $item->id)->posted()->sum('collection') > 0)
         <x-td>{{ $index+1 }}</x-td>
         <x-td>{{ $item->bill_no }}</x-td>
         <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}</x-td>
@@ -48,7 +48,8 @@
         <x-td>{{ $item->particular->particular }}</x-td>
         <x-td>{{ Carbon\Carbon::parse($item->start)->format('M d,
             Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }} </x-td>
-        <x-td>{{ number_format(($item->bill-App\Models\Collection::where('bill_id', $item->id)->sum('collection')),2) }}
+        <x-td>{{ number_format(($item->bill-App\Models\Collection::where('bill_id',
+            $item->id)->posted()->sum('collection')),2) }}
         </x-td>
         @endif
     </tr>

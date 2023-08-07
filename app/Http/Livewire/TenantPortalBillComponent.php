@@ -107,7 +107,7 @@ class TenantPortalBillComponent extends Component
         //    'bills' =>   app('App\Http\Controllers\TenantController')->show_tenant_bills($this->tenant->uuid),
            
            'bills' =>  Bill::where('tenant_uuid', $this->tenant->uuid)
-           ->where('is_posted', 1)
+           ->posted()
             ->when($this->status, function($query){
              $query->whereIn('status', [$this->status]);
              })

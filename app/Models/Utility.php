@@ -22,7 +22,7 @@ class Utility extends Model
         return $this->belongsTo(Property::class, 'property_uuid');
     }
 
-    public function scopeIsPosted($query){
+    public function scopePosted($query){
         return $query->where('is_posted', 1);
     }
 }

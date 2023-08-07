@@ -317,20 +317,30 @@
 
         <div class="font-medium leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Utilities</div>
 
-        
-        
-       
-        <x-nav-link href="">
 
-            <span class="sr-only">Remittance</span>
+
+        @if(Session::get('property'))
+        <x-nav-link href="/property/{{ Session::get('property') }}/remittances"
+            :active="request()->routeIs('remittances')">
+
+            <span class="sr-only">Remittances</span>
             <img class="h-8 w-auto" src="{{ asset('/brands/remittance.png') }}" fill="none" viewBox="0 0 24 24"
                 stroke-width="2" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round"
                 d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
         </x-nav-link>
-        
+        @else
+        <x-nav-link href="/property/" :active="request()->routeIs('remittances')">
 
-        <div class="font-medium leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Remittance</div>
+            <span class="sr-only">Remittances</span>
+            <img class="h-8 w-auto" src="{{ asset('/brands/remittance.png') }}" fill="none" viewBox="0 0 24 24"
+                stroke-width="2" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+        </x-nav-link>
+        @endif
+
+        <div class="font-medium leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Remittances</div>
 
     </div>
 </nav>

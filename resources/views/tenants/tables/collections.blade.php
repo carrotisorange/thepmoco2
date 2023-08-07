@@ -46,7 +46,7 @@
                 @endif
             </x-td>
             <?php
-                            $collections_count = App\Models\Collection::where('batch_no', $item->collection_batch_no)->count();
+                            $collections_count = App\Models\Collection::where('batch_no', $item->collection_batch_no)->posted()->count();
                         ?>
             <x-td>{{ number_format($item->amount,2) }} ({{ $collections_count }}) </x-td>
             <x-td>

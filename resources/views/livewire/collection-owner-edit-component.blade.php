@@ -110,8 +110,7 @@
 
                 <div class="col-span-1">
 
-                    <label class="block text-sm font-medium text-gray-700"> You may upload the deposit slip here
-                        here.
+                    <label class="block text-sm font-medium text-gray-700"> You may upload the deposit slip here.
                     </label>
                     <div class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
@@ -225,11 +224,17 @@
                                 <x-td>{{Carbon\Carbon::parse($bill->start)->format('M d,
                                     Y').'-'.Carbon\Carbon::parse($bill->end)->format('M d, Y') }}
                                 </x-td>
-                                <x-td>{{ number_format(($bill->bill-App\Models\Collection::where('bill_id',$bill->id)->where('is_posted',1)->sum('collection')), 2) }}
+                                <x-td>{{
+                                    number_format(($bill->bill-App\Models\Collection::where('bill_id',$bill->id)->posted()->sum('collection')),
+                                    2) }}
                                 </x-td>
                                 <x-td>
-                                    <x-table-input form="edit-form" name="bill_id_{{ $index }}" type="hidden" value="{{ $bill->id }}" />
-                                     <x-table-input form="edit-form" name="collection_amount_{{ $index }}" step="0.001" type="number" value="{{ $bill->bill-App\Models\Collection::where('bill_id', $bill->id)->where('is_posted',1)->sum('collection') }}" required readonly />
+                                    <x-table-input form="edit-form" name="bill_id_{{ $index }}" type="hidden"
+                                        value="{{ $bill->id }}" />
+                                    <x-table-input form="edit-form" name="collection_amount_{{ $index }}" step="0.001"
+                                        type="number"
+                                        value="{{ $bill->bill-App\Models\Collection::where('bill_id', $bill->id)->posted()->sum('collection') }}"
+                                        required readonly />
                                 </x-td>
                             </tr>
                             @endforeach
@@ -242,10 +247,10 @@
 
     <div class="flex justify-end p-10 mt-5">
         <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-            href="/property/{{ Session::get('property') }}/owner/{{ $owner->uuid }}/collection/{{ $batch_no }}">
+            href="/property/{{ Session::get('property') }}/owner/{{ $owner->uuid }}/bills">
             Cancel
         </a>
-       <button type="button" form="edit-form"
+        <button type="button" form="edit-form"
             class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             onclick="this.form.submit(); this.disabled = true; this.value = 'Submitting the form';">
             Confirm Payment

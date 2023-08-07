@@ -163,9 +163,10 @@ class UnitController extends Controller
         select('*', DB::raw("SUM(collection) as collection"),DB::raw("count(collection) as count") )
         ->where('property_uuid', $property_uuid)
         ->where('unit_uuid', $unit_uuid)
-        ->where('is_posted', 1)
+
         ->groupBy('ar_no')
         ->orderBy('ar_no', 'desc')
+        ->posted()
         ->get();
     }
 }

@@ -68,51 +68,34 @@
                     <button type="button" data-modal-toggle="create-particular-modal"
                         class="inline-flex items-end justify-end rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
                         Create Particular</a></button>
-
-                    {{-- <button type="button" data-modal-toggle="instructions-create-particular-modal"
-                        class="inline-flex items-end justify-end rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-                        Create Particular</a></button> --}}
                 </div>
             </div>
 
 
         </div>
     </div>
-    {{-- Reference # : <b> {{ $tenant->bill_reference_no }}</b>, Security Deposit: <b> {{
-        number_format(App\Models\Tenant::find($tenant->uuid)->wallets()->sum('amount'), 2) }}</b> --}}
+    {{-- Reference # : <b> {{ $owner->bill_reference_no }}</b>, Security Deposit: <b> {{
+        number_format(App\Models\Owner::find($owner->uuid)->wallets()->sum('amount'), 2) }}</b> --}}
 
     <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-        <div class="sm:col-span-2">
+        <div class="sm:col-span-3">
             @if($bills)
             <label for="status" class="block text-sm font-medium text-gray-700">Filter status</label>
             <select wire:model.lazy="status" autocomplete="status"
                 class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 <option value="all" {{ $status=='' ? 'selected' : 'selected' }}> all </option>
                 <option value="paid" {{ $status=='paid' ? 'selected' : 'selected' }}> paid </option>
+                <option value="partially_paid" {{ $status=='partially_paid' ? 'selected' : 'selected' }}> partially paid
+                </option>
                 <option value="unpaid" {{ $status=='unpaid' ? 'selected' : 'selected' }}> unpaid </option>
-              
+
             </select>
 
             @endif
 
         </div>
-        <div class="sm:col-span-2">
-            @if($bills)
-            <label for="unit" class="block text-sm font-medium text-gray-700">Filter units</label>
-            <select wire:model.lazy="unit" autocomplete="unit"
-                class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                @foreach ($units as $unit)
-                <option value="{{ $unit->unit->uuid }}" {{ old('unit_uuid')==$unit->unit->uuid?
-                    'selected': 'Select one'
-                    }}>{{ $unit->unit->unit }}</option>
 
-                @endforeach
-            </select>
-
-            @endif
-
-        </div>
-        <div class="sm:col-span-2">
+        <div class="sm:col-span-3">
             @if($bills)
             <label for="particular" class="block text-sm font-medium text-gray-700">Filter particulars</label>
             <select wire:model.lazy="particular" autocomplete="particular"
@@ -134,13 +117,13 @@
         <div class="flex flex-row">
             <div class="basis-3/4">
 
-                @can('is_account_receivable_create_allowed')
+
                 @if($total_unpaid_bills->sum('bill') && $selectedBills)
                 <button type="button" wire:click="payBills"
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Pay Bills
                 </button>
-             
+
                 <div class="mt-5">
                     <span>You've selected <b>{{ count($selectedBills) }}</b> {{ Str::plural('bill',
                         count($selectedBills))}}
@@ -151,13 +134,24 @@
                     <b>Please check the bill you want to pay</b>
                 </div>
                 @endif
-                @endcan
+
 
             </div>
-           
+            {{-- <div class="basis-1/4 ml-12 text-right">
+
+                @if($selectedBills)
+                <x-button
+                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    title="remove selected bills" onclick="confirmMessage()" wire:click="removeBills()">
+                    Remove
+                    bills ({{ count($selectedBills) }})
+                </x-button>
+                @endif
+
+            </div> --}}
         </div>
     </div>
-
+    {{-- {{ $bills->links() }} --}}
     <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="bg-white border-b border-gray-200">
             <div class="flex flex-col">
@@ -171,6 +165,7 @@
             </div>
         </div>
     </div>
+    @include('layouts.notifications')
     @include('layouts.notifications')
     @include('modals.instructions.create-tenant-bill-modal')
     @include('modals.export-tenant-bill')

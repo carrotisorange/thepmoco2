@@ -31,7 +31,7 @@ class OwnerCollectionController extends Controller
         select('*', DB::raw("SUM(collection) as collection"),DB::raw("count(collection) as count") )
         ->where('property_uuid', $property_uuid)
         ->where('owner_uuid', $owner_uuid)
-        ->where('is_posted', 1)
+        ->posted()
         ->groupBy('ar_no')
         ->orderBy('ar_no', 'desc')
         ->get();
@@ -75,9 +75,9 @@ class OwnerCollectionController extends Controller
 
      public function get_collection_data($owner, $collection)
      {
-        $aggregated_collection = Collection::where('property_uuid', $collection->property_uuid)->where('owner_uuid', $owner->uuid)->where('is_posted', 1)->where('ar_no', $collection->ar_no);
-        $unpaid_bills = Bill::where('owner_uuid', $owner->uuid)->where('is_posted', 1)->sum('bill');
-        $paid_bills = Collection::where('owner_uuid', $owner->uuid)->where('is_posted', 1)->sum('collection');
+        $aggregated_collection = Collection::where('property_uuid', $collection->property_uuid)->where('owner_uuid', $owner->uuid)->posted()->where('ar_no', $collection->ar_no);
+        $unpaid_bills = Bill::where('owner_uuid', $owner->uuid)->posted()->sum('bill');
+        $paid_bills = Collection::where('owner_uuid', $owner->uuid)->posted()->sum('collection');
 
         if($unpaid_bills<=0){
             $balance = 0;

@@ -58,12 +58,11 @@ table th{
     top: 0px;
     background-color:#e3e3e3;
     color: #2e2e2e;
-    
     text-align: center;
-    font-weight: medium;
-    font-size: 14px;
-    outline: 0.7px solid black;
-    border: 1.5px solid black;
+    font-weight: light;
+    font-size: 12px;
+    outline: 0.7px ;
+    border: 1.5px solid gray;
 
 } 
 
@@ -149,15 +148,15 @@ table td {
                                 <option value="January">January</option>
                                 <option value="February">February</option>
                                 <option value="March">March</option>
-                                <option value="March">April</option>
-                                <option value="March">May</option>
-                                <option value="March">June</option>
-                                <option value="March">July</option>
-                                <option value="March">August</option>
-                                <option value="March">September</option>
-                                <option value="March">October</option>
-                                <option value="March">November</option>
-                                <option value="March">December</option>
+                                <option value="April">April</option>
+                                <option value="May">May</option>
+                                <option value="June">June</option>
+                                <option value="July">July</option>
+                                <option value="August">August</option>
+                                <option value="September">September</option>
+                                <option value="October">October</option>
+                                <option value="November">November</option>
+                                <option value="December">December</option>
                             </select>
 
             </div>
@@ -176,49 +175,75 @@ table td {
             <th>Particulars</th>
             <th>Tenant Name</th>
             <th>Owner Name</th>
-            <th class="bg-yellow-300">Payee Name</th>  <!-- YELLOW = MANUAL INPUT -->
+            <th>Payee Name</th> 
             <th>Monthly Rent</th> <!-- AUTO COMPUTE -->
             <th>Net Rent </th> <!-- MANAGEMENT FEE + NET RENT -->
             <th>Management Fee</th> <!-- FROM COLLECTION -->
-            <th class="bg-yellow-300">Service Charge</th> <!-- YELLOW = MANUAL INPUT -->
-            <th class="bg-yellow-300">Purchased Materials Particulars</th>
-            <th class="bg-yellow-300">Recharge of Fire Extinguisher</th>
-            <th class="bg-yellow-300">Garbage Fee</th>
-            <th class="bg-yellow-300">PROP.MOD.&DEVT</th>
-            <th class="bg-yellow-300">BUILDING INSURANCE</th>
+            <th>Marketing Fee</th>
+            <th class="bg-yellow-300">Bank Transfer Fee</th>
+            <th class="bg-yellow-300">Purchased Materials/Unit Repairs/Others</th>
+            <th class="bg-yellow-300">Unit Owner Membership Fee </th>
             <th class="bg-yellow-300">CONDO DUES</th>
-            <th class="bg-yellow-300">CONDO DUES REMARKS</th> 
+            <th class="bg-yellow-300">PARKING DUES</th>
+            <th class="bg-yellow-300">WATER</th>
+            <th class="bg-yellow-300">ELECTRICITY</th>
+            <th class="bg-yellow-300">GENERATOR SHARE</th>
+            <th class="bg-yellow-300">SURCHARGES OF UNIT OWNER</th>
+            <th class="bg-yellow-300">BUILDING INSURANCE</th>
             <th class="bg-yellow-300">REAL PROPERTY TAX - COMMON AREA</th>
+            <th class="bg-yellow-300">HOUSEKEEPING FEE</th>
+            <th class="bg-yellow-300">LAUNDRY FEE</th>
+            <th class="bg-yellow-300">COMPLIMENTARY</th>
+            <th class="bg-yellow-300">INTERNET</th> 
+            <th class="bg-yellow-300">SPECIAL ASSESSMENT</th>
+            <th class="bg-yellow-300">MATERIALS RECOVERY FACILITY</th>
+            <th class="bg-yellow-300">RECHARGE OF FIRE EXTINGUISHER</th>
+            <th class="bg-yellow-300">ENVIRONMENTAL FEE</th>
+            <th class="bg-yellow-300">BLADDER TANK</th>
+            <th class="bg-yellow-300">CAUSE OF MAGNET</th>
             <th>TOTAL DEDUCTIONS</th>
             <th>REMITTANCE</th>
             <th>CV NO.</th> 
             <th>Check No</th>
         </thead>
         <tbody>
-            <tr>
+        <tr>
             <td class="sticky-col first-col">Unit 2</td>
             <td class="sticky-col second-col">01-AUG-23</td>
             <td class="sticky-col third-col">12345</td>
             <td class="sticky-col fourth-col">Rent for July</td>
             <td class="sticky-col fifth-col">Juan Dela Cruz</td>
             <td class="sticky-col sixth-col">Chrisostomo Ibarra Jr</td>
-                <td><input></input></td>
                 <td>Value 7</td>
                 <td>Value 8</td>
                 <td>Value 9</td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
                 <td>Value 10</td>
                 <td>Value 11</td>
-                <td>Value 12</td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td>Value 33</td>
+                <td>Value 34</td>
+                <td>Value 35</td>
+                <td>Value 36</td>
             </tr>
 
             <tr>
@@ -228,23 +253,36 @@ table td {
             <td class="sticky-col fourth-col">Rent for July</td>
             <td class="sticky-col fifth-col">Juan Dela Cruz</td>
             <td class="sticky-col sixth-col">Chrisostomo Ibarra Jr</td>
-                <td><input></input></td>
                 <td>Value 7</td>
                 <td>Value 8</td>
                 <td>Value 9</td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
                 <td>Value 10</td>
                 <td>Value 11</td>
-                <td>Value 12</td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td>Value 33</td>
+                <td>Value 34</td>
+                <td>Value 35</td>
+                <td>Value 36</td>
             </tr>
 
             <tr>
@@ -254,23 +292,36 @@ table td {
             <td class="sticky-col fourth-col">Rent for July</td>
             <td class="sticky-col fifth-col">Juan Dela Cruz</td>
             <td class="sticky-col sixth-col">Chrisostomo Ibarra Jr</td>
-                <td><input></input></td>
                 <td>Value 7</td>
                 <td>Value 8</td>
                 <td>Value 9</td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
                 <td>Value 10</td>
                 <td>Value 11</td>
-                <td>Value 12</td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td>Value 33</td>
+                <td>Value 34</td>
+                <td>Value 35</td>
+                <td>Value 36</td>
             </tr>
 
             <tr>
@@ -280,23 +331,76 @@ table td {
             <td class="sticky-col fourth-col">Rent for July</td>
             <td class="sticky-col fifth-col">Juan Dela Cruz</td>
             <td class="sticky-col sixth-col">Chrisostomo Ibarra Jr</td>
-                <td><input></input></td>
                 <td>Value 7</td>
                 <td>Value 8</td>
                 <td>Value 9</td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
                 <td>Value 10</td>
                 <td>Value 11</td>
-                <td>Value 12</td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td>Value 33</td>
+                <td>Value 34</td>
+                <td>Value 35</td>
+                <td>Value 36</td>
+            </tr>
+
+
+            <tr>
+            <td class="sticky-col first-col">Unit 2</td>
+            <td class="sticky-col second-col">01-AUG-23</td>
+            <td class="sticky-col third-col">12345</td>
+            <td class="sticky-col fourth-col">Rent for July</td>
+            <td class="sticky-col fifth-col">Juan Dela Cruz</td>
+            <td class="sticky-col sixth-col">Chrisostomo Ibarra Jr</td>
+                <td>Value 7</td>
+                <td>Value 8</td>
+                <td>Value 9</td>
+                <td>Value 10</td>
+                <td>Value 11</td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td>Value 33</td>
+                <td>Value 34</td>
+                <td>Value 35</td>
+                <td>Value 36</td>
             </tr>
 
             <tr>
@@ -306,24 +410,38 @@ table td {
             <td class="sticky-col fourth-col">Rent for July</td>
             <td class="sticky-col fifth-col">Juan Dela Cruz</td>
             <td class="sticky-col sixth-col">Chrisostomo Ibarra Jr</td>
-                <td><input></input></td>
                 <td>Value 7</td>
                 <td>Value 8</td>
                 <td>Value 9</td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
                 <td>Value 10</td>
                 <td>Value 11</td>
-                <td>Value 12</td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td>Value 33</td>
+                <td>Value 34</td>
+                <td>Value 35</td>
+                <td>Value 36</td>
             </tr>
+
 
             <tr>
             <td class="sticky-col first-col">Unit 2</td>
@@ -332,24 +450,38 @@ table td {
             <td class="sticky-col fourth-col">Rent for July</td>
             <td class="sticky-col fifth-col">Juan Dela Cruz</td>
             <td class="sticky-col sixth-col">Chrisostomo Ibarra Jr</td>
-                <td><input></input></td>
                 <td>Value 7</td>
                 <td>Value 8</td>
                 <td>Value 9</td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
                 <td>Value 10</td>
                 <td>Value 11</td>
-                <td>Value 12</td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td>Value 33</td>
+                <td>Value 34</td>
+                <td>Value 35</td>
+                <td>Value 36</td>
             </tr>
+
 
             <tr>
             <td class="sticky-col first-col">Unit 2</td>
@@ -358,24 +490,38 @@ table td {
             <td class="sticky-col fourth-col">Rent for July</td>
             <td class="sticky-col fifth-col">Juan Dela Cruz</td>
             <td class="sticky-col sixth-col">Chrisostomo Ibarra Jr</td>
-                <td><input></input></td>
                 <td>Value 7</td>
                 <td>Value 8</td>
                 <td>Value 9</td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
                 <td>Value 10</td>
                 <td>Value 11</td>
-                <td>Value 12</td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td>Value 33</td>
+                <td>Value 34</td>
+                <td>Value 35</td>
+                <td>Value 36</td>
             </tr>
+
 
             <tr>
             <td class="sticky-col first-col">Unit 2</td>
@@ -384,24 +530,38 @@ table td {
             <td class="sticky-col fourth-col">Rent for July</td>
             <td class="sticky-col fifth-col">Juan Dela Cruz</td>
             <td class="sticky-col sixth-col">Chrisostomo Ibarra Jr</td>
-                <td><input></input></td>
                 <td>Value 7</td>
                 <td>Value 8</td>
                 <td>Value 9</td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
                 <td>Value 10</td>
                 <td>Value 11</td>
-                <td>Value 12</td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td><input></input></td>
+                <td>Value 33</td>
+                <td>Value 34</td>
+                <td>Value 35</td>
+                <td>Value 36</td>
             </tr>
+
 
             <tr>
             <td class="sticky-col first-col">Unit 2</td>
@@ -410,36 +570,11 @@ table td {
             <td class="sticky-col fourth-col">Rent for July</td>
             <td class="sticky-col fifth-col">Juan Dela Cruz</td>
             <td class="sticky-col sixth-col">Chrisostomo Ibarra Jr</td>
-                <td><input></input></td>
                 <td>Value 7</td>
                 <td>Value 8</td>
                 <td>Value 9</td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
                 <td>Value 10</td>
                 <td>Value 11</td>
-                <td>Value 12</td>
-            </tr>
-
-            <tr>
-            <td class="sticky-col first-col">Unit 2</td>
-            <td class="sticky-col second-col">01-AUG-23</td>
-            <td class="sticky-col third-col">12345</td>
-            <td class="sticky-col fourth-col">Rent for July</td>
-            <td class="sticky-col fifth-col">Juan Dela Cruz</td>
-            <td class="sticky-col sixth-col">Chrisostomo Ibarra Jr</td>
-                <td><input></input></td>
-                <td>Value 7</td>
-                <td>Value 8</td>
-                <td>Value 9</td>
                 <td><input></input></td>
                 <td><input></input></td>
                 <td><input></input></td>
@@ -450,22 +585,6 @@ table td {
                 <td><input></input></td>
                 <td><input></input></td>
                 <td><input></input></td>
-                <td>Value 10</td>
-                <td>Value 11</td>
-                <td>Value 12</td>
-            </tr>
-
-            <tr>
-            <td class="sticky-col first-col">Unit 2</td>
-            <td class="sticky-col second-col">01-AUG-23</td>
-            <td class="sticky-col third-col">12345</td>
-            <td class="sticky-col fourth-col">Rent for July</td>
-            <td class="sticky-col fifth-col">Juan Dela Cruz</td>
-            <td class="sticky-col sixth-col">Chrisostomo Ibarra Jr</td>
-                <td><input></input></td>
-                <td>Value 7</td>
-                <td>Value 8</td>
-                <td>Value 9</td>
                 <td><input></input></td>
                 <td><input></input></td>
                 <td><input></input></td>
@@ -476,38 +595,20 @@ table td {
                 <td><input></input></td>
                 <td><input></input></td>
                 <td><input></input></td>
-                <td>Value 10</td>
-                <td>Value 11</td>
-                <td>Value 12</td>
-            </tr>
-
-            <tr>
-            <td class="sticky-col first-col">Unit 2</td>
-            <td class="sticky-col second-col">01-AUG-23</td>
-            <td class="sticky-col third-col">12345</td>
-            <td class="sticky-col fourth-col">Rent for July</td>
-            <td class="sticky-col fifth-col">Juan Dela Cruz</td>
-            <td class="sticky-col sixth-col">Chrisostomo Ibarra Jr</td>
                 <td><input></input></td>
-                <td>Value 7</td>
-                <td>Value 8</td>
-                <td>Value 9</td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td><input></input></td>
-                <td>Value 10</td>
-                <td>Value 11</td>
-                <td>Value 12</td>
+                <td>Value 33</td>
+                <td>Value 34</td>
+                <td>Value 35</td>
+                <td>Value 36</td>
             </tr>
 
 
+            
+            
+
+
+            
+            
         
            
   

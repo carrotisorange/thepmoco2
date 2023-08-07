@@ -22,6 +22,7 @@ class OwnerBillComponent extends Component
       public $selectedBills = [];
       public $selectAll = false;  
       public $status;
+      public $particular;
 
       public $view = 'listView';
 
@@ -34,6 +35,7 @@ class OwnerBillComponent extends Component
       public $user_type = 'owner';
 
       public $property;
+
 
       public function mount($owner){
          $this->owner_uuid = $owner->uuid;
@@ -189,6 +191,9 @@ class OwnerBillComponent extends Component
       ->when($this->status, function($query){
          $query->where('status', $this->status);
       })
+      ->when($this->particular, function($query){
+      $query->where('particular_id', $this->particular);
+      })
       ->get();
 
       $statuses = Bill::where('bills.property_uuid', Session::get('property'))
@@ -231,7 +236,8 @@ class OwnerBillComponent extends Component
          'total_paid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
          'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
          'total_bills' => $bills,
-         'statuses' => $statuses
+         'statuses' => $statuses,
+         'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($this->property->uuid)
         ]);
     }
 }
