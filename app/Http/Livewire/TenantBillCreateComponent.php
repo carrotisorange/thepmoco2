@@ -221,49 +221,73 @@ class TenantBillCreateComponent extends Component
 
    public function payBills()
    {      
-
+      //generate collection acknowledgement receipt no
       $collection_ar_no = Property::find($this->property->uuid)->acknowledgementreceipts->max('ar_no')+1;
 
+      //generate a collection batch no
       $collection_batch_no = Carbon::now()->timestamp.''.$collection_ar_no;
+      
 
       for($i=0; $i<count($this->selectedBills); $i++){
-        $collection_id =  Collection::insertGetId([
-            'tenant_uuid' => $this->tenant->uuid,
-            'unit_uuid' => Bill::find($this->selectedBills[$i])->unit_uuid,
-            'property_uuid' => $this->property->uuid,
-            'user_id' => auth()->user()->id,
-            'bill_id' => Bill::find($this->selectedBills[$i])->id,
-            'bill_reference_no' => Tenant::find($this->tenant->uuid)->bill_reference_no,
-            'form' => 'cash',
-            'collection' => 0,
-            'batch_no' => $collection_batch_no,
-            'ar_no' => $collection_ar_no,
-            'is_posted' => 0,
-             'created_at' => Carbon::now(),
-         ]);
 
-         Bill::where('id', $this->selectedBills[$i])
-         ->where('tenant_uuid', $this->tenant->uuid)
-         ->update([
-            'batch_no' => $collection_batch_no
-         ]);
-
-         $particular_id = Bill::find($this->selectedBills[$i])->particular_id;
-
-         if($particular_id === 3 || $particular_id === 4)
+         try 
          {
-             Collection::where('id', $collection_id)
-             ->update([
-               'is_deposit' => 1
-             ]);
+            //begin the transaction
+            DB::transaction(function () use ($i, $collection_ar_no, $collection_batch_no) {
+            
+            //get the attributes for collections
+            $particular_id = Bill::find($this->selectedBills[$i])->particular_id;
+            $tenant_uuid = $this->tenant->uuid;
+            $unit_uuid = Bill::find($this->selectedBills[$i])->unit_uuid;
+            $property_uuid = $this->property->uuid;
+         
+            $bill_id = Bill::find($this->selectedBills[$i])->id;
+            $bill_reference_no = Tenant::find($this->tenant->uuid)->bill_reference_no;
+            $form = 'cash';
+            $collection = Bill::find($this->selectedBills[$i])->bill;
+            $is_posted = false;
+
+            //call the method for storing new collection
+            $collection_id =  app('App\Http\Controllers\CollectionController')->store(
+               $tenant_uuid,
+               '',
+               '',
+               $unit_uuid,
+               $property_uuid,
+               $bill_id,
+               $bill_reference_no,
+               $form,
+               $collection,
+               $collection_batch_no,
+               $collection_ar_no,
+               $is_posted,
+         );
+
+            //update selected bill to the generated collection batch no
+            Bill::where('id', $this->selectedBills[$i])
+            ->where('tenant_uuid', $this->tenant->uuid)
+            ->update([
+               'batch_no' => $collection_batch_no
+            ]);
+
+            //mark collection as deposit if it's either utility or rent deposit
+            if($particular_id === 3 || $particular_id === 4)
+            {
+               Collection::where('id', $collection_id)
+               ->update([
+                  'is_deposit' => true
+               ]);
+            }
+            }
+         );
          }
+            catch (\Throwable $e) {
+            ddd($e);
+         } 
       }
+         return redirect('/property/'.$this->property->uuid.'/tenant/'.$this->tenant->uuid.'/bills/'.$collection_batch_no.'/pay');
 
-      return redirect('/property/'.$this->property->uuid.'/tenant/'.$this->tenant->uuid.'/bills/'.$collection_batch_no.'/pay');
    }
-
-
-
    public function updatedSelectAll($value)
    {
       if($value)

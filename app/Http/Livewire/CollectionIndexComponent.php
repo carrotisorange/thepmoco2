@@ -47,8 +47,6 @@ class CollectionIndexComponent extends Component
     }
 
     public function exportDCR(){
-        
-
         return redirect('/property/'.$this->property->uuid .'/dcr/'.$this->date);
     }
 
@@ -73,21 +71,5 @@ class CollectionIndexComponent extends Component
         ->groupBy('ar_no')
         ->orderBy('ar_no', 'desc')
         ->get();
-
-        // return AcknowledgementReceipt::search($this->search)
-        // ->orderBy('ar_no', 'desc')
-        // ->where('property_uuid', $this->property->uuid)
-        // ->when($this->start, function($query){
-        //     $query->whereDate('created_at', $this->start);
-        // })
-        //  ->when($this->mode_of_payment, function($query){
-        //  $query->where('mode_of_payment', $this->mode_of_payment);
-        //  })
-        // ->when($this->bill_type, function($query){
-        //    $query->whereNotNull($this->bill_type);
-        // })
-        // ->when($this->end, function($query){
-        //     $query->orWhereDate('created_at', $this->end);
-        // })->get();
     }
 }

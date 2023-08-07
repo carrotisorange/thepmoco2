@@ -4,11 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Collection;
 use App\Models\Property;
-use Illuminate\Http\Request;
-use Session;
 use Carbon\Carbon;
-use App\Models\Bill;
-use App\Models\Wallet;
 
 class CollectionController extends Controller
 {
@@ -28,7 +24,6 @@ class CollectionController extends Controller
     
     public function update($ar_no, $bill_id, $collection, $form)
     {
-
        Collection::where('bill_id', $bill_id)
          ->update([
           'ar_no' => $ar_no,
@@ -59,5 +54,32 @@ class CollectionController extends Controller
     public function divNumber($numerator, $denominator)
     {
        return $denominator == 0 ? 0 : ($numerator / $denominator);
+    }
+
+    public function store($tenant_uuid,$owner_uuid, $guest_uuid, $unit_uuid, $property_uuid, $bill_id, $bill_reference_no, $form, $collection, $collection_batch_no, $collection_ar_no, $is_posted){
+    
+        return Collection::insertGetId([
+            'tenant_uuid' => $tenant_uuid,
+            'owner_uuid' => $owner_uuid,
+            'guest_uuid' => $guest_uuid,
+            'unit_uuid' => $unit_uuid,
+            'property_uuid' => $property_uuid,
+            'user_id' => auth()->user()->id,
+            'bill_id' => $bill_id,
+            'bill_reference_no' => $bill_reference_no,
+            'form' => $form,
+            'collection' => $collection,
+            'batch_no' => $collection_batch_no,
+            'ar_no' => $collection_ar_no,
+            'is_posted' => $is_posted,
+            'created_at' => Carbon::now(),
+        ]);
+    }
+
+    public function delete_unposted_collections($tenant_uuid, $batch_no){
+        Collection::where('tenant_uuid', $tenant_uuid)
+        ->where('is_posted', 0)
+        ->where('batch_no', '!=', $batch_no)
+        ->forceDelete();
     }
 }

@@ -59,14 +59,14 @@ class BillDraftComponent extends Component
                     ->where('unit_uuid', $bill->unit_uuid)
                     ->update([
                         'tenant_uuid' => $tenant_uuid,
-                        'is_posted' => 1
+                        'is_posted' => true
                     ]);
                 }else{
                     Bill::where('batch_no', $this->batch_no)
                     ->where('property_uuid', $this->property_uuid)
                     ->where('unit_uuid', $bill->unit_uuid)
                     ->update([
-                        'is_posted' => 1
+                        'is_posted' => true
                     ]);
                 }
             }
@@ -81,14 +81,14 @@ class BillDraftComponent extends Component
                     ->where('unit_uuid', $bill->unit_uuid)
                     ->update([
                         'owner_uuid' => $owner_uuid,
-                        'is_posted' => 1
+                        'is_posted' => true
                     ]);
                 }else{
                     Bill::where('batch_no', $this->batch_no)
                     ->where('property_uuid', $this->property_uuid)
                     ->where('unit_uuid', $bill->unit_uuid)
                     ->update([
-                        'is_posted' => 1
+                        'is_posted' => true
                     ]);
                 }
             }
@@ -96,7 +96,7 @@ class BillDraftComponent extends Component
             Bill::where('batch_no', $this->batch_no)
                     ->where('property_uuid', $this->property_uuid)
                     ->update([
-                        'is_posted' => 1
+                        'is_posted' => true
             ]);
         }
         
