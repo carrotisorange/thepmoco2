@@ -45,7 +45,7 @@
             <x-td>{{ $collection->ar_no }}</x-td>
             <x-td>
                 <?php $bill_nos = App\Models\Collection::where('property_uuid', $collection->property_uuid)->posted()->where('ar_no', $collection->ar_no)->get();?>
-                @foreach ($bill_nos as $bill_no)
+                @foreach ($bill_nos->take(2) as $bill_no)
                 {{ $bill_no->bill->bill_no }},
                 @endforeach
             </x-td>
