@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PointController;
+use App\Http\Controllers\SalesPortalController;
 use App\Http\Controllers\SubscriptionController;
 
 //All routes for user
@@ -19,9 +20,11 @@ Route::prefix('user/{user:username}')->group(function(){
     Route::post('/subscriptions/{external_id:external:id}/unsubscribe',[SubscriptionController::class, 'unsubscribe'])->name('subscription');
 
     Route::get('/export/{portfolio}',[UserController::class, 'export']);
+
+    Route::get('/activity',[SalesPortalController::class, 'show_activity']);
 });
 
- //route for point crud operations
+ //route for point crud operations 
  Route::get('point',[PointController::class, 'index'])->name('point');
 
 Route::get('users',[UserController::class, 'show_all_users'])->name('user');

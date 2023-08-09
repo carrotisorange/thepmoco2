@@ -42,7 +42,6 @@ class UnitIndexComponent extends Component
 
     public function storeUnits(){
       
-
       if($this->numberOfUnits <= 0 || !$this->numberOfUnits){
          session()->flash('error', 'Cannot accept value less than 0 or null.');
 
