@@ -172,7 +172,6 @@ class BillController extends Controller
 
     public function destroy($id)
     {    
-        // $this->authorize('is_account_receivable_delete_allowed');
 
         $bill = Bill::where('id', $id);
         if($bill->delete()){

@@ -36,81 +36,10 @@ class UserCreateComponent extends Component
    public $sendEmailToPersonnel;
    public $createAnotherPersonnel;
 
-   public $is_portfolio_create_allowed;
-   public $is_portfolio_read_allowed;
-   public $is_portfolio_update_allowed;
-   public $is_portfolio_delete_allowed;
-
-   public $is_contract_create_allowed;
-   public $is_contract_read_allowed;
-   public $is_contract_update_allowed;
-   public $is_contract_delete_allowed;
-
-   
-   public $is_concern_create_allowed;
-   public $is_concern_read_allowed;
-   public $is_concern_update_allowed;
-   public $is_concern_delete_allowed;
-
-   public $is_tenant_portal_create_allowed;
-   public $is_tenant_portal_read_allowed;
-   public $is_tenant_portal_update_allowed;
-   public $is_tenant_portal_delete_allowed;
-
-   public $is_owner_portal_create_allowed;
-   public $is_owner_portal_read_allowed;
-   public $is_owner_portal_update_allowed;
-   public $is_owner_portal_delete_allowed;
-
-   public $is_account_payable_create_allowed;
-   public $is_account_payable_read_allowed;
-   public $is_account_payable_update_allowed;
-   public $is_account_payable_delete_allowed;
-
-   public $is_account_receivable_create_allowed;
-   public $is_account_receivable_read_allowed;
-   public $is_account_receivable_update_allowed;
-   public $is_account_receivable_delete_allowed;
-
    public function mount()
    {
       $this->sendEmailToPersonnel = true;
       $this->createAnotherPersonnel = false;
-
-      $this->is_portfolio_create_allowed = false;
-      $this->is_portfolio_read_allowed = true;
-      $this->is_portfolio_update_allowed = false;
-      $this->is_portfolio_delete_allowed = false;
-
-      $this->is_contract_create_allowed = false;
-      $this->is_contract_read_allowed = true;
-      $this->is_contract_update_allowed = false;
-      $this->is_contract_delete_allowed = false;
-
-      $this->is_concern_create_allowed = false;
-      $this->is_concern_read_allowed = true;
-      $this->is_concern_update_allowed = false;
-      $this->is_concern_delete_allowed = false;
-
-      $this->is_tenant_portal_create_allowed = false;
-      $this->is_tenant_portal_read_allowed = true;
-      $this->is_tenant_portal_update_allowed = false;
-      $this->is_tenant_portal_delete_allowed = false;
-
-      $this->is_owner_portal_create_allowed = false;
-      $this->is_owner_portal_read_allowed = true;
-      $this->is_owner_portal_update_allowed = false;
-      $this->is_owner_portal_delete_allowed = false;
-
-      $this->is_account_payable_create_allowed = false;
-      $this->is_account_payable_read_allowed = true;
-      $this->is_account_payable_update_allowed = false;
-      $this->is_account_payable_delete_allowed = false;
-
-      $this->is_account_receivable_create_allowed = false;
-      $this->is_account_receivable_read_allowed = true;
-      $this->is_account_receivable_update_allowed = false;
-      $this->is_account_receivable_delete_allowed = false;
    }
 
    protected function rules()
@@ -163,8 +92,6 @@ class UserCreateComponent extends Component
             'email_verified_at' => null
          ]
       );
-
-      $this->set_user_restrictions($user->id);
 
         //store a new user and user property
          UserProperty::updateOrCreate(
@@ -273,46 +200,7 @@ class UserCreateComponent extends Component
         ]);
      }
 
-     public function set_user_restrictions($user_id)
-     {
-         User::where('id', $user_id)
-         ->update([
-            'is_portfolio_create_allowed' => $this->is_portfolio_create_allowed,
-            'is_portfolio_read_allowed' => $this->is_portfolio_read_allowed,
-            'is_portfolio_update_allowed' => $this->is_portfolio_update_allowed,
-            'is_portfolio_delete_allowed' => $this->is_portfolio_delete_allowed,
-
-            'is_contract_create_allowed' => $this->is_contract_create_allowed,
-            'is_contract_read_allowed' => $this->is_contract_read_allowed,
-            'is_contract_update_allowed' => $this->is_contract_update_allowed,
-            'is_contract_delete_allowed' => $this->is_contract_delete_allowed,
-         
-            'is_concern_create_allowed' => $this->is_concern_create_allowed,
-            'is_concern_read_allowed' => $this->is_concern_read_allowed,
-            'is_concern_update_allowed' => $this->is_concern_update_allowed,
-            'is_concern_delete_allowed' => $this->is_concern_delete_allowed,
-
-            'is_tenant_portal_create_allowed' => $this->is_tenant_portal_create_allowed,
-            'is_tenant_portal_read_allowed' => $this->is_tenant_portal_read_allowed,
-            'is_tenant_portal_update_allowed' => $this->is_tenant_portal_update_allowed,
-            'is_tenant_portal_delete_allowed' => $this->is_tenant_portal_delete_allowed,
-
-            'is_owner_portal_create_allowed' => $this->is_owner_portal_create_allowed,
-            'is_owner_portal_read_allowed' => $this->is_owner_portal_read_allowed,
-            'is_owner_portal_update_allowed' => $this->is_owner_portal_update_allowed,
-            'is_owner_portal_delete_allowed' => $this->is_owner_portal_delete_allowed,
-
-            'is_account_payable_create_allowed' => $this->is_account_payable_create_allowed,
-            'is_account_payable_read_allowed' => $this->is_account_payable_read_allowed,
-            'is_account_payable_update_allowed' => $this->is_account_payable_update_allowed,
-            'is_account_payable_delete_allowed' => $this->is_account_payable_delete_allowed,
-
-            'is_account_receivable_create_allowed' => $this->is_account_receivable_create_allowed,
-            'is_account_receivable_read_allowed' => $this->is_account_receivable_read_allowed,
-            'is_account_receivable_update_allowed' => $this->is_account_receivable_update_allowed,
-            'is_account_receivable_delete_allowed' => $this->is_account_receivable_delete_allowed,
-         ]);
-     }
+   
 
      public function removeUser($id)
      {   
