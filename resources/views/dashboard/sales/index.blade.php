@@ -20,7 +20,7 @@
                     <x-th>ID</x-th>
                     <x-th>Created On</x-th>
                     <x-th>Name</x-th>
-                    {{-- <x-th>Contact</x-th> --}}
+                    <x-th>Email</x-th>
                     <x-th>Property</x-th>
                     <x-th>Plan</x-th>
                     <x-th>Checkout</x-th>
@@ -34,7 +34,7 @@
                     <x-td>{{ $user->id }}</x-td>
                     <x-td>{{ Carbon\Carbon::parse($user->created_at)->format('M d, Y') }}</x-td>
 
-                    <x-td><a class="text-blue-600" href="user/{{ $user->username }}/activity">
+                    <x-td><a class="text-blue-600" href="/user/{{ $user->username }}/activity">
                             {{ $user->name }}
                             @if($user->email_verified_at)
                             <span title="verified"
@@ -49,6 +49,7 @@
                             </span>
                             <a>
                     </x-td>
+                    <x-td>{{ $user->email }}</x-td>
 
                     <?php
                            $property_count = App\Models\UserProperty::where('user_id', $user->id)->count();
