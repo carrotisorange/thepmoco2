@@ -29,6 +29,12 @@ class EditBookingComponent extends Component
     public $arrival_time;
     public $departure_time;
 
+    public $no_of_children;
+    public $no_of_senior_citizens;
+    public $no_of_pwd;
+    public $no_of_companions;
+    public $remarks;
+
     public function mount(Booking $booking){
         $this->unit_uuid = $booking->unit_uuid;
         $this->movein_at = Carbon::parse($booking->movein_at)->format('Y-m-d');
@@ -42,10 +48,18 @@ class EditBookingComponent extends Component
         $this->flight_itinerary = $booking->flight_itinerary;
         $this->arrival_time = $booking->arrival_time;
         $this->departure_time = $booking->departure_time;
+        $this->no_of_children = $booking->no_of_children;
+        $this->no_of_senior_citizens = $booking->no_of_senior_citizens;
+        $this->no_of_pwd = $booking->no_of_pwd;
+        $this->no_of_companions = $booking->no_of_companions;
+        $this->remarks = $booking->remarks;
     }
     
     public function updatedUnitUuid(){
-        $this->price = Unit::find($this->unit_uuid)->transient_rent;
+        if($this->unit_uuid){
+            $this->price = Unit::find($this->unit_uuid)->transient_rent;
+        }
+        
     }
 
     public function updateBooking(){
@@ -62,7 +76,12 @@ class EditBookingComponent extends Component
             'flight_itinerary' => 'nullable',
             'arrival_time' => 'required',
             'departure_time' => 'required',
-            'plate_number' => 'nullable'
+            'plate_number' => 'nullable',
+            'no_of_children' => 'nullable',
+            'no_of_senior_citizens' => 'nullable',
+            'no_of_pwd' => 'nullable',
+            'no_of_companions'=> 'nullable',
+            'remarks'=> 'nullable',
         ]);
 
         Booking::where('uuid', $this->booking->uuid)->update($validated);

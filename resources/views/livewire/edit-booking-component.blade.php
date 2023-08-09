@@ -16,12 +16,10 @@
                 <div class="mt-5 sm:mt-6">
                     <label class="text-sm" for="unit_uuid">Unit</label>
                     <x-form-select wire:model="unit_uuid" class="">
-                        <option value="">Select one</option>
+                        
                         @foreach ($units as $unit)
                         <option value="{{ $unit->uuid }}" {{ $unit->uuid === $unit_uuid?
-                            'selected'
-                            : 'Select one' }}>
-                            {{ $unit->unit }}
+                            'selected': 'Select one' }}> {{ $unit->unit }}
                         </option>
                         @endforeach
                     </x-form-select>
@@ -52,7 +50,7 @@
                 </div>
 
                 <div class="mt-5 sm:mt-6">
-                    <label class="text-sm" for="arrival_time">Arrival time</label>
+                    <label class="text-sm" for="arrival_time">Expected Arrival time</label>
                     <input type="time" wire:model="arrival_time"
                         class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="" required>
@@ -72,7 +70,7 @@
                 </div>
 
                  <div class="mt-5 sm:mt-6">
-                    <label class="text-sm" for="departure_time">Departure time</label>
+                    <label class="text-sm" for="departure_time">Expected Departure time</label>
                     <input type="time" wire:model="departure_time"
                         class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="" required>
@@ -121,6 +119,48 @@
                 </div>
 
                 <div class="mt-5 sm:mt-6">
+                    <label class="text-sm" for="no_of_children">No of children</label>
+                    <input type="number" wire:model="no_of_children" min="0"
+                        class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="" required>
+                    @error('no_of_children')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="mt-5 sm:mt-6">
+                    <label class="text-sm" for="no_of_senior_citizens">No of senior citizens</label>
+                    <input type="number" wire:model="no_of_senior_citizens" min="0"
+                        class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="" required>
+                    @error('no_of_senior_citizens')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="mt-5 sm:mt-6">
+                    <label class="text-sm" for="no_of_pwd">No of companions</label>
+                    <input type="number" wire:model="no_of_companions" min="0"
+                        class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="" required>
+                    @error('no_of_companions')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="mt-5 sm:mt-6">
+                    <label class="text-sm" for="no_of_pwd">No of senior pwd</label>
+                    <input type="number" wire:model="no_of_pwd" min="0"
+                        class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="" required>
+                    @error('no_of_pwd')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+
+
+
+                <div class="mt-5 sm:mt-6">
                     <label class="text-sm" for="vehicle_details">Vehicle details</label>
                     <input type="text" wire:model="vehicle_details"
                         class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -156,6 +196,16 @@
                         class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="" required>
                     @error('flight_itinerary')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="mt-5 sm:mt-6">
+                    <label class="text-sm" for="remarks">Remarks</label>
+                    <input type="number" wire:model="remarks" min="0"
+                        class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="" required>
+                    @error('remarks')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
