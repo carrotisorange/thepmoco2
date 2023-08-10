@@ -1,6 +1,6 @@
 <x-landing-page-template>
 
-@section('title','Proprent — Home')
+@section('title','Propbiz — Home')
 @section('description', 'Increase transparency, and efficiency in rental property operations with a simple and easy to use system for leasing and property management.')
 
 
@@ -24,11 +24,11 @@ body {
 }
 
 body {
-  background-color: #4F3F6D;
+  background-color: #4F1964;
   }
 
-  #proprent-bg{
-    background-image: url('/brands/propsuite/proprent-landing-bg.png');
+  #propbiz-bg{
+    background-image: url('/brands/propsuite/propbiz-landing-bg.png');
   }
 
   #seamless {
@@ -58,11 +58,11 @@ body {
     border-radius:4px;
   }
 
-  .proprentOrange{
+  .propbizOrange{
     color: #F4B700;
   }
 
-  .proprentOrangebg{
+  .propbizOrangebg{
     background-color: #F4B700;
   }
 
@@ -70,30 +70,27 @@ body {
 </style>
 
 
-<!-- search section -->
-
-
 
 <!-- seamless section -->
 
-          <div id="proprent-bg" class="sm:block lg:flex md:flex min-h-screen py-16">
+          <div id="propbiz-bg" class="sm:block lg:flex md:flex min-h-screen py-16">
             <div class="flex-col items-center justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-20 xl:px-36">
               <div class="w-full">
                 <div class="text-gray-300 text-4xl font-bold py-24 sm:text-5xl lg:text-5xl">
-                  <img class="h-24" src="{{ asset('/brands/propsuite/proprent.png') }}">
+                  <img class="h-24" src="{{ asset('/brands/propsuite/propbiz.png') }}">
                   
-                  <h2 class="text-xl">Rental Property Listings</h2>
-                  <p class="mt-8 max-w-md text-sm font-light text-white">
+                  <h2 class="text-lg">Professional Property Management Services </h2>
                 </div>
               </div>
             </div>
 
             <div class="flex-col justify-center sm:-py-2 md:py-20 lg:py-8 lg:px-48 sm-px-0">
               <div class="lg:block lg:py-20 md:max-w-lg xl:max-w-lg sm:ml-12 sm:py-2 lg:-ml-5 mx-5">
-               <p class="text-base font-light mt-5 text-white text-justify">Leasing platform for rental property owners to list vacant rooms and units for long term or short term rentals.
-                Leasing Marketplace for tenants to find available place for long term or short term rentals. Unlike social media pages, we verify the address and the accuracy of the rental space to increase trust in the proprent community. </p>
-               <div class="mt-10 flex space-x-5">
-                  <button class="proprentOrangebg rounded-full"> <a href="proprent-search" class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Coming Soon</a></button>
+                <p class="text-base font-light mt-10 text-white text-justify">Property management services that provides online and onsite operations management services to rental property owners. Unlike caretakers, our property and leasing manager partners are professionals using a management system that allows owners to have real time business insights on their rental properties.</p>
+
+                <div class="mt-10 flex justify-center items-center space-x-5">
+                  <button class="propbizOrangebg rounded-full"> <a href="agent-corner" class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Register as Agent</a></button>
+                  <button class="propbizOrangebg rounded-full"> <a href="owner-corner" class="w-48 flex justify-center py-2 border border-gray-400 rounded-full shadow-sm text-sm font-medium text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 leading-3">Register as <br> Rental Property Owner</a></button>            
                 </div>
               </div>
             </div>
@@ -149,7 +146,7 @@ body {
                       </svg>
                     </div>
                     <h3 class="text-3xl font-medium text-white">Contact Us</h3>
-                    <h3 class="mt-2 text-xl font-medium text-white">Propsuite</h3>
+                    <h3 class="mt-2 text-xl font-medium text-white">The PMO Co.</h3>
                     <p class="mt-6 max-w-3xl text-sm text-purple-200">Makati Address: <p class="text-base mt-2 text-white">Asian Institute of Management - Dado Banatao Incubator Benavidez Street, corner Trasierra, Legazpi Village, Makati, 1229 Metro Manila</p></p>
                     <p class="mt-6 max-w-3xl text-sm text-purple-200">Baguio Address: <p class="text-base mt-2 text-white">39 Engineers Hill, Baguio City</p></p>
                     <dl class="mt-8 space-y-6">

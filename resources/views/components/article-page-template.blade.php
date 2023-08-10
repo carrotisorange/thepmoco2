@@ -7,9 +7,8 @@
     <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel="canonical" href="https://thepropertymanager.online"/>
-    <title>@yield('title')</title>
 
+    <title>@yield('title')</title>
     <meta name="description" content="@yield('description')">
     <meta name="keywords" content="Property,
     Property Management,
@@ -42,36 +41,18 @@
     property management companies,
     Real Estate Technology,
     online condominium management system,
-    association management system software"> 
+    association management system software">
 
-         <!-- facebook -->
-    <meta property="og:url"                content="https://thepropertymanager.online">
-    <meta property="og:type"               content="website">
-    <meta property="og:title"              content="Increase transparency, and efficiency in rental property operations with a simple and easy to use system for leasing and property management.">
-    <meta property="og:description"        content="Visit us now: thepropertymanager.online">
-    <meta property="og:image"              content="https://thepropertymanager.online/brands/propsuite/propsuite.png">
 
-    <script type="application/ld+json">
-  {
-  "@context": "https://schema.org", 
-  "@type": "Saas Business",             
-  "name": "The PMO Co",            
-  "image": "https://thepropertymanager.online/brands/propsuite/propsuite.png",          
-  "@id": "https://thepropertymanager.online/", 
-  "url": "https://thepropertymanager.online/",
-  "telephone": "(+63) 916 779 9750",                
-   "email": "sales@thepmo.co",	
-  "address": {
-    "@type": "PostalAddress",          
-    "streetAddress": "39 Engineers Hill", 
-    "addressLocality": "Baguio City",
-    "postalCode": "2600",
-    "addressCountry": "Philippines"
-  }
-  "sameAs" : [
-    "https://www.linkedin.com/company/the-pmo-co/",
-  ]
-  
+           
+
+    <!-- facebook -->
+    <meta property="og:url"                content="@yield('og-url')">
+    <meta property="og:type"               content="article">
+    <meta property="og:title"              content="@yield('og-title')">
+    <meta property="og:description"        content="@yield('og-description')">
+    <meta property="og:image"              content="@yield('og-image')">
+
 
 </script>
 
@@ -129,10 +110,10 @@ body {
     font-family: 'Poppins';
 }
 #nav {
-  background-color:;
+  background-color: #4A386C;
 }
 #button1 {
-  background-color: #F79630;
+  background-color: #f97316;
   border-radius: 30px;
   transition-duration: 0.1s;
 }
@@ -144,107 +125,45 @@ body {
 #button1:hover, #button2:hover {
   background-color:#fdba74;
 }
-.topnav {
-    width: 100%;
-    background-size: cover;
-    background: transparent;
-    height: 80px;
-    min-width: 400px;
-}
-
-.navbar {
-    width: 100%;
-    position: fixed;
-    top: 0px;
-    transition: 0.5s;
-    background: transparent;
-    height: 80px;
-    min-width: 400px;
-}
-
-.navbar ul li {
-
-    cursor: pointer;
-    border-radius: 10px;
-    transition: 0.5s;
-}
-
 </style>
 
   <html>
   <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P3GZPSF"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
-
-<!-- navigation -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P3GZPSF"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+ 
+    <!-- navigation -->
 <body>
-<nav class="topnav hidden  lg:block">
-        <div class="navbar" id="nav">
-          <a class="text-3xl font-bold leading-none " href="/">
-            <img class="h-12 m-3" src="{{ asset('/brands/propsuite/propsuite-gray.png') }}" alt="propsuite logo">
-          </a>
-          
-          
-            
-           
-                <ul class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-10">
-                  <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="/">Home</a></li>
-                  
-                  <li>
-                    <button class="text-gray-200 hover:text-gray-400 font-medium rounded-lg text-base text-center inline-flex items-center" type="button" data-dropdown-toggle="dropdown">Services <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
-                    <!-- Dropdown menu -->
-                    <div class="hidden text-base z-50 list-none bg-white rounded-lg" id="dropdown">
-                    
-                        <ul class="" aria-labelledby="dropdown">
-                          <li>
-                              <a href="/propman" class="text-sm  text-gray-500 block px-4 py-2">Propman</a>
-                          </li>
-                          <li>
-                              <a href="/proprent" class="text-sm  text-gray-500 block px-4 py-2">Proprent</a>
-                          </li>
-                          <li>
-                              <a href="/propbiz" class="text-sm  text-gray-500 block px-4 py-2">Propbiz</a>
-                          </li>
-                        </ul>
-                      </div>
-                    
-                    
-                    <script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
-                  </li>
+	<nav id="nav" class="lg:sticky top-0 z-10 relative px-4 py-6 flex justify-between items-center">
+		<a class="text-3xl font-bold leading-none" href="/">
+    <img class="h-10" src="{{ asset('/brands/landing/pmo-logo.webp') }}" alt="the pmo logo">
+		</a>
+		<div class="lg:hidden">
+			<button class="navbar-burger flex items-center text-white p-3">
+				<svg class="block h-4 w-4 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+					<title>Mobile menu</title>
+					<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+				</svg>
+			</button>
+		</div>
+		<ul class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-10">
+			<li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="/">Home</a></li>
+			
+			<li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="about">About Us</a></li>
+			
+			<li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="faq">FAQs</a></li>
+			
+			<li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="blog-1">Articles</a></li>
 
-                  <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="about">About</a></li>
-                  
-                  <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="faq">FAQs</a></li>
-                  
-                  <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="blog-1">Articles</a></li>
-                 
-                  
-                  
-                 
-                </ul>
-                
-                
-
-            </div>
-     
-        </div>
-        
-        
-    </nav>
-
-    <script>
-    const nav = document.querySelector('.navbar');
-
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 100) nav.style.background = '#4F3F6D';
-        else nav.style.background = 'transparent';
-    });
-    </script>
-
-<div class="navbar-menu relative z-50 hidden">
+      <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="owner-corner">Property Owners Corner</a></li>
+		
+		</ul>
+		<a id="button1"class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm font-bold text-white hover:bg-gray-300  rounded-xl transition duration-200" href="https://thepmo.co/select-a-plan">Sign Up</a>
+		<a class="hidden lg:inline-block py-2 px-6  text-sm text-white hover:bg-gray-400 rounded-2xl transition duration-200" href="https://thepmo.co/">Sign In</a>
+	</nav>
+	<div class="navbar-menu relative z-50 hidden">
 		<div class="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
 		<nav class="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
 			<div class="flex items-center mb-8">
@@ -258,7 +177,7 @@ body {
 				</button>
 			</div>
 			<div>
-				<ul>
+      <ul>
 					<li class="mb-1" tabindex="0">
 						<a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="/" >Home</a>
 					</li>
@@ -277,66 +196,11 @@ body {
 					
 				</ul>
 			</div>
-  </div>
-    
-  <nav id="nav" class="lg:sticky top-0 z-10 relative px-4 py-4 flex justify-between items-center">
-		<a class="text-3xl font-bold leading-none" href="/">
-    <img class="h-10 lg:hidden" src="{{ asset('/brands/propsuite/propsuite-gray.png') }}" alt="propsuite logo">
-		</a>
-		<div class="lg:hidden">
-			<button class="navbar-burger flex items-center text-white p-3">
-				<svg class="block h-4 w-4 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-					<title>Mobile menu</title>
-					<path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-				</svg>
-			</button>
-		</div>
-
-  </nav>
-	<div class="navbar-menu relative z-50 hidden">
-		<div class="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
-		<nav id="nav" class="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
-			<div class="flex items-center mb-8">
-				<a class="mr-auto text-3xl font-bold leading-none" href="#">
-        <img class="h-20" src="{{ asset('/brands/pm_logo_2.png') }}" alt="the pmo logo">
-				</a>
-				<button class="navbar-close">
-					<svg class="h-6 w-6 text-gray-400 cursor-pointer hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-					</svg>
-				</button>
-			</div>
-			<div>
-				<ul>
-					<li class="mb-1" tabindex="0">
-						<a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="/">Home</a>
-					</li>
-          <li class="mb-1" tabindex="0">
-						<a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="propman">Propman</a>
-					</li>
-          <li class="mb-1" tabindex="0">
-						<a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="proprent">Proprent</a>
-					</li>
-          <li class="mb-1" tabindex="0">
-						<a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="propbiz">Propbiz</a>
-					</li>
-					<li class="mb-1" tabindex="0">
-						<a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="about">About Us</a>
-					</li>
-					<li class="mb-1" tabindex="0">
-						<a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="faq" >FAQs</a>
-					</li>
-					<li class="mb-1" tabindex="0">
-						<a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded" href="blog-1">Articles</a>
-					</li>
-					
-				</ul>
-			</div>
 			<div class="mt-auto">
-				<!-- <div class="pt-6">
+				<div class="pt-6">
 					<a class="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold leading-none bg-gray-50 hover:bg-gray-100 rounded-xl" href="https://thepmo.co/">Sign in</a>
 					<a class="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-purple-600 hover:bg-purple-700  rounded-xl" href="https://thepmo.co/select-a-plan">Sign Up</a>
-				</div> -->
+				</div>
 				<p class="my-4 text-xs text-center text-gray-400">
 					<span>Copyright © 2022</span>
 				</p>
@@ -392,7 +256,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <!-- Social Sharing Bar -->
    <div class="fixed right-0 bottom-10 z-50 px-5 py-3 bg-transparent flex flex-col space-y-3">
         <!-- Facebook -->
-        <a href="https://www.facebook.com/thepropertymanageronline" title="Share on Facebook">
+        <a href="https://www.facebook.com/onlinepropertymanager" title="Share on Facebook">
         <?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg height="100%" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;" version="1.1" viewBox="0 0 512 512" width="30" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:serif="http://www.serif.com/" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z"/></svg>
         </a>
 
@@ -416,13 +280,14 @@ document.addEventListener('DOMContentLoaded', function() {
             <div>
               
               <ul role="list" class="mt-4 space-y-4">
+                
 
                 <li>
-                  <a href="blog-1" class="text-base text-gray-500 hover:text-gray-900">Articles</a>
+                  <a href="demopage" class="text-base text-gray-500 hover:text-gray-900">Demo</a>
                 </li>
 
                 <li>
-                  <a href="job" class="text-base text-gray-500 hover:text-gray-900">Jobs</a>
+                  <a href="blog-1" class="text-base text-gray-500 hover:text-gray-900">Articles</a>
                 </li>
 
                 
@@ -442,10 +307,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 </li>
 
                 <li>
-                  <a href="propbiz" class="text-base text-gray-500 hover:text-gray-900">Propbiz</a>
+                  <a href="job" class="text-base text-gray-500 hover:text-gray-900">Jobs</a>
                 </li>
-
-                
 
                
 
@@ -476,13 +339,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
       <div class="mt-12 border-t border-gray-200 pt-8 flex items-center justify-center lg:mt-16">
        
-        <p class="mt-8 text-base text-gray-400 md:order-1 md:mt-0">&copy; 2023 Propsuite All rights reserved.</p>
+        <p class="mt-8 text-base text-gray-400 md:order-1 md:mt-0">&copy; 2022 The PMO Co. All rights reserved.</p>
       </div>
     </div>
   </footer>
 </div>
 
-<script src="https://cdn.popupsmart.com/bundle.js" data-id="79845" async defer></script>
+
 </body>
 
 

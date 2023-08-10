@@ -1,0 +1,64 @@
+<x-article-page-template>
+@section('title','How To Improve Tenant Retention Rates')
+@section('description', ' As a property manager or landlord, these are steps on how to improve tenant retention rates using the property manager online.')
+
+@section('og-url','https://thepropertymanager.online/How-To-Improve-Tenant-Retention-Rates')
+@section('og-title','How To Improve Tenant Retention Rates')
+@section('og-description','As a property manager or landlord, these are steps on how to improve tenant retention rates, read more...')
+@section('og-image','https://images.pexels.com/photos/7642000/pexels-photo-7642000.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
+
+<!-- start article -->
+<x-blog-section-template>
+</x-blog-section-template>
+
+<div class="sm:col-span-1 md:col-span-2 lg:col-span-3">
+      <div class="mt-10 mb-4 md:mb-0 w-full max-w-screen-md mx-auto relative" style="height: 24em;">
+        
+        <img src="{{ asset('/brands/landing/article7.jpg') }}" alt="property management system" class="opacity-25 absolute left-0 top-0 w-full h-full z-0 object-cover" />
+        <div class="p-4 pt-56 relative">
+          <a href="#"
+            class="px-4 py-1 bg-black text-gray-200 inline-flex items-center justify-center mb-2">Article</a>
+          <h2 class="text-2xl font-semibold text-gray-900 leading-tight">
+          How To Improve Tenant Retention Rates
+          </h2>
+          <div class="flex mt-3">
+            <img src="{{ asset('/brands/landing/f-icon.webp') }}" alt="user vector icon"
+              class="h-14 w-14 rounded-full mr-2 object-cover" />
+            <div>
+              <p class="font-semibold text-gray-700 text-sm"> Pamela Tecson </p>
+              <p class="font-semibold text-gray-600 text-xs"> January 2023 </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="px-4 lg:px-0 mt-12 text-gray-700 max-w-screen-md mx-auto text-base leading-relaxed">
+
+      <ol class="pb-6 list-decimal">
+      <li class="p-5">Improve communication: Regular communication with tenants and prompt response to maintenance requests can help build trust and satisfaction.</li>
+      <li class="p-5">Address maintenance issues promptly: Regularly scheduled maintenance can prevent small issues from becoming bigger problems, and prompt response to maintenance requests can help prevent dissatisfaction. </li>
+      <li class="p-5">Offer amenities: Amenities such as a gym, pool, or community room can make the property more desirable, and encourage tenants to renew their leases. </li>
+        <x-enrollment-ad>
+        </x-enrollment-ad>
+      <li class="p-5">Offer incentives for renewals: Offering incentives such as discounted rent or waived fees for tenants who renew their leases can encourage them to stay. </li>
+      <li class="p-5">Create a sense of community: Encourage social interaction among tenants through events or activities, this can help create a sense of community and make tenants feel more connected to the property.</li>
+      
+      <li class="p-5">Be transparent and fair in rent increase: Be upfront about any upcoming rent increases and be fair in your pricing.</li>
+      <li class="p-5">Keep the property clean and well-maintained: A clean and well-maintained property can create a positive impression and make tenants more likely to renew their leases. </li>
+      <x-ad-section-template>
+      </x-ad-section-template>
+      <li class="p-5">Be flexible with lease terms: Be open to negotiating lease terms with tenants, such as allowing them to have pets or making other concessions. </li>
+      <li class="p-5">Offer online services: Offer online services such as online rent payments, maintenance requests, and lease renewals to make it easier for tenants to interact with your property. The Property Manager Online can help you with this. </li>
+      <li class="p-5">Get feedback and act on it: Ask for feedback and act on it, this will show tenants you care about their satisfaction and are willing to make improvements.</li>
+     </ol>
+      
+    
+      
+    
+      </div>
+        </div>
+<!-- end article -->
+</main>
+  
+
+</x-article-page-template>
