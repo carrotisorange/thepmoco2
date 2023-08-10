@@ -1,5 +1,5 @@
 <x-landing-page-template>
-@section('title','The PMO — Property Owners Corner')
+@section('title','Propbiz — Agent Form')
 @section('description', '')
 
 <style>
@@ -23,7 +23,7 @@
 </style>
 
         <div class="max-w-7xl p-10 mt-12 sm:mt-16 lg:mt-0">
-                <h2 class="font-semibold text-xl text-center">Property Owner Enrollment Form</h2>
+                <h2 class="font-semibold text-xl text-center">Agent Enrollment Form</h2>
                   <!-- Contact form -->
                   <div class="py-10 px-6 sm:px-10">
                     

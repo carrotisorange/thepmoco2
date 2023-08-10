@@ -63,6 +63,10 @@ Route::get('/owner-corner', function(){
     return view('landing.owner-corner');
 });
 
+Route::get('/agent-corner', function(){
+    return view('landing.agent-corner');
+});
+
 Route::get('/tech-support', function(){
     return view('landing.tech-support');
 });
@@ -260,10 +264,17 @@ Route::get('/propsuite', function(){
     return view('propsuite.propsuite');
 });
 
+Route::get('/propsuite2', function(){
+    return view('propsuite.propsuite2');
+});
+
 Route::get('/proprent', function(){
     return view('proprent.proprent');
 });
 
+Route::get('/proprent-search', function(){
+    return view('proprent.proprent-search');
+});
 Route::get('/propman', function(){
     return view('propman.propman');
 });

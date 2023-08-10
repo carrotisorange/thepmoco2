@@ -1,25 +1,34 @@
 <x-landing-page-template>
-@section('title','The PMO — About')
+@section('title','Propsuite — About')
 @section('description', 'A product to make easy the life of property managers and property owners. The property management system is a handy application to simplify operations in rental properties from tenant finding, lease contract management, billing and collection management, and concerns and maintenance requests for landlords, dormitories, apartment rentals, and other rentals.')
-    <div class ="min-h-screen">
-    <div class="flex items-center justify-center">
-<img class="mt-10 h-full w-fit object-cover opacity-30" src="{{ asset('/brands/landing/buildings.png') }}" alt="an outline of new york tall buildings">
+
+<style>
+  .propsuite-bg{
+    background-image: url('/brands/propsuite/propsuite-bg.png');
+  }
+  .purple{
+    background-color: #C4BCD1;
+  }
+
+  .darkPurple{
+    color: #4F3F6D;
+  }
+</style>
+<body class="purple">
+<div class="propsuite-bg pb-16 sm:pb-20">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto py-48 sm:py-48 lg:py-48">
+          <div class="text-center">
+            <h1 class="text-2xl font-bold tracking-wide text-white sm:text-5xl leading-8">We provide <span class="darkPurple">full suite digital</span> solution <br> for rental property communities <br>and home owners associations.</h1>
+          </div>
         </div>
-    <div>
-         <div class="pt-5 pb-5 flex items-center justify-center">
-         
-            <h1 class="text-center text-4xl font-bold  sm:text-5xl lg:text-6xl lg:w-1/2 ">
-              <span class=" text-gray-800">About The PMO</span>
-              <p class="pt-10 text-base font-light text-gray-600">The service you deserve, with the people you trust.</p> 
-            </h1>  
-              
-</div>
-<div class="pt-5 pb-20  flex items-center justify-center gap-5">
-<button><a href="https://thepmo.co/select-a-plan" class="items-center justify-center  rounded-full border border-transparent bg-purple-500 bg-origin-border px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700">Get Started</a></button>
-<button><a href="#contactus" class="items-center justify-center  rounded-full border border-transparent bg-gray-400 bg-origin-border px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-gray-700">Request Demo</a></button>
+
   
-</div>
-</div>
+      <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+        <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+      </div>
+    </div>
+  
 
           </div>
     
@@ -62,16 +71,16 @@
               <blockquote>
                 <div>
                   
-                  <span class="text-4xl font-bold text-indigo-100">The Property Manager Online</span>  
+                  <span class="text-4xl font-bold text-indigo-100">Propsuite</span>  
                   <p class="mt-6 text-base font-light text-gray-300 tracking-wide">is a system as a service
-company that gives real-time, reliable, easy digital
-solution to long-term rental property owners, and
-managers to improve transparency and efficiency in
-business operations.
+                  company that gives real-time, reliable, easy digital
+                  solution to long-term rental property owners, and
+                  managers to improve transparency and efficiency in
+                  business operations.
 
-Unlike manual processes, we provide a full-suite solution
-that allows business owners to run their operations
-seamlessly and harmoniously with their tenants.</p>
+                  Unlike manual processes, we provide a full-suite solution
+                  that allows business owners to run their operations
+                  seamlessly and harmoniously with their tenants.</p>
                 </div>
                 <footer class="mt-6">
                   
@@ -132,7 +141,7 @@ seamlessly and harmoniously with their tenants.</p>
       <div class="py-20 mx-auto max-w-4xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 xl:grid xl:grid-flow-col-dense xl:grid-cols-2 xl:gap-x-8">
         <div class="relative pt-12 xl:col-span-2 xl:pb-24">
           
-          <p class="mt-3 text-3xl font-bold tracking-tight text-white">The PMO Values</p>
+          <p class="mt-3 text-3xl font-bold tracking-tight text-white">Propsuite Values</p>
           
           <div class="mt-10 grid grid-cols-1 gap-y-5 gap-x-6 sm:grid-cols-6">
             <p>
@@ -188,17 +197,17 @@ seamlessly and harmoniously with their tenants.</p>
                 <div>
                   
                   <p class="mt-6 tracking-wide  text-3xl font-bold text-purple-900">The Team </p>
-                  <p  class="text-base text-gray-500 mt-5 ">Behind the The Property Manager Online is a team of real estate lessors and real estate
-managers, IT professionals, programmers, technical support specialists, and UI/UX designers.
-Our team members have worked or belong to the industry of real estate management and
-Information Technology industry. We believe that a transformative digital system is what the
-real estate management need to reduce and even eliminate many pain points of a rental
-property business.</p>
+                  <p  class="text-base text-gray-500 mt-5 ">Behind Propsuite is a team of real estate lessors and real estate
+                  managers, IT professionals, programmers, technical support specialists, and UI/UX designers.
+                  Our team members have worked or belong to the industry of real estate management and
+                  Information Technology industry. We believe that a transformative digital system is what the
+                  real estate management need to reduce and even eliminate many pain points of a rental
+                  property business.</p>
 
-<p  class="text-base text-gray-500 mt-5 ">
-The PMO Team is establishing harmonious relationships between business owners,
-managers, and tenants to make thriving rental property communities. With a transformative
-digital system, there will be transparency in business transactions, and efficiency in operations.</p>
+                  <p  class="text-base text-gray-500 mt-5 ">
+                  Propsuite Team is establishing harmonious relationships between business owners,
+                  managers, and tenants to make thriving rental property communities. With a transformative
+                  digital system, there will be transparency in business transactions, and efficiency in operations.</p>
                 </div>
               
               </blockquote>
@@ -263,7 +272,7 @@ digital system, there will be transparency in business transactions, and efficie
             </svg>
           </div>
           <h3 class="text-3xl font-medium text-white">Contact Us</h3>
-          <h3 class="mt-2 text-xl font-medium text-white">The PMO Co.</h3>
+          <h3 class="mt-2 text-xl font-medium text-white">Propsuite</h3>
           <p class="mt-6 max-w-3xl text-sm text-purple-200">Makati Address: <p class="text-base mt-2 text-white">Asian Institute of Management - Dado Banatao Incubator Benavidez Street, corner Trasierra, Legazpi Village, Makati, 1229 Metro Manila</p></p>
           <p class="mt-6 max-w-3xl text-sm text-purple-200">Baguio Address: <p class="text-base mt-2 text-white">39 Engineers Hill, Baguio City</p></p>
           <dl class="mt-8 space-y-6">

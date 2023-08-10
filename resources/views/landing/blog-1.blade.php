@@ -3,7 +3,11 @@
 @section('description', 'A product to make easy the life of property managers and property owners. The property management system is a handy application to simplify operations in rental properties from tenant finding, lease contract management, billing and collection management, and concerns and maintenance requests for landlords, dormitories, apartment rentals, and other rentals.')
 
 
-
+<style>
+    body{
+        background-color:#4F3F6D;
+    }
+</style>
 <!-- component -->
 <section class="bg-white dark:bg-gray-900">
     <div class="container px-6 py-10 mx-auto">

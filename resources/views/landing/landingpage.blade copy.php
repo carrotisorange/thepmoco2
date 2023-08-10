@@ -1,34 +1,17 @@
 <x-landing-page-template>
 
-@section('title','Propman — Home')
+@section('title','The PMO — Home')
 @section('description', 'Increase transparency, and efficiency in rental property operations with a simple and easy to use system for leasing and property management.')
 
-
 <style>
-body {
-    font-family: 'Poppins';
-}
-
-#button1 {
-  background-color: #F79630;
-  border-radius: 30px;
-  transition-duration: 0.1s;
-}
-#button2{
-  background-color: #8B5CF6;
-  border-radius: 30px;
-  transition-duration: 0.1s;
-}
-#button1:hover, #button2:hover {
-  background-color:#fdba74;
-}
-
-body {
-  background-color: #4F1964;
+  #modal-bg{
+    background-image: url('/brands/landing/modal-bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
-  #propbiz-bg{
-    background-image: url('/brands/propsuite/propbiz-landing-bg.png');
+  body {
+  background-color: #4A386C;
   }
 
   #seamless {
@@ -40,7 +23,7 @@ body {
   }
 
   #gradient {
-  background-image: linear-gradient(to right, rgba(79,25,100), rgba(79,63,109));
+  background-image: linear-gradient(to right, rgba(74,56,108,0), rgba(102,102,102));
   }
 
   #features {
@@ -50,7 +33,7 @@ body {
   }
 
   #guide {
-    background-color: #4F3F6D;
+    background-color: #5D5270;
   }
 
   #owner-btn {
@@ -58,38 +41,103 @@ body {
     border-radius:4px;
   }
 
-  .propbizOrange{
-    color: #F4B700;
-  }
-
-  .propbizOrangebg{
-    background-color: #F4B700;
-  }
-
-
 </style>
 
-
+<!-- pop up modal -->
+          <dh-component>         
+            <div class="py-5 rounded-lg shadow  bg-gray-700 bg-opacity-75 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0" id="modal">
+                <div role="alert" class="container mx-auto  max-w-2xl">
+                    <div class="mt-24 relative py-3 px-5 md:px-10 shadow-2xl bg-white ">
+                      
+                      <div id ="modal-bg" class="px-3 md:px-4 py-6 flex flex-col justify-center items-center">
+                        <div role="img" aria-label="PMO Logo">
+                          <img src="{{ asset('/brands/favicon.ico') }}">
+                        </div>
+                        <h1 class="mt-8 md:mt-12 text-xl lg:text-2xl font-semibold  text-gray-800 text-center   dark:text-white">Welcome to The Property Manager Online</h1>
+                        <p class="mt-10 text-md leading-normal text-center text-gray-600 md:w-9/12 lg:w-7/12 dark:text-white"><span class="font-bold text-xl">Free trial</span> until full setup ready.</p>
+                        <p class="mt-3 mb-3 text-base leading-normal text-center text-gray-600 md:w-9/12 dark:text-white"><span class="font-bold text-purple-700 text-lg">No credit card required,</span> no strings attached</p>
+                        <div class="mt-12 md:mt-14 w-full flex justify-center">
+                          <a href="https://thepmo.co/select-a-plan"><button class="bg-purple-900 dark:text-white dark:border-white w-full sm:w-auto border border-purple-800 text-base font-medium text-white py-5 px-14 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 hover:bg-purple-600 hover:text-white dark:hover:text-white dark:hover:bg-gray-700">Start my Free Trial</button></a>
+                        </div>
+                      </div>
+                    
+                      <button class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600" onclick="modalHandler()" aria-label="close modal" role="button">
+                        <svg  xmlns="http://www.w3.org/2000/svg"  class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                          <path stroke="none" d="M0 0h24v24H0z" />
+                          <line x1="18" y1="6" x2="6" y2="18" />
+                          <line x1="6" y1="6" x2="18" y2="18" />
+                        </svg>
+                        
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                        
+              <script>
+            
+                let modal = document.getElementById("modal");
+                function modalHandler(val) {
+                    if (val) {
+                        fadeIn(modal);
+                    } else {
+                        fadeOut(modal);
+                    }
+                }
+                function fadeOut(el) {
+                    el.style.opacity = 1;
+                    (function fade() {
+                        if ((el.style.opacity -= 0.1) < 0) {
+                            el.style.display = "none";
+                        } else {
+                            requestAnimationFrame(fade);
+                        }
+                    })();
+                }
+                function fadeIn(el, display) {
+                    el.style.opacity = 0;
+                    el.style.display = display || "flex";
+                    (function fade() {
+                        let val = parseFloat(el.style.opacity);
+                        if (!((val += 0.2) > 1)) {
+                            el.style.opacity = val;
+                            requestAnimationFrame(fade);
+                        }
+                    })();
+                }
+              </script>
+            
+          </dh-component>
+            
+<!-- end of pop up modal -->
 
 <!-- seamless section -->
 
-          <div id="propman-bg" class="sm:block lg:flex md:flex min-h-screen py-16">
-            <div class="flex-col items-center justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-20 xl:px-36">
+          <div class="sm:block lg:flex md:flex min-h-screen">
+            <div class="flex-col items-center justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-20 xl:px-48 ">
               <div class="w-full">
-                <div class="text-gray-300 text-4xl font-bold py-24 sm:text-5xl lg:text-5xl">
-                  <img class="h-24" src="{{ asset('/brands/propsuite/propman.png') }}">
-                  
-                  <h2 class="text-lg ">Property Management System for long term and short term rental properties and home owners associations</h2>
+                <div class="text-gray-300 text-4xl font-bold py-24 sm:text-5xl lg:text-6xl">
+                  <span class="typing" id="seamless"></span>
+                
+                  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
+                  <script>
+                    var typed = new Typed(".typing", {
+                        strings: ["Seamless", "Simplified", "Easy to  Use"],
+                        typeSpeed: 1,
+                        backSpeed: 1,
+                        loop: true
+                    });
+                  </script>
+                  <h2>System For Rental Property Operations</h2>
                 </div>
               </div>
             </div>
 
-            <div class="flex-col justify-center sm:-py-2 md:py-20 lg:py-8 lg:px-36 sm-px-0">
-              <div class="lg:block lg:py-20 md:max-w-lg xl:max-w-md sm:ml-12 sm:py-2  mx-5">
-                <p class="text-base font-light mt-10 text-white text-justify">Property management system as a service that provides a transformative digital solution to simplify operations of long term or short term rental properties. Unlike manual processes, our online system provides real-time, reliable and accessible information to landlords and managers to increase transparency and efficiency of operations.</p>
+            <div class="flex-col justify-center sm:-py-2 md:py-20 lg:py-8 lg:px-16 sm-px-0 ">
+              <div class="lg:block lg:py-20 md:max-w-lg xl:max-w-3xl sm:ml-12 sm:py-2 lg:-ml-5 mx-5">
+                <p class="text-lg font-light mt-10 text-white">With The Property Manager Online, you can easily streamline rental property operations smoothly and harmoniously with your tenants while saving time and money!</p>
 
                 <div class="mt-10 flex justify-center items-center space-x-5">
-                  <button class="propmanOrangebg rounded-full"> <a href="https://thepmo.co/select-a-plan" class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Free Trial</a></button>
+                  <button id= "button1"> <a href="https://thepmo.co/select-a-plan" class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Free Trial</a></button>
                   <button> <a href="demopage" class="w-48 flex justify-center py-3 px-4 border border-gray-400 rounded-full shadow-sm text-sm font-medium text-white hover:bg-purple-300  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">View Demo</a></button>            
                 </div>
               </div>
@@ -99,7 +147,35 @@ body {
 
 <!-- seamless end -->
 
+<!-- owner corner -->
 
+          <div id ="owner" class="mt-0 sm:mt-0 lg:-mt-56  min-h-full lg:grid  lg:grid-cols-2 lg:gap-8 lg:px-8 bg-white">
+            
+            <div class="lg:col-start-1 lg:m-0 lg:pl-20">
+              <div class="pb-5 px-5 sm:px-20 md:px-20 lg:px-0 sm:max-w-xl  lg:max-w-none  flex items-center justify-center">
+                <span class="text-2xl font-semibold text-gray-700">Turn your property into an income generating <br>real asset!</span>  
+                <img src="{{ asset('/brands/owner-section.png') }}" class="w-72">
+              </div>
+            </div>
+
+            <div class="sm:pl-20 px-5 sm:px-20 md:px-20 lg:px-20 lg:py-10 sm:mt-0  lg:col-start-2">
+
+              <div class="flex justify-center items-center">
+                <p class="pb-10 text-base font-light text-gray-700">
+                  Are you a <span class="font-bold text-purple-900">rental property owner</span> in need of <span class="font-bold text-purple-900">property management services?</span>
+                  Sign up as a property owner and we will connect you to our pool of property managers.
+                </p>
+              </div>
+            
+              
+                <button id= "owner-btn"> <a href="owner-corner" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">I need property management services</a></button>
+              
+            </div>
+              
+
+          </div>
+                        
+<!-- owner end -->
     
 <!-- carousel -->
 
@@ -620,7 +696,7 @@ body {
                       </svg>
                     </div>
                     <h3 class="text-3xl font-medium text-white">Contact Us</h3>
-                    <h3 class="mt-2 text-xl font-medium text-white">Propsuite</h3>
+                    <h3 class="mt-2 text-xl font-medium text-white">The PMO Co.</h3>
                     <p class="mt-6 max-w-3xl text-sm text-purple-200">Makati Address: <p class="text-base mt-2 text-white">Asian Institute of Management - Dado Banatao Incubator Benavidez Street, corner Trasierra, Legazpi Village, Makati, 1229 Metro Manila</p></p>
                     <p class="mt-6 max-w-3xl text-sm text-purple-200">Baguio Address: <p class="text-base mt-2 text-white">39 Engineers Hill, Baguio City</p></p>
                     <dl class="mt-8 space-y-6">
@@ -683,4 +759,3 @@ body {
 <!-- end partnered with section -->
 
 </x-landing-page-template>
-

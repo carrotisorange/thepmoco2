@@ -1,8 +1,11 @@
 <x-landing-page-template>
 @section('title','The PMO — FAQs')
 @section('description', 'A product to make easy the life of property managers and property owners. The property management system is a handy application to simplify operations in rental properties from tenant finding, lease contract management, billing and collection management, and concerns and maintenance requests for landlords, dormitories, apartment rentals, and other rentals.')
-        <div class="relative shadow-xl sm:overflow-hidden ">
+        <div class="shadow-xl sm:overflow-hidden ">
         <style>
+          body {
+            background-color:#A69CC1;
+          }
           #everything {
           background-image: url('/brands/landing/faq.jpg');
           background-repeat: no-repeat;
@@ -12,9 +15,9 @@
           }
           </style>
             
-            <div id ="everything" class="absolute inset-0" style= "background-image: url('/brands/faq.jpg ');" ></div>
+       
           
-          <div class="relative px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
+          <div class=" px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
             <h1 class="text-4xl font-bold tracking-tight sm:text-4xl lg:text-4xl">
               <span class=" text-gray-800">Frequently asked questions</span>
               
@@ -22,7 +25,7 @@
             <p class="text-xl text-white sm:max-w-3xl">Everything You Need to Know</p>
             <p class="mt-10 text-md text-gray-700 sm:max-w-3xl">Need assistance? Check out our answers to some of the most frequently asked questions below. If you can’t find the answer to your question here, <span class="font-bold text-purple-900"><a href="#contactus">get in touch</a></span> with us today.
 
-</p>
+            </p>
             
           </div>
         </div>
@@ -30,7 +33,7 @@
     </div>
 
    <!-- what is online rental section -->
-   <div class=" pb-16 lg:z-10 lg:pb-0" style= "background-image: url('/brands/landing/faq-bg.webp');" alt="a laptop, message icon, settings icon as background">
+   <div class="pb-16 lg:z-10 lg:pb-0" style= "background-image: url('/brands/landing/faq-bg.webp');" alt="a laptop, message icon, settings icon as background">
           <div class="mt-12 lg:col-span-2 lg:m-0 lg:pl-8">
             <div class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-4xl lg:px-0 lg:py-20">
               <blockquote>
@@ -107,11 +110,11 @@
     </div>
 
     <!-- key features section -->
-<div class="relative bg-gray-white pb-10">
-        <div class="py-20 relative">
+<div class="bg-gray-white pb-10">
+        <div class="py-20">
         
 
-          <div class="relative mx-auto max-w-5xl sm:px-6 lg:px-0">
+          <div class="mx-auto max-w-5xl sm:px-6 lg:px-0">
           <!-- Content area -->
           <div class="pt-8 sm:pt-8 lg:pt-8">
             <h2 class="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Key Features of a PMS:</h2>
@@ -211,11 +214,11 @@
     </div>
 
 <!-- features section -->
-<div class="relative bg-gray-white pb-10">
-        <div class="py-20 relative">
+<div class=" bg-gray-white pb-10">
+        <div class="py-20 ">
         
 
-          <div class="relative mx-auto max-w-5xl sm:px-6 lg:px-0">
+          <div class=" mx-auto max-w-5xl sm:px-6 lg:px-0">
           <!-- Content area -->
           <div class="pt-8 sm:pt-8 lg:pt-8">
             <h2 class="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">What are the features of an online rental property management system?</h2>
@@ -346,11 +349,11 @@
     </div>
 
     <!-- rms advantages section -->
-<div class="relative bg-gray-white pb-10">
-        <div class="py-20 relative">
+<div class=" bg-gray-white pb-10">
+        <div class="py-20 ">
         
 
-          <div class="relative mx-auto max-w-9xl sm:px-6 lg:px-0">
+          <div class=" mx-auto max-w-9xl sm:px-6 lg:px-0">
           <!-- Content area -->
           <div class="pt-8 sm:pt-8 lg:pt-8">
             <h2 class="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">The advantages of using an RMS</h2>
