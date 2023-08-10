@@ -271,6 +271,31 @@
         <div class="font-medium leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Request for<br> Purchases
         </div>
 
+        <!-- Account Payable -->
+        @if(Session::get('property'))
+        <x-nav-link href="/property/{{ Session::get('property') }}/accountpayable"
+            :active="request()->routeIs('accountpayable')">
+
+            <span class="sr-only">Liquidations</span>
+            <img class="h-14 w-auto" src="{{ asset('/brands/liquidation.png') }}" fill="none" viewBox="0 0 24 24"
+                stroke-width="2" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+        </x-nav-link>
+        @else
+        <x-nav-link href="/property/" :active="request()->routeIs('accountpayable')">
+
+            <span class="sr-only">Liquidations</span>
+            <img class="h-14 w-auto" src="{{ asset('/brands/liquidation.png') }}" fill="none" viewBox="0 0 24 24"
+                stroke-width="2" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+        </x-nav-link>
+        @endif
+
+        <div class="font-medium leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Liquidation
+        </div>
+
         <!-- Financials -->
         @if(Session::get('property'))
         <x-nav-link href="/property/{{ Session::get('property') }}/financial" :active="request()->routeIs('financial')">
