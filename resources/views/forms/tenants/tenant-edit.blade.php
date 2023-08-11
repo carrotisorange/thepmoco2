@@ -24,11 +24,20 @@
                 <label for="status" class="block text-xs font-medium text-gray-900">Status</label>
                 <select wire:model.debounce.500ms="status"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
-                    <option value="active" {{ old('status', $status)=='active' ? 'selected' : 'selected' }}>
+                   <option value="active" {{ "active"===$status? 'selected' : 'Select one' }}>
                         active
                     </option>
-                    <option value="inactive" {{ old('status', $status)=='inactive' ? 'selected' : 'selected' }}>
+                    <option value="inactive" {{ "inactive"===$status? 'selected' : 'Select one' }}>
                         inactive
+                    </option>
+                    <option value="pendingmovein" {{ "pendingmovein"===$status? 'selected' : 'Select one' }}>
+                        pendingmovein
+                    </option>
+                    <option value="pendingmoveout" {{ "pendingmoveout"===$status? 'selected' : 'Select one' }}>
+                        pendingmoveout
+                    </option>
+                    <option value="reserved" {{ "reserved"===$status? 'selected' : 'Select one' }}>
+                        reserved
                     </option>
                 </select>
                 @error('status')
