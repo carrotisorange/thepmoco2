@@ -5,8 +5,9 @@
     <div class="pt-6 pb-3 flex justify-between">
         <h1 class="text-xl font-medium mx-8">Liquidation Details</h1>
         <div class="flex justify-end space-x-4"> 
-            <button class="px-3 py-2 rounded-lg bg-purple-500 text-sm text-white">Save</button>
+            <button class="px-3 py-2 rounded-lg bg-purple-500 text-sm text-white">Export</button>
             <button class="px-3 py-2 rounded-lg bg-purple-500 text-sm text-white">Send Email</button>
+            <button class="px-3 py-2 rounded-lg bg-purple-500 text-sm text-white">Save</button>
         </div>
     </div>
         <div class="mt-5 px-4 sm:px-6 lg:px-8">
@@ -138,6 +139,50 @@
                 </x-td>  
             </tbody>
         </table>
+
+        <div>
+            <div class="cols-start-3 mt-10 space-y-3 0 pb-3 sm:space-y-0 sm:divide-y sm:pb-0">
+                <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-3">
+                    <label for="total" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Liquidation
+                        Total</label>
+                    <div class="mt-2 sm:col-start-3 sm:mt-0">
+                     
+                    </div>
+                </div>
+
+                <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
+                    <label for="cash_advance" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Cash
+                        Advance</label>
+                    CV Number: 
+                    <input id="cash_advance" name="cash_advance" step="0.001" type="number" placeholder="CV NUMBER"
+                        autocomplete="cv_number" wire:model="cv_number"
+                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
+              
+                    <p class="text-red-500 text-xs mt-2"></p>
+              
+                    <div class="mt-2 sm:col-start-3 sm:mt-0">
+
+                      
+                        <p class="text-red-500 text-xs mt-2"></p>
+                     
+                    </div>
+                </div>
+
+
+
+                <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
+                    <label for="total_amount" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Total
+                        Return</label>
+
+
+                    <div class="mt-2 sm:col-start-3 sm:mt-0">
+                        <div class="mt-2 sm:col-start-3 sm:mt-0">
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
 
 
