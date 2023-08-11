@@ -45,8 +45,8 @@ Route::get('/liquidation', function(){
     return view('properties.liquidations.liquidation');
 });
 
-Route::get('/step3', function(){
-    return view('properties.liquidations.step3');
+Route::get('/liquidation-view', function(){
+    return view('properties.liquidations.liquidation-view');
 });
 
 
