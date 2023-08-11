@@ -191,7 +191,7 @@
             @foreach ($properties as $property)
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                {{ number_format(App\Models\Property::find($property->uuid)->bills->sum('bill'), 2) }}
+                {{ number_format(App\Models\Bill::where('property_uuid',$property->uuid)->posted()->sum('bill'), 2) }}
             </th>
             @endforeach
         </tr>
@@ -205,7 +205,7 @@
             @foreach ($properties as $property)
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                {{ number_format(App\Models\Property::find($property->uuid)->collections->sum('collection'), 2) }}
+                {{ number_format(App\Models\Collection::where('property_uuid',$property->uuid)->posted()->sum('collection'), 2) }}
             </th>
             @endforeach
         </tr>
@@ -219,8 +219,7 @@
             @foreach ($properties as $property)
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
-                {{ number_format(App\Models\Property::find($property->uuid)->bills->whereIn('status', ['unpaid','partially_paid'])->sum('bill') -
-                App\Models\Property::find($property->uuid)->bills->whereIn('status', ['unpaid','partially_paid'])->sum('initial_payment'), 2) }}
+                {{ number_format(App\Models\Bill::where('property_uuid',$property->uuid)->posted()->sum('bill')-App\Models\Collection::where('property_uuid',$property->uuid)->posted()->sum('collection'), 2) }}
             </th>
             @endforeach
         </tr>
@@ -232,9 +231,9 @@
                 Collection Efficiency
             </td>
             @foreach ($properties as $property)
-            @if(App\Models\Property::find($property->uuid)->bills->count() > 1)
+            @if(App\Models\Bill::where('property_uuid',$property->uuid)->posted()->sum('bill') > 1)
             <?php $collection_efficiency = 
-                App\Models\Property::find($property->uuid)->collections->sum('collection') / App\Models\Property::find($property->uuid)->bills->sum('bill'); ?>
+                App\Models\Collection::where('property_uuid',$property->uuid)->posted()->sum('collection') / App\Models\Bill::where('property_uuid',$property->uuid)->posted()->sum('bill'); ?>
             @else
             <?php $collection_efficiency = 0;?>
             @endif

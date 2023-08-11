@@ -122,7 +122,7 @@
                                                                     }}</div>
                                                                 <?php $change_in_monthly_collections = App\Http\Controllers\CollectionController::divNumber($current_monthly_collections, $previous_monthly_collections)*100;?>
                                                                 @if($previous_monthly_collections > $current_monthly_collections)
-                                                                <div class="text-md font-medium text-red-500">-{{
+                                                                <div class="text-md font-medium text-red-500">{{
                                                                     number_format($change_in_monthly_collections, 1) }}%</div>
                                                                 @else
                                                                 <div class="text-md font-medium text-green-500">{{
