@@ -235,7 +235,7 @@
 
             </div>
 
-
+      
             @livewire('bill-create-component', [ 'property' => $property, 'unit' => $unit,'tenant' => $tenant,  'contract'=> $contract])
         </div>
 

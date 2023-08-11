@@ -103,6 +103,27 @@
                     @enderror
                 </div>
 
+                {{-- @if($status === 'inactive') --}}
+                <div class="mt-5 sm:mt-6">
+                    <label class="text-sm" for="unit_uuid">Would you like to update the tenant status?</label>
+                    <x-form-select id="markTenantAsInactive" name="markTenantAsInactive" wire:model="markTenantAsInactive" class="">
+                        <option value="true" {{ true===$status? 'selected' : 'Select one' }}>
+                            yes
+                        </option>
+
+                        <option value="false" {{ false===$status? 'selected' : 'Select one' }}>
+                            no
+                        </option>
+                       
+
+                    </x-form-select>
+
+                    @error('markTenantAsInactive')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+                {{-- @endif --}}
+
                 <div class="mt-5 sm:mt-6">
                     <label class="text-sm" for="interaction_id">Interaction</label>
                     <x-form-select id="interaction_id" name="interaction_id" wire:model="interaction_id" class="">

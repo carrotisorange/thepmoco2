@@ -117,7 +117,7 @@ class BillIndexComponent extends Component
                 ->when($this->particular, function($query){
                 $query->where('batch_no', $this->batch_no);
                 })
-               ->get();
+            ->paginate(10);
    }
 
    public function get_delinquents(){

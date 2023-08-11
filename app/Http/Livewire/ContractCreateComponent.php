@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Session;
 use Illuminate\Support\Str;
 use App\Models\Bill;
+use Facade\FlareClient\Truncation\TruncationStrategy;
 
 class ContractCreateComponent extends Component
 {
@@ -28,8 +29,9 @@ class ContractCreateComponent extends Component
       public $interaction_id = 11;
       public $contract;
       public $referral;
-      public $sendContractToTenant;
+      public $sendContractToTenant = false;
       public $property_uuid;
+      public $autoGenerateBills = true;
 
       public function mount($unit, $tenant)
       {
@@ -39,7 +41,6 @@ class ContractCreateComponent extends Component
         $this->discount = $unit->discount;
         // $this->end = Carbon::now()->addYear()->format('Y-m-d');
         $this->start = Carbon::now()->format('Y-m-d');
-        $this->sendContractToTenant = false;
         $this->property_uuid = Session::get('property');
     
       }
@@ -75,7 +76,6 @@ class ContractCreateComponent extends Component
 
       public function submitForm()
       {
-        
 
         $this->validate();
 
@@ -83,7 +83,9 @@ class ContractCreateComponent extends Component
 
         app('App\Http\Controllers\ContractController')->store(auth()->user()->id, $contract_uuid, $this->property_uuid, $this->start, $this->end, $this->interaction_id, $this->rent, $this->tenant->uuid, $this->unit->uuid, 'pendingmovein', 4, 'active', 5, 1, $this->referral, $this->sendContractToTenant);
 
-        $this->store_bill();
+        if($this->autoGenerateBills){
+          $this->store_bill();
+        }
 
         if($this->contract)
         {
