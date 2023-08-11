@@ -134,9 +134,9 @@
                     <x-td>
                         <x-table-select form="edit-form" wire:model="units.{{ $index }}.rent_duration">
                             <option value="">Select a rent type</option>
-                            <option value="transient" {{ 'units' .$index.'rent_duration'==='transient' ? 'selected' : ''
+                            <option value="daily" {{ 'units' .$index.'rent_duration'==='daily' ? 'selected' : ''
                                 }}>
-                                transient
+                                daily
                             </option>
                             <option value="long_term" {{ 'units' .$index.'rent_duration'==='long_term' ? 'selected' : ''
                                 }}>
