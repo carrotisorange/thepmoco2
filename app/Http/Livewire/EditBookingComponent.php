@@ -93,7 +93,7 @@ class EditBookingComponent extends Component
     public function render()
     {
         return view('livewire.edit-booking-component',[
-            'units' => Property::find($this->property->uuid)->units->where('rent_duration', 'transient'),
+            'units' => Property::find($this->property->uuid)->units->where('rent_duration', 'daily'),
         ]);
     }
 }
