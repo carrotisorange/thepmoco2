@@ -35,6 +35,22 @@ require __DIR__.'/marketing.php';
 //All routes that do not require authentication and verification
 require __DIR__.'/checkout.php';
 
+//liq rfp
+
+Route::get('/pending-approval', function(){
+    return view('accountpayables.pending-approval');
+});
+
+Route::get('/liquidation', function(){
+    return view('properties.liquidations.liquidation');
+});
+
+Route::get('/liquidation-view', function(){
+    return view('properties.liquidations.liquidation-view');
+});
+
+
+
 // help
 Route::get('/help', function(){
     return view('help.help');

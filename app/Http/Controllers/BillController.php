@@ -9,6 +9,7 @@ use App\Models\Unit;
 use App\Models\Tenant;
 use App\Models\Contract;
 use Carbon\Carbon;
+use App\Models\Collection;
 
 class BillController extends Controller
 {
@@ -58,26 +59,23 @@ class BillController extends Controller
 
         if($status == 'paid')
         { 
-              $bills = Property::find($property_uuid)->acknowledgementreceipts()
-              ->when($month, function ($query) use ($month) {
-              $query->whereMonth('created_at', $month);
-              })
-              ->sum('amount');
+              $bills = Collection::where('property_uuid',$property_uuid)->posted()
+               ->when($month, function ($query) use ($month) {
+               $query->whereMonth('created_at', $month);
+               })
+               ->sum('collection');
 
         }else{
-              $bills = Property::find($property_uuid)->bills()
-              ->whereIn('status', ['unpaid', 'partially_paid'])
-              ->when($month, function ($query) use ($month) {
-              $query->whereMonth('created_at', $month);
-              })
-              ->sum('bill') -
+              $bills = Bill::where('property_uuid', $property_uuid)->posted()
+            ->when($month, function ($query) use ($month) {
+                $query->whereMonth('created_at', $month);
+            })->sum('bill')-
 
-              Property::find($property_uuid)->bills()
-              ->whereIn('status', ['unpaid', 'partially_paid'])
+              Collection::where('property_uuid',$property_uuid)->posted()
               ->when($month, function ($query) use ($month) {
-              $query->whereMonth('created_at', $month);
+                $query->whereMonth('created_at', $month);
               })
-              ->sum('initial_payment');
+              ->sum('collection');
 
              
         }

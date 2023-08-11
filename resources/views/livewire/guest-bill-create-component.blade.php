@@ -118,8 +118,8 @@
         <div class="flex flex-row">
             <div class="basis-3/4">
 
-                @can('is_account_receivable_create_allowed')
-                @if($total_unpaid_bills->sum('bill') && $selectedBills)
+                {{-- @can('is_account_receivable_create_allowed') --}}
+                @if($selectedBills)
                 <button type="button" wire:click="payBills"
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Pay Bills
@@ -135,7 +135,7 @@
                     <b>Please check the bill you want to pay</b>
                 </div>
                 @endif
-                @endcan
+                {{-- @endcan --}}
 
             </div>
            

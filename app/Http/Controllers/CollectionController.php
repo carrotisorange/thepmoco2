@@ -11,14 +11,14 @@ class CollectionController extends Controller
 
     public function get_property_collections($property_uuid, $daily, $monthly)
     {
-        return Property::find($property_uuid)->collections()
+        return Collection::where('property_uuid',$property_uuid)
          ->when($daily, function ($query) use ($daily) {
           $query->whereDate('updated_at', $daily);
         })
          ->when($monthly, function ($query) use ($monthly) {
           $query->whereMonth('updated_at', $monthly);
         })
-        
+        ->posted()
         ->get();
     }
     
