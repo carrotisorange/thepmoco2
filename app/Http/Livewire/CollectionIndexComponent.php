@@ -53,7 +53,7 @@ class CollectionIndexComponent extends Component
     public function get_ars()
     {
         return Collection::search($this->search)
-        ->select('*', DB::raw("SUM(collection) as collection"),DB::raw("count(collection) as count") )
+        ->select('*', DB::raw("SUM(collection) as collections"),DB::raw("count(collection) as count") )
         ->where('property_uuid', $this->property->uuid)
         ->when($this->start, function($query){
             $query->whereDate('updated_at', $this->start);
@@ -70,6 +70,6 @@ class CollectionIndexComponent extends Component
         ->posted()
         ->groupBy('ar_no')
         ->orderBy('ar_no', 'desc')
-        ->get();
+        ->paginate(10);
     }
 }
