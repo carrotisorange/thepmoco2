@@ -30,7 +30,7 @@ class PropertyShowComponent extends Component
             'new_contracts_count' => app('App\Http\Controllers\ContractController')->get_contracts_trend_count($this->property->uuid),
             'new_contracts_date' => app('App\Http\Controllers\ContractController')->get_contracts_trend_date($this->property->uuid),
             'concerns' =>app('App\Http\Controllers\ConcernController')->get_property_concerns($this->property->uuid, '', Carbon::now()->month),
-            'pending_concerns' => app('App\Http\Controllers\ConcernController')->get_property_concerns($this->property->uuid,'pendingmovein', ''),
+            'pending_concerns' => app('App\Http\Controllers\ConcernController')->get_property_concerns($this->property->uuid,'pending', ''),
             'closed_concerns' => app('App\Http\Controllers\ConcernController')->get_property_concerns($this->property->uuid, 'closed', Carbon::now()->month),
             'payment_requests' => app('App\Http\Controllers\PaymentRequestController')->get_property_payment_requests($this->property->uuid, 'pending'),
             'roles' => app('App\Http\Controllers\PropertyRoleController')->get_property_user_roles($this->property->uuid),

@@ -17,7 +17,7 @@
             <x-td>{{ $index+1 }}</x-td>
             <x-td>{{ $concern->reference_no }}</x-td>
         
-                        <x-td>
+             <x-td>
                             @if($concern->tenant_uuid)
                             <a href=" /property/{{ $concern->property_uuid }}/tenant/{{ $concern->tenant_uuid }}/concerns"
                     class="text-blue-500 text-decoration-line: underline" target="_blank"">{{ $concern->tenant->tenant
