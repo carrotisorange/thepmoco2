@@ -12,7 +12,7 @@ class ConcernController extends Controller
 {
     public function get_property_concerns($property_uuid, $status, $duration)
     {
-        return Property::find($property_uuid)->concerns()
+        return Concern::where('property_uuid',$property_uuid)
         ->when($status, function ($query) use ($status) {
           $query->where('status', $status);
         })

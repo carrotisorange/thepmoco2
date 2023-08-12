@@ -370,7 +370,7 @@
                                                                 </div>
                                                                 <div button type="button"
                                                                     class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                                    <a
+                                                                    <a target="_blank"
                                                                         href="/property/{{ $property->uuid }}/tenant/{{ $item->tenant_uuid }}/payment_requests/{{ $item->id }}">View</a></button>
                                                                 </div>
                                                             </div>
@@ -391,23 +391,28 @@
 
                                                     <div class="rounded-lg dark:bg-gray-800" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
                                                         <div class="mt-3 mb-5 justify-center  grid grid-cols-2 gap-y-5 gap-x-2 sm:grid-cols-2 lg:grid-cols-2 lg:gap-x-2">
-                                                            <div class="col-span-1">
+                                                           <div class="col-span-1">
                                                                 <div class="h-5 w-full overflow-hidden">
-                                                                    <!-- <div class="flex items-center ">
+                                                                    <div class="flex items-center ">
                                                                         <div class="">
                                                                             <div class="ml-2 flex items-center">
+                                                            
+                                                            
                                                                                 <span class="animate-pulse mx-1 text-red-600">{{
                                                                                     $pending_concerns->count() }}</span>
                                                                                 <div class="text-sm font-regular text-gray-600">
-                                                                                    Concerns Received</div>
-                                            
+                                                                                    Pending Concerns</div>
+                                                            
                                                                             </div>
-                                            
+                                                            
                                                                         </div>
-                                            
-                                                                    </div> -->
-                                            
+                                                            
+                                                                    </div>
+                                                            
                                                                 </div>
+                                                            
+                                                            
+                                                            
                                                             </div>
                                                         </div>
 
@@ -429,13 +434,24 @@
                                             
                                                                 </div>
                                                                 <div class="flex-1 pl-1 mr-16">
-                                                                    <div class="font-medium">{{ $item->tenant->tenant }}</div>
+                                                                    <div class="font-medium">
+                                                                        @if($item->tenant_uuid)
+                                                                        {{ $item->tenant->tenant }} - {{ $item->unit->unit }}
+                                                                        @else
+                                                                        {{ $item->unit->unit }}
+                                                                        @endif
+                                                                    </div>
                                                                     <div class="text-gray-600 text-sm">{{ $item->category->category }}</div>
                                                                 </div>
                                                                 <div button type="button"
                                                                     class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                                    <a
-                                                                        href="/property/{{ $property->uuid }}/tenant/{{ $item->tenant_uuid }}/concern/{{ $item->id }}/edit">Respond</a></button>
+                                                                   @if($item->tenant_uuid)
+                                                                                <a target="_blank"
+                                                                                    href="/property/{{ $property->uuid }}/tenant/{{ $item->tenant_uuid }}/concern/{{ $item->id }}/edit">Respond</a>
+                                                                                @else
+                                                                                <a target="_blank"
+                                                                                    href="/property/{{ $property->uuid }}/unit/{{ $item->unit_uuid }}/concern/{{ $item->id }}/edit">Respond</a>
+                                                                                @endif
                                                                 </div>
                                             
                                                             </div>
