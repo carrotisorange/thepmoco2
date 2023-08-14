@@ -50,22 +50,6 @@
                         <option value="1" {{ '1'==$is_approved ? 'Select one' : 'selected' }}>
                             Yes</option>
                         <option value="0" {{ '0'==$is_approved ? 'Select one' : 'selected' }}>No</option>
-
-                    </x-form-select>
-
-                    @error('is_approved')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <div class="mt-5 sm:mt-6">
-                    <label class="text-sm" for="is_approved">Has authorization to access {{ $property->property
-                        }}?</label>
-                    <x-form-select name="is_approved" id="is_approved" wire:model="is_approved" class="">
-                        <option value="">Select one</option>
-                        <option value="1" {{ '1'==$is_approved ? 'Select one' : 'selected' }}>
-                            Yes</option>
-                        <option value="0" {{ '0'==$is_approved ? 'Select one' : 'selected' }}>No</option>
                 
                     </x-form-select>
                 

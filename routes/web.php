@@ -76,10 +76,6 @@ Route::get('/bill-delete-demo', function(){
     return view('help.bill-delete-demo');
 });
 
-//remittance
-Route::get('/remittance', function(){
-    return view('remittance.remittance');
-});
 
 //proprent
 

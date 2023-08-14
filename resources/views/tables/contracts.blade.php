@@ -8,7 +8,7 @@
             <x-th>PERIOD COVERED</x-th>
             <x-th>RENT/MO</x-th>
             <x-th>STATUS</x-th>
-            <x-th>INTERACTION</x-th>
+            {{-- <x-th>INTERACTION</x-th> --}}
             {{-- <x-th>CONTRACT</x-th> --}}
             <x-th></x-th>
         </tr>
