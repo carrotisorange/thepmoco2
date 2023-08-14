@@ -1,3 +1,4 @@
+
 <x-new-layout>
     @section('styles')
     <meta charset="UTF-8">
