@@ -1,11 +1,15 @@
 <x-landing-page-template>
-@section('title','The PMO — Article')
+@section('title','Propsuite — Articles')
 @section('description', 'A product to make easy the life of property managers and property owners. The property management system is a handy application to simplify operations in rental properties from tenant finding, lease contract management, billing and collection management, and concerns and maintenance requests for landlords, dormitories, apartment rentals, and other rentals.')
 
 
-
+<style>
+    body{
+        background-color:#4F3F6D;
+    }
+</style>
 <!-- component -->
-<section class="bg-white dark:bg-gray-900">
+<section class="mt-0 sm:mt-0 lg:-mt-4 bg-white dark:bg-gray-900">
     <div class="container px-6 py-10 mx-auto">
         <h1 class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">Articles</h1>
 

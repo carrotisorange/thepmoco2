@@ -7,7 +7,7 @@
     background-image: url('/brands/propsuite/propsuite-bg.png');
   }
   .purple{
-    background-color: #C4BCD1;
+    background-color: #4F3F6D;
   }
 
   .darkPurple{
@@ -15,7 +15,7 @@
   }
 </style>
 <body class="purple">
-<div class="propsuite-bg pb-16 sm:pb-20">
+<div class="propsuite-bg mt-0 lg:-mt-4 pb-16 sm:pb-20">
       <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="mx-auto py-48 sm:py-48 lg:py-48">
           <div class="text-center">

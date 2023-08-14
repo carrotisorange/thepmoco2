@@ -155,53 +155,7 @@
             </div>
 
 
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    
-
-            <script>
-                
-                $(function() {
-                index = 0;
-                
-                setInterval(function() {
-                  index++;
-                  $("#static").fadeOut(0, function() {
-                    $(this)
-                      
-                      .css('color', index % 2 == 0 ? '#55185D' : '#EDBE00')
-                      .fadeIn(0);
-                  });
-                }, 1999);
-              });
-
-            </script>
-            <script>
-            var text = ["Property Management System", "Rental Property Listings", "Property Management Services"];
-            var counter = 0;
-            var elem = document.getElementById("changeText");
-            var inst = setInterval(change, 2000);
-
-            function change() {
-              elem.innerHTML = text[counter];
-              counter++;
-              if (counter >= text.length) {
-                counter = 0;
-                // clearInterval(inst); // uncomment this if you want to stop refreshing after one cycle
-              }
-            }
-            </script>
-
-            <script>
-            var doc = document.getElementById("background");
-            var color = ["#55185D","#EDBE00","#4F3F6D","#bda13e",];
-            var i = 0;
-            function change() {
-                doc.style.backgroundColor = color[i];
-            i = (i + 1) % color.length;
-            }
-            
-            setInterval(change, 2000);
-            </script>
+           
 
             
 
@@ -609,7 +563,53 @@
                   
                   <x-contactus></x-contactus>
                   
+                  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    
 
+    <script>
+        
+        $(function() {
+        index = 0;
+        
+        setInterval(function() {
+          index++;
+          $("#static").fadeOut(0, function() {
+            $(this)
+              
+              .css('color', index % 2 == 0 ? '#55185D' : '#EDBE00')
+              .fadeIn(0);
+          });
+        }, 1999);
+      });
+
+    </script>
+    <script>
+    var text = ["Property Management System", "Rental Property Listings", "Property Management Services"];
+    var counter = 0;
+    var elem = document.getElementById("changeText");
+    var inst = setInterval(change, 2000);
+
+    function change() {
+      elem.innerHTML = text[counter];
+      counter++;
+      if (counter >= text.length) {
+        counter = 0;
+        // clearInterval(inst); // uncomment this if you want to stop refreshing after one cycle
+      }
+    }
+    </script>
+
+    <script>
+    var doc = document.getElementById("background");
+    var color = ["#55185D","#EDBE00","#4F3F6D","#bda13e",];
+    var i = 0;
+    function change() {
+        doc.style.backgroundColor = color[i];
+    i = (i + 1) % color.length;
+    }
+    
+    setInterval(change, 2000);
+    </script>
 
 
 </x-landing-page-template>

@@ -41,10 +41,19 @@ Route::fallback(function () {
     return view('layouts.not-found');
 });
 
-// Route::get('/landingpage', function(){
-//     return view('landing.landingpage');
-// });
+Route::get('/', function(){
+     return view('landing.landingpage');});
 
+Route::get('/landing-propsuite', function(){
+     return view('landing.landingpage-propsuite');});
+
+     Route::get('/landing-pmo', function(){
+        return view('landing.landingpage-pmo');});
+
+     Route::get('/landingpagecopy', function(){
+        return view('landing.landingpagecopy');});
+
+      
 
 
 Route::get('/about', function(){

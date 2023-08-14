@@ -49,13 +49,6 @@
     background-image: url('/brands/propsuite/propbiz-landing-bg.png');
   }
 
-  #propsuite-image{
-    background-image: url('/brands/propsuite/propsuite-image.png');
-  }
-
-
-  
-
   .propmanOrangebg{
     background-color: #FFDE59;
   }
@@ -64,31 +57,33 @@
     background-color: #F4B700;
   }
 
- 
-
   .propbizOrangebg{
     background-color: #F4B700;
   }
 
-  .bgStart{
-    background-color: #4F1964;
-  }
 
-  #propman-image{
-    background-image: url('/brands/propsuite/propbiz-landing-bg.png');
-  }
 
-  #proprent-image{
-    background-image: url('/brands/propsuite/proprent-landing-bg.png');
-  }
-
-  #propbiz-image{
-    background-image: url('/brands/propsuite/propman-landing-bg.png');
-  }
+.container p span.cursor {
+  display: inline-block;
+  background-color: #ccc;
+  margin-left: 0.1rem;
+  width: 3px;
+  animation: blink 1s infinite;
+}
+.container p span.cursor.typing {
+  animation: none;
+}
+@keyframes blink {
+  0%  { background-color: #ccc; }
+  49% { background-color: #ccc; }
+  50% { background-color: transparent; }
+  99% { background-color: transparent; }
+  100%  { background-color: #ccc; }
+}
 
 </style>
 
-<body id="background" class="bgStart">
+<body id="background">
 <!-- pop up modal -->
           <dh-component>         
             <div class="py-5 rounded-lg shadow  bg-gray-700 bg-opacity-75 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0" id="modal">
@@ -154,232 +149,32 @@
             
           </dh-component>
             
-          <style>
-            [data-component="slideshow"] .slide {
-              display: none;
-            
-            }
-
-            [data-component="slideshow"] .slide.active {
-              display: block;
-            }
-          </style>
-
-          <div id="slideshow-example" data-component="slideshow">
-            <div role="list">
-              <div class="slide min-h-screen" id="propman-image">
-                  <div id="" class="sm:block lg:flex md:flex min-h-screen py-16">
-                  <div class="flex-col items-center  justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-10">
-
-                  <img src="{{ asset('/brands/propsuite/propman.png') }}" class="w-36">
-                
-
-                    <div class="max-w-7xl">
-                      <div class="text-center text-gray-300 text-2xl font-bold pt-24 pb-10 sm:text-2xl lg:text-5xl">
-                      <span id="static" class="propman" id="seamless"></span>
-                      
-                      <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
-                      <script>
-                        var typed = new Typed(".propman", {
-                            strings: ["Property Management System"],
-                            typeSpeed: 15,
-                            backSpeed: 30,
-                            loop: true
-                        });
-                      </script>
-                        
-                        
-                      </div>
-                      
-                      </div>
-                  </div>
-
-                  <div class="flex items-center lg:absolute right-0 mx-20 justify-center sm:-py-2 md:py-20 lg:py-8">
-                    <div class="lg:block lg:py-20 md:max-w-lg xl:max-w-md sm:ml-12 sm:py-2  mx-5">
-                      <p class="text-base font-light mt-10 text-white text-justify">Property Management System for long term and short term rental properties and home owners associations.</p>
-                      <div class="mt-10 flex justify-center items-center space-x-5">
-                        <button class="propmanOrangebg rounded-full"> <a href="https://thepmo.co/select-a-plan" class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Free Trial</a></button>
-                        <button> <a href="demopage" class="w-48 flex justify-center py-3 px-4 border border-gray-400 rounded-full shadow-sm text-sm font-medium text-white hover:bg-purple-300  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">View Demo</a></button>            
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              <div class="slide min-h-screen" id="proprent-image">
-                  <div id="" class="sm:block lg:flex md:flex min-h-screen py-16">
-                  <div class="flex-col items-center  justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-10">
-
-                  <img src="{{ asset('/brands/propsuite/proprent.png') }}" class="w-36">
-                
-
-                    <div class="max-w-7xl">
-                      <div class="text-center text-gray-300 text-2xl font-bold pt-24 pb-10 sm:text-2xl lg:text-5xl">
-                      <span id="static" class="proprent" id="seamless"></span>
-                      
-                      <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
-                      <script>
-                        var typed = new Typed(".proprent", {
-                            strings: ["Rental Property Listings"],
-                            typeSpeed: 15,
-                            backSpeed: 30,
-                            loop: true
-                        });
-                      </script>
-                        
-                        
-                      </div>
-                      
-                      </div>
-                  </div>
-
-                  <div class="absolute right-0 mx-20 justify-center sm:-py-2 md:py-20 lg:py-8">
-                    <div class="lg:block lg:py-20 md:max-w-lg xl:max-w-md sm:ml-12 sm:py-2  mx-5">
-                      <p class="text-base font-light mt-10 text-white text-justify">Leasing platform for rental property owners to list vacant rooms and units for long term or short term rental and a Leasing Marketplace for tenants to find available place.</p>
-                      <div class="mt-10 flex justify-end items-center space-x-5">
-                        <button class="rounded-full"> <a href="proprent-search" class="proprentOrangebg w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Coming Soon</a></button>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-              
-              <div class="slide min-h-screen" id="propbiz-image">
-                  <div id="" class="sm:block lg:flex md:flex min-h-screen py-16">
-                  <div class="flex-col items-center  justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-10">
-
-                  <img src="{{ asset('/brands/propsuite/propbiz.png') }}" class="w-36">
-                
-
-                    <div class="max-w-7xl">
-                      <div class="text-center text-gray-300 text-2xl font-bold pt-24 pb-10 sm:text-2xl lg:text-5xl">
-                      <span id="static" class="propbiz" id="seamless"></span>
-                      
-                      <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
-                      <script>
-                        var typed = new Typed(".propbiz", {
-                            strings: ["Property Management Services"],
-                            typeSpeed: 15,
-                            backSpeed: 30,
-                            loop: true
-                        });
-                      </script>
-                        
-                        
-                      </div>
-                      
-                      </div>
-                  </div>
-
-                  <div class="absolute right-0 mx-20 justify-center sm:-py-2 md:py-20 lg:py-8">
-                    <div class="lg:block lg:py-20 md:max-w-lg xl:max-w-md sm:ml-12 sm:py-2  mx-5">
-                      <p class="text-base font-light mt-10 text-white text-justify">Property management services that provides online and onsite operations management services to rental property owners.</p>
-                      <div class="mt-10 flex justify-end items-center space-x-5">
-                        <button class="rounded-full"> <a href="propbiz" class="proprentOrangebg w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Register</a></button>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              <div class="slide min-h-screen" id="propsuite-image">
-                  <div id="" class="sm:block lg:flex md:flex min-h-screen py-16">
-                  <div class="flex-col items-center  justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-10">
-
-             
-                
-
-                    <div class="max-w-7xl mt-10">
-                      <div class="text-center text-gray-100 text-2xl font-bold pt-24 pb-10 sm:text-2xl lg:text-5xl">
-                      <span id="static" class="propsuite" id="seamless"></span>
-                      
-                      <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
-                      <script>
-                        var typed = new Typed(".propsuite", {
-                            strings: ["Fullsuite Digital Services"],
-                            typeSpeed: 15,
-                            backSpeed: 30,
-                            loop: true
-                        });
-                      </script>
-                        
-                        
-                      </div>
-                      
-                      </div>
-                  </div>
-
-                  <div class="absolute right-0 mx-20 justify-center sm:-py-2 md:py-20 lg:py-8">
-                    <div class="lg:block lg:py-20 md:max-w-lg xl:max-w-md sm:ml-12 sm:py-2  mx-5">
-                      <p class="text-base font-light mt-10 text-white text-justify">We provide full suite digital solution for rental property communities and home owners associations.</p>
-                      <div class="mt-10 flex justify-end items-center space-x-5">
-                        <button class="propmanOrangebg rounded-full"> <a href="about" class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Learn More</a></button>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-              
-
-              
-            </div>
-          </div>
-
-
-          <script>
-            var slideshows = document.querySelectorAll('[data-component="slideshow"]');
-            slideshows.forEach(initSlideShow);
-
-            function initSlideShow(slideshow) {
-
-              var slides = document.querySelectorAll(`#${slideshow.id} [role="list"] .slide`);
-
-              var index = 0, time = 3500;
-              slides[index].classList.add('active');
-
-              setInterval( () => {
-                slides[index].classList.remove('active');
-                
-                index++;
-                if (index === slides.length) index = 0;
-
-                slides[index].classList.add('active');
-
-              }, time);
-            }
-          </script>
-
+<!-- end of pop up modal -->
 
 <!-- seamless section -->
 
-<!-- <div id="propman-bg" class="sm:block lg:flex md:flex min-h-screen py-16">
+<div id="propman-bg" class="sm:block lg:flex md:flex min-h-screen py-16">
             <div class="flex-col items-center  justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-10">
-
             <img src="{{ asset('/brands/propsuite/logos.png') }}" class="w-36">
-          
-
               <div class="max-w-7xl">
                 <div class="text-gray-300 text-xl font-bold pt-24 pb-10 sm:text-xl lg:text-5xl">
-                <span id="static" class="typing" id="seamless"></span>
+                <span class="typed-text"></span><span class="cursor">&nbsp;</span>
                 
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
                 <script>
                   var typed = new Typed(".typing", {
-                      strings: ["Property Management System", "Rental Property Listings", "Property Management Services", "Fullsuite Digital Solution"],
-                      typeSpeed: 15,
-                      backSpeed: 20,
+                      strings: ["Propsuite","Propman", "Proprent", "Propbiz"],
+                      typeSpeed: 60,
+                      backSpeed: 10,
                       loop: true
                   });
                 </script>
-                  
-                  
+                
+             
+                                
                 </div>
-                 
+                  <div class="max-w-lg">
+                    <h2 id="changeText" class="text-lg text-white text-justify"></h2></div>
                 </div>
             </div>
 
@@ -393,11 +188,13 @@
               </div>
             </div>
 
-          </div> -->
+          </div>
 
 <!-- seamless end -->
       
-
+<div class="container">
+    <p>Coding is <span class="typed-text"></span><span class="cursor">&nbsp;</span></p>
+  </div>
            
           <!-- services -->
 
@@ -805,7 +602,7 @@
                   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     
 
-    <!-- <script>
+    <script>
         
         $(function() {
         index = 0;
@@ -821,12 +618,12 @@
         }, 1999);
       });
 
-    </script> -->
+    </script>
     <script>
     var text = ["Property Management System", "Rental Property Listings", "Property Management Services"];
     var counter = 0;
     var elem = document.getElementById("changeText");
-    var inst = setInterval(change, 2000);
+    var inst = setInterval(change, 1200);
 
     function change() {
       elem.innerHTML = text[counter];
@@ -838,17 +635,63 @@
     }
     </script>
 
+
+
     <script>
     var doc = document.getElementById("background");
-    var color = ["#4F3F6D","#975AB6","#A7A0B2","#4F1964",];
+    var color = ["#4F3F6D","#975AB6","#4F1964",];
     var i = 0;
     function change() {
         doc.style.backgroundColor = color[i];
     i = (i + 1) % color.length;
     }
     
-    setInterval(change, 3500);
+    setInterval(change, 1200);
     </script>
+
+    <script>
+      const typedTextSpan = document.querySelector(".typed-text");
+const cursorSpan = document.querySelector(".cursor");
+
+const textArray = ["Propman", "Proprent", "Propbiz"];
+const typingDelay = 40;
+const erasingDelay = 40;
+const newTextDelay = 200; // Delay between current and next text
+let textArrayIndex = 0;
+let charIndex = 0;
+
+function type() {
+  if (charIndex < textArray[textArrayIndex].length) {
+    if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+    typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+    charIndex++;
+    setTimeout(type, typingDelay);
+  } 
+  else {
+    cursorSpan.classList.remove("typing");
+  	setTimeout(erase, newTextDelay);
+  }
+}
+
+function erase() {
+	if (charIndex > 0) {
+    if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+    typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex-1);
+    charIndex--;
+    setTimeout(erase, erasingDelay);
+  } 
+  else {
+    cursorSpan.classList.remove("typing");
+    textArrayIndex++;
+    if(textArrayIndex>=textArray.length) textArrayIndex=0;
+    setTimeout(type, typingDelay + 1100);
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function() { // On DOM Load initiate the effect
+  if(textArray.length) setTimeout(type, newTextDelay + 250);
+});
+  </script>
 
 
 </x-landing-page-template>

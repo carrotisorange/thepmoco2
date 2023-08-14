@@ -184,7 +184,7 @@ body {
 <nav class="topnav hidden  lg:block">
         <div class="navbar" id="nav">
           <a class="text-3xl font-bold leading-none " href="/">
-            <img class="h-12 m-3" src="{{ asset('/brands/propsuite/propsuite-gray.png') }}" alt="propsuite logo">
+            <img class="h-14 m-3" src="{{ asset('/brands/propsuite/propsuite-gray.png') }}" alt="propsuite logo">
           </a>
           
           
@@ -221,12 +221,15 @@ body {
                   
                   <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="blog-1">Articles</a></li>
                  
-                  
-                  
                  
                 </ul>
                 
-                
+                  <div class="flex justify-end -mt-12 px-10">
+                    <div class="flex justify-between space-x-5">
+                      <button class="rounded-xl px-3 py-1 bg-yellow-300 text-sm text-white hover:bg-gray-200"><a href="https://thepmo.co/">Sign In</a></button>
+                      <button class="rounded-xl px-3 py-1 bg-transparent border border-gray-100 text-sm text-white hover:bg-gray-200"><a href="https://thepmo.co/select-a-plan">Sign Up</a></button>
+                    </div>
+                  </div>
 
             </div>
      
@@ -392,7 +395,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <!-- Social Sharing Bar -->
    <div class="fixed right-0 bottom-10 z-50 px-5 py-3 bg-transparent flex flex-col space-y-3">
         <!-- Facebook -->
-        <a href="https://www.facebook.com/thepropertymanageronline" title="Share on Facebook">
+        <a href="https://www.facebook.com/propsuite" title="Share on Facebook">
         <?xml version="1.0" ?><!DOCTYPE svg  PUBLIC '-//W3C//DTD SVG 1.1//EN'  'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg height="100%" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;" version="1.1" viewBox="0 0 512 512" width="30" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:serif="http://www.serif.com/" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z"/></svg>
         </a>
 
@@ -482,7 +485,11 @@ document.addEventListener('DOMContentLoaded', function() {
   </footer>
 </div>
 
+
+
 <script src="https://cdn.popupsmart.com/bundle.js" data-id="79845" async defer></script>
+
+
 </body>
 
 

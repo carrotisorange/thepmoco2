@@ -17,7 +17,7 @@
             
        
           
-          <div class=" px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
+          <div class="mt-0 sm:met-0 lg:-mt-4 px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
             <h1 class="text-4xl font-bold tracking-tight sm:text-4xl lg:text-4xl">
               <span class=" text-gray-800">Frequently asked questions</span>
               

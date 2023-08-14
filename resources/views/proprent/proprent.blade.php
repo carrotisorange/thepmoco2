@@ -92,7 +92,7 @@ body {
               <div class="lg:block lg:py-20 md:max-w-lg xl:max-w-lg sm:ml-12 sm:py-2 lg:-ml-5 mx-5">
                <p class="text-base font-light mt-5 text-white text-justify">Leasing platform for rental property owners to list vacant rooms and units for long term or short term rentals.
                 Leasing Marketplace for tenants to find available place for long term or short term rentals. Unlike social media pages, we verify the address and the accuracy of the rental space to increase trust in the proprent community. </p>
-               <div class="mt-10 flex space-x-5">
+               <div class="mt-10 flex justify-end space-x-5">
                   <button class="proprentOrangebg rounded-full"> <a href="proprent-search" class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Coming Soon</a></button>
                 </div>
               </div>

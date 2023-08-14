@@ -210,8 +210,9 @@
               <div class="slide min-h-screen" id="proprent-image">
                   <div id="" class="sm:block lg:flex md:flex min-h-screen py-16">
                   <div class="flex-col items-center  justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-10">
-
-                  <img src="{{ asset('/brands/propsuite/proprent.png') }}" class="w-36">
+                    <div class="flex justify-center items-center">
+                        <img src="{{ asset('/brands/propsuite/proprent.png') }}" class="w-36 px-20">
+                    </div>
                 
 
                     <div class="max-w-7xl">
