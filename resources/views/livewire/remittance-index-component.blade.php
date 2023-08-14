@@ -76,7 +76,11 @@
                                     <td class="sticky-col third-col">{{ $remittance->ar_no }}</td>
                                     <td class="sticky-col fourth-col">{{ $remittance->particular->particular }}</td>
                                     <td class="sticky-col fifth-col">{{ $remittance->owner->owner }}</td>
-                                    <td class="sticky-col sixth-col">{{ $remittance->payee->tenant }}</td>
+                                    <td class="sticky-col sixth-col">
+                                        @if($remittance->payee_uuid)
+                                            {{ $remittance->payee->tenant }}
+                                        @endif
+                                    </td>
                                     <td>{{ number_format($remittance->monthly_rent, 2) }}</td>
                                     <td>{{ number_format($remittance->net_rent, 2) }}</td>
                                     <td>{{ number_format($remittance->management_fee, 2) }}</td>
