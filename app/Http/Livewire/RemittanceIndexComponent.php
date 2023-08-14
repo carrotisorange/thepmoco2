@@ -121,7 +121,7 @@ class RemittanceIndexComponent extends Component
            ->get();
 
         foreach($collections as $collection){
-             if($collection->bill->particular_id === 1 && $collection->tenant_uuid){
+             if($collection->bill->particular_id === 1){
                 app('App\Http\Controllers\PropertyRemittanceController')->store(
                     $collection->property_uuid,
                     $collection->unit->uuid,
@@ -157,7 +157,8 @@ class RemittanceIndexComponent extends Component
             ->groupBy('created_at')    
             ->get(),
 
-            'collectionsCount' => Collection::where('collections.property_uuid', $this->property->uuid)->whereNotNull('collections.tenant_uuid')
+            'collectionsCount' => Collection::where('collections.property_uuid', $this->property->uuid)
+            ->whereNotNull('collections.tenant_uuid')
             ->join('bills', 'collections.bill_id', 'bills.id')
             ->where('bills.particular_id', 1)
             ->whereMonth('collections.created_at', Carbon::parse($this->date)->month)
