@@ -345,7 +345,7 @@
 
 
         @if(Session::get('property'))
-        <x-nav-link href="/property/{{ Session::get('property') }}/remittances"
+        <x-nav-link href="/property/{{ Session::get('property') }}/remittance"
             :active="request()->routeIs('remittances')">
 
             <span class="sr-only">Remittances</span>

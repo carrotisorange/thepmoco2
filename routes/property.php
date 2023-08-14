@@ -57,7 +57,7 @@ use App\Http\Controllers\PropertyFinancialController;
 use App\Http\Controllers\PropertyUtilityController;
 use App\Http\Controllers\PropertyGuestController;
 use App\Http\Controllers\PropertyLiquidationController;
-
+use App\Http\Controllers\PropertyRemittanceController;
 
 Route::group(['middleware'=>['auth', 'verified']], function(){
 
@@ -71,6 +71,12 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('calendar/show/{id}', [PropertyCalendarController::class, 'show'])->name('calendar.show');
 
     Route::prefix('/property/{property}')->group(function(){
+
+    //property remittances
+    //remittance
+    Route::prefix('remittance')->group(function(){
+        Route::get('/', [PropertyRemittanceController::class, 'index'])->name('remittances');
+    });
 
     //Routes for Property
     Route::controller(PropertyController::class)->group(function () {
@@ -513,5 +519,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         return view('calendar.guest-creation');
     });
 
-    
+
+   
+
 });

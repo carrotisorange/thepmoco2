@@ -12,6 +12,7 @@ use App\Models\Property;
 use DB;
 use App\Models\Bill;
 use App\Models\Contract;
+use App\Models\DeedOfSale;
 
 class TenantCollectionController extends Controller
 {
@@ -68,7 +69,6 @@ class TenantCollectionController extends Controller
 
      public function get_collection_data($tenant, $collection)
      {
-
          $unpaid_bills = Bill::where('tenant_uuid', $tenant->uuid)->posted()->sum('bill');
          $paid_bills = Collection::where('tenant_uuid', $tenant->uuid)->posted()->sum('collection');
 
@@ -109,7 +109,7 @@ class TenantCollectionController extends Controller
 
          $counter = $this->get_selected_bills_count($batch_no, $tenant->uuid, $property->uuid);
             
-         for($i=0; $i<$counter; $i++)
+         for($i=0; $i< $counter; $i++)
          {
             $collection = (double) $request->input("collection_amount_".$i);
 
@@ -118,8 +118,6 @@ class TenantCollectionController extends Controller
             $bill_id = $request->input("bill_id_".$i);
 
             $total_amount_due = app('App\Http\Controllers\TenantBillController')->get_bill_balance($bill_id);
-
-            $bill = Bill::find($bill_id);
 
             //store the collection
             app('App\Http\Controllers\CollectionController')->update($ar_no, $bill_id, $collection, $form);
