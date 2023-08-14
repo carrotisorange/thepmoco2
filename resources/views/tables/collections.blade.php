@@ -66,7 +66,7 @@
                 NA
                 @endif
             </x-td>
-            <x-td> {{ Carbon\Carbon::parse($collection->updated_at)->format('M d, Y') }} </x-td>
+            <x-td> {{ Carbon\Carbon::parse($collection->created_at)->format('M d, Y') }} </x-td>
             {{-- <x-td>
                 @if($collection->date_deposited)
                 {{ Carbon\Carbon::parse($collection->date_deposited)->format('M d, Y') }}

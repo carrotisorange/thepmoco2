@@ -81,6 +81,8 @@ class PropertyGuestController extends Controller
 
             $form = $request->form;
 
+            $created_at = $request->created_at;
+
             $bill_id = $request->input("bill_id_".$i);
 
             $total_amount_due = $this->get_bill_balance($bill_id);
@@ -88,7 +90,7 @@ class PropertyGuestController extends Controller
             $bill = Bill::find($bill_id);
             
             //store the collection
-            app('App\Http\Controllers\CollectionController')->update($ar_no, $bill_id, $collection, $form);
+            app('App\Http\Controllers\CollectionController')->update($ar_no, $bill_id, $collection, $form, $created_at);
 
             if(($total_amount_due) <= $collection)
             {

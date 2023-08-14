@@ -117,11 +117,13 @@ class OwnerCollectionController extends Controller
 
             $form = $request->form;
 
+            $created_at = $request->created_at;
+
             $bill_id = $request->input("bill_id_".$i);
 
             $total_amount_due = app('App\Http\Controllers\OwnerBillController')->get_bill_balance($bill_id);
 
-            app('App\Http\Controllers\CollectionController')->update($ar_no, $bill_id, $collection, $form,);
+            app('App\Http\Controllers\CollectionController')->update($ar_no, $bill_id, $collection, $form, $created_at);
 
             if(($total_amount_due) <= $collection)
             {

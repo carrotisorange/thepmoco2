@@ -214,7 +214,7 @@
                                 <x-td>{{Carbon\Carbon::parse($bill->created_at)->format('M d,Y')}}
                                 </x-td>
                                 <x-td>{{$bill->particular->particular }}</x-td>
-                                <x-td>{{$bill->unit->unit }}</x-td>
+                                <x-td>{{ App\Models\Unit::find($bill->unit_uuid)->unit }}</x-td>
                                 <x-td>{{Carbon\Carbon::parse($bill->start)->format('M d,
                                     Y').'-'.Carbon\Carbon::parse($bill->end)->format('M d, Y') }}
                                 </x-td>

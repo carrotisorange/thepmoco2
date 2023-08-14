@@ -207,7 +207,7 @@
                                 <x-th>#</x-th>
                                 <x-th>Date posted</x-th>
                                 <x-th>Particular</x-th>
-                                {{-- <x-th>Unit</x-th> --}}
+                                <x-th>Unit</x-th>
                                 <x-th>Period</x-th>
                                 <x-th>Amount Due</x-th>
                                 <x-th>Payment</x-th>
@@ -220,7 +220,7 @@
                                 <x-td>{{Carbon\Carbon::parse($bill->created_at)->format('M d,Y')}}
                                 </x-td>
                                 <x-td>{{$bill->particular->particular }}</x-td>
-                                {{-- <x-td>{{$bill->unit->unit }}</x-td> --}}
+                                <x-td>{{ App\Models\Unit::find($bill->unit_uuid)->unit }}</x-td>
                                 <x-td>{{Carbon\Carbon::parse($bill->start)->format('M d,
                                     Y').'-'.Carbon\Carbon::parse($bill->end)->format('M d, Y') }}
                                 </x-td>
@@ -238,6 +238,28 @@
                                 </x-td>
                             </tr>
                             @endforeach
+                        </tbody>
+                        <tbody>
+                        
+                            <tr>
+                                <x-td><b>Total</b></x-td>
+                                <x-td></x-td>
+                                <x-td>
+                                </x-td>
+                                <x-td></x-td>
+                                {{-- <x-td>{{$bill->unit->unit }}</x-td> --}}
+                                <x-td>
+                                </x-td>
+             
+                                <x-td>
+                                    <b>{{ number_format($collections->sum('bill'), 2) }}</b>
+                                </x-td>
+                        
+                                <x-td>
+                                    <b>{{ number_format($collections->sum('bill'), 2) }}</b>
+                                </x-td>
+                            </tr>
+                        
                         </tbody>
                     </table>
                 </form>

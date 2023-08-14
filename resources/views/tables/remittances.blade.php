@@ -86,18 +86,28 @@
         <div wire:key="remittance-field-{{ $remittance->id }}">
         <tr>
 
-            <td class="sticky-col first-col">{{ $remittance->unit->unit }}</td>
+            <td class="sticky-col first-col">
+                @if($remittance->unit_uuid)
+                <a target="_blank" title="unit" class="text-blue-500 text-decoration-line: underline"
+                    href="/property/{{ $remittance->property_uuid }}/unit/{{ $remittance->unit_uuid }}">
+                    {{ Str::limit(App\Models\Unit::find($remittance->unit_uuid)->unit,20) }} </a>
+                @endif
+            </td>
             <td class="sticky-col second-col">{{ Carbon\Carbon::parse($remittance->created_at)->format('M d, Y') }}</td>
             <td class="sticky-col third-col">{{ $remittance->ar_no }}</td>
             <td class="sticky-col fourth-col">{{ $remittance->particular->particular }}</td>
             <td class="sticky-col fifth-col">
                 @if($remittance->owner_uuid)
-                    {{ $remittance->owner->owner }}
+                   <a target="_blank" title="owner" class="text-blue-500 text-decoration-line: underline"
+                        href="/property/{{ $remittance->property_uuid }}/owner/{{ $remittance->owner_uuid }}">
+                      {{ Str::limit(App\Models\Owner::find($remittance->owner_uuid)->owner,20) }} </a>
                 @endif
             </td>
             <td class="sticky-col sixth-col">
                 @if($remittance->payee_uuid)
-                {{ $remittance->payee->tenant }}
+               <a target="_blank" title="tenant" class="text-blue-500 text-decoration-line: underline"
+                    href="/property/{{ $remittance->property_uuid }}/tenant/{{ $remittance->payee_uuid }}">
+                  {{ Str::limit(App\Models\Tenant::find($remittance->payee_uuid)->tenant,20) }} </a>
                 @endif
             </td>
             <td>{{ number_format($remittance->monthly_rent, 2) }}</td>

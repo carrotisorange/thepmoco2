@@ -22,14 +22,15 @@ class CollectionController extends Controller
         ->get();
     }
     
-    public function update($ar_no, $bill_id, $collection, $form)
+    public function update($ar_no, $bill_id, $collection, $form, $created_at)
     {
        Collection::where('bill_id', $bill_id)
          ->update([
           'ar_no' => $ar_no,
           'collection' => $collection,
           'form' => $form,
-          'is_posted' => true
+          'is_posted' => true,
+          'created_at' => $created_at
          ]);
 
     }
