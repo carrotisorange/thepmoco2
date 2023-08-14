@@ -90,7 +90,11 @@
             <td class="sticky-col second-col">{{ Carbon\Carbon::parse($remittance->created_at)->format('M d, Y') }}</td>
             <td class="sticky-col third-col">{{ $remittance->ar_no }}</td>
             <td class="sticky-col fourth-col">{{ $remittance->particular->particular }}</td>
-            <td class="sticky-col fifth-col">{{ $remittance->owner->owner }}</td>
+            <td class="sticky-col fifth-col">
+                @if($remittance->owner_uuid)
+                    {{ $remittance->owner->owner }}
+                @endif
+            </td>
             <td class="sticky-col sixth-col">
                 @if($remittance->payee_uuid)
                 {{ $remittance->payee->tenant }}
