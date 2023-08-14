@@ -19,13 +19,13 @@ class CreateRemittancesTable extends Migration
             $table->foreignUuid('property_uuid')->constrained();
             $table->string('ar_no');
             $table->string('particular_id')->constrained();
-            // $table->foreignUuid('tenant_uuid')->nullable()->constrained();
             $table->foreignUuid('owner_uuid')->nullable()->constrained();
             $table->foreignUuid('payee_uuid')->nullable()->constrained();
             $table->double('monthly_rent')->nullable();
             $table->double('net_rent')->nullable();
             $table->double('management_fee')->nullable();
             $table->double('marketing_fee')->nullable();
+            $table->double('bank_transfer_fee')->nullable();
             $table->double('miscellaneous_fee')->nullable();
             $table->double('membership_fee')->nullable();
             $table->double('condo_dues')->nullable();
@@ -43,7 +43,6 @@ class CreateRemittancesTable extends Migration
             $table->double('special_assessment')->nullable();
             $table->double('materials_recovery_facility')->nullable();
             $table->double('recharge_of_fire_extinguisher')->nullable();
-            $table->double('environment_fee')->nullable();
             $table->double('environmental_fee')->nullable();
             $table->double('bladder_tank')->nullable();
             $table->double('cause_of_magnet')->nullable();

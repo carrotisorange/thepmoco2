@@ -11,7 +11,7 @@
                     <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Create remittances
                     </h3>
                     <div class="mt-2">
-                        {{-- @if($collectionsCount)
+                        @if($collectionsCount)
                         <p class="text-sm text-gray-500">You're about to create <b
                                 class="font-bold text-lg text-red-500">{{
                                 $collectionsCount }}</b> remittances 
@@ -24,7 +24,7 @@
                             There are no collections found. To continue creating remittances, please add an owner using the
                             button below.
                         </p>
-                        @endif --}}
+                        @endif
                     </div>
                 </div>
             </div>
@@ -41,7 +41,7 @@
             </div>
 
             <div class="mt-5 sm:mt-6">
-                {{-- @if($collectionsCount) --}}
+                @if($collectionsCount)
                 <button type="submit" wire:loading.remove
                     class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
                     Confirm
@@ -51,12 +51,12 @@
                     class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
                     Loading...
                 </button>
-                {{-- @else
+                @else
                 <button type="button" wire:click="redirectToOwnerPage"
                     class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
                     Add a collection
                 </button>
-                @endif --}}
+                @endif
 
             </div>
 
