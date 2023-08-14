@@ -1,5 +1,5 @@
 
-<x-new-layout>
+<x-new-layout-calendar>
     @section('styles')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -170,4 +170,4 @@
     </script>
     @endsection
 
-</x-new-layout>
+</x-new-layout-calendar>
