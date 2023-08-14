@@ -8,6 +8,7 @@ use App\Models\Remittance;
 use Carbon\Carbon;
 use App\Models\Collection;
 use App\Models\Owner;
+use App\Models\Bill;
 
 class RemittanceIndexComponent extends Component
 {
@@ -29,7 +30,7 @@ class RemittanceIndexComponent extends Component
         ]);
 
         $collections = Collection::where('property_uuid', $this->property->uuid)
-           ->whereMonth('created_at', Carbon::parse($this->created_at)->month)
+           ->whereMonth('created_at', Carbon::parse($this->date)->month)
            ->get();
 
         foreach($collections as $collection){
@@ -40,13 +41,14 @@ class RemittanceIndexComponent extends Component
                     $collection->ar_no,
                     $collection->bill->particular_id,
                     $collection->tenant_uuid,
-                    $this->date
+                    $this->date,
+                    $collection->collection
                 );
             }
             continue;
         }
 
-        Remittance::where('owner_uuid', null)->where('particular_id', '!=', 1)->delete();
+        Remittance::where('owner_uuid', null)->delete();
 
         return redirect('/property/'.$this->property->uuid.'/remittance')->with('success', 'Success!');
 
