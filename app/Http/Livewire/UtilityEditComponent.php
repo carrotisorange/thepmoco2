@@ -14,13 +14,13 @@ class UtilityEditComponent extends Component
 
     public $option;
 
+    public $utilities;
+
     public $search;
     public $start_date;
     public $end_date;
     public $kwh;
     public $min_charge;
-
-    public $utilities;
 
     public $selectedUtilities = [];
 
@@ -30,6 +30,8 @@ class UtilityEditComponent extends Component
 
     public $property_uuid;
 
+
+
     public function mount($batch_no, $option)
     {
         $this->batch_no = $batch_no;
@@ -37,23 +39,18 @@ class UtilityEditComponent extends Component
         $this->option = $option;
 
         $this->property_uuid = Session::get('property');
-        
-        // $this->start_date =  UtilityParameter::where('property_uuid', $this->property_uuid)->where('batch_no', $this->batch_no)->pluck('start_date')->last();
 
-        // $this->end_date = UtilityParameter::where('property_uuid', $this->property_uuid)->where('batch_no', $this->batch_no)->pluck('end_date')->last();
+        $this->utilities = $this->get_utilities();
 
-        // $this->min_charge = UtilityParameter::where('property_uuid', $this->property_uuid)->where('batch_no', $this->batch_no)->pluck('min_charge')->last();
-
-        // $this->kwh = UtilityParameter::where('property_uuid', $this->property_uuid)->where('batch_no', $this->batch_no)->pluck('value')->last();
     }
 
     protected function rules()
     {
         return [
             'utilities.*.unit_uuid' => 'required',
-            'utilities.*.start_date' => 'nullable|date',
+            'utilities.*.start_date'     => 'nullable|date',
             'utilities.*.end_date' => 'nullable|date',
-            'utilities.*.previous_reading' => 'nullable',
+            'utilities.*.previous_reading' => 'nullable|',
             'utilities.*.current_reading' => 'nullable',
             'utilities.*.current_consumption' => 'nullable',
             'utilities.*.kwh' => 'nullable',
@@ -74,18 +71,14 @@ class UtilityEditComponent extends Component
         ->where('batch_no', $this->batch_no)
         ->delete();
 
-        return redirect('/property/'.$this->property_uuid.'/utilities')->with('success', 'Sucess');
+        return redirect('/property/'.$this->property_uuid.'/utilities')->with('success', 'Success!');
     }
     
     public function updateUtilities($id)
-    {
-        // ddd($this->kwh);
-        
+    {        
+        $this->validate();
         try{
-            $this->validate();
-
-            //update the selected unit
-
+ 
             // DB::transaction(function () {
                 foreach ($this->utilities->where('id', $id) as $utility) {
                      Utility::where('id', $id)
@@ -98,7 +91,7 @@ class UtilityEditComponent extends Component
                         'total_amount_due' => (($utility->current_reading - $utility->previous_reading) * $utility->kwh) + $utility->min_charge,
                      ]);    
 
-                    //$this->utilities = $this->get_utilities();
+                    $this->utilities = $this->get_utilities();
 
                      session()->flash('success', 'Success!');
                 }
@@ -119,37 +112,6 @@ class UtilityEditComponent extends Component
         ->orderByRaw('LENGTH(unit) ASC')->orderBy('unit', 'asc')
         ->get();
     }
-
-  
-
-    // public function updateParameters()
-    // {
-    //     if(!$this->start_date || !$this->end_date){
-    //         $this->showUtilities = false;
-    //         return back()->with('error', 'Error');
-    //     }
-
-    //     $this->showUtilities = true;
-    //     //destroy previous utility parameters
-    //     app('App\Http\Controllers\UtilityParameterController')->destroy($this->batch_no, $this->property_uuid);
-        
-    //     //store new utility parameters
-    //     app('App\Http\Controllers\UtilityParameterController')->store($this->batch_no, $this->property_uuid, $this->start_date, $this->end_date, $this->option, $this->kwh, $this->min_charge);
-
-    //     //update utilities
-    //     foreach ($this->utilities as $utility) {
-    //                 Utility::where('property_uuid', $this->property_uuid)->where('batch_no', $this->batch_no)
-    //                  ->update([
-    //                     'start_date' => $this->start_date,
-    //                     'end_date' => $this->end_date, 
-    //                     'min_charge' => $this->min_charge,
-    //                     'kwh' => $this->kwh,
-    //                     'total_amount_due' => $this->min_charge,
-    //     ]);    
-
-    //     session()->flash('success', 'Success!');
-    //  }
-    // }
 
     public function postUtilities()
     {
@@ -199,8 +161,6 @@ class UtilityEditComponent extends Component
 
     public function render()
     {   
-        $this->utilities = $this->get_utilities();
-
         return view('livewire.utility-edit-component');
     }
 }

@@ -34,6 +34,8 @@ class UtilityIndexComponent extends Component
 
     public $kwh;
 
+    public $utility_type;
+
     public $filter_date;
     public $start_date;
     public $end_date;
@@ -64,11 +66,17 @@ class UtilityIndexComponent extends Component
                 'start_date' => 'required|date',
                 'end_date' => 'required|date|after:start_date',
                 'kwh' => 'required',
-                'min_charge' => 'required'
+                'min_charge' => 'required',
+                'utility_type' => 'required'
             ];
     }
 
-    public function storeUtilities($option)
+    public function updated($propertyName)
+      {
+        $this->validateOnly($propertyName);
+    }
+
+    public function storeUtilities()
     {   
         $this->validate();
 
@@ -78,25 +86,23 @@ class UtilityIndexComponent extends Component
         
         $batch_no = auth()->user()->id.Str::random(8);
 
-        for ($i=0; $i < $units->count(); $i++) { 
-            //store utilities
+        foreach($units as $unit){
             app('App\Http\Controllers\UtilityController')->store(
-                $units->toArray()[$i]['property_uuid'], 
-                $units->toArray()[$i]['uuid'], 
-                $units->toArray()[$i]['previous_water_utility_reading'],
-                $units->toArray()[$i]['previous_electric_utility_reading'],
+                $unit->property_uuid, 
+                $unit->uuid, 
+                $unit->previous_water_utility_reading,
+                $unit->previous_electric_utility_reading,
                 auth()->user()->id,
                 $this->start_date,
                 $this->end_date,
                 $batch_no,
-                $option,
+                $this->utility_type,
                 $this->kwh,
                 $this->min_charge,
-            );
-
+            );    
         }
         
-        return redirect('/property/'.$this->property_uuid.'/utilities/'.$batch_no.'/'.$option);
+        return redirect('/property/'.$this->property_uuid.'/utilities/'.$batch_no.'/'.$this->utility_type);
 
     }
 

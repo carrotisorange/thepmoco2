@@ -27,7 +27,6 @@ class EditUtilityComponent extends Component
     public $status;
     public $min_charge;
 
-
     public function mount($utility){
         $this->total_amount_due = $utility->total_amount_due;
         $this->previous_reading = $utility->previous_reading;
@@ -58,7 +57,8 @@ class EditUtilityComponent extends Component
 
     public function updateUtility()
     {
-        
+        sleep(2);
+
         $tenant_uuid = Tenant::where('uuid', $this->bill_to)->pluck('uuid')->first();
         $owner_uuid = Owner::where('uuid', $this->bill_to)->pluck('uuid')->first();
         $status = '';
