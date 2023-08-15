@@ -189,6 +189,8 @@ class ContractController extends Controller
     public function moveout_step_1(Property $property, Tenant $tenant, Contract $contract)
     {
         return view('contracts.moveouts.step-1', [
+            'ismovein' => 'moveout',
+            'property' => $property,
             'contract' => $contract
         ]);
     }
@@ -196,8 +198,6 @@ class ContractController extends Controller
     public function moveout_step_2(Property $property, Tenant $tenant, Contract $contract)
     {
         return view('contracts.moveouts.step-2', [
-            'ismovein' => 'moveout',
-            'property' => $property,
             'contract' => $contract
         ]);
     }

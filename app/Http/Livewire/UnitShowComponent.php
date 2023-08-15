@@ -52,6 +52,8 @@ class UnitShowComponent extends Component
 
     public $user_type = 'unit';
 
+    public $remittance_date;
+
     public function mount($unit_details)
     {
         $this->unit = $unit_details->unit;
@@ -72,6 +74,7 @@ class UnitShowComponent extends Component
         $this->management_fee = $unit_details->management_fee;
         $this->marketing_fee = $unit_details->marketing_fee;
         $this->unit_uuid = $unit_details->uuid;
+        $this->remittance_date = Carbon::now()->format('Y-m-d');
     }
     
     protected function rules()
@@ -83,7 +86,6 @@ class UnitShowComponent extends Component
             'status_id' => ['required', Rule::exists('statuses', 'id')],
             'category_id' => ['required', Rule::exists('categories', 'id')],
             'size' => 'required',
-            
             'occupancy' => 'required',
             'is_the_unit_for_rent_to_tenant' => 'required',
             'price' => 'nullable',
@@ -146,17 +148,11 @@ class UnitShowComponent extends Component
     
     public function submitForm()
     {
-        
-       
         $validatedData = $this->validate();
          
         try{
-
-            DB::beginTransaction();
         
             $this->unit_details->update($validatedData);
-
-            DB::commit();
 
             app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'updates',2);
 
@@ -164,7 +160,7 @@ class UnitShowComponent extends Component
                     
         }catch(\Exception $e){
 
-            session()->flash('error');
+            session()->flash('error', 'Something went wrong.');
         }
     }
 
@@ -190,6 +186,7 @@ class UnitShowComponent extends Component
         
         return redirect('/property/'.$this->unit_details->property_uuid.'/unit/'.$this->unit_details->uuid);
     }
+
 
     public function render()
     {
@@ -242,7 +239,12 @@ class UnitShowComponent extends Component
             'collections' => app('App\Http\Controllers\UnitController')->get_unit_collections($this->unit_details->property_uuid, $this->unit_details->uuid),
             'revenues' => $revenues,
             'expenses' => $expenses,
-            'remittances' => Remittance::where('unit_uuid', $this->unit_details->uuid)->get()
+            'remittances' => Remittance::where('unit_uuid', $this->unit_details->uuid)
+            ->whereMonth('created_at', Carbon::parse($this->remittance_date)->month)
+            ->get(),
+            'dates' => Remittance::where('property_uuid', $this->unit_details->property_uuid)
+            ->groupBy('created_at')    
+            ->get(),
         ]);
     }
 }

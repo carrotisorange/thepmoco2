@@ -74,7 +74,7 @@ class UserEditComponent extends Component
             session()->flash('success', 'Success!');
             
         }catch(\Exception $e){
-            session()->flash('error');
+            session()->flash('error', 'Something went wrong.');
         }
     }
     public function render()

@@ -37,7 +37,7 @@
 
                                     <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
                                         <span class="text-sm font-medium text-purple-600">Step 1:</span>
-                                        <span class="text-sm font-medium text-gray-500">Moveout Form</span>
+                                        <span class="text-sm font-medium text-gray-500">Unit Inventory</span>
                                     </span>
                                 </span>
                             </a>
@@ -69,7 +69,7 @@
 
                                     <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
                                         <span class="text-sm font-medium text-purple-600">Step 2:</span>
-                                        <span class="text-sm font-medium text-gray-500">Unit Inventory</span>
+                                        <span class="text-sm font-medium text-gray-500">Moveout Details</span>
                                     </span>
                                 </span>
                             </a>

@@ -14,6 +14,6 @@ class ErrorController extends Controller
      */
     public function show()
     {
-       session()->flash('error');
+       session()->flash('error', 'Something went wrong.');
     }
 }

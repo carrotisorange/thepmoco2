@@ -84,7 +84,7 @@ class ParticularController extends Controller
              } catch (\Throwable $e) {
         
                 DB::rollback();
-               session()->flash('error');
+               session()->flash('error', 'Something went wrong.');
              }
         }
         else{
@@ -106,7 +106,7 @@ class ParticularController extends Controller
              } catch (\Throwable $e) {
           
                 DB::rollback();
-               session()->flash('error');
+               session()->flash('error', 'Something went wrong.');
              }
         }
     }

@@ -99,7 +99,7 @@ class UtilityEditComponent extends Component
 
         }catch(\Exception $e){
        
-            session()->flash('error');
+            session()->flash('error', 'Something went wrong.');
         }
 
     }

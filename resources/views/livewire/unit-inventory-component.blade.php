@@ -50,8 +50,8 @@
                                     @endif
                                 </x-td> --}}
                                 <x-td>
-                                    <input type="text" wire:model.debounce.500ms="inventories.{{ $index }}.item"
-                                        wire:keyup="updateUnitInventory({{ $inventory->id }})"
+                                    <input type="text" wire:model="inventories.{{ $index }}.item"
+                                        wire:change="updateUnitInventory({{ $inventory->id }})"
                                         class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                                     @error('inventories.{{ $index }}.item')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -59,16 +59,16 @@
                                 </x-td>
                                 <x-td>
                                     <input type="number" step="0.001" min="1"
-                                        wire:model.debounce.500ms="inventories.{{ $index }}.quantity"
-                                        wire:keyup="updateUnitInventory({{ $inventory->id }})"
+                                        wire:model="inventories.{{ $index }}.quantity"
+                                        wire:change="updateUnitInventory({{ $inventory->id }})"
                                         class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                                     @error('inventories.{{ $index }}.quantity')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                     @enderror
                                 </x-td>
                                 <x-td>
-                                    <input type="text" wire:model.debounce.500ms="inventories.{{ $index }}.remarks"
-                                        wire:keyup="updateUnitInventory({{ $inventory->id }})"
+                                    <input type="text" wire:model="inventories.{{ $index }}.remarks"
+                                        wire:change="updateUnitInventory({{ $inventory->id }})"
                                         class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                                     @error('inventories.{{ $index }}.remarks')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>

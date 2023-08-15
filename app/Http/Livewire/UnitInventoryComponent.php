@@ -25,10 +25,14 @@ class UnitInventoryComponent extends Component
 
     public $contract;
 
+    public function mount(){
+        $this->inventories = $this->get_inventories();
+    }
+
     protected function rules()
     {
         return [
-            'inventories.*.item' => 'nullable',
+            'inventories.*.item' => 'required',
             'inventories.*.quantity' => 'nullable',
             'inventories.*.remarks' => 'nullable',
         ];
@@ -42,6 +46,8 @@ class UnitInventoryComponent extends Component
 
     public function updateUnitInventory($id){
 
+        $this->validate();
+
        try{
             foreach ($this->inventories->where('id', $id) as $inventory) {
                 UnitInventory::where('unit_uuid', $this->unitDetails->uuid)
@@ -51,10 +57,12 @@ class UnitInventoryComponent extends Component
                     'quantity' => $inventory->quantity,
                     'remarks' => $inventory->remarks,
                     'updated_at' => Carbon::now()
-                ]);
+                ]);   
+            }
 
             session()->flash('success', 'Success!');
-            }
+
+            $this->inventories = $this->get_inventories();
             
        }catch(\Exception $e){
             session()->flash('error', $e);
@@ -76,7 +84,7 @@ class UnitInventoryComponent extends Component
         
 
         return
-        redirect('/property/'.$this->unitDetails->property_uuid.'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-3')->with('success',
+        redirect('/property/'.$this->unitDetails->property_uuid.'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-2')->with('success',
         'Success!');
     }
 
@@ -141,8 +149,6 @@ class UnitInventoryComponent extends Component
     
     public function render()
     {
-        $this->inventories = $this->get_inventories();
-
         return view('livewire.unit-inventory-component');
     }
 }

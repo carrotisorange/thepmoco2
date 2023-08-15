@@ -66,7 +66,7 @@ class GuardianController extends Controller
          }catch(\Exception $e)
          {
             DB::rollback();
-           session()->flash('error');
+           session()->flash('error', 'Something went wrong.');
          }
 
     }

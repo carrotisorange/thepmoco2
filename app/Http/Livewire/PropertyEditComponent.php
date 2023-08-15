@@ -102,7 +102,7 @@ class PropertyEditComponent extends Component
             return session()->flash('success', 'Success!');
 
         }catch(\Exception $e){
-            return session()->flash('error');
+            return session()->flash('error', 'Something went wrong.');
         }
     }
 

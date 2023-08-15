@@ -82,7 +82,7 @@ class EnrolleeComponent extends Component
         }catch (\Throwable $e) 
         {
             DB::rollback();
-           session()->flash('error');
+           session()->flash('error', 'Something went wrong.');
         }   
     }
     

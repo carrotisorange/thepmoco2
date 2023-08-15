@@ -120,7 +120,7 @@
                 </div>
             </div>
 
-            <div class="mt-8 lg:col-span-9">
+            <div class="mt-8 lg:col-span-9" >
                 <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
                     <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab"
                         data-tabs-toggle="#myTabContent" role="tablist">
@@ -324,16 +324,38 @@
                     <div class="hidden p-4 purple" id="remittance-summary" role="tabpanel"
                         aria-labelledby="remittance-summary-tab">
                         <div>
-                        <div class="flex items-center justify-center">
-                                <button class="text-xs text-white bg-purple-500 hover:bg-gray-400 p-2 rounded-lg ">Send Email to Owner</button>
+                        <div class="items-center justify-center">
+                            <select id="small" wire:model="remittance_date"
+                                class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                        
+                                <option value="{{ $remittance_date }}">{{ Carbon\Carbon::parse($remittance_date)->format('M, Y') }}</option>
+                                @foreach ($dates as $date)
+                                @if(Carbon\Carbon::parse($date->created_at)->format('M, Y') != Carbon\Carbon::parse($remittance_date)->format('M, Y'))
+                                    <option value="{{ $date->created_at }}">{{ Carbon\Carbon::parse($date->created_at)->format('M, Y') }}</option>
+                                @endif
+                                @endforeach
+                            </select>
+                                {{-- <button class="text-xs text-white bg-purple-500 hover:bg-gray-400 p-2 rounded-lg ">Send Email to Owner</button> --}}
                         </div>
                        
                             
-                            <div class="-mt-10 flex items-center px-8 py-5 border-b">
+                            {{-- <div class="-mt-10 flex items-center px-8 py-5 border-b">
                                 <div class="w-0 flex-1 pt-0.5">
                                     <p class="text-sm font-medium text-gray-900">Date
                                     </p>
              
+                                </div>
+                            </div> --}}
+
+                            <div class="flex items-center px-8 py-5 border-b">
+                                <div class="w-0 flex-1 pt-0.5">
+                                    <div class="grid grid-cols-2">
+                                        <p class="text-sm font-medium text-gray-900">Date
+                                        </p>
+                                        <p class="mt-1 text-sm font-base text-gray-500">
+                                            {{ Carbon\Carbon::parse($remittance_date)->format('M, Y') }}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
 
