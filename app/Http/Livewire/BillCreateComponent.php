@@ -88,7 +88,7 @@ class BillCreateComponent extends Component
 
        }catch(\Exception $e)
        {
-         return session()->flash('error');
+         return session()->flash('error', 'Something went wrong.');
        }
 
     }

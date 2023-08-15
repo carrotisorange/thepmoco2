@@ -6,10 +6,6 @@ use App\Models\Tenant;
 use DB;
 use Illuminate\Validation\Rule;
 use Livewire\WithPagination;
-use App\Models\Contract;
-use App\Models\DeedOfSale;
-use App\Models\Enrollee;
-use Session;
 
 use Livewire\Component;
 
@@ -18,22 +14,24 @@ class UnitEditBulkComponent extends Component
     use WithPagination;
 
     public $property;
+
     public $batch_no;
 
     public $search;
+    
     public $units;
 
-    public $category_id;
-    public $occupancy;
-    public $rent;
-    public $size;
-    public $discount;
-    public $transient_rent;
-    public $transient_discount;
+    // public $category_id;
+    // public $occupancy;
+    // public $rent;
+    // public $size;
+    // public $discount;
+    // public $transient_rent;
+    // public $transient_discount;
 
-    public $selectedUnits =[];
+    // public $selectedUnits =[];
 
-    public $selectedAllUnits = false;
+    // public $selectedAllUnits = false;
 
     public function mount($batch_no)
     {
@@ -44,8 +42,8 @@ class UnitEditBulkComponent extends Component
     protected function rules()
     {
         return [
-            'units.*.unit' => 'required|max:25',
-            'units.*.building_id' => ['nullable', Rule::exists('buildings', 'id')],
+            'units.*.unit' => 'required',
+            // 'units.*.building_id' => ['nullable', Rule::exists('buildings', 'id')],
             'units.*.floor_id' => ['nullable', Rule::exists('floors', 'id')],
             'units.*.category_id' => ['nullable', Rule::exists('categories', 'id')],
             'units.*.rent' => 'nullable',
@@ -65,29 +63,27 @@ class UnitEditBulkComponent extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function updatedSelectAllUnits($selectedAllUnits)
-    {   
-        if($selectedAllUnits)
-        {
-            $this->selectedUnits = $this->get_units()->pluck('uuid');
+    // public function updatedSelectAllUnits($selectedAllUnits)
+    // {   
+    //     if($selectedAllUnits)
+    //     {
+    //         $this->selectedUnits = $this->get_units()->pluck('uuid');
 
-        }else
-        {
-            $this->selectedUnits = [];
-        }
-    }
+    //     }else
+    //     {
+    //         $this->selectedUnits = [];
+    //     }
+    // }
 
 
     public function updateUnit()
     {
+        $validatedData = $this->validate();
+
         try{
-            $this->validate();
-            //update the selected unit
-            DB::transaction(function () {
-                foreach ($this->units as $unit) {
-                    $unit->save();
-                }
-            });
+            foreach ($this->units as $unit) {
+               $unit->save();
+            }
 
             $tenants_count = Tenant::where('property_uuid', $this->property->uuid)->count();
 
@@ -102,29 +98,31 @@ class UnitEditBulkComponent extends Component
             }
 
         }catch(\Exception $e){
-            session()->flash('error');
+            session()->flash('error', 'Something went wrong.');
         }
+
+      
     }
 
-    public function removeUnits()
-    {
-        foreach($this->selectedUnits as $unit => $val){
-            if(Contract::where('property_uuid', $this->property->uuid)->where('unit_uuid', $unit)->count() || DeedOfSale::where('property_uuid', $this->property->uuid)->where('unit_uuid', $unit)->count())
-            {
-               session()->flash('error', 'Unit cannot be removed.');
-            }
-            else{
-                Unit::destroy($unit);
+    // public function removeUnits()
+    // {
+    //     foreach($this->selectedUnits as $unit => $val){
+    //         if(Contract::where('property_uuid', $this->property->uuid)->where('unit_uuid', $unit)->count() || DeedOfSale::where('property_uuid', $this->property->uuid)->where('unit_uuid', $unit)->count())
+    //         {
+    //            session()->flash('error', 'Unit cannot be removed.');
+    //         }
+    //         else{
+    //             Unit::destroy($unit);
 
-                app('App\Http\Controllers\PointController')->store($this->property->uuid, auth()->user()->id, -1, 5);
+    //             app('App\Http\Controllers\PointController')->store($this->property->uuid, auth()->user()->id, -1, 5);
                 
-                $this->units = $this->get_units();
+    //             $this->units = $this->get_units();
 
-                session()->flash('success', 'Success!');
-            }
-        }
-         $this->selectedUnits = [];
-    }
+    //             session()->flash('success', 'Success!');
+    //         }
+    //     }
+    //      $this->selectedUnits = [];
+    // }
 
     public function get_units()
     {   

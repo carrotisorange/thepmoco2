@@ -45,8 +45,6 @@ class ContractMoveoutStep1Component extends Component
 
     public function submitForm()
     {
-        
-
         $validatedData = $this->validate();
    
         if(auth()->user()->role_id == '8'){
@@ -84,3 +82,4 @@ class ContractMoveoutStep1Component extends Component
         ]);
     }
 }
+

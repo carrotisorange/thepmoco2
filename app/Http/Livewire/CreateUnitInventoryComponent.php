@@ -16,13 +16,15 @@ class CreateUnitInventoryComponent extends Component
     public $image;
 
     
+
+    
     protected function rules()
     {
         return [
             'item' => 'required',
             'quantity' => 'required',
             'remarks' => 'nullable',
-            'image' => 'nullable | mimes:jpg,png|max:102400',
+            // 'image' => 'nullable | mimes:jpg,png|max:102400',
             ];
     }
     

@@ -149,8 +149,13 @@ class RemittanceIndexComponent extends Component
         ->get();
     }
 
+    public function updatedCreatedAt(){
+        $this->remittances = $this->get_remittances();
+    }
+
     public function render()
     {
+        
         return view('livewire.remittance-index-component',[
 
             'dates' => Remittance::where('property_uuid', $this->property->uuid)
