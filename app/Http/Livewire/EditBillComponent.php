@@ -23,6 +23,12 @@ class EditBillComponent extends Component
     }
 
     public function updateBill(){
+        sleep(2);
+
+        $this->validate([
+            'bill' => 'required | gt:0'
+        ]);
+
         Bill::where('id', $this->bill_details->id)
         ->update([
             'bill' => $this->bill,
