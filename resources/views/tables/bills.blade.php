@@ -135,7 +135,7 @@
                 @elseif($bill->guest_uuid)
                 <a title="guest" class="text-blue-500 text-decoration-line: underline"
                     href="/property/{{ $bill->property_uuid }}/guest/{{ $bill->guest_uuid }}">
-                    {{ Str::limit($bill->guest->guest,20) }} </a> (G)
+                    {{ Str::limit(App\Models\Guest::find($bill->guest_uuid)->guest,20) }} </a> (G)
                 @else
                 NA
                 @endif

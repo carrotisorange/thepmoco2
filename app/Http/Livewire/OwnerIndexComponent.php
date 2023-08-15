@@ -25,7 +25,7 @@ class OwnerIndexComponent extends Component
         'owners' => Owner::search($this->search)
         ->where('property_uuid', Session::get('property'))
         ->orderBy('created_at', 'asc')
-        ->get()
+        ->paginate(10)
     ]);
     }
 }
