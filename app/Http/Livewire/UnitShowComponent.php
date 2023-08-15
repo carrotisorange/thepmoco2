@@ -15,6 +15,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use App\Models\UnitInventory;
 use App\Models\Collection;
+use App\Models\Remittance;
 
 
 class UnitShowComponent extends Component
@@ -180,6 +181,7 @@ class UnitShowComponent extends Component
         AccountPayableLiquidation::where('unit_uuid', $this->unit_details->uuid)->delete();
         AccountPayableLiquidationParticular::where('unit_uuid', $this->unit_details->uuid)->delete();
         AccountPayableParticular::where('unit_uuid', $this->unit_details->uuid)->delete();
+        Remittance::where('unit_uuid', $this->unit_details->uuid)->delete();
 
         return redirect('/property/'.$this->unit_details->property_uuid.'/unit/')->with('success', 'Success!');
     }
@@ -239,7 +241,8 @@ class UnitShowComponent extends Component
             'inventories' => UnitInventory::where('unit_uuid', $this->unit_details->uuid)->where('contract_uuid', '')->get(),
             'collections' => app('App\Http\Controllers\UnitController')->get_unit_collections($this->unit_details->property_uuid, $this->unit_details->uuid),
             'revenues' => $revenues,
-            'expenses' => $expenses
+            'expenses' => $expenses,
+            'remittances' => Remittance::where('unit_uuid', $this->unit_details->uuid)->get()
         ]);
     }
 }

@@ -320,7 +320,8 @@
 
                         </div>
                     </div>
-                    <div class="p-4 purple rounded-lg dark:bg-gray-800" id="remittance-summary" role="tabpanel"
+                    
+                    <div class="hidden p-4 purple" id="remittance-summary" role="tabpanel"
                         aria-labelledby="remittance-summary-tab">
                         <div>
                         <div class="flex items-center justify-center">
@@ -342,7 +343,7 @@
                                         <p class="text-sm font-medium text-gray-900">Amount Collected
                                         </p>
                                         <p class="mt-1 text-sm font-base text-gray-500">
-                                            Value
+                                            {{ number_format($remittances->sum('monthly_rent') + $remittances->sum('marketing_fee') + $remittances->sum('management_fee'), 2)}}
                                         </p>
                                     </div>
                                 </div>
@@ -354,7 +355,7 @@
                                         <p class="text-sm font-medium text-gray-900">Rent
                                         </p>
                                         <p class="mt-1 text-sm font-base text-gray-500">
-                                            Value
+                                          {{ number_format($remittances->sum('monthly_rent'), 2)}}
                                         </p>
                                     </div>
                                 </div>
@@ -365,174 +366,174 @@
                                     <p class="text-sm font-medium text-gray-900">Deductions
                                     </p>
                                     <div class="grid grid-cols-2">
-    
-                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Management Fee
-                                    </p>
-                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Value
-                                    </p>
-
-                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Total Project Cost
-                                    </p>
-                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Value
-                                    </p>
 
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
                                         Bank Transfer Fee
                                     </p>
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Value
+                                         {{ number_format($remittances->sum('bank_transfer_fee'), 2)}}
+                                    </p>
+    
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                        Management Fee
+                                    </p>
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                      {{ number_format($remittances->sum('management_fee'), 2)}}
+                                    </p>
+
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                      Marketing Fee
+                                    </p>
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                       {{ number_format($remittances->sum('marketing_fee'), 2)}}
                                     </p>
 
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
                                         Purchased Materials/Unit Repairs/Others
                                     </p>
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Value
+                                     {{ number_format($remittances->sum('miscellaneous_fee'), 2)}}
                                     </p>
 
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Total Project Cost
+                                        Membership Fee
                                     </p>
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Value
-                                    </p>
-
-                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Unit Ownership Fee
-                                    </p>
-                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Value
+                                        {{ number_format($remittances->sum('membership_fee'), 2)}}
                                     </p>
 
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
                                         Condo Dues
                                     </p>
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Value
+                                        {{ number_format($remittances->sum('condo_dues'), 2)}}
                                     </p>
 
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
                                         Parking Dues
                                     </p>
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Value
+                                        {{ number_format($remittances->sum('parking_dues'), 2)}}
                                     </p>
 
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
                                         Water
                                     </p>
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Value
+                                        {{ number_format($remittances->sum('water'), 2)}}
                                     </p>
 
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
                                         Electricity
                                     </p>
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Value
+                                        {{ number_format($remittances->sum('electricity'), 2)}}
                                     </p>
 
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
                                         Generator Share
                                     </p>
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Value
+                                        {{ number_format($remittances->sum('generator_share'), 2)}}
                                     </p>
 
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Surcharges of Unit Owner
+                                        Surcharges
                                     </p>
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Value
+                                        {{ number_format($remittances->sum('surcharges'), 2)}}
                                     </p>
-
+                                    
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
                                         Building Insurance
                                     </p>
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Value
+                                        {{ number_format($remittances->sum('building_insurance'), 2)}}
                                     </p>
 
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Real Property Tax Common Area
+                                        Real Property Tax
                                     </p>
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Value
+                                        {{ number_format($remittances->sum('real_property_tax'), 2)}}
                                     </p>
 
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
                                         Housekeeping Fee
                                     </p>
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Value
+                                        {{ number_format($remittances->sum('housekeeping_fee'), 2)}}
                                     </p>
 
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Laundry Fee
+                                       Laundry Fee
                                     </p>
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Value
+                                        {{ number_format($remittances->sum('laundry_fee'), 2)}}
                                     </p>
 
-                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
                                         Complimentary
                                     </p>
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Value
+                                        {{ number_format($remittances->sum('complimentary'), 2)}}
                                     </p>
 
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
                                         Internet
                                     </p>
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Value
+                                        {{ number_format($remittances->sum('internet'), 2)}}
                                     </p>
 
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
                                         Special Assessment
                                     </p>
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Value
+                                        {{ number_format($remittances->sum('special_assessment'), 2)}}
                                     </p>
 
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
                                         Materials Recovery Facility
                                     </p>
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Value
+                                        {{ number_format($remittances->sum('materials_recovery_facility'), 2)}}
                                     </p>
 
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
                                         Recharge of Fire Extinguisher
                                     </p>
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Value
+                                        {{ number_format($remittances->sum('recharge_of_fire_extinguisher'), 2)}}
                                     </p>
 
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
                                         Environmental Fee
                                     </p>
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Value
+                                        {{ number_format($remittances->sum('environmental_fee'), 2)}}
                                     </p>
 
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
                                         Bladder Tank
                                     </p>
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Value
+                                        {{ number_format($remittances->sum('bladder_tank'), 2)}}
                                     </p>
 
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
                                         Cause of Magnet
                                     </p>
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Value
+                                        {{ number_format($remittances->sum('cause_of_magnet'), 2)}}
                                     </p>
+
+
+
+                                    
+
+                                    
+                                  
 
 
                                     </div>
@@ -547,7 +548,7 @@
                                         <p class="text-sm font-medium text-gray-900">Total Deductions
                                         </p>
                                         <p class="mt-1 text-sm font-base text-gray-500">
-                                            Value
+                                          {{ number_format($remittances->sum('total_deductions'), 2)}}
                                         </p>
                                     </div>
                                 </div>
@@ -559,7 +560,7 @@
                                         <p class="text-sm font-medium text-gray-900">Net Remittance
                                         </p>
                                         <p class="mt-1 text-sm font-base text-gray-500">
-                                            Value
+                                            {{ number_format($remittances->sum('remittance'), 2)}}
                                         </p>
                                     </div>
                                 </div>
