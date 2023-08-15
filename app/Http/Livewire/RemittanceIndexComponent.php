@@ -84,7 +84,7 @@ class RemittanceIndexComponent extends Component
                 'environmental_fee' => $remittance->environmental_fee,
                 'bladder_tank' => $remittance->bladder_tank,
                 'cause_of_magnet' => $remittance->cause_of_magnet,
-                'total_deductions' => $remittance->bank_transfer_fee + $remittance->miscellaneous_fee + $remittance->membership_fee + $remittance->condo_dues
+                'total_deductions' => $remittance->management_fee + $remittance->marketing_fee + $remittance->bank_transfer_fee + $remittance->miscellaneous_fee + $remittance->membership_fee + $remittance->condo_dues
                 + $remittance->parking_dues + $remittance->water + $remittance->electricity + $remittance->surcharges + $remittance->building_insurance 
                 + $remittance->real_property_tax + $remittance->housekeeping_fee + $remittance->laundry_fee + $remittance->complimentary + $remittance->internet
                 + $remittance->special_assessment + $remittance->materials_recovery_facility + $remittance->recharge_of_fire_extinguisher + $remittance->recharge_of_fire_extinguisher 
