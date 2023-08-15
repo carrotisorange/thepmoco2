@@ -7,7 +7,7 @@
             class="relative transform overflow-hidden rounded-lgpx-4 pt-5 pb-4 text-left transition-all  sm:w-full sm:max-w-sm sm:p-6">
             <div class="mt-3 text-center sm:mt-5">
                 <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Edit Utility
-                    Information
+                    
                 </h3>
 
             </div>
@@ -30,7 +30,7 @@
 
                 <div class="mt-5 sm:mt-6">
                     <label class="text-sm" for="previous_reading">Previous Reading</label>
-                    <input type="number" id="previous_reading" wire:model="previous_reading"
+                    <input type="number" id="previous_reading" wire:model="previous_reading" step="0.001"
                         class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="" required>
                     @error('previous_reading')
@@ -40,7 +40,7 @@
 
                 <div class="mt-5 sm:mt-6">
                     <label class="text-sm" for="current_reading">Current Reading</label>
-                    <input type="number" id="current_reading" wire:model="current_reading"
+                    <input type="number" id="current_reading" wire:model="current_reading" step="0.001"
                         class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="" required>
                     @error('current_reading')
@@ -50,7 +50,7 @@
 
                 <div class="mt-5 sm:mt-6">
                     <label class="text-sm" for="kwh">Rate</label>
-                    <input type="number" id="kwh" wire:model="kwh"
+                    <input type="number" id="kwh" wire:model="kwh" step="0.001"
                         class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="" required>
                     @error('kwh')
@@ -60,7 +60,7 @@
 
                 <div class="mt-5 sm:mt-6">
                     <label class="text-sm" for="current_consumption">Current Consumption</label>
-                    <input type="number" id="current_consumption" wire:model="current_consumption" readonly
+                    <input type="number" id="current_consumption" wire:model="current_consumption" readonly step="0.001"
                         class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="" required>
                     @error('current_consumption')
@@ -70,7 +70,7 @@
 
                 <div class="mt-5 sm:mt-6">
                     <label class="text-sm" for="min_charge">Min Charge</label>
-                    <input type="number" id="min_charge" wire:model="min_charge"
+                    <input type="number" id="min_charge" wire:model="min_charge" step="0.001"
                         class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="" required>
                     @error('min_charge')
@@ -80,7 +80,7 @@
 
                 <div class="mt-5 sm:mt-6">
                     <label class="text-sm" for="total_amount_due">Total Amount Due</label>
-                    <input type="number" id="total_amount_due" wire:model="total_amount_due" readonly
+                    <input type="number" id="total_amount_due" wire:model="total_amount_due" readonly step="0.001"
                         class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="" required>
                     @error('total_amount_due')
@@ -106,12 +106,6 @@
                         </option>
                         @endforeach
 
-                        {{-- @foreach($guests as $guest)
-                        <option value="{{ $guest->guest_uuid }}" {{ $guest->guest_uuid===$guest_uuid? 'selected' :
-                            'Select one' }}>
-                            {{ $guest->guest->guest }} (G)
-                        </option>
-                        @endforeach --}}
                     </x-form-select>
 
                     @error('bill_to')
@@ -120,18 +114,23 @@
                 </div>
                 <div class="mt-5 sm:mt-6">
 
-                    <button type="button" wire:click="updateUtility"
+                    <button type="submit" wire:loading.remove
                         class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
                         Update
+                    </button>
+
+                    <button type="button" wire:loading
+                        class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
+                        Loading...
                     </button>
 
                 </div>
                 @else
                 <div class="mt-5 sm:mt-6">
-                    <label class="text-sm" for="unit_uuid">Status</label>
-                    <input type="text" wire:model="status" readonly
-                        class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="" required>
+                    <button type="button" disabled
+                        class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
+                       {{$status}}
+                    </button>
 
                 </div>
                 @endif
