@@ -75,6 +75,30 @@
                   </div>
    
                </div>
+
+               <div class="">
+                  <label for="bank_name" class="block text-sm font-medium text-gray-700">Bank Name</label>
+                  <input type="text" wire:model="bank_name"
+                     class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+               </div>
+
+               <div class="">
+                  <label for="account_name" class="block text-sm font-medium text-gray-700">Account Name</label>
+                  <input type="text" wire:model="account_name"
+                     class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+               </div>
+
+               <div class="">
+                  <label for="account_number" class="block text-sm font-medium text-gray-700">Account Number</label>
+                  <input type="text" wire:model="account_number"
+                     class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+               </div>
+
+               <div class="">
+                  <label for="contact_number" class="block text-sm font-medium text-gray-700">Contact Number</label>
+                  <input type="text" wire:model="contact_number"
+                     class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+               </div>
             </div>
             <div class="px-4 py-3 text-right sm:px-6">
                <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"

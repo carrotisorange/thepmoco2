@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title','Step 1 of Step 4 | Unit Inventory')
+    @section('title','Step 2 of Step 4 | Unit Inventory')
     <div class="mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 xl:py-10">
         <div class="flex justify-end">
             {{-- <button type="button"

@@ -46,6 +46,11 @@ class Collection extends Model
         return $query->where('is_posted', true);
     }
 
+    public function scopeDeposit($query)
+    {
+        return $query->where('is_deposit', true);
+    }
+
     public static function search($search)
         {
         return empty($search)? static::query()

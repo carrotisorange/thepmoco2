@@ -29,6 +29,7 @@ class Bill extends Model
         return $this->belongsTo(Collection::class, 'bill_id');
      }
 
+     
 
     public function tenant()
     {
