@@ -167,7 +167,7 @@
 
           <div id="slideshow-example" data-component="slideshow">
             <div role="list">
-              <div class="slide min-h-screen" id="propman-image">
+              <div class="slide min-h-screen bg-transparent" id="">
                   <div id="" class="sm:block lg:flex md:flex min-h-screen py-16">
                   <div class="flex-col items-center  justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-10">
 
@@ -182,8 +182,8 @@
                       <script>
                         var typed = new Typed(".propman", {
                             strings: ["Property Management System"],
-                            typeSpeed: 15,
-                            backSpeed: 30,
+                            typeSpeed: 30,
+                            backSpeed: 40,
                             loop: true
                         });
                       </script>
@@ -207,7 +207,7 @@
                 </div>
               </div>
 
-              <div class="slide min-h-screen" id="proprent-image">
+              <div class="slide min-h-screen bg-transparent" id="">
                   <div id="" class="sm:block lg:flex md:flex min-h-screen py-16">
                   <div class="flex-col items-center  justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-10">
 
@@ -222,8 +222,8 @@
                       <script>
                         var typed = new Typed(".proprent", {
                             strings: ["Rental Property Listings"],
-                            typeSpeed: 15,
-                            backSpeed: 30,
+                            typeSpeed: 40,
+                            backSpeed: 40,
                             loop: true
                         });
                       </script>
@@ -246,7 +246,7 @@
                 </div>
               </div>
               
-              <div class="slide min-h-screen" id="propbiz-image">
+              <div class="slide min-h-screen bg-transparent" id="">
                   <div id="" class="sm:block lg:flex md:flex min-h-screen py-16">
                   <div class="flex-col items-center  justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-10">
 
@@ -261,7 +261,7 @@
                       <script>
                         var typed = new Typed(".propbiz", {
                             strings: ["Property Management Services"],
-                            typeSpeed: 15,
+                            typeSpeed: 50,
                             backSpeed: 30,
                             loop: true
                         });
@@ -285,7 +285,7 @@
                 </div>
               </div>
 
-              <div class="slide min-h-screen" id="propsuite-image">
+              <div class="slide min-h-screen bg-transparent" id="">
                   <div id="" class="sm:block lg:flex md:flex min-h-screen py-16">
                   <div class="flex-col items-center  justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-10">
 
@@ -300,8 +300,8 @@
                       <script>
                         var typed = new Typed(".propsuite", {
                             strings: ["Fullsuite Digital Services"],
-                            typeSpeed: 15,
-                            backSpeed: 30,
+                            typeSpeed: 30,
+                            backSpeed: 45,
                             loop: true
                         });
                       </script>
