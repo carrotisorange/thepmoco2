@@ -81,7 +81,7 @@ body {
             <div class="flex-col items-center justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-20 xl:px-36">
               <div class="w-full">
                 <div class="text-gray-300 text-4xl font-bold py-24 sm:text-5xl lg:text-5xl">
-                  <img class="h-24" src="{{ asset('/brands/propsuite/propman.png') }}">
+                  <img class="h-20" src="{{ asset('/brands/propsuite/propman.png') }}">
                   
                   <h2 class="text-lg ">Property Management System for long term and short term rental properties and home owners associations</h2>
                 </div>

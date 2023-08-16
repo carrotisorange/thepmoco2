@@ -77,16 +77,16 @@ body {
             <div class="flex-col items-center justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-20 xl:px-36">
               <div class="w-full">
                 <div class="text-gray-300 text-4xl font-bold py-24 sm:text-5xl lg:text-5xl">
-                  <img class="h-24" src="{{ asset('/brands/propsuite/propbiz.png') }}">
+                  <img class="h-20" src="{{ asset('/brands/propsuite/propbiz.png') }}">
                   
-                  <h2 class="text-lg">Professional Property Management Services </h2>
+                  <h2 class="text-lg">Professional Property <br>Management Services </h2>
                 </div>
               </div>
             </div>
 
-            <div class="flex-col justify-center sm:-py-2 md:py-20 lg:py-8 lg:px-48 sm-px-0">
+            <div class="flex-col justify-center ml-0 lg:ml-24 sm:-py-2 md:py-20 lg:py-8 lg:px-48 sm-px-0">
               <div class="lg:block lg:py-20 md:max-w-lg xl:max-w-lg sm:ml-12 sm:py-2 lg:-ml-5 mx-5">
-                <p class="text-base font-light mt-10 text-white text-justify">Property owner and property manager matching service. Pre-qualifies licensed real estate managers for rental property owners who need management services for property rental business.</p>
+                <p class="text-base font-light mt-10 text-white text-justify">Property owner and property manager matching service. Pre-qualified licensed real estate managers for rental property owners who need management services for property rental business.</p>
                 <div class="mt-10 flex justify-center items-center space-x-5">
                   <button class="propbizOrangebg rounded-full"> <a href="agent-corner" class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Property Manager</a></button>
                   <button class="propbizOrangebg rounded-full"> <a href="owner-corner" class="w-48 flex justify-center py-4 px-4 border border-gray-400 rounded-full shadow-sm text-sm font-medium text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 leading-3">Property Owner</a></button>            

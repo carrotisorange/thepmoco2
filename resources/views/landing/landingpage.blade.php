@@ -165,37 +165,37 @@
             }
           </style>
 
+                      <div class="max-w-7xl mt-0 lg:mt-24 block lg:absolute left-0 mx-16">
+                        <div class="text-center text-gray-100 text-2xl font-bold pt-24 pb-10 sm:text-2xl lg:text-5xl">
+                        <span id="static" class="threeWords" id="seamless"></span>
+                        
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
+                        <script>
+                          var typed = new Typed(".threeWords", {
+                              strings: ["Property Management System", "Rental Property Listings", "Property Management Services", "Fullsuite Digital Services"],
+                              typeSpeed: 35,
+                              backSpeed: 35,
+                              loop: true
+                          });
+                        </script>
+                          
+                          
+                        </div>
+                      
+                      </div>
+
           <div id="slideshow-example" data-component="slideshow">
             <div role="list">
               <div class="slide min-h-screen bg-transparent" id="">
                   <div id="" class="sm:block lg:flex md:flex min-h-screen py-16">
-                  <div class="flex-col items-center  justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-10">
+                  
 
-                  <img src="{{ asset('/brands/propsuite/propman.png') }}" class="w-36">
-                
-
-                    <div class="max-w-7xl">
-                      <div class="text-center text-gray-300 text-2xl font-bold pt-24 pb-10 sm:text-2xl lg:text-5xl">
-                      <span id="static" class="propman" id="seamless"></span>
-                      
-                      <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
-                      <script>
-                        var typed = new Typed(".propman", {
-                            strings: ["Property Management System"],
-                            typeSpeed: 30,
-                            backSpeed: 40,
-                            loop: true
-                        });
-                      </script>
-                        
-                        
-                      </div>
-                      
-                      </div>
-                  </div>
-
-                  <div class="flex items-center lg:absolute right-0 mx-20 justify-center sm:-py-2 md:py-20 lg:py-8">
-                    <div class="lg:block lg:py-20 md:max-w-lg xl:max-w-md sm:ml-12 sm:py-2  mx-5">
+                  <div class="items-center lg:absolute right-0 mx-20 justify-center sm:-py-2 md:py-20 lg:py-8">
+                    <div class="flex items-center justify-center lg:justify-start sm:justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-10">
+                      <img src="{{ asset('/brands/propsuite/propman.png') }}" class="w-36">
+                    </div>
+                  
+                    <div class="lg:block lg:pb-20 md:max-w-lg xl:max-w-md sm:ml-12 sm:py-2  mx-5">
                       <p class="text-base font-light mt-10 text-white text-justify">Property Management System for long term and short term rental properties and home owners associations.</p>
                       <div class="mt-10 flex justify-center items-center space-x-5">
                         <button class="propmanOrangebg rounded-full"> <a href="https://thepmo.co/select-a-plan" class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Free Trial</a></button>
@@ -209,33 +209,13 @@
 
               <div class="slide min-h-screen bg-transparent" id="">
                   <div id="" class="sm:block lg:flex md:flex min-h-screen py-16">
-                  <div class="flex-col items-center  justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-10">
-
-                  <img src="{{ asset('/brands/propsuite/proprent.png') }}" class="w-36">
-                
-
-                    <div class="max-w-7xl">
-                      <div class="text-center text-gray-300 text-2xl font-bold pt-24 pb-10 sm:text-2xl lg:text-5xl">
-                      <span id="static" class="proprent" id="seamless"></span>
-                      
-                      <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
-                      <script>
-                        var typed = new Typed(".proprent", {
-                            strings: ["Rental Property Listings"],
-                            typeSpeed: 40,
-                            backSpeed: 40,
-                            loop: true
-                        });
-                      </script>
-                        
-                        
-                      </div>
-                      
-                      </div>
-                  </div>
+                  
 
                   <div class="absolute right-0 mx-20 justify-center sm:-py-2 md:py-20 lg:py-8">
-                    <div class="lg:block lg:py-20 md:max-w-lg xl:max-w-md sm:ml-12 sm:py-2  mx-5">
+                    <div class="flex items-center justify-center lg:justify-start sm:justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-10">
+                      <img src="{{ asset('/brands/propsuite/proprent.png') }}" class="w-36">
+                    </div>
+                    <div class="lg:block lg:pb-20 md:max-w-lg xl:max-w-md sm:ml-12 sm:py-2  mx-5">
                       <p class="text-base font-light mt-10 text-white text-justify">Leasing platform for rental property owners to list vacant rooms and units for long term or short term rental and a Leasing Marketplace for tenants to find available place.</p>
                       <div class="mt-10 flex justify-end items-center space-x-5">
                         <button class="rounded-full"> <a href="proprent-search" class="proprentOrangebg w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Coming Soon</a></button>
@@ -248,33 +228,17 @@
               
               <div class="slide min-h-screen bg-transparent" id="">
                   <div id="" class="sm:block lg:flex md:flex min-h-screen py-16">
-                  <div class="flex-col items-center  justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-10">
-
-                  <img src="{{ asset('/brands/propsuite/propbiz.png') }}" class="w-36">
-                
-
-                    <div class="max-w-7xl">
-                      <div class="text-center text-gray-300 text-2xl font-bold pt-24 pb-10 sm:text-2xl lg:text-5xl">
-                      <span id="static" class="propbiz" id="seamless"></span>
-                      
-                      <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
-                      <script>
-                        var typed = new Typed(".propbiz", {
-                            strings: ["Property Management Services"],
-                            typeSpeed: 50,
-                            backSpeed: 30,
-                            loop: true
-                        });
-                      </script>
-                        
-                        
-                      </div>
-                      
-                      </div>
-                  </div>
+                  
 
                   <div class="absolute right-0 mx-20 justify-center sm:-py-2 md:py-20 lg:py-8">
-                    <div class="lg:block lg:py-20 md:max-w-lg xl:max-w-md sm:ml-12 sm:py-2  mx-5">
+                  <div class="flex items-center  justify-center lg:justify-start sm:justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-10">
+
+                  <img src="{{ asset('/brands/propsuite/propbiz.png') }}" class="w-36">
+
+
+                  
+                  </div>
+                    <div class="lg:block lg:pb-20 md:max-w-lg xl:max-w-md sm:ml-12 sm:py-2  mx-5">
                       <p class="text-base font-light mt-10 text-white text-justify">Property management services that provides online and onsite operations management services to rental property owners.</p>
                       <div class="mt-10 flex justify-end items-center space-x-5">
                         <button class="rounded-full"> <a href="propbiz" class="proprentOrangebg w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Register</a></button>
@@ -291,28 +255,9 @@
 
              
                 
-
-                    <div class="max-w-7xl mt-10">
-                      <div class="text-center text-gray-100 text-2xl font-bold pt-24 pb-10 sm:text-2xl lg:text-5xl">
-                      <span id="static" class="propsuite" id="seamless"></span>
-                      
-                      <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
-                      <script>
-                        var typed = new Typed(".propsuite", {
-                            strings: ["Fullsuite Digital Services"],
-                            typeSpeed: 30,
-                            backSpeed: 45,
-                            loop: true
-                        });
-                      </script>
-                        
-                        
-                      </div>
-                      
-                      </div>
                   </div>
 
-                  <div class="absolute right-0 mx-20 justify-center sm:-py-2 md:py-20 lg:py-8">
+                  <div class="absolute right-0 mx-20 lg:justify-center sm:-py-2 md:py-20 lg:py-8">
                     <div class="lg:block lg:py-20 md:max-w-lg xl:max-w-md sm:ml-12 sm:py-2  mx-5">
                       <p class="text-base font-light mt-10 text-white text-justify">We provide full suite digital solution for rental property communities and home owners associations.</p>
                       <div class="mt-10 flex justify-end items-center space-x-5">
