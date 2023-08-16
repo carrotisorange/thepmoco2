@@ -7,7 +7,7 @@
 
                     <li class="flex">
                         <div class="flex items-center">
-                            <button onclick="window.location.href='/property/{{ Session::get('property') }}/owner'"
+                            <button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/owner'"
                                 class="text-lg font-medium text-gray-500 hover:text-gray-700" aria-current="page">
                                 Owners</button>
                         </div>
@@ -21,7 +21,7 @@
                                 <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
                             </svg>
                             <button
-                                onclick="window.location.href='/property/{{ Session::get('property') }}/owner/{{ $owner->uuid }}'"
+                                onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/owner/{{ $owner->uuid }}'"
                                 class="ml-4 text-lg font-medium text-gray-500 hover:text-gray-700 ">
                                 {{ $owner->owner }} </button>
                         </div>
@@ -35,7 +35,7 @@
                                 <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
                             </svg>
                             <button
-                                onclick="window.location.href='/property/{{ Session::get('property') }}/owner/{{ $owner->uuid }}/bills'"
+                                onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/owner/{{ $owner->uuid }}/bills'"
                                 class="ml-4 text-lg font-bold text-gray-700 hover:text-gray-700" aria-current="page">
                                 Bills</button>
                         </div>
@@ -78,40 +78,40 @@
         number_format(App\Models\Owner::find($owner->uuid)->wallets()->sum('amount'), 2) }}</b> --}}
 
     <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-            <div class="sm:col-span-3">
-                @if($bills)
-                <label for="status" class="block text-sm font-medium text-gray-700">Filter status</label>
-                <select wire:model.lazy="status" autocomplete="status"
-                    class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    <option value="all" {{ $status=='' ? 'selected' : 'selected' }}> all </option>
-                    <option value="paid" {{ $status=='paid' ? 'selected' : 'selected' }}> paid </option>
-                    <option value="partially_paid" {{ $status=='partially_paid' ? 'selected' : 'selected' }}> partially paid
-                    </option>
-                    <option value="unpaid" {{ $status=='unpaid' ? 'selected' : 'selected' }}> unpaid </option>
-        
-                </select>
-        
-                @endif
-        
-            </div>
-        
-            <div class="sm:col-span-3">
-                @if($bills)
-                <label for="particular" class="block text-sm font-medium text-gray-700">Filter particulars</label>
-                <select wire:model.lazy="particular" autocomplete="particular"
-                    class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-        
-                    <option value="">Filter bill particulars</option>
-                    @foreach ($particulars as $item)
-                    <option value="{{ $item->particular_id }}">{{ $item->particular }}</option>
-                    @endforeach
-                </select>
-        
-                @endif
-        
-            </div>
-        
+        <div class="sm:col-span-3">
+            @if($bills)
+            <label for="status" class="block text-sm font-medium text-gray-700">Filter status</label>
+            <select wire:model.lazy="status" autocomplete="status"
+                class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <option value="all" {{ $status=='' ? 'selected' : 'selected' }}> all </option>
+                <option value="paid" {{ $status=='paid' ? 'selected' : 'selected' }}> paid </option>
+                <option value="partially_paid" {{ $status=='partially_paid' ? 'selected' : 'selected' }}> partially paid
+                </option>
+                <option value="unpaid" {{ $status=='unpaid' ? 'selected' : 'selected' }}> unpaid </option>
+
+            </select>
+
+            @endif
+
         </div>
+
+        <div class="sm:col-span-3">
+            @if($bills)
+            <label for="particular" class="block text-sm font-medium text-gray-700">Filter particulars</label>
+            <select wire:model.lazy="particular" autocomplete="particular"
+                class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+
+                <option value="">Filter bill particulars</option>
+                @foreach ($particulars as $item)
+                <option value="{{ $item->particular_id }}">{{ $item->particular }}</option>
+                @endforeach
+            </select>
+
+            @endif
+
+        </div>
+
+    </div>
 
     <div class="mt-5">
         <div class="flex flex-row">
@@ -123,7 +123,7 @@
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Pay Bills
                 </button>
-               
+
                 <div class="mt-5">
                     <span>You've selected <b>{{ count($selectedBills) }}</b> {{ Str::plural('bill',
                         count($selectedBills))}}

@@ -41,7 +41,7 @@ class ContractCreateComponent extends Component
         $this->discount = $unit->discount;
         // $this->end = Carbon::now()->addYear()->format('Y-m-d');
         $this->start = Carbon::now()->format('Y-m-d');
-        $this->property_uuid = Session::get('property');
+        $this->property_uuid = Session::get('property_uuid');
     
       }
 

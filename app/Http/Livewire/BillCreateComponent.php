@@ -41,7 +41,7 @@ class BillCreateComponent extends Component
         $this->unit_uuid = $unit->uuid;
         $this->end = Carbon::now()->addYear()->format('Y-m-d');
         $this->start = Carbon::now()->format('Y-m-d');
-        $this->property_uuid = Session::get('property');
+        $this->property_uuid = Session::get('property_uuid');
         $this->tenant_uuid = $tenant->uuid;
     }
 
@@ -109,7 +109,7 @@ class BillCreateComponent extends Component
     {
         return view('livewire.bill-create-component',[
             
-            'particulars' => app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property')),
+            'particulars' => app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid')),
             'units' => app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($this->tenant->uuid),
             'bills' => app('App\Http\Controllers\TenantBillController')->show_tenant_bills($this->tenant->uuid),
         ]);

@@ -27,13 +27,13 @@
             <x-td>{{ $index+1 }}</x-td>
             <x-td>
                 <a class="text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ Session::get('property') }}/owner/{{ $item->owner->uuid }}">
+                    href="/property/{{ Session::get('property_uuid') }}/owner/{{ $item->owner->uuid }}">
                     {{ $item->owner->owner }}
                 </a>
             </x-td>
             <x-td>
                 <a class="text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}">
+                    href="/property/{{ Session::get('property_uuid') }}/unit/{{ $item->unit->uuid }}">
                     {{ $item->unit->unit }}
             </x-td>
             <x-td>
@@ -140,10 +140,10 @@
     <p class="mt-1 text-sm text-gray-500">You're almost there!</p>
     <div class="mt-6">
         <button type="button"
-            onclick="window.location.href='/property/{{ Session::get('property') }}/owner/{{ $owner_details->uuid }}/unit'"
+            onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/unit'"
             class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-       
-           New unit
+
+            New unit
         </button>
     </div>
 </div>

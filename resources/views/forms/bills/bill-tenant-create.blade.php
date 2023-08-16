@@ -1,5 +1,5 @@
 <form class="px-12 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" method="post"
-    action="/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}/bill/store">
+    action="/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant->uuid }}/bill/store">
     @csrf
     <h3 class="text-xl font-medium text-gray-900 dark:text-white">Bill Information</h3>
     <div>
@@ -88,8 +88,8 @@
                 <x-label for="bill">
                     Amount
                 </x-label>
-                <x-form-input id="grid-last-name" type="number" step="0.001" value="{{ old('bill') }}"
-                    name="bill" min="0" />
+                <x-form-input id="grid-last-name" type="number" step="0.001" value="{{ old('bill') }}" name="bill"
+                    min="0" />
 
                 @error('bill')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -97,10 +97,10 @@
             </div>
         </div>
         <div class="mt-5">
-            
+
             <p class="text-right">
                 <button type="button"
-                    onclick="window.location.href='/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}'"
+                    onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant->uuid }}'"
                     class="ml-3 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Cancel
                 </button>

@@ -8,6 +8,7 @@ use App\Models\Collection;
 use App\Models\Bill;
 use Carbon\Carbon;
 use Livewire\WithFileUploads;
+use App\Models\PaymentRequest;
 
 class CollectionTenantEditComponent extends Component
 {
@@ -33,6 +34,7 @@ class CollectionTenantEditComponent extends Component
         $this->tenant = $tenant;
         $this->collections = $collections;
         $this->created_at = Carbon::now()->format('Y-m-d');
+        $this->proof_of_payment = PaymentRequest::find(Session::get('payment_request_id'))->proof_of_payment;
     }
 
     protected function rules()
@@ -56,14 +58,14 @@ class CollectionTenantEditComponent extends Component
 
     public function get_bills()
     {
-        return Bill::where('property_uuid', Session::get('property'))
+        return Bill::where('property_uuid', Session::get('property_uuid'))
         ->where('is_posted', false)
         ->where('batch_no', $this->batch_no)->get();
     }
 
     public function get_collections()
     {
-      return Collection::where('property_uuid', Session::get('property'))
+      return Collection::where('property_uuid', Session::get('property_uuid'))
       ->where('is_posted', false)
       ->where('batch_no', $this->batch_no)->get();
     }

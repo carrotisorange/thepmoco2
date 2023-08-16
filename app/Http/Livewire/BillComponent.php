@@ -56,7 +56,7 @@ class BillComponent extends Component
 
       $validated_data = $this->validate();
 
-      $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property')->uuid);
+      $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property_uuid')->uuid);
 
       try
       {
@@ -87,7 +87,7 @@ class BillComponent extends Component
       $validated_data['reference_no'] = Tenant::find($this->tenant->uuid)->bill_reference_no;
       $validated_data['tenant_uuid'] = $this->tenant->uuid;
       $validated_data['unit_uuid'] = $this->unit->uuid;
-      $validated_data['property_uuid'] = Session::get('property');
+      $validated_data['property_uuid'] = Session::get('property_uuid');
       $validated_data['user_id'] = auth()->user()->id;
       $validated_data['bill_no'] = $bill_no+1;
       $validated_data['due_date'] = Carbon::now()->addDays(7);
@@ -101,7 +101,7 @@ class BillComponent extends Component
       $contract = Contract::find($this->contract->uuid);
 
       $particulars = Particular::join('property_particulars', 'particulars.id','property_particulars.particular_id')
-      ->where('property_uuid', Session::get('property'))
+      ->where('property_uuid', Session::get('property_uuid'))
       ->get();
         
       return view('livewire.bill-component',[

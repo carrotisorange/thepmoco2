@@ -26,13 +26,13 @@
             <x-td>{{ $index+1 }}</x-td>
             <x-td>
                 <a class="text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ Session::get('property') }}/owner/{{ $item->owner->uuid }}">
+                    href="/property/{{ Session::get('property_uuid') }}/owner/{{ $item->owner->uuid }}">
                     {{ $item->owner->owner }}
                 </a>
             </x-td>
             <x-td>
                 <a class="text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}">
+                    href="/property/{{ Session::get('property_uuid') }}/unit/{{ $item->unit->uuid }}">
                     {{ $item->unit->unit }}
             </x-td>
             <x-td>

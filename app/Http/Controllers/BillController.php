@@ -138,7 +138,7 @@ class BillController extends Controller
 
         $bills = Tenant::find($tenant->uuid)->bills;
        
-        $particulars = app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property'));
+        $particulars = app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid'));
 
         return view('bills.create',[
             'unit' => $unit,

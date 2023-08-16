@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title','Units | '. Session::get('property'))
+    @section('title','Units | '. Session::get('property_uuid'))
     <div class="mt-8">
         <div class="max-full mx-auto px-4 sm:px-6 lg:px-11">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -10,11 +10,11 @@
                         </div>
                         <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                             <button type="button"
-                                onclick="window.location.href='/property/{{ Session::get('property') }}/unit/thumbnail'"
+                                onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/unit/thumbnail'"
                                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">View
                                 as Thumbnail</button>
                             <button type="button"
-                                onclick="window.location.href='/property/{{ Session::get('property') }}/unit/{{ Str::random(8) }}/edit'"
+                                onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/unit/{{ Str::random(8) }}/edit'"
                                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Add
                                 Units</button>
                             <button type="button"
@@ -82,8 +82,9 @@
                                         <h2 class="text-lg font-medium text-gray-900"></h2>
 
                                     </div>
-                                    <div class="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-6">
-                                        
+                                    <div
+                                        class="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-6">
+
                                         <div>
                                             <img src="{{ asset('/brands/close_occupied.png') }}"
                                                 class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">

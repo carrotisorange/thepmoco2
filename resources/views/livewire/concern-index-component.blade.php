@@ -59,10 +59,11 @@
                                       transition duration-150 ease-in-out origin-top min-w-32">
 
                         <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
-                                href="/property/{{ Session::get('property') }}/tenant"
+                                href="/property/{{ Session::get('property_uuid') }}/tenant"
                                 data-modal-toggle="create-particular-modal">to tenant</a>
                         </li>
-                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="/property/{{ Session::get("property") }}/unit" data-modal-toggle="create-particular-modal">to unit</a>
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="/property/{{ Session::get("
+                                property") }}/unit" data-modal-toggle="create-particular-modal">to unit</a>
                         </li>
 
                     </ul>
@@ -149,11 +150,11 @@
                                                                       transition duration-150 ease-in-out origin-top min-w-32">
 
                                         <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
-                                                href="/property/{{ Session::get('property') }}/tenant"
+                                                href="/property/{{ Session::get('property_uuid') }}/tenant"
                                                 data-modal-toggle="create-particular-modal">to tenant</a>
                                         </li>
                                         <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
-                                                href="/property/{{ Session::get("property") }}/unit"
+                                                href="/property/{{ Session::get(" property") }}/unit"
                                                 data-modal-toggle="create-particular-modal">to unit</a>
                                         </li>
 

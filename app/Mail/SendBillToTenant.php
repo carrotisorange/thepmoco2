@@ -33,7 +33,7 @@ class SendBillToTenant extends Mailable
      */
     public function build()
     {
-          return $this->subject(Session::get('property_name').' - Statements of Account as of '.Carbon::parse(Carbon::now())->format('M d, Y'))
+          return $this->subject(Session::get('property').' - Statements of Account as of '.Carbon::parse(Carbon::now())->format('M d, Y'))
            ->from(auth()->user()->email)
            ->markdown('emails.sendbilltotenant', [
           ]);

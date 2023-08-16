@@ -6,7 +6,7 @@
                 <ol role="list" class="flex items-center space-x-4">
                     <li>
                         <div class="flex items-center">
-                            <a href="/property/{{ Session::get('property') }}/concern"><img class="h-5 w-auto"
+                            <a href="/property/{{ Session::get('property_uuid') }}/concern"><img class="h-5 w-auto"
                                     src="{{ asset('/brands/back-button.png') }}"></a>
                         </div>
                     </li>
@@ -279,7 +279,7 @@
 
                 <div class="flex justify-end">
                     <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-                        href="/property/{{ Session::get('property') }}/concern">
+                        href="/property/{{ Session::get('property_uuid') }}/concern">
                         Cancel
                     </a>
                     <button type="submit"

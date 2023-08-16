@@ -38,7 +38,7 @@ class UtilityEditComponent extends Component
 
         $this->option = $option;
 
-        $this->property_uuid = Session::get('property');
+        $this->property_uuid = Session::get('property_uuid');
 
         $this->utilities = $this->get_utilities();
 

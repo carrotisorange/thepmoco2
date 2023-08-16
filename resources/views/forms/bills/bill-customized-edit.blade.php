@@ -31,25 +31,27 @@
                     ?>
                     <x-td>
                         <a class="text-blue-500 text-decoration-line: underline"
-                            href="/property/{{ Session::get('property') }}/tenant/{{ $bill->tenant_uuid }}/bills"
+                            href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $bill->tenant_uuid }}/bills"
                             target="_blank">
                             {{ $tenant }}
                         </a>
                     </x-td>
                     <x-td>
                         <a class="text-blue-500 text-decoration-line: underline"
-                            href="/property/{{ Session::get('property') }}/unit/{{ $bill->unit_uuid }}/bills">
+                            href="/property/{{ Session::get('property_uuid') }}/unit/{{ $bill->unit_uuid }}/bills">
                             {{ $unit }}
                         </a>
                     </x-td>
                     <x-td>
-                        <x-table-input form="edit-form" type="date" wire:model="bills.{{ $index }}.start" wire:change="updateBill({{ $bill->id }})"/>
+                        <x-table-input form="edit-form" type="date" wire:model="bills.{{ $index }}.start"
+                            wire:change="updateBill({{ $bill->id }})" />
                         @error('bills.{{ $index }}.start')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </x-td>
                     <x-td>
-                        <x-table-input form="edit-form" type="date" wire:model="bills.{{ $index }}.end" wire:change="updateBill({{ $bill->id }})" />
+                        <x-table-input form="edit-form" type="date" wire:model="bills.{{ $index }}.end"
+                            wire:change="updateBill({{ $bill->id }})" />
                         @error('bills.{{ $index }}.end')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -66,7 +68,8 @@
                         </x-table-select>
                     </x-td>
                     <x-td>
-                        <x-table-input min="1" form="edit-form" type="number" wire:model="bills.{{ $index }}.bill" wire:change="updateBill({{ $bill->id }})"/>
+                        <x-table-input min="1" form="edit-form" type="number" wire:model="bills.{{ $index }}.bill"
+                            wire:change="updateBill({{ $bill->id }})" />
                         @error('bills.{{ $index }}.bill')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror

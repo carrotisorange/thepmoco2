@@ -93,7 +93,7 @@
         </div>
         <div class="flex justify-end mt-10">
             <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
-                href="/property/{{ Session::get('property') }}/owner/{{ $owner->uuid }}">
+                href="/property/{{ Session::get('property_uuid') }}/owner/{{ $owner->uuid }}">
                 Cancel
             </a>
             <button type="submit"

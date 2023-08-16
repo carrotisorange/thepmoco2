@@ -26,7 +26,7 @@ class UnitController extends Controller
     public function quick_add(){
        session(['quick_add' => true]);
 
-       return redirect('/property/'.Session::get('property').'/unit');
+       return redirect('/property/'.Session::get('property_uuid').'/unit');
     }
 
 
@@ -153,7 +153,7 @@ class UnitController extends Controller
         }else{
             Unit::where('uuid', $unit->uuid)->delete();
 
-            return redirect('/property/'.Session::get('property').'/unit')->with('success', 'Success!');
+            return redirect('/property/'.Session::get('property_uuid').'/unit')->with('success', 'Success!');
         }
        
     }

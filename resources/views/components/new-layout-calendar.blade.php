@@ -3,41 +3,41 @@
 
 <head>
     <meta charset="utf-8">
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    
+
     <meta name="facebook-domain-verification" content="q3z93v1eg3wsq648g7aq2cuby3ibcv" />
-    
+
     <title>@yield('title')</title>
-    
+
     {{--
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" /> --}}
-    
+
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('/brands/favicon.ico') }}" type="image/png">
-    
+
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-    
+
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-    
+
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    
+
     {{-- Fontawesome --}}
     <script src="https://kit.fontawesome.com/b3c8174312.js" crossorigin="anonymous"></script>
-    
+
     <!-- Scripts -->
-    
+
     {{-- Alpine.js --}}
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    
+
     <script src="{{ asset('js/app.js') }}" defer></script>
-    
+
     @yield('styles')
-    
+
     @livewireStyles
 </head>
 
@@ -60,10 +60,10 @@
                         <div class="hidden space-x-3 sm:-my-px sm:ml-10 sm:flex">
                             <h1 class="text-xl pt-2 tracking-tight font-medium leading-tight text-gray-700">
                                 @if (Session::has('property'))
-                                {{ App\Models\Property::find(Session::get('property'))->property.'
-                                '.App\Models\Property::find(Session::get('property'))->type->type }}
+                                {{ App\Models\Property::find(Session::get('property_uuid'))->property.'
+                                '.App\Models\Property::find(Session::get('property_uuid'))->type->type }}
 
-                                <a class="mt-2 inline-block" href="/property/{{ Session::get('property') }}/edit"
+                                <a class="mt-2 inline-block" href="/property/{{ Session::get('property_uuid') }}/edit"
                                     title="Edit your Property">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke-width="1.5" stroke="currentColor" class="text-purple-700 w-6 h-6">

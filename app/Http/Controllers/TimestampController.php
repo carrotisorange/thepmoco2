@@ -22,7 +22,7 @@ class TimestampController extends Controller
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',12);
 
         return view('timestamps.index',[
-            'timestamps' => Timestamp::where('property_uuid',Session::get('property'))
+            'timestamps' => Timestamp::where('property_uuid',Session::get('property_uuid'))
             ->orderBy('created_at', 'desc')
             ->paginate(10)
         ]);

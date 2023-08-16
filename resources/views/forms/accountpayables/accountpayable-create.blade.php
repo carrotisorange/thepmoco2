@@ -165,7 +165,7 @@
         </div>
         <div class="flex justify-end">
             <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-                href="/property/{{ Session::get('property') }}/accountpayable">
+                href="/property/{{ Session::get('property_uuid') }}/accountpayable">
                 Cancel
             </a>
             <button type="submit"

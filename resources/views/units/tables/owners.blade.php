@@ -18,13 +18,13 @@
             <x-td>{{ $index+1 }}</x-td>
             <x-td>
                 <a class="text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ Session::get('property') }}/owner/{{ $item->owner->uuid }}">
+                    href="/property/{{ Session::get('property_uuid') }}/owner/{{ $item->owner->uuid }}">
                     {{ $item->owner->owner }}
                 </a>
             </x-td>
             <x-td>
                 <a class="text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}">
+                    href="/property/{{ Session::get('property_uuid') }}/unit/{{ $item->unit->uuid }}">
                     {{ $item->unit->unit }}
             </x-td>
             <x-td>
@@ -41,13 +41,13 @@
                 @endif
             </x-td>
             <x-td>
-                <a href="/property/{{ Session::get('property') }}/unit/{{ $item->unit_uuid }}/owner/{{ $item->owner_uuid }}/deed_of_sale/{{ $item->uuid }}/edit"
+                <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $item->unit_uuid }}/owner/{{ $item->owner_uuid }}/deed_of_sale/{{ $item->uuid }}/edit"
                     class="text-blue-500 text-decoration-line: underline">
                     Edit</a>
             </x-td>
             <x-td>
                 @if($item->status == 'active')
-                <a href="/property/{{ Session::get('property') }}/unit/{{ $item->unit_uuid }}/owner/{{ $item->owner_uuid }}/deed_of_sale/{{ $item->uuid }}/backout"
+                <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $item->unit_uuid }}/owner/{{ $item->owner_uuid }}/deed_of_sale/{{ $item->uuid }}/backout"
                     class="text-blue-500 text-decoration-line: underline">
                     Back out</a>
                 @endif
@@ -56,7 +56,7 @@
             </x-td>
             <x-td>
 
-                <a href="/property/{{ Session::get('property') }}/unit/{{ $item->unit_uuid }}/owner/{{ $item->owner_uuid }}/deed_of_sale/{{ $item->uuid }}/delete"
+                <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $item->unit_uuid }}/owner/{{ $item->owner_uuid }}/deed_of_sale/{{ $item->uuid }}/delete"
                     class="text-red-500 text-decoration-line: underline">
                     Remove</a>
 

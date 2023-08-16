@@ -84,7 +84,7 @@ class OwnerBillController extends Controller
 
             Bill::create($attributes);
 
-            app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, 1, 3);
+            app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, 1, 3);
 
         });
 

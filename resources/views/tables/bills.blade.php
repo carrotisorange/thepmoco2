@@ -71,12 +71,12 @@
             <x-td>
                 <b>
                     {{ number_format(App\Models\Bill::where('property_uuid',
-                    Session::get('property'))->posted()->sum('bill'), 2) }}/
+                    Session::get('property_uuid'))->posted()->sum('bill'), 2) }}/
                     {{ number_format(App\Models\Collection::where('property_uuid',
-                    Session::get('property'))->posted()->sum('collection'), 2) }}/
+                    Session::get('property_uuid'))->posted()->sum('collection'), 2) }}/
                     {{ number_format((App\Models\Bill::where('property_uuid',
-                    Session::get('property'))->posted()->sum('bill')-App\Models\Collection::where('property_uuid',
-                    Session::get('property'))->posted()->sum('collection')), 2) }}
+                    Session::get('property_uuid'))->posted()->sum('bill')-App\Models\Collection::where('property_uuid',
+                    Session::get('property_uuid'))->posted()->sum('collection')), 2) }}
 
                 </b>
             </x-td>
@@ -142,7 +142,7 @@
             </x-td>
             <x-td>
                 <a class="text-blue-500 text-decoration-line: underline" target="_blank"
-                    href="/property/{{ Session::get('property') }}/unit/{{ $bill->unit->uuid }}">
+                    href="/property/{{ Session::get('property_uuid') }}/unit/{{ $bill->unit->uuid }}">
                     {{ Str::limit($bill->unit->unit,20) }} </a>
                 </a>
             </x-td>

@@ -21,7 +21,7 @@
                         class="text-left hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
                         <ul class="py-1" aria-labelledby="dropdownButton">
                             <li>
-                                <a href="/property/{{ Session::get('property') }}/owner/{{ $owner_details->uuid }}/unit"
+                                <a href="/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/unit"
                                     class=" block py-2 px-4 text-sm
                                                                                                     text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
                                                                                                     dark:text-gray-200 dark:hover:text-white">
@@ -29,7 +29,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/property/{{ Session::get('property') }}/owner/{{ $owner_details->uuid }}/representative/create"
+                                <a href="/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/representative/create"
                                     class=" block py-2 px-4 text-sm
                                                     text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
                                                     dark:text-gray-200 dark:hover:text-white">
@@ -37,7 +37,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/property/{{ Session::get('property') }}/owner/{{ $owner_details->uuid }}/bank/create"
+                                <a href="/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/bank/create"
                                     class=" block py-2 px-4 text-sm
                                                                                 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
                                                                                 dark:text-gray-200 dark:hover:text-white">
@@ -46,7 +46,7 @@
                             </li>
 
                             <li>
-                                <a href="/property/{{ Session::get('property') }}/owner/{{ $owner_details->uuid }}/bills"
+                                <a href="/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/bills"
                                     class=" block py-2 px-4 text-sm
                                                                                                 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
                                                                                                 dark:text-gray-200 dark:hover:text-white">
@@ -54,7 +54,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/property/{{ Session::get('property') }}/owner/{{ $owner_details->uuid }}/bills"
+                                <a href="/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/bills"
                                     class=" block py-2 px-4 text-sm
                                                                                                                             text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
                                                                                                                             dark:text-gray-200 dark:hover:text-white">
@@ -92,7 +92,7 @@
                                 class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
                                 Send access to owner
                             </button>
-                           
+
                         </p>
                     </div>
 

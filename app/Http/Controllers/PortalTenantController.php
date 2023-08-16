@@ -147,7 +147,6 @@ class PortalTenantController extends Controller
 
     public function payment_request_edit($role_id, User $user, $batch_no)
     {
-
         return view('portals.tenants.edit-payment-request',[
             'payment_request' => PaymentRequest::where('batch_no', $batch_no)->get(),
         ]);
@@ -179,10 +178,10 @@ class PortalTenantController extends Controller
                 //     'details' => 'approved a payment request.',
                 //     'status' => 'approved',
                 //     'role_id' => $role_id,
-                //     'property_uuid' => Session::get('property') 
+                //     'property_uuid' => Session::get('property_uuid') 
                 // ]);
 
-         return redirect('/property/'.Session::get('property').'/collection/approved')->with('success', 'Success!');
+         return redirect('/property/'.Session::get('property_uuid').'/collection/approved')->with('success', 'Success!');
         }
          else{
     
@@ -229,10 +228,10 @@ class PortalTenantController extends Controller
         //         'details' => 'approved a payment request.',
         //         'status' => 'declined',
         //         'role_id' => $role_id,
-        //         'property_uuid' => Session::get('property') 
+        //         'property_uuid' => Session::get('property_uuid') 
         //     ]);
 
-        return redirect('/property/'.Session::get('property').'/collection/declined')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/collection/declined')->with('success', 'Success!');
     }
 
 

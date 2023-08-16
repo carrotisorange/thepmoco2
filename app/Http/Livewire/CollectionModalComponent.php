@@ -83,13 +83,13 @@ class CollectionModalComponent extends ModalComponent
 
             $validated_data = $this->validate();
 
-            $collection_ar_no = Property::find(Session::get('property'))->acknowledgementreceipts->max('ar_no')+1;
+            $collection_ar_no = Property::find(Session::get('property_uuid'))->acknowledgementreceipts->max('ar_no')+1;
 
             $collection_batch_no = Carbon::now()->timestamp.''.$collection_ar_no;
 
             $this->store_collection($validated_data, $collection_ar_no, $collection_batch_no);
 
-            app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, count($this->selectedBills), 4);
+            app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, count($this->selectedBills), 4);
 
             $ar = $this->store_ar($collection_ar_no, $collection_batch_no);
 
@@ -114,12 +114,12 @@ class CollectionModalComponent extends ModalComponent
         if($this->exportCollection)
         {
             return
-            redirect('/property/'.Session::get('property').'/tenant/'.$this->tenant.'/ar/'.$ar->id.'/export/')->with('success','Success!');
+            redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant.'/ar/'.$ar->id.'/export/')->with('success','Success!');
         }
          else
         {
             return
-            redirect('/property/'.Session::get('property').'/tenant/'.$this->tenant.'/bills')->with('success','Success!');
+            redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant.'/bills')->with('success','Success!');
         }
     }
 
@@ -127,8 +127,8 @@ class CollectionModalComponent extends ModalComponent
     {
         $ar = AcknowledgementReceipt::create([
           'tenant_uuid' => $this->tenant,
-          'amount' => Collection::where('property_uuid', Session::get('property'))->where('tenant_uuid', $this->tenant)->where('batch_no', $collection_batch_no)->sum('collection'),
-          'property_uuid' => Session::get('property'),
+          'amount' => Collection::where('property_uuid', Session::get('property_uuid'))->where('tenant_uuid', $this->tenant)->where('batch_no', $collection_batch_no)->sum('collection'),
+          'property_uuid' => Session::get('property_uuid'),
           'user_id' => auth()->user()->id,
           'ar_no' => $collection_ar_no,
           'mode_of_payment' => $this->form,
@@ -175,7 +175,7 @@ class CollectionModalComponent extends ModalComponent
     
                 $validated_data['tenant_uuid']= $this->tenant;
                 $validated_data['unit_uuid']= Bill::find($this->selectedBills[$i])->unit_uuid;
-                $validated_data['property_uuid'] = Session::get('property');
+                $validated_data['property_uuid'] = Session::get('property_uuid');
                 $validated_data['user_id'] = auth()->user()->id;
                 $validated_data['bill_id'] = $i;
                 $validated_data['bill_reference_no']= Tenant::find($this->tenant)->bill_reference_no;

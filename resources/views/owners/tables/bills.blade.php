@@ -35,7 +35,7 @@
 
             <x-td>
                 <a class="text-blue-500 text-decoration-line: underline" target="_blank"
-                    href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}/bills">
+                    href="/property/{{ Session::get('property_uuid') }}/unit/{{ $item->unit->uuid }}/bills">
                     {{ $item->unit->unit}}
                 </a>
             </x-td>
@@ -113,7 +113,7 @@
     <p class="mt-1 text-sm text-gray-500">You're almost there!</p>
     <div class="mt-6">
         <button type="button"
-            onclick="window.location.href='/property/{{ Session::get('property') }}/owner/{{ $owner_details->uuid }}/bills'"
+            onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/bills'"
             class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
 
             New bill

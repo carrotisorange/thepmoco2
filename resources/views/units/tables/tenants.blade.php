@@ -27,7 +27,7 @@
                     {{ $item->tenant->tenant }}
                     @else
                     <a class="text-blue-500 text-decoration-line: underline"
-                        href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant->uuid }}">
+                        href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $item->tenant->uuid }}">
                         {{ $item->tenant->tenant }}
                     </a>
                     @endif

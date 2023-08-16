@@ -77,7 +77,7 @@
             <x-td></x-td>
             <x-td></x-td>
             <?php
-            $property_collections_count = App\Models\Collection::where('property_uuid', Session::get('property'))->posted()->count();
+            $property_collections_count = App\Models\Collection::where('property_uuid', Session::get('property_uuid'))->posted()->count();
         ?>
             <x-td>
                 {{ number_format($collections->sum('amount'), 2) }} ({{ $property_collections_count }})
@@ -99,7 +99,7 @@
     <p class="mt-1 text-sm text-gray-500">You're almost there!</p>
     <div class="mt-6">
         <button type="button"
-            onclick="window.location.href='/property/{{ Session::get('property') }}/owner/{{ $owner_details->uuid }}/bills'"
+            onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/bills'"
             class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
 
             New collection

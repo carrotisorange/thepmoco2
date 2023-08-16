@@ -1,5 +1,5 @@
 <form class="px-12 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" method="post"
-    action="/property/{{ Session::get('property') }}/owner/{{ $owner->uuid }}/bill/store">
+    action="/property/{{ Session::get('property_uuid') }}/owner/{{ $owner->uuid }}/bill/store">
     @csrf
     <h3 class="text-xl font-medium text-gray-900 dark:text-white">Create a new Bill</h3>
     <div>
@@ -101,7 +101,7 @@
 
             <p class="text-right">
                 <button type="button"
-                    onclick="window.location.href='/property/{{ Session::get('property') }}/owner/{{ $owner->uuid }}'"
+                    onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/owner/{{ $owner->uuid }}'"
                     class="ml-3 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Cancel
                 </button>

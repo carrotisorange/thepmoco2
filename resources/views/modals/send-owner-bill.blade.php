@@ -16,7 +16,7 @@
             </div>
 
             <form class="px-12 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8"
-                action="/property/{{ Session::get('property') }}/owner/{{ $owner->uuid }}/bill/send">
+                action="/property/{{ Session::get('property_uuid') }}/owner/{{ $owner->uuid }}/bill/send">
                 @csrf
 
                 <h3 class="text-xl font-medium text-gray-900 dark:text-white">Send Unpaid Bills</h3>

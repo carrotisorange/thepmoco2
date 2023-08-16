@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title', $unit->unit.' | '.Session::get('property_name'))
+    @section('title', $unit->unit.' | '.Session::get('property'))
 
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -52,8 +52,9 @@
                                         </span>
                                         <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
                                             <span
-                                                class="text-sm font-medium text-gray-500 group-hover:text-gray-900">Document Information
-                                                </span>
+                                                class="text-sm font-medium text-gray-500 group-hover:text-gray-900">Document
+                                                Information
+                                            </span>
 
                                         </span>
                                     </span>
@@ -87,7 +88,7 @@
                                         </span>
                                         <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
                                             <span
-                                                class="text-sm font-medium text-gray-500 group-hover:text-gray-900">Financial 
+                                                class="text-sm font-medium text-gray-500 group-hover:text-gray-900">Financial
                                                 Information</span>
 
                                         </span>
@@ -120,8 +121,9 @@
                                         </span>
                                         <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
                                             <span
-                                                class="text-sm font-medium text-gray-500 group-hover:text-gray-900">Occupancy Information
-                                                </span>
+                                                class="text-sm font-medium text-gray-500 group-hover:text-gray-900">Occupancy
+                                                Information
+                                            </span>
 
                                         </span>
                                     </span>
@@ -151,11 +153,11 @@
 {{-- <x-index-layout>
     @section('title', '| Units')
     <x-slot name="labels">
-        {{ $unit->unit }} / Owner 
+        {{ $unit->unit }} / Owner
     </x-slot>
 
     <x-slot name="options">
-        <x-button onclick="window.location.href='{{ url()->previous() }}'">Go back 
+        <x-button onclick="window.location.href='{{ url()->previous() }}'">Go back
         </x-button>
     </x-slot>
 

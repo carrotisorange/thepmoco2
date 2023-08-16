@@ -9,7 +9,7 @@
                 @if($sortBy || $orderBy || $search || $status_id || $category_id || $building_id)
                 <button type="button" wire:click="clearFilters()"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                  
+
                     Clear Filters
                 </button>
                 @endif
@@ -22,14 +22,14 @@
                 @if($view === 'list')
                 <button type="button" wire:click="changeView('thumbnail')"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                  
+
                     View as Thumbnail
 
                 </button>
                 @else
                 <button type="button" wire:click="changeView('list')"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                  
+
                     View as List
                 </button>
                 @endif
@@ -38,7 +38,7 @@
                 @if($units->count())
                 <button type="button" wire:click="editUnits"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                   Edit
+                    Edit
                     Units</button>
                 @endif
 
@@ -47,7 +47,7 @@
 
         <div class="mt-3">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                @if(App\Models\Property::find(Session::get('property'))->units()->count())
+                @if(App\Models\Property::find(Session::get('property_uuid'))->units()->count())
                 {{-- <div class="mt-3">
                     {{ $units->links() }}
                 </div> --}}
@@ -149,7 +149,7 @@
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
                 <div class="mb-5 mt-2 relative overflow-hidden ring-opacity-5">
-                    @if(!App\Models\Property::find(Session::get('property'))->units()->count())
+                    @if(!App\Models\Property::find(Session::get('property_uuid'))->units()->count())
                     <nav aria-label="Progress">
                         <ol role="list"
                             class="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">
@@ -273,7 +273,7 @@
                             @foreach ($units as $unit)
                             @if(Session::get('tenant_uuid'))
                             <a
-                                href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/tenant/{{ Session::get('tenant_uuid') }}/contract/{{ Str::random(8) }}/create">
+                                href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}/tenant/{{ Session::get('tenant_uuid') }}/contract/{{ Str::random(8) }}/create">
                                 <div class="hover:bg-purple-200">
                                     @if($unit->status_id == '1')
                                     <img src="{{ asset('/brands/vacant.png') }}"
@@ -298,7 +298,7 @@
                             {{-- @endif --}}
                             @elseif(Session::get('owner_uuid'))
                             <a
-                                href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/owner/{{ Session::get('owner_uuid') }}/deed_of_sale/create">
+                                href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}/owner/{{ Session::get('owner_uuid') }}/deed_of_sale/create">
                                 <div class="hover:bg-purple-200">
                                     @if($unit->status_id == '1')
                                     <img src="{{ asset('/brands/vacant.png') }}"
@@ -321,7 +321,7 @@
                                 </div>
                             </a>
                             @else
-                            <a href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}">
+                            <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}">
                                 <div class="hover:bg-purple-200">
                                     @if($unit->status_id == '1')
                                     <img src="{{ asset('/brands/vacant.png') }}"

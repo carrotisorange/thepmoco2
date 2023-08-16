@@ -13,6 +13,8 @@ use DB;
 use App\Models\Bill;
 use App\Models\Contract;
 use App\Models\DeedOfSale;
+use Session;
+use App\Models\PaymentRequest;
 
 class TenantCollectionController extends Controller
 {
@@ -101,6 +103,10 @@ class TenantCollectionController extends Controller
 
      public function update(Request $request, Property $property, Tenant $tenant, $batch_no)
      {   
+         PaymentRequest::where('id', Session::get('payment_request_id'))->update([
+            'status' => 'approved'
+         ]);
+         
          //delete previous unposted collections
          app('App\Http\Controllers\CollectionController')->delete_unposted_collections($tenant->uuid, $batch_no);
 
@@ -137,6 +143,13 @@ class TenantCollectionController extends Controller
                app('App\Http\Controllers\BillController')->update_bill_initial_payment($bill_id, $collection);
             }
          }
+            if(PaymentRequest::find(Session::get('payment_request_id'))->proof_of_payment != null){
+                $proof_of_payment = PaymentRequest::find(Session::get('payment_request_id'))->proof_of_payment;
+          
+            }else{
+                $proof_of_payment = $request->proof_of_payment->store('proof_of_payments');
+            }  
+
 
          $ar_id = app('App\Http\Controllers\AcknowledgementReceiptController')
          ->store(
@@ -153,7 +166,7 @@ class TenantCollectionController extends Controller
                   $request->date_deposited,
                   $request->created_at,
                   $request->attachment,
-                  $request->proof_of_payment,
+                  $proof_of_payment,
          );
 
          app('App\Http\Controllers\PointController')->store($property->uuid, auth()->user()->id, Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);

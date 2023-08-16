@@ -7,12 +7,12 @@
                     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                         <nav class="rounded-md">
                             <ol class="list-reset flex">
-                                <li><a href="/property/{{ Session::get('property') }}"
+                                <li><a href="/property/{{ Session::get('property_uuid') }}"
                                         class="text-blue-600 hover:text-blue-700">{{
-                                        Session::get('property_name') }}</a>
+                                        Session::get('property') }}</a>
                                 </li>
                                 </li>
-                                
+
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">{{ $tenant->tenant }}</li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
@@ -25,7 +25,8 @@
                 <h5 class="flex-1 text-right">
 
                     <x-button wire:submit.prevent="submitForm" onclick="window.location.href='{{ url()->previous() }}'">
-                        <i class="fa-solid fa-circle-arrow-left"></i>&nbspBack</x-button>
+                        <i class="fa-solid fa-circle-arrow-left"></i>&nbspBack
+                    </x-button>
 
                 </h5>
 

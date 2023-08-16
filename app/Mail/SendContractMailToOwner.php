@@ -30,7 +30,7 @@ class SendContractMailToOwner extends Mailable
      */
     public function build()
     {
-         return $this->subject('Contract Details - '. Session::get('property_name'))
+         return $this->subject('Contract Details - '. Session::get('property'))
          ->view('emails.SendContractMailToOwner');
     }
 }

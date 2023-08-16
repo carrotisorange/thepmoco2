@@ -19,7 +19,7 @@
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('/brands/favicon.ico') }}" type="image/png">
 
-    <title>{{ Session::get('property_name')? Session::get('property_name'): config('APP_NAME') }} @yield('title')
+    <title>{{ Session::get('property')? Session::get('property'): config('APP_NAME') }} @yield('title')
     </title>
 
     <!-- Fonts -->

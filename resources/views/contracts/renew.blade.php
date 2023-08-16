@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title', $contract_details->tenant->tenant.' | '.Session::get('property_name'))
+    @section('title', $contract_details->tenant->tenant.' | '.Session::get('property'))
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
         <div class="mt-5 px-4 sm:px-6 lg:px-8">
             <div class="sm:flex sm:items-center">

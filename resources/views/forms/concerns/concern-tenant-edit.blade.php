@@ -6,7 +6,7 @@
                 <ol role="list" class="flex items-center space-x-4">
                     <li>
                         <div class="flex items-center">
-                            <a href="/property/{{ Session::get('property') }}/concern"><img class="h-5 w-auto"
+                            <a href="/property/{{ Session::get('property_uuid') }}/concern"><img class="h-5 w-auto"
                                     src="{{ asset('/brands/back-button.png') }}"></a>
                         </div>
                     </li>
@@ -69,44 +69,50 @@
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                         </div>
 
-                     <div class="col-span-3 sm:col-span-6">
-                        <fieldset>
-                            <div>
-                                <label for="image" class="block text-sm font-medium text-gray-700">Concern Attachment
-                                </label>
-                                <div class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
-                                    <div class="space-y-1 text-center">
-                    
-                                        <div class="flex text-sm text-gray-600">
-                                            <label for="image"
-                                                class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                                <span>No attachment</span>
-                    
-                                                {{-- <input id="image" type="file" class="sr-only" wire:model="image"> --}}
-                    
-                    
-                    
-                                            </label>
-                                            @if(!$concern_details->image == null)
-                                            &nbsp; or &nbsp;
-                    
-                                            <a href="{{ asset('/storage/'.$concern_details->image) }}" target="_blank"
-                                                class="text-indigo-600 hover:text-indigo-900">View
-                                                Attachment</a>
-                                            @endif
-                    
+                        <div class="col-span-3 sm:col-span-6">
+                            <fieldset>
+                                <div>
+                                    <label for="image" class="block text-sm font-medium text-gray-700">Concern
+                                        Attachment
+                                    </label>
+                                    <div
+                                        class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
+                                        <div class="space-y-1 text-center">
+
+                                            <div class="flex text-sm text-gray-600">
+                                                <label for="image"
+                                                    class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                                 
+
+                                                    {{-- <input id="image" type="file" class="sr-only"
+                                                        wire:model="image"> --}}
+
+
+
+                                                </label>
+                                                @if(!$concern_details->image == null)
+                                                &nbsp;
+
+                                                <a href="{{ asset('/storage/'.$concern_details->image) }}"
+                                                    target="_blank" class="text-indigo-600 hover:text-indigo-900">View
+                                                    Attachment</a>
+
+                                                    @else
+                                                    <span>No attachment</span>
+                                                @endif
+
+                                            </div>
+                                            <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
+
                                         </div>
-                                        <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
-                    
+
+
                                     </div>
-                    
-                    
+
+
                                 </div>
-                              
-                    
-                            </div>
-                        </fieldset>
-                    </div>
+                            </fieldset>
+                        </div>
 
                         <div class="sm:col-span-2">
                             <label for="category_id" class="block text-sm font-medium text-gray-700">Category:
@@ -187,8 +193,9 @@
                         </div>
 
                         <div class="col-span-3 sm:col-span-3">
-                            <label for="availability_date" class="block text-sm font-medium text-gray-700">Available Date 
-                                </label>
+                            <label for="availability_date" class="block text-sm font-medium text-gray-700">Available
+                                Date
+                            </label>
                             <input type="date" wire:model="availability_date" autocomplete="availability_date"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                             @error('availability_date')
@@ -197,8 +204,9 @@
                         </div>
 
                         <div class="col-span-3 sm:col-span-3">
-                            <label for="availability_time" class="block text-sm font-medium text-gray-700">Available Time
-                                </label>
+                            <label for="availability_time" class="block text-sm font-medium text-gray-700">Available
+                                Time
+                            </label>
                             <input type="time" wire:model="availability_time" autocomplete="availability_time"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                             @error('availability_time')
@@ -311,47 +319,51 @@
                             </fieldset>
                         </div>
 
-                        
+
                         <div class="col-span-3 sm:col-span-6">
                             <fieldset>
                                 <div>
-                                    <label for="action_taken_image" class="block text-sm font-medium text-gray-700">Attachment
+                                    <label for="action_taken_image"
+                                        class="block text-sm font-medium text-gray-700">Attachment
                                     </label>
-                                   <div class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
-                                    <div class="space-y-1 text-center">
-                                
-                                        <div class="flex text-sm text-gray-600">
-                                            <label for="action_taken_image"
-                                                class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                                <span>Attach a file</span> 
-                                               
-                                                <input id="action_taken_image" type="file" class="sr-only" wire:model="action_taken_image">
+                                    <div
+                                        class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
+                                        <div class="space-y-1 text-center">
 
-                                           
-                                            
-                                            </label>
-                                            @if(!$concern_details->action_taken_image == null)
-                                            &nbsp; or &nbsp;  
-                                           
-                                            <a href="{{ asset('/storage/'.$concern_details->action_taken_image) }}" target="_blank"
-                                                    class="text-indigo-600 hover:text-indigo-900">View
+                                            <div class="flex text-sm text-gray-600">
+                                                <label for="action_taken_image"
+                                                    class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                                    <span>Attach a file</span>
+
+                                                    <input id="action_taken_image" type="file" class="sr-only"
+                                                        wire:model="action_taken_image">
+
+
+
+                                                </label>
+                                                @if(!$concern_details->action_taken_image == null)
+                                                &nbsp; or &nbsp;
+
+                                                <a href="{{ asset('/storage/'.$concern_details->action_taken_image) }}"
+                                                    target="_blank" class="text-indigo-600 hover:text-indigo-900">View
                                                     Attachment</a>
-                                                    @endif
-                                
+                                                @endif
+
+                                            </div>
+                                            <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
+
                                         </div>
-                                        <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
-                                
+
+
                                     </div>
-                                
-                                
-                                </div>
-                                @error('action_taken_image')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @else
-                                @if ($action_taken_image)
-                                <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i></p>
-                                @endif
-                                @enderror
+                                    @error('action_taken_image')
+                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                    @else
+                                    @if ($action_taken_image)
+                                    <p class="text-green-500 text-xs mt-2">File has been attached. <i
+                                            class="fa-solid fa-circle-check"></i></p>
+                                    @endif
+                                    @enderror
 
                                 </div>
                             </fieldset>
@@ -364,7 +376,7 @@
 
                 <div class="flex justify-end">
                     <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-                        href="/property/{{ Session::get('property') }}/concern">
+                        href="/property/{{ Session::get('property_uuid') }}/concern">
                         Cancel
                     </a>
                     <button type="submit"

@@ -93,7 +93,7 @@ class TenantConcernEditComponent extends Component
         });
 
 
-        app('App\Http\Controllers\ActivityController')->store(Session::get('property'),auth()->user()->id,'updates', 13);
+        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'),auth()->user()->id,'updates', 13);
         
             session()->flash('success', 'Success!');
 
@@ -106,7 +106,7 @@ class TenantConcernEditComponent extends Component
     {
         return view('livewire.tenant-concern-edit-component',[
             'categories' => ConcernCategory::all(),
-            'users' => app('App\Http\Controllers\UserPropertyController')->get_property_users(Session::get('property')),
+            'users' => app('App\Http\Controllers\UserPropertyController')->get_property_users(Session::get('property_uuid')),
         ]);
     }
 }

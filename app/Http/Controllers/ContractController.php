@@ -167,7 +167,7 @@ class ContractController extends Controller
 
         return view('contracts.edit',[
           'contract' => Contract::findOrFail($contract->uuid),
-          'property' => Property::find(Session::get('property')),
+          'property' => Property::find(Session::get('property_uuid')),
         ]);
     }
 
@@ -177,7 +177,7 @@ class ContractController extends Controller
          
         return view('contracts.edit',[
         'contract' => Contract::findOrFail($contract->uuid),
-        'property' => Property::find(Session::get('property')),
+        'property' => Property::find(Session::get('property_uuid')),
         ]);
     }
 
@@ -279,7 +279,7 @@ class ContractController extends Controller
         ->limit(1)
         ->get('reference_no');
 
-         $property = Property::find(Session::get('property'));
+         $property = Property::find(Session::get('property_uuid'));
         
         $bills = Tenant::find($contract->tenant_uuid)->bills;
 

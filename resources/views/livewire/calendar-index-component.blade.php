@@ -5,9 +5,10 @@
                 <h1 class="text-3xl font-bold text-gray-500">Calendar</h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <button type="button" onclick="window.location.href='/property/{{ Session::get('property') }}/guest'"
+                <button type="button"
+                    onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/guest'"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                   View Guests in List
+                    View Guests in List
                 </button>
 
             </div>
@@ -39,15 +40,16 @@
                                             <input type="hidden" name="property_uuid" id="property_uuid"
                                                 value="{{ $property->uuid }}" class="form-control" required>
 
-                               
+
                                             <label for="">Agent</label>
                                             <select class="form-control" name="agent_id" id="agent_id">
                                                 <option value="">Select an agent</option>
                                                 @foreach ($agents as $agent)
-                                                    <option value="{{ $agent->id }}">{{ $agent->agent }} - {{ $agent->referral_code }}</option>
+                                                <option value="{{ $agent->id }}">{{ $agent->agent }} - {{
+                                                    $agent->referral_code }}</option>
                                                 @endforeach
-                                            </select>    
-                                            <span id="agentIdError" class="text-danger text-sm"></span>                        
+                                            </select>
+                                            <span id="agentIdError" class="text-danger text-sm"></span>
                                             <br>
                                             <label for="">Guest</label>
                                             <input type="text" name="guest" id="guest" class="form-control">
@@ -81,7 +83,7 @@
                                                 <option value="no">no</option>
                                                 <option value="yes">yes</option>
                                             </select> --}}
-                                            
+
                                             {{-- <br>
                                             <label for="">Start</label>
                                             <input type="date" name="movein_at" id="movein_at" class="form-control"
@@ -98,9 +100,8 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Close</button>
-                                            <button type="button" id="saveBtn"
-                                                class="btn btn-primary">Book</button>
-                                          
+                                            <button type="button" id="saveBtn" class="btn btn-primary">Book</button>
+
                                         </div>
                                     </div>
                                     {{--

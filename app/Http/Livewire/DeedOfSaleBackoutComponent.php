@@ -45,7 +45,7 @@ class DeedOfSaleBackoutComponent extends Component
             });
 
             return
-            redirect('/property/'.Session::get('property').'/owner/'.$this->deedOfSale->owner_uuid)->with('success','Success!');
+            redirect('/property/'.Session::get('property_uuid').'/owner/'.$this->deedOfSale->owner_uuid)->with('success','Success!');
             
         }catch(\Exception $e)
         {

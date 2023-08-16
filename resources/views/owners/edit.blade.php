@@ -64,8 +64,8 @@
                 <tr>
                     <x-td>{{ $ctr++ }}</x-td>
                     <x-td>
-                       {{
-                    $item->unit->unit}}
+                        {{
+                        $item->unit->unit}}
                     </x-td>
 
                     <x-td>{{ Carbon\Carbon::parse($item->turnover_at)->format('M d, Y') }}
@@ -96,7 +96,7 @@
             <span>Showing the last 5 property documents</span>
             <p class="text-right">
                 <x-button
-                    onclick="window.location.href='/property/{{ Session::get('property') }}/owner/{{ $owner_details->uuid }}/units'">
+                    onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/units'">
                     Add Property Documents
                 </x-button>
                 <x-button onclick="window.location.href='/owner/{{ $owner_details->uuid }}/deed_of_sales/'">
@@ -126,8 +126,8 @@
                 <tr>
                     <x-td>{{ $ctr++ }}</x-td>
                     <x-td>
-                       {{
-                    $item->unit->unit}}
+                        {{
+                        $item->unit->unit}}
                     </x-td>
 
                     <x-td>

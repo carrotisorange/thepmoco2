@@ -22,7 +22,7 @@ class PropertyCollectionController extends Controller
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
         
         $collections = AcknowledgementReceipt::where('property_uuid', $property->uuid)->orderBy('id','desc')->get();
-        // $collections = Property::find(Session::get('property'))->acknowledgementreceipts;
+        // $collections = Property::find(Session::get('property_uuid'))->acknowledgementreceipts;
 
         return view('properties.collections.index',[
           'property' => $property,

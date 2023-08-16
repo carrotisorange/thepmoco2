@@ -18,7 +18,7 @@ class ContractIndexComponent extends Component
 
         // Session::put('tenant_uuid', $tenant->uuid);
 
-        return redirect('/property/'.Session::get('property').'/tenant');
+        return redirect('/property/'.Session::get('property_uuid').'/tenant');
     }
 
     public function clearFilters(){

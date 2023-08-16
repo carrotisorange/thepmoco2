@@ -131,7 +131,7 @@ class UserCreateComponent extends Component
 
       //     if(!$this->isUserExists($user)){
       //        UserProperty::firstOrCreate([
-      //        'property_uuid' => Session::get('property'),
+      //        'property_uuid' => Session::get('property_uuid'),
       //        'user_id' => $user->get()->toArray()[0]['id'],
       //        ]);
       //     }else{
@@ -158,7 +158,7 @@ class UserCreateComponent extends Component
 
       //       //store a new user and user property
       //       app('App\Http\Controllers\UserPropertyController')->store(
-      //          Session::get('property'),
+      //          Session::get('property_uuid'),
       //          $user_id,
       //          false,
       //          true

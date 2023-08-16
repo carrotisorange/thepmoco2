@@ -79,11 +79,13 @@
                                     <span>Upload a tax declaration</span>
                                     @endif
 
-                                    <input id="tax_declaration" type="file" wire:model="tax_declaration" class="sr-only">
+                                    <input id="tax_declaration" type="file" wire:model="tax_declaration"
+                                        class="sr-only">
                                     <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
                                     @if($tax_declaration)
                                     <span class="text-red-500 text-xs mt-2">
-                                        <a href="#/" wire:click="removeAttachment('tax_declaration')">Remove the uploaded
+                                        <a href="#/" wire:click="removeAttachment('tax_declaration')">Remove the
+                                            uploaded
                                             tax declaration.</a></span>
                                     @else
                                     {{-- <span class="text-red-600">No contract found.</span> --}}
@@ -192,11 +194,13 @@
                                     <span>Upload a contract to sell</span>
                                     @endif
 
-                                    <input id="contract_to_sell" type="file" wire:model="contract_to_sell" class="sr-only">
+                                    <input id="contract_to_sell" type="file" wire:model="contract_to_sell"
+                                        class="sr-only">
                                     <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
                                     @if($contract_to_sell)
                                     <span class="text-red-500 text-xs mt-2">
-                                        <a href="#/" wire:click="removeAttachment('contract_to_sell')">Remove the uploaded
+                                        <a href="#/" wire:click="removeAttachment('contract_to_sell')">Remove the
+                                            uploaded
                                             contract to sell.</a></span>
                                     @else
                                     {{-- <span class="text-red-600">No contract found.</span> --}}
@@ -249,11 +253,13 @@
                                     <span>Upload a certificate of membership</span>
                                     @endif
 
-                                    <input id="certificate_of_membership" type="file" wire:model="certificate_of_membership" class="sr-only">
+                                    <input id="certificate_of_membership" type="file"
+                                        wire:model="certificate_of_membership" class="sr-only">
                                     <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
                                     @if($certificate_of_membership)
                                     <span class="text-red-500 text-xs mt-2">
-                                        <a href="#/" wire:click="removeAttachment('certificate_of_membership')">Remove the uploaded
+                                        <a href="#/" wire:click="removeAttachment('certificate_of_membership')">Remove
+                                            the uploaded
                                             certificate of membership.</a></span>
                                     @else
                                     {{-- <span class="text-red-600">No contract found.</span> --}}
@@ -287,14 +293,14 @@
             </div>
             <div class="px-4 py-3 text-right sm:px-6">
                 <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ Session::get('property') }}/owner/{{ $deedOfSale_info->owner_uuid }}">
+                    href="/property/{{ Session::get('property_uuid') }}/owner/{{ $deedOfSale_info->owner_uuid }}">
                     Cancel
                 </a>
 
                 <button type="submit"
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 
-                
+
                     Update
                 </button>
             </div>

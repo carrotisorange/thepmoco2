@@ -85,7 +85,7 @@ class UnitConcernEditComponent extends Component
     {
         return view('livewire.unit-concern-edit-component',[
             'categories' => ConcernCategory::all(),
-            'users' => app('App\Http\Controllers\UserPropertyController')->get_property_users(Session::get('property')),
+            'users' => app('App\Http\Controllers\UserPropertyController')->get_property_users(Session::get('property_uuid')),
         ]);
     }
 }

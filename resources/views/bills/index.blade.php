@@ -1,7 +1,7 @@
 <x-new-layout>
-    @section('title','Bills | '. Session::get('property_name'))
-    {{-- @can('accountreceivable') 
-     <div class="mx-auto px-4 sm:px-6 lg:px-8">
+    @section('title','Bills | '. Session::get('property'))
+    {{-- @can('accountreceivable')
+    <div class="mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex min-h-full flex-col bg-white lg:relative">
             <div class="flex flex-grow flex-col">
                 <main class="flex flex-grow flex-col bg-white">
@@ -119,7 +119,8 @@
     @else --}}
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
-            @livewire('bill-index-component', ['property'=>$property ,'active_contracts' => $active_contracts, 'active_tenants' => $active_tenants, 'batch_no' => $batch_no])
+            @livewire('bill-index-component', ['property'=>$property ,'active_contracts' => $active_contracts,
+            'active_tenants' => $active_tenants, 'batch_no' => $batch_no])
         </div>
     </div>
 </x-new-layout>

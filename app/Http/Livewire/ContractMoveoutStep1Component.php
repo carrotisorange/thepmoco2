@@ -81,7 +81,7 @@ class ContractMoveoutStep1Component extends Component
             
         $this->contract->update($validatedData);
 
-         return redirect('/property/'.Session::get('property').'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-3')->with('success', 'Success!');        
+         return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-3')->with('success', 'Success!');        
         }
        
     }
@@ -93,4 +93,3 @@ class ContractMoveoutStep1Component extends Component
         ]);
     }
 }
-
