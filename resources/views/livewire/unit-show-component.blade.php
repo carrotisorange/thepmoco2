@@ -411,11 +411,11 @@
                                     </p>
 
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                        Purchased Materials/Unit Repairs/Others
+                                        Purchased Materials/Unit Repairs/Etc
                                     </p>
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
                                      {{ number_format($remittances->sum('miscellaneous_fee'), 2)}}
-                                    </p>
+                                 </p>
 
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
                                         Membership Fee
