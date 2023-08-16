@@ -164,6 +164,34 @@
         left: 500px;
     }
 
+    .seventh-col {
+        width: 100px;
+        min-width: 100px;
+        max-width: 100px;
+        left: 600px;
+    }
+    
+    .eight-col {
+        width: 100px;
+        min-width: 100px;
+        max-width: 100px;
+        left: 600px;
+    }
+
+    .ninth-col {
+        width: 100px;
+        min-width: 100px;
+        max-width: 100px;
+        left: 600px;
+    }
+
+    .tenth-col {
+        width: 100px;
+        min-width: 100px;
+        max-width: 100px;
+        left: 600px;
+    }
+
     .sticky-col {
         position: -webkit-sticky;
         position: sticky;

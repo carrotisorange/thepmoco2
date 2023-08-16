@@ -128,6 +128,7 @@ class RemittanceIndexComponent extends Component
                     $collection->ar_no,
                     $collection->bill->particular_id,
                     $collection->tenant_uuid,
+                    $collection->guest_uuid,
                     $this->date,
                     $collection->collection
                 );
