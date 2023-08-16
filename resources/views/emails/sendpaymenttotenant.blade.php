@@ -19,7 +19,9 @@ Payments Breakdown
 | Bill # | Date Posted | Unit | Particular | Period Covered | Amount Paid |
 | ------------- |------------- |------------- |------------- |------------- |------------- |
 @foreach ($data['collections'] as $item)
-| {{ $item->bill->bill_no }} | {{ Carbon\Carbon::parse($item->bill->created_at)->format('M d, Y') }} | {{ $item->unit->unit }} | {{$item->bill->particular->particular }} | {{ Carbon\Carbon::parse($item->bill->start)->format('M d, Y').'-'.Carbon\Carbon::parse($item->bill->end)->format('M d, Y') }} | {{ number_format(($item->collection),2) }} |
+| {{ $item->bill->bill_no }} | {{ Carbon\Carbon::parse($item->bill->created_at)->format('M d, Y') }} | {{
+$item->unit->unit }} | {{$item->bill->particular->particular }} | {{ Carbon\Carbon::parse($item->bill->start)->format('M
+d, Y').'-'.Carbon\Carbon::parse($item->bill->end)->format('M d, Y') }} | {{ number_format(($item->collection),2) }} |
 @endforeach
 
 @endcomponent
@@ -29,8 +31,8 @@ Payments Breakdown
 Regards,<br>
 {{ auth()->user()->name }}
 <br><br>
-For inquiries reach us at: {{ App\Models\Property::find(Session::get('property'))->email }} /
-{{ App\Models\Property::find(Session::get('property'))->mobile }}
+For inquiries reach us at: {{ App\Models\Property::find(Session::get('property_uuid'))->email }} /
+{{ App\Models\Property::find(Session::get('property_uuid'))->mobile }}
 <br><br>
 
 

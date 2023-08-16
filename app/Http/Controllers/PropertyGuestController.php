@@ -142,7 +142,7 @@ class PropertyGuestController extends Controller
    
          return redirect('/property/'.$property->uuid.'/guest/'.$guest->uuid)->with('success', 'Success!');
 
-         // return redirect('/property/'.Session::get('property').'/tenant/'.$tenant->uuid.'/ar/'.$ar_id.'/view')->with('success', 'Payment is successfully created.');
+         // return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$tenant->uuid.'/ar/'.$ar_id.'/view')->with('success', 'Payment is successfully created.');
      }
 
      public function send_payment_to_guest($guest, $ar_no, $form, $payment_made, $user, $role, $collection)
@@ -171,7 +171,7 @@ class PropertyGuestController extends Controller
 
     public function get_selected_bills_count($batch_no, $guest_uuid)
       {
-      return Collection::where('property_uuid', Session::get('property'))
+      return Collection::where('property_uuid', Session::get('property_uuid'))
       ->where('guest_uuid',$guest_uuid)
       ->where('batch_no', $batch_no)
       ->where('is_posted', false)

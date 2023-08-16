@@ -20,15 +20,15 @@
                         class="text-left hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
                         <ul class="py-1" aria-labelledby="dropdownButton">
                             <li>
-                                <a href="/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/bills"
+                                <a href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant_details->uuid }}/bills"
                                     class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
                                                                                                                                                         dark:text-gray-200 dark:hover:text-white">
                                     New bill
                                 </a>
                             </li>
-                            
+
                             <li>
-                                <a href="/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/bills"
+                                <a href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant_details->uuid }}/bills"
                                     class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
                                                                                                                             dark:text-gray-200 dark:hover:text-white">
                                     New collection
@@ -42,7 +42,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/property/{{ Session::get('property') }}/tenant/{{ $tenant_details->uuid }}/units"
+                                <a href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant_details->uuid }}/units"
                                     class=" block py-2 px-4 text-sm
                                                                         text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
                                                                         dark:text-gray-200 dark:hover:text-white">
@@ -93,7 +93,7 @@
                                 class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
                                 Send access to tenant
                             </button>
-                          
+
                         </p>
                     </div>
 
@@ -255,7 +255,7 @@
                                         <button type="submit" form="updateTenant"
                                             class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
 
-                                           
+
                                             Update
                                         </button>
                                     </p>
@@ -281,7 +281,7 @@
 
                                 </div>
                                 @if($contracts->count())
-                                    @include('tables.contracts')
+                                @include('tables.contracts')
                                 @else
                                 <div class="mt-10 text-center mb-10">
                                     <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24"
@@ -295,10 +295,10 @@
                                     <div class="mt-6">
                                         <button type="button" wire:click="redirectToTheCreateContractPage"
                                             class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                                         
+
                                             New contract
                                         </button>
-                                       
+
                                     </div>
                                 </div>
                                 @endif
@@ -338,10 +338,10 @@
                                     <div class="mt-6">
                                         <button type="button" data-modal-toggle="create-guardian-modal"
                                             class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                                        
-                                                New guardian
+
+                                            New guardian
                                         </button>
-                                       
+
                                     </div>
                                 </div>
                                 @endif
@@ -378,10 +378,10 @@
                                     <div class="mt-6">
                                         <button type="button" wire:click="redirectToTheCreateReferencePage"
                                             class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                                        
-                                           New reference
+
+                                            New reference
                                         </button>
-                                      
+
                                     </div>
                                 </div>
                                 @endif
@@ -416,10 +416,10 @@
                                     <div class="mt-6">
                                         <button type="button" data-modal-toggle="create-concern-modal"
                                             class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                           
-                                           New concern
+
+                                            New concern
                                         </button>
-                                      
+
 
                                     </div>
                                 </div>
@@ -434,11 +434,11 @@
 
                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-      <button type="button" wire:click="redirectToTheCreateBillPage"
-                                    class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                                
-                                    Pay Bills
-                                </button>
+                            <button type="button" wire:click="redirectToTheCreateBillPage"
+                                class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+
+                                Pay Bills
+                            </button>
                             <div
                                 class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg bg-gray-50">
                                 <!-- Selected row actions, only show when rows are selected. -->
@@ -446,7 +446,7 @@
 
                                 </div>
                                 @if($bills->count())
-                        
+
                                 @include('tables.bills')
                                 @else
                                 <div class=" mt-10 text-center mb-10">
@@ -461,10 +461,10 @@
                                     <div class="mt-6">
                                         <button type="button" wire:click="redirectToTheCreateBillPage"
                                             class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                                
-                                           New bill
+
+                                            New bill
                                         </button>
-                                       
+
                                     </div>
                                 </div>
                                 @endif
@@ -533,10 +533,10 @@
                                     <div class="mt-6">
                                         <button type="button" wire:click="redirectToTheCreateBillPage"
                                             class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                                
-                                          New collection
+
+                                            New collection
                                         </button>
-                                      
+
                                     </div>
                                 </div>
                                 @endif

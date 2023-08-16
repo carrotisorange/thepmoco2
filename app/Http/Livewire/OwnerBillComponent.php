@@ -39,7 +39,7 @@ class OwnerBillComponent extends Component
 
       public function mount($owner){
          $this->owner_uuid = $owner->uuid;
-         $this->property = Property::find(Session::get('property'));
+         $this->property = Property::find(Session::get('property_uuid'));
       }
 
      public function removeBills()
@@ -196,7 +196,7 @@ class OwnerBillComponent extends Component
       })
       ->get();
 
-      $statuses = Bill::where('bills.property_uuid', Session::get('property'))
+      $statuses = Bill::where('bills.property_uuid', Session::get('property_uuid'))
       ->select('status', DB::raw('count(*) as count'))
       ->groupBy('status')
       ->get();

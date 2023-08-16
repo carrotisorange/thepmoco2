@@ -24,14 +24,14 @@
             </x-td>
             <x-td>
                 {{-- <a class="text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant->uuid }}/bills">
+                    href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $item->tenant->uuid }}/bills">
                     {{ $item->tenant->tenant}}
                 </a> --}}
                 {{ $item->reference_no}}
             </x-td>
             <x-td>
                 <a class="text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}/bills">
+                    href="/property/{{ Session::get('property_uuid') }}/unit/{{ $item->unit->uuid }}/bills">
                     {{ $item->unit->unit}}
                 </a>
             </x-td>

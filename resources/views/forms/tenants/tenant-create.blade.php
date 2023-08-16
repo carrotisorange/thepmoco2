@@ -70,7 +70,7 @@
                             <option value="male" {{ old('gender')=='male' ? 'selected' : 'Select one' }}>{{
                                 'male' }}</option>
                             <option value="LGBTQ" {{ old('gender')=='LGBTQ' ? 'selected' : 'Select one' }}>{{
-                                 'LGBTQ' }}</option>
+                                'LGBTQ' }}</option>
                         </select>
                         @error('gender')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -382,7 +382,7 @@
                     class="text-indigo-600 hover:text-indigo-900">Export Sample Lease Contract</a>
 
                 <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-                    href="/property/{{ Session::get('property') }}/unit">
+                    href="/property/{{ Session::get('property_uuid') }}/unit">
                     Cancel
                 </a>
 

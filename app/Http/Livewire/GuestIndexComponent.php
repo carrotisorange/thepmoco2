@@ -20,13 +20,13 @@ class GuestIndexComponent extends Component
 
         
 
-        return redirect('/property/'.Session::get('property').'/unit');
+        return redirect('/property/'.Session::get('property_uuid').'/unit');
     }
 
     public function render()
     {
         return view('livewire.guest-index-component', [
-        'bookings' => Booking::where('property_uuid', Session::get('property'))
+        'bookings' => Booking::where('property_uuid', Session::get('property_uuid'))
         ->where('uuid','like', '%'.$this->uuid.'%')
          ->when($this->status, function($query){
          $query->where('status',$this->status);

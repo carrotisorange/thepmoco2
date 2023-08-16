@@ -26,18 +26,27 @@ class TenantPortalBillComponent extends Component
 
     public function payBills()
     {
-        $amount_to_be_paid = ($this->get_unpaid_bills($this->selectedBills) +
-        $this->partially_paid_bills($this->selectedBills)) - $this->paid_bills($this->selectedBills);
+        $amount_to_be_paid = ($this->get_unpaid_bills($this->selectedBills) + $this->partially_paid_bills($this->selectedBills)) - $this->paid_bills($this->selectedBills);
 
         $batch_no = auth()->user()->id.'_'.Str::random(8);
 
-        $request_id = PaymentRequest::create([
-            'tenant_uuid' => $this->tenant->uuid,
-            'bill_nos' =>Bill::whereIn('id', $this->selectedBills)->pluck('bill_no'),
-            'amount' => $amount_to_be_paid,
-            'batch_no' => $batch_no,
-            'status' => 'pending',
-        ]);
+        $request_id = PaymentRequest::updateOrCreate(
+            [
+                'tenant_uuid' => $this->tenant->uuid,
+                'bill_nos' => Bill::whereIn('id', $this->selectedBills)->pluck('bill_no'),
+                'amount' => $amount_to_be_paid,
+                // 'batch_no' => $batch_no,
+                // 'status' => 'pending',
+            ],
+            
+            [
+                'tenant_uuid' => $this->tenant->uuid,
+                'bill_nos' => Bill::whereIn('id', $this->selectedBills)->pluck('bill_no'),
+                'amount' => $amount_to_be_paid,
+                'batch_no' => $batch_no,
+                'status' => 'pending',
+            ]
+        );
 
         return redirect(auth()->user()->role_id.'/tenant/'. auth()->user()->username.'/payments_request/'.$batch_no)->with('success', 'Success!');
     }
@@ -93,7 +102,7 @@ class TenantPortalBillComponent extends Component
         ->orderBy('end')
         ->get();
         
-        //$particulars = app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property'));
+        //$particulars = app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid'));
 
         $unpaid_bills = $this->get_unpaid_bills($this->selectedBills);
 

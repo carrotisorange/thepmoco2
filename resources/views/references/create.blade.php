@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title', $tenant->tenant.' | '.Session::get('property_name'))
+    @section('title', $tenant->tenant.' | '.Session::get('property'))
 
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -162,8 +162,9 @@
                                         </span>
                                         <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
                                             <span
-                                                class="text-sm font-medium text-gray-500 group-hover:text-gray-900">Unit Inventory
-                                                </span>
+                                                class="text-sm font-medium text-gray-500 group-hover:text-gray-900">Unit
+                                                Inventory
+                                            </span>
 
                                         </span>
                                     </span>
@@ -179,7 +180,7 @@
                             </div>
                         </li>
 
-                        
+
                         <li class="relative overflow-hidden lg:flex-1">
                             <div class="border border-gray-200 overflow-hidden lg:border-0">
                                 <!-- Current Step -->

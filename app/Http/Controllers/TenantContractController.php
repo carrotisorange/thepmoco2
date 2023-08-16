@@ -21,7 +21,7 @@ class TenantContractController extends Controller
         return view('tenants.contracts.index',[
             'tenant' => Tenant::find($tenant->uuid),
             'contracts' => Tenant::find($tenant->uuid)->contracts()->orderBy('created_at', 'desc')->get(),
-            'units' => Property::find(Session::get('property'))->units()->where('status_id', '1')->get(),
+            'units' => Property::find(Session::get('property_uuid'))->units()->where('status_id', '1')->get(),
         ]);
     }
 

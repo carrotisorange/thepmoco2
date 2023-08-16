@@ -1,7 +1,7 @@
 <div class="pt-4 pb-1 border-t border-gray-200 overflow-y-auto h-screen pb-20">
     <div class="pt-2 pb-3 space-y-1">
-        @if(Session::get('property'))
-        <x-dropdown-link href="/property/{{ Session::get('property') }}">
+        @if(Session::get('property_uuid'))
+        <x-dropdown-link href="/property/{{ Session::get('property_uuid') }}">
             Dashboard
         </x-dropdown-link>
         @else
@@ -11,7 +11,7 @@
         @endif
     </div>
     <div class="pt-2 pb-3 space-y-1">
-        @if(Session::get('property'))
+        @if(Session::get('property_uuid'))
         <x-dropdown-link href="/chatify">
             Messages
         </x-dropdown-link>
@@ -23,8 +23,8 @@
     </div>
 
     <div class="pt-2 pb-3 space-y-1">
-        @if(Session::get('property'))
-        <x-dropdown-link href="/property/{{ Session::get('property') }}/unit">
+        @if(Session::get('property_uuid'))
+        <x-dropdown-link href="/property/{{ Session::get('property_uuid') }}/unit">
             Units
         </x-dropdown-link>
         @else
@@ -35,8 +35,8 @@
     </div>
 
     <div class="pt-2 pb-3 space-y-1">
-        @if(Session::get('property'))
-        <x-dropdown-link href="/property/{{ Session::get('property') }}/calendar">
+        @if(Session::get('property_uuid'))
+        <x-dropdown-link href="/property/{{ Session::get('property_uuid') }}/calendar">
             Calendar
         </x-dropdown-link>
         @else
@@ -48,8 +48,8 @@
     </div>
 
     <div class="pt-2 pb-3 space-y-1">
-        @if(Session::get('property'))
-        <x-dropdown-link href="/property/{{ Session::get('property') }}/tenant">
+        @if(Session::get('property_uuid'))
+        <x-dropdown-link href="/property/{{ Session::get('property_uuid') }}/tenant">
             Tenants
         </x-dropdown-link>
         @else
@@ -60,8 +60,8 @@
 
     </div>
     <div class="pt-2 pb-3 space-y-1">
-        @if(Session::get('property'))
-        <x-dropdown-link href="/property/{{ Session::get('property') }}/contract/">
+        @if(Session::get('property_uuid'))
+        <x-dropdown-link href="/property/{{ Session::get('property_uuid') }}/contract/">
             Contracts
         </x-dropdown-link>
         @else
@@ -72,8 +72,8 @@
 
     </div>
     <div class="pt-2 pb-3 space-y-1">
-        @if(Session::get('property'))
-        <x-dropdown-link href="/property/{{ Session::get('property') }}/guest/">
+        @if(Session::get('property_uuid'))
+        <x-dropdown-link href="/property/{{ Session::get('property_uuid') }}/guest/">
             Guests
         </x-dropdown-link>
         @else
@@ -84,8 +84,8 @@
 
     </div>
     <div class="pt-2 pb-3 space-y-1">
-        @if(Session::get('property'))
-        <x-dropdown-link href="/property/{{ Session::get('property') }}/owner">
+        @if(Session::get('property_uuid'))
+        <x-dropdown-link href="/property/{{ Session::get('property_uuid') }}/owner">
             Owners
         </x-dropdown-link>
         @else
@@ -96,8 +96,8 @@
 
     </div>
     <div class="pt-2 pb-3 space-y-1">
-        @if(Session::get('property'))
-        <x-dropdown-link href="/property/{{ Session::get('property') }}/user">
+        @if(Session::get('property_uuid'))
+        <x-dropdown-link href="/property/{{ Session::get('property_uuid') }}/user">
             Personnels
         </x-dropdown-link>
         @else
@@ -108,8 +108,8 @@
 
     </div>
     <div class="pt-2 pb-3 space-y-1">
-        @if(Session::get('property'))
-        <x-dropdown-link href="/property/{{ Session::get('property') }}/concern">
+        @if(Session::get('property_uuid'))
+        <x-dropdown-link href="/property/{{ Session::get('property_uuid') }}/concern">
             Concerns
         </x-dropdown-link>
         @else
@@ -120,8 +120,8 @@
 
     </div>
     <div class="pt-2 pb-3 space-y-1">
-        @if(Session::get('property'))
-        <x-dropdown-link href="/property/{{ Session::get('property') }}/bill">
+        @if(Session::get('property_uuid'))
+        <x-dropdown-link href="/property/{{ Session::get('property_uuid') }}/bill">
             Bills
         </x-dropdown-link>
         @else
@@ -133,8 +133,8 @@
     </div>
 
     <div class="pt-2 pb-3 space-y-1">
-        @if(Session::get('property'))
-        <x-dropdown-link href="/property/{{ Session::get('property') }}/collection">
+        @if(Session::get('property_uuid'))
+        <x-dropdown-link href="/property/{{ Session::get('property_uuid') }}/collection">
             Collections
         </x-dropdown-link>
         @else
@@ -146,8 +146,8 @@
     </div>
 
     <div class="pt-2 pb-3 space-y-1">
-        @if(Session::get('property'))
-        <x-dropdown-link href="/property/{{ Session::get('property') }}/accountpayable">
+        @if(Session::get('property_uuid'))
+        <x-dropdown-link href="/property/{{ Session::get('property_uuid') }}/accountpayable">
             Account Payables
         </x-dropdown-link>
         @else
@@ -159,8 +159,8 @@
     </div>
 
     <div class="pt-2 pb-3 space-y-1">
-        @if(Session::get('property'))
-        <x-dropdown-link href="/property/{{ Session::get('property') }}/financial">
+        @if(Session::get('property_uuid'))
+        <x-dropdown-link href="/property/{{ Session::get('property_uuid') }}/financial">
             Financials
         </x-dropdown-link>
         @else
@@ -172,8 +172,8 @@
     </div>
 
     <div class="pt-2 pb-3 space-y-1">
-        @if(Session::get('property'))
-        <x-dropdown-link href="/property/{{ Session::get('property') }}/utilities">
+        @if(Session::get('property_uuid'))
+        <x-dropdown-link href="/property/{{ Session::get('property_uuid') }}/utilities">
             Utilities
         </x-dropdown-link>
         @else
@@ -185,7 +185,7 @@
     </div>
 
     <div class="pt-2 pb-3 space-y-1">
-        @if(Session::get('property'))
+        @if(Session::get('property_uuid'))
         <x-dropdown-link href="/user/{{ Auth::user()->username }}/edit">
             Profile
         </x-dropdown-link>

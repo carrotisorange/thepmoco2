@@ -19,13 +19,15 @@
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('/brands/favicon.ico') }}" type="image/png">
 
-    <title>{{ Session::get('property_name')? Session::get('property_name'): config('APP_NAME') }} @yield('title')
+    <title>{{ Session::get('property')? Session::get('property'): config('APP_NAME') }} @yield('title')
     </title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.3.4/dist/flowbite.min.css" />
 
@@ -52,10 +54,11 @@
 
 </head>
 <style>
-    body{
+    body {
         font-family: 'Poppins';
     }
 </style>
+
 <body class="h-full overflow-hidden font-body">
     <div class="flex h-full flex-col">
         <!-- Top nav-->

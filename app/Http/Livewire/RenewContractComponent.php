@@ -148,7 +148,7 @@ class RenewContractComponent extends Component
          {
             $validatedData['contract'] = $this->contract->store('contracts');
          }else{
-            //$validatedData['contract'] = Property::find(Session::get('property'))->tenant_contract;
+            //$validatedData['contract'] = Property::find(Session::get('property_uuid'))->tenant_contract;
          }
 
          Contract::create($validatedData);

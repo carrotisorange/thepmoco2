@@ -10,19 +10,19 @@
                 <button type="button" wire:click="clearFilters"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                     Clear Filters
-                </button> 
+                </button>
                 @endif
                 <a href="/property/{{$property->uuid}}/accountpayable/export/{{ $status }}/{{ $created_at }}/{{ $request_for }}/{{ $limitDisplayTo }}"
                     target="_blank"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                     Export All
                 </a>
-                <a href="/property/{{ Session::get('property') }}/accountpayable/{{ 'purchase' }}/{{ Str::random(3) }}/store"
+                <a href="/property/{{ Session::get('property_uuid') }}/accountpayable/{{ 'purchase' }}/{{ Str::random(3) }}/store"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                     New Request
                 </a>
 
-              
+
 
             </div>
 
@@ -31,7 +31,8 @@
         <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
             <div class="sm:col-span-6">
                 {{-- <input id="search" wire:model="search" placeholder="Search for batch no..."
-                    class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"> --}}
+                    class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                --}}
             </div>
             <div class="sm:col-span-3">
                 {{-- <select id="status" wire:model="status"
@@ -42,7 +43,7 @@
                     @endforeach
                 </select> --}}
             </div>
-      
+
             <div class="sm:col-span-3">
                 {{-- <select id="limitDisplayTo" wire:model="limitDisplayTo"
                     class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
@@ -105,11 +106,11 @@
                                                                                       transition duration-150 ease-in-out origin-top min-w-32">
 
                                         <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
-                                                href="/property/{{ Session::get('property') }}/accountpayable/{{ 'payment' }}/{{ Str::random(3) }}/store"
+                                                href="/property/{{ Session::get('property_uuid') }}/accountpayable/{{ 'payment' }}/{{ Str::random(3) }}/store"
                                                 data-modal-toggle="create-particular-modal">payment</a>
                                         </li>
                                         <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
-                                                href="/property/{{ Session::get('property') }}/accountpayable/{{ 'payment' }}/{{ Str::random(3) }}/store"
+                                                href="/property/{{ Session::get('property_uuid') }}/accountpayable/{{ 'payment' }}/{{ Str::random(3) }}/store"
                                                 data-modal-toggle="create-particular-modal"> purchase</a>
                                         </li>
 

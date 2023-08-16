@@ -70,11 +70,11 @@ class EnrolleeComponent extends Component
 
             $this->update_unit();
 
-            app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, 5, 2);
+            app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, 5, 2);
 
             DB::commit();
         
-            return redirect('property/'.Session::get('property').'/owner/'.$this->owner->uuid)->with('success','Success!');
+            return redirect('property/'.Session::get('property_uuid').'/owner/'.$this->owner->uuid)->with('success','Success!');
 
         }catch (\Throwable $e) 
         {
@@ -89,13 +89,13 @@ class EnrolleeComponent extends Component
         $validated_data['owner_uuid'] = $this->owner->uuid;
         $validated_data['unit_uuid'] = $this->unit->uuid;
         $validated_data['user_id'] = auth()->user()->id;
-        $validated_data['property_uuid'] = Session::get('property');
+        $validated_data['property_uuid'] = Session::get('property_uuid');
 
         if($this->contract)
         {
             $validated_data['contract'] = $this->contract->store('owner_contracts');
         }else{
-            $validated_data['contract'] = Property::find(Session::get('property'))->owner_contract;
+            $validated_data['contract'] = Property::find(Session::get('property_uuid'))->owner_contract;
         }
 
         Enrollee::create($validated_data);

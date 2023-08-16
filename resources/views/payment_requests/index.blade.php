@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title','Payment Requests | '. Session::get('property_name'))
+    @section('title','Payment Requests | '. Session::get('property'))
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
             <div>
@@ -10,7 +10,7 @@
                     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
 
                         <button type="button"
-                            onclick="window.location.href='/property/{{ Session::get('property') }}/collection/pending'"
+                            onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/pending'"
                             class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
                             Show Pending</button>
 
@@ -57,9 +57,9 @@
                                         <th scope="col"
                                             class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
                                             STATUS</th>
-                                        {{-- <th scope="col"
+                                        <th scope="col"
                                             class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
-                                            REMARKS</th> --}}
+                                            </th>
 
 
                                     </tr>
@@ -72,7 +72,9 @@
                                     <tr>
 
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                            {{ $item->tenant }}
+                                            <a title="tenant" target="_blank" class="text-blue-500 text-decoration-line: underline"
+                                                href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}">
+                                                {{ Str::limit($item->tenant,20) }} </a> 
                                         </td>
 
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -85,7 +87,7 @@
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                             @if($item->updated_at)
                                             {{ Carbon\Carbon::parse($item->updated_at)->format('M d, Y') }}
-                                            @else
+                                                @else
                                             NA
                                             @endif
                                         </td>
@@ -98,15 +100,17 @@
                                         </td>
 
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                            {{ $item->status }}
+                                            {{ $item->payment_status }}
                                         </td>
 
                                         <td
                                             class="whitespace-nowrap px-3 py-4 text-sm text-blue-500 text-decoration-line: underline">
-                                            <a 
-                                                href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/payment_requests/{{ $item->id }}">
+                                           @if($item->payment_status != 'approved')
+                                            <a target="_blank"
+                                                href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $item->tenant_uuid }}/payment_requests/{{ $item->id }}">
                                                 Review
                                             </a>
+                                           @endif
                                         </td>
 
 

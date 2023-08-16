@@ -23,7 +23,7 @@ class AccountPayableCreateStep4Component extends Component
     
     public function mount()
     {
-        $this->property_uuid = Session::get('property');
+        $this->property_uuid = Session::get('property_uuid');
         $this->vendor = AccountPayable::find($this->accountpayable_id)->vendor;
         $this->due_date = AccountPayable::find($this->accountpayable_id)->due_date;
         $this->delivery_at = AccountPayable::find($this->accountpayable_id)->delivery_at;

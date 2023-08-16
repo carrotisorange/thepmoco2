@@ -52,7 +52,7 @@ class OwnerCollectionController extends Controller
 
     public function get_selected_bills_count($batch_no)
      {
-        return Collection::where('property_uuid', Session::get('property'))
+        return Collection::where('property_uuid', Session::get('property_uuid'))
          ->where('batch_no', $batch_no)
          ->where('is_posted', false)
          ->max('id');

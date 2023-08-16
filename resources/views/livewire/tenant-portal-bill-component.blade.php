@@ -161,7 +161,7 @@
                                 @if($item->particular_id != '71' && $item->particular_id != '72')
                                 <tr>
                                     <td class="relative w-12 px-6 sm:w-16 sm:px-8">
-                                        @if($item->status != 'paid')
+                                        @if(!App\Models\Collection::where('bill_id', $item->id)->posted()->sum('collection'))
                                         <x-input type="checkbox" wire:model="selectedBills" value="{{ $item->id }}" />
                                         @endif
                                     </td>
@@ -179,7 +179,7 @@
                                         @else
                                         <div class="text-sm text-gray-900">
                                             <a class="text-blue-800 font-bold"
-                                                href="/property/{{ Session::get('property') }}/unit/{{ $item->unit->uuid }}">
+                                                href="/property/{{ Session::get('property_uuid') }}/unit/{{ $item->unit->uuid }}">
                                                 {{ $item->unit->unit }}
                                             </a>
                                         </div>
@@ -209,22 +209,16 @@
 
 
 
-                                        @if($item->status === 'paid')
-                                        <span title="paid"
-                                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                       @if(App\Models\Collection::where('bill_id', $item->id)->posted()->sum('collection'))
+                                        <span title="paid" class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                             <i class="fa-solid fa-circle-check"></i>
                                         </span>
-                                        @elseif($item->status === 'partially_paid')
-                                        <span title="partially_paid"
-                                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
-                                            <i class="fa-solid fa-clock"></i>
-                                        </span>
                                         @else
-                                        <span title="unpaid"
-                                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                        <span title="unpaid" class="px-2 text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
                                             <i class="fa-solid fa-circle-xmark"></i>
                                         </span>
                                         @endif
+
                                         @if($item->description === 'movein charges' && $item->status==='unpaid')
                                         <span title="urgent"
                                             class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">

@@ -79,7 +79,7 @@
             <x-td></x-td>
             <x-td></x-td>
             <?php
-            $property_collections_count = App\Models\Collection::p->where('property_uuid', Session::get('property'))->posted()->count();
+            $property_collections_count = App\Models\Collection::p->where('property_uuid', Session::get('property_uuid'))->posted()->count();
             ?>
             <x-td>
                 {{ number_format($collections->sum('amount'), 2) }}

@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title', $tenant->tenant.' | '.Session::get('property_name'))
+    @section('title', $tenant->tenant.' | '.Session::get('property'))
 
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -228,7 +228,8 @@
             </div>
 
             <div class="mt-5 px-4">
-                @livewire('unit-inventory-component', ['property' => $property,'unitDetails' => $unit, 'tenant' => $tenant, 'contract' => $contract, 'ismovein' => $ismovein])
+                @livewire('unit-inventory-component', ['property' => $property,'unitDetails' => $unit, 'tenant' =>
+                $tenant, 'contract' => $contract, 'ismovein' => $ismovein])
             </div>
 
         </div>

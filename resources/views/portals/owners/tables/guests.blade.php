@@ -29,10 +29,10 @@
                 d, Y')}}</x-td>
             {{-- <x-td>
                 @if($item->status === 'pending')
-                <a href="/property/{{ Session::get('property') }}/unit/{{ $item->unit_uuid }}/guest/{{ $item->uuid }}/movein"
+                <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $item->unit_uuid }}/guest/{{ $item->uuid }}/movein"
                     class="text-indigo-500 text-decoration-line: underline">Movein</a>
                 @elseif($item->status === 'active')
-                <a href="/property/{{ Session::get('property') }}/unit/{{ $item->unit_uuid }}/guest/{{ $item->uuid }}/moveout"
+                <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $item->unit_uuid }}/guest/{{ $item->uuid }}/moveout"
                     class="text-indigo-500 text-decoration-line: underline">Moveout</a>
                 @endif
             </x-td> --}}

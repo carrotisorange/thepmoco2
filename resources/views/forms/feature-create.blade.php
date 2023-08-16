@@ -14,7 +14,8 @@
             <div class="mt-5 flex items-center justify-between" wire:key="feature-field-{{ $feature->id }}">
                 <dt>
                     <input type="checkbox" wire:model="selectedFeature" value="{{ $feature->id }}" class="mr-3">
-                    <a href="/property/{{ Session::get('property') }}/contract" target="_blank" class="text-purple-700">
+                    <a href="/property/{{ Session::get('property_uuid') }}/contract" target="_blank"
+                        class="text-purple-700">
                         {{ $feature->feature }}
                     </a>
                 </dt>

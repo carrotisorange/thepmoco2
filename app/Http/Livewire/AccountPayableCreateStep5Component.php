@@ -22,7 +22,7 @@ class AccountPayableCreateStep5Component extends Component
     public function mount()
     {
         $this->comment2 = AccountPayable::find($this->accountpayable_id)->comment2;
-        $this->property_uuid = Session::get('property');
+        $this->property_uuid = Session::get('property_uuid');
         $this->vendor = AccountPayable::find($this->accountpayable_id)->vendor; 
         $this->delivery_at = AccountPayable::find($this->accountpayable_id)->delivery_at;
     }

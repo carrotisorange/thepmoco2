@@ -17,7 +17,7 @@ class ReferralController extends Controller
     public function index()
     {
         return view('referrals.index',[
-            'referrals' => Property::find(Session::get('property'))->referrals
+            'referrals' => Property::find(Session::get('property_uuid'))->referrals
         ]);
     }
 

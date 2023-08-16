@@ -31,7 +31,7 @@ class BuildingController extends Controller
 
             PropertyBuilding::create([
                 'building_id' => $building_id,
-                'property_uuid' => Session::get('property')
+                'property_uuid' => Session::get('property_uuid')
             ]);
 
             return back()->with('success', 'Success!');

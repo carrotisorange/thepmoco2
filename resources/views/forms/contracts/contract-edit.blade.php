@@ -138,7 +138,7 @@
             </div>
             <div class="px-4 py-3 text-right sm:px-6">
                 <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-                    href="/property/{{ Session::get('property') }}/tenant/{{ $tenant }}">
+                    href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant }}">
                     Cancel
                 </a>
 

@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title','Personnels | '. Session::get('property_name'))
+    @section('title','Personnels | '. Session::get('property'))
 
     <div class="max-w-full mx-auto px-4 sm:px-6">
         <div class="mt-5 px-4 sm:px-6 lg:px-8">

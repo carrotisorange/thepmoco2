@@ -9,7 +9,7 @@
             <x-th>Check-in</x-th>
             <x-th>Check-out</x-th>
             <x-th>Status</x-th>
-            <x-th>Agent</x-th>    
+            <x-th>Agent</x-th>
             <x-th></x-th>
         </tr>
     </thead>
@@ -19,7 +19,7 @@
 
         <tr>
             <x-td>{{ $index+1 }}</x-td>
-         <x-td>{{ Str::limit($booking->uuid, 10) }}</x-td>
+            <x-td>{{ Str::limit($booking->uuid, 10) }}</x-td>
             <x-td><a href="/property/{{ $booking->property_uuid }}/guest/{{ $booking->guest->uuid }}"
                     class="text-indigo-500 text-decoration-line: underline">{{ $booking->guest->guest }}</a></x-td>
             <x-td><a href="/property/{{ $booking->property_uuid }}/unit/{{ $booking->unit->uuid }}"
@@ -45,7 +45,8 @@
             </x-td>
         </tr>
         <!-- Main modal -->
-        @livewire('edit-booking-component',['property' => App\Models\Property::find(Session::get('property')), 'booking'
+        @livewire('edit-booking-component',['property' => App\Models\Property::find(Session::get('property_uuid')),
+        'booking'
         => $booking], key(Carbon\Carbon::now()->timestamp.''.$booking->id))
 
         @endforeach

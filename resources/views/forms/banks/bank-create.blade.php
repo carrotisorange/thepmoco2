@@ -86,7 +86,7 @@
         </div>
         <div class="flex justify-end mt-10">
             <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
-                href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/owner/{{ $owner->uuid }}/occupancy/create">
+                href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}/owner/{{ $owner->uuid }}/occupancy/create">
                 Skip
             </a>
             <button type="submit"

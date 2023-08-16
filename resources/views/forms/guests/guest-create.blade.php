@@ -86,7 +86,7 @@
                     class="text-indigo-600 hover:text-indigo-900">Download Sample Lease Contract</a> --}}
 
                 <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-                    href="/property/{{ Session::get('property') }}/unit/{{ $unit_uuid }}">
+                    href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit_uuid }}">
                     Cancel
                 </a>
 
@@ -96,7 +96,7 @@
                     Finish
                 </button>
 
-             
+
             </div>
         </div>
     </div>

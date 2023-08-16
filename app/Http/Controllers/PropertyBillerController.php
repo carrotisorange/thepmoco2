@@ -38,7 +38,7 @@ class PropertyBillerController extends Controller
     {
         PropertyBiller::create([
             'biller' => $request->biller,
-            'property_uuid' => Session::get('property')
+            'property_uuid' => Session::get('property_uuid')
         ]);
 
         return back()->with('success', 'Success!');

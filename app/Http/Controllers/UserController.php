@@ -33,7 +33,7 @@ class UserController extends Controller
             return $pdf->stream(Carbon::now().'-'.auth()->user()->name.'-portfolio.pdf');
         }elseif($export_option == 'property')
         {
-            $property = Property::find(Session::get('property'));
+            $property = Property::find(Session::get('property_uuid'));
 
             $data = $this->get_data($property);
 

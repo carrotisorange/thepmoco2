@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title', $unit->unit.' | '. Session::get('property_name'))
+    @section('title', $unit->unit.' | '. Session::get('property'))
 
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
@@ -9,7 +9,8 @@
                         Bills / {{ $type }}</h1>
                 </div>
             </div>
-            @livewire('unit-bill-create-component', ['property' => $property, 'unit' => $unit, 'type' => $type, 'utility' => $utility])
+            @livewire('unit-bill-create-component', ['property' => $property, 'unit' => $unit, 'type' => $type,
+            'utility' => $utility])
         </div>
     </div>
 </x-new-layout>

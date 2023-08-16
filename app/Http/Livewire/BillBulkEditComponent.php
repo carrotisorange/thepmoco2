@@ -67,12 +67,12 @@ class BillBulkEditComponent extends Component
         try{
 
             Bill::where('batch_no', $this->batch_no)
-            ->where('property_uuid', Session::get('property'))
+            ->where('property_uuid', Session::get('property_uuid'))
             ->update([
              'is_posted' => true,
             ]);
 
-            return redirect('/property/'.Session::get('property').'/bill/'.$this->batch_no)->with('success', 'Success!');
+            return redirect('/property/'.Session::get('property_uuid').'/bill/'.$this->batch_no)->with('success', 'Success!');
 
             // session()->flash('success', count($this->bills). ' bills are successfully saved as draft.');
 

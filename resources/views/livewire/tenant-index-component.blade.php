@@ -20,7 +20,7 @@
         </div>
 
         <div class="mt-3">
-            @if(App\Models\Property::find(Session::get('property'))->tenants()->count())
+            @if(App\Models\Property::find(Session::get('property_uuid'))->tenants()->count())
 
             <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                 <div class="sm:col-span-2">
@@ -73,7 +73,7 @@
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
                 <div class="mb-5 mt-2 relative overflow-hidden ring-black ring-opacity-5 md:rounded-lg">
-                    @if(!App\Models\Property::find(Session::get('property'))->tenants()->count())
+                    @if(!App\Models\Property::find(Session::get('property_uuid'))->tenants()->count())
                     <nav aria-label="Progress">
                         <ol role="list"
                             class="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">

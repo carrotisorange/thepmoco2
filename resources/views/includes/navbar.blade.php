@@ -2,7 +2,7 @@
     <div class="relative flex w-22 flex-col space-y-3 p-3">
         <!-- Dashboard -->
 
-        <x-nav-link href="/property/{{ Session::get('property') }}" :active="request()->routeIs('dashboard')">
+        <x-nav-link href="/property/{{ Session::get('property_uuid') }}" :active="request()->routeIs('dashboard')">
             <span class="sr-only">Dashboard</span>
             <img class="h-8 w-auto" src="{{ asset('/brands/dashboard_gr.png') }}" fill="none" viewBox="0 0 24 24"
                 stroke-width="2" stroke="currentColor" aria-hidden="true">
@@ -23,8 +23,8 @@
         <div class="font-medium leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Messages</div>
 
         <!-- Units -->
-        @if(Session::get('property'))
-        <x-nav-link href="/property/{{ Session::get('property') }}/unit" :active="request()->routeIs('unit')">
+        @if(Session::get('property_uuid'))
+        <x-nav-link href="/property/{{ Session::get('property_uuid') }}/unit" :active="request()->routeIs('unit')">
             <span class="sr-only">Units</span>
             <img class="h-10 w-auto" src="{{ asset('/brands/units_gr.png') }}" fill="none" viewBox="0 0 24 24"
                 stroke-width="2" stroke="currentColor" aria-hidden="true">
@@ -44,8 +44,9 @@
         <div class="font-medium leading-3 -ml-2 text-xs text-center text-gray-900 mt-10">Units</div>
 
         <!-- Units -->
-        @if(Session::get('property'))
-        <x-nav-link href="/property/{{ Session::get('property') }}/calendar" :active="request()->routeIs('calendar')">
+        @if(Session::get('property_uuid'))
+        <x-nav-link href="/property/{{ Session::get('property_uuid') }}/calendar"
+            :active="request()->routeIs('calendar')">
             <span class="sr-only">Calendar</span>
             <img class="h-7 w-auto" src="{{ asset('/brands/calendar.png') }}" fill="none" viewBox="0 0 24 24"
                 stroke-width="2" stroke="currentColor" aria-hidden="true">
@@ -65,8 +66,8 @@
         <div class="font-medium leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Calendar</div>
 
         <!-- Tenants -->
-        @if(Session::get('property'))
-        <x-nav-link href="/property/{{ Session::get('property') }}/tenant" :active="request()->routeIs('tenant')">
+        @if(Session::get('property_uuid'))
+        <x-nav-link href="/property/{{ Session::get('property_uuid') }}/tenant" :active="request()->routeIs('tenant')">
             <span class="sr-only">Tenants</span>
             <img class="h-8 w-auto" src="{{ asset('/brands/tenant_gr.png') }}" fill="none" viewBox="0 0 24 24"
                 stroke-width="2" stroke="currentColor" aria-hidden="true">
@@ -86,8 +87,9 @@
         <div class="font-medium leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Tenants</div>
 
         <!-- Contracts -->
-        @if(Session::get('property'))
-        <x-nav-link href="/property/{{ Session::get('property') }}/contract" :active="request()->routeIs('contract')">
+        @if(Session::get('property_uuid'))
+        <x-nav-link href="/property/{{ Session::get('property_uuid') }}/contract"
+            :active="request()->routeIs('contract')">
             <span class="sr-only">Contracts</span>
             <img class="h-8 w-auto" src="{{ asset('/brands/contract-gr.png') }}" fill="none" viewBox="0 0 24 24"
                 stroke-width="2" stroke="currentColor" aria-hidden="true">
@@ -108,8 +110,8 @@
 
         <!-- Guest -->
 
-        @if(Session::get('property'))
-        <x-nav-link href="/property/{{ Session::get('property') }}/guest" :active="request()->routeIs('guest')">
+        @if(Session::get('property_uuid'))
+        <x-nav-link href="/property/{{ Session::get('property_uuid') }}/guest" :active="request()->routeIs('guest')">
 
             <span class="sr-only">Guests</span>
             <img class="h-8 w-auto" src="{{ asset('/brands/guest.png') }}" fill="none" viewBox="0 0 24 24"
@@ -131,8 +133,8 @@
         <div class="font-medium leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Guests</div>
 
         <!-- Owners -->
-        @if(Session::get('property'))
-        <x-nav-link href="/property/{{ Session::get('property') }}/owner" :active="request()->routeIs('owner')">
+        @if(Session::get('property_uuid'))
+        <x-nav-link href="/property/{{ Session::get('property_uuid') }}/owner" :active="request()->routeIs('owner')">
             <span class="sr-only">Owners</span>
             <img class="h-10 w-auto" src="{{ asset('/brands/user_gr.png') }}" fill="none" viewBox="0 0 24 24"
                 stroke-width="2" stroke="currentColor" aria-hidden="true">
@@ -152,8 +154,8 @@
         <div class="font-medium leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Owners</div>
 
         <!-- Personnels -->
-        @if(Session::get('property'))
-        <x-nav-link href="/property/{{ Session::get('property') }}/user" :active="request()->routeIs('user')">
+        @if(Session::get('property_uuid'))
+        <x-nav-link href="/property/{{ Session::get('property_uuid') }}/user" :active="request()->routeIs('user')">
             <span class="sr-only">Personnels</span>
 
             <img class="h-13 w-auto" src="{{ asset('/brands/team_gr.png') }}" fill="none" viewBox="0 0 24 24"
@@ -175,8 +177,9 @@
         <div class="font-medium leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Personnels</div>
 
         <!-- Concerns -->
-        @if(Session::get('property'))
-        <x-nav-link href="/property/{{ Session::get('property') }}/concern" :active="request()->routeIs('concern')">
+        @if(Session::get('property_uuid'))
+        <x-nav-link href="/property/{{ Session::get('property_uuid') }}/concern"
+            :active="request()->routeIs('concern')">
 
             <span class="sr-only">Concerns</span>
             <img class="h-10 w-auto" src="{{ asset('/brands/concerns_gr.png') }}" fill="none" viewBox="0 0 24 24"
@@ -199,8 +202,8 @@
 
 
         <!-- Bills -->
-        @if(Session::get('property'))
-        <x-nav-link href="/property/{{ Session::get('property') }}/bill" :active="request()->routeIs('bill')">
+        @if(Session::get('property_uuid'))
+        <x-nav-link href="/property/{{ Session::get('property_uuid') }}/bill" :active="request()->routeIs('bill')">
 
             <span class="sr-only">Bills</span>
             <img class="h-8 w-auto" src="{{ asset('/brands/invoice_gr.png') }}" fill="none" viewBox="0 0 24 24"
@@ -223,8 +226,8 @@
 
 
         <!-- Collection -->
-        @if(Session::get('property'))
-        <x-nav-link href="/property/{{ Session::get('property') }}/collection"
+        @if(Session::get('property_uuid'))
+        <x-nav-link href="/property/{{ Session::get('property_uuid') }}/collection"
             :active="request()->routeIs('collection')">
 
             <span class="sr-only">Collections</span>
@@ -247,8 +250,8 @@
         <div class="font-medium leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Collections</div>
 
         <!-- Account Payable -->
-        @if(Session::get('property'))
-        <x-nav-link href="/property/{{ Session::get('property') }}/accountpayable"
+        @if(Session::get('property_uuid'))
+        <x-nav-link href="/property/{{ Session::get('property_uuid') }}/accountpayable"
             :active="request()->routeIs('accountpayable')">
 
             <span class="sr-only">Request for<br> Purchases </span>
@@ -272,8 +275,8 @@
         </div>
 
         <!-- Account Payable -->
-        @if(Session::get('property'))
-        <x-nav-link href="/property/{{ Session::get('property') }}/accountpayable"
+        @if(Session::get('property_uuid'))
+        <x-nav-link href="/property/{{ Session::get('property_uuid') }}/accountpayable"
             :active="request()->routeIs('accountpayable')">
 
             <span class="sr-only">Liquidations</span>
@@ -297,8 +300,9 @@
         </div>
 
         <!-- Financials -->
-        @if(Session::get('property'))
-        <x-nav-link href="/property/{{ Session::get('property') }}/financial" :active="request()->routeIs('financial')">
+        @if(Session::get('property_uuid'))
+        <x-nav-link href="/property/{{ Session::get('property_uuid') }}/financial"
+            :active="request()->routeIs('financial')">
 
             <span class="sr-only">Financials</span>
             <img class="h-8 w-auto" src="{{ asset('/brands/cashflow_gr.png') }}" fill="none" viewBox="0 0 24 24"
@@ -320,8 +324,9 @@
         <div class="font-medium leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Financials</div>
 
         <!-- Utilities -->
-        @if(Session::get('property'))
-        <x-nav-link href="/property/{{ Session::get('property') }}/utilities" :active="request()->routeIs('utilities')">
+        @if(Session::get('property_uuid'))
+        <x-nav-link href="/property/{{ Session::get('property_uuid') }}/utilities"
+            :active="request()->routeIs('utilities')">
 
             <span class="sr-only">Utilities</span>
             <img class="h-8 w-auto" src="{{ asset('/brands/utilities-gr.png') }}" fill="none" viewBox="0 0 24 24"
@@ -344,8 +349,8 @@
 
 
 
-        @if(Session::get('property'))
-        <x-nav-link href="/property/{{ Session::get('property') }}/remittance"
+        @if(Session::get('property_uuid'))
+        <x-nav-link href="/property/{{ Session::get('property_uuid') }}/remittance"
             :active="request()->routeIs('remittances')">
 
             <span class="sr-only">Remittances</span>

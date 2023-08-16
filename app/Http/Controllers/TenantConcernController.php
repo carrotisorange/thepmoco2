@@ -28,7 +28,7 @@ class TenantConcernController extends Controller
 
     public function edit(Property $property, Tenant $tenant, Concern $concern)
     {
-        app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'opens one',13);
+        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'opens one',13);
        
         return view('tenants.concerns.edit',[
             'tenant' => $tenant,

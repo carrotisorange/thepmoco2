@@ -1,4 +1,3 @@
-
 <form class="space-y-6" method="POST" wire:submit.prevent="storeUser()" enctype="multipart/form-data">
     <div class="px-4 py-5 sm:rounded-lg sm:p-6">
         <div class="md:grid md:grid-cols-6 md:gap-6">
@@ -18,7 +17,7 @@
                 @enderror
 
             </div>
-           
+
             <div class="sm:col-span-6">
                 <label for="concern" class="block text-sm font-medium text-gray-700">Email:</label>
                 <div class="mt-1">
@@ -30,7 +29,7 @@
                 </div>
 
             </div>
-           
+
         </div>
 
         <div class="mt-5 sm:col-span-6">
@@ -77,8 +76,8 @@
                                     {{-- @foreach ($features as $item)
                                     <tr>
                                         <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">
-                                                                  </td>
-                                       
+                                        </td>
+
                                         <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">
                                             {{ $item->feature }}
                                         </td>
@@ -124,7 +123,7 @@
 
         <div class="flex justify-end mt-10">
             <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-                href="/property/{{ Session::get('property') }}/user">
+                href="/property/{{ Session::get('property_uuid') }}/user">
                 Cancel
             </a>
             @if($email)

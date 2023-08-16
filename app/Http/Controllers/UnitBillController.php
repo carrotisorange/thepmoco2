@@ -37,13 +37,13 @@ class UnitBillController extends Controller
             $contracts = Contract::where('unit_uuid', $unit->uuid)->where('status', 'active')->count();
 
             if($contracts <= 0){
-                return redirect("/property/".Session::get('property').'/unit/'.$unit->uuid.'/tenant/'.Str::random(8).'/create');
+                return redirect("/property/".Session::get('property_uuid').'/unit/'.$unit->uuid.'/tenant/'.Str::random(8).'/create');
             }   
         }elseif($type==='owner'){
             $deedofsales = DeedOfSale::where('unit_uuid', $unit->uuid)->where('status', 'active')->count();
 
             if($deedofsales <=0){
-                return redirect("/property/".Session::get('property').'/unit/'.$unit->uuid.'/owner/'.Str::random(8).'/create');
+                return redirect("/property/".Session::get('property_uuid').'/unit/'.$unit->uuid.'/owner/'.Str::random(8).'/create');
             }
         }
         return view('units.bills.create',[

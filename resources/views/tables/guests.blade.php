@@ -19,9 +19,9 @@
         <tr>
             <x-td>{{ $index+1 }}</x-td>
 
-            <x-td><a href="/property/{{ Session::get('property') }}/guest/{{ $item->uuid }}"
+            <x-td><a href="/property/{{ Session::get('property_uuid') }}/guest/{{ $item->uuid }}"
                     class="text-indigo-500 text-decoration-line: underline">{{ $item->guest }}</a></x-td>
-            <x-td><a href="/property/{{ Session::get('property') }}/unit/{{ $item->unit_uuid }}"
+            <x-td><a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $item->unit_uuid }}"
                     class="text-indigo-500 text-decoration-line: underline">{{ $item->unit->unit }}</a></x-td>
             <x-td>{{ $item->mobile_number }}</x-td>
             <x-td>{{ $item->email }}</x-td>
@@ -33,19 +33,21 @@
             {{-- <x-td>{{ number_format($item->price, 2) }} ({{ $days }} night/s)</x-td> --}}
             <x-td>{{ $item->status }}</x-td>
             <x-td>
-                {{Carbon\Carbon::parse($item->movein_at)->format('M d, Y')}} @ {{ Carbon\Carbon::parse($item->arrival_time)->format('H:i:s') }}
+                {{Carbon\Carbon::parse($item->movein_at)->format('M d, Y')}} @ {{
+                Carbon\Carbon::parse($item->arrival_time)->format('H:i:s') }}
             </x-td>
             <x-td>
-                {{Carbon\Carbon::parse($item->moveout_at)->format('M d, Y')}} @ {{ Carbon\Carbon::parse($item->departure_time)->format('H:i:s') }}
+                {{Carbon\Carbon::parse($item->moveout_at)->format('M d, Y')}} @ {{
+                Carbon\Carbon::parse($item->departure_time)->format('H:i:s') }}
             </x-td>
             {{-- <x-td>{{ $item->vehicle_details }}</x-td>
             <x-td>{{ $item->plate_number }}</x-td> --}}
             {{-- <x-td>
                 @if($item->status === 'pending')
-                <a href="/property/{{ Session::get('property') }}/unit/{{ $item->unit_uuid }}/guest/{{ $item->uuid }}/movein"
+                <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $item->unit_uuid }}/guest/{{ $item->uuid }}/movein"
                     class="text-indigo-500 text-decoration-line: underline">Movein</a>
                 @elseif($item->status === 'active')
-                <a href="/property/{{ Session::get('property') }}/unit/{{ $item->unit_uuid }}/guest/{{ $item->uuid }}/moveout"
+                <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $item->unit_uuid }}/guest/{{ $item->uuid }}/moveout"
                     class="text-indigo-500 text-decoration-line: underline">Moveout</a>
                 @endif
             </x-td> --}}

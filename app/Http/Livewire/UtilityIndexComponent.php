@@ -43,8 +43,8 @@ class UtilityIndexComponent extends Component
 
     public function mount()
     {
-        $this->property_uuid = Session::get('property');
-        $this->totalUtilitiesCount = Property::find(Session::get('property'))->utilities->count();
+        $this->property_uuid = Session::get('property_uuid');
+        $this->totalUtilitiesCount = Property::find(Session::get('property_uuid'))->utilities->count();
         $this->totalUnitsCount = Property::find($this->property_uuid)->units()->count();
         $this->filter_date = Carbon::parse(Property::find($this->property_uuid)->utilities()->orderBy('start_date', 'desc')->pluck('start_date')->first())->format('Y-m-d');
         $this->start_date = Carbon::now()->format('Y-m-d');

@@ -56,14 +56,14 @@ class TenantConcernCreateComponent extends Component
     //    $this->store_notification();
 
         return
-        redirect('/property/'.Session::get('property').'/tenant/'.$this->tenant->uuid.'/concern/'.$concern_id.'/edit')->with('success','Success!');
+        redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant->uuid.'/concern/'.$concern_id.'/edit')->with('success','Success!');
     }
 
     public function store_concern($validatedData)
     {
         $validatedData['tenant_uuid'] = $this->tenant->uuid;
         $validatedData['reference_no'] = auth()->user()->id.'_'.Str::random(8);
-        $validatedData['property_uuid'] = Session::get('property');
+        $validatedData['property_uuid'] = Session::get('property_uuid');
 
         if($this->image)
         {
@@ -83,7 +83,7 @@ class TenantConcernCreateComponent extends Component
         //    'details' => 'reported a concern.',
         //    'status' => 'pending',
         //    'role_id' => auth()->user()->role_id,
-        //    'property_uuid' => Session::get('property')
+        //    'property_uuid' => Session::get('property_uuid')
         //    ]);
     }
 

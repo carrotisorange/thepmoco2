@@ -135,9 +135,9 @@ class OwnerComponent extends Component
                                 }
 
                                 //method to create a new point
-                                app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id,4, 1);
+                                app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id,4, 1);
 
-                        return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/owner/'.$owner_uuid.'/deed_of_sale/create')->with('success', 'Success!');
+                        return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/owner/'.$owner_uuid.'/deed_of_sale/create')->with('success', 'Success!');
         
                         });
     
@@ -180,7 +180,7 @@ class OwnerComponent extends Component
         {
                 //$validatedData['uuid'] = Str::uuid();
 
-                //$validatedData['property_uuid'] = Session::get('property');
+                //$validatedData['property_uuid'] = Session::get('property_uuid');
 
                 if($this->photo_id)
                 {
@@ -212,11 +212,11 @@ class OwnerComponent extends Component
                 }
 
                 //$owner_uuid = Owner::create($validatedData)->uuid;
-                $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property'));
+                $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property_uuid'));
                 
                 $owner_uuid = Owner::create([
                         'uuid' => Str::uuid(),
-                        'property_uuid' => Session::get('property'),
+                        'property_uuid' => Session::get('property_uuid'),
                         'owner' => $this->owner,
                         'email' => $this->email,
                         'mobile_number' => $this->mobile_number,

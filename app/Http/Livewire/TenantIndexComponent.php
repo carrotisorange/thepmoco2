@@ -20,7 +20,7 @@ class TenantIndexComponent extends Component
     public function redirectToUnitSelectionPage(){
         
 
-        return redirect('/property/'.Session::get('property').'/unit/');
+        return redirect('/property/'.Session::get('property_uuid').'/unit/');
     }
 
     public function clearFilters(){
@@ -31,20 +31,20 @@ class TenantIndexComponent extends Component
 
     public function render()
     {
-        $statuses =  Tenant::where('property_uuid', Session::get('property'))
+        $statuses =  Tenant::where('property_uuid', Session::get('property_uuid'))
         ->select('status')
         ->whereNotNull('status')
         ->groupBy('status')
         ->get();
 
-       $categories = Tenant::where('property_uuid', Session::get('property'))
+       $categories = Tenant::where('property_uuid', Session::get('property_uuid'))
         ->select('category')
         ->whereNotNull('category')
         ->groupBy('category')
         ->get();
 
         $tenants = Tenant::search($this->search)
-        ->where('property_uuid', Session::get('property'))
+        ->where('property_uuid', Session::get('property_uuid'))
         ->when($this->status, function($query){
           $query->where('status',$this->status);
         })

@@ -18,6 +18,7 @@ use App\Models\Unit;
 use App\Models\UnitStats;
 use App\Models\Collection;
 use App\Models\AccountPayable;
+use App\Models\Role;
 
 class PropertyController extends Controller
 {   
@@ -115,7 +116,7 @@ class PropertyController extends Controller
              $occupancy_dates = UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'),
              DB::raw('MAX(occupied)'),
              DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
-             ->where('property_uuid', Session::get('property'))
+             ->where('property_uuid', Session::get('property_uuid'))
              ->whereBetween('created_at', [$start, $end])
              ->orderBy('created_at')
              ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
@@ -129,7 +130,7 @@ class PropertyController extends Controller
              $occupancy_dates = UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'),
              DB::raw('MAX(occupied)'),
              DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
-             ->where('property_uuid', Session::get('property'))
+             ->where('property_uuid', Session::get('property_uuid'))
              ->whereBetween('created_at', [$start, $end])
              ->orderBy('created_at')
              ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
@@ -139,7 +140,7 @@ class PropertyController extends Controller
             $occupancy_dates = UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'),
             DB::raw('MAX(occupied)'),
             DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
-            ->where('property_uuid', Session::get('property'))
+            ->where('property_uuid', Session::get('property_uuid'))
             ->whereYear('created_at', Carbon::now()->format('Y'))
             ->orderBy('created_at')
             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
@@ -163,7 +164,7 @@ class PropertyController extends Controller
 
           $occupancy_rates =  UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'),
           DB::raw('MAX(occupied)'), DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
-          ->where('property_uuid', Session::get('property'))
+          ->where('property_uuid', Session::get('property_uuid'))
           ->whereBetween('created_at', [$start, $end])
           ->orderBy('created_at')
           ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
@@ -175,7 +176,7 @@ class PropertyController extends Controller
 
          $occupancy_rates = UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'),
          DB::raw('MAX(occupied)'), DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
-         ->where('property_uuid', Session::get('property'))
+         ->where('property_uuid', Session::get('property_uuid'))
          ->whereBetween('created_at', [$start, $end])
          ->orderBy('created_at')
          ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
@@ -184,7 +185,7 @@ class PropertyController extends Controller
          }else{
             $occupancy_rates = UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'),
             DB::raw('MAX(occupied)'), DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
-            ->where('property_uuid', Session::get('property'))
+            ->where('property_uuid', Session::get('property_uuid'))
             ->whereYear('created_at', Carbon::now()->format('Y'))
             ->orderBy('created_at')
             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
@@ -209,7 +210,7 @@ class PropertyController extends Controller
     {
         return AcknowledgementReceipt::select(DB::raw("(sum(amount)) as total_amount"), DB::raw("(DATE_FORMAT(created_at,
         '%M %Y')) as month_year"))
-        ->where('property_uuid', Session::get('property'))
+        ->where('property_uuid', Session::get('property_uuid'))
         ->orderBy('created_at')
         ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
          ->whereYear('created_at', Carbon::now()->format('Y'))
@@ -221,7 +222,7 @@ class PropertyController extends Controller
         return AcknowledgementReceipt::select(DB::raw("(sum(amount)) as total_amount"),
         DB::raw("(DATE_FORMAT(created_at,
         '%M %Y')) as month_year"))
-        ->where('property_uuid', Session::get('property'))
+        ->where('property_uuid', Session::get('property_uuid'))
         ->orderBy('created_at')
         ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
           ->whereYear('created_at', Carbon::now()->format('Y'))
@@ -234,7 +235,7 @@ class PropertyController extends Controller
         DB::raw("(DATE_FORMAT(updated_at,
         '%M %Y')) as month_year"))
         ->where('status', 'approved')
-        ->where('property_uuid', Session::get('property'))
+        ->where('property_uuid', Session::get('property_uuid'))
         ->orderBy('updated_at')
         ->groupBy(DB::raw("DATE_FORMAT(updated_at, '%m-%Y')"))
         ->whereYear('updated_at', Carbon::now()->format('Y'))
@@ -246,7 +247,7 @@ class PropertyController extends Controller
         return Bill::select(DB::raw("(sum(bill)) as total_bill"), DB::raw("(DATE_FORMAT(created_at, '%M')) as
         month_year"))
         ->orderBy('created_at')
-        ->where('property_uuid', Session::get('property'))
+        ->where('property_uuid', Session::get('property_uuid'))
         ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
         ->limit(6)
         ->pluck('total_bill');
@@ -256,17 +257,17 @@ class PropertyController extends Controller
     {
         $current_collection_rate = 0;
 
-        if(Bill::where('property_uuid', Session::get('property'))->count())
+        if(Bill::where('property_uuid', Session::get('property_uuid'))->count())
         {
             $current_collection_rate = AcknowledgementReceipt::select(DB::raw("(sum(amount)) as total_amount"),
             DB::raw("(DATE_FORMAT(created_at, '%M')) as month_year"))
-            ->where('property_uuid', Session::get('property'))
+            ->where('property_uuid', Session::get('property_uuid'))
             ->orderBy('created_at')
             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
             ->pluck('total_amount')
             ->last() / Bill::select(DB::raw("(sum(bill)) as total_bill"), DB::raw("(DATE_FORMAT(created_at, '%M')) as month_year"))
             ->orderBy('created_at')
-            ->where('property_uuid', Session::get('property'))
+            ->where('property_uuid', Session::get('property_uuid'))
             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
             ->pluck('total_bill')
             ->last() * 100;
@@ -280,7 +281,7 @@ class PropertyController extends Controller
     public function get_tenant_type_labels()
     {
         return Tenant::
-        where('property_uuid', Session::get('property'))
+        where('property_uuid', Session::get('property_uuid'))
         ->groupBy('type')
         ->pluck('type');
     }
@@ -288,7 +289,7 @@ class PropertyController extends Controller
     public function get_tenant_type_values()
     {
         return Tenant::select(DB::raw('count(*) as count'))
-        ->where('property_uuid', Session::get('property'))
+        ->where('property_uuid', Session::get('property_uuid'))
         ->groupBy('type')
         ->pluck('count');
     }
@@ -296,7 +297,7 @@ class PropertyController extends Controller
     public function get_tenant_delinquents()
     {
         $bills = Bill::selectRaw('sum(bill-initial_payment) as balance, tenant_uuid')
-        ->where('property_uuid', Session::get('property'))
+        ->where('property_uuid', Session::get('property_uuid'))
         ->where('bill', '>','initial_payment')
         ->where('start', '>', Carbon::now()->subMonth()->toDateTimeString())
         ->whereNotNull('tenant_uuid')
@@ -310,7 +311,7 @@ class PropertyController extends Controller
     public function get_owner_delinquents()
     {
         $bills = Bill::selectRaw('sum(bill-initial_payment) as balance, owner_uuid')
-        ->where('property_uuid', Session::get('property'))
+        ->where('property_uuid', Session::get('property_uuid'))
         ->where('bill', '>','initial_payment')
         ->whereNotNull('owner_uuid')
              ->where('start', '>', Carbon::now()->subMonth()->toDateTimeString())
@@ -324,7 +325,7 @@ class PropertyController extends Controller
     public function get_guest_delinquents()
     {
         $bills = Bill::selectRaw('sum(bill-initial_payment) as balance, guest_uuid')
-        ->where('property_uuid', Session::get('property'))
+        ->where('property_uuid', Session::get('property_uuid'))
         ->where('bill', '>','initial_payment')
         ->where('start', '>', Carbon::now()->subMonth()->toDateTimeString())
         ->whereNotNull('guest_uuid')
@@ -341,7 +342,7 @@ class PropertyController extends Controller
         return Contract::select(DB::raw("(count(*)) as count"), DB::raw("(DATE_FORMAT(start,
         '%M')) as month_year"))
         ->orderBy('start')
-        ->where('property_uuid', Session::get('property'))
+        ->where('property_uuid', Session::get('property_uuid'))
         ->where('status', 'active')
         ->groupBy(DB::raw("DATE_FORMAT(month_year, '%m-%Y')"))
         ->limit(7)
@@ -352,7 +353,7 @@ class PropertyController extends Controller
     {
         return Contract::select(DB::raw("(count(*)) as count"), DB::raw("(DATE_FORMAT(start,
         '%M %Y')) as month_year"))
-        ->where('property_uuid', Session::get('property'))
+        ->where('property_uuid', Session::get('property_uuid'))
         ->orderBy('start')
         ->where('status', 'active')
         ->groupBy(DB::raw("DATE_FORMAT(month_year, '%m-%Y')"))
@@ -364,7 +365,7 @@ class PropertyController extends Controller
     {
         return Contract::select(DB::raw("(count(*)) as count"), DB::raw("(DATE_FORMAT(moveout_at,
         '%M')) as month_year"))
-        ->where('property_uuid', Session::get('property'))
+        ->where('property_uuid', Session::get('property_uuid'))
         ->where('status', 'inactive')
         ->orderBy('moveout_at')
         ->groupBy(DB::raw("DATE_FORMAT(month_year, '%m-%Y')"))
@@ -375,7 +376,7 @@ class PropertyController extends Controller
     public function get_reasons_for_moveout_values()
     {
         return Contract::select('moveout_reason')
-        ->where('property_uuid', Session::get('property'))
+        ->where('property_uuid', Session::get('property_uuid'))
         ->where('moveout_reason','!=', "NA")
         ->groupBy('moveout_reason')
         ->pluck('moveout_reason');
@@ -384,7 +385,7 @@ class PropertyController extends Controller
     public function get_reasons_for_moveout_labels()
     {
         return Contract::select(DB::raw('count(*) as count'))
-        ->where('property_uuid', Session::get('property'))
+        ->where('property_uuid', Session::get('property_uuid'))
         ->where('moveout_reason','!=', "NA")
         ->where('status', 'inactive')
         ->groupBy('moveout_reason')
@@ -521,17 +522,30 @@ class PropertyController extends Controller
 
      //other functions
 
-         public function destroy_property_session()
+    public function destroy_property_session()
     {
         Session::forget('property');
         Session::forget('property_name');
+        Session::forget('role');
+        Session::forget('role_id');
+        Session::forget('is_approved');
+        Session::forget('is_account_owner');
+
     }
 
     public function store_property_session($property_uuid)
     {
-        Session::put('property', $property_uuid);
+        Session::put('property_uuid', $property_uuid);
 
-        Session::put('property_name', Property::find($property_uuid)->property);
+        Session::put('property', Property::find($property_uuid)->property);
+
+        Session::put('role', Role::find(UserProperty::where('property_uuid', $property_uuid)->where('user_id', auth()->user()->id)->pluck('role_id')->first())->role);
+
+        Session::put('role_id', UserProperty::where('property_uuid', $property_uuid)->where('user_id', auth()->user()->id)->pluck('role_id')->first());
+
+        Session::put('is_approved', UserProperty::where('property_uuid', $property_uuid)->where('user_id', auth()->user()->id)->pluck('is_approved')->first());
+
+        Session::put('is_account_owner', UserProperty::where('property_uuid', $property_uuid)->where('user_id', auth()->user()->id)->pluck('is_account_owner')->first());
         
     }
 

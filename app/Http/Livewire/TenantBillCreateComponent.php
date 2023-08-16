@@ -15,7 +15,9 @@ use App\Models\Property;
 use App\Models\Particular;
 use App\Models\PropertyParticular;
 use App\Models\Unit;
+use Session;
 use App\Models\Contract;
+use App\Models\PaymentRequest;
 
 
 class TenantBillCreateComponent extends Component
@@ -50,6 +52,7 @@ class TenantBillCreateComponent extends Component
    public $tenant_uuid;
 
    public $user_type = 'tenant';
+
 
    public function updatedParticularId(){
       if($this->particular_id === '1'){
@@ -221,6 +224,7 @@ class TenantBillCreateComponent extends Component
 
    public function payBills()
    {      
+
       //generate collection acknowledgement receipt no
       $collection_ar_no = Property::find($this->property->uuid)->acknowledgementreceipts->max('ar_no')+1;
 
@@ -304,7 +308,6 @@ class TenantBillCreateComponent extends Component
 
     public function render()
     {
-
       $bills = Tenant::find($this->tenant->uuid)
       ->bills()
       ->orderBy('bill_no','desc')

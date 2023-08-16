@@ -19,14 +19,14 @@ class PropertyFinancialController extends Controller
 
         $collections = DB::table('acknowledgement_receipts')
         ->select('id',DB::raw('DATE_FORMAT(created_at, "%d-%b-%Y") as date') ,DB::raw('sum(amount) as amount'), DB::raw("'INCOME' as label"))
-        ->where('property_uuid', Session::get('property'))
+        ->where('property_uuid', Session::get('property_uuid'))
         ->groupBy('date')
         ->orderBy('created_at', 'desc')
         ->get();
 
         $accountpayables = DB::table('account_payables')
         ->select('id',DB::raw('DATE_FORMAT(created_at, "%d-%b-%Y") as date') ,DB::raw('sum(amount) as amount'), DB::raw("'EXPENSE' as label"))
-        ->where('property_uuid', Session::get('property'))
+        ->where('property_uuid', Session::get('property_uuid'))
         ->where('status', 'released')
         ->groupBy('date')
         ->orderBy('created_at', 'desc')
@@ -47,7 +47,7 @@ class PropertyFinancialController extends Controller
         return DB::table('acknowledgement_receipts')
         ->select('id',DB::raw($filter) ,DB::raw('sum(amount) as amount'),
         DB::raw("'INCOME' as label"))
-        ->where('property_uuid', Session::get('property'))
+        ->where('property_uuid', Session::get('property_uuid'))
         ->groupBy('date')
         ->orderBy('created_at', 'desc')
         ->get();
@@ -57,7 +57,7 @@ class PropertyFinancialController extends Controller
         return DB::table('account_payables')
         ->select('id',DB::raw($filter) ,DB::raw('sum(amount) as amount'),
         DB::raw("'EXPENSE' as label"))
-        ->where('property_uuid', Session::get('property'))
+        ->where('property_uuid', Session::get('property_uuid'))
         ->where('status', 'released')
         ->groupBy('date')
         ->orderBy('created_at', 'desc')

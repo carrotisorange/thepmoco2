@@ -56,7 +56,7 @@ class ReferenceComponent extends Component
                  $this->store_reference($validatedData);
             });
        
-            return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.Str::random(8).'/create')->with('success', 'Success!');
+            return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.Str::random(8).'/create')->with('success', 'Success!');
         }
         catch(\Exception $e)
         {

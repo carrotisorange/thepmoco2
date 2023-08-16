@@ -143,7 +143,7 @@ class UnitShowComponent extends Component
         
         
 
-        return redirect('/property/'.Session::get('property').'/unit/'.$this->unit_details->uuid.'/concern/'.Str::random(8).'/create');
+        return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit_details->uuid.'/concern/'.Str::random(8).'/create');
     }
     
     public function submitForm()
@@ -154,7 +154,7 @@ class UnitShowComponent extends Component
         
             $this->unit_details->update($validatedData);
 
-            app('App\Http\Controllers\ActivityController')->store(Session::get('property'), auth()->user()->id,'updates',2);
+            app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'updates',2);
 
             session()->flash('success', 'Success!');
                     

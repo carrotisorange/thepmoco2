@@ -37,7 +37,7 @@ class PropertyBillExpressController extends Controller
             'due_date' => 'nullable|date|after:start',
         ]);
     
-        $tenant_uuid = Contract::where('property_uuid', Session::get('property'))
+        $tenant_uuid = Contract::where('property_uuid', Session::get('property_uuid'))
         ->where('contracts.status','active')
         ->pluck('tenant_uuid');
 
@@ -51,14 +51,14 @@ class PropertyBillExpressController extends Controller
             
             for($i=0; $i<$bill_count; $i++)
             { 
-                $unit_uuid=Contract::where('property_uuid', Session::get('property')) ->
+                $unit_uuid=Contract::where('property_uuid', Session::get('property_uuid')) ->
                 where('contracts.status','active')
                 ->where('tenant_uuid', $tenant_uuid[$i])
                 ->pluck('unit_uuid');
 
                 $reference_no = Tenant::find($tenant_uuid[$i]);
 
-                $rent = Contract::where('property_uuid', Session::get('property'))
+                $rent = Contract::where('property_uuid', Session::get('property_uuid'))
                 ->where('contracts.status','active')
                 ->where('tenant_uuid', $tenant_uuid[$i])
                 ->pluck('rent');
@@ -73,7 +73,7 @@ class PropertyBillExpressController extends Controller
                 $attributes['reference_no'] = $reference_no->bill_reference_no;
                 $attributes['user_id'] = auth()->user()->id;
                 $attributes['due_date'] = Carbon::parse($request->start)->addDays(7);
-                $attributes['property_uuid'] = Session::get('property');
+                $attributes['property_uuid'] = Session::get('property_uuid');
                 $attributes['batch_no'] = $batch_no;
                 $attributes['is_posted'] = true;
 
@@ -81,11 +81,11 @@ class PropertyBillExpressController extends Controller
 
             }
 
-            app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, $bill_count, 3);
+            app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, $bill_count, 3);
 
             DB::commit();
 
-            return redirect('/property/'.Session::get('property').'/bill/'.$batch_no)->with('success', 'Success!');
+            return redirect('/property/'.Session::get('property_uuid').'/bill/'.$batch_no)->with('success', 'Success!');
 
         }catch(\Exception $e)
         {   

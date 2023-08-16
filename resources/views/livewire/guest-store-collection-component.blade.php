@@ -199,7 +199,7 @@
         <div class="mt-5 bg-white-500">
             <div class="relative overflow-x-auto sm:rounded-lg">
                 <form method="POST" id="edit-form" enctype="multipart/form-data"
-                    action="/property/{{ Session::get('property') }}/guest/{{ $guest->uuid }}/bills/{{ $batch_no }}/pay/update">
+                    action="/property/{{ Session::get('property_uuid') }}/guest/{{ $guest->uuid }}/bills/{{ $batch_no }}/pay/update">
                     @method('patch')
                     @csrf
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -223,7 +223,7 @@
                                 <x-td>{{Carbon\Carbon::parse($bill->created_at)->format('M d,Y')}}
                                 </x-td>
                                 <x-td>{{$bill->particular->particular }}</x-td>
-                               <x-td>{{ App\Models\Unit::find($bill->unit_uuid)->unit }}</x-td>
+                                <x-td>{{ App\Models\Unit::find($bill->unit_uuid)->unit }}</x-td>
                                 <x-td>{{Carbon\Carbon::parse($bill->start)->format('M d,
                                     Y').'-'.Carbon\Carbon::parse($bill->end)->format('M d, Y') }}
                                 </x-td>
@@ -243,7 +243,7 @@
                             @endforeach
                         </tbody>
                         <tbody>
-                        
+
                             <tr>
                                 <x-td><b>Total</b></x-td>
                                 <x-td></x-td>
@@ -257,12 +257,12 @@
                                 <x-td>
                                     <b>{{ number_format($collections->sum('bill'), 2) }}</b>
                                 </x-td>
-                        
+
                                 <x-td>
                                     <b>{{ number_format($collections->sum('bill'), 2) }}</b>
                                 </x-td>
                             </tr>
-                        
+
                         </tbody>
                     </table>
                 </form>
@@ -272,7 +272,7 @@
 
     <div class="flex justify-end p-10 mt-5">
         <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-            href="/property/{{ Session::get('property') }}/guest/{{ $guest->uuid }}/bills">
+            href="/property/{{ Session::get('property_uuid') }}/guest/{{ $guest->uuid }}/bills">
             Cancel
         </a>
         <button type="button" form="edit-form"

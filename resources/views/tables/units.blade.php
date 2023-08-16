@@ -19,17 +19,17 @@
             <x-td>
                 @if(Session::get('tenant_uuid'))
                 <a class="text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/tenant/{{ Session::get('tenant_uuid') }}/contract/{{ Str::random(8) }}/create">{{
+                    href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}/tenant/{{ Session::get('tenant_uuid') }}/contract/{{ Str::random(8) }}/create">{{
                     $unit->unit }}</a>
                 @elseif(Session::get('owner_uuid'))
                 <a class="text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/owner/{{ Session::get('owner_uuid') }}/deed_of_sale/{{ Str::random(8) }}/create">{{
+                    href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}/owner/{{ Session::get('owner_uuid') }}/deed_of_sale/{{ Str::random(8) }}/create">{{
                     $unit->unit }}<a />
-                @else
-                <a class="text-blue-500 text-decoration-line: underline"
+                    @else
+                    <a class="text-blue-500 text-decoration-line: underline"
                         href="/property/{{ $unit->property_uuid }}/unit/{{ $unit->uuid }}">{{ $unit->unit
                         }}</a>
-                @endif
+                    @endif
             </x-td>
             <x-td>{{ $unit->status->status}}</x-td>
             <x-td>{{ $unit->category->category }}</x-td>

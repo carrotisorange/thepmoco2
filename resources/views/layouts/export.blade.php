@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    
+
     <style>
         @page {
             margin: 100px 25px;
@@ -77,48 +77,48 @@
         z-index: -1;
         opacity: 0.2;
         } */
-</style>
+    </style>
 
 
 </head>
 
 <body>
     <!-- Define header and footer blocks before your content -->
-    @if(Session::get('property'))
+    @if(Session::get('property_uuid'))
     <header>
-        {{ Session::get('property_name') }} | @yield('title')
+        {{ Session::get('property') }} | @yield('title')
         <br>
-        <h5>{{ App\Models\Property::find(Session::get('property'))->country->country }},
-            {{ App\Models\Property::find(Session::get('property'))->province->province }},
-            {{ App\Models\Property::find(Session::get('property'))->city->city }},
-            {{ App\Models\Property::find(Session::get('property'))->barangay }}
+        <h5>{{ App\Models\Property::find(Session::get('property_uuid'))->country->country }},
+            {{ App\Models\Property::find(Session::get('property_uuid'))->province->province }},
+            {{ App\Models\Property::find(Session::get('property_uuid'))->city->city }},
+            {{ App\Models\Property::find(Session::get('property_uuid'))->barangay }}
             <hr>
             <br>
         </h5>
     </header>
     <footer>
-    
+
         <h5>
-            For inquiries reach us at: {{ App\Models\Property::find(Session::get('property'))->email }} /
-            {{ App\Models\Property::find(Session::get('property'))->mobile }}
+            For inquiries reach us at: {{ App\Models\Property::find(Session::get('property_uuid'))->email }} /
+            {{ App\Models\Property::find(Session::get('property_uuid'))->mobile }}
         </h5>
-        {{ Session::get('property_name') }} Copyright &copy;
+        {{ Session::get('property') }} Copyright &copy;
         <?php echo date("Y");?>
     </footer>
     @else
 
-<header>
-    <br>
-    <h5>
-        @yield('title')
-        <hr>
+    <header>
         <br>
-    </h5>
-</header>
-<footer>
-     Copyright &copy;
-    <?php echo date("Y");?>
-</footer>
+        <h5>
+            @yield('title')
+            <hr>
+            <br>
+        </h5>
+    </header>
+    <footer>
+        Copyright &copy;
+        <?php echo date("Y");?>
+    </footer>
     @endif
     <main class="center">
         @yield('content')
@@ -127,13 +127,14 @@
         </p>
     </main>
 
-  {{--  <div class="watermark">
-<img src="https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-6/240803611_1243262802782845_2256620312332033835_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=p3MumaNIVewAX_4yCfX&_nc_ht=scontent.fmnl17-2.fna&oh=00_AfCmU3j8-tp1lT3N-DmAtLdmKftAzut2N6zqlKZSfRmPAw&oe=647D0234" alt="martha logo" width="500" height="500">
-</div>
+    {{-- <div class="watermark">
+        <img src="https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-6/240803611_1243262802782845_2256620312332033835_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=p3MumaNIVewAX_4yCfX&_nc_ht=scontent.fmnl17-2.fna&oh=00_AfCmU3j8-tp1lT3N-DmAtLdmKftAzut2N6zqlKZSfRmPAw&oe=647D0234"
+            alt="martha logo" width="500" height="500">
+    </div>
 
-<pre>
-</pre> 
---}}
+    <pre>
+</pre>
+    --}}
 </body>
 
 </html>
