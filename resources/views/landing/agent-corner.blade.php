@@ -23,7 +23,7 @@
 </style>
 
         <div class="max-w-7xl p-10 mt-12 sm:mt-16 lg:mt-0">
-                <h2 class="font-semibold text-xl text-center">Agent Enrollment Form</h2>
+                <h2 class="font-semibold text-xl text-center">Property Manager Enrollment Form</h2>
                   <!-- Contact form -->
                   <div class="py-10 px-6 sm:px-10">
                     
@@ -69,7 +69,7 @@
                         </div>
 
                         <div class="font-medium py-8 col-span-3">
-                            <h2>Property Address</h2>
+                            <h2>Address</h2>
                         </div>
 
                         <div class="col-span-3 sm:col-span-3 lg:col-span-1">
