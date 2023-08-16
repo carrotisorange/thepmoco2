@@ -137,7 +137,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <img class="w-32" src="{{ asset('/brands/propsuite/propsuite.png') }}">
   </div>
   <div class="pt-16 flex justify-center items-center h-full">
-      <p class="block text-2xl font-semibold text-gray-700">Hi there, we are moving out!</p>
+      <p class="block text-2xl font-semibold text-gray-700">Hi there, we are moving to a new home!</p>
   </div>
       <div class="pt-10 flex justify-center items-center h-full">
       <p class="block text-base">Check out our new website at:</p>
