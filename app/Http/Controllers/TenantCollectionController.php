@@ -108,7 +108,7 @@ class TenantCollectionController extends Controller
          $ar_no = app('App\Http\Controllers\AcknowledgementReceiptController')->get_latest_ar($property->uuid);
 
          $counter = $this->get_selected_bills_count($batch_no, $tenant->uuid, $property->uuid);
-            
+
          for($i=0; $i< $counter; $i++)
          {
             $collection = (double) $request->input("collection_amount_".$i);
@@ -180,8 +180,7 @@ class TenantCollectionController extends Controller
          return Collection::where('property_uuid', $property_uuid)
          ->where('tenant_uuid',$tenant_uuid)
          ->where('batch_no', $batch_no)
-         ->where('is_posted', 0)
-         ->max('id');
+         ->count();
       }
 
      public function send_payment_to_tenant($tenant, $ar_no, $form, $payment_made, $user, $role, $collection)

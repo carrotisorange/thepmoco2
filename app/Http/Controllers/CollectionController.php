@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Collection;
 use App\Models\Property;
 use Carbon\Carbon;
+use App\Models\Bill;
 
 class CollectionController extends Controller
 {
@@ -24,15 +25,23 @@ class CollectionController extends Controller
     
     public function update($ar_no, $bill_id, $collection, $form, $created_at)
     {
-       Collection::where('bill_id', $bill_id)
+        $bill = Bill::find($bill_id);
+
+        if($bill->particular_id == 2 || $bill->particular_id == 3){
+            Bill::where('id', $bill_id)
+            ->update([
+                'bill' => -$bill->bill
+            ]);
+        }
+
+        Collection::where('bill_id', $bill_id)
          ->update([
           'ar_no' => $ar_no,
           'collection' => $collection,
           'form' => $form,
           'is_posted' => true,
           'created_at' => $created_at
-         ]);
-
+        ]);
     }
 
     function shortNumber($number = null)

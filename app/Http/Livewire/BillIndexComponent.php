@@ -343,6 +343,7 @@ class BillIndexComponent extends Component
          
       return view('livewire.bill-index-component', [
          'bills' => $this->get_bills(),
+         'collections' => Collection::where('property_uuid', $this->property->uuid)->posted()->get(),
          'statuses' =>  $this->get_statuses(),
          'particulars' => $particulars,
          'dates_posted' => $dates_posted,
