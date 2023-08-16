@@ -37,18 +37,18 @@ body {
   <header id="" class="fixed w-full top-0 z-50">
     <nav id="nav" class="lg:sticky top-0 z-10 relative px-4 py-5 flex justify-between items-center">
         <a class="text-3xl font-bold leading-none" href="">
-            <img class="ml-5 h-8" src="{{ asset('/brands/propsuite/proprent.png') }}" alt="proprent logo">
+            <img class="ml-5 h-10" src="{{ asset('/brands/propsuite/proprent.png') }}" alt="proprent logo">
         </a>
 
 
 
         <!-- desktop nav -->
-        <!-- <ul
+         <ul
             class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:items-center lg:w-auto lg:space-x-10">
-            <li><a class="text-base font-bold text-purple-900 hover:text-yellow-200" href="/dashboard">Home</a></li>
-            <li><a class="text-base font-bold text-purple-900 hover:text-yellow-200" href="/lot">About</a></li>
-            <li><a class="text-base font-bold text-purple-900 hover:text-yellow-200" href="/design">Support</a></li>
-        </ul> -->
+            <li><a class="text-base font-bold text-purple-900 hover:text-yellow-200 underline" href="/">Go Back to Propsuite Home</a></li>
+            <!-- <li><a class="text-base font-bold text-purple-900 hover:text-yellow-200" href="/lot">About</a></li>
+            <li><a class="text-base font-bold text-purple-900 hover:text-yellow-200" href="/design">Support</a></li> -->
+        </ul> 
 
 
 
@@ -278,7 +278,7 @@ body {
               <div class="px-20 flex w-full items-center justify-between space-x-6 p-6">
                 <div class="flex-1 truncate">
                   <div class="flex items-center space-x-3">
-                    <h3 class="truncate text-sm font-medium text-white">Free to successful Rental</h3>
+                    <h3 class="truncate text-sm font-medium text-white">List Multiple Properties</h3>
                     
                   </div>
 
@@ -346,7 +346,7 @@ body {
               
               <ul role="list" class="mt-4 space-y-4">
                 <li>
-                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Terms and Condiiton</a>
+                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Terms and Condiitons</a>
                 </li>
 
           
