@@ -37,9 +37,14 @@ require __DIR__.'/checkout.php';
 
 //liq rfp
 
-Route::get('/pending-approval', function(){
-    return view('accountpayables.pending-approval');
+Route::get('/pending-approval-manager', function(){
+    return view('accountpayables.pending-approval-manager');
 });
+
+Route::get('/pending-approval-ap', function(){
+    return view('accountpayables.pending-approval-ap');
+});
+
 
 Route::get('/liquidation', function(){
     return view('properties.liquidations.liquidation');
@@ -47,6 +52,10 @@ Route::get('/liquidation', function(){
 
 Route::get('/liquidation-view', function(){
     return view('properties.liquidations.liquidation-view');
+});
+
+Route::get('/step3', function(){
+    return view('properties.liquidations.step3');
 });
 
 

@@ -4,11 +4,6 @@
 <div class="mx-auto px-4 sm:px-6 lg:px-8 overflow-x-auto">
     <div class="pt-6 pb-3 flex justify-between">
         <h1 class="text-xl font-medium mx-8">Liquidation Details</h1>
-        <div class="flex justify-end space-x-4"> 
-            <button class="px-3 py-2 rounded-lg bg-purple-500 text-sm text-white">Export</button>
-            <button class="px-3 py-2 rounded-lg bg-purple-500 text-sm text-white">Send Email</button>
-            <button class="px-3 py-2 rounded-lg bg-purple-500 text-sm text-white">Save</button>
-        </div>
     </div>
         <div class="mt-5 px-4 sm:px-6 lg:px-8">
             <div class="sm:flex sm:items-center">
