@@ -322,8 +322,8 @@
                         </div>
                     </div>
 
-                    <div class="hidden p-4 purple" id="remittance-summary" role="tabpanel"
-                        aria-labelledby="remittance-summary-tab">
+                    <div  class="hidden p-4 purple" id="remittance-summary" role="tabpanel"
+                        aria-labelledby="remittance-summary-tab" wire:ignore>
                         <div>
                             <div class="items-center justify-center">
                                 <select id="small" wire:model="remittance_date"
