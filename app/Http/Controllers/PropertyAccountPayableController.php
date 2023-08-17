@@ -15,6 +15,8 @@ class PropertyAccountPayableController extends Controller
 {
     public function index(Property $property, $status=null)
     {
+        return view('layouts.under-construction');
+
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',17);
 
         //$this->authorize('is_account_payable_read_allowed');
