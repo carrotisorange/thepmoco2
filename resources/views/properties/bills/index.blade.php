@@ -1,6 +1,6 @@
 <x-new-layout>
     @section('title','Bills | '. Session::get('property'))
-    {{-- @can('accountreceivable') --}}
+    {{-- @can('accountreceivable') 
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex min-h-full flex-col bg-white lg:relative">
             <div class="flex flex-grow flex-col">
@@ -116,7 +116,7 @@
             </div>
         </div>
     </div>
-    {{-- @else
+    {{-- @else  --}}
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
             @livewire('bill-index-component', [
@@ -126,7 +126,7 @@
             'batch_no' => $batch_no])
         </div>
     </div>
-    @endif --}}
+    {{-- @endif --}} 
     @include('modals.create-particular')
     @include('modals.create-express-bill')
 </x-new-layout>
