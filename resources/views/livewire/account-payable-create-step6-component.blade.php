@@ -196,7 +196,7 @@
                 {{-- reject, approve button --}}
                 <div class="col-start-6 flex items-center justify-end">
 
-                    <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
+                    <!-- <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
                         href="#/" wire:click="markAsReleased">
                         Skip
                     </a>
@@ -205,7 +205,14 @@
 
 
                         Finish
-                    </button>
+                    </button> -->
+
+                    <button
+                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+
+
+                        Next
+                    </button> 
 
                 </div>
 

@@ -322,10 +322,10 @@
                         </div>
                     </div>
 
-                    <div class="hidden p-4 purple" id="remittance-summary" role="tabpanel"
-                        aria-labelledby="remittance-summary-tab">
+                    <div  class="hidden p-4 purple" id="remittance-summary" role="tabpanel"
+                        aria-labelledby="remittance-summary-tab" wire:ignore>
                         <div>
-                            <div class="items-center justify-center">
+                            {{-- <div class="items-center justify-center">
                                 <select id="small" wire:model="remittance_date"
                                     class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
 
@@ -339,10 +339,10 @@
                                     @endif
                                     @endforeach
                                 </select>
-                                {{-- <button
+                                <button
                                     class="text-xs text-white bg-purple-500 hover:bg-gray-400 p-2 rounded-lg ">Send
-                                    Email to Owner</button> --}}
-                            </div>
+                                    Email to Owner</button>
+                            </div> --}}
 
 
                             {{-- <div class="-mt-10 flex items-center px-8 py-5 border-b">
@@ -353,7 +353,7 @@
                                 </div>
                             </div> --}}
 
-                            <div class="flex items-center px-8 py-5 border-b">
+                            {{-- <div class="flex items-center px-8 py-5 border-b">
                                 <div class="w-0 flex-1 pt-0.5">
                                     <div class="grid grid-cols-2">
                                         <p class="text-sm font-medium text-gray-900">Date
@@ -363,12 +363,12 @@
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="flex items-center px-8 py-5 border-b">
                                 <div class="w-0 flex-1 pt-0.5">
                                     <div class="grid grid-cols-2">
-                                        <p class="text-sm font-medium text-gray-900">Amount Collected
+                                        <p class="text-sm font-medium text-gray-900">Total Amount Collected
                                         </p>
                                         <p class="mt-1 text-sm font-base text-gray-500">
                                             {{ number_format($remittances->sum('monthly_rent') +
@@ -382,7 +382,7 @@
                             <div class="flex items-center px-8 py-5 border-b">
                                 <div class="w-0 flex-1 pt-0.5">
                                     <div class="grid grid-cols-2">
-                                        <p class="text-sm font-medium text-gray-900">Rent
+                                        <p class="text-sm font-medium text-gray-900">Total Rent
                                         </p>
                                         <p class="mt-1 text-sm font-base text-gray-500">
                                             {{ number_format($remittances->sum('monthly_rent'), 2)}}
@@ -393,13 +393,27 @@
 
                             <div class="flex items-center px-8 py-5 border-b">
                                 <div class="w-0 flex-1 pt-0.5">
-                                    <p class="text-sm font-medium text-gray-900">Deductions
+                                    <div class="grid grid-cols-2">
+                                        <p class="text-sm font-medium text-gray-900">Total Deductions
+                                        </p>
+                                        <p class="mt-1 text-sm font-base text-gray-500">
+                                            {{ number_format($remittances->sum('total_deductions'), 2)}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center px-8 py-5 border-b">
+                                <div class="w-0 flex-1 pt-0.5">
+                                    <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                       
                                     </p>
                                     <div class="grid grid-cols-2">
 
                                         <p class="flex-col mt-1 text-sm font-base text-gray-500">
                                             Bank Transfer Fee
                                         </p>
+
                                         <p class="flex-col mt-1 text-sm font-base text-gray-500">
                                             {{ number_format($remittances->sum('bank_transfer_fee'), 2)}}
                                         </p>
@@ -572,22 +586,11 @@
 
 
 
-                            <div class="flex items-center px-8 py-5 border-b">
-                                <div class="w-0 flex-1 pt-0.5">
-                                    <div class="grid grid-cols-2">
-                                        <p class="text-sm font-medium text-gray-900">Total Deductions
-                                        </p>
-                                        <p class="mt-1 text-sm font-base text-gray-500">
-                                            {{ number_format($remittances->sum('total_deductions'), 2)}}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
+                         
                             <div class="flex items-center px-8 py-5">
                                 <div class="w-0 flex-1 pt-0.5">
                                     <div class="grid grid-cols-2">
-                                        <p class="text-sm font-medium text-gray-900">Net Remittance
+                                        <p class="text-sm font-medium text-gray-900">Total Remittance
                                         </p>
                                         <p class="mt-1 text-sm font-base text-gray-500">
                                             {{ number_format($remittances->sum('remittance'), 2)}}

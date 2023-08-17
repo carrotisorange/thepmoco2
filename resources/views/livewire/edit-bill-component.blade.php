@@ -16,11 +16,11 @@
                     <div class="mt-5 sm:mt-6">
                         <label class="text-sm" for="tenant">Bill to</label>
                         @if($bill_details->tenant_uuid)
-                        <input type="text" readonly value="{{ App\Models\Tenant::find($bill_details->tenant_uuid)->tenant }} }} (T)"
+                        <input type="text" readonly value="{{ App\Models\Tenant::find($bill_details->tenant_uuid)->tenant }} (T)"
                             class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="" required>
                         @elseif($bill_details->owner_uuid)
-                        <input type="text" readonly value="{{ App\Models\Owner::find($bill_details->owner_uuid)->owner }} }} (O)"
+                        <input type="text" readonly value="{{ App\Models\Owner::find($bill_details->owner_uuid)->owner }} (O)"
                             class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="" required>
                         @elseif($bill_details->guest_uuid)
@@ -39,6 +39,22 @@
                         <input type="text" readonly value="{{ $bill_details->status}}"
                             class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="" required>
+                    </div>
+
+                    <div class="mt-5 sm:mt-6">
+                        <label class="text-sm" for="particular_id">Particular</label>
+                        <x-form-select id="particular_id" name="particular_id" wire:model="particular_id" class="">
+                          @foreach ($particulars as $particular)
+                        <option value="{{ $particular->particular_id }}" {{ old('particular_id')==$particular->
+                            particular_id?
+                            'selected': 'Select one'
+                            }}>{{ $particular->particular }}</option>
+                        @endforeach
+                        </x-form-select>
+                    
+                        @error('particular_id')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
                     </div>
                     
                     <div class="mt-5 sm:mt-6">
