@@ -395,11 +395,15 @@
                                 <div class="w-0 flex-1 pt-0.5">
                                     <p class="text-sm font-medium text-gray-900">Deductions
                                     </p>
-                                    <div class="grid grid-cols-2">
+                                    <div class="grid grid-cols-3 space-x-3">
 
                                         <p class="flex-col mt-1 text-sm font-base text-gray-500">
                                             Bank Transfer Fee
                                         </p>
+                                        <!-- remarks -->
+                                        <input class="border flex-col mt-1 text-xs font-base text-gray-500">
+                                        </input>
+
                                         <p class="flex-col mt-1 text-sm font-base text-gray-500">
                                             {{ number_format($remittances->sum('bank_transfer_fee'), 2)}}
                                         </p>
