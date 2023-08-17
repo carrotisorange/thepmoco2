@@ -143,11 +143,15 @@ class TenantCollectionController extends Controller
                app('App\Http\Controllers\BillController')->update_bill_initial_payment($bill_id, $collection);
             }
          }
-            if(PaymentRequest::find(Session::get('payment_request_id'))->proof_of_payment != null){
-                $proof_of_payment = PaymentRequest::find(Session::get('payment_request_id'))->proof_of_payment;
+            if(Session::has('payment_request_id')){
+                $proof_of_payment = PaymentRequest::where('id',Session::get('payment_request_id'))->pluck('proof_of_payment')->first();
           
             }else{
-                $proof_of_payment = $request->proof_of_payment->store('proof_of_payments');
+                if($request->proof_of_payment != null){
+                  $proof_of_payment = $request->proof_of_payment->store('proof_of_payments');
+                }else{
+                  $proof_of_payment = null;
+                }
             }  
 
 

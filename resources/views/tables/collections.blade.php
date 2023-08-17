@@ -48,6 +48,7 @@
                 @foreach ($bill_nos->take(2) as $bill_no)
                 {{ $bill_no->bill->bill_no }},
                 @endforeach
+                ...
             </x-td>
             <x-td>
                 @if($collection->tenant_uuid)

@@ -34,7 +34,7 @@ class CollectionTenantEditComponent extends Component
         $this->tenant = $tenant;
         $this->collections = $collections;
         $this->created_at = Carbon::now()->format('Y-m-d');
-        $this->proof_of_payment = PaymentRequest::find(Session::get('payment_request_id'))->proof_of_payment;
+        $this->proof_of_payment = PaymentRequest::where('id',Session::get('payment_request_id'))->pluck('proof_of_payment')->first();
     }
 
     protected function rules()
