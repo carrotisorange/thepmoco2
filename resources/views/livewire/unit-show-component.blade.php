@@ -325,7 +325,7 @@
                     <div  class="hidden p-4 purple" id="remittance-summary" role="tabpanel"
                         aria-labelledby="remittance-summary-tab">
                             <div class="flex justify-end items-center ">
-                                <a href="unit-remittance" class="border text-sm px-2 py-1">See More Remittance</a>
+                                <a href="/unit-remittance" class="border text-sm px-2 py-1">See More Remittance</a>
                             </div>
                         <div>
                             {{-- <div class="items-center justify-center">
