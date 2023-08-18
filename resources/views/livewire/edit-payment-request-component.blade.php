@@ -5,12 +5,17 @@
                 <div class="grid grid-cols-4 gap-6">
                     <div class="sm:col-span-6">
                         <x-form-select name="mode_of_payment" wire:model="mode_of_payment">
-                           <option value="cash" {{ old('mode_of_payment')=='cash' ? 'selected' : 'Select one' }}>cash</option>
+                           {{-- <option value="cash" {{ old('mode_of_payment')=='cash' ? 'selected' : 'Select one' }}>cash</option> --}}
                            <option value="bank" {{ old('mode_of_payment')=='bank' ? 'selected' : 'Select one' }}>bank</option>
                            <option value="cheque" {{ old('mode_of_payment')=='cheque' ? 'selected' : 'Select one' }}>cheque</option>
                            <option value="e-wallet" {{ old('mode_of_payment')=='e-wallet' ? 'selected' : 'Select one' }}>e-wallet</option>
                         </x-form-select>
                     </div>
+
+                    @error('mode_of_payment')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                    
     
                    <div class="col-span-6">
                     
@@ -30,15 +35,27 @@
                                     </label>
                                 </div>
                                 <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
-                                @if($proof_of_payment)
-                                <span class="text-red-500 text-xs mt-2">
-                                    <a href="#/" wire:click="removeAttachment()">Remove the
-                                        attachment</a></span>
-                                or
-                                <span class="text-blue-500 text-xs mt-2">
-                                    <a target="_blank" href="{{ asset('/storage/'.$proof_of_payment) }}">View the
-                                        attachment.</a></span>
-                                @endif
+                                @error('proof_of_payment')
+
+                                @else
+
+                                    {{-- @if($payment_request->proof_of_payment)
+                                    <span class="text-blue-500 text-xs mt-2">
+                                        <a target="_blank" href="{{ asset('/storage/'.$payment_request->proof_of_payment) }}">View the
+                                            attachment.</a></span>
+                                    @endif --}}
+                                    @if($proof_of_payment)
+                                    <span class="text-red-500 text-xs mt-2">
+                                        <a href="#/" wire:click="removeAttachment()">Remove the
+                                            attachment</a></span>
+                                    or
+                                
+                                    <span class="text-blue-500 text-xs mt-2">
+                                            <a target="_blank" href="{{ asset('/storage/'.$proof_of_payment) }}">View the
+                                                attachment.</a></span>
+                                      
+                                    @endif
+                                @enderror
                             </div>
                     
                     
@@ -46,10 +63,10 @@
                         @error('proof_of_payment')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @else
-                        @if ($proof_of_payment)
-                        <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i></p>
-                    
-                        @endif
+                            @if ($proof_of_payment)
+                            <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i></p>
+                        
+                            @endif
                         @enderror
                     </div>
                  <div class="col-span-6 text-right">
