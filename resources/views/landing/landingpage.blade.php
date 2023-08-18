@@ -173,8 +173,8 @@
                         <script>
                           var typed = new Typed(".threeWords", {
                               strings: ["Property Management System", "Rental Property Listings", "Property Management Services", "Fullsuite Digital Services"],
-                              typeSpeed: 35,
-                              backSpeed: 35,
+                              typeSpeed: 30,
+                              backSpeed: 25,
                               loop: true
                           });
                         </script>
@@ -195,9 +195,9 @@
                       <img src="{{ asset('/brands/propsuite/propman.png') }}" class="w-36">
                     </div>
                   
-                    <div class="lg:block lg:pb-20 md:max-w-lg xl:max-w-md sm:ml-12 sm:py-2  mx-5">
+                    <div class="lg:block lg:pb-20 md:max-w-lg xl:max-w-md sm:ml-12 sm:py-2">
                       <p class="text-base font-light mt-10 text-white text-justify">Property Management System for long term and short term rental properties and home owners associations.</p>
-                      <div class="mt-10 flex justify-center items-center space-x-5">
+                      <div class="mt-10 flex justify-center items-center space-x-5 m-8">
                         <button class="propmanOrangebg rounded-full"> <a href="https://thepmo.co/select-a-plan" class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Free Trial</a></button>
                         <button> <a href="demopage" class="w-48 flex justify-center py-3 px-4 border border-gray-400 rounded-full shadow-sm text-sm font-medium text-white hover:bg-purple-300  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">View Demo</a></button>            
                       </div>
@@ -211,11 +211,11 @@
                   <div id="" class="sm:block lg:flex md:flex min-h-screen py-16">
                   
 
-                  <div class="absolute right-0 mx-20 justify-center sm:-py-2 md:py-20 lg:py-8">
+                  <div class="absolute right-0 mx-7 lg:mx-20 justify-center sm:-py-2 md:py-20 lg:py-8">
                     <div class="flex items-center justify-center lg:justify-start sm:justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-10">
                       <img src="{{ asset('/brands/propsuite/proprent.png') }}" class="w-36">
                     </div>
-                    <div class="lg:block lg:pb-20 md:max-w-lg xl:max-w-md sm:ml-12 sm:py-2  mx-5">
+                    <div class="lg:block lg:pb-20 md:max-w-lg xl:max-w-md sm:ml-12 sm:py-2">
                       <p class="text-base font-light mt-10 text-white text-justify">Leasing platform for rental property owners to list vacant rooms and units for long term or short term rental and a Leasing Marketplace for tenants to find available place.</p>
                       <div class="mt-10 flex justify-end items-center space-x-5">
                         <button class="rounded-full"> <a href="proprent-search" class="proprentOrangebg w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Coming Soon</a></button>
@@ -230,7 +230,7 @@
                   <div id="" class="sm:block lg:flex md:flex min-h-screen py-16">
                   
 
-                  <div class="absolute right-0 mx-20 justify-center sm:-py-2 md:py-20 lg:py-8">
+                  <div class="absolute right-0 mx-7 lg:mx-20 justify-center sm:-py-2 md:py-20 lg:py-8">
                   <div class="flex items-center  justify-center lg:justify-start sm:justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-10">
 
                   <img src="{{ asset('/brands/propsuite/propbiz.png') }}" class="w-36">
@@ -257,7 +257,7 @@
                 
                   </div>
 
-                  <div class="absolute right-0 mx-20 lg:justify-center sm:-py-2 md:py-20 lg:py-8">
+                  <div class="absolute right-0 mx-7 lg:mx-20 lg:justify-center sm:-py-2 md:py-20 lg:py-8">
                     <div class="lg:block lg:py-20 md:max-w-lg xl:max-w-md sm:ml-12 sm:py-2  mx-5">
                       <p class="text-base font-light mt-10 text-white text-justify">We provide full suite digital solution for rental property communities and home owners associations.</p>
                       <div class="mt-10 flex justify-end items-center space-x-5">
@@ -284,7 +284,7 @@
 
               var slides = document.querySelectorAll(`#${slideshow.id} [role="list"] .slide`);
 
-              var index = 0, time = 3500;
+              var index = 0, time = 3000;
               slides[index].classList.add('active');
 
               setInterval( () => {
@@ -771,7 +771,7 @@
     var text = ["Property Management System", "Rental Property Listings", "Property Management Services"];
     var counter = 0;
     var elem = document.getElementById("changeText");
-    var inst = setInterval(change, 2000);
+    var inst = setInterval(change, 3000);
 
     function change() {
       elem.innerHTML = text[counter];
@@ -792,7 +792,7 @@
     i = (i + 1) % color.length;
     }
     
-    setInterval(change, 3500);
+    setInterval(change, 3000);
     </script>
 
 
