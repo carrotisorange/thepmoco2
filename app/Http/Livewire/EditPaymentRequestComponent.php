@@ -17,11 +17,16 @@ class EditPaymentRequestComponent extends Component
     public $mode_of_payment;
 
 
+    public function mount($payment_request){
+        $this->mode_of_payment = 'bank';
+        $this->proof_of_payment = $this->payment_request[0]->proof_of_payment;
+    }
+
     protected function rules()
     {
         return [
-            'mode_of_payment' => 'required',
-            'proof_of_payment' => 'required | mimes:jpg,bmp,png,pdf,docx|max:10240',
+                'mode_of_payment' => 'required',
+                'proof_of_payment' => 'required | mimes:jpg,bmp,png,pdf,docx|max:10240',
             ];
     }
 
@@ -33,9 +38,12 @@ class EditPaymentRequestComponent extends Component
     public function updatePaymentRequest(){
         sleep(2);
 
+        $this->validate();
+
         PaymentRequest::where('id', $this->payment_request->pluck('id')->first())->update([
             'mode_of_payment' => $this->mode_of_payment,
-            'proof_of_payment' =>  $this->proof_of_payment->store('proof_of_payments')
+            'proof_of_payment' =>  $this->proof_of_payment->store('proof_of_payments'),
+            'updated_at' => null
         ]);
 
         return redirect('/8/tenant/'.auth()->user()->username.'/payments/pending')->with('success', 'Success!');
