@@ -193,9 +193,9 @@ body {
                 <ul class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-10">
                   <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="/">Home</a></li>
                   
-                  <li>
+                  <!-- <li>
                     <button class="text-gray-200 hover:text-gray-400 font-medium rounded-lg text-base text-center inline-flex items-center" type="button" data-dropdown-toggle="dropdown">Services <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
-                    <!-- Dropdown menu -->
+                    
                     <div class="hidden text-base z-50 list-none bg-white rounded-lg" id="dropdown">
                     
                         <ul class="" aria-labelledby="dropdown">
@@ -212,7 +212,7 @@ body {
                       </div>
                     
                     
-                    <script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
+                    <script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script> -->
                   </li>
 
                   <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="about">About</a></li>
