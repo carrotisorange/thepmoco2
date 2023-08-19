@@ -50,13 +50,7 @@ class OwnerCollectionController extends Controller
       ]);
     }
 
-    public function get_selected_bills_count($batch_no)
-     {
-        return Collection::where('property_uuid', Session::get('property_uuid'))
-         ->where('batch_no', $batch_no)
-         ->where('is_posted', false)
-         ->max('id');
-     }
+
 
      public function view(Property $property, Owner $owner, Collection $collection)
      {
@@ -111,7 +105,7 @@ class OwnerCollectionController extends Controller
 
          $counter = $this->get_selected_bills_count($batch_no);
       
-         for($i=0; $i<=$counter; $i++)
+         for($i=0; $i< $counter; $i++)
          {
             $collection = (double) $request->input("collection_amount_".$i);
 
@@ -163,4 +157,12 @@ class OwnerCollectionController extends Controller
          return redirect('/property/'.$property->uuid.'/owner/'.$owner->uuid.'/collections')->with('success','Success!');
 
     }
+
+    public function get_selected_bills_count($batch_no)
+     {
+        return Collection::where('property_uuid', Session::get('property_uuid'))
+         ->where('batch_no', $batch_no)
+         ->where('is_posted', false)
+         ->count();
+     }
 }
