@@ -175,7 +175,7 @@ class PropertyGuestController extends Controller
       ->where('guest_uuid',$guest_uuid)
       ->where('batch_no', $batch_no)
       ->where('is_posted', false)
-      ->max('id');
+      ->count();
       }
 
     public function view_attachment(Property $property, Guest $guest, AcknowledgementReceipt $ar)
