@@ -242,9 +242,7 @@ class UnitShowComponent extends Component
             'remittances' => Remittance::where('unit_uuid', $this->unit_details->uuid)
             // ->whereMonth('created_at', Carbon::parse($this->remittance_date)->month)
             ->get(),
-            'dates' => Remittance::where('property_uuid', $this->unit_details->property_uuid)
-            ->groupBy('created_at')    
-            ->get(),
+ 
         ]);
     }
 }

@@ -129,7 +129,7 @@ class BillIndexComponent extends Component
       ->where('start', '>', Carbon::now()->subMonth()->toDateTimeString())
       ->groupBy('tenant_uuid')
       ->orderBy('balance', 'desc')
-      ->get();
+      ->paginate(10);
    }
 
    public function get_bills()

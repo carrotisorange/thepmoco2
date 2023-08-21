@@ -29,7 +29,7 @@ class TenantBillCreateComponent extends Component
 
    public $selectedBills = [];
    public $selectAll = false;  
-   public $status;
+   public $status = 'unpaid';
 
    public $particular_id;
    public $unit_uuid;
@@ -56,10 +56,9 @@ class TenantBillCreateComponent extends Component
 
    public function updatedParticularId(){
       if($this->particular_id === '1'){
-        $rent = Contract::where('tenant_uuid', $this->tenant->uuid)->where('unit_uuid', $this->unit_uuid)->pluck('rent')->first();
-     
-         $this->bill = $rent;
+         $rent = Contract::where('tenant_uuid', $this->tenant->uuid)->where('unit_uuid', $this->unit_uuid)->pluck('rent')->first();
 
+         $this->bill = $rent;
       }
    }
 

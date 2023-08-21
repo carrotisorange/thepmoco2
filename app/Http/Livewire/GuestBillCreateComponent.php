@@ -26,7 +26,7 @@ class GuestBillCreateComponent extends Component
 
    public $selectedBills = [];
    public $selectAll = false;  
-   public $status;
+   public $status = 'unpaid';
 
    public $particular_id;
    public $unit_uuid;

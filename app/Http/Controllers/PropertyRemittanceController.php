@@ -52,4 +52,11 @@ class PropertyRemittanceController extends Controller
             'bank_name' => $bank_name
         ]);
     }
+
+    public function show(Property $property, Unit $unit){
+
+        return view('properties.remittances.show', [
+            'unit' => $unit
+        ]);
+    }
 }

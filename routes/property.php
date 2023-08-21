@@ -74,8 +74,11 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     //property remittances
     //remittance
+    Route::get('/unit/{unit}/remittances', [PropertyRemittanceController::class, 'show']);
+    
     Route::prefix('remittance')->group(function(){
         Route::get('/', [PropertyRemittanceController::class, 'index'])->name('remittances');
+      
     });
 
     //Routes for Property

@@ -39,8 +39,7 @@
                 <select wire:model="building_id"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
                     @foreach($buildings as $building)
-                    <option value="{{ $building->id }}" {{ old('building_id', $unit_details->
-                        building_id) == $building->id ? 'selected' : 'selected' }}>
+                    <option value="{{ $building->id }}" {{ old('building_id', $unit_details->building_id) == $building->id ? 'selected' : 'selected' }}>
                         {{ $building->building }}
                     </option>
                     @endforeach
