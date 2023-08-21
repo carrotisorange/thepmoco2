@@ -21,7 +21,7 @@ class OwnerBillComponent extends Component
 
       public $selectedBills = [];
       public $selectAll = false;  
-      public $status;
+      public $status = 'unpaid';
       public $particular;
 
       public $view = 'listView';

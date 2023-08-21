@@ -97,7 +97,7 @@
             <x-td class="sticky-col first-col">
                 @if($remittance->unit_uuid)
                 <a target="_blank" title="unit" class="text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ $remittance->property_uuid }}/unit/{{ $remittance->unit_uuid }}">
+                    href="/property/{{ $remittance->property_uuid }}/unit/{{ $remittance->unit_uuid }}/remittances">
                     {{ Str::limit(App\Models\Unit::find($remittance->unit_uuid)->unit,20) }} </a>
                 @endif
             </x-td>

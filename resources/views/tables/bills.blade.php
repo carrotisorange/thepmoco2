@@ -1,4 +1,5 @@
 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    @if($bills->count())
     @if($isIndividualView)
     <tbody class="bg-white divide-y divide-gray-200">
         <tr>
@@ -84,6 +85,7 @@
             <x-td></x-td>
         </tr>
     </tbody>
+    @endif
     @endif
     <thead class="bg-gray-50">
         <tr>

@@ -325,7 +325,7 @@
                     <div  class="hidden p-4 purple" id="remittance-summary" role="tabpanel"
                         aria-labelledby="remittance-summary-tab">
                             <div class="flex justify-end items-center ">
-                                <a href="/unit-remittance" class="border text-sm px-2 py-1">See More Remittance</a>
+                                <button onclick="window.location.href='/property/{{ $unit_details->property_uuid }}/unit/{{ $unit_details->uuid }}/remittances'"" class="nline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">See More Remittance</button>
                             </div>
                         <div>
                             {{-- <div class="items-center justify-center">
