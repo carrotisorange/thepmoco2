@@ -18,7 +18,10 @@ Accept Invitation
 @endcomponent
 
 Regards,<br>
-{{ auth()->user()->name }}
+{{ Session::get('property') }}
+<br><br>
+For inquiries reach us at: {{ Session::get('property_email') }} / {{ Session::get('property_mobile') }}
+<br><br>
 
 
 @endcomponent

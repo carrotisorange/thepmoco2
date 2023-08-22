@@ -28,4 +28,8 @@ class Remittance extends Model
     {
         return $this->belongsTo(Tenant::class);
     }
+
+    public function remittance(){
+        return $this->belongsTo(Remittance::class);
+    }
 }

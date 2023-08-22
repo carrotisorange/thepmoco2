@@ -7,7 +7,7 @@
             <div class=" p-4 purple" id="remittance-summary" role="tabpanel" aria-labelledby="remittance-summary-tab">
     
                 <div class="sm:flex sm:items-center justify-between space-x-6 pb-8">
-                    <div class="underline text-sm text-purple-500">Go back to Unit</div>
+                    <div class="underline text-sm text-purple-500"><a href="/property/{{ $unit->property_uuid }}/unit/{{ $unit->uuid }}">Go back to Unit</a></div>
                     <div class="px-8 text-xl font-medium">
                         Unit <b>{{ $unit->unit }}</b> Remittance
                     </div>
@@ -26,10 +26,13 @@
                             @endforeach
                         </select>
                     </div>
-    
-                    <button class="px-2 py-1 rounded-full text-sm text-center w-56 text-white bg-purple-500">Send to
+                    
+                    <form wire:submit.prevent="sendRemittanceToOwner">
+                    <button type="submit" wire:loading.remove class="px-2 py-1 rounded-full text-sm text-center w-56 text-white bg-purple-500">Send to
                         Owner</button>
-    
+                    <button type="button" disabled wire:loading class="px-2 py-1 rounded-full text-sm text-center w-56 text-white bg-purple-500">
+                        Loading...</button>    
+                    </form>
                 </div>
     
     

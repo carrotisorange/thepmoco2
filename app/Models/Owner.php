@@ -79,6 +79,11 @@ class Owner extends Model
         return $this->hasMany(Collection::class);
     }
 
+    public function remittances()
+    {
+        return $this->hasMany(Remittance::class);
+    }
+
     public static function search($search)
     {
         return empty($search)? static::query()

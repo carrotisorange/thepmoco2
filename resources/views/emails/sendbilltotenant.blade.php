@@ -42,10 +42,9 @@ number_format((($item->bill + $other_fees)-App\Models\Collection::where('bill_id
 <br>
 
 Regards,<br>
-{{ auth()->user()->name }}
+{{ Session::get('property') }}
 <br><br>
-For inquiries reach us at: {{ auth()->user()->email }} /
-{{ auth()->user()->mobile }}
+For inquiries reach us at: {{ Session::get('property_email') }} / {{ Session::get('property_mobile') }}
 <br><br>
 
 @endcomponent
