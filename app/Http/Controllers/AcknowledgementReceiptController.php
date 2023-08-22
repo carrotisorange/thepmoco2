@@ -10,7 +10,7 @@ class AcknowledgementReceiptController extends Controller
 {
     public function get_latest_ar($property)
     {
-        return Property::find($property)->acknowledgementreceipts->max('ar_no')+1;
+        return Property::find($property)->collections()->max('ar_no')+1;
     }
 
     public function store($tenant_uuid,$owner_uuid,$collection, $property_uuid, $user_id, $ar_no, $mode_of_payment, $batch_no, $cheque_no, $bank, $date_deposited, $created_at, $attachment, $proof_of_payment)
