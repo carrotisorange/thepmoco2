@@ -547,9 +547,9 @@ class PropertyController extends Controller
 
         Session::put('is_account_owner', UserProperty::where('property_uuid', $property_uuid)->where('user_id', auth()->user()->id)->pluck('is_account_owner')->first());
 
-        Session::put('property_email', Property::where('property_uuid', $property_uuid)->pluck('email')->first());
+        Session::put('property_email', Property::find($property_uuid)->email);
         
-        Session::put('property_mobile', Property::where('property_uuid', $property_uuid)->pluck('mobile')->first());
+        Session::put('property_mobile', Property::find($property_uuid)->mobile);
         
     }
 
