@@ -22,7 +22,7 @@
         "laravel/socialite": "^5.5",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.10",
-        "maatwebsite/excel": "*",
+        "maatwebsite/excel": "^3.1",
         "mailchimp/marketing": "^3.0",
         "meilisearch/meilisearch-php": "^1.1",
         "munafio/chatify": "^1.3",
