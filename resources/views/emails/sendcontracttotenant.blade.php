@@ -24,11 +24,11 @@ Status: pending
 <br><br>
 I hope this information helps you settle in and feel right at home.
 <br>
+
 Regards,<br>
-{{ auth()->user()->name }}
+{{ Session::get('property') }}
 <br><br>
-For inquiries reach us at: {{ App\Models\Property::find(Session::get('property_uuid'))->email }} /
-{{ App\Models\Property::find(Session::get('property_uuid'))->mobile }}
+For inquiries reach us at: {{ Session::get('property_email') }} / {{ Session::get('property_mobile') }}
 <br><br>
 
 @endcomponent

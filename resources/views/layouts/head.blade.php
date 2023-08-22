@@ -107,7 +107,6 @@
 
     table th,
     table td {
-
         padding: 15px;
         padding-top: 10px;
         padding-bottom: 10px;
@@ -175,21 +174,21 @@
         width: 100px;
         min-width: 100px;
         max-width: 100px;
-        left: 600px;
+        left: 700px;
     }
 
     .ninth-col {
         width: 100px;
         min-width: 100px;
         max-width: 100px;
-        left: 600px;
+        left: 800px;
     }
 
     .tenth-col {
         width: 100px;
         min-width: 100px;
         max-width: 100px;
-        left: 600px;
+        left: 900px;
     }
 
     .sticky-col {
