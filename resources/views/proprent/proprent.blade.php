@@ -25,10 +25,16 @@ body {
 
 body {
   background-color: #4F3F6D;
+  height:100%;
   }
 
-  #proprent-bg{
+  .proprent-bg{
     background-image: url('/brands/propsuite/proprent-landing-bg.png');
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
   }
 
   #seamless {
@@ -76,14 +82,13 @@ body {
 
 <!-- seamless section -->
 
-          <div id="proprent-bg" class="sm:block lg:flex md:flex min-h-screen py-16">
+          <div class="proprent-bg sm:block lg:flex md:flex min-h-screen py-16">
             <div class="flex-col items-center justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-20 xl:px-36">
               <div class="w-full">
                 <div class="text-gray-300 text-4xl font-bold py-24 sm:text-5xl lg:text-5xl">
-                  <img class="h-20" src="{{ asset('/brands/propsuite/proprent.png') }}">
+                  <img class="w-36" src="{{ asset('/brands/propsuite/proprent.png') }}">
                   
-                  <h2 class="text-xl">Rental Property Listings</h2>
-                  <p class="mt-8 max-w-md text-sm font-light text-white">
+                  <h2 class="mt-5">Rental Property Listings</h2>
                 </div>
               </div>
             </div>

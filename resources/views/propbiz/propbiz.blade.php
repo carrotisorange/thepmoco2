@@ -27,8 +27,13 @@ body {
   background-color: #4F1964;
   }
 
-  #propbiz-bg{
+  .propbiz-bg{
     background-image: url('/brands/propsuite/propbiz-landing-bg.png');
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
   }
 
   #seamless {
@@ -73,13 +78,13 @@ body {
 
 <!-- seamless section -->
 
-          <div id="propbiz-bg" class="sm:block lg:flex md:flex min-h-screen py-16">
+          <div class="propbiz-bg sm:block lg:flex md:flex min-h-screen py-16">
             <div class="flex-col items-center justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-20 xl:px-36">
               <div class="w-full">
                 <div class="text-gray-300 text-4xl font-bold py-24 sm:text-5xl lg:text-5xl">
-                  <img class="h-20" src="{{ asset('/brands/propsuite/propbiz.png') }}">
+                  <img class="w-36" src="{{ asset('/brands/propsuite/propbiz.png') }}">
                   
-                  <h2 class="text-lg">Professional Property <br>Management Services </h2>
+                  <h2 class="">Professional Property <br>Management Services </h2>
                 </div>
               </div>
             </div>

@@ -1,5 +1,5 @@
 <x-landing-page-template>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 @section('title','Propsuite — Home')
 @section('description', 'Increase transparency, and efficiency in rental property operations with a simple and easy to use system for leasing and property management.')
 
@@ -37,7 +37,17 @@
     border-radius:4px;
   }
 
+  .propman-bg{
+    background-image: url('/brands/propsuite/propman-landing-bg.png');
+  }
 
+  #proprent-bg{
+    background-image: url('/brands/propsuite/proprent-landing-bg.png');
+  }
+
+  #propbiz-bg{
+    background-image: url('/brands/propsuite/propbiz-landing-bg.png');
+  }
 
   #propsuite-image{
     background-image: url('/brands/propsuite/propsuite-image.png');
@@ -51,13 +61,16 @@
   }
 
   .proprentOrangebg{
-    background-color: #4F3F6D;
+    background-color: #F4B700;
   }
+
+ .orangeText{
+  color: #FFDE59;
+ }
 
   .propbizOrangebg{
     background-color: #F4B700;
   }
-
 
   .bgStart{
     background-color: #4F1964;
@@ -74,30 +87,6 @@
   #propbiz-image{
     background-image: url('/brands/propsuite/propman-landing-bg.png');
   }
-
-  /* DEMO-SPECIFIC STYLES */
-.typewriter h1 {
-
-  overflow: hidden; /* Ensures the content is not revealed until the animation */
-  border-right: .15em solid orange; /* The typwriter cursor */
-  white-space: nowrap; /* Keeps the content on a single line */
-  line-height: normal;
-  animation: 
-  typing 2s steps(30, end),
-  blink-caret .5s step-end infinite;
-}
-
-/* The typing effect */
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
-
-/* The typewriter cursor effect */
-@keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: orange }
-}
 
 </style>
 
@@ -178,135 +167,104 @@
             }
           </style>
 
-                      <div class="lg:ml-28 max-w-7xl mt-0 lg:mt-24 block lg:absolute left-0 mx-16">
-                        <div class="text-center text-gray-100 text-2xl font-bold pt-24 pb-10 sm:text-2xl lg:text-5xl">
+                      <div class="mt-0 lg:mt-4 flex justify-center items-center">
+                        <div class="text-center text-gray-100 text-3xl font-bold pt-24 sm:text-2xl lg:text-5xl orangeText">
+                        <span id="static" class="threeWords" id="static"></span>
                         
-
-                       
-                        
-                        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
                         <script>
                           var typed = new Typed(".threeWords", {
-                              strings: ["Property Management System", "Rental Property Listings", "Property Management Service", "Fullsuite Digital Service"],
-                              typeSpeed: 40,
-                              backSpeed: 15,
+                              strings: ["Property Management System", "Rental Property Listings", "Property Management Services", "Fullsuite Digital Services"],
+                              typeSpeed: 30,
+                              backSpeed: 25,
                               loop: true
                           });
-                        </script> -->
+                        </script>
                           
                           
                         </div>
                       
                       </div>
 
-
           <div id="slideshow-example" data-component="slideshow">
             <div role="list">
+              <div class="slide bg-transparent" id="">
+                  <div id="" class="sm:block lg:flex md:flex py-5 justify-center items-center">
+                  
 
-             
-
-              <div class="slide py-16 bg-transparent" id="">
-                <div class="sm:block lg:flex md:flex">
-
-                  <div class="flex-col items-center justify-center ml-10 lg:px-10 xl:px-16 sm-px-0">
-                    <div class="w-full">
-                      <div class="flex justify-center items-center md:block -mt-20 pb-10 lg:pb-0 lg:mt-20">
-                        <img src="{{ asset('/brands/propsuite/propman.png') }}" class="w-36">
-                      </div>
-                      <div class="typewriter text-center flex sm:block md:block lg:block text-white justify-center items-center text-2xl font-bold sm:text-3xl lg:text-5xl">
-                        <h1>Property Management System</h1>
-                      </div>
+                  <div class="items-center lg: mx-20 justify-center sm:-py-2 md:py-20 lg:py-1">
+                  <div class="flex items-center justify-center  sm:justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-10">
+                      <!-- <img src="{{ asset('/brands/propsuite/propman.png') }}" class="w-36"> -->
                     </div>
-                  </div>
-
-                  <div class="flex-col justify-center sm:-py-2 md:py-20 lg:py-8 lg:px-16">
-                    <div class="lg:block lg:py-20 md:max-w-sm lg:max-w-md xl:max-w-lg sm:py-2 mx-5 mt-5">
-                    <p class="text-base font-light md:-mt-36 lg:mt-1 text-white text-justify">Property Management System for long term and short term rental properties and home owners associations.</p>
-                      <div class="mt-10 flex justify-end items-center space-x-2">
-                        <button class="propmanOrangebg rounded-full"> <a href="https://thepmo.co/select-a-plan" class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-semibold text-purple-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Free Trial</a></button>
+                  
+                    <div class="lg:block lg:pb-20 md:max-w-lg xl:max-w-2xl sm:ml-12 sm:py-2">
+                      <p class="text-base font-light mt-10 text-white text-justify">Property Management System for long term and short term rental properties and home owners associations.</p>
+                      <div class="mt-10 flex justify-center items-center space-x-5 m-8">
+                        <button class="propmanOrangebg rounded-full"> <a href="https://thepmo.co/select-a-plan" class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Free Trial</a></button>
                         <button> <a href="demopage" class="w-48 flex justify-center py-3 px-4 border border-gray-400 rounded-full shadow-sm text-sm font-medium text-white hover:bg-purple-300  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">View Demo</a></button>            
-                     </div>
+                      </div>
                     </div>
                   </div>
+
                 </div>
               </div>
 
-              <div class="slide py-16 bg-transparent" id="">
-                <div class="sm:block lg:flex md:flex">
+              <div class="slide bg-transparent" id="">
+                  <div id="" class="sm:block lg:flex md:flex py-5 justify-center items-center">
+                  
 
-                  <div class="flex-col items-center justify-center ml-10 lg:px-10 xl:px-16 sm-px-0">
-                    <div class="w-full">
-                      <div class="flex justify-center items-center md:block -mt-20 pb-10 lg:pb-0 lg:mt-20">
-                        <img src="{{ asset('/brands/propsuite/proprent-purple.png') }}" class="w-36">
-                      </div>
-                      <div class="typewriter text-center flex sm:block md:block lg:block text-white justify-center items-center text-2xl font-bold sm:text-3xl lg:text-5xl">
-                        <h1>Rental Property Listings</h1>
+                  <div class="mx-7 lg:mx-20 justify-center sm:-py-2 md:py-20 lg:py-1">
+                    <div class="flex items-center justify-center  sm:justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-10">
+                      <!-- <img src="{{ asset('/brands/propsuite/proprent.png') }}" class="w-36"> -->
+                    </div>
+                    <div class="lg:block lg:pb-20 md:max-w-lg xl:max-w-2xl sm:ml-12 sm:py-2">
+                      <p class="text-base font-light mt-10 text-white text-justify">Leasing platform for rental property owners to list vacant rooms and units for long term or short term rental and a Leasing Marketplace for tenants to find available place.</p>
+                      <div class="mt-10 flex justify-center items-center space-x-5">
+                        <button class="rounded-full"> <a href="proprent-search" class="proprentOrangebg w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Coming Soon</a></button>
                       </div>
                     </div>
                   </div>
 
-                  <div class="flex-col justify-center sm:-py-2 md:py-20 lg:py-8 lg:ml-20 lg:px-16">
-                    <div class="lg:block lg:py-20 md:max-w-sm lg:max-w-md xl:max-w-lg  sm:py-2 mx-5 mt-5">
-                      <p class="text-base font-light md:-mt-36 lg:mt-1 text-white text-justify">Leasing platform for rental property owners to list vacant rooms and units for long term or short term rental and a Leasing Marketplace for tenants to find available place.</p>
-                      <div class="mt-10 flex justify-end items-center space-x-5">
-                        <button class="proprentOrangebg rounded-full"> <a href="proprent-search" target="blank" class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-yellow-200  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Coming Soon</a></button>
-                     </div>
+                </div>
+              </div>
+              
+              <div class="slide bg-transparent" id="">
+                  <div id="" class="sm:block lg:flex md:flex py-5 justify-center items-center">
+                  
+
+                  <div class="mx-7 lg:mx-20 justify-center sm:-py-2 md:py-20 lg:py-1">
+                  <div class="flex items-center justify-center  sm:justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-10">
+
+                  <!-- <img src="{{ asset('/brands/propsuite/propbiz.png') }}" class="w-36"> -->
+
+
+                  
+                  </div>
+                  <div class="lg:block lg:pb-20 md:max-w-lg xl:max-w-2xl sm:ml-12 sm:py-2">
+                      <p class="text-base font-light mt-10 text-white text-justify">Property management services that provides online and onsite operations management services to rental property owners.</p>
+                      <div class="mt-10 flex justify-center items-center space-x-5">
+                        <button class="rounded-full"> <a href="propbiz" class="propmanOrangebg w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Register</a></button>
+                      </div>
                     </div>
                   </div>
+
                 </div>
               </div>
 
-              <div class="slide py-16 bg-transparent" id="">
-                <div class="sm:block lg:flex md:flex">
+              <div class="slide bg-transparent" id="">
+                  <div id="" class="sm:block lg:flex md:flex py-5 justify-center items-center">
+                 
 
-                  <div class="flex-col items-center justify-center ml-10 lg:px-10 xl:px-16 sm-px-0">
-                    <div class="w-full">
-                      <div class="flex justify-center items-center md:block -mt-20 pb-10 lg:pb-0 lg:mt-20">
-                        <img src="{{ asset('/brands/propsuite/propbiz.png') }}" class="w-36">
-                      </div>
-                      <div class="typewriter text-center flex sm:block md:block lg:block text-white justify-center items-center text-2xl font-bold sm:text-3xl lg:text-5xl">
-                        <h1>Property Management Services</h1>
+                    <div class="lg:block lg:pb-20 md:max-w-lg xl:max-w-2xl sm:ml-12 sm:py-2">
+                      <p class="text-base font-light mt-10 text-white text-justify">We provide full suite digital solution for rental property communities and home owners associations.</p>
+                      <div class="mt-10 flex justify-center items-center space-x-5">
+                        <button class="proprentOrangebg rounded-full"> <a href="about" class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Learn More</a></button>
                       </div>
                     </div>
                   </div>
 
-                  <div class="flex-col justify-center sm:-py-2 md:py-20 lg:py-8 lg:px-16">
-                    <div class="lg:block lg:py-20 md:max-w-sm lg:max-w-md xl:max-w-lg sm:py-2 mx-5 mt-5">
-                      <p class="text-base font-light md:-mt-36 lg:mt-1 text-white text-justify">Property management services that provides online and onsite operations management services to rental property owners.</p>
-                      <div class="mt-10 flex justify-end items-center space-x-5">
-                         <button class="propbizOrangebg rounded-full"> <a href="propbiz" class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-purple-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Register</a></button>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
-
-              <div class="slide py-16 bg-transparent" id="">
-                <div class="sm:block lg:flex md:flex">
-
-                  <div class="flex-col items-center justify-center ml-10 lg:px-10 xl:px-16 sm-px-0">
-                    <div class="w-full">
-                      <div class="flex justify-center items-center md:block -mt-20 pb-10 lg:pb-0 lg:mt-20">
-                        <!-- <img src="{{ asset('/brands/propsuite/propbiz.png') }}" class="w-36"> -->
-                      </div>
-                      <div class="typewriter text-center flex sm:block md:block lg:block text-white justify-center items-center text-2xl font-bold sm:text-3xl lg:text-5xl">
-                        <h1>Fullsuite Digital Solutions</h1>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="flex-col justify-center sm:-py-2 md:py-20 lg:py-8 lg:ml-20 lg:px-16">
-                    <div class="lg:block lg:py-20 md:max-w-sm lg:max-w-md xl:max-w-lg  sm:py-2 mx-5 mt-5">
-                      <p class="text-base font-light lg:-mt-10 md:-mt-36 lg:mt-1 text-white text-justify">We provide full suite digital solution for rental property communities and home owners associations.</p>
-                      <div class="mt-10 flex justify-end items-center space-x-5">
-                        <button class="proprentOrangebg rounded-full"> <a href="about" class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-yellow-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Learn More</a></button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
- 
 
               
 
@@ -789,7 +747,7 @@
                   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     
 
-   <script>
+    <script>
         
         $(function() {
         index = 0;
@@ -799,7 +757,7 @@
           $("#static").fadeOut(0, function() {
             $(this)
               
-              .css('color', index % 2 == 0 ? '#FFDE59' : '#4F3F6D')
+              .css('color', index % 2 == 0 ? '#FFDE59' : '#F4B700') 
               .fadeIn(0);
           });
         }, 3000);
@@ -807,10 +765,10 @@
 
     </script> 
     <script>
-    var text = ["Rental Property Listings", "Property Management Services","Fullsuite Digital Solutions","Property Management System",];
+    var text = ["Property Management System", "Rental Property Listings", "Property Management Services"];
     var counter = 0;
     var elem = document.getElementById("changeText");
-    var inst = setInterval(change, 3000);
+    var inst = setInterval(change, 2000);
 
     function change() {
       elem.innerHTML = text[counter];
@@ -824,7 +782,7 @@
 
     <script>
     var doc = document.getElementById("background");
-    var color = ["#DBB132","#4F1964","#DBC054","#4F3F6D",];
+    var color = ["#4F3F6D","#975AB6","#6D6180","#4F1964",];
     var i = 0;
     function change() {
         doc.style.backgroundColor = color[i];

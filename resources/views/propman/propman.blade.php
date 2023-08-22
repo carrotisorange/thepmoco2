@@ -25,15 +25,9 @@ body {
 
 body {
   background-color:#975AB6;
+  height: 100%;
   }
 
-  #propbiz-bg{
-    background-image: url('/brands/propsuite/propbiz-landing-bg.png');
-  }
-
-  #seamless {
-    color: #F79630;
-  }
 
   #owner {
   background-color: #E0DAED;
@@ -68,6 +62,11 @@ body {
 
   .propman-bg{
     background-image: url('/brands/propsuite/propman-landing-bg.png');
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
   }
 
 
@@ -77,13 +76,13 @@ body {
 
 <!-- seamless section -->
 
-          <div  class="propman-bg sm:block lg:flex md:flex min-h-screen py-10">
+          <div class="propman-bg sm:block lg:flex md:flex min-h-screen">
             <div class="flex-col items-center justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-20 xl:px-36">
               <div class="w-full">
                 <div class="text-gray-300 text-4xl font-bold py-24 sm:text-5xl lg:text-5xl">
-                  <img class="h-20" src="{{ asset('/brands/propsuite/propman.png') }}">
+                  <img class="w-36" src="{{ asset('/brands/propsuite/propman.png') }}">
                   
-                  <h2 class="text-lg ">Property Management System for long term and short term rental properties and home owners associations</h2>
+                  <h2 class="mt-5">Property Management System</h2>
                 </div>
               </div>
             </div>

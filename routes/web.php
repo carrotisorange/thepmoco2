@@ -53,6 +53,10 @@ Route::get('/landing-propsuite', function(){
      Route::get('/landingpagecopy', function(){
         return view('landing.landingpagecopy');});
 
+        Route::get('/landinglanding', function(){
+            return view('landing.landinglanding');});
+    
+
       
 
 
