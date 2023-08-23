@@ -54,7 +54,8 @@ class AccountPayableCreateStep3Component extends Component
 
         $this->validate();
 
-        app('App\Http\Controllers\AccountPayableController')->store_step_3($this->accountpayable->id, 'approved by manager', $this->comment, $this->vendor);
+        app('App\Http\Controllers\AccountPayableController')->update_approval($this->accountpayable->id, 'approved by
+        ap', $this->comment, $this->vendor);
 
         $ap = UserProperty::where('property_uuid', $this->property->uuid)->where('role_id', 4)->pluck('user_id')->first();
 
@@ -68,7 +69,7 @@ class AccountPayableCreateStep3Component extends Component
             Notification::route('mail', $email_ap)->notify(new SendAccountPayableStep3NotificationToAP($content));
 
         }
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-5')->with('success', 'Success!');
+        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-3')->with('success', 'Success!');
     }
 
     public function rejectRequest(){
@@ -77,9 +78,9 @@ class AccountPayableCreateStep3Component extends Component
 
         $this->validate();
 
-        app('App\Http\Controllers\AccountPayableController')->store_step_3($this->accountpayable->id, 'rejected by manager', $this->comment, $this->vendor);
+        app('App\Http\Controllers\AccountPayableController')->update_approval($this->accountpayable->id, 'rejected by ap', $this->comment, $this->vendor);
 
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-5')->with('success', 'Success!');
+        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-3')->with('success', 'Success!');
     }
 
     public function render()

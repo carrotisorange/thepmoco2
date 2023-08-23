@@ -41,7 +41,7 @@ class CreateAccountPayableLiquidationStep1Component extends Component
         $this->unit_uuid = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('unit_uuid')->first();
         $this->total = AccountPayableLiquidationParticular::where('batch_no', $accountpayable->batch_no)->sum('total');
         $this->cash_advance = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('cash_advance')->first();
-        $this->cv_number = sprintf('%08d', AccountPayable::where('property_uuid',$this->property->uuid)->where('status', '!=', 'unknown')->count());
+        $this->cv_number = sprintf('%08d', AccountPayable::where('property_uuid',$this->property->uuid)->where('status', '!=', 'pending')->count());
         $this->total_type = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('total_type')->first();
         $this->total_amount = (double) $this->total- (double) $this->cash_advance;
         $this->return_type =  AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('return_type')->first();
@@ -109,7 +109,7 @@ class CreateAccountPayableLiquidationStep1Component extends Component
                 'noted_by' => $this->noted_by,
                 'approved_by' => $this->approved_by,
                 'return_type' => $this->return_type,
-                'cv_number' => sprintf('%08d', AccountPayable::where('property_uuid',$this->property->uuid)->where('status','!=', 'unknown')->count())
+                'cv_number' => sprintf('%08d', AccountPayable::where('property_uuid',$this->property->uuid)->where('status','!=', 'pending')->count())
         ]);
 
         return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/liquidation/step-2')->with('success', 'Success!');

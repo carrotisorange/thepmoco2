@@ -413,9 +413,10 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             //step 2
             Route::get('{accountpayable}/step-1', 'create_step_1')->name('accountpayable');
 
-            Route::get('{accountpayable}/step-2', 'create_step_2')->name('accountpayable');
 
             //step 3
+            Route::get('{accountpayable}/step-2', 'create_step_2')->name('accountpayable');
+
             Route::get('{accountpayable}/step-3', 'create_step_3')->name('accountpayable');
     
 

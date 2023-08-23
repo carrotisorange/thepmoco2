@@ -56,4 +56,10 @@ class Collection extends Model
         return empty($search)? static::query()
         : static::where('ar_no','like', '%'.$search.'%');
     }
+
+    public function collection()
+    {
+        return User::find(1);
+    }
+
 }

@@ -15,7 +15,7 @@ class PropertyAccountPayableController extends Controller
 {
     public function index(Property $property, $status=null)
     {
-        return view('layouts.under-construction');
+        // return view('layouts.under-construction');
 
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',17);
 
@@ -47,7 +47,7 @@ class PropertyAccountPayableController extends Controller
         ->when($search, function ($query, $search) {
         $query->where('batch_no','like', '%'.$search.'%');
         })
-        ->orderBy('created_at', 'desc')->get();
+        ->orderBy('created_at', 'desc')->paginate(10);
     }
 
     public function export($property_uuid, $status=null, $created_at=null, $request_for=null, $limitDisplayTo=null){
@@ -126,6 +126,27 @@ class PropertyAccountPayableController extends Controller
        $canvas->page_text($width/5, $height/2,"", null, 55, array(0,0,0),2,2,-30);
 
        return $pdf->stream($accountPayable->property->property.'-'.Carbon::now()->format('M d, Y').'accountpayables.pdf');
+    }
+
+    public function update($id, $request_for, $created_at, $due_date, $requester_id, $amount, $vendor, $bank, $bank_name, $bank_account, $delivery_at, $approver_id, $approver2_id, $status, $selected_quotation){
+        
+        AccountPayable::where('id', $id)
+        ->update([
+            'request_for' => $request_for,
+            'created_at' => $created_at,
+            'due_date' => $due_date,
+            'requester_id' => $requester_id,
+            'amount' => $amount,
+            'vendor' => $vendor,
+            'bank' => $bank,
+            'bank_name' => $bank_name,
+            'bank_account' => $bank_account,
+            'delivery_at' => $delivery_at,
+            'approver_id' => $approver_id,
+            'approver2_id' => $approver2_id,
+            'status' => $status,
+            'selected_quotation' => $selected_quotation
+        ]);
     }
 
 }
