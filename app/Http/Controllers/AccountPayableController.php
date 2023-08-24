@@ -117,7 +117,7 @@ class AccountPayableController extends Controller
     }
 
     public function create_step_3(Property $property, AccountPayable $accountpayable){
-         if($accountpayable->approver2_id === auth()->user()->id){
+         if($accountpayable->approver2_id === auth()->user()->id || Session::get('role_id') === 4){
                 if($accountpayable->status === 'approved by manager'){
                       return view('accountpayables.create.step-3', [
                       'property' => $property,
