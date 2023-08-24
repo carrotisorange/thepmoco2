@@ -191,26 +191,26 @@ class AccountPayableController extends Controller
 
     public function create_step_7(Property $property, AccountPayable $accountpayable){
 
-    //    if($accountpayable->approver_id === auth()->user()->id){
+       if($accountpayable->approver_id === auth()->user()->id){
               
-    //             if(Session::get('role_id') === 4  && $accountpayable->status === 'liquidation approved by manager'){
-    //                  return view('accountpayables.create.step-7', [
-    //                  'property' => $property,
-    //                  'accountpayable' => $accountpayable
-    //                  ]);
+                if(Session::get('role_id') === 4  && $accountpayable->status === 'liquidation approved by manager'){
+                     return view('accountpayables.create.step-7', [
+                     'property' => $property,
+                     'accountpayable' => $accountpayable
+                     ]);
                    
-    //             }else{
-    //                  return view('accountpayables.pending-approval-liquidation-manager',[
-    //                  'accountpayable' => $accountpayable
-    //                  ]);
-    //             }
-    //         }else{
-    //             return abort(401);
-    //         }
+                }else{
+                     return view('accountpayables.pending-approval-liquidation-manager',[
+                     'accountpayable' => $accountpayable
+                     ]);
+                }
+            }else{
+                return abort(401);
+            }
 
-     return view('accountpayables.pending-approval-liquidation-manager',[
-     'accountpayable' => $accountpayable
-     ]);
+    //  return view('accountpayables.pending-approval-liquidation-manager',[
+    //  'accountpayable' => $accountpayable
+    //  ]);
     }
 
     

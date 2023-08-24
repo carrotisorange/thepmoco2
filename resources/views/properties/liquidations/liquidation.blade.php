@@ -22,7 +22,7 @@
             <x-th>#</x-th>
             <x-th>BATCH NO</x-th>
             <x-th>DATE CREATED</x-th>
-            <x-th>PREPARED BY</x-th>         
+            <x-th>Requested BY</x-th>         
             <x-th>NAME</x-th>
             <x-th>DEPARTMENT/SECTION</x-th>
             <x-th>UNIT</x-th>
