@@ -12,10 +12,10 @@ class AccountPayableIndexComponent extends Component
 {
     public $property;
 
-    public $status;
+    public $status = 'pending';
     public $created_at;
     public $request_for;
-    public $limitDisplayTo;
+    public $limitDisplayTo = 10;
     public $search;
 
     public $totalAccountPayableCount;
@@ -40,7 +40,23 @@ class AccountPayableIndexComponent extends Component
     public function render()
     {
         return view('livewire.account-payable-index-component',[
-          'accountpayables' => app('App\Http\Controllers\PropertyAccountPayableController')->get_accountpayables($this->property->uuid, $this->status, $this->created_at, $this->request_for, $this->limitDisplayTo, $this->search),
+          // 'accountpayables' => app('App\Http\Controllers\PropertyAccountPayableController')->get_accountpayables($this->property->uuid, $this->status, $this->created_at, $this->request_for, $this->limitDisplayTo, $this->search),
+          'accountpayables' => AccountPayable::where('property_uuid',$this->property->uuid)
+         
+          ->where('status', $this->status)
+          // ->when(($this->created_at), function($query){
+          // $query->whereDate('created_at', $this->created_at);
+          // })
+          // ->when($this->request_for, function ($query) {
+          // $query->where('request_for', $this->request_for);
+          // })
+          // ->when($this->search, function ($query) {
+          // $query->where('batch_no','like', '%'.$this->search.'%');
+          // })
+          ->orderBy('created_at', 'desc')
+        
+          ->get(),
+
           'statuses' => app('App\Http\Controllers\PropertyAccountPayableController')->get_statuses($this->property),
           'dates' => app('App\Http\Controllers\PropertyAccountPayableController')->get_dates($this->property),
           'types' => app('App\Http\Controllers\PropertyAccountPayableController')->get_types($this->property),

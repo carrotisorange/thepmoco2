@@ -99,8 +99,8 @@
     <footer>
 
         <h5>
-            For inquiries reach us at: {{ App\Models\Property::find(Session::get('property_uuid'))->email }} /
-            {{ App\Models\Property::find(Session::get('property_uuid'))->mobile }}
+            For inquiries reach us at: {{ Session::get('property_email') }} /
+            {{ Session::get('property_mobile') }}
         </h5>
         {{ Session::get('property') }} Copyright &copy;
         <?php echo date("Y");?>
