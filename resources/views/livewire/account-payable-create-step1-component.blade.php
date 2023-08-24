@@ -61,6 +61,9 @@
                         @endforeach
                 
                     </x-form-select>
+                    @error('first_approver')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
                 
                 </div>
                 
@@ -74,7 +77,7 @@
                         @endforeach
                 
                     </x-form-select>
-                    @error('requester_id')
+                   @error('second_approver')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
