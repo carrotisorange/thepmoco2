@@ -83,31 +83,29 @@
                             </p>
                             <div class="grid grid-cols-3 space-x-5">
     
-                                <p class="ml-5 flex-col mt-1 text-sm font-base text-gray-500">
+                                <p class="ml-5 flex-col py-2 text-sm font-base text-gray-500">
                                     Bank Transfer Fee
                                 </p>
     
-                                <input class="w-full text-xs border border-gray-400 py-2 my-2" disabled/>
-    
-                                <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                <p class="col-start-3 px-6 py-2 mt-1 text-sm font-base text-gray-500">
                                     {{ number_format($remittance->bank_transfer_fee, 2)}}
                                 </p>
     
-                                <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                <p class="flex-col py-2 text-sm font-base text-gray-500">
                                     Management Fee
                                 </p>
 
-                                <input class="w-full text-xs border border-gray-400 py-2 my-2" disabled/>
-                                <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                
+                                <p class="col-start-3 px-6 py-2 mt-1 text-sm font-base text-gray-500">
                                     {{ number_format($remittance->management_fee, 2)}}
                                 </p>
     
-                                <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                <p class="flex-col py-2 text-sm font-base text-gray-500">
                                     Marketing Fee
                                 </p>
 
-                                <input class="w-full text-xs border border-gray-400 py-2 my-2" disabled/>
-                                <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                
+                                <p class="col-start-3 px-6 py-2 mt-1 text-sm font-base text-gray-500">
                                     {{ number_format($remittance->marketing_fee, 2)}}
                                 </p>
     
@@ -116,7 +114,7 @@
                                 </p>
 
                                 <input wire:model="miscellaneousFeeDescription" wire:change='updateRemittance({{ $remittance->id }})' class="w-full text-xs border border-gray-400 py-2 my-2"/>
-                                <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                <p class="flex-col mt-1 px-6 py-2 text-sm font-base text-gray-500">
                                     {{ number_format($remittance->miscellaneous_fee, 2)}}
                                 </p>
     
@@ -125,7 +123,7 @@
                                 </p>
 
                                 <input wire:model="membershipFeeDescription" wire:change='updateRemittance({{ $remittance->id }})' class="w-full text-xs border border-gray-400 py-2 my-2"/>
-                                <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                <p class="flex-col mt-1 px-6 py-2 text-sm font-base text-gray-500">
                                     {{ number_format($remittance->membership_fee, 2)}}
                                 </p>
     
@@ -134,7 +132,7 @@
                                 </p>
 
                                 <input wire:model="condoDuesDescription" wire:change='updateRemittance({{ $remittance->id }})' class="w-full text-xs border border-gray-400 py-2 my-2"/>
-                                <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                <p class="flex-col mt-1 px-6 py-2 text-sm font-base text-gray-500">
                                     {{ number_format($remittance->condo_dues, 2)}}
                                 </p>
     
@@ -143,7 +141,7 @@
                                 </p>
 
                                 <input wire:model="parkingDuesDescription" wire:change='updateRemittance({{ $remittance->id }})' class="w-full text-xs border border-gray-400 py-2 my-2"/>
-                                <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                <p class="flex-col mt-1 px-6 py-2 text-sm font-base text-gray-500">
                                     {{ number_format($remittance->parking_dues, 2)}}
                                 </p>
     
@@ -152,7 +150,7 @@
                                 </p>
 
                                 <input wire:model="waterDescription" wire:change='updateRemittance({{ $remittance->id }})' class="w-full text-xs border border-gray-400 py-2 my-2"/>
-                                <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                <p class="flex-col mt-1 px-6 py-2 text-sm font-base text-gray-500">
                                     {{ number_format($remittance->water, 2)}}
                                 </p>
     
@@ -161,7 +159,7 @@
                                 </p>
 
                                 <input wire:model="electricityDescription" wire:change='updateRemittance({{ $remittance->id }})' class="w-full text-xs border border-gray-400 py-2 my-2"/>
-                                <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                <p class="flex-col mt-1 px-6 py-2 text-sm font-base text-gray-500">
                                     {{ number_format($remittance->electricity, 2)}}
                                 </p>
     
@@ -170,7 +168,7 @@
                                 </p>
                                 
                                 <input wire:model="generatorShareDescription" wire:change='updateRemittance({{ $remittance->id }})' class="w-full text-xs border border-gray-400 py-2 my-2"/>
-                                <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                <p class="flex-col mt-1 px-6 py-2 text-sm font-base text-gray-500">
                                     {{ number_format($remittance->generator_share, 2)}}
                                 </p>
     
@@ -179,7 +177,7 @@
                                 </p>
 
                                 <input wire:model="surchargesDescription" wire:change='updateRemittance({{ $remittance->id }})' class="w-full text-xs border border-gray-400 py-2 my-2"/>
-                                <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                <p class="flex-col mt-1 px-6 py-2 text-sm font-base text-gray-500">
                                     {{ number_format($remittance->surcharges, 2)}}
                                 </p>
     
@@ -188,7 +186,7 @@
                                 </p>
 
                                 <input wire:model="buildingInsuranceDescription" wire:change='updateRemittance({{ $remittance->id }})' class="w-full text-xs border border-gray-400 py-2 my-2"/>
-                                <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                <p class="flex-col mt-1 px-6 py-2 text-sm font-base text-gray-500">
                                     {{ number_format($remittance->building_insurance, 2)}}
                                 </p>
     
@@ -197,7 +195,7 @@
                                 </p>
 
                                 <input wire:model="realPropertyTaxDescription" wire:change='updateRemittance({{ $remittance->id }})' class="w-full text-xs border border-gray-400 py-2 my-2"/>
-                                <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                <p class="flex-col mt-1 px-6 py-2 text-sm font-base text-gray-500">
                                     {{ number_format($remittance->real_property_tax, 2)}}
                                 </p>
     
@@ -206,7 +204,7 @@
                                 </p>
 
                                 <input wire:model="housekeepingFeeDescription" wire:change='updateRemittance({{ $remittance->id }})' class="w-full text-xs border border-gray-400 py-2 my-2"/>
-                                <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                <p class="flex-col mt-1 px-6 py-2 text-sm font-base text-gray-500">
                                     {{ number_format($remittance->housekeeping_fee, 2)}}
                                 </p>
     
@@ -215,7 +213,7 @@
                                 </p>
 
                                 <input wire:model="laundryFeeDescription" wire:change='updateRemittance({{ $remittance->id }})' class="w-full text-xs border border-gray-400 py-2 my-2"/>
-                                <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                <p class="flex-col mt-1 px-6 py-2 text-sm font-base text-gray-500">
                                     {{ number_format($remittance->laundry_fee, 2)}}
                                 </p>
     
@@ -224,7 +222,7 @@
                                 </p>
 
                                 <input wire:model="complimentaryDescription" wire:change='updateRemittance({{ $remittance->id }})' class="w-full text-xs border border-gray-400 py-2 my-2"/>
-                               <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                               <p class="flex-col mt-1 px-6 py-2 text-sm font-base text-gray-500">
                                     {{ number_format($remittance->complimentary, 2)}}
                                 </p>
     
@@ -232,7 +230,7 @@
                                     Internet
                                 </p>
                                 <input wire:model="internetDescription" wire:change='updateRemittance({{ $remittance->id }})' class="w-full text-xs border border-gray-400 py-2 my-2"/>
-                                <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                <p class="flex-col mt-1 px-6 py-2 text-sm font-base text-gray-500">
                                     {{ number_format($remittance->internet, 2)}}
                                 </p>
     
@@ -241,7 +239,7 @@
                                 </p>
 
                                 <input wire:model="specialAssessmentDescription" wire:change='updateRemittance({{ $remittance->id }})' class="w-full text-xs border border-gray-400 py-2 my-2"/>
-                                <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                <p class="flex-col mt-1 px-6 py-2 text-sm font-base text-gray-500">
                                     {{ number_format($remittance->special_assessment, 2)}}
                                 </p>
     
@@ -250,7 +248,7 @@
                                 </p>
 
                                 <input wire:model="materialRecoveryFacilityDescription" wire:change='updateRemittance({{ $remittance->id }})' class="w-full text-xs border border-gray-400 py-2 my-2"/>
-                                <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                <p class="flex-col mt-1 px-6 py-2 text-sm font-base text-gray-500">
                                     {{ number_format($remittance->materials_recovery_facility, 2)}}
                                 </p>
     
@@ -259,7 +257,7 @@
                                 </p>
 
                                 <input wire:model="rechargeOfFireExtinguisherDescription" wire:change='updateRemittance({{ $remittance->id }})' class="w-full text-xs border border-gray-400 py-2 my-2"/>
-                                <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                <p class="flex-col mt-1 px-6 py-2 text-sm font-base text-gray-500">
                                     {{ number_format($remittance->recharge_of_fire_extinguisher, 2)}}
                                 </p>
     
@@ -268,7 +266,7 @@
                                 </p>
 
                                 <input wire:model="environmentalFeeDescription" wire:change='updateRemittance({{ $remittance->id }})' class="w-full text-xs border border-gray-400 py-2 my-2"/>
-                                <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                <p class="flex-col mt-1 px-6 py-2 text-sm font-base text-gray-500">
                                     {{ number_format($remittance->environmental_fee, 2)}}
                                 </p>
     
@@ -277,7 +275,7 @@
                                 </p>
 
                                 <input wire:model="bladderTankDescription" wire:change='updateRemittance({{ $remittance->id }})' class="w-full text-xs border border-gray-400 py-2 my-2"/>
-                                <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                <p class="flex-col mt-1 px-6 py-2 text-sm font-base text-gray-500">
                                     {{ number_format($remittance->bladder_tank, 2)}}
                                 </p>
     
@@ -286,7 +284,7 @@
                                 </p>
 
                                 <input wire:model="causeOfMagnetDescription" wire:change='updateRemittance({{ $remittance->id }})' class="w-full text-xs border border-gray-400 py-2 my-2"/>
-                                <p class="flex-col mt-1 text-sm font-base text-gray-500">
+                                <p class="flex-col mt-1 px-6 py-2 text-sm font-base text-gray-500">
                                     {{ number_format($remittance->cause_of_magnet, 2)}}
                                 </p>         
     
