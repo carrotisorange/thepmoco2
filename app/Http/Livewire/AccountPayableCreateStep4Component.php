@@ -3,42 +3,33 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use Carbon\Carbon;
-use Session;
 use App\Models\AccountPayable;
+use Livewire\WithFileUploads;
 use App\Models\AccountPayableParticular;
+use App\Notifications\SendAccountPayableStep4NotificationToAdmin;
+use Illuminate\Support\Facades\Notification;
+use App\Models\UserProperty;
+use App\Models\User;
 
 class AccountPayableCreateStep4Component extends Component
 {
-    public $accountpayable_id;
+    use WithFileUploads;
 
-    public $delivery_at;
-    public $due_date;
-    public $vendor;
-    public $bank;
-    public $bank_name;
-    public $bank_account;
+    public $property;
 
-    public $property_uuid;
+    public $accountpayable;
+
+    public $attachment;
     
-    public function mount()
+    public function mount($accountpayable)
     {
-        $this->property_uuid = Session::get('property_uuid');
-        $this->vendor = AccountPayable::find($this->accountpayable_id)->vendor;
-        $this->due_date = AccountPayable::find($this->accountpayable_id)->due_date;
-        $this->delivery_at = AccountPayable::find($this->accountpayable_id)->delivery_at;
-        $this->bank = AccountPayable::find($this->accountpayable_id)->bank;
-        $this->bank_name = AccountPayable::find($this->accountpayable_id)->bank_name;
-        $this->bank_account = AccountPayable::find($this->accountpayable_id)->bank_account;
+        $this->attachment = $accountpayable->attachment;
     }
 
     protected function rules()
     {
          return [
-            'delivery_at' => 'required|date',
-            'bank' => 'required',
-            'bank_name' => 'required',
-            'bank_account' => 'required'
+             'attachment' => 'required |max:10240',
         ];
     }
 
@@ -49,30 +40,51 @@ class AccountPayableCreateStep4Component extends Component
 
     public function submitForm()
     {
-        
 
         $this->validate();
 
-        AccountPayable::where('id', $this->accountpayable_id)
+        if($this->attachment != $this->accountpayable->attachment){
+            AccountPayable::where('id', $this->accountpayable->id)
+            ->update([
+                'attachment' => $this->attachment->store('accountpayables'),
+                'status' => 'released'
+                
+            ]);
+            
+        }    
+
+        $requester = UserProperty::where('property_uuid', $this->property->uuid)->where('role_id', 9)->pluck('user_id')->first();
+
+        $content = $this->accountpayable;
+
+        if($requester){
+            $requester_email = User::find($requester)->email;
+
+            Notification::route('mail', $requester_email)->notify(new SendAccountPayableStep4NotificationToAdmin($content));
+    
+        }
+        
+        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-5')->with('success', 'Success!');
+
+    }
+
+    public function removeAttachment(){
+        $this->attachment = '';
+    }
+
+    public function markAsReleased(){
+        AccountPayable::where('id', $this->accountpayable->id)
         ->update([
-            'delivery_at' => $this->delivery_at,
-            'vendor' => $this->vendor,
-            'due_date' => $this->due_date,
-            'bank' => $this->bank,
-            'bank_name' => $this->bank_name,
-            'bank_account' => $this->bank_account
+            'status' => 'released'
         ]);
 
-        return redirect('/property/'.$this->property_uuid.'/accountpayable/'.$this->accountpayable_id.'/step-5')->with('success', 'Success!');
+        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-5')->with('success', 'Success!');
     }
 
     public function render()
     {
-        $accountpayable = AccountPayable::find($this->accountpayable_id);
-
         return view('livewire.account-payable-create-step4-component',[
-            'accountpayable' => $accountpayable,
-            'particulars' => AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get()
+            'particulars' => AccountPayableParticular::where('batch_no', $this->accountpayable->batch_no)->get()
         ]);
     }
 }

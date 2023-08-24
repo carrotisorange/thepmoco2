@@ -7,7 +7,7 @@ use App\Models\AccountPayableLiquidationParticular;
 use App\Models\AccountPayableLiquidation;
 use App\Models\AccountPayable;
 
-class AccountPayableCreateStep6Component extends Component
+class AccountPayableCreateStep7Component extends Component
 {
     public $accountpayable;
     public $property;
@@ -33,7 +33,7 @@ class AccountPayableCreateStep6Component extends Component
 
     public function render()
     {
-        return view('livewire.account-payable-create-step6-component',[
+        return view('livewire.account-payable-create-step7-component',[
             'particulars' => $this->get_particulars(),
             'accountpayableliquidation' =>  AccountPayableLiquidation::where('batch_no', $this->accountpayable->batch_no)->first()
         ]);

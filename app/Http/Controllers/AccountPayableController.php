@@ -8,6 +8,7 @@ use App\Models\Property;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use Spatie\Browsershot\Browsershot;
+use Session;
 
 class AccountPayableController extends Controller
 {
@@ -29,7 +30,7 @@ class AccountPayableController extends Controller
 
         // $this->authorize('is_account_payable_create_allowed');
 
-        $generated_batch_no = auth()->user()->id.'-'.sprintf('%08d', AccountPayable::where('property_uuid',$property->uuid)->where('status', '!=', 'unknown')->count()).'-'.$batch_no;
+        $generated_batch_no = auth()->user()->id.'-'.sprintf('%08d', AccountPayable::where('property_uuid',$property->uuid)->where('status', '!=', 'pending')->count()).'-'.$batch_no;
 
         $account_payable = AccountPayable::updateOrCreate(
             [
@@ -37,7 +38,7 @@ class AccountPayableController extends Controller
                 'property_uuid' => $property->uuid,
                 'request_for' => $request_for,
                 'requester_id' => auth()->user()->id,
-                'status' => 'unknown'
+                'status' => 'pending'
             ]
             ,
             [
@@ -46,7 +47,7 @@ class AccountPayableController extends Controller
             'batch_no' => $generated_batch_no,
             'request_for' => $request_for,
             'created_at' => Carbon::now(),
-            'status' => 'unknown'
+            'status' => 'pending'
         ]);
 
         return redirect('/property/'.$property->uuid.'/accountpayable/'.$account_payable->id.'/step-1')->with('success', 'Success!');
@@ -82,55 +83,139 @@ class AccountPayableController extends Controller
     }
 
       public function create_step_1(Property $property, AccountPayable $accountpayable){
-
-        return view('accountpayables.create.step-1', [
-            'property' => $property,
-            'accountpayable' => $accountpayable
-        ]);
+        if($accountpayable->requester_id === auth()->user()->id && $accountpayable->status === 'pending'){
+            return view('accountpayables.create.step-1', [
+                'property' => $property,
+                'accountpayable' => $accountpayable
+            ]);
+        }else{
+           return response( 'Accounts Payable cannot be edited once approved.', 401);
+        }
     }
 
     public function create_step_2(Property $property, AccountPayable $accountpayable){
 
-    return view('accountpayables.create.step-2', [
-    'property' => $property,
-    'accountpayable' => $accountpayable
-    ]);
+        // if($accountpayable->approver_id != null){
+            if($accountpayable->approver_id === auth()->user()->id){
+              
+                if($accountpayable->status === 'pending'){
+                     return view('accountpayables.create.step-2', [
+                     'property' => $property,
+                     'accountpayable' => $accountpayable
+                     ]);
+                   
+                }else{
+                     return view('accountpayables.pending-approval-manager',[
+                     'accountpayable' => $accountpayable
+                     ]);
+                }
+            }else{
+                return abort(401);
+            }
+        // }else{
+
+        // }
+      
     }
 
     public function create_step_3(Property $property, AccountPayable $accountpayable){
-
-
-        return view('accountpayables.create.step-3', [
-            'property' => $property,
-            'accountpayable' => $accountpayable
-        ]);
+         if($accountpayable->approver2_id === auth()->user()->id){
+                if($accountpayable->status === 'approved by manager'){
+                      return view('accountpayables.create.step-3', [
+                      'property' => $property,
+                      'accountpayable' => $accountpayable
+                      ]);
+                }else{
+                     return view('accountpayables.pending-approval-ap',[
+                     'accountpayable' => $accountpayable
+                     ]);
+                }
+            }else{
+                return abort(401);
+            }
     }
 
-    public function create_step_4($property_uuid, $accountpayable_id){
-    
-        return view('accountpayables.create.step-4', [
-           'accountpayable_id' => $accountpayable_id
-        ]);
+    public function create_step_4(Property $property, AccountPayable $accountpayable){
+         if(Session::get('role_id') === 4){
+                if($accountpayable->status === 'approved by ap'){
+                     return view('accountpayables.create.step-4', [
+                        'property' => $property,
+                        'accountpayable' => $accountpayable
+                    ]);
+                   
+                }else{
+                    return view('accountpayables.pending-approval-manager',[
+                    'accountpayable' => $accountpayable
+                    ]);
+                }
+            }else{
+                return abort(401);
+        }
     }
 
-    public function create_step_5($property_uuid, $accountpayable_id){
-        
-        // $this->authorize('accountpayable');
-
-        return view('accountpayables.create.step-5', [
-           'accountpayable_id' => $accountpayable_id
-        ]);
+    public function create_step_5(Property $property, AccountPayable $accountpayable){
+        if(Session::get('role_id') === 4){
+                if($accountpayable->status === 'released'){
+                     return view('accountpayables.create.step-5', [
+                        'property' => $property,
+                        'accountpayable' => $accountpayable
+                    ]);
+                   
+                }else{
+                    return view('accountpayables.pending-approval-manager',[
+                    'accountpayable' => $accountpayable
+                    ]);
+                }
+            }else{
+                return abort(401);
+        }
     }
 
     public function create_step_6(Property $property, AccountPayable $accountpayable){
 
-        $this->authorize('accountpayable');
-
-        return view('accountpayables.create.step-6', [
-            'property' => $property,
-           'accountpayable' => $accountpayable,
-        ]);
+       if($accountpayable->approver_id === auth()->user()->id){
+              
+                if($accountpayable->status === 'liquidated'){
+                     return view('accountpayables.create.step-6', [
+                     'property' => $property,
+                     'accountpayable' => $accountpayable
+                     ]);
+                   
+                }else{
+                     return view('accountpayables.pending-approval-liquidation-manager',[
+                     'accountpayable' => $accountpayable
+                     ]);
+                }
+            }else{
+                return abort(401);
+            }
     }
+
+    public function create_step_7(Property $property, AccountPayable $accountpayable){
+
+    //    if($accountpayable->approver_id === auth()->user()->id){
+              
+    //             if(Session::get('role_id') === 4  && $accountpayable->status === 'liquidation approved by manager'){
+    //                  return view('accountpayables.create.step-7', [
+    //                  'property' => $property,
+    //                  'accountpayable' => $accountpayable
+    //                  ]);
+                   
+    //             }else{
+    //                  return view('accountpayables.pending-approval-liquidation-manager',[
+    //                  'accountpayable' => $accountpayable
+    //                  ]);
+    //             }
+    //         }else{
+    //             return abort(401);
+    //         }
+
+     return view('accountpayables.pending-approval-liquidation-manager',[
+     'accountpayable' => $accountpayable
+     ]);
+    }
+
+    
 
     public function create_request_status($property_uuid){
         return view('accountpayables.create.request-status');
@@ -225,7 +310,7 @@ class AccountPayableController extends Controller
          ])->id; 
     }
 
-    public function store_step_3($accountpayable_id, $status, $comment, $vendor){
+    public function update_approval($accountpayable_id, $status, $comment, $vendor){
         AccountPayable::where('id', $accountpayable_id)
         ->update([
         'status' => $status,

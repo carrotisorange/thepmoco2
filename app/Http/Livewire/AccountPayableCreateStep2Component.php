@@ -3,36 +3,35 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Carbon\Carbon;
+use Session;
 use App\Models\AccountPayable;
-use Livewire\WithFileUploads;
-
+use App\Models\AccountPayableParticular;
+use App\Notifications\SendAccountPayableStep3NotificationToAP;
+use Illuminate\Support\Facades\Notification;
+use App\Models\UserProperty;
+use App\Models\User;
 
 class AccountPayableCreateStep2Component extends Component
 {
-    use WithFileUploads;
-    
+    public $property;
     public $accountpayable;
 
-    public $quotation1;
-    public $quotation2;
-    public $quotation3;
+    public $comment;
     public $vendor;
-    public $amount;
-    public $selected_quotation;
+    public $delivery_at;
     
-    public $property;
-
+    public function mount()
+    {
+        $this->comment = AccountPayable::find($this->accountpayable->id)->comment;
+        $this->vendor = AccountPayable::find($this->accountpayable->id)->vendor; 
+        $this->delivery_at = AccountPayable::find($this->accountpayable->id)->delivery_at;
+     }
 
     protected function rules()
     {
          return [
-            'quotation1' => 'nullable | mimes:jpg,bmp,png,pdf,docx | max:102400',
-            'quotation2' => 'nullable | mimes:jpg,bmp,png,pdf,docx | max:102400',
-            'quotation3' => 'nullable | mimes:jpg,bmp,png,pdf,docx | max:102400',
-            'vendor' => 'nullable',
-            'amount' => 'nullable|gt:0',
-            // 'selected_quotation' => ['required_with:quotation1'],
-            'selected_quotation' => ['nullable'],
+            'comment' => ['nullable']
         ];
     }
 
@@ -41,83 +40,43 @@ class AccountPayableCreateStep2Component extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function submitForm()
-    {
-        
-
-        $this->validate();
-
-        $this->store();
-    }
-
     public function downloadInternalDocument(){
         
-
         return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step1/export');
 
     }
 
-    public function store(){
-
-        if($this->quotation1){
-            AccountPayable::where('id', $this->accountpayable->id)
-            ->update([
-                'quotation1' => $this->quotation1->store('accountpayables'),
-            ]);
-        }if($this->quotation2){
-            AccountPayable::where('id', $this->accountpayable->id)
-            ->update([
-                'quotation2' => $this->quotation1->store('accountpayables'),
-            ]);
-            
-        }if($this->quotation3){
-            AccountPayable::where('id', $this->accountpayable->id)
-            ->update([
-                'quotation3' => $this->quotation3->store('accountpayables'),
-            ]);
-            
-        }     
-
-        if($this->selected_quotation === 'quotation1'){
-            AccountPayable::where('id', $this->accountpayable->id)
-              ->update([
-              'selected_quotation' => $this->quotation1->store('accountpayables'),
-              'amount' => $this->amount,
-              'vendor' => $this->vendor,
-              'status' => 'prepared'
-              ]);
-        }
-
-        if($this->selected_quotation === 'quotation2'){
-             AccountPayable::where('id', $this->accountpayable->id)
-              ->update([
-              'selected_quotation' => $this->quotation2->store('accountpayables'),
-              'amount' => $this->amount,
-              'vendor' => $this->vendor,
-               'status' => 'prepared'
-              ]);
-        }
-
-        if($this->selected_quotation === 'quotation3'){
-             AccountPayable::where('id', $this->accountpayable->id)
-              ->update([
-              'selected_quotation' => $this->quotation3->store('accountpayables'),
-              'amount' => $this->amount,
-              'vendor' => $this->vendor,
-               'status' => 'prepared'
-              ]);
-        }
-
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-3')->with('success', 'Success!');
-    }
-
-    public function removeQuotation($quotation)
+    public function approveRequest()
     {
-        $this->$quotation = '';
-    }
+        $this->validate();
+
+        app('App\Http\Controllers\AccountPayableController')->update_approval($this->accountpayable->id, 'approved by manager', $this->comment, $this->vendor);
+
+        $content = $this->accountpayable;
+
+        $first_approver = User::find($this->accountpayable->approver_id)->email;
+            
+        // Notification::route('mail', $first_approver)->notify(new SendAccountPayableStep3NotificationToAP($content));
     
+        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-2')->with('success', 'Success!');
+    }
+
+    public function rejectRequest(){
+        
+        $this->validate();
+
+        app('App\Http\Controllers\AccountPayableController')->update_approval($this->accountpayable->id, 'rejected by manager', $this->comment, $this->vendor);
+
+        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-2')->with('success', 'Success!');
+    }
+
     public function render()
     {
-        return view('livewire.account-payable-create-step2-component');
+       $accountpayable = AccountPayable::find($this->accountpayable->id);
+
+       return view('livewire.account-payable-create-step2-component',[
+        'accountpayable' => $accountpayable,
+        'particulars' => AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get()
+       ]);
     }
 }

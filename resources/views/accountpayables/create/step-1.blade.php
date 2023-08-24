@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title','Accounts Payable')
+    @section('title','Step 1 of 7 | Request for Payables')
     @section('styles')
     <style>
         input::-webkit-outer-spin-button,
@@ -19,7 +19,7 @@
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="border border-gray-200 overflow-hidden border-b-0 rounded-t-md lg:border-0">
                             <!-- Current Step -->
-                            <a href="#" aria-current="step">
+                            <a href="/property/{{ $property->uuid }}/accountpayable/{{ $accountpayable->id }}/step-1" aria-current="step">
                                 <span class="absolute top-0 left-0 h-full w-1 bg-purple-600 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full" aria-hidden="true"></span>
                                     <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
                                         <span class="flex-shrink-0">
@@ -42,7 +42,7 @@
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="border border-gray-200 overflow-hidden border-t-0 rounded-b-md lg:border-0">
                             <!-- Upcoming Step -->
-                            <a href="#" class="group">
+                           <a href="/property/{{ $property->uuid }}/accountpayable/{{ $accountpayable->id }}/step-2" class="group">
                                 <span class="absolute top-0 left-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full" aria-hidden="true"></span>
                                 <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
                                     <span class="flex-shrink-0">
@@ -72,7 +72,7 @@
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="border border-gray-200 overflow-hidden border-t-0 rounded-b-md lg:border-0">
                             <!-- Upcoming Step -->
-                            <a href="#" class="group">
+                           <a href="/property/{{ $property->uuid }}/accountpayable/{{ $accountpayable->id }}/step-3" class="group">
                                 <span class="absolute top-0 left-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full" aria-hidden="true"></span>
                                 <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
                                     <span class="flex-shrink-0">
@@ -102,7 +102,7 @@
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="border border-gray-200 overflow-hidden border-t-0 rounded-b-md lg:border-0">
                             <!-- Upcoming Step -->
-                            <a href="#" class="group">
+                           <a href="/property/{{ $property->uuid }}/accountpayable/{{ $accountpayable->id }}/step-4" class="group">
                                 <span class="absolute top-0 left-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full" aria-hidden="true"></span>
                                 <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
                                     <span class="flex-shrink-0">
@@ -132,7 +132,7 @@
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="border border-gray-200 overflow-hidden border-t-0 rounded-b-md lg:border-0">
                             <!-- Upcoming Step -->
-                            <a href="#" class="group">
+                            <a href="/property/{{ $property->uuid }}/accountpayable/{{ $accountpayable->id }}/step-5" class="group">
                                 <span class="absolute top-0 left-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full" aria-hidden="true"></span>
                                 <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
                                     <span class="flex-shrink-0">
@@ -162,7 +162,7 @@
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="border border-gray-200 overflow-hidden border-t-0 rounded-b-md lg:border-0">
                             <!-- Upcoming Step -->
-                            <a href="#" class="group">
+                            <a href="/property/{{ $property->uuid }}/accountpayable/{{ $accountpayable->id }}/step-6" class="group">
                                 <span class="absolute top-0 left-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full" aria-hidden="true"></span>
                                 <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
                                     <span class="flex-shrink-0">
@@ -192,7 +192,7 @@
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="border border-gray-200 overflow-hidden border-t-0 rounded-b-md lg:border-0">
                             <!-- Upcoming Step -->
-                            <a href="#" class="group">
+                            <a href="/property/{{ $property->uuid }}/accountpayable/{{ $accountpayable->id }}/step-7" class="group">
                                 <span class="absolute top-0 left-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full" aria-hidden="true"></span>
                                 <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
                                     <span class="flex-shrink-0">

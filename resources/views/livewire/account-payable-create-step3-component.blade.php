@@ -1,33 +1,5 @@
 <div>
-    @cannot('accountownerandmanager')
-    <main class="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
-        <div class="text-center">
-            {{-- <p class="text-base font-semibold text-indigo-600"></p> --}}
-            <h1 class="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl"><i
-                    class="fa-solid fa-hourglass-start"></i></h1>
-            <p class="mt-6 text-base leading-7 text-gray-600">The request has been sent to the manager.</p>
-            <div class="mt-10 flex items-center justify-center gap-x-6">
 
-                <a href="/property/{{ $property->uuid }}/accountpayable"
-                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                    Create Another Request
-                </a>
-
-                <a href="/property/{{ $property->uuid }}/accountpayable/{{ $accountpayable->id }}/step-1"
-                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                   Edit Request
-                </a>
-
-                <a href="/property/{{ $property->uuid }}/accountpayable/{{ $accountpayable->id }}/step1/export"
-                    target="_blank"
-                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                    View Request
-                </a>
-
-            </div>
-        </div>
-    </main>
-    @else
 
     <div class="mt-5 px-4 sm:px-6 lg:px-8">
         <div class="flex justify-end">
@@ -339,5 +311,4 @@
         </form>
         {{-- end-step-1-form --}}
     </div>
-    @endcannot
 </div>

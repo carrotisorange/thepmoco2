@@ -9,7 +9,7 @@
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="border border-gray-200 overflow-hidden border-b-0 rounded-t-md lg:border-0">
                             <!-- Completed Step -->
-                            <a href="" class="group">
+                            <a href="/property/{{ Session::get('property_uuid') }}/accountpayable/{{ $accountpayable->id }}/step-1" class="group">
                                 <span class="absolute top-0 left-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full" aria-hidden="true"></span>
                                     <span class="px-6 py-5 flex items-start text-sm font-medium">
                             
@@ -37,7 +37,7 @@
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="border border-gray-200 overflow-hidden border-t-0 rounded-b-md lg:border-0">
                             <!-- Current Step -->
-                            <a href="#" aria-current="step">
+                            <a href="/property/{{ Session::get('property_uuid') }}/accountpayable/{{ $accountpayable->id }}/step-2" aria-current="step">
                                 <span class="absolute top-0 left-0 h-full w-1 bg-purple-600 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full" aria-hidden="true"></span>
                                     <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
                                         <span class="flex-shrink-0">
@@ -66,7 +66,7 @@
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="border border-gray-200 overflow-hidden border-t-0 rounded-b-md lg:border-0">
                             <!-- Upcoming Step -->
-                            <a href="#" class="group">
+                            <a href="/property/{{ Session::get('property_uuid') }}/accountpayable/{{ $accountpayable->id }}/step-3" class="group">
                                 <span class="absolute top-0 left-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full" aria-hidden="true"></span>
                                 <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
                                     <span class="flex-shrink-0">
@@ -96,7 +96,7 @@
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="border border-gray-200 overflow-hidden border-t-0 rounded-b-md lg:border-0">
                             <!-- Upcoming Step -->
-                            <a href="#" class="group">
+                            <a href="/property/{{ Session::get('property_uuid') }}/accountpayable/{{ $accountpayable->id }}/step-4" class="group">
                                 <span class="absolute top-0 left-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full" aria-hidden="true"></span>
                                 <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
                                     <span class="flex-shrink-0">
@@ -126,7 +126,7 @@
                      <li class="relative overflow-hidden lg:flex-1">
                         <div class="border border-gray-200 overflow-hidden border-t-0 rounded-b-md lg:border-0">
                             <!-- Upcoming Step -->
-                            <a href="#" class="group">
+                            <a href="/property/{{ Session::get('property_uuid') }}/accountpayable/{{ $accountpayable->id }}/step-5" class="group">
                                 <span class="absolute top-0 left-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full" aria-hidden="true"></span>
                                 <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
                                     <span class="flex-shrink-0">
@@ -156,7 +156,7 @@
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="border border-gray-200 overflow-hidden border-t-0 rounded-b-md lg:border-0">
                             <!-- Upcoming Step -->
-                            <a href="#" class="group">
+                            <a href="/property/{{ Session::get('property_uuid') }}/accountpayable/{{ $accountpayable->id }}/step-6" class="group">
                                 <span class="absolute top-0 left-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full" aria-hidden="true"></span>
                                 <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
                                     <span class="flex-shrink-0">
@@ -186,7 +186,7 @@
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="border border-gray-200 overflow-hidden border-t-0 rounded-b-md lg:border-0">
                             <!-- Upcoming Step -->
-                            <a href="#" class="group">
+                            <a href="/property/{{ Session::get('property_uuid') }}/accountpayable/{{ $accountpayable->id }}/step-7" class="group">
                                 <span class="absolute top-0 left-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full" aria-hidden="true"></span>
                                 <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
                                     <span class="flex-shrink-0">
@@ -213,19 +213,19 @@
                     </li>
                 </ol>
             </nav>
-            <h1 class="py-12 font-light text-gray-800 text-3xl text-center">Pending Approval</h1>
+            <h1 class="py-12 font-light text-gray-800 text-3xl text-center">{{ $accountpayable->status }}</h1>
             <div class="flex justify-center items-center">
                 <img src="{{ asset('/brands/pending-approval.png') }}" class="w-72">
             </div>
 
             <div class="mx-auto py-12 flex justify-center space-x-7 items-center">
-                <button class="px-3 py-2 border border-gray-300 rounded-full text-base">
+                <a  href="/property/{{ Session::get('property_uuid') }}/accountpayable" class="px-3 py-2 border border-gray-300 rounded-full text-base">
                     Go Back
-                </button>
+                </a>
 
-                <button class="px-3 py-2 bg-purple-500 rounded-full text-base text-white">
+                {{-- <button class="px-3 py-2 bg-purple-500 rounded-full text-base text-white">
                     Send Another Email
-                </button>
+                </button> --}}
 
             </div>
         </div>

@@ -16,6 +16,8 @@ use App\Models\Guest;
 |
 */
 
+
+
 require __DIR__.'/auth.php';
 
 require __DIR__.'/portfolio.php';
@@ -35,7 +37,24 @@ require __DIR__.'/marketing.php';
 //All routes that do not require authentication and verification
 require __DIR__.'/checkout.php';
 
-
+  
+use App\Http\Controllers\ExportExcelController;
+  
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+ 
+Route::controller(ExportExcelController::class)->group(function(){
+    Route::get('index', 'index');    
+    Route::get('export/excel', 'exportExcelFile')->name('export.excel');
+});
 
 Route::get('/unit-remittance', function(){
     return view('remittance.unit-remittance');

@@ -94,7 +94,7 @@
                 $collections_count = App\Models\Collection::where('batch_no', $collection->collection_batch_no)->posted()->count();
             ?>
             <x-td>
-                {{ number_format($collection->collection,2) }} ({{ $collection->count }})
+                {{ number_format(App\Models\Collection::where('property_uuid', $collection->property_uuid)->where('ar_no', $collection->ar_no)->sum('collection'),2) }} ({{ $collection->count }})
             </x-td>
             <x-td>
                 <button id="dropdownDefaultButton({{ $collection->id }})" data-dropdown-placement="left-end"

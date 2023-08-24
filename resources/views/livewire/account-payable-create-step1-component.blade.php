@@ -2,7 +2,7 @@
     @include('layouts.notifications')
     <div class=" mt-5 px-4 sm:px-6 lg:px-8">
         {{-- start-step-1-form --}}
-        <form class="space-y-6" wire:submit.prevent="submitForm()" method="POST">
+        <form class="space-y-6" wire:submit.prevent="submitForm()">
 
             <div class="md:grid md:grid-cols-6 md:gap-6">
                 <div class="sm:col-span-7">
@@ -120,6 +120,7 @@
                                         <x-th>PRICE</x-th>
                                         <x-th>TOTAL</x-th>
                                         {{-- <x-th></x-th> --}}
+                                        {{-- <x-th></x-th> --}}
                                         <x-th></x-th>
                                     </tr>
                                 </thead>
@@ -207,21 +208,21 @@
                                             
                                                 @include('layouts.notifications')
                                             </x-td>
-                                            <x-td>
+                                            {{-- <x-td> --}}
                                                 {{-- <button type="button"
                                                     wire:click="updateParticular({{ $particular->id }})"
                                                     wire:target="updateParticular"
                                                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                                     Save
                                                 </button> --}} 
-                                                @if($particular->id === $particular->max('id'))
+                                                {{-- @if($particular->id === $particular->max('id'))
                                                 <button type="button" wire:click="addNewParticular"
                                                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                                     Add 
                                                 </button>
-                                                @endif
+                                                @endif --}}
                                            
-                                            </x-td>
+                                            {{-- </x-td> --}}
 
                                           
                                         </tr>
@@ -236,6 +237,7 @@
                                         <x-th></x-th>
                                         <x-td><b>{{ number_format($amount, 2)}}</b></x-td>
                                         <x-th></x-th>
+                                        {{-- <x-th></x-th> --}}
                                     </tr>
 
                                 </tbody>
@@ -312,7 +314,7 @@
                             <div class="flex text-sm text-gray-600">
                                 <label for="quotation1"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
-                                    <span>Upload a file</span>
+                                    <span wire:loading.remove>Upload a file</span>
                                     <span wire:loading>Loading...</span>
                                     <input id="quotation1" wire:model="quotation1" type="file" class="sr-only">
                                     <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
@@ -346,7 +348,7 @@
                             <div class="flex text-sm text-gray-600">
                                 <label for="quotation2"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
-                                    <span>Upload a file</span>
+                                    <span wire:loading.remove>Upload a file</span>
                                     <span wire:loading>Loading...</span>
                                     <input id="quotation2" wire:model="quotation2" type="file" class="sr-only">
                                     <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
@@ -380,7 +382,7 @@
                             <div class="flex text-sm text-gray-600">
                                 <label for="quotation3"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
-                                    <span>Upload a file</span>
+                                    <span wire:loading.remove>Upload a file</span>
                                     <span wire:loading>Loading...</span>
                                     <input id="quotation3" wire:model="quotation3" type="file" class="sr-only">
                                     <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
@@ -452,17 +454,20 @@
                     @enderror
                 </div>
 
-                               <div class="col-start-6 flex items-center justify-end">
-                    <button type="submit" wire:click="cancelRequest"
-                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                        Cancel
-                    </button>
+                <div class="col-start-6 flex items-center justify-end">
+                  <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline" href="#/"
+                    wire:click="cancelRequest()" wire:loading.remove>
+                    Cancel
+                    </a>
                    
-                   
-                    <button type="button" wire:click="submitForm"
+                    <button type="submit" wire:loading.remove
                         class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-
                         Next
+                    </button>
+
+                    <button type="button" wire:loading disabled
+                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                        Loading...
                     </button>
                 </div>
 
