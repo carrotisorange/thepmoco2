@@ -7,7 +7,7 @@
             --}}
         </div>
         {{-- start-step-1-form --}}
-        <form class="space-y-6" wire:submit.prevent="submitForm()" method="POST">
+        <form class="space-y-6" wire:submit.prevent="submitForm()">
 
             <div class="md:grid md:grid-cols-6 md:gap-6">
 
@@ -87,28 +87,6 @@
                     <label for="vendor-details" class="block text-sm font-medium text-gray-700">Vendor Details</label>
 
                 </div>
-
-
-                {{-- price --}}
-                {{-- <div class="sm:col-span-3">
-                    <label for="amount" class="block text-sm font-medium text-gray-700">Amount:</label>
-                    <input type="number" step="0.01" value="{{ $accountpayable->amount }}" name="amount" readonly
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                    @error('amount')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div> --}}
-
-
-                {{-- vendor details --}}
-                {{-- <div class="sm:col-span-3">
-                    <label for="vendor-details" class="block text-sm font-medium text-gray-700">Vendor:</label>
-                    <input type="text" value="{{ $accountpayable->vendor }}" name="vendor" readonly
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                    @error('selected_vendor')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div> --}}
 
 
                 <div class="sm:col-span-6">
@@ -196,22 +174,22 @@
                 {{-- reject, approve button --}}
                 <div class="col-start-6 flex items-center justify-end">
 
-                    <!-- <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
-                        href="#/" wire:click="markAsReleased">
-                        Skip
+                    <a target="_blank" href="/property/{{ $this->property->uuid }}/accountpayable/{{ $this->accountpayable->id }}/step1/export" wire:loading.remove class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                        Export 
                     </a>
-                    <button
+
+                    <button type="submit" wire:loading.remove
                         class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
 
 
-                        Finish
-                    </button> -->
+                        Confirm
+                    </button>
 
-                    <button
+                    <button type="button" wire:loading disabled
                         class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-
-
-                        Next
+                    
+                    
+                        Loading...
                     </button>
 
                 </div>

@@ -39,7 +39,8 @@ class AccountPayableCreateStep4Component extends Component
     }
 
     public function submitForm()
-    {
+    {   
+        sleep(2);
 
         $this->validate();
 

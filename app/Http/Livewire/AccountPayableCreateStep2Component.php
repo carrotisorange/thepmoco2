@@ -41,11 +41,6 @@ class AccountPayableCreateStep2Component extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function downloadInternalDocument(){
-        
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step1/export');
-
-    }
 
     public function approveRequest()
     {

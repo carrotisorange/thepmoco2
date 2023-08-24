@@ -86,6 +86,8 @@ class AccountPayableCreateStep3Component extends Component
         return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-4')->with('success', 'Success!');
     }
 
+    
+
     public function render()
     {
        $accountpayable = AccountPayable::find($this->accountpayable->id);
