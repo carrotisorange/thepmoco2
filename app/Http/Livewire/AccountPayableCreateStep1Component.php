@@ -94,6 +94,11 @@ class AccountPayableCreateStep1Component extends Component
     {
         sleep(2);
 
+        $this->validate([
+            'first_approver' => 'required',
+            'second_approver' => 'required'
+        ]);
+
         $this->update_particulars();
 
         $this->upload_quotations();
@@ -107,10 +112,6 @@ class AccountPayableCreateStep1Component extends Component
         // if(!$this->get_particulars()->count()){
         //     return redirect(url()->previous())->with('error', 'Please add at least 1 particular.');
         // }
-
-        $this->validate([
-            'first_approver' => ['required']
-        ]);
 
         app('App\Http\Controllers\PropertyAccountPayableController')->update(
             $this->accountpayable->id,
