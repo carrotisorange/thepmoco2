@@ -28,8 +28,6 @@ class AccountPayableController extends Controller
 
     public function store(Property $property, $request_for, $batch_no){
 
-        // $this->authorize('is_account_payable_create_allowed');
-
         $generated_batch_no = auth()->user()->id.'-'.sprintf('%08d', AccountPayable::where('property_uuid',$property->uuid)->where('status', '!=', 'pending')->count()).'-'.$batch_no;
 
         $account_payable = AccountPayable::updateOrCreate(
@@ -42,12 +40,12 @@ class AccountPayableController extends Controller
             ]
             ,
             [
-            'property_uuid' => $property->uuid,
-            'requester_id' => auth()->user()->id,
-            'batch_no' => $generated_batch_no,
-            'request_for' => $request_for,
-            'created_at' => Carbon::now(),
-            'status' => 'pending'
+                'property_uuid' => $property->uuid,
+                'requester_id' => auth()->user()->id,
+                'batch_no' => $generated_batch_no,
+                'request_for' => $request_for,
+                'created_at' => Carbon::now(),
+                'status' => 'pending'
         ]);
 
         return redirect('/property/'.$property->uuid.'/accountpayable/'.$account_payable->id.'/step-1')->with('success', 'Success!');
@@ -144,7 +142,7 @@ class AccountPayableController extends Controller
                     ]);
                    
                 }else{
-                    return view('accountpayables.pending-approval-manager',[
+                    return view('accountpayables.pending-approval-ap',[
                     'accountpayable' => $accountpayable
                     ]);
                 }

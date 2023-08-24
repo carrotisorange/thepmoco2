@@ -264,7 +264,6 @@
         </div>
         {{-- end of stepper --}}
 
-        @livewire('account-payable-create-step3-component', ['property'=> $property , 'accountpayable' =>
-        $accountpayable])
+        @livewire('account-payable-create-step3-component', ['property'=> $property , 'accountpayable' => $accountpayable])
     </div>
 </x-new-layout>
