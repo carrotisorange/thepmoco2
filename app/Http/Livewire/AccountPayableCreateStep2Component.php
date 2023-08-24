@@ -58,7 +58,7 @@ class AccountPayableCreateStep2Component extends Component
             
         // Notification::route('mail', $first_approver)->notify(new SendAccountPayableStep3NotificationToAP($content));
     
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-2')->with('success', 'Success!');
+        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-3')->with('success', 'Success!');
     }
 
     public function rejectRequest(){
@@ -67,7 +67,7 @@ class AccountPayableCreateStep2Component extends Component
 
         app('App\Http\Controllers\AccountPayableController')->update_approval($this->accountpayable->id, 'rejected by manager', $this->comment, $this->vendor);
 
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-2')->with('success', 'Success!');
+        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-3')->with('success', 'Success!');
     }
 
     public function render()

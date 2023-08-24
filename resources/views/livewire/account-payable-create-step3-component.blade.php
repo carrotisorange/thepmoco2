@@ -253,36 +253,13 @@
 
                 </div>
 
-                @can('accountownerandmanager')
+               
                 <div class="sm:col-span-6">
                     <textarea placeholder="Add your comment..." wire:model="comment"
                         class="p-2 font-base border-[0.1px] resize-none h-[120px] border-[#9EA5B1] rounded-md w-full"></textarea>
 
                 </div>
-                @else
-                <div class="sm:col-span-6">
-                    <textarea placeholder="Add your comment..." wire:model="comment" readonly
-                        class="p-2 font-base border-[0.1px] resize-none h-[120px] border-[#9EA5B1] rounded-md w-full"></textarea>
-
-                </div>
-                @endcan
-
-                @if($accountpayable->status === 'approved by manager')
-                <div class="sm:col-span-6">
-                    <label for="vendor-details" class="block text-sm font-medium text-green-700"><i
-                            class="fa-solid fa-circle-check"></i> Approved by: {{
-                        $accountpayable->requester->name }} </label>
-
-                </div>
-                @elseif($accountpayable->status === 'rejected by manager')
-
-                <div class="sm:col-span-6">
-                    <label for="vendor-details" class="block text-sm font-medium text-red-700"><i
-                            class="fa-solid fa-triangle-exclamation"></i> Rejected by: {{
-                        $accountpayable->requester->name }} </label>
-
-                </div>
-                @endif
+              
 
                 {{-- reject, approve button --}}
                 <div class="col-start-6 flex items-center justify-end">
