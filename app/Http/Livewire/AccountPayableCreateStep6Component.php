@@ -6,6 +6,12 @@ use Livewire\Component;
 use App\Models\AccountPayableLiquidationParticular;
 use App\Models\AccountPayableLiquidation;
 use App\Models\AccountPayable;
+use App\Notifications\SendAccountPayableStep3NotificationToAP;
+use App\Notifications\SendAccountPayableStep4NotificationToAdmin;
+use Illuminate\Support\Facades\Notification;
+use App\Models\User;
+use App\Models\UserProperty;
+
 
 class AccountPayableCreateStep6Component extends Component
 {
@@ -27,6 +33,20 @@ class AccountPayableCreateStep6Component extends Component
         ->update([
             'status' => 'liquidation approved by manager'
         ]);
+
+         $ap = UserProperty::where('property_uuid', $this->property->uuid)->where('role_id',
+         4)->pluck('user_id')->first();
+
+
+         $content = $this->accountpayable;
+
+         if($ap){
+
+            $email_ap = User::find($ap)->email;
+
+            Notification::route('mail', $email_ap)->notify(new SendAccountPayableStep3NotificationToAP($content));
+
+         }
 
        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-6')->with('success', 'Success!');
     }

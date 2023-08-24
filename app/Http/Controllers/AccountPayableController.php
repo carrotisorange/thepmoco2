@@ -94,17 +94,17 @@ class AccountPayableController extends Controller
     public function create_step_2(Property $property, AccountPayable $accountpayable){
 
         // if($accountpayable->approver_id != null){
-            if($accountpayable->approver_id === auth()->user()->id){
+            if($accountpayable->status === 'pending'){
               
-                if($accountpayable->status === 'pending'){
+                if($accountpayable->approver_id === auth()->user()->id){
                      return view('accountpayables.create.step-2', [
-                     'property' => $property,
-                     'accountpayable' => $accountpayable
+                        'property' => $property,
+                        'accountpayable' => $accountpayable
                      ]);
                    
                 }else{
                      return view('accountpayables.pending-approval-manager',[
-                     'accountpayable' => $accountpayable
+                        'accountpayable' => $accountpayable
                      ]);
                 }
             }else{

@@ -52,17 +52,6 @@ class AccountPayableCreateStep4Component extends Component
             ]);
             
         }    
-
-        $requester = UserProperty::where('property_uuid', $this->property->uuid)->where('role_id', 9)->pluck('user_id')->first();
-
-        $content = $this->accountpayable;
-
-        if($requester){
-            $requester_email = User::find($requester)->email;
-
-            Notification::route('mail', $requester_email)->notify(new SendAccountPayableStep4NotificationToAdmin($content));
-    
-        }
         
         return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-5')->with('success', 'Success!');
 
