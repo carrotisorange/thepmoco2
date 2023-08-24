@@ -9,6 +9,9 @@ use App\Models\AccountPayable;
 use App\Models\Property;
 use App\Models\AccountPayableLiquidationParticular;
 use App\Models\Role;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\SendAccountPayableStep2NotificationToManager;
+use App\Models\User;
 
 class AccountPayableCreateStep5Component extends Component
 {
@@ -116,6 +119,14 @@ class AccountPayableCreateStep5Component extends Component
         ->update([
             'status'=> 'liquidated'
         ]);
+
+         if($this->accountpayable->approver_id)
+        {
+            $content = $this->accountpayable;
+
+            $first_approver = User::find($this->accountpayable->approver_id)->email;
+            Notification::route('mail', $first_approver)->notify(new SendAccountPayableStep2NotificationToManager($content));
+        }
 
         return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-6')->with('success', 'Success!');
     }

@@ -177,12 +177,6 @@ class AccountPayableCreateStep1Component extends Component
             $first_approver = User::find($this->first_approver)->email;
             Notification::route('mail', $first_approver)->notify(new SendAccountPayableStep2NotificationToManager($content));
         }
-
-        if($this->second_approver)
-        {
-            $second_approver = User::find($this->second_approver)->email;
-            Notification::route('mail', $second_approver)->notify(new SendAccountPayableStep2NotificationToManager($content));
-        }
     }
 
     public function addNewParticular(){

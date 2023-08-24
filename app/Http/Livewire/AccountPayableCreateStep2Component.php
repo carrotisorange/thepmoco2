@@ -8,6 +8,7 @@ use Session;
 use App\Models\AccountPayable;
 use App\Models\AccountPayableParticular;
 use App\Notifications\SendAccountPayableStep3NotificationToAP;
+use App\Notifications\SendAccountPayableStep4NotificationToAdmin;
 use Illuminate\Support\Facades\Notification;
 use App\Models\UserProperty;
 use App\Models\User;
@@ -52,11 +53,14 @@ class AccountPayableCreateStep2Component extends Component
 
         app('App\Http\Controllers\AccountPayableController')->update_approval($this->accountpayable->id, 'approved by manager', $this->comment, $this->vendor);
 
-        $content = $this->accountpayable;
+        if($this->accountpayable->approver2_id){
 
-        $first_approver = User::find($this->accountpayable->approver_id)->email;
+            $content = $this->accountpayable;
+
+            $second_approver = User::find($this->accountpayable->approver_id)->email;
             
-        // Notification::route('mail', $first_approver)->notify(new SendAccountPayableStep3NotificationToAP($content));
+            Notification::route('mail', $second_approver)->notify(new SendAccountPayableStep3NotificationToAP($content));
+        }
     
         return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-3')->with('success', 'Success!');
     }
@@ -66,6 +70,12 @@ class AccountPayableCreateStep2Component extends Component
         $this->validate();
 
         app('App\Http\Controllers\AccountPayableController')->update_approval($this->accountpayable->id, 'rejected by manager', $this->comment, $this->vendor);
+
+        $content = $this->accountpayable;
+
+        $requester_email = User::find($this->accountpayable->requester_id)->email;
+
+        Notification::route('mail', $requester_email)->notify(new SendAccountPayableStep4NotificationToAdmin($content));
 
         return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-3')->with('success', 'Success!');
     }
