@@ -58,6 +58,10 @@
     background-color: #F4B700;
   }
 
+  .propSuitebg{
+    background-color: #4F3F6D;
+  }
+
 
   .bgStart{
     background-color: #4F1964;
@@ -282,12 +286,12 @@
               </div>
 
               <div class="slide py-16 bg-transparent" id="">
-                <div class="sm:block lg:flex md:flex">
+                <div class="sm:block lg:flex md:flex pb-4">
 
                   <div class="flex-col items-center justify-center ml-10 lg:px-10 xl:px-16 sm-px-0">
                     <div class="w-full">
-                      <div class="flex justify-center items-center md:block -mt-20 pb-10 lg:pb-0 lg:mt-20">
-                        <!-- <img src="{{ asset('/brands/propsuite/propbiz.png') }}" class="w-36"> -->
+                      <div class="flex justify-center items-center md:block -mt-20 pb-10 lg:pb-0 lg:mt-16">
+                         <img src="{{ asset('/brands/propsuite/propsuite.png') }}" class="-ml-3 w-36"> 
                       </div>
                       <div class="typewriter text-center flex sm:block md:block lg:block text-white justify-center items-center text-2xl font-bold sm:text-3xl lg:text-5xl">
                         <h1>Fullsuite Digital Solutions</h1>
@@ -295,11 +299,11 @@
                     </div>
                   </div>
 
-                  <div class="flex-col justify-center sm:-py-2 md:py-20 lg:py-8 lg:ml-20 lg:px-16">
-                    <div class="lg:block lg:py-20 md:max-w-sm lg:max-w-md xl:max-w-lg  sm:py-2 mx-5 mt-5">
-                      <p class="text-base font-light lg:-mt-10 md:-mt-36 lg:mt-1 text-white text-justify">We provide full suite digital solution for rental property communities and home owners associations.</p>
+                  <div class="flex-col justify-center sm:-py-2 md:py-20 lg:py-8 lg:px-16">
+                    <div class="lg:block lg:py-20 md:max-w-sm lg:max-w-md xl:max-w-lg sm:py-2 mx-5 mt-5">
+                      <p class="ml-0 lg:ml-16 text-base font-light md:-mt-36 lg:mt-1 text-white text-justify">We provide full suite digital solution for rental property communities and home owners associations.</p>
                       <div class="mt-10 flex justify-end items-center space-x-5">
-                        <button class="proprentOrangebg rounded-full"> <a href="about" class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-yellow-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Learn More</a></button>
+                        <button class="propSuitebg rounded-full"> <a href="about" class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-yellow-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Learn More</a></button>
                       </div>
                     </div>
                   </div>
@@ -400,15 +404,15 @@
               <div class="my-8">
                   <ul class="flex justify-center items-center -mb-px space-x-8" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
                       <li class="mr-2 rounded-xl" role="presentation">                
-                          <img class="h-72 inline-block border text-gray-500 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 active" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true" src="{{ asset('/brands/propsuite/propman-notext.png') }}">
+                          <img class="h-48 inline-block border text-gray-500  rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 active" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true" src="{{ asset('/brands/propsuite/propman-notext.png') }}">
                           <p class="py-2 block text-base font-semibold text-center">Propman</p>
                         </li>
                       <li class="mr-2 rounded-xl" role="presentation">
-                          <img class="h-72 inline-block border text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false" src="{{ asset('/brands/propsuite/proprent-notext.png') }}">
+                          <img class="h-48 inline-block border text-gray-500  rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false" src="{{ asset('/brands/propsuite/proprent-notext.png') }}">
                           <p class="py-2 block text-base font-semibold text-center">Proprent</p>
                         </li>
                       <li class="mr-2 rounded-xl" role="presentation">
-                          <img class="h-72 inline-block border text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300" id="settings-tab" data-tabs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false" src="{{ asset('/brands/propsuite/propbiz-notext.png') }}">
+                          <img class="h-48 inline-block border text-gray-500  rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300" id="settings-tab" data-tabs-target="#settings" type="button" role="tab" aria-controls="settings" aria-selected="false" src="{{ asset('/brands/propsuite/propbiz-notext.png') }}">
                           <p class="py-2 block text-base font-semibold text-center">Propbiz</p>
                       </li>
                       
