@@ -276,13 +276,11 @@ class AccountPayableCreateStep1Component extends Component
 
     public function render()
     {
-        // $this->particulars = $this->get_particulars();
-
         return view('livewire.account-payable-create-step1-component',[
             'units' => Property::find($this->property->uuid)->units,
             'vendors' => Property::find($this->property->uuid)->billers,
-            'managers' => UserProperty::where('property_uuid', $this->property->uuid)->where('role_id', 9)->get(),
-            'accountpayables' => UserProperty::where('property_uuid', $this->property->uuid)->where('role_id', 4)->get()
+            'managers' => UserProperty::where('property_uuid', $this->property->uuid)->where('role_id', 9)->approved()->get(),
+            'accountpayables' => UserProperty::where('property_uuid', $this->property->uuid)->where('role_id', 4)->approved()->get()
         ]);
     }
 }

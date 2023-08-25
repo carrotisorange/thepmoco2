@@ -34,8 +34,7 @@ class AccountPayableCreateStep6Component extends Component
             'status' => 'liquidation approved by manager'
         ]);
 
-         $ap = UserProperty::where('property_uuid', $this->property->uuid)->where('role_id',
-         4)->pluck('user_id')->first();
+         $ap = UserProperty::where('property_uuid', $this->property->uuid)->where('role_id',4)->approved()->pluck('user_id')->first();
 
 
          $content = $this->accountpayable;

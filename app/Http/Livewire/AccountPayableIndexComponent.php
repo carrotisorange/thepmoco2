@@ -12,7 +12,7 @@ class AccountPayableIndexComponent extends Component
 {
     public $property;
 
-    public $status = 'pending';
+    public $status;
     public $created_at;
     public $request_for;
     public $limitDisplayTo = 10;
@@ -42,8 +42,12 @@ class AccountPayableIndexComponent extends Component
         return view('livewire.account-payable-index-component',[
           // 'accountpayables' => app('App\Http\Controllers\PropertyAccountPayableController')->get_accountpayables($this->property->uuid, $this->status, $this->created_at, $this->request_for, $this->limitDisplayTo, $this->search),
           'accountpayables' => AccountPayable::where('property_uuid',$this->property->uuid)
-         
-          ->where('status', $this->status)
+             ->when($this->status, function($query){
+              $query->where('status', $this->status);
+             })
+            // ->where('requester_id', auth()->user()->id)
+            // ->orWhere('approver_id', auth()->user()->id)
+            // ->orWhere('approver2_id', auth()->user()->id)
           // ->when(($this->created_at), function($query){
           // $query->whereDate('created_at', $this->created_at);
           // })
