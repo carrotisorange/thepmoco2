@@ -61,7 +61,7 @@
                    <option value="pending" {{ "pending"===$status? 'selected' : 'Select one' }}>
                         pending
                     </option>
-                    <option value=""{{ "released"===$status? 'selected' : 'Select one' }}>
+                    <option value="released"{{ "released"===$status? 'selected' : 'Select one' }}>
                         released
                     </option>
                     <option value="approved by manager" {{ "approved by manager"===$status? 'selected' : 'Select one' }}>
