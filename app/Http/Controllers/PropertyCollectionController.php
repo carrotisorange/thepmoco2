@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ExportCollection;
 use Illuminate\Http\Request;
 use App\Models\Property;
 use Session;
@@ -10,6 +11,7 @@ use Carbon\Carbon;
 use App\Models\AcknowledgementReceipt;
 use Illuminate\Support\Str;
 use App\Models\Collection;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PropertyCollectionController extends Controller
 {
@@ -32,28 +34,39 @@ class PropertyCollectionController extends Controller
 
     public function export_dcr(Property $property, $date){
 
-        $collections = Collection::where('property_uuid', $property->uuid)->whereDate('updated_at', $date)->posted()->orderBy('ar_no')->distinct()->get();
+        $collections = Collection::
+         select('*')
+        ->where('property_uuid', $property->uuid)
+        ->whereDate('created_at', $date)
+        ->posted()->orderBy('ar_no')
+        ->distinct()
+        ->get()
+        ->toArray();
 
         $data = [
             'collections' => $collections,
             'date' => $date
         ];
 
-        $pdf = \PDF::loadView('properties.collections.export_dcr', $data);
+        Session::put('export_dcr_date', $date);
 
-        $pdf->output();
+        return Excel::download(new ExportCollection(), Session::get('property').'-'.$date.'-dcr'.'.xlsx');
 
-        $canvas = $pdf->getDomPDF()->getCanvas();
+        // $pdf = \PDF::loadView('properties.collections.export_dcr', $data);
 
-        $height = $canvas->get_height();
-        $width = $canvas->get_width();
+        // $pdf->output();
 
-        $canvas->set_opacity(.2,"Multiply");
+        // $canvas = $pdf->getDomPDF()->getCanvas();
 
-        $canvas->set_opacity(.2);
+        // $height = $canvas->get_height();
+        // $width = $canvas->get_width();
 
-        $canvas->page_text($width/5, $height/2, Str::limit($property->property, 15), null, 50, array(0,0,0),1,1,-30);
+        // $canvas->set_opacity(.2,"Multiply");
 
-        return $pdf->stream($property->property.'-'.Carbon::parse($date)->format('M d,Y').'-dcr.pdf');
+        // $canvas->set_opacity(.2);
+
+        // $canvas->page_text($width/5, $height/2, Str::limit($property->property, 15), null, 50, array(0,0,0),1,1,-30);
+
+        // return $pdf->stream($property->property.'-'.Carbon::parse($date)->format('M d,Y').'-dcr.pdf');
     }
 }
