@@ -55,7 +55,7 @@ class AccountPayableCreateStep3Component extends Component
 
         app('App\Http\Controllers\AccountPayableController')->update_approval($this->accountpayable->id, 'approved by ap', $this->comment, $this->vendor);
 
-        $ap = UserProperty::where('property_uuid', $this->property->uuid)->where('role_id', 4)->pluck('user_id')->first();
+        $ap = UserProperty::where('property_uuid', $this->property->uuid)->where('role_id', 4)->approved()->pluck('user_id')->first();
 
 
         $content = $this->accountpayable;

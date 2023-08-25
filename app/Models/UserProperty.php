@@ -34,6 +34,11 @@ class UserProperty extends Model
     {
         return $this->hasMany(Property::class, 'property_uuid');
     }
+
+    public function scopeApproved($query)
+    {
+        return $query->where('is_approved', true);
+    }
     
 
 }
