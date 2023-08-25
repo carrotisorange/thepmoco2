@@ -89,6 +89,7 @@
   animation: 
   typing 2s steps(30, end),
   blink-caret .5s step-end infinite;
+
 }
 
 /* The typing effect */
@@ -217,7 +218,7 @@
                       <div class="flex justify-center items-center md:block -mt-20 pb-10 lg:pb-0 lg:mt-20">
                         <img src="{{ asset('/brands/propsuite/propman.png') }}" class="w-36">
                       </div>
-                      <div class="typewriter text-center flex sm:block md:block lg:block text-white justify-center items-center text-2xl font-bold sm:text-3xl lg:text-5xl">
+                      <div class="typewriter -ml-6 lg:ml-0 text-left flex sm:block md:block lg:block text-white justify-center items-center text-xl font-bold sm:text-3xl lg:text-5xl">
                         <h1>Property Management System</h1>
                       </div>
                     </div>
@@ -225,8 +226,8 @@
 
                   <div class="flex-col justify-center sm:-py-2 md:py-20 lg:py-8 lg:px-16">
                     <div class="lg:block lg:py-20 md:max-w-sm lg:max-w-md xl:max-w-lg sm:py-2 mx-5 mt-5">
-                    <p class="text-base font-light md:-mt-36 lg:mt-1 text-white text-justify">Property Management System for long term and short term rental properties and home owners associations.</p>
-                      <div class="mt-10 flex justify-end items-center space-x-2">
+                    <p class="text-sm lg:text-base font-light md:-mt-36 lg:mt-1 text-white text-justify">Property Management System for long term and short term rental properties and home owners associations.</p>
+                      <div class="lg:ml-0 mt-10 flex justify-center items-center space-x-2">
                         <button class="propmanOrangebg rounded-full"> <a href="https://thepmo.co/select-a-plan" class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-semibold text-purple-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Free Trial</a></button>
                         <button> <a href="demopage" class="w-48 flex justify-center py-3 px-4 border border-gray-400 rounded-full shadow-sm text-sm font-medium text-white hover:bg-purple-300  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">View Demo</a></button>            
                      </div>
@@ -243,7 +244,7 @@
                       <div class="flex justify-center items-center md:block -mt-20 pb-10 lg:pb-0 lg:mt-20">
                         <img src="{{ asset('/brands/propsuite/proprent-purple.png') }}" class="w-36">
                       </div>
-                      <div class="typewriter text-center flex sm:block md:block lg:block text-white justify-center items-center text-2xl font-bold sm:text-3xl lg:text-5xl">
+                      <div class="typewriter text-center flex sm:block md:block lg:block text-white justify-center items-center text-xl font-bold sm:text-3xl lg:text-5xl">
                         <h1>Rental Property Listings</h1>
                       </div>
                     </div>
@@ -251,7 +252,7 @@
 
                   <div class="flex-col justify-center sm:-py-2 md:py-20 lg:py-8 lg:ml-20 lg:px-16">
                     <div class="lg:block lg:py-20 md:max-w-sm lg:max-w-md xl:max-w-lg  sm:py-2 mx-5 mt-5">
-                      <p class="text-base font-light md:-mt-36 lg:mt-1 text-white text-justify">Leasing platform for rental property owners to list vacant rooms and units for long term or short term rental and a Leasing Marketplace for tenants to find available place.</p>
+                      <p class="text-sm lg:text-base font-light md:-mt-36 lg:mt-1 text-white text-justify">Leasing platform for rental property owners to list vacant rooms and units for long term or short term rental and a Leasing Marketplace for tenants to find available place.</p>
                       <div class="mt-10 flex justify-end items-center space-x-5">
                         <button class="proprentOrangebg rounded-full"> <a href="proprent-search" target="blank" class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-yellow-200  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Coming Soon</a></button>
                      </div>
@@ -268,7 +269,7 @@
                       <div class="flex justify-center items-center md:block -mt-20 pb-10 lg:pb-0 lg:mt-20">
                         <img src="{{ asset('/brands/propsuite/propbiz.png') }}" class="w-36">
                       </div>
-                      <div class="typewriter text-center flex sm:block md:block lg:block text-white justify-center items-center text-2xl font-bold sm:text-3xl lg:text-5xl">
+                      <div class="typewriter -ml-7 lg:ml-0 text-left flex sm:block md:block lg:block text-white justify-center items-center text-xl font-bold sm:text-3xl lg:text-5xl">
                         <h1>Property Management Services</h1>
                       </div>
                     </div>
@@ -276,7 +277,7 @@
 
                   <div class="flex-col justify-center sm:-py-2 md:py-20 lg:py-8 lg:px-16">
                     <div class="lg:block lg:py-20 md:max-w-sm lg:max-w-md xl:max-w-lg sm:py-2 mx-5 mt-5">
-                      <p class="text-base font-light md:-mt-36 lg:mt-1 text-white text-justify">Property management services that provides online and onsite operations management services to rental property owners.</p>
+                      <p class="text-sm lg:text-base font-light md:-mt-36 lg:mt-1 text-white text-justify">Property management services that provides online and onsite operations management services to rental property owners.</p>
                       <div class="mt-10 flex justify-end items-center space-x-5">
                          <button class="propbizOrangebg rounded-full"> <a href="propbiz" class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-purple-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Register</a></button>
                       </div>
@@ -293,7 +294,7 @@
                       <div class="flex justify-center items-center md:block -mt-20 pb-10 lg:pb-0 lg:mt-16">
                          <img src="{{ asset('/brands/propsuite/propsuite.png') }}" class="-ml-3 w-36"> 
                       </div>
-                      <div class="typewriter text-center flex sm:block md:block lg:block text-white justify-center items-center text-2xl font-bold sm:text-3xl lg:text-5xl">
+                      <div class="typewriter text-center flex sm:block md:block lg:block text-white justify-center items-center text-xl font-bold sm:text-3xl lg:text-5xl">
                         <h1>Fullsuite Digital Solutions</h1>
                       </div>
                     </div>
@@ -301,7 +302,7 @@
 
                   <div class="flex-col justify-center sm:-py-2 md:py-20 lg:py-8 lg:px-16">
                     <div class="lg:block lg:py-20 md:max-w-sm lg:max-w-md xl:max-w-lg sm:py-2 mx-5 mt-5">
-                      <p class="ml-0 lg:ml-16 text-base font-light md:-mt-36 lg:mt-1 text-white text-justify">We provide full suite digital solution for rental property communities and home owners associations.</p>
+                      <p class="ml-0 lg:ml-16 text-sm lg:text-base font-light md:-mt-36 lg:mt-1 text-white text-justify">We provide full suite digital solution for rental property communities and home owners associations.</p>
                       <div class="mt-10 flex justify-end items-center space-x-5">
                         <button class="propSuitebg rounded-full"> <a href="about" class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-yellow-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Learn More</a></button>
                       </div>
