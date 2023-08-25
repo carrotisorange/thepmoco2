@@ -24,6 +24,7 @@ class AccountPayableIndexComponent extends Component
 
     public function mount(){
         $this->totalAccountPayableCount = Property::find($this->property->uuid)->accountpayables->count();
+        $this->status = 'pending';
     }
 
     public function clearFilters(){
@@ -39,6 +40,8 @@ class AccountPayableIndexComponent extends Component
     
     public function render()
     {
+
+
         return view('livewire.account-payable-index-component',[
           // 'accountpayables' => app('App\Http\Controllers\PropertyAccountPayableController')->get_accountpayables($this->property->uuid, $this->status, $this->created_at, $this->request_for, $this->limitDisplayTo, $this->search),
           'accountpayables' => AccountPayable::where('property_uuid',$this->property->uuid)
@@ -57,7 +60,7 @@ class AccountPayableIndexComponent extends Component
           // ->when($this->search, function ($query) {
           // $query->where('batch_no','like', '%'.$this->search.'%');
           // })
-          ->orderBy('created_at', 'desc')
+          ->orderBy('created_at', 'asc')
         
           ->get(),
 
