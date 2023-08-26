@@ -39,6 +39,12 @@ class UserProperty extends Model
     {
         return $query->where('is_approved', true);
     }
+
+    public function scopeEndUser($query){
+        return $query->whereIn('role_id', [1,2,3,4,5,6,9,13,15,16,17,18]);
+    }
+
+    
     
 
 }

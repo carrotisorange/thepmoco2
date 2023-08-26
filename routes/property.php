@@ -374,7 +374,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     });
 
 
-    Route::get('dcr/{date}', [PropertyCollectionController::class, 'export_dcr']);
+    Route::get('dcr/{date}/{format}', [PropertyCollectionController::class, 'export_dcr']);
     
     //Routes for Collection
     Route::prefix('collection')->group(function(){
@@ -411,25 +411,25 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('{accountpayable}/step1/export', 'download_step_1');
 
             //step 2
-            Route::get('{accountpayable}/step-1', 'create_step_1');
+            Route::get('{accountpayable}/step-1', 'create_step_1')->name('accountpayable');
 
 
             //step 3
-            Route::get('{accountpayable}/step-2', 'create_step_2');
+            Route::get('{accountpayable}/step-2', 'create_step_2')->name('accountpayable');
 
-            Route::get('{accountpayable}/step-3', 'create_step_3');
+            Route::get('{accountpayable}/step-3', 'create_step_3')->name('accountpayable');
     
 
             //step 4
-            Route::get('{accountpayable}/step-4', 'create_step_4');
+            Route::get('{accountpayable}/step-4', 'create_step_4')->name('accountpayable');
 
             //step 5
-            Route::get('{accountpayable}/step-5', 'create_step_5');
+            Route::get('{accountpayable}/step-5', 'create_step_5')->name('accountpayable');
 
             //step 6
-            Route::get('{accountpayable}/step-6', 'create_step_6');
+            Route::get('{accountpayable}/step-6', 'create_step_6')->name('accountpayable');
 
-            Route::get('{accountpayable}/step-7', 'create_step_7');
+            Route::get('{accountpayable}/step-7', 'create_step_7')->name('accountpayable');
    
 
             //request status sample

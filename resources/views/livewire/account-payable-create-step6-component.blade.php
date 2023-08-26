@@ -1,6 +1,6 @@
 <div>
     <div class="mx-10">
-
+        <form wire:submit.prevent="approveLiquidation">
         <div class="px-4 sm:px-6 lg:px-8">
            
             <div class="mt-8 flow-root">
@@ -65,7 +65,7 @@
                                         @endif
                                     </td>
                                 </tr>
-                                <tr>
+                                {{-- <tr>
                                     <th scope="col"
                                         class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
                                         Approved
@@ -78,7 +78,7 @@
                                         NA
                                         @endif
                                     </td>
-                                </tr>
+                                </tr> --}}
                             </thead>
 
                         </table>
@@ -184,9 +184,14 @@
                 <div>
                     <p class="mt-5 px-6 text-right">
                        
-                        <button type="button" wire:click="approveLiquidation"
+                        <button type="submit" wire:loading.remove 
                             class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                             Approve
+                        </button>
+
+                        <button type="button" wire:loading disabled
+                            class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                            Loading...
                         </button>
 
 
@@ -195,7 +200,7 @@
                 </div>
             </div>
         </div>
-       
+        </form>
     </div>
     @include('layouts.notifications')
 </div>

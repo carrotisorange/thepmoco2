@@ -32,7 +32,7 @@ class PropertyCollectionController extends Controller
         ]);
     }
 
-    public function export_dcr(Property $property, $date){
+    public function export_dcr(Property $property, $date, $format){
 
         $collections = Collection::
          select('*')
@@ -40,33 +40,37 @@ class PropertyCollectionController extends Controller
         ->whereDate('created_at', $date)
         ->posted()->orderBy('ar_no')
         ->distinct()
-        ->get()
-        ->toArray();
+        ->get();
 
         $data = [
             'collections' => $collections,
             'date' => $date
         ];
 
-        Session::put('export_dcr_date', $date);
+        if($format === 'pdf'){
+            
+            $pdf = \PDF::loadView('properties.collections.export_dcr', $data);
 
-        return Excel::download(new ExportCollection(), Session::get('property').'-'.$date.'-dcr'.'.xlsx');
+            $pdf->output();
 
-        // $pdf = \PDF::loadView('properties.collections.export_dcr', $data);
+            $canvas = $pdf->getDomPDF()->getCanvas();
 
-        // $pdf->output();
+            $height = $canvas->get_height();
+            $width = $canvas->get_width();
 
-        // $canvas = $pdf->getDomPDF()->getCanvas();
+            $canvas->set_opacity(.2,"Multiply");
 
-        // $height = $canvas->get_height();
-        // $width = $canvas->get_width();
+            $canvas->set_opacity(.2);
 
-        // $canvas->set_opacity(.2,"Multiply");
+            $canvas->page_text($width/5, $height/2, Str::limit($property->property, 15), null, 50, array(0,0,0),1,1,-30);
 
-        // $canvas->set_opacity(.2);
+            return $pdf->stream(Session::get('property').'-'.Carbon::parse($date)->format('M d,Y').'-dcr.pdf');
+        }else{
+            Session::put('export_dcr_date', $date);
 
-        // $canvas->page_text($width/5, $height/2, Str::limit($property->property, 15), null, 50, array(0,0,0),1,1,-30);
+            return Excel::download(new ExportCollection(), Session::get('property').'-'.Carbon::parse($date)->format('M d,Y').'-dcr'.'.xlsx');
+        }
 
-        // return $pdf->stream($property->property.'-'.Carbon::parse($date)->format('M d,Y').'-dcr.pdf');
+
     }
 }
