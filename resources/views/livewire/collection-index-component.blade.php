@@ -7,10 +7,37 @@
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 <input type="date" wire:model="date"
                     class="nline-flex items-center justify-center rounded-md border border-transparentpx-4 py-2 text-sm font-mediumshadow-smfocus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-                <a href="/property/{{ $property->uuid }}/dcr/{{ $date }}" target="_blank"
+                {{-- <a 
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
                     Export DCR
-                </a>
+                </a> --}}
+                <div class="group inline-block">
+                    <button
+                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                        <span class="pr-1 font-semibold flex-1"> Export
+                            collection</span>
+                        <span>
+                            <svg class="fill-current h-4 w-4 transform group-hover:-rotate-180
+                                                                            transition duration-150 ease-in-out"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                            </svg>
+                        </span>
+                    </button>
+                
+                    <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
+                                                                      transition duration-150 ease-in-out origin-top min-w-32">
+                
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="/property/{{ $property->uuid }}/dcr/{{ $date }}/excel" target="_blank"
+                               >as Excel</a>
+                        </li>
+                       <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="/property/{{ $property->uuid }}/dcr/{{ $date }}/pdf"
+                                target="_blank">as PDF</a>
+                        </li>
+                
+                    </ul>
+                
+                </div>
 
                 <button type="button"
                     onclick="window.location.href='/property/{{ $property->uuid }}/collection/{{ 'pending' }}'"

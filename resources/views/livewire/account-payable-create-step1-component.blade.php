@@ -1,5 +1,5 @@
 <div>
-    @include('layouts.notifications')
+   
     <div class=" mt-5 px-4 sm:px-6 lg:px-8">
         {{-- start-step-1-form --}}
         <form class="space-y-6" wire:submit.prevent="submitForm()">
@@ -99,10 +99,10 @@
                         New particular
                     </button>
 
-                    <button type="button" wire:click="updateParticulars" wire:target="updateParticulars"
+                    {{-- <button type="button" wire:click="updateParticulars" wire:target="updateParticulars"
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                         Save
-                    </button> 
+                    </button>  --}}
                   
                 </div>
                 @endif
@@ -122,8 +122,7 @@
                                         <x-th>QUANTITY</x-th>
                                         <x-th>PRICE</x-th>
                                         <x-th>TOTAL</x-th>
-                                        {{-- <x-th></x-th> --}}
-                                        {{-- <x-th></x-th> --}}
+                                        <x-th></x-th>
                                         <x-th></x-th>
                                     </tr>
                                 </thead>
@@ -133,8 +132,7 @@
                                         <tr>
                                             <x-td>{{ $index+1 }}</x-td>
                                             <x-td>
-                                                <select wire:model="particulars.{{ $index }}.unit_uuid" {{--
-                                                    wire:change="updateParticular({{ $particular->id }})" --}}
+                                                <select wire:model="particulars.{{ $index }}.unit_uuid"  wire:change="updateParticular({{ $particular->id }})" 
                                                     class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-36 sm:text-sm border border-gray-700  rounded-md">
                                                     <option value="" selected>Select a unit</option>
                                                     @foreach ($units as $unit)
@@ -150,8 +148,7 @@
                                                 @enderror
                                             </x-td>
                                             <x-td>
-                                                <select wire:model="particulars.{{ $index }}.vendor_id" {{--
-                                                    wire:change="updateParticular({{ $particular->id }})" --}}
+                                                <select wire:model="particulars.{{ $index }}.vendor_id"  wire:change="updateParticular({{ $particular->id }})"
                                                     class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-36 sm:text-sm border border-gray-700  rounded-md">
                                                     <option value="" selected>Select a unit</option>
                                                     @foreach ($vendors as $vendor)
@@ -167,27 +164,24 @@
                                                 @enderror
                                             </x-td>
                                             <x-td>
-                                                <input type="text" wire:model="particulars.{{ $index }}.item" {{--
-                                                    wire:keyup="updateParticular({{ $particular->id }})" --}}
-                                                    class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-96 sm:text-sm border border-gray-700  rounded-md">
+                                                <x-table-input type="text" wire:model="particulars.{{ $index }}.item"  wire:change="updateParticular({{ $particular->id }})"
+                                                    class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-96 sm:text-sm border border-gray-700  rounded-md" />
                                                 @error('particulars.{{ $index }}.item')
                                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                                 @enderror
                                             </x-td>
                                             <x-td>
-                                                <input type="number" wire:model="particulars.{{ $index }}.quantity" {{--
-                                                    wire:keyup="updateParticular({{ $particular->id }})" --}}
-                                                    class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-36 sm:text-sm border border-gray-700  rounded-md">
+                                                <x-table-input type="number" wire:model="particulars.{{ $index }}.quantity"  wire:change="updateParticular({{ $particular->id }})"
+                                                    class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-36 sm:text-sm border border-gray-700  rounded-md" />
                                                 @error('particulars.{{ $index }}.quantity')
                                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                                 @enderror
                                             </x-td>
                                             {{-- @if($request_for === 'payment') --}}
                                             <x-td>
-                                                <input type="number" step="0.001"
-                                                    wire:model="particulars.{{ $index }}.price" {{--
-                                                    wire:keyup="updateParticular({{ $particular->id }})" --}}
-                                                    class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-36 sm:text-sm border border-gray-700  rounded-md">
+                                                <x-table-input type="number" step="0.001"
+                                                    wire:model="particulars.{{ $index }}.price"   wire:change="updateParticular({{ $particular->id }})"
+                                                    class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-36 sm:text-sm border border-gray-700  rounded-md" />
                                                 @error('particulars.{{ $index }}.price')
                                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                                 @enderror
@@ -198,34 +192,27 @@
                                             </x-td>
                                             {{-- @endif --}}
                                             <x-td>
-                                                {{-- <button data-modal-target="delete-accountpayableparticular-modal-{{$particular->id}}" data-modal-toggle="delete-accountpayableparticular-modal-{{$particular->id}}"
-                                                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto"
-                                                    type="button">
-                                                    Remove
-                                                </button> --}}
-
-                                                <button type="button" wire:click="removeParticular({{ $particular->id }})"
+                                            
+                                                <button type="button"  wire:click="removeParticular({{ $particular->id }})"
                                                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                                     Remove
                                                 </button>
                                             
-                                                @include('layouts.notifications')
+                                    
                                             </x-td>
-                                            {{-- <x-td> --}}
-                                                {{-- <button type="button"
-                                                    wire:click="updateParticular({{ $particular->id }})"
-                                                    wire:target="updateParticular"
+                                         
+                                            <x-td>
+                                                {{-- <form id="updateParticular" wire.clic wire:submit.prevent="updateParticular({{ $particular->id }})">
+                                                 <button form="updateParticular" type="submit"
+                                                
+                                                 
                                                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                                     Save
-                                                </button> --}} 
-                                                {{-- @if($particular->id === $particular->max('id'))
-                                                <button type="button" wire:click="addNewParticular"
-                                                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                                                    Add 
-                                                </button>
-                                                @endif --}}
-                                           
-                                            {{-- </x-td> --}}
+                                            </button>
+                                     
+                                            </form> --}}
+                                        </x-td>
+                                    
 
                                           
                                         </tr>
@@ -240,7 +227,7 @@
                                         <x-th></x-th>
                                         <x-td><b>{{ number_format($amount, 2)}}</b></x-td>
                                         <x-th></x-th>
-                                        {{-- <x-th></x-th> --}}
+                                        <x-th></x-th>
                                     </tr>
 
                                 </tbody>
@@ -465,7 +452,7 @@
                    
                     <button type="submit" wire:loading.remove
                         class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                        Next
+                        Confirm
                     </button>
 
                     <button type="button" wire:loading disabled
@@ -479,5 +466,6 @@
         </form>
 
     </div>
+    @include('layouts.notifications')
     @include('modals.instructions.create-vendor-modal')
 </div>

@@ -18,4 +18,8 @@ class Role extends Model
         return $this->belongsTo(Property::class, 'property_id');
     }
 
+    public function scopeEndUser($query){
+        return $query->where('category', 'end-user');
+    }
+
 }

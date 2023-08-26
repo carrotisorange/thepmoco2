@@ -54,7 +54,7 @@ class AccountPayableCreateStep4Component extends Component
             
         }    
         
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-5')->with('success', 'Success!');
+        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-4')->with('success', 'Success!');
 
     }
 
@@ -68,7 +68,7 @@ class AccountPayableCreateStep4Component extends Component
             'status' => 'released'
         ]);
 
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-5')->with('success', 'Success!');
+        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-4')->with('success', 'Success!');
     }
 
     public function render()

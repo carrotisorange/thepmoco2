@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class RoleController extends Controller
 {
    public function get_roles($property_uuid){
-      return Role::orderBy('role')->where('category', 'end-user')->get();
+      return Role::orderBy('role')->endUser()->get();
    }
 }

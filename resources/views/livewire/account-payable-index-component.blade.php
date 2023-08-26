@@ -67,6 +67,9 @@
                     <option value="approved by manager" {{ "approved by manager"===$status? 'selected' : 'Select one' }}>
                         approved by manager
                     </option>
+                    <option value="rejected by manager" {{ "rejected by manager"===$status? 'selected' : 'Select one' }}>
+                        rejected by manager
+                    </option>
                     <option value="approved by ap" {{ "approved by ap"===$status? 'selected' : 'Select one' }}>
                         approved by ap
                     </option>

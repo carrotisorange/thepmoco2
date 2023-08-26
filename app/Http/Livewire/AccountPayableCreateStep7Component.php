@@ -6,11 +6,23 @@ use Livewire\Component;
 use App\Models\AccountPayableLiquidationParticular;
 use App\Models\AccountPayableLiquidation;
 use App\Models\AccountPayable;
+use App\Notifications\SendAccountPayableStep3NotificationToAP;
+use App\Notifications\SendAccountPayableStep4NotificationToAdmin;
+use Illuminate\Support\Facades\Notification;
+use App\Models\User;
+use App\Models\UserProperty;
+
 
 class AccountPayableCreateStep7Component extends Component
 {
     public $accountpayable;
     public $property;
+
+    public $particulars;
+
+    public function mount(){
+        $this->particulars = $this->get_particulars();
+    }
 
     public function get_particulars(){
         return AccountPayableLiquidationParticular::where('batch_no', $this->accountpayable->batch_no)->get();
@@ -28,13 +40,31 @@ class AccountPayableCreateStep7Component extends Component
             'status' => 'liquidation approved by manager'
         ]);
 
-       return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-6')->with('success', 'Success!');
+         $ap = UserProperty::where('property_uuid', $this->property->uuid)->where('role_id',4)->approved()->pluck('user_id')->first();
+
+
+         $content = $this->accountpayable;
+
+         if($ap){
+
+            $email_ap = User::find($ap)->email;
+
+            Notification::route('mail', $email_ap)->notify(new SendAccountPayableStep3NotificationToAP($content));
+
+         }
+
+       return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-7')->with('success', 'Success!');
+    }
+
+    public function completeRFP(){
+        sleep(2);
+
+        ddd('asdad');
     }
 
     public function render()
     {
         return view('livewire.account-payable-create-step7-component',[
-            'particulars' => $this->get_particulars(),
             'accountpayableliquidation' =>  AccountPayableLiquidation::where('batch_no', $this->accountpayable->batch_no)->first()
         ]);
     }

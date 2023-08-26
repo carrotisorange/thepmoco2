@@ -28,6 +28,8 @@ class AccountPayableController extends Controller
 
     public function store(Property $property, $request_for, $batch_no){
 
+        $this->authorize('create_rfp'); 
+
         $generated_batch_no = auth()->user()->id.'-'.sprintf('%08d', AccountPayable::where('property_uuid',$property->uuid)->where('status', '!=', 'pending')->count()).'-'.$batch_no;
 
         $account_payable = AccountPayable::updateOrCreate(
@@ -81,19 +83,27 @@ class AccountPayableController extends Controller
     }
 
       public function create_step_1(Property $property, AccountPayable $accountpayable){
-        if($accountpayable->requester_id === auth()->user()->id && $accountpayable->status === 'pending'){
-            return view('accountpayables.create.step-1', [
-                'property' => $property,
+        //accessible only to the requestor
+        if($accountpayable->requester_id === auth()->user()->id){
+            if($accountpayable->status === 'pending' || $accountpayable->status === 'rejected by manager'){
+                return view('accountpayables.create.step-1', [
+                  'property' => $property,
+                  'accountpayable' => $accountpayable
+                ]);
+            }else{
+                return view('accountpayables.pending-approval-manager',[
+                    'accountpayable' => $accountpayable
+                ]);
+            }
+        }else{
+            return view('accountpayables.restricted-page',[
                 'accountpayable' => $accountpayable
             ]);
-        }else{
-           return response( 'Accounts Payable cannot be edited once approved.', 401);
         }
     }
 
     public function create_step_2(Property $property, AccountPayable $accountpayable){
-
-        // if($accountpayable->approver_id != null){
+        //accessible only to the first approver
             if($accountpayable->status === 'pending'){
               
                 if($accountpayable->approver_id === auth()->user()->id){
@@ -107,8 +117,16 @@ class AccountPayableController extends Controller
                         'accountpayable' => $accountpayable
                      ]);
                 }
-            }else{
-                return abort(401);
+            }elseif($accountpayable->status === 'approved by manager'){
+                return view('accountpayables.approved-page',[
+                    'accountpayable' => $accountpayable
+                ]);
+            }
+            
+            else{
+                return view('accountpayables.restricted-page',[
+                    'accountpayable' => $accountpayable
+                ]);
             }
         // }else{
 
@@ -117,6 +135,7 @@ class AccountPayableController extends Controller
     }
 
     public function create_step_3(Property $property, AccountPayable $accountpayable){
+        //accessible only to the second approver
          if($accountpayable->approver2_id === auth()->user()->id || Session::get('role_id') === 4){
                 if($accountpayable->status === 'approved by manager'){
                       return view('accountpayables.create.step-3', [
@@ -129,11 +148,14 @@ class AccountPayableController extends Controller
                      ]);
                 }
             }else{
-                return abort(401);
+                 return view('accountpayables.restricted-page',[
+                    'accountpayable' => $accountpayable
+                ]);
             }
     }
 
     public function create_step_4(Property $property, AccountPayable $accountpayable){
+        //accessible only to ap
          if(Session::get('role_id') === 4){
                 if($accountpayable->status === 'approved by ap'){
                      return view('accountpayables.create.step-4', [
@@ -147,12 +169,15 @@ class AccountPayableController extends Controller
                     ]);
                 }
             }else{
-                return abort(401);
+                return view('accountpayables.restricted-page',[
+                 'accountpayable' => $accountpayable
+                ]);
         }
     }
 
     public function create_step_5(Property $property, AccountPayable $accountpayable){
-        if(Session::get('role_id') === 4){
+        //accessible only to the requestor
+        if(auth()->user()->id === $accountpayable->requester_id){
                 if($accountpayable->status === 'released'){
                      return view('accountpayables.create.step-5', [
                         'property' => $property,
@@ -164,15 +189,16 @@ class AccountPayableController extends Controller
                     'accountpayable' => $accountpayable
                     ]);
                 }
-            }else{
-                return abort(401);
+        }else{
+                return view('accountpayables.restricted-page',[
+                    'accountpayable' => $accountpayable
+                ]);
         }
     }
 
     public function create_step_6(Property $property, AccountPayable $accountpayable){
-
-       if($accountpayable->approver_id === auth()->user()->id){
-              
+        //accessible only to the first approver
+       if($accountpayable->approver_id === auth()->user()->id){ 
                 if($accountpayable->status === 'liquidated'){
                      return view('accountpayables.create.step-6', [
                      'property' => $property,
@@ -185,32 +211,30 @@ class AccountPayableController extends Controller
                      ]);
                 }
             }else{
-                return abort(401);
+                return view('accountpayables.restricted-page',[
+                    'accountpayable' => $accountpayable
+                ]);
             }
     }
 
     public function create_step_7(Property $property, AccountPayable $accountpayable){
-
-       if($accountpayable->approver_id === auth()->user()->id){
-              
-                if(Session::get('role_id') === 4  && $accountpayable->status === 'liquidation approved by manager'){
-                     return view('accountpayables.create.step-7', [
-                     'property' => $property,
-                     'accountpayable' => $accountpayable
-                     ]);
-                   
-                }else{
-                     return view('accountpayables.pending-approval-liquidation-manager',[
-                     'accountpayable' => $accountpayable
-                     ]);
-                }
+        //accessible only to ap
+        if(Session::get('role_id') === 4){
+            if($accountpayable->status === 'liquidation approved by manager'){
+                return view('accountpayables.create.step-7', [
+                    'property' => $property,
+                    'accountpayable' => $accountpayable
+                ]);
             }else{
-                return abort(401);
-            }
-
-    //  return view('accountpayables.pending-approval-liquidation-manager',[
-    //  'accountpayable' => $accountpayable
-    //  ]);
+                return view('accountpayables.approved-page',[
+                    'accountpayable' => $accountpayable
+                ]);
+            }   
+        }else{
+            return view('accountpayables.restricted-page',[
+                'accountpayable' => $accountpayable
+            ]);
+        }
     }
 
     
@@ -312,7 +336,6 @@ class AccountPayableController extends Controller
         AccountPayable::where('id', $accountpayable_id)
         ->update([
         'status' => $status,
-        'approver_id' => auth()->user()->id,
         'comment' => $comment,
         'vendor' => $vendor
         ]);

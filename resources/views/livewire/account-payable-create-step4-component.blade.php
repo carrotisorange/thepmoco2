@@ -1,5 +1,4 @@
 <div>
-    @include('layouts.notifications')
     <div class="mt-5 px-4 sm:px-6 lg:px-8">
         <div class="flex justify-end">
             {{-- <button type="button"
@@ -198,4 +197,5 @@
         </form>
         {{-- end-step-1-form --}}
     </div>
+    @include('layouts.notifications')
 </div>

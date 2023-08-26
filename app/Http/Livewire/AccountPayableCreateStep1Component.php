@@ -71,23 +71,24 @@ class AccountPayableCreateStep1Component extends Component
         $this->delivery_at = Carbon::parse($this->delivery_at)->format('Y-m-d');
         $this->particulars = $this->get_particulars();
         $this->amount = AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->sum('total');
+        $this->particulars = $this->get_particulars();
     }
 
-     protected function rules()
+    protected function rules()
     {
-        return [
-            'particulars.*.item' => 'nullable',
-            'particulars.*.quantity' => 'nullable',
-            'particulars.*.price' => 'nullable',
-            'particulars.*.total' => 'nullable',
-            // 'particulars.*.file' => 'nullable',
-            'particulars.*.unit_uuid' => 'nullable',
-            'particulars.*.vendor_id' => 'nullable',
-        ];
+         return [
+         'particulars.*.item' => 'nullable',
+         'particulars.*.quantity' => 'nullable',
+         'particulars.*.price' => 'nullable',
+         'particulars.*.total' => 'nullable',
+         // 'particulars.*.file' => 'nullable',
+         'particulars.*.unit_uuid' => 'nullable',
+         'particulars.*.vendor_id' => 'nullable',
+         ];
     }
 
     public function updated($propertyName){
-        $this->validateOnly($propertyName);
+         $this->validateOnly($propertyName);
     }
 
     public function submitForm()
@@ -99,7 +100,7 @@ class AccountPayableCreateStep1Component extends Component
             'second_approver' => 'required'
         ]);
 
-        $this->update_particulars();
+        $this->updateAccountPayable();
 
         $this->upload_quotations();
 
@@ -108,11 +109,7 @@ class AccountPayableCreateStep1Component extends Component
         return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-2')->with('success', 'Success!');
     }
 
-    public function update_particulars(){
-        // if(!$this->get_particulars()->count()){
-        //     return redirect(url()->previous())->with('error', 'Please add at least 1 particular.');
-        // }
-
+    public function updateAccountPayable(){
         app('App\Http\Controllers\PropertyAccountPayableController')->update(
             $this->accountpayable->id,
             $this->request_for,
@@ -230,11 +227,13 @@ class AccountPayableCreateStep1Component extends Component
         return redirect('/property/'.$this->property->uuid.'/accountpayable')->with('success','Success!');
     }
 
-    public function updateParticulars(){
+    public function updateParticular($id){
+
+        $this->validate();
+                
         try{
-            foreach ($this->particulars as $particular) {      
-              $particular
-                // ->where('id', $id)
+            foreach ($this->particulars->where('id', $id) as $particular) {      
+              AccountPayableParticular::where('id', $id)
                 ->update([
                     'unit_uuid' => $particular->unit_uuid,
                     'vendor_id' => $particular->vendor_id,
@@ -246,6 +245,8 @@ class AccountPayableCreateStep1Component extends Component
                 ]);
 
             $this->amount = AccountPayableParticular::where('batch_no', $this->accountpayable->batch_no)->sum('total');
+
+            $this->particulars = $this->get_particulars();
 
             session()->flash('success', 'Success!');
             }
@@ -262,8 +263,6 @@ class AccountPayableCreateStep1Component extends Component
 
     public function deleteAccountPayable($accountpayableId){
 
-      
-
       $batch_no = AccountPayable::find($accountpayableId)->batch_no;
 
       AccountPayable::where('batch_no', $batch_no)->delete();
@@ -279,8 +278,8 @@ class AccountPayableCreateStep1Component extends Component
         return view('livewire.account-payable-create-step1-component',[
             'units' => Property::find($this->property->uuid)->units,
             'vendors' => Property::find($this->property->uuid)->billers,
-            'managers' => UserProperty::where('property_uuid', $this->property->uuid)->where('role_id', 9)->approved()->get(),
-            'accountpayables' => UserProperty::where('property_uuid', $this->property->uuid)->where('role_id', 4)->approved()->get()
+            'managers' => UserProperty::where('property_uuid', $this->property->uuid)->where('role_id', 9)->where('user_id', '!=',97)->approved()->get(),
+            'accountpayables' => UserProperty::where('property_uuid', $this->property->uuid)->where('role_id', 4)->where('user_id','!=' ,97)->approved()->get()
         ]);
     }
 }

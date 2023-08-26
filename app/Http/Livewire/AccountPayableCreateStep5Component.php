@@ -88,7 +88,7 @@ class AccountPayableCreateStep5Component extends Component
     }
 
     public function storeAccountPayableLiquidation(){
-        
+        sleep(2);
 
         $this->validate();
 
@@ -98,7 +98,7 @@ class AccountPayableCreateStep5Component extends Component
             ],
 
             [
-                'name' => $this->name,
+                'name' => $this->name, 
                 'department' => $this->department,
                 'created_at' => $this->created_at,
                 'unit_uuid' => $this->unit_uuid,
@@ -106,7 +106,7 @@ class AccountPayableCreateStep5Component extends Component
                 'total' => $this->total,
                 'cv_number' => $this->cv_number,
                 'total_type' => $this->total_type,
-                'total_amount' => $this->total-$this->cash_advance,
+                'total_amount' => (double) $this->total- (double) $this->cash_advance,
                 'cash_advance' => $this->cash_advance,
                 'prepared_by' => $this->prepared_by,
                 'noted_by' => $this->noted_by,
@@ -128,7 +128,7 @@ class AccountPayableCreateStep5Component extends Component
             Notification::route('mail', $first_approver)->notify(new SendAccountPayableStep2NotificationToManager($content));
         }
 
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-6')->with('success', 'Success!');
+        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-5')->with('success', 'Success!');
     }
 
     public function updateParticular(){

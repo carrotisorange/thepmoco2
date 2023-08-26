@@ -28,12 +28,11 @@ class CreatePersonnelComponent extends Component
         'role_id' => ['required', Rule::exists('roles', 'id')],
     ]);
     
-    $username = Role::find($this->role_id)->role.''.UserProperty::where('property_uuid', $this->property->uuid)->count();
+    $username = Role::find($this->role_id)->role.''.UserProperty::where('property_uuid', $this->property->uuid)->where('role_id',$this->role_id)->count();
 
     $password = Str::random(8);
     
     $is_user_exists = User::where('email', $this->email)->pluck('id')->first();
-
     
         $is_role_exists = UserProperty::where('property_uuid',$this->property->uuid)->where('user_id', $is_user_exists)->where('role_id', $this->role_id)->pluck('id')->first();
 
