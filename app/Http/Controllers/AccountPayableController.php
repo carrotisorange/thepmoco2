@@ -105,7 +105,6 @@ class AccountPayableController extends Controller
     public function create_step_2(Property $property, AccountPayable $accountpayable){
         //accessible only to the first approver
             if($accountpayable->status === 'pending'){
-              
                 if($accountpayable->approver_id === auth()->user()->id){
                      return view('accountpayables.create.step-2', [
                         'property' => $property,
@@ -206,7 +205,7 @@ class AccountPayableController extends Controller
                      ]);
                    
                 }else{
-                     return view('accountpayables.pending-approval-liquidation-manager',[
+                     return view('accountpayables.approved-page',[
                      'accountpayable' => $accountpayable
                      ]);
                 }

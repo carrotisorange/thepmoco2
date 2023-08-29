@@ -25,7 +25,6 @@ class AccountPayableIndexComponent extends Component
 
     public function mount(){
         $this->totalAccountPayableCount = Property::find($this->property->uuid)->accountpayables->count();
-        $this->status;
     }
 
     public function clearFilters(){
@@ -50,7 +49,6 @@ class AccountPayableIndexComponent extends Component
            ->get();
       }elseif(Session::get('role_id') === 4){
           return AccountPayable::where('property_uuid',$this->property->uuid)
-          //  ->where('approver_id', auth()->user()->id)
            ->when($this->status, function($query){
              $query->where('status', $this->status);
            })
@@ -65,36 +63,13 @@ class AccountPayableIndexComponent extends Component
            ->orderBy('created_at', 'desc')
            ->get();
       }
-      
-      // AccountPayable::where('property_uuid',$this->property->uuid)
-      //        ->when($this->status, function($query){
-      //         $query->where('status', $this->status);
-      //        })
-      //       // ->where('requester_id', auth()->user()->id)
-      //       // ->orWhere('approver_id', auth()->user()->id)
-      //       // ->orWhere('approver2_id', auth()->user()->id)
-      //     // ->when(($this->created_at), function($query){
-      //     // $query->whereDate('created_at', $this->created_at);
-      //     // })
-      //     // ->when($this->request_for, function ($query) {
-      //     // $query->where('request_for', $this->request_for);
-      //     // })
-      //     // ->when($this->search, function ($query) {
-      //     // $query->where('batch_no','like', '%'.$this->search.'%');
-      //     // })
-      //     ->orderBy('created_at', 'desc')
-        
-      //     ->get();
+
     }
     
     public function render()
-    {
-
-
-        return view('livewire.account-payable-index-component',[
-          // 'accountpayables' => app('App\Http\Controllers\PropertyAccountPayableController')->get_accountpayables($this->property->uuid, $this->status, $this->created_at, $this->request_for, $this->limitDisplayTo, $this->search),
+    { 
+       return view('livewire.account-payable-index-component',[
           'accountpayables' => $this->get_accountpayables(),
-
           'statuses' => app('App\Http\Controllers\PropertyAccountPayableController')->get_statuses($this->property),
           'dates' => app('App\Http\Controllers\PropertyAccountPayableController')->get_dates($this->property),
           'types' => app('App\Http\Controllers\PropertyAccountPayableController')->get_types($this->property),

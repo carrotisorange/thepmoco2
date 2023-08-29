@@ -274,7 +274,7 @@
             </div>
 
             <div class="mx-auto py-12 flex justify-center space-x-7 items-center">
-                <a  href="/propert/{{ Session::get('property_uuid') }}/accountpayable" class="px-3 py-2 border border-gray-300 rounded-full text-base">
+                <a  href="/property/{{ Session::get('property_uuid') }}/accountpayable" class="px-3 py-2 border border-gray-300 rounded-full text-base">
                     Go Back
                 </a>
 
