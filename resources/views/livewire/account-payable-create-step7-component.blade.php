@@ -175,7 +175,7 @@
                                          <x-form-select >
                                         @foreach ($expense_types as $expense_type)
                                         <option value="{{ $expense_type->id }}" {{ 'particulars'.$index.'expense_type_id'===$expense_type->id? 'selected' : '' }}>{{
-                                            $expense_type->id }}
+                                            $expense_type->expense_type }}
                                         </option>
                                         @endforeach
                                            
