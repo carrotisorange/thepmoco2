@@ -388,11 +388,14 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::get('/', [PropertyAccountPayableController::class, 'index'])->name('accountpayable');
         Route::get('export/{status?}/{created_at?}/{request_for?}/{limitDisplayTo?}', [PropertyAccountPayableController::class, 'export']);
 
+
         Route::get('{accountPayable}', [PropertyAccountPayableController::class, 'show'])->name('accountpayable');
         Route::get('{accountPayable}/liquidation/step-1', [PropertyLiquidationController::class, 'step1'])->name('accountpayable');
         Route::post('{accountPayable}/liquidation/step-1', [PropertyLiquidationController::class, 'step1'])->name('accountpayable');
         Route::get('{accountPayable}/liquidation/step-2', [PropertyLiquidationController::class, 'step2'])->name('accountpayable');
         Route::get('{accountPayable}/liquidation/{liquidation}/export', [PropertyLiquidationController::class, 'export'])->name('accountpayable');
+        Route::get('{accountPayable}/export/complete', [PropertyLiquidationController::class,'export_complete'])->name('accountpayable');
+
         
         Route::get('{accountPayable}/download', [PropertyAccountPayableController::class, 'download']);
 

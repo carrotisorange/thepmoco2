@@ -111,13 +111,13 @@
 
 
         <div class="px-6 pt-5 flex justify-end items-center">
-            <button type="button" wire:click="updateParticular"
+            {{-- <button type="button" wire:click="updateParticular"
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                 Save Item
-            </button>
+            </button> --}}
             <button type="button" wire:click="storeNewItem"
                 class="ml-3 inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                New Item
+                New Particular
             </button>
         </div>
 
@@ -148,7 +148,7 @@
                                 <x-td>{{ $index+1 }}</x-td>
 
                                 <x-td>
-                                    <select wire:model="particulars.{{ $index }}.unit_uuid"
+                                    <select wire:model="particulars.{{ $index }}.unit_uuid" wire:change="updateParticular({{ $particular->id }})"
                                         class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-36 sm:text-sm border border-gray-700  rounded-md">
                                         <option value="" selected>Select a unit</option>
                                         @foreach ($units as $unit)
@@ -165,7 +165,7 @@
 
                                 </x-td>
                                 <x-td>
-                                    <select wire:model="particulars.{{ $index }}.vendor_id"
+                                    <select wire:model="particulars.{{ $index }}.vendor_id" wire:change="updateParticular({{ $particular->id }})"
                                         class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-36 sm:text-sm border border-gray-700  rounded-md">
                                         <option value="" selected>Select a unit</option>
                                         @foreach ($vendors as $vendor)
@@ -181,7 +181,7 @@
                                     @enderror
                                 </x-td>
                                 <x-td>
-                                    <input type="text" wire:model="particulars.{{ $index }}.or_number"
+                                    <input type="text" wire:model="particulars.{{ $index }}.or_number" wire:change="updateParticular({{ $particular->id }})"
                                         class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-36 sm:text-sm border border-gray-700  rounded-md">
 
                                     @error('particulars.{{ $index }}.or_number')
@@ -189,14 +189,14 @@
                                     @enderror
                                 </x-td>
                                 <x-td>
-                                    <input type="text" wire:model="particulars.{{ $index }}.item"
+                                    <input type="text" wire:model="particulars.{{ $index }}.item" wire:change="updateParticular({{ $particular->id }})"
                                         class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-96 sm:text-sm border border-gray-700  rounded-md">
                                     @error('particulars.{{ $index }}.item')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                     @enderror
                                 </x-td>
                                 <x-td>
-                                    <input type="number" wire:model="particulars.{{ $index }}.quantity"
+                                    <input type="number" wire:model="particulars.{{ $index }}.quantity" wire:change="updateParticular({{ $particular->id }})"
                                         class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-36 sm:text-sm border border-gray-700  rounded-md">
                                     @error('particulars.{{ $index }}.quantity')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -204,7 +204,7 @@
                                 </x-td>
 
                                 <x-td>
-                                    <input type="number" step="0.001" wire:model="particulars.{{ $index }}.price"
+                                    <input type="number" step="0.001" wire:model="particulars.{{ $index }}.price" wire:change="updateParticular({{ $particular->id }})"
                                         class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-36 sm:text-sm border border-gray-700  rounded-md">
                                     @error('particulars.{{ $index }}.price')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>

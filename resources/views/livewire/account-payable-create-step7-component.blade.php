@@ -169,47 +169,16 @@
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                             {{ number_format($particular->total, 2) }}
                                         </td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500" wire:model="particulars.{{ $index }}.expense_type"
+                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500" wire:model="particulars.{{ $index }}.expense_type_id"
                                         wire:change="updateLiquidation({{ $particular->id }})">
-                                         
-                                         <x-form-select class="text-sm rounded-lg">
-                                            <option value="MRF">MRF </option>
-                                            <option value="Fire Extinguisher">Fire Extinguisher</option>
-                                            <option value="Cable and Internet">Cable and Internet</option>
-                                            <option value="Environmental Fee">Environmental Fee</option>
-                                            <option value="Bladder Tank">Bladder Tank</option>
-                                            <option value="Cause of Magnet">Cause of Magnet</option>
-                                            <option value="Special Assessment">Special Assessment</option>
-                                            <option value="Surcharges">Surcharges</option>
-                                            <option value="Building Insurance">Building Insurance</option>
-                                            <option value="Reconnection Fee">Reconnection Fee</option>
-                                            <option value="Condo Dues">Condo Dues</option>
-                                            <option value="Real Property Tax">Real Property Tax</option>
-                                            <option value="Salaries and Wages">Salaries and Wages</option>
-                                            <option value="Employees Benefits">Employees Benefits</option>
-                                            <option value="Housekeeping and Janitorial">Housekeeping and Janitorial</option>
-                                            <option value="Facilities Maintenance">Facilities Maintenance</option>
-                                            <option value="Electrical Systems">Electrical Systems</option>
-                                            <option value="Mechanical System">Mechanical System</option>
-                                            <option value="Fire Protection System">Fire Protection System</option>
-                                            <option value="Auxiliary System">Auxiliary System</option>
-                                            <option value="Building Interior and Exterior">Building Interior and Exterior</option>
-                                            <option value="STP">STP</option>
-                                            <option value="Refills & Lights Replacements">Refills & Lights Replacements</option>
-                                            <option value="Permit/ Fees/ Taxes">Permit/ Fees/ Taxes</option>
-                                            <option value="Professional Fees">Professional Fees</option>
-                                            <option value="Software Maintenance">Software Maintenance</option>
-                                            <option value="Transportation">Transportation</option>
-                                            <option value="Communication">Communication</option>
-                                            <option value="Internet">Internet </option>
-                                            <option value="Representation">Representation</option>
-                                            <option value="Registration">Registration</option>
-                                            <option value="Depreciation Expense">Depreciation Expense</option>
-                                            <option value="Percentage Tax">Percentage Tax</option>
-                                            <option value="Value Added Tax">Value Added Tax</option>
-                                            <option value="Income Tax">Income Tax</option>
-                                            <option value="Office Supplies">Office Supplies</option>
-                                            <option value="Miscellaneous Expense">Miscellaneous Expense</option>
+                                        
+                                         <x-form-select >
+                                        @foreach ($expense_types as $expense_type)
+                                        <option value="{{ $expense_type->id }}" {{ 'particulars'.$index.'expense_type_id'===$expense_type->id? 'selected' : '' }}>{{
+                                            $expense_type->id }}
+                                        </option>
+                                        @endforeach
+                                           
                                         </x-form-select>
                                            
                                         </td>
@@ -285,11 +254,11 @@
                     
                         <div>
                             <p class="mt-5 px-6 text-right">
-{{--                                 
-                                <button type="submit" wire:loading.remove
+                                
+                                <a target="_blank" href="/property/{{ Session::get('property_uuid')}}/accountpayable/{{ $accountpayable->id }}/export/complete" wire:loading.remove 
                                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                     Export 
-                                </button> --}}
+                                </a>
 
                                 <button type="submit" wire:loading.remove
                                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">

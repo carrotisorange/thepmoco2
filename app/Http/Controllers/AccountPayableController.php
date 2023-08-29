@@ -177,7 +177,23 @@ class AccountPayableController extends Controller
     public function create_step_5(Property $property, AccountPayable $accountpayable){
         //accessible only to the requestor
         if(auth()->user()->id === $accountpayable->requester_id){
+
                 if($accountpayable->status === 'released'){
+
+                    $particulars = AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get();
+
+                    foreach($particulars as $particular){
+                      app('App\Http\Controllers\AccountPayableLiquidationParticularController')->store(
+                      $particular->item,
+                      $particular->price,
+                      $particular->quantity,
+                      $particular->batch_no,
+                      $particular->total,
+                      $particular->unit_uuid,
+                      $particular->vendor_id
+                      );
+                    }
+
                      return view('accountpayables.create.step-5', [
                         'property' => $property,
                         'accountpayable' => $accountpayable

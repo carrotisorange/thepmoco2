@@ -11,7 +11,7 @@ use App\Notifications\SendAccountPayableStep4NotificationToAdmin;
 use Illuminate\Support\Facades\Notification;
 use App\Models\User;
 use App\Models\UserProperty;
-
+use DB;
 
 class AccountPayableCreateStep7Component extends Component
 {
@@ -26,7 +26,7 @@ class AccountPayableCreateStep7Component extends Component
      protected function rules()
     {
         return [
-            'particulars.*.expense_type' => 'required',
+            'particulars.*.expense_type_id' => 'required',
         ];
     }
 
@@ -56,11 +56,13 @@ class AccountPayableCreateStep7Component extends Component
 
             AccountPayableLiquidationParticular::where('id', $id)
             ->update([
-                'expense_type' => $particular->expense_type,
+                'expense_type_id' => $particular->expense_type_id,
             ]);
 
-                $this->particulars = $this->get_particulars();
+              
             }
+
+              $this->particulars = $this->get_particulars();
 
             session()->flash('success', 'Success!');
 
@@ -93,7 +95,8 @@ class AccountPayableCreateStep7Component extends Component
     public function render()
     {
         return view('livewire.account-payable-create-step7-component',[
-            'accountpayableliquidation' =>  AccountPayableLiquidation::where('batch_no', $this->accountpayable->batch_no)->first()
+            'accountpayableliquidation' =>  AccountPayableLiquidation::where('batch_no', $this->accountpayable->batch_no)->first(),
+            'expense_types' => DB::table('expense_types')->get(),
         ]);
     }
 }
