@@ -35,33 +35,14 @@
                 --}}
             </div>
             <div class="sm:col-span-6">
-                {{-- <x-form-select id="status" name="status" wire:model="status" class="">
-                    <option value="">Select one</option>
-                
-                    <option value="active" {{ "active"===$status? 'selected' : 'Select one' }}>
-                        active
-                    </option>
-                    <option value="inactive" {{ "inactive"===$status? 'selected' : 'Select one' }}>
-                        inactive
-                    </option>
-                    <option value="pendingmovein" {{ "pendingmovein"===$status? 'selected' : 'Select one' }}>
-                        pendingmovein
-                    </option>
-                    <option value="pendingmoveout" {{ "pendingmoveout"===$status? 'selected' : 'Select one' }}>
-                        pendingmoveout
-                    </option>
-                    <option value="reserved" {{ "reserved"===$status? 'selected' : 'Select one' }}>
-                        reserved
-                    </option>
-                
-                
-                </x-form-select> --}}
               <x-form-select id="status" name="status" wire:model="status" class="">     
                 <option value="">Filter status</option>
-                   <option value="pending" {{ "pending"===$status? 'selected' : 'Select one' }}>
-                        pending
+                 @foreach ($statuses as $status)
+                     <option value="{{ $status->status }}" {{ $status->status===$status? 'selected' : 'Select one' }}>
+                        {{ $status->status }}
                     </option>
-                    <option value="released"{{ "released"===$status? 'selected' : 'Select one' }}>
+                 @endforeach
+                    {{-- <option value="released"{{ "released"===$status? 'selected' : 'Select one' }}>
                         released
                     </option>
                     <option value="approved by manager" {{ "approved by manager"===$status? 'selected' : 'Select one' }}>
@@ -81,7 +62,7 @@
                     </option>
                      <option value="completed" {{ "completed"===$status? 'selected' : 'Select one' }}>
                       completed
-                    </option>
+                    </option> --}}
                </x-form-select>
             </div>
 

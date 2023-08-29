@@ -131,9 +131,9 @@ class AccountPayableCreateStep5Component extends Component
         return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-5')->with('success', 'Success!');
     }
 
-    public function updateParticular(){
+    public function updateParticular($id){
         try{
-             foreach ($this->particulars as $particular) {
+              foreach ($this->particulars->where('id', $id) as $particular) {
                 $particular->update([
                     'item' => $particular->item,
                     'quantity' => $particular->quantity,
@@ -143,6 +143,9 @@ class AccountPayableCreateStep5Component extends Component
                     'or_number' => $particular->or_number,
                     'total' => $particular->quantity * $particular->price,
                 ]);
+
+                $this->particulars = $this->get_particulars();
+
                 session()->flash('success', 'Success!');
             }
              

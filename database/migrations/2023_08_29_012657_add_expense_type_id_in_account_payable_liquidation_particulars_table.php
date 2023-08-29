@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddExpenseTypeColumnInAccountPayableLiquidationParticularsTable extends Migration
+class AddExpenseTypeIdInAccountPayableLiquidationParticularsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddExpenseTypeColumnInAccountPayableLiquidationParticularsTable extends Mi
     public function up()
     {
         Schema::table('account_payable_liquidation_particulars', function (Blueprint $table) {
-            $table->string('expense_type')->nullable();
+            $table->foreignId('expense_type_id')->nullable();
         });
     }
 

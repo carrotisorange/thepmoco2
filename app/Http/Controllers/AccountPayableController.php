@@ -105,7 +105,6 @@ class AccountPayableController extends Controller
     public function create_step_2(Property $property, AccountPayable $accountpayable){
         //accessible only to the first approver
             if($accountpayable->status === 'pending'){
-              
                 if($accountpayable->approver_id === auth()->user()->id){
                      return view('accountpayables.create.step-2', [
                         'property' => $property,
@@ -178,7 +177,23 @@ class AccountPayableController extends Controller
     public function create_step_5(Property $property, AccountPayable $accountpayable){
         //accessible only to the requestor
         if(auth()->user()->id === $accountpayable->requester_id){
+
                 if($accountpayable->status === 'released'){
+
+                    $particulars = AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get();
+
+                    foreach($particulars as $particular){
+                      app('App\Http\Controllers\AccountPayableLiquidationParticularController')->store(
+                      $particular->item,
+                      $particular->price,
+                      $particular->quantity,
+                      $particular->batch_no,
+                      $particular->total,
+                      $particular->unit_uuid,
+                      $particular->vendor_id
+                      );
+                    }
+
                      return view('accountpayables.create.step-5', [
                         'property' => $property,
                         'accountpayable' => $accountpayable
@@ -206,7 +221,7 @@ class AccountPayableController extends Controller
                      ]);
                    
                 }else{
-                     return view('accountpayables.pending-approval-liquidation-manager',[
+                     return view('accountpayables.approved-page',[
                      'accountpayable' => $accountpayable
                      ]);
                 }

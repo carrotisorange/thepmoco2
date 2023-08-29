@@ -48,11 +48,13 @@ class AccountPayableCreateStep4Component extends Component
             AccountPayable::where('id', $this->accountpayable->id)
             ->update([
                 'attachment' => $this->attachment->store('accountpayables'),
-                'status' => 'released'
-                
             ]);
-            
         }    
+
+      AccountPayable::where('id', $this->accountpayable->id)
+            ->update([
+                'status' => 'released',
+            ]);
         
         return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-4')->with('success', 'Success!');
 
@@ -62,14 +64,14 @@ class AccountPayableCreateStep4Component extends Component
         $this->attachment = '';
     }
 
-    public function markAsReleased(){
-        AccountPayable::where('id', $this->accountpayable->id)
-        ->update([
-            'status' => 'released'
-        ]);
+    // public function markAsReleased(){
+    //     AccountPayable::where('id', $this->accountpayable->id)
+    //     ->update([
+    //         'status' => 'released'
+    //     ]);
 
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-4')->with('success', 'Success!');
-    }
+    //     return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-4')->with('success', 'Success!');
+    // }
 
     public function render()
     {
