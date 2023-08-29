@@ -58,10 +58,129 @@
                     @enderror
                 </div>
 
+                <!-- NEW RESTRICTIONS -->
+                <!--
                 <div class="mt-5 sm:mt-6">
+                    <label class="text-sm">Restrictions</label>
+                    <div class="py-6 grid grid-cols-5">
+                        <div class="text-sm font-medium border px-1 text-center">feature
+                            <div class="py-2">
+                                <div class="px-1 py-1 border text-sm text-left font-light">remittance</div>
+                                <div class="px-1 py-1 border text-sm text-left font-light">utility</div>
+                                <div class="px-1 py-1 border text-sm text-left font-light">financial</div>
+                                <div class="px-1 py-1 border text-sm text-left font-light">RFP</div>
+                                <div class="px-1 py-1 border text-sm text-left font-light">collection</div>
+                                <div class="px-1 py-1 border text-sm text-left font-light">bill</div>
+                                <div class="px-1 py-1 border text-sm text-left font-light">concern</div>
+                                <div class="px-1 py-1 border text-sm text-left font-light">personnel</div>
+                                <div class="px-1 py-1 border text-sm text-left font-light">owner</div>
+                                <div class="px-1 py-1 border text-sm text-left font-light">guest</div>
+                                <div class="px-1 py-1 border text-sm text-left font-light">contract</div>
+                                <div class="px-1 py-1 border text-sm text-left font-light">tenant</div>
+                                <div class="px-1 py-1 border text-sm text-left font-light">calendar</div>
+                                <div class="px-1 py-1 border text-sm text-left font-light">unit</div>
+                                <div class="px-1 py-1 border text-sm text-left font-light">message</div>
+                                <div class="px-1 py-1 border text-sm text-left font-light">dashboard</div>
+                            </div>
+                        </div>
+                        <div class="text-sm font-medium border px-1 text-center">delete
+                            <div class="py-2">
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                            </div>
+                        </div>
+                        <div class="text-sm font-medium border px-1 text-center">update
+                            <div class="py-2">
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                            </div>
+                        </div>
+                        <div class="text-sm font-medium border px-1 text-center">read
+                            <div class="py-2">
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                            </div>
+                        </div>
+                        <div class="text-sm font-medium border px-1 text-center">create
+                            <div class="py-2">
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                   
+                   
+                </div>
+
+                -->
+
+                <div class="mt-5 sm:mt-6">
+
+                
+
+            
                 
                 <fieldset>
                   <label class="text-sm" for="is_approved">Restrictions</label>
+                  
                   @foreach($user_restrictions as $index => $user_restriction)
                   <div wire:key="user-restriction-{{ $user_restriction->id }}">
                     <div class="space-y-5 mt-4">
