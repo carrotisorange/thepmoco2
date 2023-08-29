@@ -28,7 +28,7 @@ class AccountPayableController extends Controller
 
     public function store(Property $property, $request_for, $batch_no){
 
-        // $this->authorize('create_rfp'); 
+        $this->authorize('create_rfp'); 
 
         $generated_batch_no = auth()->user()->id.'-'.sprintf('%08d', AccountPayable::where('property_uuid',$property->uuid)->where('status', '!=', 'pending')->count()).'-'.$batch_no;
 

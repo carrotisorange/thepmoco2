@@ -103,7 +103,7 @@ class AppServiceProvider extends ServiceProvider
             ->where('feature_id', 13)
             ->where('restriction_id', 1)
             ->pluck('is_approved')
-            ->first() === 0);
+            ->first() === 1);
         });
     }
     
