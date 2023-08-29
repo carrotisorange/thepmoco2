@@ -105,20 +105,6 @@ class AppServiceProvider extends ServiceProvider
             ->pluck('is_approved')
             ->first() === 0);
         });
-
-        Gate::define('create_rfp', function (){
-            return (UserRestriction::
-            where('property_uuid', Session::get('property_uuid'))
-            ->where('user_id', auth()->user()->id)
-            ->where('feature_id', 13)
-            ->where('restriction_id', 1)
-            ->pluck('is_approved')
-            ->first() === 0);
-        });
-
-      
-
-
     }
     
 }
