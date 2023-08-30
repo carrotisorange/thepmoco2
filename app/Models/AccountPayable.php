@@ -53,4 +53,10 @@ class AccountPayable extends Model
     {
         return $query->where('property_uuid', Session::get('property_uuid'));
     }
+
+    public function scopeSelectedRequested($query)
+    {
+        return $query->where('requester_id', auth()->user()->id);
+    }
 }
+
