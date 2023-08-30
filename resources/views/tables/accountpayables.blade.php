@@ -5,7 +5,9 @@
                <x-th>REQUESTED ON</x-th>
             <x-th>BATCH NO</x-th>
          
-            <x-th>REQUESTED BY</x-th>
+            <x-th>REQUESTER</x-th>
+            <x-th>FIRST APPROVER</x-th>
+            <x-th>SECOND APPROVER</x-th>
             <x-th>STATUS</x-th>
             <x-th>UNITS</x-th>
             <x-th>PARTICULARS</x-th>
@@ -24,6 +26,9 @@
         
                         <?php $firstName= explode(' ', $accountpayable->requester->name); ?>
             <x-td>{{ Str::limit($firstName[0], 10) }}</x-td>
+
+    <x-td>{{ Str::limit(App\Models\User::where('id', $accountpayable->approver_id)->pluck('name')->first(), 10) }}</x-td>
+    <x-td>{{ Str::limit(App\Models\User::where('id', $accountpayable->approver2_id)->pluck('name')->first(), 10) }}</x-td>
      <x-td>{{ $accountpayable->status }}</x-td>
             <x-td>
                 <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->limit(2)->get()->unique('unit_uuid'); ?>

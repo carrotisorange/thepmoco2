@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Session;
 
 class AccountPayable extends Model
 {
@@ -46,5 +47,10 @@ class AccountPayable extends Model
 
     public function particulars(){
         return $this->hasMany(AccountPayableParticular::class, 'batch_no');
+    }
+
+    public function scopeSelectedProperty($query)
+    {
+        return $query->where('property_uuid', Session::get('property_uuid'));
     }
 }
