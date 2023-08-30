@@ -43,7 +43,7 @@ class AccountPayableCreateStep5Component extends Component
         $this->department = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('department')->first();
         $this->unit_uuid = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('unit_uuid')->first();
         $this->total = AccountPayableLiquidationParticular::where('batch_no', $accountpayable->batch_no)->sum('total');
-        $this->cash_advance = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('cash_advance')->first();
+        $this->cash_advance = AccountPayableLiquidation::where('batch_no',  $accountpayable->batch_no)->pluck('cash_advance')->first();
         $this->cv_number = sprintf('%08d', AccountPayable::where('property_uuid',$this->property->uuid)->where('status', '!=', 'pending')->count());
         $this->total_type = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('total_type')->first();
         $this->total_amount = (double) $this->total- (double) $this->cash_advance;
@@ -187,6 +187,16 @@ class AccountPayableCreateStep5Component extends Component
         return back()->with('success', 'Success!');
     }
 
+    public function skipLiquidation(){
+        sleep(2);
+
+         AccountPayable::where('id', $this->accountpayable->id)
+         ->update([
+         'status'=> 'liquidation approved by manager'
+         ]);
+
+       return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-5')->with('success', 'Success!');
+    }
     public function render()
     {
         return view('livewire.account-payable-create-step5-component',[

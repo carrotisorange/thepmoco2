@@ -50,16 +50,16 @@
 </p>
 
 <p>
-    <b>First approver By:</b> @if($accountPayableLiquidation->approver_id)
-    {{ $$accountPayableLiquidation->approver_1->name }}
+    <b>First approver By:</b> @if($accountpayable->approver_id)
+    {{ $accountpayable->approver_1->name }}
     @else
     NA
     @endif
 </p>
 
 <p>
-    <b>Second approver By:</b> @if($accountPayableLiquidation->approver2_id)
-    {{ $$accountPayableLiquidation->approver_2->name }}
+    <b>Second approver By:</b> @if($accountpayable->approver2_id)
+    {{ $accountpayable->approver_2->name }}
     @else
     NA
     @endif
