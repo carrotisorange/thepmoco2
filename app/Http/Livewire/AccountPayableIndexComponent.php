@@ -41,8 +41,8 @@ class AccountPayableIndexComponent extends Component
     public function get_accountpayables(){
       if(Session::get('role_id') === 9){
            return AccountPayable::selectedproperty()
+           ->selectedrequested()
            ->where('approver_id', auth()->user()->id)
-           ->orWhere('requester_id', auth()->user()->id)
            ->when($this->status, function($query){
              $query->where('status', $this->status);
            })
@@ -57,7 +57,7 @@ class AccountPayableIndexComponent extends Component
            ->get(); 
       }else{
            return AccountPayable::selectedproperty()
-           ->where('requester_id', auth()->user()->id)
+           ->selectedrequested()
            ->when($this->status, function($query){
            $query->where('status', $this->status);
            })

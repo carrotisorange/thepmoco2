@@ -2,9 +2,9 @@
     <thead class="bg-gray-50">
         <tr>
             {{-- <x-th>#</x-th> --}}
-               <x-th>REQUESTED ON</x-th>
+            <x-th>REQUESTED ON</x-th>
             <x-th>BATCH NO</x-th>
-         
+        
             <x-th>REQUESTER</x-th>
             <x-th>FIRST APPROVER</x-th>
             <x-th>SECOND APPROVER</x-th>
@@ -158,6 +158,8 @@
         <tr>
             <x-td><b>Total</b></x-td>
             {{-- <x-th></x-th> --}}
+            <x-th></x-th>
+            <x-th></x-th>
             <x-th></x-th>
             <x-th></x-th>
             <x-th></x-th>
