@@ -57,6 +57,7 @@ class EditUtilityComponent extends Component
 
     public function updateUtility()
     {
+ 
         sleep(2);
 
         $tenant_uuid = Tenant::where('uuid', $this->bill_to)->pluck('uuid')->first();
