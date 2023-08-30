@@ -242,8 +242,7 @@
                     <label for="total" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Liquidation
                         Total</label>
                     <div class="mt-2 sm:col-start-3 sm:mt-0">
-                        {{ (double) number_format(App\Models\AccountPayableLiquidationParticular::where('batch_no',
-                        $accountpayable->batch_no)->sum('total'),2) }}
+                        {{ number_format((double)($total),2) }}
                     </div>
                 </div>
 
@@ -277,8 +276,7 @@
 
                     <div class="mt-2 sm:col-start-3 sm:mt-0">
                         <div class="mt-2 sm:col-start-3 sm:mt-0">
-                            {{ number_format(App\Models\AccountPayableLiquidationParticular::where('batch_no',
-                            $accountpayable->batch_no)->sum('total')-$cash_advance,2) }}
+                            {{ number_format((double)($total-$cash_advance),2) }}
                         </div>
                     </div>
                 </div>
@@ -321,14 +319,16 @@
 
             <div>
                 <p class="mt-5 px-6 text-right">
-                    {{-- <button type="button"
-                        onclick="window.location.href='/property/{{ $property->uuid }}/accountpayable'"
-                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                        Cancel
-                    </button> --}}
+                  
+                    <button type="button" wire:loading.remove wire:click="skipLiquidation"
+                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                        Skip
+                    </button>
+                   
+
                     <button type="submit" wire:loading.remove
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                        Next
+                        Confirm
                     </button>
 
                     <button type="button" wire:loading disabled
