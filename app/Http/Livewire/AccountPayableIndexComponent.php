@@ -40,22 +40,23 @@ class AccountPayableIndexComponent extends Component
 
     public function get_accountpayables(){
       if(Session::get('role_id') === 9){
-           return AccountPayable::where('property_uuid',$this->property->uuid)
+           return AccountPayable::selectedproperty()
            ->where('approver_id', auth()->user()->id)
+           ->orWhere('requester_id', auth()->user()->id)
            ->when($this->status, function($query){
              $query->where('status', $this->status);
            })
            ->orderBy('created_at', 'desc')
            ->get();
       }elseif(Session::get('role_id') === 4){
-          return AccountPayable::where('property_uuid',$this->property->uuid)
+          return AccountPayable::selectedproperty()
            ->when($this->status, function($query){
              $query->where('status', $this->status);
            })
            ->orderBy('created_at', 'desc')
            ->get(); 
       }else{
-           return AccountPayable::where('property_uuid',$this->property->uuid)
+           return AccountPayable::selectedproperty()
            ->where('requester_id', auth()->user()->id)
            ->when($this->status, function($query){
            $query->where('status', $this->status);

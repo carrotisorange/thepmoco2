@@ -2,7 +2,7 @@
     <thead class="bg-gray-50">
         <tr>
             <x-th>#</x-th>
-            <x-th>ID</x-th>
+            {{-- <x-th>ID</x-th> --}}
             <x-th>UNIT</x-th>
             <x-th>TENANT</x-th>
             <x-th>PERIOD COVERED</x-th>
@@ -22,7 +22,7 @@
                 </div>
 
 
-                <x-td>{{ Str::limit($contract->uuid, 10) }}</x-td>
+                {{-- <x-td>{{ Str::limit($contract->uuid, 10) }}</x-td> --}}
                 <x-td>
                     <a class="text-blue-500 text-decoration-line: underline"
                         href="/property/{{ Session::get('property_uuid') }}/unit/{{ $contract->unit->uuid }}">

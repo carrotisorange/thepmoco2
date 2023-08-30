@@ -269,7 +269,46 @@
 
                 </div>
 
-                <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="contracts" role="tabpanel"
+                <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="contracts" role="tabpanel" aria-labelledby="contracts-tab">
+                    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                
+                            <div
+                                class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg bg-gray-50">
+                                <!-- Selected row actions, only show when rows are selected. -->
+                                <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 sm:left-16">
+                
+                                </div>
+                                @if($contracts->count())
+                                @include('tables.contracts')
+                                @else
+                                <div class="mt-10 text-center mb-10">
+                                    <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                        aria-hidden="true">
+                                        <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                                    </svg>
+                                    <h3 class="mt-2 text-sm font-medium text-gray-900">No contracts.</h3>
+                                    <p class="mt-1 text-sm text-gray-500">You're almost there!</p>
+                                    <div class="mt-6">
+                                     <button type="button" wire:click="redirectToTheCreateContractPage"
+                                        class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+                                    
+                                        New contract
+                                    </button>
+                                    </div>
+                                </div>
+                                @endif
+                
+                            </div>
+                
+                        </div>
+                
+                    </div>
+                </div>
+
+                {{-- <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="contracts" role="tabpanel"
                     aria-labelledby="contracts-tab">
                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -311,7 +350,9 @@
                         </div>
 
                     </div>
-                </div>
+                </div> --}}
+
+
                 <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="guardians" role="tabpanel"
                     aria-labelledby="guardians-tab">
                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
