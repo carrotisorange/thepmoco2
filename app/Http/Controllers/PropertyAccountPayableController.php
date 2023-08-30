@@ -15,7 +15,7 @@ class PropertyAccountPayableController extends Controller
 {
     public function index(Property $property, $status=null)
     {
-        // return view('layouts.under-construction');
+         app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
 
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',17);
 

@@ -46,9 +46,9 @@ class SendAccountPayableStep2NotificationToManager extends Notification
                     ->greeting('Hello!')
                     ->subject('Account Payable Notifications')
                     ->from(auth()->user()->email)
-                    ->line('You have a pending action.')
-                    ->action('Click here to proceed', url('/property/'.$this->content->property_uuid).'/accountpayable')
-                    ->line('Thank you for using our The Property Manager Online!');
+                    ->line('You have a pending action. RFP Batch no: '. $this->content->batch_no)
+                    ->action('Click here to proceed', url('/property/'.$this->content->property_uuid).'/accountpayable');
+                  ;
     }
 
     /**
