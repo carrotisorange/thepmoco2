@@ -1,4 +1,7 @@
-<table class="w-full mb-10 text-sm text-left text-gray-500 dark:text-gray-400">
+<div class="outer-wrapper">
+<div class="table-wrapper">
+    
+<table class="sticky z-50 top-0 ">
     <thead class="bg-gray-50">
         <tr>
             {{-- <x-th>#</x-th> --}}
@@ -170,3 +173,6 @@
         </tr>
     </tbody>
 </table>
+
+    </div>
+</div>
