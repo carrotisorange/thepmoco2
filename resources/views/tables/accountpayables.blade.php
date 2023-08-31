@@ -1,5 +1,4 @@
-<div class="outer-wrapper">
-<div class="table-wrapper">
+
     
 <table class="sticky z-50 top-0 ">
     <thead class="bg-gray-50">
@@ -174,5 +173,4 @@
     </tbody>
 </table>
 
-    </div>
-</div>
+  
