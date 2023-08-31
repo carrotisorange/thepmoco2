@@ -1,19 +1,20 @@
-
+<div class="outer-wrapper">
+<div class="table-wrapper max-w-7xl">
     
-<table class="sticky z-50 top-0 ">
+<table class="max-w-2xl">
     <thead class="bg-gray-50">
         <tr>
             {{-- <x-th>#</x-th> --}}
-            <x-th>REQUESTED ON</x-th>
-            <x-th>BATCH NO</x-th>
+            <x-th class="sticky-col first-col">REQUESTED ON</x-th>
+            <x-th class="sticky-col first-col">BATCH NO</x-th>
         
-            <x-th>REQUESTER</x-th>
-            <x-th>FIRST APPROVER</x-th>
-            <x-th>SECOND APPROVER</x-th>
-            <x-th>STATUS</x-th>
-            <x-th>UNITS</x-th>
-            <x-th>PARTICULARS</x-th>
-            <x-th>AMOUNT</x-th>
+            <x-th class="sticky-col first-col">REQUESTER</x-th>
+            <x-th class="sticky-col first-col">FIRST APPROVER</x-th>
+            <x-th class="sticky-col first-col">SECOND APPROVER</x-th>
+            <x-th class="sticky-col first-col">STATUS</x-th>
+            <x-th class="sticky-col first-col">UNITS</x-th>
+            <x-th class="sticky-col first-col">PARTICULARS</x-th>
+            <x-th class="sticky-col first-col">AMOUNT</x-th>
             {{-- <x-th></x-th> --}}
             <x-th></x-th>
         </tr>
@@ -173,4 +174,5 @@
     </tbody>
 </table>
 
-  
+    </div>
+</div>
