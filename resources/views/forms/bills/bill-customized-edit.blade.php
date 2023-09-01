@@ -24,11 +24,12 @@
                             <x-input type="checkbox" wire:model="selectedBills.{{ $bill->id }}" />
                         </div> --}}
                     </x-td>
-                    <x-td>{{ $bill->unit->unit.'-'.$bill->bill_no }}</x-td>
-                    <?php
-                        $tenant = App\Models\Tenant::find($bill->tenant_uuid)->tenant;
-                        $unit = App\Models\Unit::find($bill->unit_uuid)->unit
+                     <?php
+                        $tenant = App\Models\Tenant::where('uuid',$bill->tenant_uuid)->pluck('tenant')->first();
+                        $unit = App\Models\Unit::where('uuid',$bill->unit_uuid)->pluck('unit')->first();
                     ?>
+                    <x-td>{{ $unit.'-'.$bill->bill_no }}</x-td>
+                   
                     <x-td>
                         <a class="text-blue-500 text-decoration-line: underline"
                             href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $bill->tenant_uuid }}/bills"
