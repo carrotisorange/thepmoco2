@@ -6,13 +6,13 @@
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
 
-                {{-- @if($created_at || $status || $request_for || $limitDisplayTo)
+                @if($created_at || $status || $request_for || $limitDisplayTo)
                 <button type="button" wire:click="clearFilters"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                     Clear Filters
                 </button>
-                @endif --}}
-                <a href="/property/{{$property->uuid}}/accountpayable/export/{{ $status }}"
+                @endif
+                <a href="/property/{{$property->uuid}}/accountpayable/export/{{ $status }}/{{ $created_at }}/{{ $request_for }}/{{ $limitDisplayTo }}"
                     target="_blank"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                     Export All
@@ -79,17 +79,17 @@
 
         </div>
         {{-- {{ $accountpayables->links() }} --}}
-        <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+        <div class="max-w-7xl -my-2 -mx-4 sm:-mx-6 lg:-mx-8">
+            <div class="inline-block py-2 align-middle md:px-6 lg:px-8">
 
-                <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                <div class="mb-5 mt-2 shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                     <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
 
                     </div>
                     @if($accountpayables->count())
                     @include('tables.accountpayables')
                     @else
-                    <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8 mt-10 mb-10">
+                    <div class="-my-2 -mx-4 sm:-mx-6 lg:-mx-8 mt-10 mb-10">
                         <div class="text-center mb-10">
                             <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor" aria-hidden="true">
