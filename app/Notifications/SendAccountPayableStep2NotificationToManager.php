@@ -48,7 +48,6 @@ class SendAccountPayableStep2NotificationToManager extends Notification
                     ->from(auth()->user()->email)
                     ->line('You have a pending action. RFP Batch no: '. $this->content->batch_no)
                     ->action('Click here to proceed', url('/property/'.$this->content->property_uuid).'/accountpayable');
-                  ;
     }
 
     /**
