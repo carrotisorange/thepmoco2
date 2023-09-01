@@ -132,6 +132,7 @@ class AccountPayableCreateStep5Component extends Component
     }
 
     public function updateParticular($id){
+       
         try{
               foreach ($this->particulars->where('id', $id) as $particular) {
                 $particular->update([
@@ -190,6 +191,10 @@ class AccountPayableCreateStep5Component extends Component
         ]);
 
         $this->particulars = $this->get_particulars();
+
+        
+        $this->total = AccountPayableLiquidationParticular::where('batch_no', $this->accountpayable->batch_no)->sum('total');
+        $this->cash_advance = AccountPayableLiquidation::where('batch_no',  $this->accountpayable->batch_no)->pluck('cash_advance')->first();
 
         return back()->with('success', 'Success!');
     }
