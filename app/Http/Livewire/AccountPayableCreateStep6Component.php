@@ -24,11 +24,6 @@ class AccountPayableCreateStep6Component extends Component
 
     public function approveLiquidation(){
 
-        AccountPayableLiquidation::where('batch_no', $this->accountpayable->batch_no)
-        ->update([
-            'approved_by' => auth()->user()->id,
-        ]);
-
         AccountPayable::where('id', $this->accountpayable->id)
         ->update([
             'status' => 'liquidation approved by manager'
@@ -46,6 +41,22 @@ class AccountPayableCreateStep6Component extends Component
             Notification::route('mail', $email_ap)->notify(new SendAccountPayableStep3NotificationToAP($content));
 
          }
+
+       return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-6')->with('success', 'Success!');
+    }
+
+    public function rejectLiquidation(){
+
+        AccountPayable::where('id', $this->accountpayable->id)
+        ->update([
+            'status' => 'released'
+        ]);
+
+        $content = $this->accountpayable;
+
+        $requester_email = User::find($this->accountpayable->requester_id)->email;
+
+        Notification::route('mail', $requester_email)->notify(new SendAccountPayableStep4NotificationToAdmin($content));
 
        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-6')->with('success', 'Success!');
     }
