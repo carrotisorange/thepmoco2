@@ -81,6 +81,7 @@
                     View
                 </a>
 
+        
                 {{-- step 2 --}}
                 @elseif($accountpayable->approver_id === auth()->user()->id && $accountpayable->status  === 'pending')
                  <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-2"
