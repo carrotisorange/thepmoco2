@@ -448,6 +448,8 @@ class PropertyController extends Controller
 
     public function show(Property $property)
     {  
+        app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
+
         // $this->authorize('is_portfolio_read_allowed');
 
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',1);
