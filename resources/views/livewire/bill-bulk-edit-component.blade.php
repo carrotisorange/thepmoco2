@@ -39,3 +39,4 @@
         </div>
         @include('layouts.notifications')
     </div>
+</div>
