@@ -86,7 +86,7 @@ class UnitBillCreateComponent extends Component
 
         }catch(\Exception $e){
         
-            ddd($e);
+            return back()->with('error',$e);
         }
 
     }

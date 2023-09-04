@@ -222,7 +222,7 @@ class GuestBillCreateComponent extends Component
          );
          }
             catch (\Throwable $e) {
-            ddd($e);
+            return back()->with('error',$e);
          } 
       }
          return redirect('/property/'.$this->property->uuid.'/guest/'.$this->guest->uuid.'/bills/'.$collection_batch_no.'/pay');

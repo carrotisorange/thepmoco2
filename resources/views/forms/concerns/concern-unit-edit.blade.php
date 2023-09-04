@@ -27,8 +27,8 @@
 
 
                         <div class="col-span-3 sm:col-span-3">
-                            <label for="created_at" class="block text-sm font-medium text-gray-700">Concern reported
-                                on</label>
+                            <label for="created_at" class="block text-sm font-medium text-gray-700">Date reported
+                                </label>
                             <input type="date" wire:model="created_at" autocomplete="created_at"
                                 value="{{ Carbon\Carbon::parse($concern_details->created_at)->format('M d, Y') }}"
                                 readonly
