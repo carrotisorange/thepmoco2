@@ -80,9 +80,9 @@
         </div>
         {{-- {{ $accountpayables->links() }} --}}
         <div class="overflow-x-auto -my-2 -mx-4 sm:-mx-6 lg:-mx-8">
-            <div class="inline-block py-2 align-middle md:px-6 lg:px-8">
+            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
-                <div class="mb-5 mt-2 shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                <div class="mb-5 mt-2  shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                     <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
 
                     </div>
