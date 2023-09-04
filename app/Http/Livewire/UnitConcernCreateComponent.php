@@ -45,8 +45,6 @@ class UnitConcernCreateComponent extends Component
 
     public function submitForm()
     {
-        
-
         $validatedData = $this->validate();
 
         $concern_id = $this->store_concern($validatedData);
@@ -54,7 +52,7 @@ class UnitConcernCreateComponent extends Component
     //    $this->store_notification();
 
         return
-        redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/concern/'.$concern_id.'/edit')->with('success','Success!');
+        redirect('/property/'.Session::get('property_uuid').'/concern/'.$concern_id.'/edit')->with('success','Success!');
     }
 
     public function store_concern($validatedData)

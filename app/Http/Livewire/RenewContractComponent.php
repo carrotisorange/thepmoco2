@@ -86,8 +86,7 @@ class RenewContractComponent extends Component
          // }
          
          } catch (\Throwable $e) {
-            ddd($e);
-            return back()->with('error','Cannot complete your action.');
+            return back()->with('error',$e);
          }
    }
 

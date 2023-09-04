@@ -49,8 +49,7 @@ class DeedOfSaleBackoutComponent extends Component
             
         }catch(\Exception $e)
         {
-            ddd($e);
-            return back()->with('error','Cannot perform your action.');
+            return back()->with('error',$e);
         }
     }
 

@@ -141,7 +141,7 @@ class OwnerBillComponent extends Component
          );
          }
             catch (\Throwable $e) {
-            ddd($e);
+               return back()->with('error',$e);
          } 
       }
          return redirect('/property/'.$this->property->uuid.'/owner/'.$this->owner->uuid.'/bills/'.$collection_batch_no.'/pay');

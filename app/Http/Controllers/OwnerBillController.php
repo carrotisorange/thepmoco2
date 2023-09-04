@@ -92,8 +92,7 @@ class OwnerBillController extends Controller
         }
         catch(\Exception $e)
         {   
-            ddd($e);
-            return back()->with('error','Cannot perform the action. Please try again.');
+            return back()->with('error',$e);
         }
     }
 
