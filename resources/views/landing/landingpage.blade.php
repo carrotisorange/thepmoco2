@@ -211,7 +211,7 @@
              
 
               <div class="slide py-16 bg-transparent" id="">
-                <div class="sm:block lg:flex md:flex h-fit pb-6">
+                <div class="sm:block lg:flex md:flex h-96">
 
                   <div class="flex-col items-center justify-center ml-10 lg:px-10 xl:px-16 sm-px-0">
                     <div class="w-full">
@@ -237,7 +237,7 @@
               </div>
 
               <div class="slide py-16 bg-transparent" id="">
-                <div class="sm:block lg:flex md:flex h-fit">
+                <div class="sm:block lg:flex md:flex h-96">
 
                   <div class="flex-col items-center justify-center ml-10 lg:px-10 xl:px-16 sm-px-0">
                     <div class="w-full">
@@ -262,7 +262,7 @@
               </div>
 
               <div class="slide py-16 bg-transparent" id="">
-                <div class="sm:block lg:flex md:flex h-fit">
+                <div class="sm:block lg:flex md:flex h-96">
 
                   <div class="flex-col items-center justify-center ml-10 lg:px-10 xl:px-16 sm-px-0">
                     <div class="w-full">
@@ -287,7 +287,7 @@
               </div>
 
               <div class="slide py-16 bg-transparent" id="">
-                <div class="sm:block lg:flex md:flex h-fit pb-6">
+                <div class="sm:block lg:flex md:flex h-96 ">
 
                   <div class="flex-col items-center justify-center ml-10 lg:px-10 xl:px-16 sm-px-0">
                     <div class="w-full">
