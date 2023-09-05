@@ -49,6 +49,8 @@ class CreateConcernComponent extends Component
         $validated['tenant_uuid'] = $this->tenant->uuid;
         $validated['reference_no'] = auth()->user()->id.'_'.Str::random(8);
         $validated['property_uuid'] = $this->tenant->property_uuid;
+        $validatedData['email'] = $this->tenant->email;
+        $validatedData['mobile_number'] = $this->tenant->mobile_number;
 
         // if($this->image)
         // {

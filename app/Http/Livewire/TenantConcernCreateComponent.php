@@ -47,8 +47,6 @@ class TenantConcernCreateComponent extends Component
 
     public function submitForm()
     {
-        
-
         $validatedData = $this->validate();
 
         $concern_id = $this->store_concern($validatedData);
@@ -64,6 +62,7 @@ class TenantConcernCreateComponent extends Component
         $validatedData['tenant_uuid'] = $this->tenant->uuid;
         $validatedData['reference_no'] = auth()->user()->id.'_'.Str::random(8);
         $validatedData['property_uuid'] = Session::get('property_uuid');
+   
 
         if($this->image)
         {
