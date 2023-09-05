@@ -46,6 +46,24 @@
                            value="{{$unit }}" readonly
                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                      </div>
+
+                     <div class="col-span-3 sm:col-span-3">
+                        <label for="mobile_number" class="block text-sm font-medium text-gray-700">Mobile</label>
+                        <input type="text" wire:model="mobile_number" autocomplete="mobile_number" 
+                           class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        @error('mobile_number')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                     </div>
+
+                     <div class="col-span-3 sm:col-span-3">
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" wire:model="email" autocomplete="email" 
+                           class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        @error('email')
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        @enderror
+                     </div>
    
                      <div class="col-span-4 sm:col-span-6">
                         <label for="subject" class="block text-sm font-medium text-gray-700">

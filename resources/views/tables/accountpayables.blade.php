@@ -1,9 +1,9 @@
-<div class="outer-wrapper">
-<div class="table-wrapper max-w-7xl">
+<div class="">
+<div class="">
     
-<table class="max-w-2xl">
+<table class="">
     <thead class="bg-gray-50">
-        <tr>
+        <tr class="">
             {{-- <x-th>#</x-th> --}}
             <x-th class="sticky-col first-col">REQUESTED ON</x-th>
             <x-th class="sticky-col first-col">BATCH NO</x-th>

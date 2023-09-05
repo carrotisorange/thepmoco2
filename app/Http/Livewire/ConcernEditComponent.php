@@ -34,6 +34,9 @@ class ConcernEditComponent extends Component
     public $availability_date;
     public $action_taken_image;
 
+    public $email;
+    public $mobile_number;
+
     public function mount($concern_details)
     {
         $this->tenant = Tenant::where('uuid', $concern_details->tenant_uuid)->pluck('tenant')->first();
@@ -53,6 +56,8 @@ class ConcernEditComponent extends Component
         $this->initial_assessment = $concern_details->initial_assessment;
         $this->availability_time = $concern_details->availability_time;
         $this->availability_date = $concern_details->availability_date;
+        $this->email = $concern_details->email;
+        $this->mobile_number = $concern_details->mobile_number;
     }
 
     protected function rules()
@@ -70,6 +75,8 @@ class ConcernEditComponent extends Component
             'availability_time' => 'nullable',
             'availability_date' => 'nullable',
             'action_taken_image' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            'email' => 'nullable',
+            'mobile_number' => 'nullable'
         ];
     }
 
@@ -94,6 +101,14 @@ class ConcernEditComponent extends Component
         DB::transaction(function () use ($validatedData){
             $this->concern_details->update($validatedData);
         });
+
+       if($this->concern_details->tenant_uuid){
+         Tenant::where('uuid', $this->concern_details->tenant_uuid)
+         ->update([
+            'mobile_number' => $this->mobile_number,
+            'email' => $this->email
+         ]);
+       }
 
         app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'),auth()->user()->id,'updates', 13);
         
