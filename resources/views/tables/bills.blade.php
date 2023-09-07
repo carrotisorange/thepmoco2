@@ -17,13 +17,9 @@
             <x-td>
                 <b>
                     @if($user_type === 'tenant')
-                    {{ number_format(App\Models\Bill::where('tenant_uuid',
-                    $tenant_uuid)->posted()->sum('bill'), 2) }}/
-                    {{ number_format(App\Models\Collection::where('tenant_uuid',
-                    $tenant_uuid)->posted()->sum('collection'), 2) }}/
-                    {{ number_format((App\Models\Bill::where('tenant_uuid',
-                    $tenant_uuid)->posted()->sum('bill')-App\Models\Collection::where('tenant_uuid',
-                    $tenant_uuid)->posted()->sum('collection')), 2) }}
+                    {{ number_format(App\Models\Bill::where('tenant_uuid',$tenant_uuid)->posted()->sum('bill'), 2) }}/
+                    {{ number_format(App\Models\Collection::where('tenant_uuid',$tenant_uuid)->posted()->sum('collection'), 2) }}/
+                    {{ number_format((App\Models\Bill::where('tenant_uuid',$tenant_uuid)->posted()->sum('bill')-App\Models\Collection::where('tenant_uuid', $tenant_uuid)->posted()->sum('collection')), 2) }}
                     @elseif($user_type === 'owner')
                     {{ number_format(App\Models\Bill::where('owner_uuid',
                     $owner_uuid)->posted()->sum('bill'), 2) }}/

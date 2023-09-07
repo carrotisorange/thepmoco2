@@ -23,7 +23,7 @@
 
                         </div>
 
-                        <table class="min-w-full table-fixed">
+                        {{-- <table class="min-w-full table-fixed">
                             <thead class="bg-yellow-950">
                                 <tr>
                  
@@ -131,7 +131,8 @@
 
                             </tbody>
                             @endforelse
-                        </table>
+                        </table> --}}
+                        @include('tables.contracts')
                     </div>
 
                     {{-- <button type="button"

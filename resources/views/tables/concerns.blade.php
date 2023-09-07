@@ -46,14 +46,17 @@
             <x-td>{{ Carbon\Carbon::parse($concern->created_at)->format('M d, Y') }}</x-td>
             <x-td>{{ $concern->category->category }}</x-td>
             <x-td>
+                @can('tenant')
+                <a href="/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/concerns/{{ $concern->id }}"
+                    class="text-blue-500 text-decoration-line: underline" target="_blank"">Review</a>
+
+                @else
+                
+         
                 <a href="/property/{{ $concern->property_uuid }}/concern/{{ $concern->id }}/edit"
                     class="text-blue-500 text-decoration-line: underline" target="_blank"">Review</a>
-                {{-- @if($concern->tenant_uuid)
-               
-                @else
-                <a href=" /property/{{ $concern->property_uuid }}/unit/{{ $concern->unit_uuid }}/concern/{{ $concern->id }}/edit"
-                    class="text-blue-500 text-decoration-line: underline" target="_blank"">Review</a>
-                @endif --}}
+                    @endcannot
+              
             </x-td>
         </tr>
         @endforeach

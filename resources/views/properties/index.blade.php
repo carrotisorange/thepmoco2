@@ -3,6 +3,6 @@
 
     @livewire('property-index-component')
 
-    @include('modals.tech-support')
+    {{-- @include('modals.tech-support') --}}
 
 </x-new-layout-base>

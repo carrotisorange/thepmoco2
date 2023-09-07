@@ -78,7 +78,7 @@
                      <div class="col-span-3 sm:col-span-6">
                         <fieldset>
                            <div>
-                              <label for="image" class="block text-sm font-medium text-gray-700">Concern
+                              <label for="image" class="block text-sm font-medium text-gray-700">Tenant
                                  Attachment
                               </label>
                               <div
@@ -228,11 +228,13 @@
                         @enderror
                      </div>
    
+                   
                      <div class="col-span-6 sm:col-span-2">
                         <div>
                            <label for="assessed_by_id" class="block text-sm font-medium text-gray-700">Assessed by
                            </label>
                            <div class="mt-1">
+                              @cannot('tenant')
                               <select id="assessed_by_id" wire:model="assessed_by_id"
                                  class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
                                  <option value="">Select one</option>
@@ -247,21 +249,30 @@
                               @error('assessed_by_id')
                               <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                               @enderror
+                              
+                              @else
+                                 @if($assessed_by_id)
+                                    {{ App\Models\User::find($assessed_by_id)->name }}
+                                 @else
+                                    Not yet assigned
+                                 @endif
+                              @endcannot
                            </div>
    
    
                         </div>
    
                      </div>
+              
    
    
-   
-   
+                    
                      <div class="col-span-6 sm:col-span-2">
                         <div>
                            <label for="assigned_to_id" class="block text-sm font-medium text-gray-700">Assign to
                            </label>
                            <div class="mt-1">
+                              @cannot('tenant')
                               <select id="assigned_to_id" wire:model="assigned_to_id"
                                  class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
                                  <option value="">Select one</option>
@@ -276,12 +287,20 @@
                               @error('assigned_to_id')
                               <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                               @enderror
+                              @else
+                                 @if($assigned_to_id)
+                                 {{ App\Models\User::find($assigned_to_id)->name }}
+                                 @else
+                                 Not yet assigned
+                                 @endif
+                              @endcannot
                            </div>
    
    
                         </div>
    
                      </div>
+                    
    
                      <div class="col-span-3 sm:col-span-6">
                         <fieldset>
@@ -327,7 +346,7 @@
                      <div class="col-span-3 sm:col-span-6">
                         <fieldset>
                            <div>
-                              <label for="action_taken_image" class="block text-sm font-medium text-gray-700">Attachment
+                              <label for="action_taken_image" class="block text-sm font-medium text-gray-700">Personnel Attachment
                               </label>
                               <div
                                  class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
@@ -376,7 +395,8 @@
    
                   </div>
                </div>
-   
+               
+               @cannot('tenant')
                <div class="flex justify-end">
                   <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline" wire:loading.remove
                      href="/property/{{ Session::get('property_uuid') }}/concern">
@@ -395,6 +415,7 @@
                      Loading...
                   </button>
                </div>
+               @endcannot
             </div>
    
             </form>
