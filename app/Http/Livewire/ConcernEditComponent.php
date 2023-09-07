@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use DB;
 use App\Models\Tenant;
 use App\Models\Unit;
+use App\Models\User;
 
 class ConcernEditComponent extends Component
 {
@@ -102,13 +103,18 @@ class ConcernEditComponent extends Component
             $this->concern_details->update($validatedData);
         });
 
-       if($this->concern_details->tenant_uuid){
-         Tenant::where('uuid', $this->concern_details->tenant_uuid)
-         ->update([
-            'mobile_number' => $this->mobile_number,
-            'email' => $this->email
-         ]);
-       }
+    //    if($this->concern_details->tenant_uuid){
+    //      Tenant::where('uuid', $this->concern_details->tenant_uuid)
+    //      ->update([
+    //         'mobile_number' => $this->mobile_number,
+    //         'email' => $this->email
+    //      ]);
+
+    //     User::where('tenant_uuid', $this->concern_details->tenant_uuid)
+    //      ->update([
+    //        'email' => $this->email
+    //      ]);
+    //    }
 
         app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'),auth()->user()->id,'updates', 13);
         
@@ -121,9 +127,16 @@ class ConcernEditComponent extends Component
 
     public function render()
     {
+        if(auth()->user()->role_id === 8){
+            $users = '';
+        }else{
+            $users = app('App\Http\Controllers\UserPropertyController')->get_property_users(Session::get('property_uuid'));
+        }
+        
+
         return view('livewire.concern-edit-component',[
             'categories' => ConcernCategory::all(),
-            'users' => app('App\Http\Controllers\UserPropertyController')->get_property_users(Session::get('property_uuid')),
+            'users' => $users
         ]);
     }
 }

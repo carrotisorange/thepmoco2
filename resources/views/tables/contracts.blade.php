@@ -87,6 +87,7 @@
                     @endif
                 </x-td> --}}
                 <x-td>
+                    @cannot('tenant')
                     <button id="dropdownDefaultButton({{ $contract->uuid }})" data-dropdown-placement="right"
                         data-dropdown-toggle="dropdown({{ $contract->uuid }})"
                         class=" text-white bg-purple-500 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
@@ -147,6 +148,7 @@
                             </li> --}}
                         </ul>
                     </div>
+                    @endcannot
                 </x-td>
 
             </tr>

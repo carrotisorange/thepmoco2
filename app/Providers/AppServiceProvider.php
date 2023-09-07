@@ -63,7 +63,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Gate::define('tenant', function(){
-            return Session::get('role_id') === 8;
+            return Session::get('role_id') === 8 || auth()->user()->role_id === 8;
         });
 
         Gate::define('manager', function(){

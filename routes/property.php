@@ -140,7 +140,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     
   
 
-    //Routes for Unit
+    //Routes for Unitf
     Route::prefix('unit')->group(function(){
         Route::get('/', [PropertyUnitController::class, 'index'])->name('unit');
         Route::get('{batch_no?}/edit', [PropertyUnitController::class, 'edit'])->name('unit');
