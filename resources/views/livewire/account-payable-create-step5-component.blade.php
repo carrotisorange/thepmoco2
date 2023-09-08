@@ -276,7 +276,7 @@
 
                     <div class="mt-2 sm:col-start-3 sm:mt-0">
                         <div class="mt-2 sm:col-start-3 sm:mt-0">
-                            {{ number_format((double)($total-$cash_advance),2) }}
+                            {{ number_format(((double)$total-(double)$cash_advance),2) }}
                         </div>
                     </div>
                 </div>
