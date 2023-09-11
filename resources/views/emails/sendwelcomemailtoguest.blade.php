@@ -11,18 +11,18 @@ the following reservation.
 @component('mail::table')
 | Reservation Details |             | Policies     |           |          |       
 | --------------------|-------------|--------------|-----------|----------|
-| Confirmation Number | {{ $details['uuid'] }}                            | Room                | {{ $details['unit'] }}     
+| Confirmation Number | {{ Str::limit($details['uuid'], 8) }}                            | Room                | {{ $details['unit'] }}     
 | Check-in date       | {{ Carbon\Carbon::parse($details['checkin_date'])->format('M d, Y') }}  | Check-In Time  | 2pm |
 | Check-out date      | {{ Carbon\Carbon::parse($details['checkout_date'])->format('M d, Y') }} | Check-Out Time | 12NN |
 | Guest Name          | Lead Guest: {{ $details['guest'] }}               |  {{ $details['note_to_transient'] }}
-{{-- | Address             |                                                   | Not recommended | --}}
+| Amount              | {{ number_format($details['price'],2) }}          | 
 @endcomponent
 
 <p class="text-center">
     Address: {{  $details['property_address'] }}
     <br>
-    Telephone: {{ $details['property_telephone'] }}
-    <br>
+    {{-- Telephone: {{ $details['property_telephone'] }}
+    <br> --}}
     Mobile: {{ $details['property_mobile'] }}
     <br>
     Facebook Page: {{ $details['property_facebook_page'] }}

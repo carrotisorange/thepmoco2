@@ -19,6 +19,8 @@ use App\Models\UnitStats;
 use App\Models\Collection;
 use App\Models\AccountPayable;
 use App\Models\Role;
+use App\Models\Owner;
+use App\Models\Guest;
 
 class PropertyController extends Controller
 {   
@@ -294,48 +296,67 @@ class PropertyController extends Controller
         ->pluck('count');
     }
 
-    public function get_tenant_delinquents()
+    public function get_delinquents($user_type)
     {
-        $bills = Bill::selectRaw('sum(bill-initial_payment) as balance, tenant_uuid')
-        ->where('property_uuid', Session::get('property_uuid'))
-        ->where('bill', '>','initial_payment')
-        ->where('start', '>', Carbon::now()->subMonth()->toDateTimeString())
-        ->whereNotNull('tenant_uuid')
-        ->groupBy('tenant_uuid')
-        ->orderBy('balance', 'desc')
-        ->get();
+        $delinquents = array();
 
-        return ($bills);
+        if($user_type == 'tenant'){
+            $tenants = Tenant::where('property_uuid', Session::get('property_uuid'))->get();
+
+            foreach($tenants as $tenant){
+            
+            $balance = Bill::where('tenant_uuid', $tenant->uuid)->posted()->sum('bill') - Collection::where('tenant_uuid', $tenant->uuid)->posted()->sum('collection');
+        
+            if($balance > 0){
+                $delinquents[] = [
+                    'balance' => $balance,
+                    'tenant' => $tenant->tenant,
+                    'tenant_uuid' => $tenant->uuid,
+                ];
+            } 
+
+            return $delinquents;
+        }
+
+        }elseif($user_type == 'owner'){
+            $owners = Owner::where('property_uuid', Session::get('property_uuid'))->get();
+
+            foreach($owners as $owner){
+            $balance = Bill::where('owner_uuid', $owner->uuid)->posted()->sum('bill') - Collection::where('owner_uuid', $owner->uuid)->posted()->sum('collection');
+        
+            if($balance > 0){
+                $delinquents[] = [
+                    'balance' => $balance,
+                    'owner' => $owner->owner,
+                    'owner_uuid' => $owner->uuid,
+                ];
+            } 
+
+        }
+
+        return $delinquents;
+
+        }else{
+
+            $guests = Guest::where('property_uuid', Session::get('property_uuid'))->get();
+
+            foreach($guests as $guest){
+            $balance = Bill::where('guest_uuid', $guest->uuid)->posted()->sum('bill') - Collection::where('guest_uuid', $guest->uuid)->posted()->sum('collection');
+        
+            if($balance > 0){
+                $delinquents[] = [
+                    'balance' => $balance,
+                    'guest' => $guest->guest,
+                    'guest_uuid' => $guest->uuid,
+                ];
+            } 
+
+        }
+
+            return $delinquents;
+
+        }
     }
-
-    public function get_owner_delinquents()
-    {
-        $bills = Bill::selectRaw('sum(bill-initial_payment) as balance, owner_uuid')
-        ->where('property_uuid', Session::get('property_uuid'))
-        ->where('bill', '>','initial_payment')
-        ->whereNotNull('owner_uuid')
-             ->where('start', '>', Carbon::now()->subMonth()->toDateTimeString())
-        ->groupBy('owner_uuid')
-        ->orderBy('balance', 'desc')
-        ->get();
-
-        return ($bills);
-    }
-
-    public function get_guest_delinquents()
-    {
-        $bills = Bill::selectRaw('sum(bill-initial_payment) as balance, guest_uuid')
-        ->where('property_uuid', Session::get('property_uuid'))
-        ->where('bill', '>','initial_payment')
-        ->where('start', '>', Carbon::now()->subMonth()->toDateTimeString())
-        ->whereNotNull('guest_uuid')
-        ->groupBy('guest_uuid')
-        ->orderBy('balance', 'desc')
-        ->get();
-
-        return ($bills);
-    }
-    
 
     public function get_tenant_movein_values()
     {

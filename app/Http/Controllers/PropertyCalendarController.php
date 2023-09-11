@@ -97,7 +97,7 @@ class PropertyCalendarController extends Controller
 
         $particular_id = 1; //rent 
 
-        // $this->store_bill($request->property_uuid, $request->unit_uuid, $particular_id, $request->movein_at, $request->moveout_at, $price, $guest->uuid);
+    $this->store_bill($request->property_uuid, $request->unit_uuid, $particular_id, $request->movein_at, $request->moveout_at, $price, $guest->uuid);
 
     //    if($request->is_send_email === 'no'){
          $this->send_mail_to_guest($guest);
@@ -141,7 +141,7 @@ class PropertyCalendarController extends Controller
                 'moveout_at' => $moveout_at,
                 'unit_uuid' => $unit_uuid,
                 'property_uuid' => $property_uuid,
-                // 'price' => $price,
+                'price' => $price,
         ]);
 
         return $guest;
@@ -175,7 +175,7 @@ class PropertyCalendarController extends Controller
           'checkin_date' => $guest->movein_at,
           'checkout_date' => $guest->moveout_at,
           'unit' => $guest->unit->unit,
-        //   'price' => $guest->price,
+          'price' => $guest->price,
           'email' => $guest->email,
           'property_name' => $property->property,
           'property_mobile' => $property->mobile,
