@@ -656,8 +656,8 @@
                                                     <div class="container flex mx-auto w-full items-center justify-center">
                             
                                                         <ul class="flex flex-col bg-gray-200 p-4">
-                                                            @foreach ($delinquent_tenants->take(4) as $item)
-                                                            <a href="/property/{{ $property->uuid }}/tenant/{{ $item->tenant->uuid }}/bills">
+                                                            @forelse ($delinquent_tenants as $item)
+                                                            <a href="/property/{{ $property->uuid }}/tenant/{{ $item['tenant_uuid'] }}/bills">
                                                                 <li class="border-gray-400 flex flex-row mb-2">
                                                                     <div
                                                                         class="select-none cursor-pointer bg-white rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
@@ -673,17 +673,15 @@
                             
                                                                         </div>
                                                                         <div class="flex-1 pl-1 mr-16">
-                                                                            <div class="font-medium">{{ $item->tenant->tenant }} (T)</div>
-                                                                            <div class="font-light">{{
-                                                                                App\Http\Controllers\CollectionController::shortNumber(number_format($item->balance,
-                                                                                2))
-                                                                                }}</div>
+                                                                            <div class="font-medium">{{ $item['tenant'] }} (T)</div>
+                                                                            <div class="font-light">{{App\Http\Controllers\CollectionController::shortNumber(number_format($item['balance'],2))}}</div>
                                                                         </div>
                             
                                                                     </div>
                                                                 </li>
                                                             </a>
-                                                            @endforeach
+                                                            @empty
+                                                            @endforelse
                             
                                                         </ul>
                             
@@ -691,11 +689,11 @@
                             
                                                     </div>
                             
-                                                    {{-- <div class="container flex mx-auto w-full items-center justify-center">
+                                                    <div class="container flex mx-auto w-full items-center justify-center">
                             
                                                         <ul class="flex flex-col bg-gray-200 p-4">
-                                                            @foreach ($delinquent_owners as $item)
-                                                            <a href="/property/{{ $property->uuid }}/owner/{{ $item->owner->uuid }}/bills">
+                                                            @forelse ($delinquent_owners as $item)
+                                                            <a href="/property/{{ $property->uuid }}/owner/{{ $item['owner_uuid'] }}/bills">
                                                                 <li class="border-gray-400 flex flex-row mb-2">
                                                                     <div
                                                                         class="select-none cursor-pointer bg-white rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
@@ -711,9 +709,9 @@
                             
                                                                         </div>
                                                                         <div class="flex-1 pl-1 mr-16">
-                                                                            <div class="font-medium">{{ $item->owner->owner }} (O)</div>
+                                                                            <div class="font-medium">{{ $item['owner'] }} (O)</div>
                                                                             <div class="font-light">{{
-                                                                                App\Http\Controllers\CollectionController::shortNumber(number_format($item->balance,
+                                                                                App\Http\Controllers\CollectionController::shortNumber(number_format($item['balance'],
                                                                                 2))
                                                                                 }}</div>
                                                                         </div>
@@ -721,16 +719,17 @@
                                                                     </div>
                                                                 </li>
                                                             </a>
-                                                            @endforeach
+                                                            @empty
+                                                            @endforelse
                             
                                                         </ul>
-                                                    </div> --}}
+                                                    </div>
                             
-                                                    {{-- <div class="container flex mx-auto w-full items-center justify-center">
+                                                <div class="container flex mx-auto w-full items-center justify-center">
                             
                                                         <ul class="flex flex-col bg-gray-200 p-4">
-                                                            @foreach ($delinquent_guests as $item)
-                                                            <a href="/property/{{ $property->uuid }}/guest/{{ $item->guest->uuid }}/bills">
+                                                            @forelse ($delinquent_guests as $item)
+                                                            <a href="/property/{{ $property->uuid }}/guest/{{ $item['guest_uuid'] }}/bills">
                                                                 <li class="border-gray-400 flex flex-row mb-2">
                                                                     <div
                                                                         class="select-none cursor-pointer bg-white rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
@@ -746,9 +745,9 @@
                             
                                                                         </div>
                                                                         <div class="flex-1 pl-1 mr-16">
-                                                                            <div class="font-medium">{{ $item->guest->guest }} (O)</div>
+                                                                            <div class="font-medium">{{ $item['guest'] }} (G)</div>
                                                                             <div class="font-light">{{
-                                                                                App\Http\Controllers\CollectionController::shortNumber(number_format($item->balance,
+                                                                                App\Http\Controllers\CollectionController::shortNumber(number_format($item['balance'],
                                                                                 2))
                                                                                 }}</div>
                                                                         </div>
@@ -756,10 +755,11 @@
                                                                     </div>
                                                                 </li>
                                                             </a>
-                                                            @endforeach
+                                                            @empty
+                                                            @endforelse
                             
                                                         </ul>
-                                                    </div> --}}
+                                                    </div>
                             
                             
                                                 </div>

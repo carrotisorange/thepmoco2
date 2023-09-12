@@ -14,9 +14,9 @@
             <div class="mt-5 px-4 sm:px-6 lg:px-8">
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
-                        <h1 class="text-3xl font-semibold text-gray-700 mt-5">Verify Payments</h1>
-                        {{-- <h1 class="text-3xl font-bold text-gray-700 ">Batch #: {{ $paymentRequest->batch_no }}</h1>
-                        --}}
+                        <h1 class="text-3xl font-semibold text-gray-700 mt-5">Verify Payments / {{ $paymentRequest->batch_no }}</h1>
+                        {{-- <h1 class="text-3xl font-bold text-gray-700 ">Batch #: </h1> --}}
+                       
                     </div>
                 </div>
                
@@ -114,12 +114,12 @@
     
                                 </div>
                             </div>
-                              <form wire:click.prevent="payBills">
+                              {{-- <form wire:click.prevent="payBills"> --}}
                             <div class="px-4 py-3 text-right sm:px-6">
-                                <button type="button" wire:loading.remove
+                                <button type="button"
                                 wire:click="declinePayments"
                                     {{-- onclick="window.location.href='/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}/payments_request/{{ $paymentRequest->batch_no }}/deny'" --}}
-                                    class="inline-flex justify-end py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">Deny</button>
+                                    class="inline-flex justify-end py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">Reject</button>
     
                                 {{-- <a
                                     class="whitespace-nowrap px-3 py-4 text-sm text-blue-500 text-decoration-line: underline"
@@ -128,14 +128,14 @@
                                     Pay Bills
                                 </a> --}}
                               
-                                <button type="submit" wire:loading.remove class="inline-flex justify-end py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Pay
+                                <button type="button" wire:click="payBills" class="inline-flex justify-end py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Pay
                                     Bills</button>
 
-                                    <button type="button" disabled wire:loading
+                                    {{-- <button type="button" disabled wire:loading
                                                     class="inline-flex justify-end py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                Loading...</button>
+                                Loading...</button> --}}
                             </div>
-                            </form>
+                            {{-- </form> --}}
                         </div>
                
             </div>

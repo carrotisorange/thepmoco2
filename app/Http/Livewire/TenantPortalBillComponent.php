@@ -34,7 +34,7 @@ class TenantPortalBillComponent extends Component
             [
                 'tenant_uuid' => $this->tenant->uuid,
                 'bill_nos' => Bill::whereIn('id', $this->selectedBills)->pluck('bill_no'),
-                'amount' => $amount_to_be_paid,
+                // 'amount' => $amount_to_be_paid,
                 // 'batch_no' => $batch_no,
                 // 'status' => 'pending',
             ],

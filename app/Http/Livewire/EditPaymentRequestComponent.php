@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\PaymentRequest;
+use Session;
 
 class EditPaymentRequestComponent extends Component
 {
@@ -37,6 +38,7 @@ class EditPaymentRequestComponent extends Component
 
     public function updatePaymentRequest(){
         sleep(2);
+        
 
         $this->validate();
 
@@ -46,7 +48,13 @@ class EditPaymentRequestComponent extends Component
             'updated_at' => null
         ]);
 
-        return redirect('/8/tenant/'.auth()->user()->username.'/payments/pending')->with('success', 'Success!');
+        if(auth()->user()->role_id === 8){
+            return redirect('/8/tenant/'.auth()->user()->username.'/payments/pending')->with('success', 'Success!');
+        }else{
+            return redirect('/property/'.Session::get('property_uuid').'/collection/pending');
+        }
+
+      
     }
 
     public function removeAttachment(){
