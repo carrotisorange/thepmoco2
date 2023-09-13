@@ -23,6 +23,7 @@ class EditDeedofsaleComponent extends Component
     public $contract_to_sell;
     public $certificate_of_membership;
     public $contract;
+    public $business_permit;
 
     public function mount($deedofsale){
         $this->turnover_at = Carbon::parse($deedofsale->turnover_at)->format('Y-m-d');
@@ -40,6 +41,7 @@ class EditDeedofsaleComponent extends Component
             'deed_of_sales' => 'nullable | max:102400',
             'contract_to_sell' => 'nullable | max:102400',
             'certificate_of_membership' => 'nullable | max:102400',
+            'business_permit' => 'nullable | max:102400',
         ];
     }
 
@@ -49,6 +51,8 @@ class EditDeedofsaleComponent extends Component
     }
 
     public function updateDeedofsale(){
+        
+        sleep(2);
         
         $validated = $this->validate();
   
@@ -88,12 +92,19 @@ class EditDeedofsaleComponent extends Component
             $certificate_of_membership = $this->certificate_of_membership->store('certificate_of_memberships');
         }
 
+        if ($this->business_permit === null) {
+            $business_permit = $this->deedofsale->business_permit;
+        }else{
+            $business_permit = $this->business_permit->store('business_permits');
+        }
+
         $validated['contract'] = $contract;
         $validated['title'] = $title;
         $validated['tax_declaration'] = $tax_declaration;
         $validated['deed_of_sales'] = $deed_of_sales;
         $validated['contract_to_sell'] = $contract_to_sell;
         $validated['certificate_of_membership'] = $certificate_of_membership;
+        $validated['business_permit'] = $business_permit;
 
         DeedOfSale::where('uuid', $this->deedofsale->uuid)
         ->update($validated);
