@@ -80,7 +80,8 @@ class AccountPayableCreateStep7Component extends Component
 
         AccountPayable::where('id', $this->accountpayable->id)
         ->update([
-            'status' => 'completed'
+            'status' => 'completed',
+            'amount' => AccountPayableLiquidationParticular::where('batch_no', $this->accountpayable->batch_no)->sum('total')
         ]);
 
         $requester_email = User::find($this->accountpayable->requester_id)->email;

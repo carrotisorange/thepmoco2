@@ -3,7 +3,7 @@
     <div class="px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
-                <h1 class="text-xl font-semibold text-gray-900">Financial Reports</h1>
+                <h1 class="text-xl font-semibold text-gray-900">Financial Reports as of ({{ Carbon\Carbon::now()->timezone('Asia/Manila')->format('M d, Y, H:i')  }})</h1>
                 {{-- <p class="mt-2 text-sm text-gray-700">A table of placeholder stock market data that does not make
                     any
                     sense.
@@ -31,10 +31,10 @@
                                         Description</th>
                                     <th scope="col"
                                         class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                        Estimated Monthly ({{ Carbon\Carbon::now()->format('Y') }})</th>
+                                        Estimated Monthly</th>
                                     <th scope="col"
                                         class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                        Estimated Yearly ({{ Carbon\Carbon::now()->format('Y') }})</th>
+                                        Estimated Yearly </th>
 
                                 </tr>
                             </thead>
@@ -109,12 +109,12 @@
         </div>
     </div>
 
-    {{-- <div>
+    <div>
 
         <div class="py-8 px-4 sm:px-6 lg:px-8">
             <div class="sm:flex sm:items-center">
                 <div class="sm:flex-auto">
-                    <h1 class="text-xl font-semibold text-gray-900">I. Revenue (Collections) as of the current year</h1>
+                    <h1 class="text-xl font-semibold text-gray-900">I. Breakdown of Revenues</h1>
 
                 </div>
                 <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
@@ -183,10 +183,10 @@
 
         </div>
 
-        <div class="py-8 px-4 sm:px-6 lg:px-8">
+        {{-- <div class="py-8 px-4 sm:px-6 lg:px-8">
             <div class="sm:flex sm:items-center">
                 <div class="sm:flex-auto">
-                    <h1 class="text-xl font-semibold text-gray-900">II. Operating Expenses as of the current month</h1>
+                   <h1 class="text-xl font-semibold text-gray-900">II. Breakdown of Expenses</h1>
 
                 </div>
                 <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
@@ -251,9 +251,9 @@
                 </div>
             </div>
 
-        </div>
+        </div> --}}
 
-        <div class="py-8 px-4 sm:px-6 lg:px-8">
+        {{-- <div class="py-8 px-4 sm:px-6 lg:px-8">
             <div class="sm:flex sm:items-center">
                 <div class="sm:flex-auto">
                     <h1 class="text-xl font-semibold text-gray-900">III. Net Income as of the current month</h1>
@@ -308,11 +308,11 @@
                 </div>
             </div>
 
-        </div>
+        </div> --}}
 
 
 
-        <div class="py-8 px-4 sm:px-6 lg:px-8">
+        {{-- <div class="py-8 px-4 sm:px-6 lg:px-8">
             <h2 class="font-semibold text-xl pb-8">Requests for Purchases</h2>
             <div class="sm:flex sm:items-center justify-between space-x-4 pb-8">
 
@@ -395,12 +395,12 @@
 
 
 
-        </div>
+        </div> --}}
 
 
 
 
-
+{{-- 
         <div class="mt-10 px-4 sm:px-6 lg:px-8">
             <div class="sm:flex sm:items-center">
                 <div class="sm:flex-auto">
@@ -566,6 +566,6 @@
                 </div>
 
             </div>
-        </div>
-    </div> --}}
+        </div> --}}
+    </div>
 </div>
