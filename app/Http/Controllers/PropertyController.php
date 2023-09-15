@@ -573,6 +573,8 @@ class PropertyController extends Controller
         Session::put('property_email', Property::find($property_uuid)->email);
         
         Session::put('property_mobile', Property::find($property_uuid)->mobile);
+
+        Session::put('property_thumbnail', Property::find($property_uuid)->thumbnail);
         
     }
 

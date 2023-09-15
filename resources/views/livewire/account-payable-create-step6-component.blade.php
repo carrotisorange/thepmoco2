@@ -21,7 +21,7 @@
                                     <th scope="col"
                                         class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
                                         Date
-                                        Requested
+                                        Liquidated
                                     </th>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{
                                         Carbon\Carbon::parse($accountpayableliquidation->created_at)->format('M d, Y')
@@ -52,7 +52,7 @@
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{
                                         $accountpayableliquidation->department }}</td>
                                 </tr>
-                                <tr>
+                                {{-- <tr>
                                     <th scope="col"
                                         class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
                                         Unit
@@ -64,7 +64,7 @@
                                         NA
                                         @endif
                                     </td>
-                                </tr>
+                                </tr> --}}
                                 {{-- <tr>
                                     <th scope="col"
                                         class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">

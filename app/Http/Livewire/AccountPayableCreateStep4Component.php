@@ -10,6 +10,7 @@ use App\Notifications\SendAccountPayableStep4NotificationToAdmin;
 use Illuminate\Support\Facades\Notification;
 use App\Models\UserProperty;
 use App\Models\User;
+use Session;
 
 class AccountPayableCreateStep4Component extends Component
 {
@@ -20,6 +21,8 @@ class AccountPayableCreateStep4Component extends Component
     public $accountpayable;
 
     public $attachment;
+
+    public $skipLiquidation = false;
     
     public function mount($accountpayable)
     {
@@ -51,12 +54,27 @@ class AccountPayableCreateStep4Component extends Component
             ]);
         }    
 
-      AccountPayable::where('id', $this->accountpayable->id)
+        if($this->skipLiquidation){
+            Session::put('skipLiquidation', true);
+
+            AccountPayable::where('id', $this->accountpayable->id)
             ->update([
-                'status' => 'released',
+                'status' => 'liquidation approved by manager',
             ]);
-        
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-4')->with('success', 'Success!');
+
+            return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-7')->with('success', 'Success!');
+
+         
+        }else{
+              AccountPayable::where('id', $this->accountpayable->id)
+              ->update([
+              'status' => 'released',
+              ]);
+
+            return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-4')->with('success', 'Success!');
+            
+        }
+    
 
     }
 

@@ -1,4 +1,6 @@
 @component('mail::message')
+
+
 # Dear Mr / Mrs {{ $details['guest'] }},
 
 <br>

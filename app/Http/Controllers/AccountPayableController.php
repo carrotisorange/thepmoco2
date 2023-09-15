@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use Spatie\Browsershot\Browsershot;
 use Session;
+use App\Models\AccountPayableLiquidation;
 
 class AccountPayableController extends Controller
 {
@@ -233,18 +234,49 @@ class AccountPayableController extends Controller
     }
 
     public function create_step_7(Property $property, AccountPayable $accountpayable){
+
         //accessible only to ap
         if(Session::get('role_id') === 4){
-            if($accountpayable->status === 'liquidation approved by manager'){
+            // if($accountpayable->status === 'liquidation approved by manager'){
+
+                if(Session::get('skipLiquidation')){
+
+                      AccountPayableLiquidation::updateOrCreate(
+                      [
+                        'batch_no' => $accountpayable->batch_no
+                      ],
+                      [
+                      'name' => auth()->user()->name,
+  
+        
+                      'cv_number' => sprintf('%08d',AccountPayable::where('property_uuid',$accountpayable->property->uuid)->where('status','!=', 'pending')->count())
+                      ]);
+
+
+                    $particulars = AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get();
+
+                    foreach($particulars as $particular){
+                      app('App\Http\Controllers\AccountPayableLiquidationParticularController')->store(
+                      $particular->item,
+                      $particular->price,
+                      $particular->quantity,
+                      $particular->batch_no,
+                      $particular->total,
+                      $particular->unit_uuid,
+                      $particular->vendor_id
+                      );
+                    }
+                }
+
                 return view('accountpayables.create.step-7', [
                     'property' => $property,
                     'accountpayable' => $accountpayable
                 ]);
-            }else{
-                return view('accountpayables.approved-page',[
-                    'accountpayable' => $accountpayable
-                ]);
-            }   
+            // }else{
+            //     return view('accountpayables.approved-page',[
+            //         'accountpayable' => $accountpayable
+            //     ]);
+            // }   
         }else{
             return view('accountpayables.restricted-page',[
                 'accountpayable' => $accountpayable
