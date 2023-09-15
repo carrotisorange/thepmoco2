@@ -34,9 +34,10 @@
                     class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                 --}}
             </div>
-            <div class="sm:col-span-6">
+            <div class="sm:col-span-3">
+                <small for="">Filter status</small>
               <x-form-select id="status" name="status" wire:model="status" class="">     
-                <option value="">Filter status</option>
+                <option value="">Show all</option>
                  @foreach ($statuses as $status)
                      <option value="{{ $status->status }}" {{ $status->status===$status? 'selected' : 'Select one' }}>
                         {{ $status->status }}
@@ -67,6 +68,16 @@
             </div>
 
             <div class="sm:col-span-3">
+                <small for="">Filter date requested</small>
+             <x-form-select id="created_at" name="created_at" wire:model="created_at" class="">        
+                <option value="">Select date</option>      
+                <option value="{{ $created_at }}">{{ Carbon\Carbon::parse($created_at)->format('M, Y') }}</option>
+                    @foreach ($dates as $date)
+                    @if(Carbon\Carbon::parse($date->created_at)->format('M, Y') != Carbon\Carbon::parse($created_at)->format('M, Y'))
+                    <option value="{{ $date->created_at }}">{{ Carbon\Carbon::parse($date->created_at)->format('M, Y') }}</option>
+                    @endif
+                    @endforeach
+                </x-form-select>
                 {{-- <select id="limitDisplayTo" wire:model="limitDisplayTo"
                     class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                     <option value="" selected>Limit display to</option>

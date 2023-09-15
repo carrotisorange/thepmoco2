@@ -35,7 +35,7 @@
                                             by
                                         </th>
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{
-                                            App\Models\User::find($accountpayableliquidation->prepared_by)->name }}</td>
+                                            App\Models\User::where('id', $accountpayableliquidation->prepared_by)->pluck('name')->first() }}</td>
                                     </tr>
                                     <tr>
                                         <th scope="col"
@@ -53,7 +53,7 @@
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{
                                             $accountpayableliquidation->department }}</td>
                                     </tr>
-                                    <tr>
+                                    {{-- <tr>
                                         <th scope="col"
                                             class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
                                             Unit
@@ -65,7 +65,7 @@
                                             NA
                                             @endif
                                         </td>
-                                    </tr>
+                                    </tr> --}}
                                     {{-- <tr>
                                         <th scope="col"
                                             class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
@@ -174,6 +174,7 @@
                                         
                                          <x-form-select >
                                         @foreach ($expense_types as $expense_type)
+                                        {{-- <option value="">Select one</option> --}}
                                         <option value="{{ $expense_type->id }}" {{ 'particulars'.$index.'expense_type_id'===$expense_type->id? 'selected' : '' }}>{{
                                             $expense_type->expense_type }}
                                         </option>

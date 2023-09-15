@@ -1,7 +1,5 @@
 @component('mail::message')
 
-<img src="{{ asset('/storage/'.Session::get('property_thumbnail')) }}">
-
 
 # Dear Mr / Mrs {{ $details['guest'] }},
 

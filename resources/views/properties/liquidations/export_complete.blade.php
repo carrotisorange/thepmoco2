@@ -28,7 +28,7 @@
     <b>Department/Section:</b>{{ $accountPayableLiquidation->department }}
 </p>
 
-<p>
+{{-- <p>
     <b>Total Amount:</b>{{ number_format($accountPayableLiquidation->total, 2) }}
 </p>
 
@@ -38,16 +38,16 @@
 
 <p>
     <b>Total Return:</b>{{ number_format($accountPayableLiquidation->total_amount, 2) }}
-</p>
+</p> --}}
 
-<p>
+{{-- <p>
     <b>Unit:</b>
     @if($accountPayableLiquidation->unit_uuid)
     {{ App\Models\Unit::find($accountPayableLiquidation->unit_uuid)->unit }}
     @else
     NA
     @endif
-</p>
+</p> --}}
 
 <p>
     <b>First approver By:</b> @if($accountpayable->approver_id)
@@ -130,8 +130,9 @@
            
         </tr>
         @endforeach
+       
         <tr>
-            <x-td><b>Total</b></x-td>
+            <x-td><b>Total </b></x-td>
             <x-th></x-th>
             <x-th></x-th>
             <x-th></x-th>
@@ -140,9 +141,39 @@
             <x-th></x-th>
             <x-td></x-td>
             <x-td><b>{{
-                    number_format($particulars->sum('total'),2) }}</b></x-td>
+                    number_format($total_liquidation,2) }}</b></x-td>
 
         </tr>
+        <tr>
+            <x-td><b>Cash Advance </b></x-td>
+            <x-th></x-th>
+            <x-th></x-th>
+            <x-th></x-th>
+            <x-th></x-th>
+            <x-th></x-th>
+            <x-th></x-th>
+            <x-td></x-td>
+          <x-td><b>{{
+                    number_format($cash_advance,2) }}</b></x-td>
+        
+        </tr>
+
+        <tr>
+            <x-td><b>Total Return </b></x-td>
+            <x-th></x-th>
+            <x-th></x-th>
+            <x-th></x-th>
+            <x-th></x-th>
+            <x-th></x-th>
+            <x-th></x-th>
+            <x-td></x-td>
+            <x-td><b>{{
+                    number_format($total_liquidation-$cash_advance,2) }}</b></x-td>
+        
+        </tr>
+        
+
+        {{-- {{ number_format((double)$total-(double)$cash_advance,2) }} --}}
     </tbody>
 </table>
 

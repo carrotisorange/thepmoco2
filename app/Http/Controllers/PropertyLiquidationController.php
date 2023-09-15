@@ -85,9 +85,13 @@ class PropertyLiquidationController extends Controller
         $data = [
            'property' => $property,
            'accountPayableLiquidation' => AccountPayableLiquidation::where('batch_no', $accountPayable->batch_no)->first(),
+            'total_liquidation' => AccountPayableLiquidationParticular::where('batch_no', $accountPayable->batch_no)->sum('total'),
+            'cash_advance' => AccountPayableLiquidation::where('batch_no', $accountPayable->batch_no)->pluck('cash_advance')->first(),
            'particulars' => AccountPayableLiquidationParticular::where('batch_no', $accountPayable->batch_no)->get(),
            'accountpayable' => $accountPayable
         ];
+
+
 
         $pdf = \PDF::loadView('properties.liquidations.export_complete', $data);
 

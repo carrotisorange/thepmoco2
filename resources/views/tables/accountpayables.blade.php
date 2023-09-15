@@ -24,14 +24,13 @@
         <tr>
             {{-- <x-td>{{ $index+1 }}</x-td> --}}
             <x-td>{{ Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}</x-td>
-            <x-td>{{ $accountpayable->batch_no }} ({{ App\Models\AccountPayableParticular::where('batch_no',
-                    $accountpayable->batch_no)->count(); }})</x-td>
+            <x-td>{{ $accountpayable->batch_no }} </x-td>
         
                         <?php $firstName= explode(' ', $accountpayable->requester->name); ?>
             <x-td>{{ Str::limit($firstName[0], 10) }}</x-td>
 
-    <x-td>{{ Str::limit(App\Models\User::where('id', $accountpayable->approver_id)->pluck('name')->first(), 10) }}</x-td>
-    <x-td>{{ Str::limit(App\Models\User::where('id', $accountpayable->approver2_id)->pluck('name')->first(), 10) }}</x-td>
+    <x-td>{{ (App\Models\User::where('id', $accountpayable->approver_id)->pluck('name')->first()) }}</x-td>
+    <x-td>{{ (App\Models\User::where('id', $accountpayable->approver2_id)->pluck('name')->first()) }}</x-td>
      <x-td>{{ $accountpayable->status }}</x-td>
             <x-td>
                 <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->limit(2)->get()->unique('unit_uuid'); ?>
@@ -58,6 +57,8 @@
             </x-td>--}}
 
             <x-td>
+                ({{ App\Models\AccountPayableParticular::where('batch_no',
+                $accountpayable->batch_no)->count(); }})
                 <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->limit(2)->get() ;?>
                 @foreach ($particulars as $particular)
                 {{ Str::limit($particular->item, 10) }},
@@ -146,6 +147,11 @@
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
                     type="button">
                   Export
+                </a>
+                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-7"
+                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
+                    type="button">
+                  Edit
                 </a>
 
               
