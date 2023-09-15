@@ -62,22 +62,23 @@ class FinancialIndexComponent extends Component
         ->orderBy('amount', 'desc')
         ->get();
 
-        // $expenses = DB::table('account_payable_liquidations')
-        //   ->select(DB::raw("SUM(account_payable_liquidation_particulars.total) as amount"), 'account_payable_liquidation_particulars.item as particular')
-        //   ->join('account_payable_liquidation_particulars','account_payable_liquidations.batch_no', 'account_payable_liquidation_particulars.batch_no')
-        //   ->join('account_payables','account_payable_liquidations.batch_no', 'account_payables.batch_no')
-        //   ->where('account_payables.property_uuid', $this->property->uuid)
-        //     ->whereYear('account_payables.created_at', Carbon::now()->format('Y'))
+        $expenses = DB::table('account_payable_liquidations')
+          ->select(DB::raw("SUM(account_payable_liquidation_particulars.total) as expense"), 'account_payable_liquidation_particulars.item as particular')
+          ->join('account_payable_liquidation_particulars','account_payable_liquidations.batch_no', 'account_payable_liquidation_particulars.batch_no')
+          ->join('account_payables','account_payable_liquidations.batch_no', 'account_payables.batch_no')
+          ->where('account_payables.property_uuid', $this->property->uuid)
+            ->whereYear('account_payables.created_at', Carbon::now()->format('Y'))
         //   ->whereNotNull('account_payable_liquidations.approved_by')
-        //   ->groupBy('account_payable_liquidation_particulars.item')
-        //   ->orderBy('amount', 'desc')
-        //   ->get();
+          ->groupBy('account_payable_liquidation_particulars.item')
+          ->orderBy('amount', 'desc')
+          ->where('account_payables.status', 'completed')
+          ->get();
 
-        $expenses = DB::table('account_payables')
-        ->join('account_payable_liquidation_particulars','account_payables.batch_no', 'account_payable_liquidation_particulars.batch_no')
-        ->where('property_uuid', $this->property->uuid)
-        ->where('status', 'completed')
-        ->get();
+        // $expenses = DB::table('account_payables')
+        // ->join('account_payable_liquidation_particulars','account_payables.batch_no', 'account_payable_liquidation_particulars.batch_no')
+        // ->where('property_uuid', $this->property->uuid)
+        // ->where('status', 'completed')
+        // ->get();
 
         return view('livewire.financial-index-component',[
               'cashflows' => $cashflows,
