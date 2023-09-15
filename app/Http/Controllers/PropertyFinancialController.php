@@ -8,6 +8,7 @@ use DB;
 use Carbon\Carbon;
 use Session;
 use Illuminate\Support\Str;
+use App\Models\Collection;
 
 class PropertyFinancialController extends Controller
 {
@@ -214,9 +215,17 @@ class PropertyFinancialController extends Controller
     }
 
     public function get_total_collected_rent($property){
-        return Property::find($property->uuid)->bills()->posted()->wherein('status', ['paid', 'partially_paid'])
-        ->whereYear('created_at', Carbon::now()->year)
-        ->sum('initial_payment');
+        return Collection::where('collections.property_uuid', $property->uuid)
+        ->join('bills', 'collections.bill_id', 'bills.id')
+        ->where('collections.is_posted', 1)
+        ->whereYear('collections.created_at', Carbon::now()->year)
+        ->where('bills.particular_id', 1)
+        ->sum('collection');
+
+
+        // find($property->uuid)->bills()->posted()->wherein('status', ['paid', 'partially_paid'])
+        // ->whereYear('created_at', Carbon::now()->year)
+        // ->sum('initial_payment');
     }
 
     public function get_total_billed_rent($property){
@@ -224,6 +233,6 @@ class PropertyFinancialController extends Controller
     }
 
     public function get_actual_revenue_collected($property){
-        return Property::find($property->uuid)->collections()->posted()->whereYear('updated_at', Carbon::now()->year)->sum('collection');
+        return Property::find($property->uuid)->collections()->posted()->whereYear('created_at', Carbon::now()->year)->sum('collection');
     }
 }
