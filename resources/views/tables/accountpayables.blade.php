@@ -60,8 +60,8 @@
                 ({{ App\Models\AccountPayableParticular::where('batch_no',
                 $accountpayable->batch_no)->count(); }})
                 <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->limit(2)->get() ;?>
-                @foreach ($particulars as $particular)
-                {{ Str::limit($particular->item, 10) }},
+                @foreach ($particulars->take(1) as $particular)
+                {{ ($particular->item) }}...
                 @endforeach
             </x-td> 
             {{-- <x-td>{{ $accountpayable->status }}</x-td> --}}

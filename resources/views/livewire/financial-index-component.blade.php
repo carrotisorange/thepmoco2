@@ -183,7 +183,7 @@
 
         </div>
 
-        {{-- <div class="py-8 px-4 sm:px-6 lg:px-8">
+        <div class="py-8 px-4 sm:px-6 lg:px-8">
             <div class="sm:flex sm:items-center">
                 <div class="sm:flex-auto">
                    <h1 class="text-xl font-semibold text-gray-900">II. Breakdown of Expenses</h1>
@@ -224,7 +224,7 @@
                                         <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
                                             {{ $expense->particular }}</td>
                                         <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
-                                            {{ number_format($expense->amount, 2) }}</td>
+                                            {{ number_format($expense->expense, 2) }}</td>
 
                                     </tr>
                                     @endforeach
@@ -239,7 +239,7 @@
                                         </td>
 
                                         <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
-                                            {{ number_format($expenses->sum('amount'), 2) }}</td>
+                                            {{ number_format($expenses->sum('expense'), 2) }}</td>
 
                                     </tr>
 
@@ -251,12 +251,12 @@
                 </div>
             </div>
 
-        </div> --}}
+        </div>
 
-        {{-- <div class="py-8 px-4 sm:px-6 lg:px-8">
+        <div class="py-8 px-4 sm:px-6 lg:px-8">
             <div class="sm:flex sm:items-center">
                 <div class="sm:flex-auto">
-                    <h1 class="text-xl font-semibold text-gray-900">III. Net Income as of the current month</h1>
+                    <h1 class="text-xl font-semibold text-gray-900">III. Net Income</h1>
 
                 </div>
                 <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
@@ -273,10 +273,10 @@
 
                                         <th scope="col"
                                             class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                            Total Revenue(Collection)</th>
+                                            Total Revenue</th>
                                         <th scope="col"
                                             class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                            Total Operating Expenses
+                                            Total Expenses
                                         </th>
                                         <th scope="col"
                                             class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900 ">
@@ -292,7 +292,7 @@
                                         <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
                                             {{ number_format($revenues->sum('amount'), 2) }}</td>
                                         <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">
-                                            {{ number_format($expenses->sum('amount'), 2) }}</td>
+                                            {{ number_format($expenses->sum('expense'), 2) }}</td>
                                         <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
                                             {{ number_format($revenues->sum('amount') - $expenses->sum('amount'), 2) }}
                                         </td>
@@ -308,7 +308,7 @@
                 </div>
             </div>
 
-        </div> --}}
+        </div> 
 
 
 
