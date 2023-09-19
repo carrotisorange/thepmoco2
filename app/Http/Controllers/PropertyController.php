@@ -263,12 +263,13 @@ class PropertyController extends Controller
     {
         $current_collection_rate = 0;
 
-        if(Bill::where('property_uuid', Session::get('property_uuid'))->count())
+        if(Bill::where('property_uuid', Session::get('property_uuid'))->posted()->sum('bill') > 0)
         {
             $current_collection_rate = AcknowledgementReceipt::select(DB::raw("(sum(amount)) as total_amount"),
             DB::raw("(DATE_FORMAT(created_at, '%M')) as month_year"))
             ->where('property_uuid', Session::get('property_uuid'))
             ->orderBy('created_at')
+            ->posted()
             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
             ->pluck('total_amount')
             ->last() / Bill::select(DB::raw("(sum(bill)) as total_bill"), DB::raw("(DATE_FORMAT(created_at, '%M')) as month_year"))
@@ -276,6 +277,7 @@ class PropertyController extends Controller
             ->where('property_uuid', Session::get('property_uuid'))
             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
             ->pluck('total_bill')
+            ->posted()
             ->last() * 100;
          }else{
             $current_collection_rate = 0;
