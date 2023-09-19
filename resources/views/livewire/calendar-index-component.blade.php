@@ -78,24 +78,25 @@
                                             </select>
                                             <span id="unitUuidError" class="text-danger text-sm"></span>
                                             <br>
-                                            {{-- <label for="">Do you want to send welcome email to the guest?</label>
-                                            <select class="form-control" name="is_send_email" id="is_send_email">
-                                                <option value="no">no</option>
-                                                <option value="yes">yes</option>
-                                            </select> --}}
-
-                                            {{-- <br>
-                                            <label for="">Start</label>
-                                            <input type="date" name="movein_at" id="movein_at" class="form-control"
-                                                required>
-                                            <span id="startError" class="text-danger"></span>
+                                            <label for="">Number of guest</label>
+                                            <input type="text" name="no_of_guests" id="no_of_guests" value="1" class="form-control">
+                                            <span id="noOfGuestsError" class="text-danger text-sm"></span>
                                             <br>
-                                            <label for="">End</label>
-                                            <input type="date" name="moveout_at" id="moveout_at" class="form-control"
-                                                required>
-                                            <span id="endError" class="text-danger"></span>
-                                            <br> --}}
-
+                                            <label for="">Number of senior citizen</label>
+                                            <input type="text" name="no_of_senior_citizens" id="no_of_senior_citizens" value="0" class="form-control">
+                                            <span id="noOfCitizenError" class="text-danger text-sm"></span>
+                                            <br>
+                                            <label for="">Number of pwd</label>
+                                            <input type="text" name="no_of_pwd" id="no_of_pwd" value="0" class="form-control">
+                                            <span id="noOfPwdError" class="text-danger text-sm"></span>
+                                            <br>
+                                            <label for="">Number of < 7 years old</label>
+                                            <input type="text" name="no_of_children" id="no_of_children" value="0" class="form-control">
+                                            <span id="noOfChildrenError" class="text-danger text-sm"></span>
+                                            <br>
+                                              <label for="">Remarks</label>
+                                            <input type="text" name="remarks" id="remarks" class="form-control">
+                                            <span id="remarkError" class="text-danger text-sm"></span>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"

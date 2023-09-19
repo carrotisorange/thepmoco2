@@ -158,13 +158,7 @@ class GuestShowComponent extends Component
           'unit' => $booking->unit->unit,
         //   'price' => $guest->price,
           'email' => $booking->guest->email,
-          'property_name' => $property->property,
-          'property_mobile' => $property->mobile,
-          'property_facebook_page' => $property->facebook_page,
-          'property_telephone' => $property->telephone,
-          'property_email' => $property->email,
-          'property_address' => $property->barangay.', '.$property->city->city.', '.$property->province->province.' '.$property->country->country,
-          'note_to_transient' => $property->note_to_transient
+          'notes' => $property->note_to_transient
         ];
 
          Mail::to($booking->guest->email)->send(new SendWelcomeMailToGuest($details));

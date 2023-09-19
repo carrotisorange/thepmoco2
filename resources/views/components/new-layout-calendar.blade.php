@@ -60,8 +60,8 @@
                         <div class="hidden space-x-3 sm:-my-px sm:ml-10 sm:flex">
                             <h1 class="text-xl pt-2 tracking-tight font-medium leading-tight text-gray-700">
                                 @if (Session::has('property'))
-                                {{ App\Models\Property::find(Session::get('property_uuid'))->property.'
-                                '.App\Models\Property::find(Session::get('property_uuid'))->type->type }}
+                                {{Session::get('property').'
+                                '.Session::get('property_type') }}
 
                                 <a class="mt-2 inline-block" href="/property/{{ Session::get('property_uuid') }}/edit"
                                     title="Edit your Property">
