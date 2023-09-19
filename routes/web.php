@@ -60,6 +60,65 @@ Route::get('/unit-remittance', function(){
     return view('remittance.unit-remittance');
 });
 
+//HOA
+
+Route::get('/hoa-creation', function(){
+    return view('HOA.property.hoa-creation');
+});
+
+Route::get('/hoa-documents', function(){
+    return view('HOA.property.hoa-documents');
+});
+
+Route::get('/election', function(){
+    return view('HOA.election.management.election');
+});
+
+Route::get('/policy-form', function(){
+    return view('HOA.election.management.policy-form');
+});
+
+Route::get('/candidates', function(){
+    return view('HOA.election.management.candidates');
+});
+
+Route::get('/ballot-form', function(){
+    return view('HOA.election.management.ballot-form');
+});
+
+
+Route::get('/election-owner', function(){
+    return view('HOA.election.house-owners.election-owner');
+});
+
+Route::get('/vote', function(){
+    return view('HOA.election.house-owners.vote');
+});
+
+Route::get('/proxy', function(){
+    return view('HOA.election.house-owners.proxy');
+});
+
+Route::get('/submitted', function(){
+    return view('HOA.election.house-owners.submitted');
+});
+
+Route::get('/election-end', function(){
+    return view('HOA.election.house-owners.election-end');
+});
+
+Route::get('/proxy-voters', function(){
+    return view('HOA.election.management.proxy-voters');
+});
+
+Route::get('/qualified-votes', function(){
+    return view('HOA.election.management.qualified-votes');
+});
+
+
+
+
+
 //liq rfp
 
 Route::get('/pending-approval-manager', function(){
@@ -70,6 +129,13 @@ Route::get('/pending-approval-ap', function(){
     return view('accountpayables.pending-approval-ap');
 });
 
+Route::get('/approved-page', function(){
+    return view('accountpayables.approved-page');
+});
+
+Route::get('/restricted-page', function(){
+    return view('accountpayables.restricted-page');
+});
 
 Route::get('/liquidation', function(){
     return view('properties.liquidations.liquidation');
@@ -152,6 +218,15 @@ Route::get('proprent/upload-listing', function(){
 Route::get('proprent/all-listings', function(){
     return view('proprent.all-listings');
 });
+
+Route::get('date-page', function(){
+    return view('proprent.date-page');
+});
+
+Route::get('budget-page', function(){
+    return view('proprent.budget-page');
+});
+
 
 
 

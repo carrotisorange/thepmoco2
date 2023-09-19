@@ -50,6 +50,13 @@
                                 aria-controls="sessions" aria-selected="false">Sessions</button>
                         </li>
 
+                        <li class="mr-2" role="presentation">
+                            <button
+                                class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
+                                id="documents-tab" data-tabs-target="#documents" type="button" role="tab"
+                                aria-controls="documents" aria-selected="false">Property Documents</button>
+                        </li>
+
                     </ul>
                 </div>
                 <div id="myTabContent">
@@ -247,6 +254,17 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="hidden p-4  rounded-lg dark:bg-gray-800" id="documents" role="tabpanel"
+                        aria-labelledby="documents-tab">
+                        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+
+                               
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
