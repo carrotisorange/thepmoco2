@@ -22,10 +22,8 @@ the following reservation.
 | Guest Name          | Lead Guest: {{ $details['guest'] }}               | 
 | Amount              | {{ number_format($details['price'],2) }}          | 
 | Total Number of guests | {{ $details['no_of_guests'] }} |
-| No of children | {{ $details['no_of_guests'] }} |
-| Total Number of guests | {{ $details['no_of_guests'] }} |
 | Number of senior citizens | {{ $details['no_of_senior_citizens'] }} |
-| Number of children | {{ $details['no_of_children'] }} |
+| Number of < 7 years old | {{ $details['no_of_children'] }} |
 | Number of pwd | {{ $details['no_of_pwd'] }} |
 @endcomponent
 

@@ -562,6 +562,9 @@ class PropertyController extends Controller
 
     public function store_property_session($property_uuid)
     {
+
+        Session::put('property_uuid', Property::find($property_uuid)->uuid);
+
         Session::put('property', Property::find($property_uuid)->property);
 
         $country = Country::where('id',(Property::where('uuid', $property_uuid)->pluck('country_id')->first()))->pluck('country')->first();
