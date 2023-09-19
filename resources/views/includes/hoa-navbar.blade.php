@@ -218,5 +218,30 @@
 
         <div class="font-medium leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Financials</div>
 
+        <!-- Election -->
+        @if(Session::get('property_uuid'))
+        <x-nav-link href="/property/{{ Session::get('property_uuid') }}/financial"
+            :active="request()->routeIs('financial')">
+
+            <span class="sr-only">Election</span>
+            <img class="h-9 w-auto" src="{{ asset('/brands/election.png') }}" fill="none" viewBox="0 0 24 24"
+                stroke-width="2" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+        </x-nav-link>
+        @else
+        <x-nav-link href="/property/" :active="request()->routeIs('financial')">
+
+            <span class="sr-only">Election</span>
+            <img class="h-9 w-auto" src="{{ asset('/brands/election.png') }}" fill="none" viewBox="0 0 24 24"
+                stroke-width="2" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+        </x-nav-link>
+        @endif
+
+        <div class="font-medium leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Election</div>
+
+
     </div>
 </nav>
