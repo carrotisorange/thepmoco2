@@ -95,7 +95,7 @@
                 </div>
                 @endif
 
-                @if($form === 'cheque')
+                @if($form === 'cheque' || $form === 'e-wallet')
                 <div class="col-span-2">
                     <label for="check_no" class="block text-sm font-medium text-gray-700">Check No
                     </label>

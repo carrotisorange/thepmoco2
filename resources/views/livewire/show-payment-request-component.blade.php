@@ -55,6 +55,22 @@
     
                                    {{ $paymentRequest->mode_of_payment}}
                                 </div>
+
+                                <div class="col-span-2 sm:col-span-3">
+                                    <label for="concern" class="block text-sm font-medium text-gray-700">Bank name</label>
+                                        {{ $paymentRequest->bank_name }}
+                                </div>
+
+                                <div class="col-span-2 sm:col-span-3">
+                                    <label for="concern" class="block text-sm font-medium text-gray-700">Date Deposited</label>
+                                    {{ Carbon\Carbon::parse($paymentRequest->date_deposited)->format('M d, Y')}}
+                                </div>
+
+                                
+                                <div class="col-span-2 sm:col-span-3">
+                                    <label for="concern" class="block text-sm font-medium text-gray-700">Cheque/Reference Number</label>
+                                    {{ $paymentRequest->check_reference_no }}
+                                </div>
     
     
                                 <div class="sm:col-span-3">
