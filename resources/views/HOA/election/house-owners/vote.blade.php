@@ -64,7 +64,7 @@
 
                                 <h2 class="sr-only">Candidates</h2>
 
-                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 space-x-5">
+                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 space-x-0 lg:space-x-5">
 
                                 <div class="lg:col-span-1 mt-2">
                                 <div class="bg-white">

@@ -1,4 +1,4 @@
-<x-hoa-layout>
+<x-house-owner-layout>
     @section('title','Election | '. Session::get('property'))
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
@@ -52,95 +52,157 @@
                 
 
 
-                    <div class="lg:col-span-2 mt-2">
+            <div class="lg:col-span-2 ">
 
 
+                <h2 class="sr-only">Candidates</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 space-x-0 lg:space-x-5">
+
+                    <div class="lg:col-span-1 mt-2">
                         <div class="bg-white">
-                            <div class="mx-auto max-w-7xl overflow-hidden sm:px-6 lg:px-8">
-                                <h2 class="sr-only">Products</h2>
 
-                                <div class="-mx-px grid grid-cols-2 border-l border-gray-200 sm:mx-0 md:grid-cols-3 lg:grid-cols-4">
+                            <form class="">
 
+                                <ul role="list" class="divide-y divide-gray-200 border-b border-t border-gray-200">
 
-                                    <div class="group relative border-b border-r border-gray-200 p-4 sm:p-6">
-                                        <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg ">
-                                            <img src="{{ asset('/brands/user.png') }}" alt="" class="h-full w-full object-cover object-center">
+                                    <li class="flex py-6">
+                                        <div class="flex-shrink-0">
+                                        <img src="{{ asset('/brands/user.png') }}" alt="" class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32"> 
                                         </div>
-                                        <div class="pb-4 pt-10 text-center">
-                                            <h3 class="text-base font-semibold text-gray-900">
-                                        
-                                            <span aria-hidden="true" class="absolute inset-0"></span>
-                                            Name
-                                    
-                                            </h3>
-                                            
-                                                <p class="mt-4 text-sm text-left font-light text-gray-900">Position</p>
-                                                <p class="mt-4 text-sm text-left font-light text-gray-900">5 years as HOA Member </p>
-                                                <p class="mt-4 text-sm text-left font-light text-gray-900">Resume</p>
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="group relative border-b border-r border-gray-200 p-4 sm:p-6">
-                                        <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg ">
-                                        <img src="{{ asset('/brands/user.png') }}" alt="" class="h-full w-full object-cover object-center">
-                                        </div>
-                                        <div class="pb-4 pt-10 text-center">
-                                        <h3 class="text-base font-semibold text-gray-900">
-                                        
-                                            <span aria-hidden="true" class="absolute inset-0"></span>
-                                            Name
-                                    
-                                        </h3>
-                                            
-                                                <p class="mt-4 text-sm text-left font-light text-gray-900">Position</p>
-                                                <p class="mt-4 text-sm text-left font-light text-gray-900">5 years as HOA Member </p>
-                                                <p class="mt-4 text-sm text-left font-light text-gray-900">Resume</p>
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="group relative border-b border-r border-gray-200 p-4 sm:p-6">
-                                        <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg ">
-                                        <img src="{{ asset('/brands/user.png') }}" alt="" class="h-full w-full object-cover object-center">
-                                        </div>
-                                        <div class="pb-4 pt-10 text-center">
-                                        <h3 class="text-base font-semibold text-gray-900">
-                                        
-                                            <span aria-hidden="true" class="absolute inset-0"></span>
-                                            Name
-                                    
-                                        </h3>
-                                            
-                                                <p class="mt-4 text-sm text-left font-light text-gray-900">Position</p>
-                                                <p class="mt-4 text-sm text-left font-light text-gray-900">5 years as HOA Member </p>
-                                                <p class="mt-4 text-sm text-left font-light text-gray-900">Resume</p>
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="group relative border-b border-r border-gray-200 p-4 sm:p-6">
-                                        <div class="aspect-h-1 aspect-w-1 overflow-hidden rounded-lg ">
-                                        <img src="{{ asset('/brands/user.png') }}" alt="" class="h-full w-full object-cover object-center">
-                                        </div>
-                                        <div class="pb-4 pt-10 text-center">
-                                        <h3 class="text-base font-semibold text-gray-900">
-                                        
-                                            <span aria-hidden="true" class="absolute inset-0"></span>
-                                            Name
-                                    
-                                        </h3>
-                                            
-                                                <p class="mt-4 text-sm text-left font-light text-gray-900">Position</p>
-                                                <p class="mt-4 text-sm text-left font-light text-gray-900">5 years as HOA Member </p>
-                                                <p class="mt-4 text-sm text-left font-light text-gray-900">Resume</p>
-                                            
-                                        </div>
-                                    </div>
 
-                                </div>
-                            </div>
+                                        <div class="ml-4 flex flex-1 flex-col sm:ml-6">
+                                        <div>
+                                            
+                                            <h4 class="text-sm">
+                                                <a href="#" class="font-medium text-gray-700 hover:text-gray-800">Name</a>
+                                            </h4>
+                                            <div class="flex justify-between">
+                                                <p class="text-sm font-medium text-gray-900">Position</p>
+                                                    <div class="flex items-center mb-4">
+                                                        <input id="default-checkbox" type="checkbox" value="" class="w-8 h-8 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"></label>
+                                                    </div>
+                                            </div>
+                                            <p class="mt-1 text-sm text-gray-500"># of Years as HOA Member</p>
+
+                                            <p class="mt-1 text-sm text-blue-500 underline">Resume</p>
+                                        </div>
+
+                                        
+                                    </li>
+                                    <li class="flex py-6">
+                                        <div class="flex-shrink-0">
+                                        <img src="{{ asset('/brands/user.png') }}" alt="" class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32"> 
+                                        </div>
+
+                                        <div class="ml-4 flex flex-1 flex-col sm:ml-6">
+                                        <div>
+                                            
+                                            <h4 class="text-sm">
+                                                <a href="#" class="font-medium text-gray-700 hover:text-gray-800">Name</a>
+                                            </h4>
+                                            <div class="flex justify-between">
+                                                <p class="text-sm font-medium text-gray-900">Position</p>
+                                                <!-- HIDE CHECKBOX -->
+                                                    <div class="flex items-center mb-4">
+                                                        <input id="default-checkbox" type="checkbox" value="" class="w-8 h-8 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"></label>
+                                                    </div>
+                                            </div>
+                                            <p class="mt-1 text-sm text-gray-500"># of Years as HOA Member</p>
+
+                                            <p class="mt-1 text-sm text-blue-500 underline">Resume</p>
+                                        </div>
+
+                                        
+                                    </li>
+                                </ul>
+
+                            </form>
+
                         </div>
                     </div>
+
+
+                    <div class="lg:col-span-1 mt-2">
+                        <div class="bg-white">
+
+                            <form class="">
+        
+                                <ul role="list" class="divide-y divide-gray-200 border-b border-t border-gray-200">
+                                    <li class="flex py-6">
+                                        <div class="flex-shrink-0">
+                                        <img src="{{ asset('/brands/user.png') }}" alt="" class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32"> 
+                                        </div>
+            
+                                        <div class="ml-4 flex flex-1 flex-col sm:ml-6">
+                                        <div>
+                                            
+                                            <h4 class="text-sm">
+                                                <a href="#" class="font-medium text-gray-700 hover:text-gray-800">Name</a>
+                                            </h4>
+                                            <div class="flex justify-between">
+                                                <p class="text-sm font-medium text-gray-900">Position</p>
+                                                    <div class="flex items-center mb-4">
+                                                        <input id="default-checkbox" type="checkbox" value="" class="w-8 h-8 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"></label>
+                                                    </div>
+                                            </div>
+                                            <p class="mt-1 text-sm text-gray-500"># of Years as HOA Member</p>
+            
+                                            <p class="mt-1 text-sm text-blue-500 underline">Resume</p>
+                                        </div>
+            
+                                        
+                                    </li>
+                                    <li class="flex py-6">
+                                        <div class="flex-shrink-0">
+                                        <img src="{{ asset('/brands/user.png') }}" alt="" class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32"> 
+                                        </div>
+            
+                                        <div class="ml-4 flex flex-1 flex-col sm:ml-6">
+                                        <div>
+                                            
+                                            <h4 class="text-sm">
+                                                <a href="#" class="font-medium text-gray-700 hover:text-gray-800">Name</a>
+                                            </h4>
+                                            <div class="flex justify-between">
+                                                <p class="text-sm font-medium text-gray-900">Position</p>
+                                                    <div class="flex items-center mb-4">
+                                                        <input id="default-checkbox" type="checkbox" value="" class="w-8 h-8 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"></label>
+                                                    </div>
+                                            </div>
+                                            <p class="mt-1 text-sm text-gray-500"># of Years as HOA Member</p>
+            
+                                            <p class="mt-1 text-sm text-blue-500 underline">Resume</p>
+                                        </div>
+            
+                                        
+                                    </li>
+        
+                                <!-- More CANDIDATES... -->
+                                </ul>
+                            </form>
+        
+                        </div>
+                    </div>
+        
                 </div>
+        
             </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
                         
                             
 
@@ -157,27 +219,7 @@
 
             </div>
             </div>
-            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead class="bg-gray-50">
-                    <tr>
-                        <x-th>MODE OF CONDUCTING ELECTION</x-th>
-                        <x-th>TOTAL NUMBER OF QUALIFIED VOTES</x-th>
 
-
-                    </tr>
-                </thead>
-                <tbody class="text-base bg-white divide-y divide-gray-200">
-
-                    <tr>
-                        
-                        <x-td>online</x-td>
-                        <x-td>300</x-td>
-
-                    
-                    </tr>
-                
-                </tbody>
-            </table>
 
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="bg-gray-50">
@@ -209,6 +251,6 @@
 
 
 
-</x-hoa-layout>
+</x-house-owner-layout>
 
 <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script>
