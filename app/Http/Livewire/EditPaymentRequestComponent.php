@@ -15,11 +15,17 @@ class EditPaymentRequestComponent extends Component
 
     public $proof_of_payment;
 
+    public $date_deposited;
+
+    public $bank_name;
+
+    public $check_reference_no;
+
     public $mode_of_payment;
 
 
     public function mount($payment_request){
-        $this->mode_of_payment = 'bank';
+        // $this->mode_of_payment = '';
         $this->proof_of_payment = $this->payment_request[0]->proof_of_payment;
     }
 
@@ -28,6 +34,9 @@ class EditPaymentRequestComponent extends Component
         return [
                 'mode_of_payment' => 'required',
                 'proof_of_payment' => 'required | mimes:jpg,bmp,png,pdf,docx|max:10240',
+                'date_deposited' => ['required_if:mode_of_payment,bank'],
+                'bank_name' => ['required_if:mode_of_payment,bank'],
+                'check_reference_no' => ['required_if:mode_of_payment,cheque','required_if:mode_of_payment,e-wallet' ],
             ];
     }
 
@@ -45,6 +54,9 @@ class EditPaymentRequestComponent extends Component
         PaymentRequest::where('id', $this->payment_request->pluck('id')->first())->update([
             'mode_of_payment' => $this->mode_of_payment,
             'proof_of_payment' =>  $this->proof_of_payment->store('proof_of_payments'),
+            'date_deposited' => $this->date_deposited,
+            'bank_name' => $this->bank_name,
+            'check_reference_no' => $this->check_reference_no,
             'updated_at' => null
         ]);
 

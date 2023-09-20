@@ -5,7 +5,7 @@
                 <div class="grid grid-cols-4 gap-6">
                     <div class="sm:col-span-6">
                         <x-form-select name="mode_of_payment" wire:model="mode_of_payment">
-                           {{-- <option value="cash" {{ old('mode_of_payment')=='cash' ? 'selected' : 'Select one' }}>cash</option> --}}
+                           <option value="">PLease select one</option>
                            <option value="bank" {{ old('mode_of_payment')=='bank' ? 'selected' : 'Select one' }}>bank</option>
                            <option value="cheque" {{ old('mode_of_payment')=='cheque' ? 'selected' : 'Select one' }}>cheque</option>
                            <option value="e-wallet" {{ old('mode_of_payment')=='e-wallet' ? 'selected' : 'Select one' }}>e-wallet</option>
@@ -15,6 +15,42 @@
                     @error('mode_of_payment')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
+
+                @if($mode_of_payment === 'bank')
+                <div class="col-span-3">
+                    <label for="bank_name" class="block text-sm font-medium text-gray-700">Name of the bank</label>
+                    <input type="text" form="edit-form" name="bank_name" wire:model="bank_name" autocomplete="bank_name"
+                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                    @error('bank_name')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div class="col-span-3">
+                    <label for="date_deposited" class="block text-sm font-medium text-gray-700">Date Deposited
+                    </label>
+                    <input type="date" form="edit-form" name="date_deposited" wire:model="date_deposited"
+                        autocomplete="date_deposited"
+                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                    @error('date_deposited')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+                @endif
+
+                @if($mode_of_payment === 'cheque' || $mode_of_payment === 'e-wallet')
+                <div class="col-span-6">
+                    <label for="check_reference_no" class="block text-sm font-medium text-gray-700">Check/Reference Number
+                    </label>
+                    <input type="text" form="edit-form" name="check_reference_no" wire:model="check_reference_no"
+                        autocomplete="check_no"
+                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                    @error('check_reference_no')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+                @endif
+
                     
     
                    <div class="col-span-6">

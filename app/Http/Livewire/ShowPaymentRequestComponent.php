@@ -14,7 +14,7 @@ class ShowPaymentRequestComponent extends Component
 
     public function payBills(){
 
-        sleep(2);
+       sleep(2);
         
        Session::put('payment_request_id', $this->paymentRequest->id);
 

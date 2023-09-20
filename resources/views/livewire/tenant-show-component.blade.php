@@ -35,6 +35,7 @@
                                 </a>
                             </li>
 
+                            @if($username)
                             <li>
                                 <a href="/8/tenant/{{ $username }}/bills"
                                     class=" block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
@@ -42,6 +43,7 @@
                                     New payment request
                                 </a>
                             </li>
+                            @endif
                             <li>
                                 <a href="#/" data-modal-toggle="create-concern-modal" class=" block py-2 px-4 text-sm
                                                     text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
