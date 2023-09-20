@@ -13,6 +13,7 @@ use App\Models\Unit;
 use Carbon\Carbon;
 use App\Models\Booking;
 use Illuminate\Validation\Rule;
+use DB;
 
 class PropertyCalendarController extends Controller
 {
@@ -51,7 +52,7 @@ class PropertyCalendarController extends Controller
 
     public function store(Request $request){
 
-        $validated = $request->validate([
+        $validatedData = $request->validate([
             'guest' => 'required|string',
             'email' => ['required', 'string', 'email', 'max:255'],
             'mobile_number' => 'required',
@@ -60,53 +61,66 @@ class PropertyCalendarController extends Controller
             'unit_uuid' => 'required',
             'property_uuid' => 'required',
             'agent_id' => ['nullable', Rule::exists('agents', 'id')],
+            'no_of_children' => 'nullable',
+            'no_of_senior_citizens' => 'nullable',
+            'no_of_pwd' => 'nullable',
+            'no_of_guests' => 'nullable',
+            'remarks' => 'nullable',
         ]);
 
-        $start = strtotime($request->movein_at); // convert to timestamps
-        $end = strtotime($request->moveout_at); // convert to timestamps
-        $days = (int)(($end - $start)/86400);
+        // try{
+        
+            // DB::transaction(function () use ($request, $validatedData){
+        
+            $start = strtotime($request->movein_at); // convert to timestamps
+            $end = strtotime($request->moveout_at); // convert to timestamps
+            $days = (int)(($end - $start)/86400);
+            $price = (Unit::find($request->unit_uuid)->transient_rent * $days) - Unit::find($request->unit_uuid)->transient_discount;
+            $guest_uuid = app('App\Http\Controllers\PropertyController')->generate_uuid();
+            $booking_uuid = app('App\Http\Controllers\PropertyController')->generate_uuid();
+            $guest = $this->store_guest(
+                $guest_uuid,
+                $request->guest,
+                $request->email,
+                $request->mobile_number,
+                $request->movein_at,
+                $request->moveout_at,
+                $request->unit_uuid,
+                $request->property_uuid,
+                $price
+            );
 
-        $price = (Unit::find($request->unit_uuid)->transient_rent * $days) - Unit::find($request->unit_uuid)->transient_discount;
+            $booking = $this->store_booking(
+                $booking_uuid,
+                $guest->uuid,
+                $request->unit_uuid,
+                $request->property_uuid,
+                $request->movein_at,
+                $request->moveout_at,
+                $price,
+                $request->agent_id,
+                $request->no_of_guests,
+                $request->no_of_children,
+                $request->no_of_senior_citizens,
+                $request->no_of_pwd,
+                $request->remarks
+            );
+            $particular_id = 1; //rent 
 
-        $guest_uuid = app('App\Http\Controllers\PropertyController')->generate_uuid();
+            $this->store_bill($request->property_uuid, $request->unit_uuid, $particular_id, $request->movein_at, $request->moveout_at, $price, $guest->uuid);
 
-        $booking_uuid = app('App\Http\Controllers\PropertyController')->generate_uuid();
-       
-        $guest = $this->store_guest(
-            $guest_uuid,
-            $request->guest,
-            $request->email,
-            $request->mobile_number,
-            $request->movein_at,
-            $request->moveout_at,
-            $request->unit_uuid,
-            $request->property_uuid,
-            $price
-        );
+            $this->send_mail_to_guest($guest, $booking);
 
-        $this->store_booking(
-            $booking_uuid,
-            $guest->uuid,
-            $request->unit_uuid,
-            $request->property_uuid,
-            $request->movein_at,
-            $request->moveout_at,
-            $price,
-            $request->agent_id
-        );
+            $this->update_unit($request->unit_uuid);
 
-        $particular_id = 1; //rent 
-
-    $this->store_bill($request->property_uuid, $request->unit_uuid, $particular_id, $request->movein_at, $request->moveout_at, $price, $guest->uuid);
-
-    //    if($request->is_send_email === 'no'){
-         $this->send_mail_to_guest($guest);
-    //    }
-        $this->update_unit($request->unit_uuid);
-
-        return response()->json($guest);
-
-        // return redirect('/property/'.$request->property_uuid.'/guest/'.$guest->uuid)->with('success', 'Success!');
+            return response()->json($guest);
+      
+        // });
+        
+        // }catch(\Exception $e)
+        // {
+        //     return back()->with('error',$e);
+        // }
     }
 
     public function update_unit($unit_uuid){
@@ -115,8 +129,10 @@ class PropertyCalendarController extends Controller
         ]);
     }
 
-    public function store_booking($booking_uuid, $guest_uuid, $unit_uuid, $property_uuid, $movein_at, $moveout_at, $price, $agent_id){
-        Booking::create(
+    public function store_booking($booking_uuid, $guest_uuid, $unit_uuid, $property_uuid, $movein_at, $moveout_at,
+    $price, $agent_id, $no_of_guests, $no_of_children, $no_of_senior_citizens, $no_of_pwd, $remarks){
+        
+        $booking = Booking::create(
         [
             'uuid' => $booking_uuid,
             'guest_uuid' => $guest_uuid,
@@ -125,8 +141,15 @@ class PropertyCalendarController extends Controller
             'movein_at' => $movein_at,
             'moveout_at' => $moveout_at,
             'price' => $price,
-            'agent_id' => $agent_id
+            'agent_id' => $agent_id,
+            'no_of_guests' => $no_of_guests,
+            'no_of_children' => $no_of_children,
+            'no_of_senior_citizens' => $no_of_senior_citizens,
+            'no_of_pwd' => $no_of_pwd,
+            'remarks' => $remarks
         ]);
+
+        return $booking;
     }
 
     public function store_guest($guest_uuid, $guest, $email, $mobile_number, $movein_at, $moveout_at, $unit_uuid, $property_uuid, $price){
@@ -165,10 +188,8 @@ class PropertyCalendarController extends Controller
          ]);
     }
 
-    public function send_mail_to_guest($guest)
+    public function send_mail_to_guest($guest, $booking)
       {
-        $property = Property::find($guest->property_uuid);
-        
         $details =[
           'uuid' => $guest->uuid,
           'guest' => $guest->guest,
@@ -177,13 +198,11 @@ class PropertyCalendarController extends Controller
           'unit' => $guest->unit->unit,
           'price' => $guest->price,
           'email' => $guest->email,
-          'property_name' => $property->property,
-          'property_mobile' => $property->mobile,
-          'property_facebook_page' => $property->facebook_page,
-          'property_telephone' => $property->telephone,
-          'property_email' => $property->email,
-          'property_address' => $property->barangay.', '.$property->city->city.', '.$property->province->province.' '.$property->country->country,
-          'note_to_transient' => $property->note_to_transient
+          'no_of_children' => $booking->no_of_children,
+          'no_of_senior_citizens' => $booking->no_of_senior_citizens,
+          'no_of_pwd' => $booking->no_of_pwd,
+          'remarks' => $booking->remarks,
+          'no_of_guests' => $booking->no_of_guests
         ];
 
          Mail::to($guest->email)->send(new SendWelcomeMailToGuest($details));

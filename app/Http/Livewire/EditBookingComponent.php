@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use App\Models\Booking;
 use Illuminate\Validation\Rule;
 use App\Models\Unit;
+use Session;
 
 class EditBookingComponent extends Component
 {
@@ -93,7 +94,7 @@ class EditBookingComponent extends Component
     public function render()
     {
         return view('livewire.edit-booking-component',[
-            'units' => Property::find($this->property->uuid)->units->where('rent_duration', 'daily'),
+            'units' => Unit::where('property_uuid',$this->property->uuid)->get(),
         ]);
     }
 }

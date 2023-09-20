@@ -21,6 +21,10 @@ use App\Models\AccountPayable;
 use App\Models\Role;
 use App\Models\Owner;
 use App\Models\Guest;
+use App\Models\Country;
+use App\Models\Province;
+use App\Models\City;
+use App\Models\Barangay;
 
 class PropertyController extends Controller
 {   
@@ -259,12 +263,13 @@ class PropertyController extends Controller
     {
         $current_collection_rate = 0;
 
-        if(Bill::where('property_uuid', Session::get('property_uuid'))->count())
+        if(Bill::where('property_uuid', Session::get('property_uuid'))->posted()->sum('bill') > 0)
         {
             $current_collection_rate = AcknowledgementReceipt::select(DB::raw("(sum(amount)) as total_amount"),
             DB::raw("(DATE_FORMAT(created_at, '%M')) as month_year"))
             ->where('property_uuid', Session::get('property_uuid'))
             ->orderBy('created_at')
+            ->posted()
             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
             ->pluck('total_amount')
             ->last() / Bill::select(DB::raw("(sum(bill)) as total_bill"), DB::raw("(DATE_FORMAT(created_at, '%M')) as month_year"))
@@ -272,6 +277,7 @@ class PropertyController extends Controller
             ->where('property_uuid', Session::get('property_uuid'))
             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
             ->pluck('total_bill')
+            ->posted()
             ->last() * 100;
          }else{
             $current_collection_rate = 0;
@@ -558,9 +564,22 @@ class PropertyController extends Controller
 
     public function store_property_session($property_uuid)
     {
-        Session::put('property_uuid', $property_uuid);
+
+        Session::put('property_uuid', Property::find($property_uuid)->uuid);
 
         Session::put('property', Property::find($property_uuid)->property);
+
+        $country = Country::where('id',(Property::where('uuid', $property_uuid)->pluck('country_id')->first()))->pluck('country')->first();
+
+        $province = Province::where('id',(Property::where('uuid', $property_uuid)->pluck('province_id')->first()))->pluck('province')->first();
+
+        $city = City::where('id',(Property::where('uuid', $property_uuid)->pluck('city_id')->first()))->pluck('city')->first();
+
+        $barangay = Property::where('uuid', $property_uuid)->pluck('barangay')->first();
+
+        $address = $country.', '.$province.', '.$city.', '.$barangay;
+         
+        Session::put('property_address', $address);
 
         Session::put('role', Role::find(UserProperty::where('property_uuid', $property_uuid)->where('user_id', auth()->user()->id)->pluck('role_id')->first())->role);
 
@@ -571,8 +590,14 @@ class PropertyController extends Controller
         Session::put('is_account_owner', UserProperty::where('property_uuid', $property_uuid)->where('user_id', auth()->user()->id)->pluck('is_account_owner')->first());
 
         Session::put('property_email', Property::find($property_uuid)->email);
+
+        Session::put('property_type', Property::find($property_uuid)->type->type);
         
         Session::put('property_mobile', Property::find($property_uuid)->mobile);
+
+        Session::put('property_facebook_page', Property::find($property_uuid)->facebook_page);
+
+        Session::put('property_remarks', Property::find($property_uuid)->remarks);
 
         Session::put('property_thumbnail', Property::find($property_uuid)->thumbnail);
         
