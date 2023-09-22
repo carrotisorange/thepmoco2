@@ -98,7 +98,7 @@
             </x-td>
             <x-td>
                 @if($item->status == 'pendingmovein')
-                <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/bills"
+                <a href="/property/{{ Session::get('property_uuid') }}/bill/{{ 'tenant' }}/{{ $item->tenant_uuid }}"
                     class="text-purple-500 text-decoration-line: underline">Pay Bills</a>
                 @endif
             </x-td>

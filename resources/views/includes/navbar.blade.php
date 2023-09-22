@@ -203,7 +203,7 @@
 
         <!-- Bills -->
         @if(Session::get('property_uuid'))
-        <x-nav-link href="/property/{{ Session::get('property_uuid') }}/bill" :active="request()->routeIs('bill')">
+        <x-nav-link href="/property/{{ Session::get('property_uuid') }}/bill/{{ 'property' }}/{{ Session::get('property_uuid') }}" :active="request()->routeIs('bill')">
 
             <span class="sr-only">Bills</span>
             <img class="h-8 w-auto" src="{{ asset('/brands/invoice_gr.png') }}" fill="none" viewBox="0 0 24 24"
@@ -227,7 +227,7 @@
 
         <!-- Collection -->
         @if(Session::get('property_uuid'))
-        <x-nav-link href="/property/{{ Session::get('property_uuid') }}/collection"
+        <x-nav-link href="/property/{{ Session::get('property_uuid') }}/collection/{{ 'property' }}/{{ Session::get('property_uuid') }}"
             :active="request()->routeIs('collection')">
 
             <span class="sr-only">Collections</span>

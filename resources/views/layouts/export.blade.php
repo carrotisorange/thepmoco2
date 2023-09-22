@@ -91,7 +91,8 @@
         <h5>{{ App\Models\Property::find(Session::get('property_uuid'))->country->country }},
             {{ App\Models\Property::find(Session::get('property_uuid'))->province->province }},
             {{ App\Models\Property::find(Session::get('property_uuid'))->city->city }},
-            {{ App\Models\Property::find(Session::get('property_uuid'))->barangay }}
+            {{ App\Models\Property::find(Session::get('property_uuid'))->barangay }},
+            TIN: {{ Session::get('property_registered_tin') }}     
             <hr>
             <br>
         </h5>

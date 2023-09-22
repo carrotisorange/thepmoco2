@@ -206,9 +206,12 @@
                     </div>
                     <div class="hidden p-4  rounded-lg dark:bg-gray-800" id="bills" role="tabpanel"
                         aria-labelledby="bills-tab">
-                        <x-button
-                            onclick="window.location.href='/property/{{ $owner_details->property_uuid }}/owner/{{ $owner_details->uuid }}/bills'">
-                            Pay Bills</x-button>
+                     <x-button type="button"
+                        onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/bill/{{ 'owner' }}/{{ $owner_details->uuid }}'"
+                        class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+                    
+                        Pay Bills
+                    </x-button>
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 

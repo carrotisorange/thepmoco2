@@ -214,9 +214,12 @@
 
                     <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="bills" role="tabpanel"
                         aria-labelledby="bills-tab">
-                        <x-button
-                            onclick="window.location.href='/property/{{ $guest_details->property_uuid }}/guest/{{ $guest_details->uuid }}/bills'">
-                            Pay Bills</x-button>
+  <x-button type="button"
+        onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/bill/{{ 'guest' }}/{{ $guest_details->uuid }}'"
+        class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+    
+        Pay Bills
+    </x-button>
 
                         <x-button data-modal-toggle="create-bill-modal">
                             New Bill</x-button>

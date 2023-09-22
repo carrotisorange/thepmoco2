@@ -10,15 +10,15 @@
                     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
 
                         <button type="button"
-                            onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/pending'"
+                          onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/{{ 'pending' }}/{{ Session::get('property_uuid') }}'"
                             class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
                             Show Pending</button>
 
-                            <button type="button" onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/approved'"
+                            <button type="button" onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/{{ 'approved' }}/{{ Session::get('property_uuid') }}'"
                                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
                                 Show Approved</button>
 
-                                <button type="button" onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/declined'"
+                                <button type="button" onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/{{ 'declined' }}/{{ Session::get('property_uuid') }}'"
                                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
                                     Show Declined</button>
 

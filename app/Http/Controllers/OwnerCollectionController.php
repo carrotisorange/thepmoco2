@@ -20,10 +20,7 @@ class OwnerCollectionController extends Controller
 {
     public function index(Property $property, owner $owner)
     {
-        return view('owners.collections.index',[
-          'owner' => Owner::find($owner->uuid),
-          'collections' => app('App\Http\Controllers\OwnerCollectionController')->get_owner_collections($property->uuid, $owner->uuid),
-        ]);
+       
     }
 
     public function get_owner_collections($property_uuid, $owner_uuid){

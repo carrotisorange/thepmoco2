@@ -10,9 +10,127 @@ use App\Models\Tenant;
 use App\Models\Contract;
 use Carbon\Carbon;
 use App\Models\Collection;
+use Illuminate\Http\Request;
+use App\Models\User;
+use App\Mail\SendBillToTenant;
+use Illuminate\Support\Facades\Mail;
+use App\Models\Owner;
+use App\Models\Guest;
+use App\Models\Particular;
 
 class BillController extends Controller
 {
+
+     public function get_bills(Property $property, $type, $type_id, $batch_no=null, $drafts=0){
+
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',10);
+        
+        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
+
+        if($type === 'property'){
+            $bills = Bill::where('property_uuid', $property->uuid)->posted()->get();
+
+            return view('properties.bills.index',[
+                'active_contracts' => Contract::where('property_uuid', $property->uuid)->where('status', 'active')->get(),
+                'active_tenants' => Contract::where('property_uuid', $property->uuid)->where('contracts.status','active')->distinct()->pluck('tenant_uuid'),
+                'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($property->uuid),
+                'batch_no' => $batch_no,
+                'drafts' => $drafts,
+                'property' => $property,
+                'bills' => $bills
+            ]);
+
+        }elseif($type === 'tenant'){
+            $bills = Bill::where('tenant_uuid', $type_id)->posted()->get();
+            $tenant = Tenant::find($type_id);
+
+            return view('tenants.bills.index',[
+               'tenant' => $tenant,
+               'property' => $property,
+            ]);
+
+        }elseif($type === 'owner'){
+
+            $bills = Bill::where('owner_uuid', $type_id)->posted()->get();
+            $owner = Owner::find($type_id);
+
+             return view('owners.bills.index',[
+                'owner' => $owner,
+                'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
+                'unpaid_bills' => Bill::where('owner_uuid', $owner->uuid)->whereIn('status', ['unpaid','partially_paid'])->orderBy('bill_no','desc')->get(),
+                'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($property->uuid),
+                'units' => app('App\Http\Controllers\OwnerDeedOfSalesController')->show_deed_of_sales($owner->uuid),
+                'note_to_bill' => $property->note_to_bill,
+             ]);
+
+        }elseif($type === 'unit'){
+            $bills = Bill::where('unit_uuid', $type_id)->posted()->get();
+            $unit = Unit::find($type_id);
+
+            return view('units.bills.index',[
+                'unit' => $unit,
+                'bills' => app('App\Http\Controllers\BillController')->show_unit_bills($unit->uuid),
+                'view' => 'listView',
+                'isPaymentAllowed' => false,
+                'isIndividualView' => true,
+                'unit_uuid' => $unit->uuid,
+                'user_type' => 'unit'
+            ]);
+        }elseif($type === 'guest'){
+            $bills = Bill::where('guest_uuid', $type_id)->posted()->get();
+            $guest = Guest::find($type_id);
+
+              return view('properties.guests.show-bills',[
+                'property' => $property,
+                'guest' => $guest,
+              ]);
+        }elseif($type==='customized'){
+
+            $particulars = Particular::join('property_particulars', 'particulars.id', 'property_particulars.particular_id')
+            ->where('property_uuid', $property->uuid)
+            ->get();
+
+            return view('bills.edit', [
+                'property' => $property,
+                'batch_no' => $batch_no,
+                'particulars' => $particulars
+            ]);
+        }
+
+        // return view('properties.bills.index',[
+        //     'active_contracts' => Contract::where('property_uuid', $property->uuid)->where('status', 'active')->get(),
+        //     'active_tenants' => Contract::where('property_uuid', $property->uuid)->where('contracts.status','active')->distinct()->pluck('tenant_uuid'),
+        //     'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($property->uuid),
+        //     'batch_no' => $batch_no,
+        //     'drafts' => $drafts,
+        //     'property' => $property,
+        //     'bills' => $bills
+        // ]);
+    }
+
+    // public function get_bills(Property $property, Tenant $tenant)
+    // {            
+    //     app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens', 10);
+
+    //     return view('tenants.bills.index',[
+    //         'tenant' => $tenant,  
+    //         'property' => $property,
+    //     ]);
+    // }
+
+  public function send_bills(Request $request, Property $property, Tenant $tenant)
+    {    
+        app('App\Http\Controllers\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
+
+        $data = $this->get_bill_data($tenant, $request->due_date, $request->penalty, $request->note_to_bill);
+
+        Mail::to($request->email)->send(new SendBillToTenant($data));
+
+        return back()->with('success', 'Success!');
+    }
+
+
+
     public function store($property_uuid, $unit_uuid, $tenant_uuid, $owner_uuid, $particular_id, $start_date, $end_date, $total_amount_due, $batch_no, $posted){
         Bill::create(
         [
@@ -40,6 +158,46 @@ class BillController extends Controller
             'batch_no' => $batch_no
         ]);
     }   
+
+    public function export_soa(Request $request, Property $property, Tenant $tenant)
+    {
+
+        app('App\Http\Controllers\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
+
+        $data = $this->get_bill_data($tenant, $request->due_date, $request->penalty, $request->note_to_bill);
+
+        $folder_path = 'tenants.bills.export';
+
+        $pdf = app('App\Http\Controllers\FileExportController')->generate_pdf($property, $data, $folder_path);
+
+        $pdf_name = str_replace(' ', '_', $property->property).'_SOA.pdf';
+
+        return $pdf->stream($pdf_name);
+    }
+
+    public function get_bill_data($tenant, $due_date, $penalty, $note)
+    {
+         $unpaid_bills = Bill::where('tenant_uuid', $tenant->uuid)->posted()->sum('bill');
+         $paid_bills = Collection::where('tenant_uuid', $tenant->uuid)->posted()->sum('collection');
+
+        if($unpaid_bills<=0){ 
+            $balance=0; 
+        }else{ 
+            $balance=$unpaid_bills - $paid_bills;
+        }
+
+        return $data = [
+            'tenant' => $tenant->tenant,
+            'reference_no' => $tenant->bill_reference_no,
+            'due_date' => $due_date,
+            'user' => User::find(auth()->user()->id)->name,
+            'role' => User::find(auth()->user()->id)->role->role,
+            'bills' => Bill::where('tenant_uuid', $tenant->uuid)->posted()->whereIn('status', ['unpaid','partially_paid'])->orderBy('bill_no', 'desc')->get(),
+            'balance' => $balance,
+            'balance_after_due_date' => $balance + $penalty,
+            'note_to_bill' => $note,
+        ];
+    }
 
     public function create_new(Property $property, Unit $unit, Tenant $tenant, Contract $contract){
         return view('bills.create-new',[

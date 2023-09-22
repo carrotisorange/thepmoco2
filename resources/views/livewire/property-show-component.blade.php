@@ -381,7 +381,7 @@
                                                         <div class="flex justify-end gap-2">
                                                             <div
                                                                 class="items-center text-center px-2.5 py-1 mt-3  text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-900">
-                                                                <a href="/property/{{ $property->uuid }}/collection/pending">See more
+                                                                <a href="/property/{{ Session::get('property_uuid') }}/collection/{{ 'pending' }}/{{ Session::get('property_uuid') }}">See more
                                                                     payment
                                                                     requests</a></button>
                                                             </div>

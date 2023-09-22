@@ -1,25 +1,17 @@
 @extends('layouts.export')
-@section('title', 'Bills')
+@section('title', 'Statements of Account')
 @section('content')
-<p>
-    {{-- Reference #: {{ $reference_no }} --}}
-</p>
-
 <p>
     Date: {{ Carbon\Carbon::now()->format('M d, Y') }}
 </p>
-<p>
-    {{-- <b>Due Date: {{ Carbon\Carbon::parse($due_date)->format('M d, Y') }}</b> --}}
-</p>
+
 <p>
     Tenant: {{ $tenant }}
 </p>
 <p>
     Bills to be Paid: {{ number_format($bills->sum('bill'), 2) }}
 </p>
-<p>
-    {{-- <b>Bills to be Paid After Due Date: {{ number_format(($bills->sum('bill') +$penalty), 2) }}</b> --}}
-</p>
+
 <br>
 <p>
     <b>Bills Breakdown</b>

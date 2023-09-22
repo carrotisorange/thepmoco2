@@ -64,6 +64,7 @@ class PropertyController extends Controller
         }
         elseif($current_user_role_id != ['12', '10', '8', '7'])
         {
+
             return view('properties.index');
         }
     }
@@ -564,22 +565,15 @@ class PropertyController extends Controller
 
     public function store_property_session($property_uuid)
     {
+ 
 
         Session::put('property_uuid', Property::find($property_uuid)->uuid);
 
         Session::put('property', Property::find($property_uuid)->property);
-
-        $country = Country::where('id',(Property::where('uuid', $property_uuid)->pluck('country_id')->first()))->pluck('country')->first();
-
-        $province = Province::where('id',(Property::where('uuid', $property_uuid)->pluck('province_id')->first()))->pluck('province')->first();
-
-        $city = City::where('id',(Property::where('uuid', $property_uuid)->pluck('city_id')->first()))->pluck('city')->first();
-
-        $barangay = Property::where('uuid', $property_uuid)->pluck('barangay')->first();
-
-        $address = $country.', '.$province.', '.$city.', '.$barangay;
          
-        Session::put('property_address', $address);
+        Session::put('property_address', $this->get_property_address($property_uuid));
+
+        Session::put('property_registered_tin', Property::find($property_uuid)->registered_tin);
 
         Session::put('role', Role::find(UserProperty::where('property_uuid', $property_uuid)->where('user_id', auth()->user()->id)->pluck('role_id')->first())->role);
 
@@ -601,6 +595,23 @@ class PropertyController extends Controller
 
         Session::put('property_thumbnail', Property::find($property_uuid)->thumbnail);
         
+        
+    }
+
+    public function get_property_address($property_uuid){
+        
+        $country = Country::where('id',(Property::where('uuid', $property_uuid)->pluck('country_id')->first()))->pluck('country')->first();
+
+        $province = Province::where('id',(Property::where('uuid', $property_uuid)->pluck('province_id')->first()))->pluck('province')->first();
+
+        $city = City::where('id',(Property::where('uuid', $property_uuid)->pluck('city_id')->first()))->pluck('city')->first();
+
+        $barangay = Property::where('uuid', $property_uuid)->pluck('barangay')->first();
+
+        $address = $country.', '.$province.', '.$city.', '.$barangay;
+        
+
+        return $address;
     }
 
     public function unlock($property_uuid)

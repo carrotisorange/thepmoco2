@@ -52,8 +52,6 @@ class GuestBillCreateComponent extends Component
 
    public function removeBills()
    {
-      
-
       if(!Bill::whereIn('id', $this->selectedBills)->where('status', 'unpaid')->delete())
       {
          $this->selectedBills = [];

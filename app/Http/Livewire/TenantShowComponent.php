@@ -153,12 +153,6 @@ class TenantShowComponent extends Component
         return redirect('/property/'. $this->property->uuid.'/tenant/'.$this->tenant_details->uuid.'/concern/create');
     }
 
-    public function redirectToTheCreateBillPage(){
-        
-
-        return redirect('/property/'. $this->property->uuid.'/tenant/'.$this->tenant_details->uuid.'/bills');
-    }
-
     public function redirectToTheCreateContractPage(){
         
 

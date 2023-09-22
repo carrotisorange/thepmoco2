@@ -11,7 +11,7 @@ use App\Models\Guest;
 
 class PropertyBillController extends Controller
 {
-    public function index(Property $property, $batch_no=null, $drafts=0){
+    public function index(Property $property, $type, $batch_no=null, $drafts=0){
 
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',10);
 

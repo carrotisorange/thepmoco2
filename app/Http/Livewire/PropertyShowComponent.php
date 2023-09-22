@@ -16,6 +16,8 @@ class PropertyShowComponent extends Component
 
     public function render()
     {
+        return view('layouts.under-construction-general');
+
         app('App\Http\Controllers\PropertyController')->store_property_session($this->property->uuid);
 
         app('App\Http\Controllers\PropertyController')->save_unit_stats($this->property->uuid);
@@ -32,7 +34,7 @@ class PropertyShowComponent extends Component
             'concerns' =>app('App\Http\Controllers\ConcernController')->get_property_concerns($this->property->uuid, '', Carbon::now()->month),
             'pending_concerns' => app('App\Http\Controllers\ConcernController')->get_property_concerns($this->property->uuid,'pending', ''),
             'closed_concerns' => app('App\Http\Controllers\ConcernController')->get_property_concerns($this->property->uuid, 'closed', Carbon::now()->month),
-            'payment_requests' => app('App\Http\Controllers\PaymentRequestController')->get_property_payment_requests($this->property->uuid, 'pending'),
+            'payment_requests' => app('App\Http\Controllers\CollectionController')->get_property_payment_requests($this->property->uuid, 'pending'),
             'roles' => app('App\Http\Controllers\PropertyRoleController')->get_property_user_roles($this->property->uuid),
             'daily_collections' => app('App\Http\Controllers\CollectionController')->get_property_collections($this->property->uuid, Carbon::today(), Carbon::now()->month)->sum('collection'),
             'current_monthly_collections' => app('App\Http\Controllers\CollectionController')->get_property_collections($this->property->uuid,'',Carbon::now()->month)->sum('collection'),

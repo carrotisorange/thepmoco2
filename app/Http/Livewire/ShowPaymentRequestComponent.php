@@ -35,8 +35,7 @@ class ShowPaymentRequestComponent extends Component
         ]);
 
 
-        return redirect('/property/'.Session::get('property_uuid').'/collection/declined');
-
+        return redirect('/property/'.Session::get('property_uuid').'/collection/'.'approved'.'/'.Session::get('property_uuid'));
     }
 
     public function render()

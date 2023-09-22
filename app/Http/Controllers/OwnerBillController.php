@@ -17,24 +17,6 @@ use App\Models\Collection;
 
 class OwnerBillController extends Controller
 {
-
-    public function index(Property $property, Owner $owner)
-    {
-        $bills = Owner::find($owner->uuid)
-            ->bills()
-            ->orderBy('bill_no','desc')
-            ->get();
-
-        return view('owners.bills.index',[
-            'owner' => $owner,
-            'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
-            'unpaid_bills' => $this->get_owner_balance($owner->uuid),
-            'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($property->uuid),
-            'units' => app('App\Http\Controllers\OwnerDeedOfSalesController')->show_deed_of_sales($owner->uuid),
-            'note_to_bill' => $property->note_to_bill,
-        ]);
-    }
-
     
     public function get_bill_balance($bill_id)
     {

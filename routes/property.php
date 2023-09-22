@@ -6,7 +6,6 @@ use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\UnitContractController;
-use App\Http\Controllers\TenantBillController;
 use App\Http\Controllers\TenantCollectionController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\TenantContractController;
@@ -49,7 +48,6 @@ use App\Http\Controllers\PropertyUnitController;
 use App\Http\Controllers\PropertyTenantController;
 use App\Http\Controllers\PropertyConcernController;
 use App\Http\Controllers\PropertyBillController;
-use App\Http\Controllers\PropertyCollectionController;
 use App\Http\Controllers\PropertyAccountPayableController;
 use App\Http\Controllers\PropertyBookingController;
 use App\Http\Controllers\PropertyCalendarController;
@@ -58,6 +56,7 @@ use App\Http\Controllers\PropertyUtilityController;
 use App\Http\Controllers\PropertyGuestController;
 use App\Http\Controllers\PropertyLiquidationController;
 use App\Http\Controllers\PropertyRemittanceController;
+use App\Http\Controllers\CollectionController;
 
 Route::group(['middleware'=>['auth', 'verified']], function(){
 
@@ -180,7 +179,6 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
                 Route::get('/', [OwnerController::class, 'index'])->scopeBindings();
                 Route::get('{random_str}/create', [OwnerController::class, 'create'])->name('unit');
                 Route::get('{owner}/delete', [OwnerController::class, 'destroy']);
-                Route::get('{owner}/bills', [OwnerBillController::class, 'index'])->name('owner');
                 Route::post('{random_str}/store', [OwnerController::class, 'store']);
 
 
@@ -249,20 +247,15 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::get('{tenant:uuid}', [PropertyTenantController::class, 'show'])->name('tenant');
     
         Route::prefix('{tenant}')->group(function(){
-            Route::get('bills', [TenantBillController::class, 'index'])->name('tenant-bill');
+            Route::get('bills', [BillController::class, 'get_bills'])->name('tenant-bill');
             Route::get('bills/{batch_no}/pay', [TenantCollectionController::class, 'edit'])->name('tenant');
-            Route::patch('bills/{batch_no}/pay/update', [TenantCollectionController::class, 'update']);
-            Route::get('collections', [TenantCollectionController::class,'index'])->name('tenant');
-            Route::get('payment_requests/{payment_request}',[PaymentRequestController::class, 'show'])->name('tenant');
-            Route::get('collection/{batch_no?}', [TenantCollectionController::class,'destroy']);
+            Route::patch('bills/{batch_no}/pay/update', [CollectionController::class, 'update_collections']);
+            Route::get('collections', [CollectionController::class,'get_collections'])->name('tenant');
+            Route::get('payment_requests/{payment_request}',[CollectionController::class, 'show_payment_request'])->name('tenant');
             Route::get('contracts', [TenantContractController::class,'index']);
-            // Route::post('bill/store', [TenantBillController::class, 'store']);
-            Route::get('bill/export', [TenantBillController::class, 'export']);
-            Route::get('bill/send', [TenantBillController::class, 'send']);
-            Route::get('collection/{collection}/export', [TenantCollectionController::class, 'export']);
-            Route::get('collection/{collection}/view', [TenantCollectionController::class, 'view']);
-            Route::get('collection/{collection}/attachment', [TenantCollectionController::class, 'attachment']);
-            Route::get('collection/{collection}/proof_of_payment', [TenantCollectionController::class, 'proof_of_payment']);
+            Route::get('bill/export', [BillController::class, 'export_soa']);
+            Route::get('bill/send', [BillController::class, 'send_bills']);
+            Route::get('collection/{collection}/view', [CollectionController::class, 'export_ar']);
             Route::get('concerns', [TenantConcernController::class, 'index'])->name('tenant');
             Route::get('concern/create', [TenantConcernController::class, 'create'])->name('concern');
          
@@ -336,7 +329,6 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
             Route::get('deed_of_sales', [OwnerDeedOfSalesController::class, 'index']);
             Route::get('enrollees', [OwnerEnrolleeController::class, 'index']);
-            Route::get('bills', [OwnerBillController::class, 'index'])->name('owner');
             Route::get('collection/{batch_no?}', [OwnerCollectionController::class,'destroy']);
             Route::post('bill/store', [OwnerBillController::class, 'store']);
             Route::get('bill/export', [OwnerBillController::class, 'export']);
@@ -357,9 +349,9 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
   
     //Routes for Bill
     Route::prefix('bill')->group(function(){
-        Route::get('{batch_no?}/{drafts?}', [PropertyBillController::class, 'index'])->name('bill');
+        Route::get('{type}/{type_id?}/{batch_no?}/{drafts?}', [BillController::class, 'get_bills'])->name('bill');
         Route::get('export/status/{status?}/particular/{particular?}/date/{date?}', [PropertyBillController::class, 'export']);
-        Route::get('customized/{batch_no}/edit',[PropertyBillController::class,'edit'])->name('bill');
+        // Route::get('customized/{batch_no}',[PropertyBillController::class,'edit'])->name('bill');
         Route::get('{random_str}/delete/{count}', [PropertyBillController::class, 'confirm_bill_deletion'])->name('bill');
 
         Route::get('/batch/{batch_no}/drafts', [BillController::class, 'drafts'])->name('bill');
@@ -374,12 +366,11 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     });
 
 
-    Route::get('dcr/{date}/{format}', [PropertyCollectionController::class, 'export_dcr']);
+    Route::get('dcr/{date}/{format}', [CollectionController::class, 'export_dcr']);
     
     //Routes for Collection
     Route::prefix('collection')->group(function(){
-        Route::get('/', [PropertyCollectionController::class, 'index'])->name('collection');
-        Route::get('/{status}', [PaymentRequestController::class, 'index'])->name('collection');
+        Route::get('{type}/{type_id?}', [CollectionController::class, 'get_collections'])->name('collection');
 
     });
 

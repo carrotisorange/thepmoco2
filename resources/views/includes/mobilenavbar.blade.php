@@ -134,7 +134,8 @@
 
     <div class="pt-2 pb-3 space-y-1">
         @if(Session::get('property_uuid'))
-        <x-dropdown-link href="/property/{{ Session::get('property_uuid') }}/collection">
+        <x-dropdown-link href="/property/{{ Session::get('property_uuid') }}/collection/{{ 'pending' }}/{{
+                    Session::get('property_uuid') }}">
             Collections
         </x-dropdown-link>
         @else

@@ -16,6 +16,7 @@ use Illuminate\Support\Str;
 use App\Models\UnitInventory;
 use App\Models\Collection;
 use App\Models\Remittance;
+use App\Models\DeedOfSale;
 
 
 class UnitShowComponent extends Component
@@ -166,7 +167,7 @@ class UnitShowComponent extends Component
 
     public function deleteUnit(){
         app('App\Http\Controllers\PropertyContractController')->destroy($this->unit_details->uuid,null);
-        app('App\Http\Controllers\PropertyDeedOfSaleController')->destroy($this->unit_details->uuid);
+         DeedOfSale::where('unit_uuid', $unit_uuid)->delete();
         app('App\Http\Controllers\PropertyUtilityController')->destroy($this->unit_details->uuid);
         app('App\Http\Controllers\PropertyGuestController')->destroy($this->unit_details->uuid);
         app('App\Http\Controllers\PropertyConcernController')->destroy($this->unit_details->uuid);
@@ -178,6 +179,7 @@ class UnitShowComponent extends Component
         AccountPayableLiquidationParticular::where('unit_uuid', $this->unit_details->uuid)->delete();
         AccountPayableParticular::where('unit_uuid', $this->unit_details->uuid)->delete();
         Remittance::where('unit_uuid', $this->unit_details->uuid)->delete();
+
 
         return redirect('/property/'.$this->unit_details->property_uuid.'/unit/')->with('success', 'Success!');
     }

@@ -309,7 +309,7 @@ class BillIndexComponent extends Component
 
                 }
 
-                return redirect('/property/'.$this->property->uuid.'/bill/customized/'.$batch_no.'/edit')->with('success', 'Success!');
+                return redirect('/property/'.$this->property->uuid.'/bill/'.'customized'.'/'.$batch_no)->with('success', 'Success!');
 
             }catch(\Exception $e)
             {

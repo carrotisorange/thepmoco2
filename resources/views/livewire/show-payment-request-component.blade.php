@@ -4,7 +4,8 @@
             <ol role="list" class="flex items-center space-x-4">
                 <li>
                     <div class="flex items-center">
-                        <a href="/property/{{ Session::get('property_uuid') }}/collection/pending"><img class="h-5 w-auto"
+                        <a href="/property/{{ Session::get('property_uuid') }}/collection/{{ 'approved' }}/{{
+                    Session::get('property_uuid') }}"><img class="h-5 w-auto"
                                 src="{{ asset('/brands/back-button.png') }}"></a>
                     </div>
                 </li>

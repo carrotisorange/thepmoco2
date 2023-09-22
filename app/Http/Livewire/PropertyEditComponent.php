@@ -38,6 +38,7 @@ class PropertyEditComponent extends Component
 
     public $title;
     public $business_permit;
+    public $registered_tin;
 
     public function mount($property_details)
     {
@@ -55,6 +56,7 @@ class PropertyEditComponent extends Component
         $this->telephone = $property_details->telephone;
         $this->note_to_bill = $property_details->note_to_bill;
         $this->note_to_transient = $property_details->note_to_transient;
+        $this->registered_tin = $property_details->registered_tin;
     }
 
     protected function rules()
@@ -79,6 +81,7 @@ class PropertyEditComponent extends Component
             'note_to_transient' => 'nullable',
             'title' => 'nullable | max:102400',
             'business_permit' => 'nullable | max:102400',
+            'registered_tin' => 'nullable'
         ];
     }
 
