@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title', 'Concerns')
+    @section('title', 'Concerns | '. env('APP_NAME'))
 
     <div>
         <div class="mt-10 px-4 sm:px-6 lg:px-8">

@@ -1,5 +1,5 @@
 <x-index-layout>
-    @section('title', '| '.$owner->owner)
+    @section('title', $owner->owner .' | '. env('APP_NAME'))
     <x-slot name="labels">
         Enrollees
     </x-slot>

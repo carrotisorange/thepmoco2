@@ -1,5 +1,5 @@
 <x-owner-portal-layout>
-    @section('title', 'Payments')
+    @section('title', 'Payments | '. env('APP_NAME'))
 
     @section('header', 'Payments')
     <div class=" mx-auto px-4 sm:px-6 lg:px-8">

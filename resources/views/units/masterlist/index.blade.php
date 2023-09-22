@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title','Units | '. Session::get('property_uuid'))
+    @section('title','Units | '. env('APP_NAME'))
     <div class="mt-8">
         <div class="max-full mx-auto px-4 sm:px-6 lg:px-11">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">

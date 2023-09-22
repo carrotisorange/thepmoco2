@@ -1,5 +1,5 @@
 <x-hoa-layout>
-    @section('title','Policy Form | '. Session::get('property'))
+    @section('title','Policy Form | '. env('APP_NAME'))
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
 

@@ -1,5 +1,5 @@
 <x-tenant-portal-layout>
-    @section('title', 'Payment Requests')
+    @section('title', 'Payment Requests | '. env('APP_NAME'))
 
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">

@@ -1,5 +1,5 @@
 <x-index-layout>
-    @section('title', '| Timestamp')
+    @section('title', 'Timestamp | '. env('APP_NAME'))
     <x-slot name="labels">
         Timestamp
     </x-slot>

@@ -1,5 +1,5 @@
 <x-owner-portal-layout>
-    @section('title', 'Concerns')
+    @section('title', 'Concerns '. env('APP_NAME'))
 
     @section('header', 'Concerns')
     <div class=" mx-auto px-4 sm:px-6 lg:px-8">

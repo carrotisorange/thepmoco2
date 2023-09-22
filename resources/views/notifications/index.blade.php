@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title','Notifications | '. Session::get('property'))
+    @section('title','Notifications | '. env('APP_NAME'))
 
     <div>
         <div class="mt-10 px-4 sm:px-6 lg:px-8">

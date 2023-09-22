@@ -18,6 +18,7 @@ use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ExportCollection;
 use App\Models\Owner;
+use DB;
 
 class CollectionController extends Controller
 {
@@ -39,7 +40,7 @@ class CollectionController extends Controller
 
             return view('tenants.collections.index',[
             'tenant' => $tenant,
-            'collections' => app('App\Http\Controllers\TenantCollectionController')->get_tenant_collections($property->uuid, $tenant->uuid),
+            'collections' => app('App\Http\Controllers\CollectionController')->get_tenant_collections($property->uuid, $tenant->uuid),
         ]);
         }elseif($type === 'owner'){
             $owner = Owner::find($type_id);
@@ -53,6 +54,30 @@ class CollectionController extends Controller
                 'requests' => $this->get_property_payment_requests($property->uuid, $type)->get()
             ]);
         }
+    }
+
+    public function edit_collections(Property $property, Tenant $tenant, $batch_no)
+    {   
+      $collections = Bill::where('tenant_uuid', $tenant->uuid)
+      ->where('batch_no', $batch_no)
+      ->get();
+
+      return view('tenants.collections.edit',[
+         'collections' => $collections,
+         'tenant' => $tenant,
+         'batch_no' => $batch_no
+      ]);
+    }
+
+    public function get_tenant_collections($property_uuid, $tenant_uuid){
+        return Collection::
+        select('*', DB::raw("SUM(collection) as collection"),DB::raw("count(collection) as count") )
+        ->where('property_uuid', $property_uuid)
+        ->where('tenant_uuid', $tenant_uuid)
+        ->posted()
+        ->groupBy('ar_no')
+        ->orderBy('ar_no', 'desc')
+        ->get();
     }
 
     public function show($property_uuid, Tenant $tenant, PaymentRequest $paymentRequest)
@@ -165,7 +190,7 @@ class CollectionController extends Controller
 
             $bill_id = $request->input("bill_id_".$i);
 
-            $total_amount_due = app('App\Http\Controllers\TenantBillController')->get_bill_balance($bill_id);
+            $total_amount_due = app('App\Http\Controllers\BillController')->get_bill_balance($bill_id);
 
             //store the collection
             app('App\Http\Controllers\CollectionController')->update($ar_no, $bill_id, $collection, $form, $created_at);
@@ -242,7 +267,7 @@ class CollectionController extends Controller
          'user' => $user,
          'role' => $role,
          'collections' => $collection,
-         'balance' => app('App\Http\Controllers\TenantBillController')->get_tenant_balance($tenant->uuid)
+         'balance' => app('App\Http\Controllers\BillController')->get_tenant_balance($tenant->uuid)
        ];
 
       if($tenant->email)

@@ -1,5 +1,5 @@
 <x-index-layout>
-    @section('title', $unit->unit)
+    @section('title', $unit->unit.' | '. env('APP_NAME'))
     <x-slot name="labels">
         {{ $unit->unit }} / Deed of Sales
     </x-slot>

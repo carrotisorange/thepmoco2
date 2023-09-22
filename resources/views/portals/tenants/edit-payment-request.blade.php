@@ -1,5 +1,5 @@
 <x-tenant-portal-layout>
-    @section('title', 'Payments')
+    @section('title', 'Payments | '. env('APP_NAME'))
     @foreach ($payment_request as $item)
 
 

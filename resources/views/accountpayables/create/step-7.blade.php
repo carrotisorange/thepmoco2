@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title','Step 7 of 7 | Request for Payables')
+    @section('title','Step 7 of 7 | '. env('APP_NAME'))
     <div class="mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 xl:py-10">
     {{-- start of stepper --}}
         <div class="lg:border-t lg:border-b lg:border-gray-200">

@@ -7,7 +7,7 @@
     </style>
     @endsection
 
-    @section('title','Getting Started | Step 1 of 4' )
+    @section('title','Getting Started | Step 1 of 4 | '. env('APP_NAME') )
 
     <html class="h-full w-full bg-cover" style="background-image: url('/brands/createprop.png');">
     @livewire('property-create-component')

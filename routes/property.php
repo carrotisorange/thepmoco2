@@ -6,7 +6,6 @@ use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\UnitContractController;
-use App\Http\Controllers\TenantCollectionController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\TenantContractController;
 use App\Http\Controllers\ConcernController;
@@ -27,7 +26,6 @@ use App\Http\Controllers\ContractController;
 use App\Http\Controllers\ReferenceController;
 use App\Http\Controllers\UnitEnrolleeController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\PaymentRequestController;
 use App\Http\Controllers\AccountPayableController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\UserPropertyController;
@@ -248,7 +246,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     
         Route::prefix('{tenant}')->group(function(){
             Route::get('bills', [BillController::class, 'get_bills'])->name('tenant-bill');
-            Route::get('bills/{batch_no}/pay', [TenantCollectionController::class, 'edit'])->name('tenant');
+            Route::get('bills/{batch_no}/pay', [CollectionController::class, 'edit_collections'])->name('tenant');
             Route::patch('bills/{batch_no}/pay/update', [CollectionController::class, 'update_collections']);
             Route::get('collections', [CollectionController::class,'get_collections'])->name('tenant');
             Route::get('payment_requests/{payment_request}',[CollectionController::class, 'show_payment_request'])->name('tenant');

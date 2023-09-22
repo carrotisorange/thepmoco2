@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title', $guest_details->guest. ' | '. $guest_details->property->property)
+    @section('title', $guest_details->guest. ' | '. env('APP_NAME'))
     <div class="min-h-screen bg-no-repeat bg-cover" style="background-image: url('/brands/bg_tenant.png');">
         <div class="h-full w-full mb-20">
             <div class="max-w-full mx-auto sm:px-6">

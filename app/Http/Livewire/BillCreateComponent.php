@@ -111,7 +111,7 @@ class BillCreateComponent extends Component
             
             'particulars' => app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid')),
             'units' => app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($this->tenant->uuid),
-            'bills' => app('App\Http\Controllers\TenantBillController')->show_tenant_bills($this->tenant->uuid),
+            'bills' => app('App\Http\Controllers\BillController')->show_tenant_bills($this->tenant->uuid),
         ]);
     }
 }

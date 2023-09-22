@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title','Collections | '. Session::get('property'))
+    @section('title','Collections | '. env('APP_NAME'))
     {{-- @can('accountreceivable')
     @include('admin.restrictedpages.accountreceivable')
     @else --}}

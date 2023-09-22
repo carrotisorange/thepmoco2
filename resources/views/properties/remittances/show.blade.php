@@ -1,4 +1,4 @@
 <x-new-layout>
-    @section('title',Session::get('property').' '.' | Unit '. $unit->unit)
+    @section('title','Unit '. $unit->unit.' | '. env('APP_NAME'))
     @livewire('remittance-show-component',['unit' => $unit])
 </x-new-layout>

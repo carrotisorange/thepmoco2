@@ -1,5 +1,5 @@
 <x-guest-layout>
-    @section('title', 'The Property Manager | Register')
+    @section('title', 'Register | '. env('APP_NAME'))
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">

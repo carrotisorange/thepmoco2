@@ -206,9 +206,24 @@ class BillController extends Controller
           'tenant' => $tenant,
           'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($property->uuid),
             'units' => app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($tenant->uuid),
-            'bills' => app('App\Http\Controllers\TenantBillController')->show_tenant_bills($tenant->uuid),
+            'bills' => app('App\Http\Controllers\BillController')->show_tenant_bills($tenant->uuid),
             'contract' => $contract
         ]);
+    }
+
+    public function show_tenant_bills($tenant_uuid)
+    {
+       return Bill::where('tenant_uuid', $tenant_uuid)->posted()->where('bill','>',0)->orderBy('created_at','desc')->get();
+    }
+
+    public function get_bill_balance($bill_id)
+    {
+        return Bill::where('id',$bill_id)->sum('bill') - Bill::where('id',$bill_id)->sum('initial_payment');
+    }
+
+    public function get_tenant_balance($tenant_uuid)
+    {
+        return Bill::where('tenant_uuid', $tenant_uuid)->whereIn('status', ['unpaid', 'partially_paid'])->orderBy('bill_no','desc')->get();
     }
 
     public function get_property_bills($property_uuid, $month, $status)
@@ -326,13 +341,8 @@ class BillController extends Controller
         Bill::where('id', $bill_id)->increment('initial_payment', $amount);
     }
 
-    public function destroy($id)
-    {    
-
-        $bill = Bill::where('id', $id);
-        if($bill->delete()){
-            return back()->with('success', 'Success!');
-        }
-            return back()->with('error', 'Cannot complete your action.');
+  
+    public function delete_bills($tenant_uuid){
+        Bill::where('tenant_uuid', $tenant_uuid)->delete();
     }
 }

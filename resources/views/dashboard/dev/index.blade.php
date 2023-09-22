@@ -1,5 +1,5 @@
 <x-index-layout>
-    @section('title', 'Dashboard')
+    @section('title', 'Dashboard | '. env('APP_NAME'))
 
     @section('styles')
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"

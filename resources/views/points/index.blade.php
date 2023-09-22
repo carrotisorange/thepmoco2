@@ -1,5 +1,5 @@
 <x-index-layout>
-    @section('title', '| Point')
+    @section('title', '| Point | '. env('APP_NAME'))
     <x-slot name="labels">
         Point
     </x-slot>

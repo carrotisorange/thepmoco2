@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title', 'Page not found')
+    @section('title', 'Page not found |' . env('APP_NAME'))
     <div class="flex min-h-full flex-col bg-white lg:relative">
         <div class="flex flex-grow flex-col">
             <main class="flex flex-grow flex-col bg-white">

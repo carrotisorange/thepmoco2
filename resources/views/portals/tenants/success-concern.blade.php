@@ -1,5 +1,5 @@
 <x-tenant-portal-layout>
-    @section('title', 'Concern success')
+    @section('title', 'Concern success | '. env('APP_NAME'))
     <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 class="p-10 text-center text-3xl font-bold tracking-tight text-gray-900 font-pop">You've
             successfully reported a concern!</h2>

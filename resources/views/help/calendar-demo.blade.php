@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title','Help '. Session::get('property'))
+    @section('title','Help '. env('APP_NAME'))
 
     <div class="mx-20 mt-4 inline-flex">
         <a href="/help">

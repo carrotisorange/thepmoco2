@@ -1,5 +1,5 @@
 <x-new-layout-base>
-    @section('title', 'Verify Email | The Property Manager')
+    @section('title', 'Verify Email | '. env('APP_NAME'))
 
 
 

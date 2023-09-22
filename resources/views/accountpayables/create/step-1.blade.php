@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title','Step 1 of 7 | Request for Payables')
+    @section('title','Step 1 of 7 | '. env('APP_NAME'))
     @section('styles')
     <style>
         input::-webkit-outer-spin-button,

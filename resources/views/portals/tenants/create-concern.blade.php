@@ -1,5 +1,5 @@
 <x-tenant-portal-layout>
-    @section('title', 'Concerns')
+    @section('title', 'Concerns | '. env('APP_NAME'))
 
     @livewire('portal-tenant-concern-component', ['user' => $user])
     

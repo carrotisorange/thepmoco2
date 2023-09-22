@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title', $unit->unit.' | '.Session::get('property'))
+    @section('title', $unit->unit.' | '. env('APP_NAME'))
 
     @livewire('unit-concern-create-component', ['unit' => $unit])
 

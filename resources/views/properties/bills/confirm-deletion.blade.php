@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title','Bills | '. Session::get('property'))
+    @section('title','Bills | '. env('APP_NAME'))
 
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">

@@ -1,5 +1,5 @@
 <x-house-owner-layout>
-    @section('title','Election | '. Session::get('property'))
+    @section('title','Election | '. env('APP_NAME'))
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
 

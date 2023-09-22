@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title','Owners | '. Session::get('property'))
+    @section('title','Owners | '. env('APP_NAME'))
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
 
 

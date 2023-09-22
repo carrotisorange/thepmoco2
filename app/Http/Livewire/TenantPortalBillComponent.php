@@ -113,8 +113,7 @@ class TenantPortalBillComponent extends Component
         $bills = app('App\Http\Controllers\PortalTenantController')->get_bills($this->tenant->uuid);
 
         return view('livewire.tenant-portal-bill-component',[
-        //    'bills' =>   app('App\Http\Controllers\TenantController')->show_tenant_bills($this->tenant->uuid),
-           
+     
            'bills' =>  Bill::where('tenant_uuid', $this->tenant->uuid)
            ->posted()
             ->when($this->status, function($query){

@@ -238,7 +238,7 @@ class TenantShowComponent extends Component
         app('App\Http\Controllers\TenantReferenceController')->destroy($this->tenant_details->uuid);
         app('App\Http\Controllers\TenantConcernController')->destroy($this->tenant_details->uuid);
         app('App\Http\Controllers\TenantConcernController')->destroy($this->tenant_details->uuid);
-        app('App\Http\Controllers\TenantBillController')->destroy($this->tenant_details->uuid);
+        app('App\Http\Controllers\BillController')->delete_bills($this->tenant_details->uuid);
         Collection::where('tenant_uuid', $this->tenant_details->uuid)->delete();
         app('App\Http\Controllers\PropertyTenantController')->destroy($this->tenant_details->uuid);
         User::where('tenant_uuid', $this->tenant_details->uuid)->delete();
@@ -258,9 +258,9 @@ class TenantShowComponent extends Component
             'references' => app('App\Http\Controllers\TenantController')->get_tenant_references($this->tenant_details->uuid),     
             'guardians' => app('App\Http\Controllers\TenantController')->show_tenant_guardians($this->tenant_details->uuid),
             'contracts' => app('App\Http\Controllers\TenantController')->show_tenant_contracts($this->tenant_details->uuid),
-            'bills' => app('App\Http\Controllers\TenantController')->show_tenant_bills($this->tenant_details->uuid),
+            'bills' => app('App\Http\Controllers\BillController')->show_tenant_bills($this->tenant_details->uuid),
             'concerns' => app('App\Http\Controllers\TenantController')->show_tenant_concerns($this->tenant_details->uuid),
-            'collections' => app('App\Http\Controllers\TenantCollectionController')->get_tenant_collections($this->property->uuid, $this->tenant_details->uuid),
+            'collections' => app('App\Http\Controllers\CollectionController')->get_tenant_collections($this->property->uuid, $this->tenant_details->uuid),
             'wallets' => Wallet::where('tenant_uuid', $this->tenant_details->uuid)->orderBy('id','desc')->get(),
             'username' => User::where('tenant_uuid', $this->tenant_details->uuid)->value('username'),
          ]);
