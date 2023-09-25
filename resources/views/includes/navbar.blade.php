@@ -5,7 +5,7 @@
             @if($feature->feature->is_active)
                 @if(Session::get('property_uuid'))
                     @if($feature->id === 11)
-                        <x-nav-link href="/property/{{ Session::get('property_uuid') }}/bill/{{ 'property' }}/{{ Session::get('property_uuid') }}" :active="request()->routeIs($feature->alias)">
+                        <x-nav-link href="/property/{{ Session::get('property_uuid') }}/bill/{{ 'property' }}/{{ Session::get('property_uuid') }}" :active="request()->routeIs($feature->feature->alias)">
                             <span class="sr-only">{{ $feature->feature->feature }}</span>
                             <img class="h-8 w-auto" src="{{ asset('/brands/'.$feature->feature->default_icon) }}" fill="none" viewBox="0 0 24 24"
                                 stroke-width="2" stroke="currentColor" aria-hidden="true">
@@ -13,7 +13,7 @@
                                 d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
                         </x-nav-link>
                     @elseif($feature->id === 12)
-                        <x-nav-link href="/property/{{ Session::get('property_uuid') }}/collection/{{ 'property' }}/{{ Session::get('property_uuid') }}" :active="request()->routeIs($feature->alias)">
+                        <x-nav-link href="/property/{{ Session::get('property_uuid') }}/collection/{{ 'property' }}/{{ Session::get('property_uuid') }}" :active="request()->routeIs($feature->feature->alias)">
                             <span class="sr-only">{{ $feature->feature->feature }}</span>
                             <img class="h-8 w-auto" src="{{ asset('/brands/'.$feature->feature->default_icon) }}" fill="none" viewBox="0 0 24 24"
                                 stroke-width="2" stroke="currentColor" aria-hidden="true">
@@ -21,7 +21,7 @@
                                 d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
                         </x-nav-link>
                     @else
-                        <x-nav-link href="/property/{{ Session::get('property_uuid') }}/{{ $feature->feature->alias }}" :active="request()->routeIs($feature->alias)">
+                        <x-nav-link href="/property/{{ Session::get('property_uuid') }}/{{ $feature->feature->alias }}" :active="request()->routeIs($feature->feature->alias)">
                             <span class="sr-only">{{ $feature->feature->feature }}</span>
                             <img class="h-8 w-auto" src="{{ asset('/brands/'.$feature->feature->default_icon) }}" fill="none" viewBox="0 0 24 24"
                                 stroke-width="2" stroke="currentColor" aria-hidden="true">
@@ -33,7 +33,7 @@
                  
                 <div class="font-medium leading-3 ml-0 text-xs text-gray-900 mt-10">{{ $feature->feature->feature }}</div>
                 @else
-                <x-nav-link href="/property/" :active="request()->routeIs($feature->alias)">
+                <x-nav-link href="/property/" :active="request()->routeIs($feature->feature->alias)">
                     <span class="sr-only">Collections</span>
                     <img class="h-8 w-auto" src="{{ asset('/brands/'.$feature->feature->default_icon) }}" fill="none" viewBox="0 0 24 24"
                         stroke-width="2" stroke="currentColor" aria-hidden="true">

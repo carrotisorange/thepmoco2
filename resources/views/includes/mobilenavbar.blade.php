@@ -1,24 +1,24 @@
 <div class="pt-4 pb-1 border-t border-gray-200 overflow-y-auto h-screen pb-20">
-   @foreach(App\Models\Feature::where('is_active',1)->get() as $feature)
+    @foreach(App\Models\UserRestriction::where('user_id',auth()->user()->id)->where('restriction_id', 2)->where('is_approved',1)->get() as $feature)
     <div class="pt-2 pb-3 space-y-1">
         @if(Session::get('property_uuid'))
             @if($feature->id === 11)
           <x-dropdown-link href="/property/{{ Session::get('property_uuid') }}/bill/{{ 'property' }}/{{ Session::get('property_uuid') }}">
-                {{ $feature->feature }}
+                {{ $feature->feature->feature }}
             </x-dropdown-link>
             @elseif($feature->id === 12)
             <x-dropdown-link href="/property/{{ Session::get('property_uuid') }}/collection/{{ 'property' }}/{{ Session::get('property_uuid') }}">
-                {{ $feature->feature }}
+                {{ $feature->feaure->feature }}
             </x-dropdown-link>
             @else
-           <x-dropdown-link href="/property/{{ Session::get('property_uuid') }}/{{ $feature->alias }}">
-                {{ $feature->feature }}
+           <x-dropdown-link href="/property/{{ Session::get('property_uuid') }}/{{ $feature->feature->alias }}">
+                {{ $feature->feature->feature }}
             </x-dropdown-link>
             @endif
       
         @else
         <x-dropdown-link href="/property/">
-            {{ $feature->feature }}
+            {{ $feature->feature->feature }}
         </x-dropdown-link>
         @endif
     </div>
