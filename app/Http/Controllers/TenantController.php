@@ -24,6 +24,10 @@ class TenantController extends Controller
       //core functions
     public function index(Property $property)
     {
+        if(!app('App\Http\Controllers\UserRestrictionController')->isRestricted(5)){
+            return abort(403);
+        }
+
         Session::forget('tenant_uuid');
 
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',3);

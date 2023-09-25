@@ -18,7 +18,9 @@ class ContractController extends Controller
 
     public function index(Property $property){
 
-        // $this->authorize('is_contract_read_allowed');
+        if(!app('App\Http\Controllers\UserRestrictionController')->isRestricted(6)){
+            return abort(403);
+        }
 
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',5);
 

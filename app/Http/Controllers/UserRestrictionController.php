@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Feature;
 use App\Models\Restriction;
 use App\Models\UserRestriction;
+use Session;
 
 class UserRestrictionController extends Controller
 {
@@ -28,5 +29,14 @@ class UserRestrictionController extends Controller
             );
           }
         }
+    }
+
+    public function isRestricted($feature_id){
+        return UserRestriction::where('property_uuid', Session::get('property_uuid'))
+         ->where('user_id', auth()->user()->id)
+         ->where('feature_id', $feature_id)
+         ->where('restriction_id', 2)
+         ->pluck('is_approved')
+         ->first() === 1;
     }
 }

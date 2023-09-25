@@ -39,9 +39,14 @@ class UnitController extends Controller
     
     public function index(Property $property, $batch_no=null, $action=null)
     {   
+        if(!app('App\Http\Controllers\UserRestrictionController')->isRestricted(3)){
+            return abort(403);
+         }
+
         Session::forget('tenant_uuid');
 
         Session::forget('owner_uuid');
+        
 
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
 

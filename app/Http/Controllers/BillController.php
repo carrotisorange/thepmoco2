@@ -23,6 +23,10 @@ class BillController extends Controller
 
      public function get_bills(Property $property, $type, $type_id, $batch_no=null, $drafts=0){
 
+         if(!app('App\Http\Controllers\UserRestrictionController')->isRestricted(11)){
+            return abort(403);
+         }
+
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',10);
         
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);

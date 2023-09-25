@@ -12,6 +12,13 @@ use App\Models\Bank;
 class RemittanceController extends Controller
 {
     public function index(Property $property){
+
+        if(!app('App\Http\Controllers\UserRestrictionController')->isRestricted(16)){
+            return abort(403);
+        }
+
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',20);
+
         return view('properties.remittances.index',[
             'property' => $property,
         ]);

@@ -6,7 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
+use App\Models\Restriction;
 use Session;
 use App\Models\Feature;
 use App\Models\UserRestriction;
@@ -90,21 +90,6 @@ class AppServiceProvider extends ServiceProvider
             return (auth()->user()->user_type == '1');
         });
 
-        // $userRestrictionsCount = UserRestriction:: where('property_uuid', Session::get('property_uuid')) ->where('user_id', auth()->user()->id)->count();
-
-        // for($i =1; $i<=$userRestrictionsCount; $i++){
-          
-        // }
-
-        Gate::define('create_rfp', function (){
-            return (UserRestriction::
-            where('property_uuid', Session::get('property_uuid'))
-            ->where('user_id', auth()->user()->id)
-            ->where('feature_id', 13)
-            ->where('restriction_id', 1)
-            ->pluck('is_approved')
-            ->first() === 1);
-        });
     }
     
 }

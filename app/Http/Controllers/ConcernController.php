@@ -13,9 +13,11 @@ class ConcernController extends Controller
 
     public function index(Property $property)
     {
+        if(!app('App\Http\Controllers\UserRestrictionController')->isRestricted(10)){
+            return abort(403);
+        }
+         
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',13);
-
-        //$this->authorize('is_concern_read_allowed');
 
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
 

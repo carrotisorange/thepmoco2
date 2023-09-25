@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Property;
 use Session;
 use App\Models\AccountPayable;
-use App\Models\AccountPayableLiquidation;
-use App\Models\AccountPayableLiquidationParticular;
 use App\Models\AccountPayableParticular;
 use Carbon\Carbon;
 
@@ -15,6 +13,10 @@ class PropertyAccountPayableController extends Controller
 {
     public function index(Property $property, $status=null)
     {
+        if(!app('App\Http\Controllers\UserRestrictionController')->isRestricted(13)){
+            return abort(403);
+        }
+
          app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
 
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',17);

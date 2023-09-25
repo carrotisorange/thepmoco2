@@ -30,6 +30,10 @@ class CollectionController extends Controller
 
     public function get_collections(Property $property, $type, $type_id)
     {
+        if(!app('App\Http\Controllers\UserRestrictionController')->isRestricted(12)){
+            return abort(403);
+        }
+
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',11);
         
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
