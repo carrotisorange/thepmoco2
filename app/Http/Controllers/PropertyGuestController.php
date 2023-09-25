@@ -71,7 +71,7 @@ class PropertyGuestController extends Controller
      {
           Property::find($property->uuid)->collections()->where('guest_uuid', $guest->uuid)->where('is_posted', 0)->where('batch_no', '!=', $batch_no)->forceDelete();
 
-         $ar_no = app('App\Http\Controllers\AcknowledgementReceiptController')->get_latest_ar($property->uuid);
+         $ar_no = app('App\Http\Controllers\CollectionController')->getLatestAr($property->uuid);
 
          $counter = $this->get_selected_bills_count($batch_no, $guest->uuid);
       
@@ -203,7 +203,7 @@ class PropertyGuestController extends Controller
 
         $folder_path = 'properties.guests.export-collections';
 
-        $pdf = app('App\Http\Controllers\FileExportController')->generate_pdf($property, $data, $folder_path);
+        $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
 
         return $pdf->stream($guest->guest.'-ar.pdf');
      }
@@ -318,7 +318,7 @@ class PropertyGuestController extends Controller
 
         $folder_path = 'properties.guests.export-bills';
     
-        $pdf = app('App\Http\Controllers\FileExportController')->generate_pdf($property, $data, $folder_path);
+        $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
 
         return $pdf->stream(Carbon::now()->format('M d, Y').'-'.$guest->guest.'-soa.pdf');
     }

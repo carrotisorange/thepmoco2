@@ -48,73 +48,47 @@ body{
                         @csrf
                         
                         <div>
-                            <label for="username" class="block text-sm font-medium text-gray-700"> Full Name</label>
+                            <x-label for="username"> Full Name</x-label>
                             <div class="mt-1">
-                                <input id="name" name="name" type="text" value="{{ old('name') }}"
-                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                @error('name')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                                <x-input id="name" name="name" type="text" value="{{ old('name') }}" />
                             </div>
                         </div>
                         <div>
-                           <label for="gender" class="block text-sm font-medium text-gray-700"> Gender</label>
+                           <x-label for="gender" > Gender</x-label>
                             <div class="mt-1">
-                                <select id="gender" name="gender" type="text" value="{{ old('gender') }}" 
-                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <x-select id="gender" name="gender" type="text" value="{{ old('gender') }}">
                                     <option value="">Select one</option>
                                     <option value="female" {{ 'female'==old('gender') ? 'Select one' : 'selected' }}>female</option>
                                     <option value="male" {{ 'male'==old('gender') ? 'Select one' : 'selected' }}>male</option>
-                                </select>
-                                @error('gender')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                                </x-select>
                             </div>
                         </div>
 
                         <div class="lg:col-span-2">
-                            <label for="username" class=" block text-sm font-medium text-gray-700"> Username</label>
+                            <x-label for="username" > Username</x-label>
                             <div class="mt-1">
-                                <input id="username" name="username" type="text" value="{{ old('username') }}"
-                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                @error('username')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                                <x-input id="username" name="username" type="text" value="{{ old('username') }}"/>
                             </div>
                         </div>
 
                         <div class="lg:col-span-2">
-                            <label for="email" class="block text-sm font-medium text-gray-700"> Email </label>
+                            <x-label for="email" > Email </x-label>
                             <div class="mt-1">
-                                <input id="email" name="email" type="email" value="{{ old('email') }}"
-                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                @error('email')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                                <x-input id="email" name="email" type="email" value="{{ old('email') }}"/>
                             </div>
                         </div>
 
                         <div class="lg:col-span-2">
-                            <label for="mobile_number" class="block text-sm font-medium text-gray-700"> Mobile </label>
+                            <x-label for="mobile_number" > Mobile </x-label>
                             <div class="mt-1">
-                                <input id="mobile_number" name="mobile_number" type="text"
-                                    value="{{ old('mobile_number') }}"
-                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                @error('mobile_number')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                                <x-input id="mobile_number" name="mobile_number" type="text" value="{{ old('mobile_number') }}"/>
                             </div>
                         </div>
 
                         <div>
-                            <label for="password" class="block text-sm font-medium text-gray-700"> Password </label>
+                        <x-label for="password" > Password </x-label>
                             <div class="mt-1">
-                                <input id="password" name="password" type="password" autocomplete="password"
-                                    value="{{ old('password') }}"
-                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                @error('password')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                                <x-input id="password" name="password" type="password" autocomplete="password" value="{{ old('password') }}"/>
                             </div>
                         </div>
 

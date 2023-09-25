@@ -15,7 +15,7 @@ use App\Models\Booking;
 use Illuminate\Validation\Rule;
 use DB;
 
-class PropertyCalendarController extends Controller
+class CalendarController extends Controller
 {
     public function index(Property $property){
 

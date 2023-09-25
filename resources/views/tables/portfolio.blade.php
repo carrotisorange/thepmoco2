@@ -4,7 +4,7 @@
             <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
                 Property
             </td>
-            @foreach ($portfolio->where('status', 'active') as $property)
+            @foreach ($properties->where('status', 'active') as $property)
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
                       {{
@@ -19,7 +19,7 @@
         <tr>
             <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
                 Type</td>
-            @foreach ($portfolio->where('status', 'active') as $property)
+            @foreach ($properties->where('status', 'active') as $property)
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
              {{
@@ -34,7 +34,7 @@
         <tr>
             <td class="font-medium whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
                 Personnel</td>
-            @foreach ($portfolio->where('status', 'active') as $property)
+            @foreach ($properties->where('status', 'active') as $property)
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
                 {{ App\Models\Property::find($property->uuid)->property_users()->count() }}

@@ -10,13 +10,6 @@
                     type="button">Back
                 </button>
 
-                {{-- @if($selectedUnits)
-                <button type="button" wire:click="removeUnits()"
-                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Remove ({{ count($selectedUnits) }})
-                </button>
-                @endif --}}
-
                 @if(App\Models\Property::find(Session::get('property_uuid'))->units->count())
                 <button type="button" wire:click="updateUnit()"
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">

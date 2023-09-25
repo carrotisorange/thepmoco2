@@ -24,6 +24,7 @@ class PropertyCreateComponent extends Component
      public $email;
      public $mobile;
      public $ownership;
+     public $registered_tin;
 
      public function mount(){
         $this->mobile = auth()->user()->mobile_number;
@@ -46,7 +47,8 @@ class PropertyCreateComponent extends Component
             'barangay' => ['required'],
             'email' => ['nullable'],
             'mobile' => ['nullable'],
-            'ownership' => ['required']
+            'ownership' => ['required'],
+            'registered_tin' => 'nullable'
         ];
      }
 
@@ -72,7 +74,7 @@ class PropertyCreateComponent extends Component
                
                app('App\Http\Controllers\PropertyParticularController')->store($new_property->uuid->toString());
 
-               app('App\Http\Controllers\PropertyRoleController')->store($new_property->uuid->toString());
+               app('App\Http\Controllers\RoleController')->store($new_property->uuid->toString());
 
                app('App\Http\Controllers\PointController')->store($new_property->uuid->toString(), auth()->user()->id, 50, 6);
                

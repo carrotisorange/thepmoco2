@@ -59,7 +59,7 @@ class OwnerCollectionController extends Controller
 
      $folder_path = 'owners.collections.export';
 
-     $pdf = app('App\Http\Controllers\FileExportController')->generate_pdf($property, $data, $folder_path);
+     $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
 
      return $pdf->stream($owner->owner.'-ar.pdf');
      }
@@ -98,7 +98,7 @@ class OwnerCollectionController extends Controller
     {
         Property::find($property->uuid)->collections()->where('owner_uuid', $owner->uuid)->where('is_posted', 0)->where('batch_no', '!=', $batch_no)->forceDelete();
 
-         $ar_no = app('App\Http\Controllers\AcknowledgementReceiptController')->get_latest_ar($property->uuid);
+         $ar_no = app('App\Http\Controllers\CollectionController')->getLatestAr($property->uuid);
 
          $counter = $this->get_selected_bills_count($batch_no);
       
@@ -130,8 +130,8 @@ class OwnerCollectionController extends Controller
             }
          }
 
-         app('App\Http\Controllers\AcknowledgementReceiptController')
-         ->store( 
+         app('App\Http\Controllers\CollectionController')
+         ->storeAr( 
                  '',
                   $owner->uuid,
                   Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->sum('collection'),

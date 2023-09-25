@@ -7,18 +7,15 @@
 
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 @if($status)
-                <button type="button" wire:click="clearFilters"
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-                    Clear Filters</button>
+                <x-button type="button" wire:click="clearFilters"
+                 >    Clear Filters</x-button>
                 @endif
 
-                <a class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500  px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
-                    target="_blank" href="{{ asset('/brands/docs/Contract of Lease TEMPLATE.docx') }}" target="_blank"
-                    class=" hover:text-indigo-900"><i class="fa-solid fa-download"></i> &nbsp Sample Lease Contract</a>
+                <x-button onclick="window.location.href='{{ asset('/brands/docs/Contract of Lease TEMPLATE.docx') }}'">
+                  Sample Lease Contract</x-button>
 
-                <button type="button" data-modal-toggle="instructions-create-contract-modal"
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-                   New Contract</button>
+                <x-button type="button" data-modal-toggle="instructions-create-contract-modal"
+                 >     New Contract</x-button>
 
             </div>
         </div>
@@ -30,13 +27,12 @@
     
 
             <div class="sm:col-span-6">
-                <select id="status" wire:model="status"
-                    class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                <x-select name="status" wire:model="status">
                     <option value="" selected>Filter status</option>
                     @foreach ($statuses as $status)
                     <option value="{{ $status->status }}">{{ $status->status }}</option>
                     @endforeach
-                </select>
+                </x-select>
 
             </div>
 

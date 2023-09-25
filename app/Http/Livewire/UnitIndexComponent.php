@@ -161,11 +161,11 @@ class UnitIndexComponent extends Component
             'categories' => app('App\Http\Controllers\CategoryController')->index($this->property->uuid),
             'buildings' => app('App\Http\Controllers\PropertyBuildingController')->index($this->property->uuid),
             'floors' => app('App\Http\Controllers\FloorController')->index($this->property->uuid),
-            'rents' => app('App\Http\Controllers\UnitController')->get_property_unit_rents($this->property->uuid),
-            'discounts' => app('App\Http\Controllers\UnitController')->get_property_unit_discounts($this->property->uuid),
-            'sizes' => app('App\Http\Controllers\UnitController')->get_property_unit_sizes($this->property->uuid),
-            'occupancies' => app('App\Http\Controllers\UnitController')->get_property_unit_occupancies($this->property->uuid),
-            'enrollment_statuses' => app('App\Http\Controllers\UnitController')->get_property_unit_enrollment_statuses($this->property->uuid),
+            'rents' => app('App\Http\Controllers\UnitController')->getUnitRents($this->property->uuid),
+            'discounts' => app('App\Http\Controllers\UnitController')->getUnitDiscounts($this->property->uuid),
+            'sizes' => app('App\Http\Controllers\UnitController')->getUnitSizes($this->property->uuid),
+            'occupancies' => app('App\Http\Controllers\UnitController')->getUnitOccupancies($this->property->uuid),
+            'enrollment_statuses' => app('App\Http\Controllers\UnitController')->getUnitEnrollmentStatuses($this->property->uuid),
             'units_count' => Property::find($this->property->uuid)->units->count()
         ]);
     }

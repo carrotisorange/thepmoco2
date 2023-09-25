@@ -15,7 +15,44 @@ use App\Models\Collection;
 
 class UnitController extends Controller
 {
-    public function update_unit_occupancy_info(Property $property, Unit $unit, Owner $owner)
+
+      public function show(Property $property, Unit $unit, $action=null)
+    {        
+
+         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens one',2);
+
+        return view('units.show',[
+            'property' => $property,
+            'unit_details' => $unit,
+            'deed_of_sales' => app('App\Http\Controllers\DeedOfSaleController')->show_unit_deed_of_sales($unit->uuid),
+        ]);
+
+    }
+
+     public function edit(Property $property, $batch_no)
+    {
+        return view('units.edit-bulk',[
+            'property' => $property, 
+            'batch_no' => $batch_no,
+        ]);
+    }
+    
+    public function index(Property $property, $batch_no=null, $action=null)
+    {   
+        Session::forget('tenant_uuid');
+
+        Session::forget('owner_uuid');
+
+        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
+
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',2);
+
+        return view('properties.units.index',[
+            'property' => $property,
+            'batch_no' => $batch_no,
+        ]);
+    }
+    public function updateUnitOccupancyInfo(Property $property, Unit $unit, Owner $owner)
     {
         return view('occupancy.create',[
             'unit' => $unit,
@@ -23,14 +60,14 @@ class UnitController extends Controller
         ]);
     }
 
-    public function quick_add(){
+    public function quickAdd(){
        session(['quick_add' => true]);
 
        return redirect('/property/'.Session::get('property_uuid').'/unit');
     }
 
 
-    public function get_property_unit_floors($property_uuid)
+    public function getUnitFloors($property_uuid)
     {
         return Floor::join('units', 'floors.id', 'units.floor_id')
         ->select('floor','floors.id as floor_id', DB::raw('count(*) as count'))
@@ -40,7 +77,7 @@ class UnitController extends Controller
           ->get();
     }
 
-    public function get_property_unit_rents($property_uuid)
+    public function getUnitRents($property_uuid)
     {
         return Unit::where('units.property_uuid', $property_uuid)
         ->select('rent', DB::raw('count(*) as count'))
@@ -49,7 +86,7 @@ class UnitController extends Controller
         ->get();
     }
     
-    public function get_property_unit_discounts($property_uuid)
+    public function getUnitDiscounts($property_uuid)
     {
         return Unit::where('units.property_uuid', $property_uuid)
         ->select('discount', DB::raw('count(*) as count'))
@@ -59,7 +96,7 @@ class UnitController extends Controller
     }
 
        
-    public function get_property_unit_sizes($property_uuid)
+    public function getUnitSizes($property_uuid)
     { 
         return Unit::where('units.property_uuid', $property_uuid)
           ->whereNotNull('size')
@@ -69,7 +106,7 @@ class UnitController extends Controller
           ->get();
     }
 
-    public function get_property_unit_occupancies($property_uuid)
+    public function getUnitOccupancies($property_uuid)
     { 
         return Unit::where('units.property_uuid', $property_uuid)
         ->whereNotNull('occupancy')
@@ -79,7 +116,7 @@ class UnitController extends Controller
         ->get();
     }
 
-    public function get_property_unit_enrollment_statuses($property_uuid)
+    public function getUnitEnrollmentStatuses($property_uuid)
     { 
         return Unit::where('units.property_uuid', $property_uuid)
         ->select('is_enrolled', DB::raw('count(*) as count'))
@@ -88,7 +125,7 @@ class UnitController extends Controller
         ->get();
     }
 
-    public function get_property_units($property_uuid, $status, $duration, $unlisted)
+    public function getUnits($property_uuid, $status, $duration, $unlisted)
     {
         return Unit::where('property_uuid', $property_uuid)
          ->when($status, function ($query) use ($status) {
@@ -100,11 +137,6 @@ class UnitController extends Controller
         ->when($unlisted, function ($query) use ($unlisted) {
            $query->whereMonth('is_the_unit_for_rent_to_tenant', $unlisted);
            });
-    }
-
-    public function store(Property $property, Request $request, $batch_no)
-    {   
-
     }
 
     public function update(Request $request, Property $property, Unit $unit)
@@ -132,7 +164,7 @@ class UnitController extends Controller
         return back()->with('success', 'Success!');
     }
 
-    public function update_unit_status($unit_uuid, $status_id)
+    public function updateUnitStatus($unit_uuid, $status_id)
     {
         Unit::where('uuid', $unit_uuid)
         ->update([
@@ -140,25 +172,11 @@ class UnitController extends Controller
         ]);
     }
 
-    public function destroy(Property $property, Unit $unit)
-    {
-
-        $tenants = Unit::find($unit->uuid)->contracts()->count();
-
-        $owners = Unit::find($unit->uuid)->deed_of_sales()->count();
-
-        if($tenants || $owners)
-        {
-            return back()->with('error', 'This unit cannot be deleted!');
-        }else{
-            Unit::where('uuid', $unit->uuid)->delete();
-
-            return redirect('/property/'.Session::get('property_uuid').'/unit')->with('success', 'Success!');
-        }
-       
+    public function destroy($unit_uuid){
+        Unit::where('uuid', $unit_uuid)->delete();
     }
 
-    public function get_unit_collections($property_uuid, $unit_uuid){
+    public function getCollections($property_uuid, $unit_uuid){
         return Collection::
         select('*', DB::raw("SUM(collection) as collection"),DB::raw("count(collection) as count") )
         ->where('property_uuid', $property_uuid)

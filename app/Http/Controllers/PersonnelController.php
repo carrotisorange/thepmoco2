@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Property;
 
-class PropertyPersonnelController extends Controller
+class PersonnelController extends Controller
 {
     public function index(Property $property)
     {

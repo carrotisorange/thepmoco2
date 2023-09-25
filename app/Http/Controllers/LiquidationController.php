@@ -11,7 +11,7 @@ use App\Models\AccountPayableLiquidationParticular;
 use PDF;
 use Carbon\Carbon;
 
-class PropertyLiquidationController extends Controller
+class LiquidationController extends Controller
 {
     public function step1(Property $property, AccountPayable $accountPayable){
 

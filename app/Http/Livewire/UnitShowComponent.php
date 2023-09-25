@@ -166,13 +166,13 @@ class UnitShowComponent extends Component
     }
 
     public function deleteUnit(){
-        app('App\Http\Controllers\PropertyContractController')->destroy($this->unit_details->uuid,null);
-         DeedOfSale::where('unit_uuid', $unit_uuid)->delete();
+        app('App\Http\Controllers\ContractController')->destroy($this->unit_details->uuid,null);
+         DeedOfSale::where('unit_uuid', $this->unit_details->uuid)->delete();
         app('App\Http\Controllers\PropertyUtilityController')->destroy($this->unit_details->uuid);
         app('App\Http\Controllers\PropertyGuestController')->destroy($this->unit_details->uuid);
         app('App\Http\Controllers\PropertyConcernController')->destroy($this->unit_details->uuid);
-        app('App\Http\Controllers\PropertyBillController')->destroy($this->unit_details->uuid);
-        app('App\Http\Controllers\PropertyUnitController')->destroy($this->unit_details->uuid);
+        app('App\Http\Controllers\BillController')->destroy($this->unit_details->uuid);
+        app('App\Http\Controllers\UnitController')->destroy($this->unit_details->uuid);
         Collection::where('unit_uuid', $this->unit_details->uuid)->delete();
         UnitInventory::where('unit_uuid', $this->unit_details->uuid)->delete();
         AccountPayableLiquidation::where('unit_uuid', $this->unit_details->uuid)->delete();
@@ -238,7 +238,7 @@ class UnitShowComponent extends Component
             'utilities' => $utilities,
             'concerns' => Concern::where('unit_uuid', $this->unit_details->uuid)->get(),
             'inventories' => UnitInventory::where('unit_uuid', $this->unit_details->uuid)->where('contract_uuid', '')->get(),
-            'collections' => app('App\Http\Controllers\UnitController')->get_unit_collections($this->unit_details->property_uuid, $this->unit_details->uuid),
+            'collections' => app('App\Http\Controllers\UnitController')->getCollections($this->unit_details->property_uuid, $this->unit_details->uuid),
             'revenues' => $revenues,
             'expenses' => $expenses,
             'remittances' => Remittance::where('unit_uuid', $this->unit_details->uuid)

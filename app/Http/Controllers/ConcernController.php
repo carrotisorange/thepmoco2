@@ -10,6 +10,27 @@ use App\Models\ConcernCategory;
 
 class ConcernController extends Controller
 {
+
+    public function index(Property $property)
+    {
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',13);
+
+        //$this->authorize('is_concern_read_allowed');
+
+        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
+
+        return view('properties.concerns.index',[
+            'property' => $property
+        ]);
+    }
+
+    public function destroy($unit_uuid){
+
+      // $this->authorize('is_concern_delete_allowed');
+
+        Concern::where('unit_uuid', $unit_uuid)->delete();
+    }
+    
     public function get_property_concerns($property_uuid, $status, $duration)
     {
         return Concern::where('property_uuid',$property_uuid)
@@ -22,12 +43,6 @@ class ConcernController extends Controller
         ->orderBy('created_at', 'desc');
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
        // $this->authorize('is_concern_create_allowed');
@@ -35,23 +50,6 @@ class ConcernController extends Controller
         return view('tenants.concerns.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Concern  $concern
-     * @return \Illuminate\Http\Response
-     */
     public function show($property_uuid, Concern $concern)
     {
         //$this->authorize('is_concern_read_allowed');
@@ -74,26 +72,4 @@ class ConcernController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Concern  $concern
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Concern $concern)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Concern  $concern
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Concern $concern)
-    {
-      // $this->authorize('is_concern_delete_allowed');
-    }
 }

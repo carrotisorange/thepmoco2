@@ -11,7 +11,7 @@ use Spatie\Browsershot\Browsershot;
 use Session;
 use App\Models\AccountPayableLiquidation;
 
-class AccountPayableController extends Controller
+class RequestForPurchaseController extends Controller
 {
   
     public function get_property_expenses($property_uuid, $daily, $monthly)

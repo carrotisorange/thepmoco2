@@ -46,7 +46,8 @@ class AccountPayableCreateStep2Component extends Component
     {
         $this->validate();
 
-        app('App\Http\Controllers\AccountPayableController')->update_approval($this->accountpayable->id, 'approved by manager', $this->comment, $this->vendor);
+        app('App\Http\Controllers\RequestForPurchaseController')->update_approval($this->accountpayable->id,
+        'approved by manager', $this->comment, $this->vendor);
 
         if($this->accountpayable->approver2_id){
 
@@ -64,7 +65,8 @@ class AccountPayableCreateStep2Component extends Component
         
         $this->validate();
 
-        app('App\Http\Controllers\AccountPayableController')->update_approval($this->accountpayable->id, 'rejected by manager', $this->comment, $this->vendor);
+        app('App\Http\Controllers\RequestForPurchaseController')->update_approval($this->accountpayable->id, 'rejected
+        by manager', $this->comment, $this->vendor);
 
         $content = $this->accountpayable;
 

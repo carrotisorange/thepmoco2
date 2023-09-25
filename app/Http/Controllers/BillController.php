@@ -161,14 +161,13 @@ class BillController extends Controller
 
     public function export_soa(Request $request, Property $property, Tenant $tenant)
     {
-
         app('App\Http\Controllers\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
 
         $data = $this->get_bill_data($tenant, $request->due_date, $request->penalty, $request->note_to_bill);
 
         $folder_path = 'tenants.bills.export';
 
-        $pdf = app('App\Http\Controllers\FileExportController')->generate_pdf($property, $data, $folder_path);
+        $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
 
         $pdf_name = str_replace(' ', '_', $property->property).'_SOA.pdf';
 
@@ -344,5 +343,61 @@ class BillController extends Controller
   
     public function delete_bills($tenant_uuid){
         Bill::where('tenant_uuid', $tenant_uuid)->delete();
+    }
+
+    public function index(Property $property, $type, $batch_no=null, $drafts=0){
+
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',10);
+
+       // $this->authorize('is_account_receivable_read_allowed');
+        
+        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
+
+        return view('properties.bills.index',[
+            'active_contracts' => Contract::where('property_uuid', $property->uuid)->where('status', 'active')->get(),
+            'active_tenants' => Contract::where('property_uuid', $property->uuid)->where('contracts.status','active')->distinct()->pluck('tenant_uuid'),
+            'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($property->uuid),
+            'batch_no' => $batch_no,
+            'drafts' => $drafts,
+            'property' => $property
+        ]);
+    }
+
+    public function edit(Property $property, $batch_no)
+    {
+        $particulars = Particular::join('property_particulars', 'particulars.id', 'property_particulars.particular_id')
+
+        ->where('property_uuid', $property->uuid)
+        ->get();
+
+        return view('bills.edit', [
+            'property' => $property,
+            'batch_no' => $batch_no,
+            'particulars' => $particulars
+        ]);
+    }
+
+    public function destroy($unit_uuid){
+        Bill::where('unit_uuid', $unit_uuid)->delete();
+    }
+
+    public function confirm_bill_deletion(Property $property, $batch_no, $bills_count){
+        $bills = Bill::where('property_uuid', $property->uuid)->where('batch_no', $batch_no)->get();
+
+        return view('properties.bills.confirm-deletion', [
+            'bills' => $bills,
+            'view' => 'listView',
+            'isPaymentAllowed' => false,
+            'isIndividualView' => false,
+
+        ]);
+    }
+
+    public function edit_bill(Property $property, Guest $guest, Bill $bill){
+  
+        return view('properties.bills.edit', [
+            'property' => $property,
+            'bill' => $bill
+        ]);
     }
 }

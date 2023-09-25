@@ -14,7 +14,6 @@ class EditPersonnelComponent extends Component
     public $property;
     public $personnel;
 
-    //input variable
     public $name;
     public $email;
     public $role_id;
@@ -42,7 +41,7 @@ class EditPersonnelComponent extends Component
     }
 
     public function get_user_restrictions(){
-        return UserRestriction::where('user_id', $this->personnel->user->id)->get();
+        return UserRestriction::where('user_id', $this->personnel->user->id)->where('restriction_id',2)->get();
     }
 
     public function updateButton(){
@@ -64,7 +63,7 @@ class EditPersonnelComponent extends Component
     
         UserProperty::where('id', $this->personnel->id)
         ->update($validatedUserPropertyData);
-
+    
         app('App\Http\Controllers\UserRestrictionController')->store($this->property->uuid, $this->personnel->user->id);
 
         $this->validate();
@@ -74,6 +73,8 @@ class EditPersonnelComponent extends Component
                 $unit_restriction->save();
             }
         });
+
+        app('App\Http\Controllers\PropertyController')->store_property_session($this->property->uuid);
 
         return redirect(url()->previous())->with('success', 'Success!');
     }

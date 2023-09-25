@@ -72,6 +72,7 @@ class CreatePersonnelComponent extends Component
                'role_id' => $this->role_id
         ]
     );
+    
 
     if($user->role_id == '5')
         {
@@ -82,6 +83,7 @@ class CreatePersonnelComponent extends Component
             ]);
 
         }else{
+            app('App\Http\Controllers\UserRestrictionController')->store($this->property->uuid, $user->id);
             app('App\Http\Controllers\UserController')->send_email($this->role_id, $this->email, $this->email, $password);
     }
 

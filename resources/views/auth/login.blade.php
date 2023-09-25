@@ -48,27 +48,20 @@
                         <form action="{{ route('login') }}" method="POST" class="space-y-6">
                             @csrf
                             <div>
-                                <label for="username" class="block text-sm font-medium text-gray-700"> Username </label>
+                                <x-label for="username" > Username </x-label>
                                 <div class="mt-1">
-                                    <input id="username" name="username" type="username" autocomplete="username"
-                                        value="{{ old('username') }}" required
-                                        class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    <x-input id="username" name="username" type="username" autocomplete="username"
+                                        value="{{ old('username') }}" required/>
                                 </div>
-                                @error('username')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                              
                             </div>
 
                             <div class="space-y-1">
                                 <label for="password" class="block text-sm font-medium text-gray-700"> Password </label>
                                 <div class="mt-1">
-                                    <input id="password" name="password" type="password" autocomplete="current-password"
-                                        required
-                                        class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    <x-input id="password" name="password" type="password" autocomplete="current-password"/>
                                 </div>
-                                @error('password')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                              
                             </div>
 
                             <div class="flex items-center justify-between">

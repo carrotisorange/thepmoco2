@@ -7,39 +7,29 @@
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 @if($sortBy || $orderBy || $search || $status_id || $category_id || $building_id)
-                <button type="button" wire:click="clearFilters()"
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-
+                <x-button name="clearFilters" type="button" wire:click="clearFilters()" >
                     Clear Filters
-                </button>
+                </x-button>
                 @endif
 
-                <button type="button" data-modal-toggle="instructions-create-unit-modal"
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                    New unit
-                </button>
+                <x-button name="newUnitModal" type="button" data-modal-toggle="instructions-create-unit-modal">New unit
+                </x-button>
 
                 @if($view === 'list')
-                <button type="button" wire:click="changeView('thumbnail')"
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-
+                <x-button type="button" wire:click="changeView('thumbnail')" >
                     View as Thumbnail
 
-                </button>
+                </x-button>
                 @else
-                <button type="button" wire:click="changeView('list')"
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-
+                <x-button type="button" wire:click="changeView('list')" >
                     View as List
-                </button>
+                </x-button>
                 @endif
 
 
                 @if($units->count())
-                <button type="button" wire:click="editUnits"
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                    Edit
-                    Units</button>
+                <x-button type="button" wire:click="editUnits"> Edit
+                    Units</x-button>
                 @endif
 
             </div>
@@ -48,91 +38,82 @@
         <div class="mt-3">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                 @if(App\Models\Property::find(Session::get('property_uuid'))->units()->count())
-                {{-- <div class="mt-3">
-                    {{ $units->links() }}
-                </div> --}}
+   
                 <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                    <div class="sm:col-span-6">
-
-                        <label for="default-search"
-                            class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
-                        <div class="relative w-full mb-5">
-                            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none"
-                                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                </svg>
-                            </div>
-                            <input type="search" id="default-search" wire:model.debounce.500ms="search"
-                                class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Search for unit" required>
-
+                   <div class="sm:col-span-6">
+                
+                    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
+                    <div class="relative w-full mb-5">
+                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
                         </div>
-
+                        <input type="search" id="search" wire:model="search"
+                            class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Search for unit..." required>
+                
                     </div>
+                
+                </div>
 
                     <div class="sm:col-span-1">
-                        <select id="building_id" wire:model="building_id"
-                            class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                            <option value="">Filter building</option>
+                        <x-select name="building_id" id="building_id" wire:model="building_id"
+                           >  <option value="">Filter building</option>
                             @foreach ($buildings as $item)
                             <option value="{{ $item->building_id }}">{{ $item->building }}</option>
                             @endforeach
-                        </select>
+                        </x-select>
                     </div>
 
                     <div class="sm:col-span-1">
-                        <select id="category_id" wire:model="category_id"
-                            class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                            <option value="">Filter category</option>
+                        <x-select name="category_id" id="category_id" wire:model="category_id"
+                          >   <option value="">Filter category</option>
                             @foreach ($categories as $item)
                             <option value="{{ $item->id }}">{{ $item->category }}</option>
                             @endforeach
-                        </select>
+                        </x-select>
                     </div>
 
 
                     <div class="sm:col-span-1">
-                        <select id="status_id" wire:model="status_id"
-                            class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                            <option value="">Filter status</option>
+                        <x-select name="status_id" id="status_id" wire:model="status_id"
+                          >  <option value="">Filter status</option>
                             @foreach ($statuses as $item)
                             <option value="{{ $item->status_id }}">{{ $item->status }}</option>
                             @endforeach
-                        </select>
+                        </x-select>
                     </div>
 
                     <div class="sm:col-span-1">
-                        <select id="small" wire:model="sortBy"
-                            class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                            <option value="unit" selected>Sort by</option>
+                        <x-select name="sortBy" id="small" wire:model="sortBy"
+                          >   <option value="unit" selected>Sort by</option>
                             <option value="created_at">date created</option>
                             <option value="floor_id">floor</option>
                             <option value="occupancy">occupancy</option>
                             <option value="rent">rent</option>
                             <option value="unit">unit</option>
-                        </select>
+                        </x-select>
                     </div>
 
                     <div class="sm:col-span-1">
-                        <select id="small" wire:model="orderBy"
-                            class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                            <option value="" selected>Sorting order</option>
+                        <x-select name="orderBy" id="small" wire:model="orderBy"
+                           > <option value="" selected>Sorting order</option>
                             <option value="asc">ascending</option>
                             <option value="desc">descending</option>
-                        </select>
+                        </x-select>
                     </div>
                     <div class="sm:col-span-1">
-                        <select id="small" wire:model="limitDisplayTo"
-                            class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                            <option value="" selected>Limit display to</option>
+                        <x-select name="limitDisplayTo" id="small" wire:model="limitDisplayTo"
+                           > <option value="" selected>Limit display to</option>
                             @for ($i = 1; $i <= $totalUnitsCount; $i++) @if($i%10==0 || $i==$totalUnitsCount) <option
                                 value="{{ $i }}">{{ $i }}
                                 </option>
                                 @endif
                                 @endfor
-                        </select>
+                            </x-select>
                     </div>
                 </div>
                 <div class="mt-5">

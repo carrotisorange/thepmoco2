@@ -56,7 +56,9 @@ class PortalTenantController extends Controller
 
         $data = $this->get_bill_data($tenant);
 
-        $pdf = $this->generate_pdf($data);
+        $folder_path = 'portals.tenants.exports.bills';
+
+        $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
 
         return $pdf->stream($tenant->tenant.'-soa.pdf');
     }
@@ -75,27 +77,6 @@ class PortalTenantController extends Controller
     public function get_unpaid_bills($tenant_uuid)
     {
         return Bill::where('tenant_uuid', $tenant_uuid)->whereIn('status', ['unpaid', 'partially_paid'])->where('bill','>', 0)->orderBy('bill_no','desc')->get();
-    }
-
-    public function generate_pdf($data)
-    {
-        $pdf = PDF::loadView('portals.tenants.exports.bills', $data);
-
-        $pdf->output();
-
-        $canvas = $pdf->getDomPDF()->getCanvas();
-
-        $height = $canvas->get_height();
-
-        $width = $canvas->get_width();
-
-        $canvas->set_opacity(.2,"Multiply");
-
-        $canvas->set_opacity(.2);
-
-        $canvas->page_text($width/5, $height/2, "", null, 55, array(0,0,0),2,2,-30);
-
-        return $pdf;
     }
 
     public function show_collections($role_id, User $user)

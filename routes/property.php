@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\UnitController;
-use App\Http\Controllers\BillController;
 use App\Http\Controllers\UnitContractController;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\TenantContractController;
@@ -26,12 +25,11 @@ use App\Http\Controllers\ContractController;
 use App\Http\Controllers\ReferenceController;
 use App\Http\Controllers\UnitEnrolleeController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\AccountPayableController;
+use App\Http\Controllers\RequestForPurchaseController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\UserPropertyController;
 use App\Http\Controllers\OwnerBillController;
 use App\Http\Controllers\OwnerCollectionController;
-use App\Http\Controllers\PropertyContractController;
 use App\Http\Controllers\PropertyDashboardController;
 use App\Http\Controllers\UtilityController;
 use App\Http\Controllers\UnitConcernController;
@@ -40,41 +38,38 @@ use App\Http\Controllers\TenantGuardianController;
 use App\Http\Controllers\TenantReferenceController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\TenantWalletController;
-use App\Http\Controllers\PropertyOwnerController;
-use App\Http\Controllers\PropertyPersonnelController;
-use App\Http\Controllers\PropertyUnitController;
-use App\Http\Controllers\PropertyTenantController;
-use App\Http\Controllers\PropertyConcernController;
-use App\Http\Controllers\PropertyBillController;
+use App\Http\Controllers\BillController;
 use App\Http\Controllers\PropertyAccountPayableController;
-use App\Http\Controllers\PropertyBookingController;
-use App\Http\Controllers\PropertyCalendarController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\PropertyFinancialController;
 use App\Http\Controllers\PropertyUtilityController;
 use App\Http\Controllers\PropertyGuestController;
-use App\Http\Controllers\PropertyLiquidationController;
-use App\Http\Controllers\PropertyRemittanceController;
+use App\Http\Controllers\LiquidationController;
+use App\Http\Controllers\RemittanceController;
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\PersonnelController;
+use App\Http\Controllers\TenantController;
 
 Route::group(['middleware'=>['auth', 'verified']], function(){
 
-    Route::put('/booking/{booking}/update', [PropertyBookingController::class, 'update']);
+    Route::put('/booking/{booking}/update', [BookingController::class, 'update']);
 
-    Route::post('calendar', [PropertyCalendarController::class, 'store'])->name('calendar.store');
+    Route::post('calendar', [CalendarController::class, 'store'])->name('calendar.store');
 
-    Route::post('calendar/store', [PropertyCalendarController::class, 'store'])->name('calendar.store');
-    Route::patch('calendar/update/{id}', [PropertyCalendarController::class, 'update'])->name('calendar.update');
-    Route::delete('calendar/destroy/{id}', [PropertyCalendarController::class, 'destroy'])->name('calendar.destroy');
-    Route::get('calendar/show/{id}', [PropertyCalendarController::class, 'show'])->name('calendar.show');
+    Route::post('calendar/store', [CalendarController::class, 'store'])->name('calendar.store');
+    Route::patch('calendar/update/{id}', [CalendarController::class, 'update'])->name('calendar.update');
+    Route::delete('calendar/destroy/{id}', [CalendarController::class, 'destroy'])->name('calendar.destroy');
+    Route::get('calendar/show/{id}', [CalendarController::class, 'show'])->name('calendar.show');
 
     Route::prefix('/property/{property}')->group(function(){
 
     //property remittances
     //remittance
-    Route::get('/unit/{unit}/remittances', [PropertyRemittanceController::class, 'show']);
+    Route::get('/unit/{unit}/remittances', [RemittanceController::class, 'show']);
     
     Route::prefix('remittance')->group(function(){
-        Route::get('/', [PropertyRemittanceController::class, 'index'])->name('remittances');
+        Route::get('/', [RemittanceController::class, 'index'])->name('remittances');
       
     });
 
@@ -92,7 +87,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
        
     //Route for contract
     Route::get('contract/{status}',[ContractController::class, 'show_moveout_request'])->name('contract');
-    Route::get('contract', [PropertyContractController::class, 'index'])->name('contract');
+    Route::get('contract', [ContractController::class, 'index'])->name('contract');
 
 
     //Route for Building
@@ -133,15 +128,15 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
 
     //Routes for calendar
-    Route::get('calendar', [PropertyCalendarController::class, 'index'])->name('calendar');
+    Route::get('calendar', [CalendarController::class, 'index'])->name('calendar');
     
   
 
     //Routes for Unitf
     Route::prefix('unit')->group(function(){
-        Route::get('/', [PropertyUnitController::class, 'index'])->name('unit');
-        Route::get('{batch_no?}/edit', [PropertyUnitController::class, 'edit'])->name('unit');
-        Route::get('{unit:uuid}', [PropertyUnitController::class, 'show'])->name('unit')->scopeBindings();
+        Route::get('/', [UnitController::class, 'index'])->name('unit');
+        Route::get('{batch_no?}/edit', [UnitController::class, 'edit'])->name('unit');
+        Route::get('{unit:uuid}', [UnitController::class, 'show'])->name('unit')->scopeBindings();
         
         Route::prefix('{unit:uuid}')->group(function(){
             Route::get('/contract/{contract}/inventory/export', [UnitInventoryController::class, 'export_movein']);
@@ -232,7 +227,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     //Routes for contract
     Route::get('/unit/{unit}/tenant/{tenant}/contract/{contract}/movein/{random_str}/create', [ContractController::class, 'movein']);
-    Route::get('/unit/{unit}/tenant/{tenant}/contract/{contract}', [PropertyContractController::class, 'show'])->name('contract');
+    Route::get('/unit/{unit}/tenant/{tenant}/contract/{contract}', [ContractController::class, 'show'])->name('contract');
 
     //force moveout
     Route::post('/contract/{contract}/moveout/force', [ContractController::class, 'force_moveout']);
@@ -240,9 +235,9 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     //Routes for Tenant
     Route::prefix('/tenant')->group(function(){
-        Route::get('/', [PropertyTenantController::class, 'index'])->name('tenant');
-        Route::get('/unlock', [PropertyTenantController::class, 'unlock'])->name('tenant');
-        Route::get('{tenant:uuid}', [PropertyTenantController::class, 'show'])->name('tenant');
+        Route::get('/', [TenantController::class, 'index'])->name('tenant');
+        Route::get('/unlock', [TenantController::class, 'unlock'])->name('tenant');
+        Route::get('{tenant:uuid}', [TenantController::class, 'show'])->name('tenant');
     
         Route::prefix('{tenant}')->group(function(){
             Route::get('bills', [BillController::class, 'get_bills'])->name('tenant-bill');
@@ -305,12 +300,9 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     
     //Routes for Owner
     Route::prefix('owner')->group(function(){
-        Route::get('/', [PropertyOwnerController::class, 'index'])->name('owner')->scopeBindings();
-        Route::get('/unlock', [PropertyOwnerController::class, 'unlock'])->name('owner');
-        Route::get('{owner:uuid}', [PropertyOwnerController::class, 'show'])->name('owner');
-
-
-
+        Route::get('/', [OwnerController::class, 'index'])->name('owner')->scopeBindings();
+        Route::get('/unlock', [OwnerController::class, 'unlock'])->name('owner');
+        Route::get('{owner:uuid}', [OwnerController::class, 'show'])->name('owner');
 
         Route::prefix('{owner}')->group(function(){
             Route::prefix('representative')->group(function(){
@@ -343,14 +335,14 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         });      
     });
 
-    Route::get('/guest/{guest}/bill/{bill}/edit', [PropertyBillController::class, 'edit_bill'])->name('bill');
+    Route::get('/guest/{guest}/bill/{bill}/edit', [BillController::class, 'edit_bill'])->name('bill');
   
     //Routes for Bill
     Route::prefix('bill')->group(function(){
         Route::get('{type}/{type_id?}/{batch_no?}/{drafts?}', [BillController::class, 'get_bills'])->name('bill');
-        Route::get('export/status/{status?}/particular/{particular?}/date/{date?}', [PropertyBillController::class, 'export']);
+        Route::get('export/status/{status?}/particular/{particular?}/date/{date?}', [BillController::class, 'export']);
         // Route::get('customized/{batch_no}',[PropertyBillController::class,'edit'])->name('bill');
-        Route::get('{random_str}/delete/{count}', [PropertyBillController::class, 'confirm_bill_deletion'])->name('bill');
+        Route::get('{random_str}/delete/{count}', [BillController::class, 'confirm_bill_deletion'])->name('bill');
 
         Route::get('/batch/{batch_no}/drafts', [BillController::class, 'drafts'])->name('bill');
        
@@ -379,16 +371,16 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
 
         Route::get('{accountPayable}', [PropertyAccountPayableController::class, 'show'])->name('accountpayable');
-        Route::get('{accountPayable}/liquidation/step-1', [PropertyLiquidationController::class, 'step1'])->name('accountpayable');
-        Route::post('{accountPayable}/liquidation/step-1', [PropertyLiquidationController::class, 'step1'])->name('accountpayable');
-        Route::get('{accountPayable}/liquidation/step-2', [PropertyLiquidationController::class, 'step2'])->name('accountpayable');
-        Route::get('{accountPayable}/liquidation/{liquidation}/export', [PropertyLiquidationController::class, 'export'])->name('accountpayable');
-        Route::get('{accountPayable}/export/complete', [PropertyLiquidationController::class,'export_complete'])->name('accountpayable');
+        Route::get('{accountPayable}/liquidation/step-1', [LiquidationController::class, 'step1'])->name('accountpayable');
+        Route::post('{accountPayable}/liquidation/step-1', [LiquidationController::class, 'step1'])->name('accountpayable');
+        Route::get('{accountPayable}/liquidation/step-2', [LiquidationController::class, 'step2'])->name('accountpayable');
+        Route::get('{accountPayable}/liquidation/{liquidation}/export', [LiquidationController::class, 'export'])->name('accountpayable');
+        Route::get('{accountPayable}/export/complete', [LiquidationController::class,'export_complete'])->name('accountpayable');
 
         
         Route::get('{accountPayable}/download', [PropertyAccountPayableController::class, 'download']);
 
-        Route::controller(AccountPayableController::class)->group(function () {
+        Route::controller(RequestForPurchaseController::class)->group(function () {
     
             Route::get('{accountPayable}', 'show')->name('accountpayable');
             Route::get('{id}/attachment',  'download');
@@ -460,14 +452,14 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     //Routes for Concern
     Route::prefix('concern')->group(function(){
-        Route::get('/', [PropertyConcernController::class, 'index'])->name('concern');
+        Route::get('/', [ConcernController::class, 'index'])->name('concern');
         Route::get('create', [ConcernController::class, 'create'])->name('concern');
         Route::get('{concern}/edit', [ConcernController::class, 'edit'])->name('concern');
     });
 
     //Routes for Team
     Route::prefix('user')->group(function(){
-        Route::get('/', [PropertyPersonnelController::class, 'index'])->name('user');
+        Route::get('/', [PersonnelController::class, 'index'])->name('user');
         Route::get('{random_str}/create', [UserController::class, 'create'])->name('user');
 
 
@@ -496,7 +488,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::get('/owner_contract', [PropertyController::class, 'show_owner_contract']);
 
-    Route::get('roles', [PropertyRoleController::class, 'index']);
+    Route::get('roles', [RoleController::class, 'index']);
     });
 
     // owner portal - unit detail

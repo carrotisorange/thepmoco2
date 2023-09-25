@@ -83,7 +83,6 @@ class PropertyController extends Controller
     public function store($validatedData)
     {
          $validatedData['uuid'] = Str::uuid();
-
          $validatedData['mobile'] = auth()->user()->mobile;
          $validatedData['email'] = auth()->user()->email;
 
@@ -493,13 +492,13 @@ class PropertyController extends Controller
     public function save_unit_stats($property_uuid)
     {
         UnitStats::firstOrCreate([
-            'total' => app('App\Http\Controllers\UnitController')->get_property_units($property_uuid, '', '', '')->count(),
-            'vacant' => app('App\Http\Controllers\UnitController')->get_property_units($property_uuid, 1,'', '')->count(),
-            'occupied' => app('App\Http\Controllers\UnitController')->get_property_units($property_uuid, 2,'', '')->count(),
-            'dirty' => app('App\Http\Controllers\UnitController')->get_property_units($property_uuid, 3,'', '')->count(),
-            'reserved' => app('App\Http\Controllers\UnitController')->get_property_units($property_uuid, 4,'', '')->count(),
-            'under_maintenance' => app('App\Http\Controllers\UnitController')->get_property_units($property_uuid, 5,'', '')->count(),
-            'pending' => app('App\Http\Controllers\UnitController')->get_property_units($property_uuid, 6,'', '')->count(),
+            'total' => app('App\Http\Controllers\UnitController')->getUnits($property_uuid, '', '', '')->count(),
+            'vacant' => app('App\Http\Controllers\UnitController')->getUnits($property_uuid, 1,'', '')->count(),
+            'occupied' => app('App\Http\Controllers\UnitController')->getUnits($property_uuid, 2,'', '')->count(),
+            'dirty' => app('App\Http\Controllers\UnitController')->getUnits($property_uuid, 3,'', '')->count(),
+            'reserved' => app('App\Http\Controllers\UnitController')->getUnits($property_uuid, 4,'', '')->count(),
+            'under_maintenance' => app('App\Http\Controllers\UnitController')->getUnits($property_uuid, 5,'', '')->count(),
+            'pending' => app('App\Http\Controllers\UnitController')->getUnits($property_uuid, 6,'', '')->count(),
             'property_uuid' => $property_uuid
         ]);
 
@@ -640,5 +639,35 @@ class PropertyController extends Controller
         if($status === 'banned'){
             abort(403);
         }
+    }
+
+    public function get_property_types($user_id){
+        return UserProperty::join('users', 'user_id', 'users.id')
+        ->join('properties', 'property_uuid', 'properties.uuid')
+        ->join('types', 'properties.type_id', 'types.id')
+        ->select('*', DB::raw('count(*) as count'))
+        ->where('user_id', $user_id)
+        ->where('properties.status', 'active')
+        ->groupBy('type_id')
+        ->get();
+    }
+
+    public function get_properties($user_id, $search, $sortBy, $filterByPropertyType, $limitDisplayTo)
+    {
+        return UserProperty::join('users', 'user_id', 'users.id')
+        ->join('properties', 'property_uuid', 'properties.uuid')
+        ->join('types', 'type_id', 'types.id')
+        ->select('*')
+        ->where('user_id', $user_id)
+        ->where('user_properties.is_approved',1)
+        ->when($search, function($query, $search){
+        $query->where('property','like', '%'.$search.'%');
+        }) 
+            ->when($sortBy, function($query, $sortBy){
+        $query->orderBy('properties.'.$sortBy, 'desc');
+        })
+            ->when($filterByPropertyType, function($query, $filterByPropertyType){
+         $query->where('type_id',$filterByPropertyType);
+        })->paginate($limitDisplayTo);
     }
 }

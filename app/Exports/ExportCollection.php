@@ -1,32 +1,19 @@
 <?php
 
-  namespace App\Exports;
+namespace App\Exports;
 
-  use DB;
+use DB;
 
-  use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\FromCollection;
 
-  use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-  use App\Models\Collection;
+use App\Models\Collection;
 
-  use Illuminate\Contracts\View\View;
-
-  use Maatwebsite\Excel\Concerns\FromView;
-use Nette\Utils\Arrays;
 use Session;
 
 
 class ExportCollection implements FromCollection, WithHeadings {
-    // private $date;
-
-    // private $collections;
-
-    // public function __construct(Arrays $collections)
-    // {
-    //   // $this->date = $date;
-    //   $this->collections = $collections;
-    // }
 
    public function headings(): array {
 
@@ -57,23 +44,7 @@ class ExportCollection implements FromCollection, WithHeadings {
 
     }
 
-    // public function view(): View
-    // {
-    //     return view('properties.collections.export_dcr', [
-    //         'collections' => Collection::where('property_uuid', Session::get('property_uuid'))->get()
-    // ]);
-
-    // }
-
    public function collection(){
-
-      //  $collections = Collection::
-      //  join('bills', 'bills.id',' collections.bill_id')
-      //  ->join('units', 'collections.unit_uuid', 'units.uuid')
-      //  ->join('tenants', 'collections.tenant_uuid', 'tenants.uuid')
-      //  ->where('collections.property_uuid', Session::get('property_uuid'))->where('collections.is_posted', 1)
-      //  ->orderBy('ar_no')
-      //  ->get();
 
       $collections = Collection::
       select(

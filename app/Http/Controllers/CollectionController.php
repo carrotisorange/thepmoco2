@@ -23,6 +23,11 @@ use DB;
 class CollectionController extends Controller
 {
 
+    public function getLatestAr($property)
+    {
+        return Property::find($property)->collections()->posted()->max('ar_no')+1;
+    }
+
     public function get_collections(Property $property, $type, $type_id)
     {
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',11);
@@ -114,20 +119,9 @@ class CollectionController extends Controller
 
         if($format === 'pdf'){
             
-            $pdf = \PDF::loadView('properties.collections.export_dcr', $data);
+            $folder_path = 'properties.collections.export_dcr';
 
-            $pdf->output();
-
-            $canvas = $pdf->getDomPDF()->getCanvas();
-
-            $height = $canvas->get_height();
-            $width = $canvas->get_width();
-
-            $canvas->set_opacity(.2,"Multiply");
-
-            $canvas->set_opacity(.2);
-
-            $canvas->page_text($width/5, $height/2, Str::limit($property->property, 15), null, 50, array(0,0,0),1,1,-30);
+            $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
 
             $pdf_name = str_replace(' ', '_', $property->property).'_DCR_'.str_replace(' ', '_', $date).'.pdf';
 
@@ -176,7 +170,7 @@ class CollectionController extends Controller
          app('App\Http\Controllers\CollectionController')->delete_unposted_collections($tenant->uuid, $batch_no);
 
          //generate collection acknowledgement receipt no
-         $ar_no = app('App\Http\Controllers\AcknowledgementReceiptController')->get_latest_ar($property->uuid);
+         $ar_no = app('App\Http\Controllers\CollectionController')->getLatestAr($property->uuid);
 
          $counter = $this->get_selected_bills_count($batch_no, $tenant->uuid, $property->uuid);
 
@@ -220,7 +214,7 @@ class CollectionController extends Controller
             }  
 
 
-         $ar_id = app('App\Http\Controllers\AcknowledgementReceiptController')
+         $ar_id = app('App\Http\Controllers\CollectionController')
          ->store(
                   $tenant->uuid,
                   '',
@@ -257,6 +251,45 @@ class CollectionController extends Controller
 
          }
 
+    public function storeAr($tenant_uuid,$owner_uuid,$collection, $property_uuid, $user_id, $ar_no,
+             $mode_of_payment, $batch_no, $cheque_no, $bank, $date_deposited, $created_at, $attachment,
+             $proof_of_payment)
+             {
+
+             $ar_id = AcknowledgementReceipt::insertGetId([
+             'tenant_uuid' => $tenant_uuid,
+             'owner_uuid' => $owner_uuid,
+             'amount' => $collection,
+             'property_uuid' => $property_uuid,
+             'user_id' => $user_id,
+             'ar_no' => $ar_no,
+             'mode_of_payment' => $mode_of_payment,
+             'collection_batch_no' => $batch_no,
+             'cheque_no' => $cheque_no,
+             'bank' => $bank,
+             'date_deposited' => $date_deposited,
+             'created_at' => $created_at,
+             ]);
+
+             if(!$attachment == null)
+             {
+             AcknowledgementReceipt::where('id', $ar_id)
+             ->update([
+             'attachment' => $attachment->store('attachments')
+             ]);
+             }
+
+             if(!$proof_of_payment == null)
+             {
+             AcknowledgementReceipt::where('id', $ar_id)
+             ->update([
+             'proof_of_payment' => $proof_of_payment
+             ]);
+             }
+
+             return $ar_id;
+
+             }
     public function send_payment_to_tenant($tenant, $ar_no, $form, $payment_made, $user, $role, $collection)
      {
        $data = [

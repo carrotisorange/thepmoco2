@@ -86,7 +86,7 @@ class OwnerBillController extends Controller
     
        $folder_path = 'owners.bills.export';
 
-       $pdf = app('App\Http\Controllers\FileExportController')->generate_pdf($property, $data, $folder_path);
+       $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
 
        return $pdf->stream(Carbon::now()->format('M d, Y').'-'.$owner->owner.'-soa.pdf');
     }
