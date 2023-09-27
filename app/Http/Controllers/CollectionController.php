@@ -28,7 +28,7 @@ class CollectionController extends Controller
         return Property::find($property)->collections()->posted()->max('ar_no')+1;
     }
 
-    public function get_collections(Property $property, $type, $type_id)
+    public function getCollections(Property $property, $type='property', $type_id=null)
     {
         if(!app('App\Http\Controllers\UserRestrictionController')->isRestricted(12)){
             return abort(403);
@@ -206,6 +206,9 @@ class CollectionController extends Controller
                app('App\Http\Controllers\BillController')->update_bill_initial_payment($bill_id, $collection);
             }
          }
+
+  
+
             if(Session::has('payment_request_id')){
                 $proof_of_payment = PaymentRequest::where('id',Session::get('payment_request_id'))->pluck('proof_of_payment')->first();
           
@@ -217,24 +220,25 @@ class CollectionController extends Controller
                 }
             }  
 
+        //  $ar_id = app('App\Http\Controllers\AcknowledgementReceiptController')
+        //  ->store(
+        //           $tenant->uuid,
+        //           '',
+        //           Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->sum('collection'),
+        //           $property->uuid,
+        //           auth()->user()->id,
+        //           $ar_no,
+        //           $request->form,
+        //           $batch_no,
+        //           $request->check_no,
+        //           $request->bank,
+        //           $request->date_deposited,
+        //           $request->created_at,
+        //           $request->attachment,
+        //           $proof_of_payment,
+        //  );
 
-         $ar_id = app('App\Http\Controllers\CollectionController')
-         ->store(
-                  $tenant->uuid,
-                  '',
-                  Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->sum('collection'),
-                  $property->uuid,
-                  auth()->user()->id,
-                  $ar_no,
-                  $request->form,
-                  $batch_no,
-                  $request->check_no,
-                  $request->bank,
-                  $request->date_deposited,
-                  $request->created_at,
-                  $request->attachment,
-                  $proof_of_payment,
-         );
+             
 
          app('App\Http\Controllers\PointController')->store($property->uuid, auth()->user()->id, Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);
 
@@ -343,7 +347,7 @@ class CollectionController extends Controller
 
         $folder_path = 'tenants.collections.export';
 
-        $pdf = app('App\Http\Controllers\FileExportController')->generate_pdf($property, $data, $folder_path);
+        $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
 
         $pdf_name = str_replace(' ', '_', $property->property).'_AR_'.$collection->ar_no.'.pdf';
 

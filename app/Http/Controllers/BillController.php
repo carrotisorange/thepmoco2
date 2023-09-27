@@ -21,7 +21,7 @@ use App\Models\Particular;
 class BillController extends Controller
 {
 
-     public function get_bills(Property $property, $type, $type_id, $batch_no=null, $drafts=0){
+     public function get_bills(Property $property, $type='property', $type_id=null, $batch_no=null, $drafts=0){
 
          if(!app('App\Http\Controllers\UserRestrictionController')->isRestricted(11)){
             return abort(403);

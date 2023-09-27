@@ -86,7 +86,7 @@ peer" placeholder="Put your notes here." name="note_to_bill">{{ $note_to_bill }}
                 </div>
                 <div class="mt-5">
                     <p class="text-right">
-                        <x-form-button>Send</x-form-button>
+                        <x-button type="submit">Send</x-button>
                     </p>
                 </div>
             </form>

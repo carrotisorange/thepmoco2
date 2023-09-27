@@ -209,7 +209,9 @@ class PropertyGuestController extends Controller
 
         $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
 
-        return $pdf->stream($guest->guest.'-ar.pdf');
+        $pdf_name = str_replace(' ', '_', $property->property).'_AR_'.$collection->ar_no.'.pdf';
+
+        return $pdf->stream($pdf_name);
      }
 
     public function get_collection_data($guest, $collection, $balance)

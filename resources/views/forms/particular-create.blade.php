@@ -26,7 +26,7 @@
     </div> --}}
     <div class="mt-5">
         <p class="text-right">
-            <x-form-button>Create</x-form-button>
+            <x-button type="submit">Create</x-button>
         </p>
     </div>
 </form>

@@ -243,7 +243,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('bills', [BillController::class, 'get_bills'])->name('tenant-bill');
             Route::get('bills/{batch_no}/pay', [CollectionController::class, 'edit_collections'])->name('tenant');
             Route::patch('bills/{batch_no}/pay/update', [CollectionController::class, 'update_collections']);
-            Route::get('collections', [CollectionController::class,'get_collections'])->name('tenant');
+            Route::get('collections', [CollectionController::class,'getCollections'])->name('tenant');
             Route::get('payment_requests/{payment_request}',[CollectionController::class, 'show_payment_request'])->name('tenant');
             Route::get('contracts', [TenantContractController::class,'index']);
             Route::get('bill/export', [BillController::class, 'export_soa']);
@@ -339,7 +339,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
   
     //Routes for Bill
     Route::prefix('bill')->group(function(){
-        Route::get('{type}/{type_id?}/{batch_no?}/{drafts?}', [BillController::class, 'get_bills'])->name('bill');
+        Route::get('{type?}/{type_id?}/{batch_no?}/{drafts?}', [BillController::class, 'get_bills'])->name('bill');
         Route::get('export/status/{status?}/particular/{particular?}/date/{date?}', [BillController::class, 'export']);
         // Route::get('customized/{batch_no}',[PropertyBillController::class,'edit'])->name('bill');
         Route::get('{random_str}/delete/{count}', [BillController::class, 'confirm_bill_deletion'])->name('bill');
@@ -360,7 +360,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     
     //Routes for Collection
     Route::prefix('collection')->group(function(){
-        Route::get('{type}/{type_id?}', [CollectionController::class, 'get_collections'])->name('collection');
+        Route::get('{type?}/{type_id?}', [CollectionController::class, 'getCollections'])->name('collection');
 
     });
 

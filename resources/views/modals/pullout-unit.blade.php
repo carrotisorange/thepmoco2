@@ -50,7 +50,7 @@ peer" placeholder="Contract has expired." name="unenrollment_reason"></textarea>
                 </div>
                 <div class="mt-5">
                     <p class="text-right">
-                        <x-form-button></x-form-button>
+                        <x-button type="submit"></x-button>
                     </p>
                 </div>
             </form>
