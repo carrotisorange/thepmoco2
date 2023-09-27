@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Guest;
+use Illuminate\Http\Request;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -176,7 +178,6 @@ Route::get('/bill-delete-demo', function(){
     return view('help.bill-delete-demo');
 });
 
-
 //proprent
 
 Route::get('/proprent', function(){
@@ -226,9 +227,6 @@ Route::get('date-page', function(){
 Route::get('budget-page', function(){
     return view('proprent.budget-page');
 });
-
-
-
 
 //show this route if a user tries to access broken links
 Route::fallback(function () {

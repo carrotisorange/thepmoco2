@@ -46,6 +46,7 @@
         </x-td>
         @endforeach
     </tr>
+
     <tr>
         <x-th>
             Occupied Units</x-th>

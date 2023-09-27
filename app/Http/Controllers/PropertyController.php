@@ -564,8 +564,6 @@ class PropertyController extends Controller
 
     public function store_property_session($property_uuid)
     {
- 
-
         Session::put('property_uuid', Property::find($property_uuid)->uuid);
 
         Session::put('property', Property::find($property_uuid)->property);
@@ -593,6 +591,8 @@ class PropertyController extends Controller
         Session::put('property_remarks', Property::find($property_uuid)->remarks);
 
         Session::put('property_thumbnail', Property::find($property_uuid)->thumbnail);
+
+        app('App\Http\Controllers\UserRestrictionController')->store($property_uuid, auth()->user()->id);
         
         
     }

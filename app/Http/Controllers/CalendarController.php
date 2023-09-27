@@ -13,19 +13,17 @@ use App\Models\Unit;
 use Carbon\Carbon;
 use App\Models\Booking;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Gate;
-use DB;
-use App\Models\UserRestriction;
+
 
 class CalendarController extends Controller
 {
     public function index(Property $property){
 
+        app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
+
         if(!app('App\Http\Controllers\UserRestrictionController')->isRestricted(4)){
             return abort(403);
         }
-
-        app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
 
         app('App\Http\Controllers\PropertyController')->save_unit_stats($property->uuid);
 

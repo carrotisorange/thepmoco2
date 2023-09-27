@@ -24,7 +24,7 @@ class UserRestrictionController extends Controller
               'user_id' => $user_id,
               'property_uuid' => $property_uuid,
               'restriction_id' => $restriction_id,
-              'is_approved' => 0,
+              'is_approved' => 1,
             ]
             );
           }
