@@ -1,7 +1,7 @@
 <nav aria-label="Sidebar" class="hidden md:block md:flex-shrink-0 md:bg-white overflow-auto h-screen pb-32">
     <div class="relative flex w-22 flex-col space-y-3 p-3">
         {{-- @foreach(App\Models\Feature::where('is_active',1)->get() as $feature->feature) --}}
-        @foreach(App\Models\UserRestriction::where('user_id',auth()->user()->id)->where('restriction_id', 2)->where('is_approved',1)->get() as $feature)
+        @foreach(App\Models\UserRestriction::where('user_id',auth()->user()->id)->where('restriction_id', 2)->where('is_approved',1)->groupBy('feature_id')->orderBy('feature_id', 'asc')->get() as $feature)
             @if($feature->feature->is_active)
                 @if(Session::get('property_uuid'))
                     @if($feature->id === 11)

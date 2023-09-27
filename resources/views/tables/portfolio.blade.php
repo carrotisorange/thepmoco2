@@ -8,7 +8,7 @@
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
                       {{
-                Str::limit($property->property,10) }} <a href="/property/{{ $property->property_uuid }}/edit"><i
+                Str::limit($property->property) }} <a href="/property/{{ $property->property_uuid }}/edit"><i
                         class="fa-solid fa-pen-to-square"></i></a>
             </th>
             @endforeach
@@ -23,7 +23,7 @@
             <th scope="col"
                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-light text-gray-900 sm:pl-6">
              {{
-            Str::limit($property->type,10) }}
+            Str::limit($property->type) }}
             </th>
             @endforeach
         </tr>
