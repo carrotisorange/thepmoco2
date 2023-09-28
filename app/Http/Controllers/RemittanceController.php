@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Property;
 use App\Models\Remittance;
 use App\Models\DeedOfSale;

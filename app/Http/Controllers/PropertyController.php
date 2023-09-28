@@ -27,9 +27,9 @@ use App\Models\City;
 use App\Models\Barangay;
 
 class PropertyController extends Controller
-{   
+{
     public function index()
-    {        
+    {
         $this->destroy_property_session();
 
         $this->is_user_allowed_to_access(auth()->user()->status);
@@ -45,13 +45,13 @@ class PropertyController extends Controller
         $tenant = '8';
 
         $owner = '7';
-        
+
         if($current_user_role_id == $sales)
         {
             return redirect('/dashboard/sales');
         }
         elseif($current_user_role_id == $dev)
-        {   
+        {
            return redirect('/dashboard/dev');
         }
         elseif($current_user_role_id == $tenant)
@@ -72,14 +72,14 @@ class PropertyController extends Controller
     public function create($random_str)
     {
         // $this->authorize('is_portfolio_create_allowed');
-        
+
         return view('properties.create', [
             'random_str' => $random_str,
             'types' => Type::all(),
         ]);
     }
 
-   
+
     public function store($validatedData)
     {
          $validatedData['uuid'] = Str::uuid();
@@ -126,7 +126,7 @@ class PropertyController extends Controller
              ->whereBetween('created_at', [$start, $end])
              ->orderBy('created_at')
              ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-           
+
              ->pluck('month_year');
         }elseif($value == '90_days')
         {
@@ -140,7 +140,7 @@ class PropertyController extends Controller
              ->whereBetween('created_at', [$start, $end])
              ->orderBy('created_at')
              ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-           
+
              ->pluck('month_year');
         }else{
             $occupancy_dates = UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'),
@@ -155,7 +155,7 @@ class PropertyController extends Controller
         }
 
         return $occupancy_dates;
-       
+
     }
 
     public function get_occupancy_rate_values($value)
@@ -310,16 +310,16 @@ class PropertyController extends Controller
             $tenants = Tenant::where('property_uuid', Session::get('property_uuid'))->get();
 
             foreach($tenants as $tenant){
-            
+
             $balance = Bill::where('tenant_uuid', $tenant->uuid)->posted()->sum('bill') - Collection::where('tenant_uuid', $tenant->uuid)->posted()->sum('collection');
-        
+
             if($balance > 0){
                 $delinquents[] = [
                     'balance' => $balance,
                     'tenant' => $tenant->tenant,
                     'tenant_uuid' => $tenant->uuid,
                 ];
-            } 
+            }
 
             return $delinquents;
         }
@@ -329,14 +329,14 @@ class PropertyController extends Controller
 
             foreach($owners as $owner){
             $balance = Bill::where('owner_uuid', $owner->uuid)->posted()->sum('bill') - Collection::where('owner_uuid', $owner->uuid)->posted()->sum('collection');
-        
+
             if($balance > 0){
                 $delinquents[] = [
                     'balance' => $balance,
                     'owner' => $owner->owner,
                     'owner_uuid' => $owner->uuid,
                 ];
-            } 
+            }
 
         }
 
@@ -348,14 +348,14 @@ class PropertyController extends Controller
 
             foreach($guests as $guest){
             $balance = Bill::where('guest_uuid', $guest->uuid)->posted()->sum('bill') - Collection::where('guest_uuid', $guest->uuid)->posted()->sum('collection');
-        
+
             if($balance > 0){
                 $delinquents[] = [
                     'balance' => $balance,
                     'guest' => $guest->guest,
                     'guest_uuid' => $guest->uuid,
                 ];
-            } 
+            }
 
         }
 
@@ -442,7 +442,7 @@ class PropertyController extends Controller
         ->whereDate('created_at', Carbon::today())
         ->count();
 
-        if($timestamps<=0){ 
+        if($timestamps<=0){
             DB::table('timestamps')
               ->insert([
                 'user_id' => auth()->user()->id,
@@ -474,7 +474,7 @@ class PropertyController extends Controller
     }
 
     public function show(Property $property)
-    {  
+    {
         app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
 
         // $this->authorize('is_portfolio_read_allowed');
@@ -485,10 +485,10 @@ class PropertyController extends Controller
 
         return view('properties.show',[
             'property' => $property,
-        ]); 
+        ]);
     }
 
-    
+
     public function save_unit_stats($property_uuid)
     {
         UnitStats::firstOrCreate([
@@ -505,7 +505,7 @@ class PropertyController extends Controller
     }
 
     public function edit(Property $property)
-    { 
+    {
         // $this->authorize('is_portfolio_update_allowed');
 
         return view('properties.edit',[
@@ -529,10 +529,10 @@ class PropertyController extends Controller
             Contract::where('property_uuid', $uuid)->delete();
             Property::where('uuid', $uuid)->delete();
             UserProperty::where('property_uuid')->delete();
-        
+
              return redirect('/properties')->with('success','Property is successfully deleted.');
         }
-       
+
     }
 
     public function show_tenant_contract($uuid)
@@ -567,7 +567,7 @@ class PropertyController extends Controller
         Session::put('property_uuid', Property::find($property_uuid)->uuid);
 
         Session::put('property', Property::find($property_uuid)->property);
-         
+
         Session::put('property_address', $this->get_property_address($property_uuid));
 
         Session::put('property_registered_tin', Property::find($property_uuid)->registered_tin);
@@ -583,7 +583,7 @@ class PropertyController extends Controller
         Session::put('property_email', Property::find($property_uuid)->email);
 
         Session::put('property_type', Property::find($property_uuid)->type->type);
-        
+
         Session::put('property_mobile', Property::find($property_uuid)->mobile);
 
         Session::put('property_facebook_page', Property::find($property_uuid)->facebook_page);
@@ -593,12 +593,11 @@ class PropertyController extends Controller
         Session::put('property_thumbnail', Property::find($property_uuid)->thumbnail);
 
         app('App\Http\Controllers\UserRestrictionController')->store($property_uuid, auth()->user()->id);
-        
-        
+
     }
 
     public function get_property_address($property_uuid){
-        
+
         $country = Country::where('id',(Property::where('uuid', $property_uuid)->pluck('country_id')->first()))->pluck('country')->first();
 
         $province = Province::where('id',(Property::where('uuid', $property_uuid)->pluck('province_id')->first()))->pluck('province')->first();
@@ -608,7 +607,7 @@ class PropertyController extends Controller
         $barangay = Property::where('uuid', $property_uuid)->pluck('barangay')->first();
 
         $address = $country.', '.$province.', '.$city.', '.$barangay;
-        
+
 
         return $address;
     }
@@ -623,10 +622,10 @@ class PropertyController extends Controller
     public function is_property_exist()
     {
         if(!User::find(auth()->user()->id)->user_properties->count()){
-            return true; 
-        }else{ 
-            return false; 
-        } 
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public function generate_uuid()
@@ -662,7 +661,7 @@ class PropertyController extends Controller
         ->where('user_properties.is_approved',1)
         ->when($search, function($query, $search){
         $query->where('property','like', '%'.$search.'%');
-        }) 
+        })
             ->when($sortBy, function($query, $sortBy){
         $query->orderBy('properties.'.$sortBy, 'desc');
         })
