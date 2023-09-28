@@ -64,7 +64,6 @@ class PropertyController extends Controller
         }
         elseif($current_user_role_id != ['12', '10', '8', '7'])
         {
-
             return view('properties.index');
         }
     }
@@ -473,19 +472,31 @@ class PropertyController extends Controller
         ]);
     }
 
+    // public function show(Property $property)
+    // {
+    //     app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
+
+    //     app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',1);
+
+    //     $this->isUserApproved(auth()->user()->id, $property->uuid);
+
+    //     return view('properties.show',[
+    //         'property' => $property,
+    //     ]);
+    // }
+
     public function show(Property $property)
-    {
-        app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
-
-        // $this->authorize('is_portfolio_read_allowed');
-
+    {        
+        if(!app('App\Http\Controllers\UserRestrictionController')->isRestricted(1)){
+            return abort(403);
+        }
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',1);
 
-        $this->isUserApproved(auth()->user()->id, $property->uuid);
+        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
 
-        return view('properties.show',[
+        return view('properties.dashboard.index',[
             'property' => $property,
-        ]);
+        ]); 
     }
 
 

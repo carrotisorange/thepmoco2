@@ -9,8 +9,6 @@ class PropertyCreateSuccessComponent extends Component
     public $property;
 
     public function redirectToUnitPage(){
-        
-
         return redirect('property/'.$this->property->uuid.'/unit');
     }
 

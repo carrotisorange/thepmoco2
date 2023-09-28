@@ -80,7 +80,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::get('delete', 'destroy');
     });
 
-    Route::get('/', [PropertyDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/', [PropertyController::class, 'show'])->name('dashboard');
+    Route::get('dashboard', [PropertyController::class, 'show'])->name('dashboard');
 
     Route::get('user_property/{user_property}/remove-access',[UserPropertyController::class, 'remove_access']);
     Route::get('user_property/{user_property}/restore-access',[UserPropertyController::class, 'restore_access']);

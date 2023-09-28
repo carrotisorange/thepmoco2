@@ -58,7 +58,7 @@
                     </label>
                     <div class="mt-1 sm:mt-0 sm:col-span-2">
                         <div class="max-w-lg flex rounded-md shadow-sm">
-                            <x-select name="type_id" id="type_id" autocomplete="type_id" wire:model.lazy="type_id">
+                            <x-select name="type_id" id="type_id" disabled autocomplete="type_id" wire:model.lazy="type_id">
                                 @foreach($types as $type)
                                 <option value="{{ $type->id }}" {{ old('type_id', $property_details->type_id) ==
                                     $type->id ?

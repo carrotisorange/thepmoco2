@@ -386,7 +386,7 @@ class CollectionController extends Controller
       ];
      }
 
-    function shortNumber($number = null)
+    static function shortNumber($number = null)
     {
         if($number == 0) {
             $short = '0.00';
