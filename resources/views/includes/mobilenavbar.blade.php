@@ -1,5 +1,5 @@
 <div class="pt-4 pb-1 border-t border-gray-200 overflow-y-auto h-screen pb-20">
-@foreach(App\Models\UserRestriction::where('user_id',auth()->user()->id)->where('restriction_id', 2)->where('is_approved',1)->groupBy('feature_id')->orderBy('feature_id', 'asc')->get() as $feature)
+  @foreach(App\Models\UserRestriction::where('user_id',auth()->user()->id)->where('property_uuid', Session::get('property_uuid'))->where('restriction_id', 2)->where('is_approved',1)->groupBy('feature_id')->orderBy('feature_id', 'asc')->get() as $feature)
     <div class="pt-2 pb-3 space-y-1">
       @if($feature->feature->is_active)
         @if(Session::get('property_uuid'))

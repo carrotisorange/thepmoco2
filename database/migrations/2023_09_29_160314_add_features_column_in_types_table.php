@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePropertyFeaturesTable extends Migration
+class AddFeaturesColumnInTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreatePropertyFeaturesTable extends Migration
      */
     public function up()
     {
-        Schema::create('property_features', function (Blueprint $table) {
-            $table->id();
-            $table->foreignUuid('property_type_id')->constrained();
-            $table->longText('features');
-            $table->timestamps();
+        Schema::table('types', function (Blueprint $table) {
+            $table->longText('features')->nullable();
         });
     }
 
@@ -28,6 +25,8 @@ class CreatePropertyFeaturesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('property_features');
+        Schema::table('types', function (Blueprint $table) {
+            //
+        });
     }
 }

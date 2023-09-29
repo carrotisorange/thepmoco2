@@ -24,7 +24,7 @@ class TenantController extends Controller
       //core functions
     public function index(Property $property)
     {
-        if(!app('App\Http\Controllers\UserRestrictionController')->isRestricted(5)){
+        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(5, auth()->user()->id)){
             return abort(403);
         }
 

@@ -25,7 +25,7 @@ class CollectionController extends Controller
 
     public function index(Property $property)
     {
-        if(!app('App\Http\Controllers\UserRestrictionController')->isRestricted(12)){
+        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(12, auth()->user()->id)){
             return abort(403);
         }
 
@@ -50,7 +50,7 @@ class CollectionController extends Controller
 
     // public function getCollections(Property $property, $type='property', $type_id=null)
     // {
-    //     if(!app('App\Http\Controllers\UserRestrictionController')->isRestricted(12)){
+    //     if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(12)){
     //         return abort(403);
     //     }
 

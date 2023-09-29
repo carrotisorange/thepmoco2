@@ -17,7 +17,7 @@ class AccountPayableController extends Controller
 
     public function index(Property $property, $status=null)
     {
-        if(!app('App\Http\Controllers\UserRestrictionController')->isRestricted(13)){
+        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(13, auth()->user()->id)){
             return abort(403);
         }
 

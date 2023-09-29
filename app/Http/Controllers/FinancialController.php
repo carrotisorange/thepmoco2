@@ -12,7 +12,7 @@ class FinancialController extends Controller
 {
     public function index($property_uuid){
 
-        if(!app('App\Http\Controllers\UserRestrictionController')->isRestricted(14)){
+        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(14, auth()->user()->id)){
             return abort(403);
         }
 

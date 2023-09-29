@@ -23,7 +23,7 @@ class BillController extends Controller
 
      public function index(Property $property, $batch_no=null, $drafts=0){
 
-         if(!app('App\Http\Controllers\UserRestrictionController')->isRestricted(11)){
+         if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(11, auth()->user()->id)){
             return abort(403);
          }
 

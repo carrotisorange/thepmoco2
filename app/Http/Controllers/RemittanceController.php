@@ -12,7 +12,7 @@ class RemittanceController extends Controller
 {
     public function index(Property $property){
 
-        if(!app('App\Http\Controllers\UserRestrictionController')->isRestricted(16)){
+        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(16, auth()->user()->id)){
             return abort(403);
         }
 

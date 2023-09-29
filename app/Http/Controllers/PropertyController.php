@@ -30,7 +30,6 @@ class PropertyController extends Controller
 {
     public function index()
     {
-
         $this->destroy_property_session();
 
         $this->is_user_allowed_to_access(auth()->user()->status);
@@ -308,6 +307,7 @@ class PropertyController extends Controller
         $delinquents = array();
 
         if($user_type == 'tenant'){
+
             $tenants = Tenant::where('property_uuid',$property_uuid)->get();
 
             foreach($tenants as $tenant){
@@ -322,13 +322,14 @@ class PropertyController extends Controller
                 ];
             }
 
-            return $delinquents;
         }
 
         }elseif($user_type == 'owner'){
+
             $owners = Owner::where('property_uuid', $property_uuid)->get();
 
             foreach($owners as $owner){
+                
             $balance = Bill::where('owner_uuid', $owner->uuid)->posted()->sum('bill') - Collection::where('owner_uuid', $owner->uuid)->posted()->sum('collection');
 
             if($balance > 0){
@@ -341,13 +342,12 @@ class PropertyController extends Controller
 
         }
 
-        return $delinquents;
-
         }else{
 
             $guests = Guest::where('property_uuid', $property_uuid)->get();
 
             foreach($guests as $guest){
+
             $balance = Bill::where('guest_uuid', $guest->uuid)->posted()->sum('bill') - Collection::where('guest_uuid', $guest->uuid)->posted()->sum('collection');
 
             if($balance > 0){
@@ -360,9 +360,9 @@ class PropertyController extends Controller
 
         }
 
-            return $delinquents;
-
         }
+
+        return $delinquents;
     }
 
     public function get_tenant_movein_values()
@@ -480,7 +480,7 @@ class PropertyController extends Controller
 
         app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
 
-        if(!app('App\Http\Controllers\UserRestrictionController')->isRestricted(1)){
+        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(1, auth()->user()->id)){
             return abort(403);
         }
 

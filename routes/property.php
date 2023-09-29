@@ -95,6 +95,14 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::post('{random_str}/store',[BuildingController::class, 'store']);
     });
 
+    //Routes for Bulletin
+    Route::prefix('bulletin')->group(function(){
+        // calendar
+        Route::get('/', function(){
+           return view('layouts.under-construction-general');
+        });
+    });
+
     //Route for utilities
     Route::prefix('utilities')->group(function(){
         Route::get('/',[PropertyUtilityController::class, 'index'])->name('utilities');
@@ -354,6 +362,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::get('/', [FinancialController::class, 'index'])->name('financial');
         Route::get('{type}/export/{filter}', [FinancialController::class, 'export']);
     });
+
+
 
 
     Route::get('dcr/{date}/{format}', [CollectionController::class, 'export_dcr']);

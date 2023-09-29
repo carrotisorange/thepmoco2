@@ -21,7 +21,7 @@ class CalendarController extends Controller
 
         app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
 
-        if(!app('App\Http\Controllers\UserRestrictionController')->isRestricted(4)){
+        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(4, auth()->user()->id)){
             return abort(403);
         }
 

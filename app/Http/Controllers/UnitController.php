@@ -18,7 +18,7 @@ class UnitController extends Controller
 
       public function show(Property $property, Unit $unit, $action=null)
     {        
-         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens one',2);
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens one',2);
 
         return view('units.show',[
             'property' => $property,
@@ -40,7 +40,7 @@ class UnitController extends Controller
     {   
         app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
 
-        if(!app('App\Http\Controllers\UserRestrictionController')->isRestricted(3)){
+        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(3, auth()->user()->id)){
             return abort(403);
          }
 

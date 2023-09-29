@@ -566,7 +566,7 @@
 
                                 </div>
                                 <div button type="button"
-                                    class="items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm 
+                                    class="items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm
 text-white text-center bg-gray-900 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">View
                                     More</button>
                                 </div>
@@ -867,8 +867,8 @@ text-white text-center bg-gray-900 hover:bg-purple-700 focus:outline-none focus:
                             </a>
                         </div>
                         <div class="mt-8 md:mt-0 md:order-1">
-                            <p class="text-center text-base text-gray-400">&copy; 2020 The PMO Co. All rights reserved.
-                            </p>
+                         <p class="text-center text-base text-gray-400">&copy; 2020 {{ env('APP_NAME') }}. All rights reserved.
+                        </p>
                         </div>
                     </div>
                 </footer>

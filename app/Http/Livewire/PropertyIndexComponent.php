@@ -19,15 +19,6 @@ class PropertyIndexComponent extends Component
         $this->limitDisplayTo = null;
     }
 
-    public function redirectToTheProperty(){
-        // if(Session::get('property_type') === 'HOA'){
-            return redirect('/property/'.Session::get('property_uuid').'/unit');
-        // }else{
-        //     return redirect('/property/'.Session::get('property_uuid'));
-        // }
-
-    }
-
     public function render()
     {
         $userId = auth()->user()->id;

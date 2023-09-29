@@ -18,7 +18,7 @@ class OwnerController extends Controller
 
     public function index(Property $property){
 
-        if(!app('App\Http\Controllers\UserRestrictionController')->isRestricted(8)){
+        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(8, auth()->user()->id)){
             return abort(403);
         }
 

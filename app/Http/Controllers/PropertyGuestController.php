@@ -22,7 +22,7 @@ class PropertyGuestController extends Controller
 {
     public function index(Property $property){
 
-        if(!app('App\Http\Controllers\UserRestrictionController')->isRestricted(7)){
+        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(7, auth()->user()->id)){
             return abort(403);
          }
 

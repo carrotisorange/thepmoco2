@@ -76,7 +76,7 @@
             For inquiries reach us at: {{ $property->email }} /
             {{ $property->mobile }}
         </h5>--}}
-        The PMO Co. Copyright &copy;
+      &copy; 2020 {{ env('APP_NAME') }}. All rights reserved.
         <?php echo date("Y");?>
     </footer>
 

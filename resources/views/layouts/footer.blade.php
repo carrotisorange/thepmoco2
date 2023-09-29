@@ -35,7 +35,7 @@
             </a>
         </div>
         <div class="mt-8 md:mt-0 md:order-1">
-            <p class="text-center text-base text-gray-400">&copy; 2020 The PMO Co. All rights reserved.
+            <p class="text-center text-base text-gray-400">&copy; 2020 {{ env('APP_NAME') }}. All rights reserved.
             </p>
         </div>
     </div>

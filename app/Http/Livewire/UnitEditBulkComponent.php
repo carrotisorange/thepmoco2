@@ -3,9 +3,9 @@
 namespace App\Http\Livewire;
 use App\Models\Unit;
 use App\Models\Tenant;
-use DB;
 use Illuminate\Validation\Rule;
 use Livewire\WithPagination;
+use Session;
 
 use Livewire\Component;
 
@@ -16,7 +16,7 @@ class UnitEditBulkComponent extends Component
     public $batch_no;
 
     public $search;
-    
+
     public $units;
 
     public function mount($batch_no)
@@ -50,7 +50,7 @@ class UnitEditBulkComponent extends Component
     }
 
     // public function updatedSelectAllUnits($selectedAllUnits)
-    // {   
+    // {
     //     if($selectedAllUnits)
     //     {
     //         $this->selectedUnits = $this->get_units()->pluck('uuid');
@@ -79,7 +79,7 @@ class UnitEditBulkComponent extends Component
                 return redirect('/property/'.Session::get('property_uuid').'/unit/')->with('success', 'Success!');
             }
             else
-            { 
+            {
                 return redirect('/property/'.Session::get('property_uuid').'/tenant/')->with('success', 'Success!');
             }
 
@@ -87,7 +87,7 @@ class UnitEditBulkComponent extends Component
             session()->flash('error', 'Something went wrong.');
         }
 
-      
+
     }
 
     // public function removeUnits()
@@ -101,7 +101,7 @@ class UnitEditBulkComponent extends Component
     //             Unit::destroy($unit);
 
     //             app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, -1, 5);
-                
+
     //             $this->units = $this->get_units();
 
     //             session()->flash('success', 'Success!');
@@ -111,14 +111,14 @@ class UnitEditBulkComponent extends Component
     // }
 
     public function get_units()
-    {   
+    {
         $units = Unit::search($this->search)
         ->where('property_uuid', Session::get('property_uuid'))
         ->orderBy('created_at', 'desc')
         ->get();
 
         if($this->batch_no != 'all'){
-            $units = $units->where('batch_no', $this->batch_no); 
+            $units = $units->where('batch_no', $this->batch_no);
         }
 
         return $units;

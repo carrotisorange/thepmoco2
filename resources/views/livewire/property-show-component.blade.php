@@ -111,9 +111,9 @@
                                                             </div>
                                                             <div class="flex items-center">
 
-                                                                <div class="text-3xl font-bold text-white mr-2">{{
-                                                                    App\Http\Controllers\CollectionController::shortNumber($collections->posted()->where('created_at', Carbon\Carbon::now()->month)->sum('collection'))
-                                                                    }}</div>
+                                                                <div class="text-3xl font-bold text-white mr-2">
+                                                                    {{App\Http\Controllers\CollectionController::shortNumber($collections->posted()->where('created_at', Carbon\Carbon::now()->month)->sum('collection'))}}
+                                                                </div>
                                                                 <?php $change_in_monthly_collections = App\Http\Controllers\CollectionController::divNumber($collections->posted()->where('created_at', Carbon\Carbon::now()->month())->sum('collection'), $collections->where('created_at', Carbon\Carbon::now()->subMonth())->sum('collection'))*100;?>
                                                                 @if($collections->where('created_at', Carbon\Carbon::now()->subMonth())->sum('collection') > $collections->posted()->where('created_at', Carbon\Carbon::now()->month())->sum('collection'))
                                                                 <div class="text-md font-medium text-red-500">{{
@@ -165,9 +165,9 @@
                                                             <div class="flex items-center">
 
 
-                                                                <div class="text-3xl font-bold text-white mr-2">{{
-                                                                    App\Http\Controllers\CollectionController::shortNumber($expenses->where('created_at', Carbon\Carbon::now()->month())->where('status', 'completed')->sum('amount'))
-                                                                    }}</div>
+                                                                <div class="text-3xl font-bold text-white mr-2">
+                                                                    {{App\Http\Controllers\CollectionController::shortNumber($expenses->where('created_at', Carbon\Carbon::now()->month())->where('status', 'completed')->sum('amount')) }}    
+                                                                </div>
                                                                 <?php $change_in_monthly_expenses = App\Http\Controllers\CollectionController::divNumber($expenses->where('created_at', Carbon\Carbon::now()->month())->where('status', 'completed')->sum('amount'), $expenses->where('created_at', Carbon\Carbon::now()->subMonth())->where('status', 'completed')->sum('amount'))*100;?>
                                                                 @if($expenses->where('created_at', Carbon\Carbon::now()->subMonth())->where('status', 'completed')->sum('amount') > $expenses->where('created_at', Carbon\Carbon::now()->month())->where('status', 'completed')->sum('amount'))
                                                                 <div class="text-md font-medium text-red-500">-{{
@@ -302,7 +302,7 @@
 
                                                 <div id="myTabContent">
 
-                                                    <div class=" rounded-lg dark:bg-gray-800 hidden" id="profile" role="tabpanel"
+                                                    <div class="rounded-lg dark:bg-gray-800 hidden" id="profile" role="tabpanel"
                                                         aria-labelledby="profile-tab">
                                                         <div
                                                             class="mt-3 mb-5 justify-center  grid grid-cols-2 gap-y-5 gap-x-2 sm:grid-cols-2 lg:grid-cols-2 lg:gap-x-2">
@@ -438,10 +438,10 @@
                                                                     class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                                                    @if($item->tenant_uuid)
                                                                                 <a target="_blank"
-                                                                                    href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $item->tenant_uuid }}/concern/{{ $item->id }}/edit">Respond</a>
+                                                                                    href="/property/{{ Session::get('property_uuid') }}/concern/{{ $item->id }}/edit">Respond</a>
                                                                                 @else
                                                                                 <a target="_blank"
-                                                                                    href="/property/{{ Session::get('property_uuid') }}/unit/{{ $item->unit_uuid }}/concern/{{ $item->id }}/edit">Respond</a>
+                                                                                    href="/property/{{ Session::get('property_uuid') }}/concern/{{ $item->id }}/edit">Respond</a>
                                                                                 @endif
                                                                 </div>
 
@@ -543,9 +543,7 @@
                                                                             <p class="text-sm font-medium text-gray-900">Total
                                                                                 Bills for Collection</p>
                                                                             <p class="mt-1 text-2xl font-semibold text-gray-500">
-                                                                                {{
-                                                                                App\Http\Controllers\CollectionController::shortNumber($bills->posted()->where('created_at', Carbon\Carbon::now()->month())->sum('bill'))
-                                                                                }}
+                                                                                {{ App\Http\Controllers\CollectionController::shortNumber($bills->posted()->where('created_at', Carbon\Carbon::now()->month())->sum('bill'))  }}
                                                                             </p>
                                                                         </div>
                                                                     </div>
@@ -565,9 +563,8 @@
                                                                             <p class="text-sm font-medium text-gray-900">
                                                                                 Collected Bills </p>
                                                                             <p class="mt-1 text-2xl font-semibold text-gray-500">
-                                                                                {{
-                                                                                App\Http\Controllers\CollectionController::shortNumber($collections->posted()->where('created_at', Carbon\Carbon::now()->month())->sum('collection'))
-                                                                                }}</p>
+                                                                                {{  App\Http\Controllers\CollectionController::shortNumber($collections->posted()->where('created_at', Carbon\Carbon::now()->month())->sum('collection'))  }}
+                                                                            </p>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -587,9 +584,8 @@
                                                                             <p class="text-sm font-medium text-gray-900">Total
                                                                                 Unpaid Collection:</p>
                                                                             <p class="mt-1 text-2xl font-semibold text-gray-500">
-                                                                                {{
-                                                                                App\Http\Controllers\CollectionController::shortNumber($bills->posted()->where('status', 'unpaid')->where('created_at', Carbon\Carbon::now()->month())->sum('bill'))
-                                                                                }}</p>
+                                                                                {{  App\Http\Controllers\CollectionController::shortNumber($bills->posted()->where('status', 'unpaid')->where('created_at', Carbon\Carbon::now()->month())->sum('bill')) }}
+                                                                            </p>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -657,7 +653,7 @@
                                                                         </div>
                                                                         <div class="flex-1 pl-1 mr-16">
                                                                             <div class="font-medium">{{ $item['tenant'] }} (T)</div>
-                                                                            <div class="font-light">{{App\Http\Controllers\CollectionController::shortNumber(number_format($item['balance'],2))}}</div>
+                                                                            <div class="font-light">{{App\Http\Controllers\CollectionController::shortNumber(($item['balance']))}}</div>
                                                                         </div>
 
                                                                     </div>
@@ -694,8 +690,7 @@
                                                                         <div class="flex-1 pl-1 mr-16">
                                                                             <div class="font-medium">{{ $item['owner'] }} (O)</div>
                                                                             <div class="font-light">{{
-                                                                                App\Http\Controllers\CollectionController::shortNumber(number_format($item['balance'],
-                                                                                2))
+                                                                                App\Http\Controllers\CollectionController::shortNumber(($item['balance']))
                                                                                 }}</div>
                                                                         </div>
 
@@ -730,8 +725,7 @@
                                                                         <div class="flex-1 pl-1 mr-16">
                                                                             <div class="font-medium">{{ $item['guest'] }} (G)</div>
                                                                             <div class="font-light">{{
-                                                                                App\Http\Controllers\CollectionController::shortNumber(number_format($item['balance'],
-                                                                                2))
+                                                                                App\Http\Controllers\CollectionController::shortNumber(($item['balance']))
                                                                                 }}</div>
                                                                         </div>
 
@@ -916,6 +910,7 @@
                             </div>
                         </div>
                     </div>
+                                </div>
 
                     <script>
                         function app() {
@@ -987,445 +982,4 @@
                     </script>
                 </div>
 
-                                <!-- income expense chart -->
-                                <div class="hidden">
-                                    <div class="bg-white mt-5 mr-5 pt-12 px-5 rounded-lg shadow-lg lg:my-10 sm:my-20 pb-4 col-span-4">
-                                        <div class="px-4 py-3 flex justify-end  sm:px-6">
-                                            <div>
-                                                {{-- <select wire:model="collectionLineValue"
-                                                    class="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
-                                                    <option value="30_days">30 days</option>
-                                                    <option value="90_days">90 days</option>
-                                                    <option value="this_year">This year</option>
-                                                </select> --}}
-                                            {{-- </div>
-                                        </div>
-                                        <div class="relative flex flex-col  break-words  mb-6 ">
-                                            <div class="p-4 flex-auto">
-                                                <!-- Chart -->
-                                                <div class="relative h-350-px">
-                                                    <canvas id="line-chart"></canvas>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" charset="utf-8">
-                                        </script>
-
-                                        <script type="text/javascript">
-                                            (function () {
-                                    /* Chart initialisations */
-                                    /* Line Chart */
-                                    var config = {
-
-                                    type: "line",
-                                    data: {
-                                        labels: {!!$collection_rate_date!!},
-                                        datasets: [
-                                        {
-                                            label: "Income",
-                                            backgroundColor: "#9370DB",
-                                            borderColor: "#9370DB",
-                                            data: {!!$collection_rate_value!!},
-                                            fill: false,
-                                        },
-                                        {
-                                            label: "Expense",
-                                            fill: false,
-                                            backgroundColor: "#DB7093",
-                                            borderColor: "	#DB7093",
-                                            data: {!!$expense_rate_value!!},
-                                        },
-                                        ],
-                                    },
-                                    options: {
-                                        maintainAspectRatio: false,
-                                        responsive: true,
-                                        title: {
-                                        display: false,
-                                        text: "Sales Charts",
-                                        fontColor: "gray",
-                                        },
-                                        legend: {
-                                        labels: {
-                                            fontColor: "gray",
-                                        },
-                                        align: "end",
-                                        position: "bottom",
-                                        },
-                                        tooltips: {
-                                        mode: "index",
-                                        intersect: false,
-                                        },
-                                        hover: {
-                                        mode: "nearest",
-                                        intersect: true,
-                                        },
-                                        scales: {
-                                        xAxes: [
-                                            {
-                                            ticks: {
-                                                fontColor: "rgba(169,169,169,.7)",
-                                            },
-                                            display: true,
-                                            scaleLabel: {
-                                                display: false,
-                                                labelString: "Month",
-                                                fontColor: "gray",
-                                            },
-                                            gridLines: {
-                                                display: false,
-                                                borderDash: [2],
-                                                borderDashOffset: [2],
-                                                color: "rgba(147,112,219,0.3)",
-                                                zeroLineColor: "rgba(0, 0, 0, 0)",
-                                                zeroLineBorderDash: [2],
-                                                zeroLineBorderDashOffset: [2],
-                                            },
-                                            },
-                                        ],
-                                        yAxes: [
-                                            {
-                                            ticks: {
-                                                fontColor: "rgba(169,169,169,.7)",
-                                            },
-                                            display: true,
-                                            scaleLabel: {
-                                                display: false,
-                                                labelString: "Value",
-                                                fontColor: "gray",
-                                            },
-                                            gridLines: {
-                                                borderDash: [3],
-                                                borderDashOffset: [3],
-                                                drawBorder: false,
-                                                color: "",
-                                                zeroLineColor: "rgba(147,112,219,0)",
-                                                zeroLineBorderDash: [2],
-                                                zeroLineBorderDashOffset: [2],
-                                            },
-                                            },
-                                        ],
-                                        },
-                                    },
-                                    };
-                                    var ctx = document.getElementById("line-chart").getContext("2d");
-                                    window.myLine = new Chart(ctx, config);
-                                })();
-                                    </script>
-
-
-                                    </div>
-                                </div>
-
-                                <!-- collection rate -->
-
-
-                                <!-- occupancy graph -->
-                                <div>
-                                    <div class="lg:my-10 sm:my-5 mt-10 col-span-2 mx-2">
-                                        <div class=" px-2 bg-white h-full py-10 rounded-lg shadow-md  w-full">
-                                            <h2 class="px-2 font-semibold text-lg">Occupancy Graph</h2>
-                                            <canvas class="" id="chartLine"></canvas>
-                                            <!-- graph chart.js -->
-                                            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-                                            <!-- chart line -->
-                                            <script>
-                                                const data = {
-                                                labels: {!!$occupancy_rate_date!!},
-                                                datasets: [
-                                                {
-                                                label: "Occupancy ",
-                                                backgroundColor: "rgba(244, 114, 182)",
-                                                borderColor: "rgba(244, 114, 182)",
-                                                data: {!!$occupancy_rate_value!!},
-                                                },
-
-                                                ],
-
-                                                };
-
-                                                const configLineChart = {
-                                                type: "line",
-                                                data,
-                                                options: {},
-                                                };
-
-                                                var chartLine = new Chart(
-                                                document.getElementById("chartLine"),
-                                                configLineChart
-                                                );
-                                            </script>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-
-
-
-
-                                </div>
-
-
-                            </div>
-
-
-
-                    </div>
-
-
-                        <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script>
-
-                    </div>
-
-
-
-
-                    <div class="lg:my-6 sm:my-2 lg:mx-12 sm:mx-2 w-full col-span-3">
-
-                        <!-- calendar -->
-                        <div
-                            class='flex justify-center items-center mb-8 sm:mx-0 lg:mx-5 bg-white shadow-md rounded-lg p-1 max-w-full '>
-                            <?php $period = Carbon\CarbonPeriod::create(now(), now()->addDays(6)) ;?>
-                            @foreach ($period as $date)
-                            @if($date->format('D') == Carbon\Carbon::now()->format('D') )
-                            <div
-                                class='flex group bg-purple-300 shadow-lg light-shadow rounded-lg mx-1 cursor-pointer justify-center relative w-16 content-center'>
-                                <span class="flex h-3 w-3 absolute -top-1 -right-1">
-                                    <span
-                                        class="animate-ping absolute group-hover:opacity-75 opacity-0 inline-flex h-full w-full rounded-full bg-purple-400 "></span>
-                                    <span class="relative inline-flex rounded-full h-3 w-3 bg-purple-500"></span>
-                                </span>
-                                <div class='flex items-center px-4 py-4'>
-                                    <div class='text-center'>
-                                        <p class='text-purple-900 text-sm'> {{ $date->format('D') }} </p>
-                                        <p class='text-purple-900  mt-3 font-bold'> {{ $date->format('d') }} </p>
-                                    </div>
-                                </div>
-                            </div>
-                            @else
-                            <div
-                                class='flex group hover:bg-purple-100 hover:shadow-lg hover-light-shadow rounded-lg mx-1 transition-all	duration-300	 cursor-pointer justify-center w-10'>
-                                <div class='flex items-center px-4 py-4'>
-                                    <div class='text-center'>
-                                        <p
-                                            class='text-gray-900 group-hover:text-purple-900 text-sm transition-all	duration-300'>
-                                            {{ $date->format('D') }}
-                                        </p>
-                                        <p
-                                            class='text-gray-900 group-hover:text-purple-900 mt-3 group-hover:font-bold transition-all	duration-300'>
-                                            {{ $date->format('d') }} </p>
-                                    </div>
-                                </div>
-                            </div>
-                            @endif
-                            @endforeach
-
-
-                        </div>
-
-
-                        <div
-                            class="bg-white sm:mx-0 lg:mx-5 sm:items-center mb-5 lg:h-72 sm:h-48 md:h-80  overflow-hidden rounded-lg shadow-md rounded-5xl">
-                            <div class="flex items-center pl-7 pr-5 py-5">
-                                <div class="col-span-1">
-                                    <div class="flex justify-end ">
-                                        <div class="underline text-xs text-gray-500"><a href="/property">See
-                                                all properties</a></div>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="currentColor" class="text-gray-500 w-10 h-10">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
-                                        </svg>
-                                        <div class="text-xl font-bold text-purple-800 ml-2 mr-2">
-                                            {{ Session::get('property') }}
-                                        </div>
-                                    </div>
-
-
-
-                                    <div
-                                        class="bg-gray-100 w-full rounded-lg mx-3 py-3 justify-center items-center mt-5 grid grid-cols-3 gap-y-5 gap-x-10 sm:grid-cols-3 lg:grid-cols-3 lg:gap-x-10">
-
-                                        <div class="col-span-1 mt-2 -mr-5 border-r border-gray-300">
-                                            <div class="">
-                                                <div class="flex ">
-                                                    <div class="flex-shrink-0">
-                                                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg"
-                                                            viewBox="0 0 53 53" style="enable-background:new 0 0 53 53"
-                                                            xml:space="preserve">
-                                                            <path d="M27 29h3v2h-3z" />
-                                                            <path
-                                                                d="M45 51V1a.999.999 0 0 0-.071-.351c-.008-.02-.013-.04-.022-.06a1.01 1.01 0 0 0-.185-.274l-.049-.046c-.029-.026-.054-.056-.085-.079A.991.991 0 0 0 44.4.085l-.014-.008a.991.991 0 0 0-.349-.07C44.024.007 44.013 0 44 0H10a1 1 0 0 0-1 1v50H4v2h45v-2h-4zm-20-3.82V8.227l18-5.85V50.78l-18-3.6zM11 2h26.687L23.69 6.549A1 1 0 0 0 23 7.5V48a1 1 0 0 0 .804.98L33.901 51H11V2z" />
-                                                        </svg>
-                                                    </div>
-                                                    <div class="w-0 flex-1 -pt-2">
-
-                                                        <p class="ml-2 text-lg font-semibold text-gray-900">
-                                                            {{ $units->where('status_id', 1)->count() }}</p>
-
-                                                    </div>
-
-                                                </div>
-                                                <p class="ml-2 mt-2 text-md font-regular text-indigo-700">
-                                                    Vacant</p>
-                                            </div>
-
-
-
-                                        </div>
-
-
-
-
-                                        <div class="col-span-1 mt-2 -mr-5 border-r border-gray-300">
-                                            <div class="">
-                                                <div class="flex ">
-                                                    <div class="flex-shrink-0">
-                                                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg"
-                                                            viewBox="0 0 52 52" style="enable-background:new 0 0 52 52"
-                                                            xml:space="preserve">
-                                                            <path d="M16.5 28h7v2h-7z" />
-                                                            <path
-                                                                d="M44.5 50V1a1 1 0 0 0-1-1h-34a1 1 0 0 0-1 1v49h-5v2h45v-2h-4zm-31 0V5h26v45h-26zm28 0V4a1 1 0 0 0-1-1h-28a1 1 0 0 0-1 1v46h-1V2h32v48h-1z" />
-                                                        </svg>
-                                                    </div>
-                                                    <div class="w-0 flex-1 -pt-2">
-
-                                                        <p class="ml-2 text-lg font-semibold text-gray-900">
-                                                            {{ $units->where('status_id', 2)->count() }}</p>
-
-                                                    </div>
-
-                                                </div>
-                                                <p class="ml-1 mt-2 text-md font-regular text-indigo-700">
-                                                    Occupied</p>
-                                            </div>
-
-
-
-                                        </div>
-
-
-                                        <div class="col-span-1 mt-2 ">
-                                            <div class="">
-                                                <div class="flex ">
-                                                    <div class="flex-shrink-0">
-                                                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg"
-                                                            viewBox="0 0 433.521 433.521"
-                                                            style="enable-background:new 0 0 433.521 433.521"
-                                                            xml:space="preserve">
-                                                            <path
-                                                                d="M269.568 250.041a7 7 0 1 1 0 14H209.34a7 7 0 1 1 0-14h60.228zm38.856-24.547a7 7 0 0 0-7-7H209.34a7 7 0 1 0 0 14h92.084a7 7 0 0 0 7-7zM157.206 65.186V34.173a7 7 0 0 1 7-7l25.395-.015C189.601 12.184 201.784 0 216.76 0c14.977 0 27.161 12.184 27.161 27.158v.015h25.393a7 7 0 0 1 7 7v31.013a7 7 0 0 1-7 7H164.206a7 7 0 0 1-7-7zm14-7h91.107V41.173H236.92a7 7 0 0 1-7-7v-7.015c0-7.256-5.903-13.158-13.159-13.158-7.257 0-13.161 5.902-13.161 13.158v7.015a7 7 0 0 1-7 7h-25.395v17.013zm212.387-7.181v365.651c0 9.3-7.565 16.865-16.865 16.865H66.793c-9.299 0-16.864-7.565-16.864-16.865V51.005c0-9.3 7.565-16.865 16.864-16.865h67.815a7 7 0 1 1 0 14H95.517v337.661h242.487V48.14h-39.092a7 7 0 1 1 0-14h67.815c9.3 0 16.866 7.565 16.866 16.865zm-14 0c0-1.553-1.313-2.865-2.865-2.865h-14.724v344.661a7 7 0 0 1-7 7H88.517a7 7 0 0 1-7-7V48.14H66.793c-1.553 0-2.864 1.313-2.864 2.865v365.651c0 1.553 1.312 2.865 2.864 2.865h299.935c1.553 0 2.865-1.313 2.865-2.865V51.005zm-240.899 77.317a7 7 0 0 0-2.717 9.52l12.862 23.137a7 7 0 0 0 12.236 0l22.422-40.331a7 7 0 1 0-12.237-6.803l-16.304 29.326-6.744-12.132a6.997 6.997 0 0 0-9.518-2.717zm42.087 86.662a7.001 7.001 0 0 0-9.52 2.717l-16.304 29.325-6.744-12.132a6.998 6.998 0 0 0-9.52-2.717 7 7 0 0 0-2.717 9.52l12.862 23.137a7 7 0 0 0 12.236 0l22.422-40.33a6.998 6.998 0 0 0-2.715-9.52zm38.559-54.799h60.229a7 7 0 1 0 0-14H209.34a7 7 0 1 0 0 14zm92.084-45.547H209.34a7 7 0 1 0 0 14h92.084a7 7 0 1 0 0-14z" />
-                                                        </svg>
-                                                    </div>
-                                                    <div class="w-0 flex-1 -pt-2">
-
-                                                        <p class="ml-2 text-lg font-semibold text-gray-900">
-                                                            {{ $units->where('is_the_unit_for_rent_to_tenant', 0)->count() }}</p>
-
-                                                    </div>
-
-                                                </div>
-                                                <p class="ml-1 mt-2 text-md font-regular text-indigo-700">
-                                                    Unlisted</p>
-                                            </div>
-
-
-
-                                        </div>
-
-
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div
-                                class="mx-2 py-3 justify-center items-center grid grid-cols-2 gap-y-5 gap-x-10 sm:grid-cols-2 lg:grid-cols-2 lg:gap-x-2">
-                                <div class="col-span-1">
-                                    <div class="h-10 w-full overflow-hidden">
-                                        <div class="flex items-center ">
-                                            <div class="ml-20 mt-2">
-                                                <div class="flex items-center">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="text-gray-500 w-6 h-6">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819" />
-                                                    </svg>
-                                                    <span class="font-semibold text-gray-800 text-lg mx-1">{{
-                                                        $units->count() }}</span>
-                                                    <div class="text-md font-medium text-purple-600">Units
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-
-                                </div>
-                                <div class="col-span-1">
-                                    <div class="h-10 w-full overflow-hidden">
-                                        <div class="flex items-center ">
-                                            <div class="mt-2">
-                                                <div class="flex items-center">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="text-gray-500 w-6 h-6">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                                                    </svg>
-
-                                                    <span class="font-semibold text-gray-800 text-lg mx-1">{{
-                                                        $tenants->where('status', 'active')->count() }}</span>
-                                                    <div class="text-md font-medium text-purple-600">Tenants
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-                        </div>
-                    </div>
-
-
-
-                </div>
-
-
-
-
-
-
-            </div>
-
-
-
-
-
-
-        </div>
-
-        </div>
-        </div>
-
-    </div>
-</div>
+                             

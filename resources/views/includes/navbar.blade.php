@@ -14,7 +14,6 @@
                 </x-nav-link>
                 <div class="font-medium leading-3 ml-0 text-xs text-gray-900 mt-10">{{ $feature->feature->feature }}</div>
                 @else
-
                 <x-nav-link href="/property/" :active="request()->routeIs($feature->feature->alias)">
                   <span class="sr-only">{{ $feature->feature->feature }}</span>
                     <img class="h-8 w-auto" src="{{ asset('/brands/'.$feature->feature->default_icon) }}" fill="none" viewBox="0 0 24 24"

@@ -9,7 +9,7 @@ class PersonnelController extends Controller
 {
     public function index(Property $property)
     {
-        if(!app('App\Http\Controllers\UserRestrictionController')->isRestricted(9)){
+        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(9, auth()->user()->id)){
             return abort(403);
         }
 

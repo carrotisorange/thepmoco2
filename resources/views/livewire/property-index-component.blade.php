@@ -189,13 +189,31 @@
         @foreach ($properties->where('status', 'active') as $property)
         <div class="group relative">
             <div class="w-full h-32 bg-white rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                <a href="#/" wire:click="redirectToTheProperty">
+               @if($property->type_id == 8)
+                <a href="/property/{{ $property->property_uuid }}/unit">
                     <img src="{{ asset('/brands/property_page.png') }}" title="{{ $property->property }}" alt="building"
                         class="w-40 object-center object-cover lg:w-full lg:h-full">
                 </a>
+               @else
+                <a href="/property/{{ $property->property_uuid }}/dashboard">
+                    <img src="{{ asset('/brands/property_page.png') }}" title="{{ $property->property }}" alt="building"
+                        class="w-40 object-center object-cover lg:w-full lg:h-full">
+                </a>
+               @endif
+
             </div>
-            <h3 class="text-center mt-2"><a href="#/"" class="text-blue-500 text-decoration-line: underline"
-                    wire:click="redirectToTheProperty">{{ $property->property }}</a></h3>
+            <h3 class="text-center mt-2">
+                @if($property->type == 8)
+                <a title="{{ $property->property }}" class="text-blue-500 text-decoration-line: underline" href="/property/{{ $property->property_uuid }}/unit">
+                {{ Str::limit($property->property,15) }}
+                </a>
+                @else
+                <a title="{{ $property->property }}" class="text-blue-500 text-decoration-line: underline" href="/property/{{ $property->property_uuid }}/dashboard">
+                {{ Str::limit($property->property,15) }}
+                </a>
+                @endif
+
+            </h3>
         </div>
         @endforeach
     </div>

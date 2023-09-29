@@ -117,7 +117,7 @@ body {
                         <a class="block p-4 text-sm font-medium text-gray-600 hover:bg-blue-100 hover:text-blue-500"
                             href="">Support</a>
                     </li>
-            
+
                 </ul>
             </div>
 
@@ -185,10 +185,10 @@ body {
  <div class="h-screen">
   <div class="sm:py-0 lg:py-36 flex-1 flex flex-col justify-center pt-10 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-48">
     <div class="mx-auto w-full max-w-full lg:w-full">
-      
+
     <div class="pt-3 flex justify-center items-center">
     <h2 class="text-center text-gray-800 text-2xl font-bold">Look for a place to stay without difficulty.</h2>
-    
+
 </div>
 <div class="pt-3 flex justify-center items-center">
 <p class="text-center font-medium text-base text-gray-500">Find available units effortlessly, for free.</p>
@@ -219,16 +219,16 @@ body {
                 <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 <span class="sr-only">Search</span>
             </button>
-            
+
         </div>
     </div>
 </form>
 
-         
 
- 
+
+
 </div>
-    
+
 
 </div>
 
@@ -242,17 +242,17 @@ body {
                 <div class="flex-1 truncate">
                   <div class="flex items-center space-x-3">
                     <h3 class="truncate text-sm font-medium text-white">No subscription</h3>
-                    
+
                   </div>
 
                 </div>
-   
+
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-8 w-8 text-white">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
                   </svg>
 
               </div>
-              
+
             </li>
 
             <li class="col-span-1">
@@ -260,7 +260,7 @@ body {
                 <div class="flex-1 truncate">
                   <div class="flex items-center space-x-3">
                     <h3 class="truncate text-sm font-medium text-white">No running advertisment cost</h3>
-                    
+
                   </div>
 
                 </div>
@@ -270,7 +270,7 @@ body {
 
 
               </div>
-             
+
             </li>
 
 
@@ -279,7 +279,7 @@ body {
                 <div class="flex-1 truncate">
                   <div class="flex items-center space-x-3">
                     <h3 class="truncate text-sm font-medium text-white">Free to successful Rental</h3>
-                    
+
                   </div>
 
                 </div>
@@ -289,7 +289,7 @@ body {
 
 
               </div>
-             
+
             </li>
 
   <!-- More people... -->
@@ -298,7 +298,7 @@ body {
           </div>
 
 </div>
-    
+
 
 
 
@@ -312,58 +312,59 @@ body {
     <div class="content-center mx-auto max-w-xl px-4 pt-16 pb-8 sm:px-6 lg:px-8 lg:pt-24">
       <div class="xl:grid xl:grid-cols-1 xl:gap-8">
         <div class="grid grid-cols-3 gap-8 xl:col-span-2">
-          
+
           <div class="md:grid md:grid-cols-1 md:gap-8">
             <div>
-              
+
               <ul role="list" class="mt-4 space-y-4">
                 <li>
                   <a href="#" class="text-base text-gray-500 hover:text-gray-900">Home</a>
                 </li>
 
-              
 
-                
+
+
               </ul>
             </div>
             </div>
 
             <div class="md:grid md:grid-cols-1 md:gap-8">
-              
+
               <ul role="list" class="mt-4 space-y-4">
                 <li>
                   <a href="#" class="text-base text-center text-gray-500 hover:text-gray-900">About</a>
                 </li>
 
-               
 
-                
+
+
               </ul>
             </div>
-          
+
           <div class="md:grid md:grid-cols-1 md:gap-8">
             <div>
-              
+
               <ul role="list" class="mt-4 space-y-4">
                 <li>
                   <a href="#" class="text-base text-gray-500 hover:text-gray-900">Terms and Condiiton</a>
                 </li>
 
-          
 
-               
 
-              
+
+
+
               </ul>
             </div>
-            
+
           </div>
         </div>
-        
+
       </div>
       <div class="mt-12 border-t border-gray-200 pt-8 md:flex md:items-center md:justify-center lg:mt-16">
-       
-        <p class="mt-8 text-base text-gray-400 md:order-1 md:mt-0">&copy; 2022 The PMO Co. All rights reserved.</p>
+
+      <p class="text-center text-base text-gray-400">&copy; 2020 {{ env('APP_NAME') }}. All rights reserved.
+        </p>
       </div>
     </div>
   </footer>
