@@ -33,6 +33,9 @@
     
     <div class="border-b border-gray-200 dark:border-gray-700 mb-4">
         <ul class="flex flex-wrap -mb-px" id="electionTab" data-tabs-toggle="#electionTabContent" role="tablist">
+            <li role="presentation">
+                <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300" id="election-tab" data-tabs-target="#election" type="button" role="tab" aria-controls="election" aria-selected="false">Election</button>
+            </li>
            
             <li class="mr-2" role="presentation">
                 <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300 active" id="candidates-tab" data-tabs-target="#candidates" type="button" role="tab" aria-controls="candidates" aria-selected="true">Candidates</button>
@@ -45,6 +48,32 @@
     </div>
  
 
+    <div class="p-4 rounded-lg dark:bg-gray-800" id="election" role="tabpanel" aria-labelledby="election-tab">
+
+    <!-- show this if there is an upcoming election -->
+    <div class=" mt-10 text-center mb-10">
+                    <div class="flex justify-center">
+                        <img src="{{ asset('/brands/election-vector.png') }}" alt="election vector" class="w-64"/>
+                    </div>
+                    <h3 class="mt-8 text-base font-medium text-gray-700">
+                    To all House Owners, <br>
+                    Election will take place this Saturday, September 16, 2023 at 8:00 AM to 6:00 PM</h3>
+                    <p>Please be advised of the date and time.</p>
+
+                    <div class="mt-6">
+                        <button type="button"
+                                                
+                            class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+
+                            Start Voting
+                        </button>
+
+
+                    </div>
+                </div>  
+        
+            
+    </div>
 
     <div class="p-4 rounded-lg dark:bg-gray-800 hidden" id="candidates" role="tabpanel" aria-labelledby="candidates-tab">
         

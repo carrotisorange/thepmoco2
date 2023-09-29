@@ -77,7 +77,7 @@
                         <div class="lg:col-span-1 mt-2 ml-5">
                             <div
                                 class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                <label for="floor_id" class="block text-sm font-medium text-gray-900">Number of Candidates</label>
+                                <label for="floor_id" class="block text-base font-medium text-gray-900">Number of Candidates</label>
                                     <input
                                         class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
                                     </input>
@@ -87,7 +87,7 @@
                         <div class="lg:col-span-1 mt-2 ml-5">
                             <div
                                 class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                <label for="floor_id" class="block text-sm font-medium text-gray-900">Number of Winning Candidates</label>
+                                <label for="floor_id" class="block text-base font-medium text-gray-900">Number of Winning Candidates</label>
                                     <input
                                         class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
                                     </input>
@@ -107,7 +107,7 @@
                             <div class="lg:col-span-1 mt-2">
                                 <div
                                     class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                    <label for="floor_id" class="block text-sm font-medium text-gray-900">Name</label>
+                                    <label for="floor_id" class="block text-base font-medium text-gray-900">Name</label>
                                         <input
                                             class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
                                         </input>
@@ -116,7 +116,7 @@
                             <div class="lg:col-span-1 mt-2">
                                 <div
                                     class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                    <label for="floor_id" class="block text-sm font-medium text-gray-900">Position</label>
+                                    <label for="floor_id" class="block text-base font-medium text-gray-900">Position</label>
                                         <input
                                             class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
                                         </input>
@@ -125,20 +125,24 @@
                             <div class="lg:col-span-1 mt-2">
                                 <div
                                     class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                    <label for="floor_id" class="block text-sm font-medium text-gray-900"># of Years as HOA member</label>
+                                    <label for="floor_id" class="block text-base font-medium text-gray-900"># of Years as HOA member</label>
                                         <input
                                             class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
                                         </input>
                                 </div>           
                             </div>
                             <div class="lg:col-span-1 mt-2">
-                                <div
-                                    class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                    <label for="floor_id" class="block text-sm font-medium text-gray-900">Resume</label>
-                                        <input
-                                            class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
-                                        </input>
-                                </div>           
+                                    <div
+                                        class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                                        <label for="floor_id" class="block text-base font-medium text-gray-900">Resume</label>
+                                        <div class="flex text-base text-gray-600">
+                                                <label for="file-upload"
+                                                    class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                                    <span>Upload a file</span>
+                                                    <input id="file-upload" type="file" wire:model="contract" class="sr-only">
+                                                </label>
+                                            </div>
+                                    </div>           
                             </div>
                             <!-- <div class="lg:col-span-1 mt-2">
                                 <div

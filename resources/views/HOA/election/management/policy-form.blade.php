@@ -82,7 +82,7 @@
                         <div class="lg:col-span-1 mt-2 ml-5">
                             <div
                                 class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                <label for="floor_id" class="block text-sm font-medium text-gray-900">Date of Election</label>
+                                <label for="floor_id" class="block text-base font-medium text-gray-900">Date of Election</label>
                                     <input
                                         class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
                                     </input>
@@ -92,7 +92,7 @@
                         <div class="lg:col-span-1 mt-2 ml-5">
                             <div
                                 class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                <label for="floor_id" class="block text-sm font-medium text-gray-900">Time Limit</label>
+                                <label for="floor_id" class="block text-base font-medium text-gray-900">Time Limit</label>
                                     <input
                                         class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
                                     </input>
@@ -100,10 +100,10 @@
                         </div>
 
                         <div class="lg:col-span-1 mt-2 ml-5">
-                            <p class="py-6">Qualified Voters</p>
+                            <p class="py-6 text-base">Qualified Voters</p>
                             <div
                                 class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                <label for="floor_id" class="block text-sm font-medium text-gray-900">Number of Months behind dues</label>
+                                <label for="floor_id" class="block text-base font-medium text-gray-900">Number of Months behind dues</label>
                                     <input
                                         class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
                                     </input>
@@ -113,18 +113,28 @@
                         <div class="lg:col-span-1 mt-6 ml-5">
 
                             <div
-                                class="relative  bg-white  px-3 py-2">
-                                <label for="floor_id" class="block text-sm font-medium text-gray-900 mb-6">Allow Proxy Voting</label>
+                                class="relative bg-white  px-3 py-2">
+                                <label for="floor_id" class="block text-base font-medium text-gray-900 mb-6">Allow Proxy Voting</label>
                             
                                 <div class="flex items-center mb-4">
                                     <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Yes</label>
+                                    <label for="default-checkbox" class="ml-2 text-base font-medium text-gray-900 dark:text-gray-300">Yes</label>
                                 </div>
                                 <div class="flex items-center mb-4">
                                     <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">No</label>
+                                    <label for="default-checkbox" class="ml-2 text-base font-medium text-gray-900 dark:text-gray-300">No</label>
                                 </div>
 
+                            </div>           
+                        </div>
+
+                        <div class="lg:col-span-2 mt-2 ml-5">
+                            <div
+                                class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                                <label for="floor_id" class="block text-base font-medium text-gray-900">Other Policies <span class="font-light text-gray-300">optional</span></label>
+                                    <input
+                                        class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
+                                    </input>
                             </div>           
                         </div>
                   

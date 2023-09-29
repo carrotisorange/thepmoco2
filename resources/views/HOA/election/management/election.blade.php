@@ -20,7 +20,7 @@
                                                 
                             class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
 
-                            Create a new Election
+                            Plan a new Election
                         </button>
 
 
@@ -56,10 +56,10 @@
     <div id="myTabContent">
         <div class="p-4 rounded-lg dark:bg-gray-800 hidden" id="policy-form" role="tabpanel" aria-labelledby="policy-form-tab">
         <div class="space-x-5 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
-                        <div class="lg:col-span-1 mt-2 ml-5">
+        <div class="lg:col-span-1 mt-2 ml-5">
                             <div
                                 class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                <label for="floor_id" class="block text-sm font-medium text-gray-900">Date of Election</label>
+                                <label for="floor_id" class="block text-base font-medium text-gray-900">Date of Election</label>
                                     <input
                                         class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
                                     </input>
@@ -69,7 +69,7 @@
                         <div class="lg:col-span-1 mt-2 ml-5">
                             <div
                                 class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                <label for="floor_id" class="block text-sm font-medium text-gray-900">Time Limit</label>
+                                <label for="floor_id" class="block text-base font-medium text-gray-900">Time Limit</label>
                                     <input
                                         class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
                                     </input>
@@ -77,10 +77,10 @@
                         </div>
 
                         <div class="lg:col-span-1 mt-2 ml-5">
-                            <p class="py-6">Qualified Voters</p>
+                            <p class="py-6 text-base">Qualified Voters</p>
                             <div
                                 class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                <label for="floor_id" class="block text-sm font-medium text-gray-900">Number of Months behind dues</label>
+                                <label for="floor_id" class="block text-base font-medium text-gray-900">Number of Months behind dues</label>
                                     <input
                                         class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
                                     </input>
@@ -90,20 +90,34 @@
                         <div class="lg:col-span-1 mt-6 ml-5">
 
                             <div
-                                class="relative  bg-white  px-3 py-2">
-                                <label for="floor_id" class="block text-sm font-medium text-gray-900 mb-6">Allow Proxy Voting</label>
+                                class="relative bg-white  px-3 py-2">
+                                <label for="floor_id" class="block text-base font-medium text-gray-900 mb-6">Allow Proxy Voting</label>
                             
                                 <div class="flex items-center mb-4">
                                     <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Yes</label>
+                                    <label for="default-checkbox" class="ml-2 text-base font-medium text-gray-900 dark:text-gray-300">Yes</label>
                                 </div>
                                 <div class="flex items-center mb-4">
                                     <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                    <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">No</label>
+                                    <label for="default-checkbox" class="ml-2 text-base font-medium text-gray-900 dark:text-gray-300">No</label>
                                 </div>
 
                             </div>           
                         </div>
+
+                        <div class="lg:col-span-2 mt-2 ml-5">
+                            <div
+                                class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                                <label for="floor_id" class="block text-base font-medium text-gray-900">Other Policies <span class="font-light text-gray-300">optional</span></label>
+                                    <input
+                                        class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
+                                    </input>
+                            </div>           
+                        </div>
+                  
+
+                        
+   
                   
 
                         
@@ -118,7 +132,7 @@
                         <div class="lg:col-span-1 mt-2 ml-5">
                             <div
                                 class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                <label for="" class="block text-sm font-medium text-gray-900">Number of Candidates</label>
+                                <label for="" class="block text-base font-medium text-gray-900">Number of Candidates</label>
                                     <input
                                         class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
                                     </input>
@@ -128,7 +142,7 @@
                         <div class="lg:col-span-1 mt-2 ml-5">
                             <div
                                 class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                <label for="floor_id" class="block text-sm font-medium text-gray-900">Number of Winning Candidates</label>
+                                <label for="floor_id" class="block text-base font-medium text-gray-900">Number of Winning Candidates</label>
                                     <input
                                         class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
                                     </input>
@@ -140,7 +154,7 @@
                                 <p class="">Candidates</p>
                                 
 
-                                <button class="px-2 py-2 bg-purple-500 rounded-lg text-white text-sm">Add a New Candidate</button>
+                                <button class="px-2 py-2 bg-purple-500 rounded-lg text-white text-base">Add a New Candidate</button>
                             </div>
                         </div>
 
@@ -150,7 +164,7 @@
                                 <div class="lg:col-span-1 mt-2">
                                     <div
                                         class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                        <label for="floor_id" class="block text-sm font-medium text-gray-900">Name</label>
+                                        <label for="floor_id" class="block text-base font-medium text-gray-900">Name</label>
                                             <input
                                                 class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
                                             </input>
@@ -159,7 +173,7 @@
                                 <div class="lg:col-span-1 mt-2">
                                     <div
                                         class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                        <label for="floor_id" class="block text-sm font-medium text-gray-900">Position</label>
+                                        <label for="floor_id" class="block text-base font-medium text-gray-900">Position</label>
                                             <input
                                                 class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
                                             </input>
@@ -168,7 +182,7 @@
                                 <div class="lg:col-span-1 mt-2">
                                     <div
                                         class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                        <label for="floor_id" class="block text-sm font-medium text-gray-900"># of Years as HOA member</label>
+                                        <label for="floor_id" class="block text-base font-medium text-gray-900"># of Years as HOA member</label>
                                             <input
                                                 class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
                                             </input>
@@ -177,8 +191,8 @@
                                 <div class="lg:col-span-1 mt-2">
                                     <div
                                         class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                        <label for="floor_id" class="block text-sm font-medium text-gray-900">Resume</label>
-                                        <div class="flex text-sm text-gray-600">
+                                        <label for="floor_id" class="block text-base font-medium text-gray-900">Resume</label>
+                                        <div class="flex text-base text-gray-600">
                                                 <label for="file-upload"
                                                     class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                                                     <span>Upload a file</span>
@@ -207,7 +221,7 @@
                         </svg>
                     </div>
                     <input type="search" id="search" wire:model="search"
-                        class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        class="bg-white block p-4 pl-10 w-full text-base h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Search for house owner..." required>
 
                 </div>
@@ -215,7 +229,7 @@
                     <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                         <div class="mb-5 mt-2 relative overflow-hidden">
 
-                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <table class="w-full text-base text-left text-gray-500">
                                 <thead class="bg-gray-50">
                                     <tr>
                                         <x-th>#</x-th>
@@ -257,7 +271,7 @@
                         <div class="lg:col-span-2 mt-2 ml-5">
                             <div
                                 class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                <label for="floor_id" class="block text-sm font-medium text-gray-900">Heading/Greetings <span class="font-light text-gray-500">optional</span></label>
+                                <label for="floor_id" class="block text-base font-medium text-gray-900">Heading/Greetings <span class="font-light text-gray-500">optional</span></label>
                                     <input
                                         class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
                                     </input>
@@ -266,7 +280,7 @@
                         <div class="lg:col-span-2 mt-2 ml-5">
                             <div
                                 class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                <label for="floor_id" class="block text-sm font-medium text-gray-900">Elecom Rules</label>
+                                <label for="floor_id" class="block text-base font-medium text-gray-900">Elecom Rules</label>
                                     <input
                                         class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
                                     </input>
@@ -276,7 +290,7 @@
                         <div class="lg:col-span-2 mt-2 ml-5">
                             <div
                                 class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                <label for="floor_id" class="block text-sm font-medium text-gray-900">General Instructions</label>
+                                <label for="floor_id" class="block text-base font-medium text-gray-900">General Instructions</label>
                                     <input
                                         class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
                                     </input>
@@ -286,7 +300,7 @@
                         <div class="lg:col-span-2 mt-2 ml-5">
                             <div class="flex justify-between py-6">    
                                 <p class="">List of Running Candidates</p>
-                                <button class="px-2 py-2 bg-purple-500 rounded-lg text-white text-sm">Edit Candidates</button>
+                                <button class="px-2 py-2 bg-purple-500 rounded-lg text-white text-base">Edit Candidates</button>
                             </div>
                         </div>
 
@@ -528,9 +542,9 @@
                         <li>
                             <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Download Results</a>
                         </li>
-                        <li>
-                            <button type="button" data-modal-toggle="default-modal" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Upload Minutes of Election Results</button>
-                        </li>
+                        
+                            
+                        
                     
                         </ul>
                     </div>
@@ -538,54 +552,7 @@
                 </div>
 
 
-                <div class="max-w-2xl mx-auto">
-                    <!-- Main modal -->
-                    <div id="default-modal" data-modal-show="false" aria-hidden="true" class="hidden overflow-x-hidden overflow-y-auto fixed h-modal md:h-full top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center">
-                        <div class="relative w-full max-w-2xl px-4 h-full md:h-auto">
-                            <!-- Modal content -->
-                            <div class="bg-white rounded-lg shadow relative dark:bg-gray-700">
-                                <!-- Modal header -->
-                                <div class="flex items-start justify-between p-5 border-b rounded-t dark:border-gray-600">
-                                    <h3 class="text-gray-900 text-xl lg:text-2xl font-semibold dark:text-white">
-                                        Upload Minutes of Election Results
-                                    </h3>
-                                </div>
-                                <!-- Modal body -->
-                                <div class="p-6 space-y-6">            
-                                    <div
-                                        class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                                        <div class="space-y-1 text-center">
-                                            <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none"
-                                                viewBox="0 0 48 48" aria-hidden="true">
-                                                <path
-                                                    d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                            <div class="flex text-sm text-gray-600">
-                                                <label for="file-upload"
-                                                    class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                                    <span>Upload a file</span>
-                                                    <input id="file-upload" type="file" wire:model="contract" class="sr-only">
-                                                    <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
-                                                </label>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Modal footer -->
-                                <div class="flex space-x-2 items-center p-6 border-t border-gray-200 rounded-b dark:border-gray-600">
-                                <button data-modal-toggle="default-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:ring-gray-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600">Cancel</button>
-                                    <button data-modal-toggle="default-modal" type="button" class="text-white bg-purple-500 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Upload</button>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <script src="https://unpkg.com/flowbite@1.4.4/dist/flowbite.js"></script>
+                
 
             </div>
 
