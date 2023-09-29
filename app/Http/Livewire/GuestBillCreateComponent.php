@@ -21,7 +21,6 @@ class GuestBillCreateComponent extends Component
 {
    use WithPagination;
 
-   public $property;
    public $guest;
 
    public $selectedBills = [];
@@ -94,7 +93,7 @@ class GuestBillCreateComponent extends Component
 
       try {
 
-         $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no($this->property->uuid);
+         $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property_uuid'));
 
          if($this->particular_id === '8'){
             $this->bill *=-1;
@@ -110,14 +109,14 @@ class GuestBillCreateComponent extends Component
             'reference_no' => $this->guest->uuid,
             'due_date' => Carbon::parse($this->start)->addDays(7),
             'user_id' => auth()->user()->id,
-            'property_uuid' => $this->property->uuid,
+            'property_uuid' => Session::get('property_uuid'),
             'guest_uuid' => $this->guest->uuid,
             'is_posted' => true
          ]);
 
-            app('App\Http\Controllers\PointController')->store($this->property->uuid, auth()->user()->id, 1, 3);
+            app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, 1, 3);
 
-            return redirect('/property/'.$this->property->uuid.'/guest/'.$this->guest->uuid.'/bills')->with('success','Success!');
+            return redirect('/property/'.Session::get('property_uuid').'/guest/'.$this->guest->uuid.'/bills')->with('success','Success!');
       }
         catch(\Exception $e)
         {
@@ -144,11 +143,11 @@ class GuestBillCreateComponent extends Component
          if($particular_id){
          PropertyParticular::updateOrCreate(
                 [
-                'property_uuid' => $this->property->uuid,
+                'property_uuid' => Session::get('property_uuid'),
                 'particular_id' => $particular_id
                 ],
                 [
-                'property_uuid' => $this->property->uuid,
+                'property_uuid' => Session::get('property_uuid'),
                 'particular_id' => $particular_id
                 ]
                 );
@@ -160,7 +159,7 @@ class GuestBillCreateComponent extends Component
   public function payBills()
    {      
       //generate collection acknowledgement receipt no
-      $collection_ar_no = Property::find($this->property->uuid)->acknowledgementreceipts->max('ar_no')+1;
+      $collection_ar_no = Property::find(Session::get('property_uuid'))->acknowledgementreceipts->max('ar_no')+1;
 
       //generate a collection batch no
       $collection_batch_no = Carbon::now()->timestamp.''.$collection_ar_no;
@@ -177,7 +176,7 @@ class GuestBillCreateComponent extends Component
             $particular_id = Bill::find($this->selectedBills[$i])->particular_id;
             $guest_uuid = $this->guest->uuid;
             $unit_uuid = Bill::find($this->selectedBills[$i])->unit_uuid;
-            $property_uuid = $this->property->uuid;
+            $property_uuid = Session::get('property_uuid');
          
             $bill_id = Bill::find($this->selectedBills[$i])->id;
             $bill_reference_no = Guest::find($this->guest->uuid)->bill_reference_no;
@@ -223,7 +222,7 @@ class GuestBillCreateComponent extends Component
             return back()->with('error',$e);
          } 
       }
-         return redirect('/property/'.$this->property->uuid.'/guest/'.$this->guest->uuid.'/bills/'.$collection_batch_no.'/pay');
+         return redirect('/property/'.Session::get('property_uuid').'/guest/'.$this->guest->uuid.'/bills/'.$collection_batch_no.'/pay');
 
    }
 
@@ -275,7 +274,7 @@ class GuestBillCreateComponent extends Component
        })
       ->get();
 
-      $statuses = Bill::where('bills.property_uuid', $this->property->uuid)
+      $statuses = Bill::where('bills.property_uuid', Session::get('property_uuid'))
       ->select('status', DB::raw('count(*) as count'))
       ->groupBy('status')
       ->get();
@@ -306,7 +305,7 @@ class GuestBillCreateComponent extends Component
       ->whereIn('status', ['paid', 'partially_paid'])
       ->count();
 
-      $particulars = app('App\Http\Controllers\PropertyParticularController')->index($this->property->uuid);
+      $particulars = app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid'));
 
       return view('livewire.guest-bill-create-component',[
          'bills' => $bills,
@@ -318,7 +317,7 @@ class GuestBillCreateComponent extends Component
          'statuses' => $statuses,
          'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
          'unpaid_bills' => Bill::where('guest_uuid', $this->guest->uuid)->whereIn('status', ['unpaid', 'partially_paid'])->where('bill','>', 0)->orderBy('bill_no','desc')->get(),
-         'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($this->property->uuid),
+         'particulars' => app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid')),
          'units' => Unit::where('uuid', $this->guest->unit_uuid)->get(),
          'note_to_bill' => $this->property->note_to_bill,
          'particulars' => $particulars

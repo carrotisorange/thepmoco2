@@ -15,13 +15,12 @@ class ConcernIndexComponent extends Component
 
     public $search;
     public $status;
-    public $property;
     
     public function render()
     {
-        $concerns = Concern::search($this->property->uuid)
+        $concerns = Concern::search(Session::get('property_uuid'))
         ->orderBy('created_at', 'desc')
-        ->where('property_uuid', $this->property->uuid)
+        ->where('property_uuid', Session::get('property_uuid'))
         ->when($this->status, function($query){
         $query->whereIn('status',[ $this->status]);
         })
@@ -31,7 +30,7 @@ class ConcernIndexComponent extends Component
         })
         ->paginate(10);
 
-        $statuses= Concern::where('property_uuid', $this->property->uuid)
+        $statuses= Concern::where('property_uuid', Session::get('property_uuid'))
             ->select('status', DB::raw('count(*) as count'))
             ->groupBy('status')
             ->get();

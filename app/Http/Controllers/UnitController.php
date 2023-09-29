@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Unit;
 use App\Models\Property;
 use Illuminate\Http\Request;
-use Session;
 use Illuminate\Validation\Rule;
 use App\Models\Floor;
 use DB;
 use App\Models\Owner;
+use Session;
 
 use App\Models\Collection;
 
@@ -18,7 +18,6 @@ class UnitController extends Controller
 
       public function show(Property $property, Unit $unit, $action=null)
     {        
-
          app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens one',2);
 
         return view('units.show',[
@@ -57,6 +56,7 @@ class UnitController extends Controller
             'batch_no' => $batch_no,
         ]);
     }
+    
     public function updateUnitOccupancyInfo(Property $property, Unit $unit, Owner $owner)
     {
         return view('occupancy.create',[
@@ -130,19 +130,26 @@ class UnitController extends Controller
         ->get();
     }
 
-    public function getUnits($property_uuid, $status, $duration, $unlisted)
+    public function getUnits($property_uuid)
     {
-        return Unit::where('property_uuid', $property_uuid)
-         ->when($status, function ($query) use ($status) {
-         $query->where('status_id', $status);
-         })
-        ->when($duration, function ($query) use ($duration) {
-          $query->whereMonth('updated_at', $duration);
-          })
-        ->when($unlisted, function ($query) use ($unlisted) {
-           $query->whereMonth('is_the_unit_for_rent_to_tenant', $unlisted);
-           });
+        return Property::find($property_uuid)->units();
+        
     }
+
+    
+    // public function getUnits($property_uuid, $status, $duration, $unlisted)
+    // {
+    //     return Unit::where('property_uuid', $property_uuid)
+    //      ->when($status, function ($query) use ($status) {
+    //      $query->where('status_id', $status);
+    //      })
+    //     ->when($duration, function ($query) use ($duration) {
+    //       $query->whereMonth('updated_at', $duration);
+    //       })
+    //     ->when($unlisted, function ($query) use ($unlisted) {
+    //        $query->whereMonth('is_the_unit_for_rent_to_tenant', $unlisted);
+    //        });
+    // }
 
     public function update(Request $request, Property $property, Unit $unit)
     {

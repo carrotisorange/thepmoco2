@@ -15,7 +15,7 @@ class UserPropertyController extends Controller
         return User::find($user_id)->user_properties()->get();
     }
 
-    public function get_property_users($property_uuid)
+    public function getPersonnels($property_uuid)
     {
         return Property::find($property_uuid)->property_users()->get();
     }

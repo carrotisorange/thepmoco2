@@ -12,8 +12,6 @@ use Carbon\Carbon;
 
 class AccountPayableIndexComponent extends Component
 {
-    public $property;
-
     public $status;
     public $created_at;
     public $request_for;
@@ -25,8 +23,8 @@ class AccountPayableIndexComponent extends Component
     use WithPagination;
 
     public function mount(){
-        $this->totalAccountPayableCount = Property::find($this->property->uuid)->accountpayables->count();
-        $this->created_at = Carbon::parse(AccountPayable::where('property_uuid', $this->property->uuid)->orderBy('id', 'desc')->pluck('created_at')->first());
+        $this->totalAccountPayableCount = Property::find(Session::get('property_uuid'))->accountpayables->count();
+        $this->created_at = Carbon::parse(AccountPayable::where('property_uuid', Session::get('property_uuid'))->orderBy('id', 'desc')->pluck('created_at')->first());
     }
 
     public function clearFilters(){
@@ -37,7 +35,7 @@ class AccountPayableIndexComponent extends Component
     }
 
     public function exportAccountPayables(){
-       return redirect('/property/'.$this->property->uuid.'/accountpayable/export/'.$this->status.'/'.$this->created_at.'/'.$this->request_for.'/'.$this->limitDisplayTo);
+       return redirect('/property/'.Session::get('property_uuid').'/accountpayable/export/'.$this->status.'/'.$this->created_at.'/'.$this->request_for.'/'.$this->limitDisplayTo);
     }
 
     public function get_accountpayables(){
@@ -62,7 +60,7 @@ class AccountPayableIndexComponent extends Component
              $query->where('status', $this->status);
            })
            ->orderBy('created_at', 'desc')
-           ->get(); 
+           ->get();
       }else{
            return AccountPayable::selectedproperty()
            ->selectedrequested()
@@ -77,15 +75,15 @@ class AccountPayableIndexComponent extends Component
       }
 
     }
-    
+
     public function render()
-    { 
+    {
        return view('livewire.account-payable-index-component',[
           'accountpayables' => $this->get_accountpayables(),
-          'statuses' => app('App\Http\Controllers\PropertyAccountPayableController')->get_statuses($this->property),
-          'dates' => app('App\Http\Controllers\PropertyAccountPayableController')->get_dates($this->property),
-          'types' => app('App\Http\Controllers\PropertyAccountPayableController')->get_types($this->property),
-          'dates' => AccountPayable::where('property_uuid', $this->property->uuid)
+          'statuses' => app('App\Http\Controllers\AccountPayableController')->get_statuses(Session::get('property_uuid')),
+          'dates' => app('App\Http\Controllers\AccountPayableController')->get_dates(Session::get('property_uuid')),
+          'types' => app('App\Http\Controllers\AccountPayableController')->get_types(Session::get('property_uuid')),
+          'dates' => AccountPayable::where('property_uuid', Session::get('property_uuid'))
          ->groupByRaw('MONTHNAME(created_at)')
           ->get(),
         ]);

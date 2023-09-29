@@ -13,8 +13,6 @@ class DeedOfSaleComponent extends Component
 {
     use WithFileUploads;
 
-    public $property;
-
     public $unit;
     public $owner;
 
@@ -50,9 +48,9 @@ class DeedOfSaleComponent extends Component
 
             $this->store_deed_of_sale($validatedData);
 
-            app('App\Http\Controllers\PointController')->store($this->property->uuid, auth()->user()->id, 5, 7);
+            app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, 5, 7);
 
-            return redirect('/property/'.$this->property->uuid.'/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/bank/create')->with('success','Success!');
+            return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/bank/create')->with('success','Success!');
             
         }catch(\Exception $e)
         {
@@ -69,7 +67,7 @@ class DeedOfSaleComponent extends Component
         $validatedData['owner_uuid'] = $this->owner->uuid;
         $validatedData['status'] = 'active';
         $validatedData['classification'] = 'regular';
-        $validatedData['property_uuid'] = $this->property->uuid;
+        $validatedData['property_uuid'] = Session::get('property_uuid');
 
         if($this->contract)
         {

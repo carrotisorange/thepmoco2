@@ -10,7 +10,6 @@ use App\Models\Collection;
 
 class CollectionIndexComponent extends Component
 {
-    public $property;
     public $search = null;
     public $start = [];
     public $end = [];
@@ -35,7 +34,7 @@ class CollectionIndexComponent extends Component
     {
         $collections = $this->get_ars();
 
-        $mode_of_payments = Collection::where('property_uuid', $this->property->uuid)
+        $mode_of_payments = Collection::where('property_uuid', Session::get('property_uuid'))
         ->groupBy('form')
         ->get();
 
@@ -47,14 +46,14 @@ class CollectionIndexComponent extends Component
     }
 
     public function exportDCR(){
-        return redirect('/property/'.$this->property->uuid .'/dcr/'.$this->date);
+        return redirect('/property/'.Session::get('property_uuid') .'/dcr/'.$this->date);
     }
 
     public function get_ars()
     {
         return Collection::search($this->search)
         ->select('*', DB::raw("SUM(collection) as collections"),DB::raw("count(collection) as count") )
-        ->where('property_uuid', $this->property->uuid)
+        ->where('property_uuid', Session::get('property_uuid'))
         ->when($this->start, function($query){
             $query->whereDate('updated_at', $this->start);
         })

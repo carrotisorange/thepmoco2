@@ -33,16 +33,21 @@ class ConcernController extends Controller
         Concern::where('unit_uuid', $unit_uuid)->delete();
     }
     
-    public function get_property_concerns($property_uuid, $status, $duration)
+    // public function getConcerns($property_uuid, $status, $duration)
+    // {
+    //     return Concern::where('property_uuid',$property_uuid)
+    //     ->when($status, function ($query) use ($status) {
+    //       $query->where('status', $status);
+    //     })
+    //      ->when($duration, function ($query) use ($duration) {
+    //        $query->whereMonth('created_at', $duration);
+    //     })
+    //     ->orderBy('created_at', 'desc');
+    // }
+
+    public function getConcerns($property_uuid)
     {
-        return Concern::where('property_uuid',$property_uuid)
-        ->when($status, function ($query) use ($status) {
-          $query->where('status', $status);
-        })
-         ->when($duration, function ($query) use ($duration) {
-           $query->whereMonth('created_at', $duration);
-        })
-        ->orderBy('created_at', 'desc');
+        return Property::find($property_uuid)->concerns();
     }
 
     public function create()

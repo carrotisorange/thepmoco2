@@ -200,7 +200,7 @@ class PropertyController extends Controller
 
     }
 
-    public function get_current_occupancy_rate($property_uuid)
+    public function getOccupancyRate($property_uuid)
     {
         return UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'),
         DB::raw('MAX(occupied)'), DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
@@ -211,22 +211,22 @@ class PropertyController extends Controller
         ->last();
     }
 
-    public function get_collection_rate_dates($value)
+    public function get_collection_rate_dates()
     {
-        return AcknowledgementReceipt::select(DB::raw("(sum(amount)) as total_amount"), DB::raw("(DATE_FORMAT(created_at,
-        '%M %Y')) as month_year"))
+        return Collection::select(DB::raw("(sum(collection)) as total_amount"), DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
         ->where('property_uuid', Session::get('property_uuid'))
+        ->posted()
         ->orderBy('created_at')
         ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
          ->whereYear('created_at', Carbon::now()->format('Y'))
         ->pluck('month_year');
     }
 
-    public function get_collection_rate_values($value)
+    public function get_collection_rate_values()
     {
-        return AcknowledgementReceipt::select(DB::raw("(sum(amount)) as total_amount"),
-        DB::raw("(DATE_FORMAT(created_at,
-        '%M %Y')) as month_year"))
+        return Collection::select(DB::raw("(sum(collection)) as total_amount"),
+        DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
+        ->posted()
         ->where('property_uuid', Session::get('property_uuid'))
         ->orderBy('created_at')
         ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
@@ -234,7 +234,7 @@ class PropertyController extends Controller
         ->pluck('total_amount');
     }
 
-    public function get_expense_rate_values($value)
+    public function get_expense_rate_values()
     {
         return AccountPayable::select(DB::raw("(sum(amount)) as total_amount"),
         DB::raw("(DATE_FORMAT(updated_at,
@@ -264,7 +264,7 @@ class PropertyController extends Controller
 
         if(Bill::where('property_uuid', Session::get('property_uuid'))->posted()->sum('bill') > 0)
         {
-            $current_collection_rate = AcknowledgementReceipt::select(DB::raw("(sum(amount)) as total_amount"),
+            $current_collection_rate = Collection::select(DB::raw("(sum(collection)) as total_amount"),
             DB::raw("(DATE_FORMAT(created_at, '%M')) as month_year"))
             ->where('property_uuid', Session::get('property_uuid'))
             ->orderBy('created_at')
@@ -272,11 +272,12 @@ class PropertyController extends Controller
             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
             ->pluck('total_amount')
             ->last() / Bill::select(DB::raw("(sum(bill)) as total_bill"), DB::raw("(DATE_FORMAT(created_at, '%M')) as month_year"))
+             ->posted()
             ->orderBy('created_at')
             ->where('property_uuid', Session::get('property_uuid'))
             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
             ->pluck('total_bill')
-            ->posted()
+
             ->last() * 100;
          }else{
             $current_collection_rate = 0;
@@ -301,12 +302,12 @@ class PropertyController extends Controller
         ->pluck('count');
     }
 
-    public function get_delinquents($user_type)
+    public function getDelinquents($user_type, $property_uuid)
     {
         $delinquents = array();
 
         if($user_type == 'tenant'){
-            $tenants = Tenant::where('property_uuid', Session::get('property_uuid'))->get();
+            $tenants = Tenant::where('property_uuid',$property_uuid)->get();
 
             foreach($tenants as $tenant){
 
@@ -324,7 +325,7 @@ class PropertyController extends Controller
         }
 
         }elseif($user_type == 'owner'){
-            $owners = Owner::where('property_uuid', Session::get('property_uuid'))->get();
+            $owners = Owner::where('property_uuid', $property_uuid)->get();
 
             foreach($owners as $owner){
             $balance = Bill::where('owner_uuid', $owner->uuid)->posted()->sum('bill') - Collection::where('owner_uuid', $owner->uuid)->posted()->sum('collection');
@@ -343,7 +344,7 @@ class PropertyController extends Controller
 
         }else{
 
-            $guests = Guest::where('property_uuid', Session::get('property_uuid'))->get();
+            $guests = Guest::where('property_uuid', $property_uuid)->get();
 
             foreach($guests as $guest){
             $balance = Bill::where('guest_uuid', $guest->uuid)->posted()->sum('bill') - Collection::where('guest_uuid', $guest->uuid)->posted()->sum('collection');
@@ -472,31 +473,21 @@ class PropertyController extends Controller
         ]);
     }
 
-    // public function show(Property $property)
-    // {
-    //     app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
-
-    //     app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',1);
-
-    //     $this->isUserApproved(auth()->user()->id, $property->uuid);
-
-    //     return view('properties.show',[
-    //         'property' => $property,
-    //     ]);
-    // }
 
     public function show(Property $property)
-    {        
+    {
+
+        app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
+
         if(!app('App\Http\Controllers\UserRestrictionController')->isRestricted(1)){
             return abort(403);
         }
+
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',1);
 
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
 
-        return view('properties.dashboard.index',[
-            'property' => $property,
-        ]); 
+        return view('properties.show');
     }
 
 

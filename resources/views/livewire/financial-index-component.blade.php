@@ -11,7 +11,7 @@
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 <a target="_blank"
-                    href="/property/{{ $this->property->uuid }}/financial/financial/export/{{ $this->filter }}"
+                    href="/property/{{ Session::get('property_uuid') }}/financial/financial/export/{{ $filter }}"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
 
                     Export

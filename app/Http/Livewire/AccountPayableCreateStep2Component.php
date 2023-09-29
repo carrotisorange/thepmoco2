@@ -15,7 +15,6 @@ use App\Models\User;
 
 class AccountPayableCreateStep2Component extends Component
 {
-    public $property;
     public $accountpayable;
 
     public $comment;
@@ -58,7 +57,7 @@ class AccountPayableCreateStep2Component extends Component
             Notification::route('mail', $second_approver)->notify(new SendAccountPayableStep3NotificationToAP($content));
         }
     
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-2')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-2')->with('success', 'Success!');
     }
 
     public function rejectRequest(){
@@ -74,7 +73,7 @@ class AccountPayableCreateStep2Component extends Component
 
         Notification::route('mail', $requester_email)->notify(new SendAccountPayableStep4NotificationToAdmin($content));
 
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-2')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-2')->with('success', 'Success!');
     }
 
     public function render()

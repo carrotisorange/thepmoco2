@@ -14,6 +14,7 @@ use App\Notifications\SendAccountPayableStep2NotificationToManager;
 use Illuminate\Support\Facades\Notification;
 use App\Models\UserProperty;
 use App\Models\User;
+use Session;
 
 class AccountPayableCreateStep1Component extends Component
 {
@@ -22,15 +23,13 @@ class AccountPayableCreateStep1Component extends Component
     public $accountpayable;
 
     public $request_for;
-    public $created_at; 
+    public $created_at;
     public $due_date;
     public $requester_id;
 
     public $batch_no;
 
     public $particulars;
-
-    public $property;
 
     public $vendor;
     public $delivery_at;
@@ -106,11 +105,11 @@ class AccountPayableCreateStep1Component extends Component
 
         $this->send_email_to_approvers();
 
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-2')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-2')->with('success', 'Success!');
     }
 
     public function updateAccountPayable(){
-        app('App\Http\Controllers\PropertyAccountPayableController')->update(
+        app('App\Http\Controllers\AccountPayableController')->update(
             $this->accountpayable->id,
             $this->request_for,
             $this->created_at,
@@ -135,7 +134,7 @@ class AccountPayableCreateStep1Component extends Component
             'quotation2' => 'nullable | max:102400',
             'quotation3' => 'nullable | max:102400',
             'selected_quotation' => ['required_with:quotation1'],
-         
+
         ]);
 
         if($this->quotation1 && $this->accountpayable->quotation1 != $this->quotation1){
@@ -183,37 +182,37 @@ class AccountPayableCreateStep1Component extends Component
 
         $this->particulars = $this->get_particulars();
 
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-1')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-1')->with('success', 'Success!');
 
     }
 
     public function storeVendor(){
-        
+
         $this->validate([
             'biller' => 'required'
         ]);
 
         PropertyBiller::updateOrCreate(
         [
-             'property_uuid' => $this->property->uuid,
+             'property_uuid' => Session::get('property_uuid'),
              'biller' => $this->biller
         ],
-            
+
         [
-            'property_uuid' => $this->property->uuid,
+            'property_uuid' => Session::get('property_uuid'),
             'biller' => $this->biller
         ]);
-        
+
         session()->flash('success', 'Success!');
-        
-        // return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-1')->with('success', 'Success!');
+
+        // return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-1')->with('success', 'Success!');
     }
 
     public function removeParticular($id){
-    
+
         AccountPayableParticular::where('id', $id)->delete();
 
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-1')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-1')->with('success', 'Success!');
     }
 
     public function cancelRequest(){
@@ -224,15 +223,15 @@ class AccountPayableCreateStep1Component extends Component
 
     //     AccountPayableParticular::where('batch_no', $batch_no)->delete();
 
-        return redirect('/property/'.$this->property->uuid.'/accountpayable')->with('success','Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/accountpayable')->with('success','Success!');
     }
 
     public function updateParticular($id){
 
         $this->validate();
-                
+
         try{
-            foreach ($this->particulars->where('id', $id) as $particular) {      
+            foreach ($this->particulars->where('id', $id) as $particular) {
               AccountPayableParticular::where('id', $id)
                 ->update([
                     'unit_uuid' => $particular->unit_uuid,
@@ -250,7 +249,7 @@ class AccountPayableCreateStep1Component extends Component
 
             session()->flash('success', 'Success!');
             }
-            
+
        }catch(\Exception $e){
             session()->flash('error', $e);
        }
@@ -269,17 +268,17 @@ class AccountPayableCreateStep1Component extends Component
 
       AccountPayableParticular::where('batch_no', $batch_no)->delete();
 
-    return redirect('/property/'.$this->property->uuid.'/accountpayable/')->with('success', 'Success!');   
+    return redirect('/property/'.Session::get('property_uuid').'/accountpayable/')->with('success', 'Success!');
 
     }
 
     public function render()
     {
         return view('livewire.account-payable-create-step1-component',[
-            'units' => Property::find($this->property->uuid)->units,
-            'vendors' => Property::find($this->property->uuid)->billers,
-            'managers' => UserProperty::where('property_uuid', $this->property->uuid)->where('role_id', 9)->where('user_id', '!=',97)->approved()->get(),
-            'accountpayables' => UserProperty::where('property_uuid', $this->property->uuid)->where('role_id', 4)->where('user_id','!=' ,97)->approved()->get()
+            'units' => Property::find(Session::get('property_uuid'))->units,
+            'vendors' => Property::find(Session::get('property_uuid'))->billers,
+            'managers' => UserProperty::where('property_uuid', Session::get('property_uuid'))->where('role_id', 9)->where('user_id', '!=',97)->approved()->get(),
+            'accountpayables' => UserProperty::where('property_uuid', Session::get('property_uuid'))->where('role_id', 4)->where('user_id','!=' ,97)->approved()->get()
         ]);
     }
 }

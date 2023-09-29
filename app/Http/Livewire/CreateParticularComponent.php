@@ -8,8 +8,6 @@ use App\Models\Particular;
 
 class CreateParticularComponent extends Component
 {
-
-    public $property;
     public $guest;
 
     //input variables
@@ -43,12 +41,12 @@ class CreateParticularComponent extends Component
 
         PropertyParticular::updateOrCreate(
         [
-           'property_uuid'=> $this->property->uuid,
+           'property_uuid'=> Session::get('property_uuid'),
            'particular_id'=> $particular_id,
         ]
         ,
         [   
-            'property_uuid'=> $this->property->uuid,
+            'property_uuid'=> Session::get('property_uuid'),
             'particular_id'=> $particular_id,
             'minimum_charge' => 0.00,
             'due_date' => 28,

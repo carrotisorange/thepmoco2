@@ -39,6 +39,7 @@ class UserRestrictionController extends Controller
                 }
                 }
         }else{
+        
             for ($feature_id=1; $feature_id <=Feature::all()->count(); $feature_id++) {  
                 for ($restriction_id=1; $restriction_id<=Restriction::all()->count() ; $restriction_id++ ) { 
                 UserRestriction::firstOrCreate(

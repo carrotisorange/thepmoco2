@@ -23,50 +23,79 @@ use DB;
 class CollectionController extends Controller
 {
 
-    public function getLatestAr($property)
-    {
-        return Property::find($property)->collections()->posted()->max('ar_no')+1;
-    }
-
-    public function getCollections(Property $property, $type='property', $type_id=null)
+    public function index(Property $property)
     {
         if(!app('App\Http\Controllers\UserRestrictionController')->isRestricted(12)){
             return abort(403);
         }
 
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',11);
-        
-        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
-        
-        if($type === 'property'){
-            return view('properties.collections.index',[
-            'property' => $property,
-            'collections'=> AcknowledgementReceipt::where('property_uuid', $property->uuid)->orderBy('id','desc')->get(),
-            ]);
-          
-        }elseif($type === 'tenant'){
-            $tenant = Tenant::find($type_id);
 
-            return view('tenants.collections.index',[
-            'tenant' => $tenant,
-            'collections' => app('App\Http\Controllers\CollectionController')->get_tenant_collections($property->uuid, $tenant->uuid),
+        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
+
+        return view('properties.collections.index',[
+        'property' => $property,
+        'collections'=> AcknowledgementReceipt::where('property_uuid', $property->uuid)->orderBy('id','desc')->get()
         ]);
-        }elseif($type === 'owner'){
-            $owner = Owner::find($type_id);
-            
-            return view('owners.collections.index',[
-                'owner' => Owner::find($type_id),
-                'collections' => app('App\Http\Controllers\OwnerCollectionController')->get_owner_collections($property->uuid, $owner->uuid),
-            ]);
-        }else{
-            return view('payment_requests.index',[
-                'requests' => $this->get_property_payment_requests($property->uuid, $type)->get()
-            ]);
-        }
     }
 
+    public function getLatestAr($property)
+    {
+        return Property::find($property)->collections()->posted()->max('ar_no')+1;
+    }
+
+    public function getCollections($property_uuid){
+        return Property::find($property_uuid)->collections();
+    }
+
+    // public function getCollections(Property $property, $type='property', $type_id=null)
+    // {
+    //     if(!app('App\Http\Controllers\UserRestrictionController')->isRestricted(12)){
+    //         return abort(403);
+    //     }
+
+    //     app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',11);
+
+    //     app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
+
+    //     if($type === 'property'){
+    //         return view('properties.collections.index',[
+    //         'property' => $property,
+    //         'collections'=> AcknowledgementReceipt::where('property_uuid', $property->uuid)->orderBy('id','desc')->get(),
+    //         ]);
+
+    //     }elseif($type === 'tenant'){
+    //         $tenant = Tenant::find($type_id);
+
+    //         return view('tenants.collections.index',[
+    //         'tenant' => $tenant,
+    //         'collections' => app('App\Http\Controllers\CollectionController')->get_tenant_collections($property->uuid, $tenant->uuid),
+    //     ]);
+    //     }elseif($type === 'owner'){
+    //         $owner = Owner::find($type_id);
+
+    //         return view('owners.collections.index',[
+    //             'owner' => Owner::find($type_id),
+    //             'collections' => app('App\Http\Controllers\OwnerCollectionController')->get_owner_collections($property->uuid, $owner->uuid),
+    //         ]);
+    //     }elseif($type==='pending'){
+    //         return view('payment_requests.index',[
+    //             'requests' => $this->get_property_payment_requests($property->uuid, $type)->get()
+    //         ]);
+    //     }
+    // }
+
+
+    public function tenant_collection_index(Property $property, Tenant $tenant){
+          return view('tenants.collections.index',[
+          'tenant' => $tenant,
+          'collections' => app('App\Http\Controllers\CollectionController')->get_tenant_collections($property->uuid,$tenant->uuid)
+          ]);
+    }
+
+
     public function edit_collections(Property $property, Tenant $tenant, $batch_no)
-    {   
+    {
       $collections = Bill::where('tenant_uuid', $tenant->uuid)
       ->where('batch_no', $batch_no)
       ->get();
@@ -96,12 +125,12 @@ class CollectionController extends Controller
         ]);
     }
 
-    public function get_property_payment_requests($property_uuid, $status)
+    public function getPaymentRequests($property_uuid)
     {
         return PaymentRequest::join('tenants', 'payment_requests.tenant_uuid', 'tenants.uuid')
         ->select('*', 'payment_requests.status as payment_status', 'payment_requests.created_at as date_uploaded', 'payment_requests.updated_at as date_approved')
         ->where('tenants.property_uuid', $property_uuid)
-        ->where('payment_requests.status', $status)
+        ->where('payment_requests.status', 'pending')
         ->orderBy('payment_requests.created_at', 'desc')->get();
         //return Property::find($property_uuid)->paymentrequests;
     }
@@ -122,7 +151,7 @@ class CollectionController extends Controller
         ];
 
         if($format === 'pdf'){
-            
+
             $folder_path = 'properties.collections.export_dcr';
 
             $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
@@ -141,7 +170,7 @@ class CollectionController extends Controller
         }
 
     }
-    
+
     public function get_selected_bills_count($batch_no, $tenant_uuid, $property_uuid)
     {
          return Collection::where('property_uuid', $property_uuid)
@@ -165,11 +194,11 @@ class CollectionController extends Controller
     }
 
      public function update_collections(Request $request, Property $property, Tenant $tenant, $batch_no)
-     {   
+     {
          PaymentRequest::where('id', Session::get('payment_request_id'))->update([
             'status' => 'approved'
          ]);
-         
+
          //delete previous unposted collections
          app('App\Http\Controllers\CollectionController')->delete_unposted_collections($tenant->uuid, $batch_no);
 
@@ -207,18 +236,18 @@ class CollectionController extends Controller
             }
          }
 
-  
+
 
             if(Session::has('payment_request_id')){
                 $proof_of_payment = PaymentRequest::where('id',Session::get('payment_request_id'))->pluck('proof_of_payment')->first();
-          
+
             }else{
                 if($request->proof_of_payment != null){
                   $proof_of_payment = $request->proof_of_payment->store('proof_of_payments');
                 }else{
                   $proof_of_payment = null;
                 }
-            }  
+            }
 
         //  $ar_id = app('App\Http\Controllers\AcknowledgementReceiptController')
         //  ->store(
@@ -238,7 +267,7 @@ class CollectionController extends Controller
         //           $proof_of_payment,
         //  );
 
-             
+
 
          app('App\Http\Controllers\PointController')->store($property->uuid, auth()->user()->id, Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);
 
@@ -253,7 +282,7 @@ class CollectionController extends Controller
          }
 
          // $this->send_payment_to_tenant($tenant, $ar_no, $request->form, $request->created_at, User::find(auth()->user()->id)->name, User::find(auth()->user()->id)->role->role, Collection::where('tenant_uuid',$tenant->uuid)->where('batch_no', $batch_no)->get());
-   
+
          return redirect('/property/'.$property->uuid.'/collection/'.'tenant'.'/'.$tenant->uuid)->with('success',
          'Success!');
 
@@ -316,7 +345,7 @@ class CollectionController extends Controller
          return Mail::to($tenant->email)->send(new SendPaymentToTenant($data));
        }
      }
-    
+
     public function update($ar_no, $bill_id, $collection, $form, $created_at)
     {
         $bill = Bill::find($bill_id);
@@ -339,7 +368,7 @@ class CollectionController extends Controller
     }
 
     public function export_ar(Property $property, Tenant $tenant, Collection $collection)
-     {          
+     {
          $data = $this->get_collection_data(
             $tenant,
             $collection,
@@ -399,17 +428,17 @@ class CollectionController extends Controller
         } elseif($number >= 1000000000) {
             $short = round($number/1000000000, 2).'B';
         }
-        
+
         return $short;
     }
 
-    public function divNumber($numerator, $denominator)
+    static public function divNumber($numerator, $denominator)
     {
        return $denominator == 0 ? 0 : ($numerator / $denominator);
     }
 
     public function store($tenant_uuid,$owner_uuid, $guest_uuid, $unit_uuid, $property_uuid, $bill_id, $bill_reference_no, $form, $collection, $collection_batch_no, $collection_ar_no, $is_posted){
-    
+
         return Collection::insertGetId([
             'tenant_uuid' => $tenant_uuid,
             'owner_uuid' => $owner_uuid,

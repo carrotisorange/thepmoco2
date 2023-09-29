@@ -19,8 +19,6 @@ class TenantShowComponent extends Component
     use WithPagination;
 
     use WithFileUploads;
-
-    public $property;
     public $tenant_details;
     
     public $tenant;
@@ -125,7 +123,7 @@ class TenantShowComponent extends Component
             DB::transaction(function () use ($validatedData){
                 $this->tenant_details->update($validatedData);
 
-                app('App\Http\Controllers\ActivityController')->store($this->property->uuid, auth()->user()->id,'updates',3);
+                app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'updates',3);
 
                 session()->flash('success', 'Success!');
             });
@@ -138,25 +136,25 @@ class TenantShowComponent extends Component
     public function redirectToTheCreateGuardianPage(){
         
 
-        return redirect('/property/'. $this->property->uuid.'/tenant/'.$this->tenant_details->uuid.'/guardian/'.Str::random(8).'/create');
+        return redirect('/property/'. Session::get('property_uuid').'/tenant/'.$this->tenant_details->uuid.'/guardian/'.Str::random(8).'/create');
     }
 
     public function redirectToTheCreateReferencePage(){
         
 
-        return redirect('/property/'. $this->property->uuid.'/tenant/'.$this->tenant_details->uuid.'/reference/'.Str::random(8).'/create');
+        return redirect('/property/'. Session::get('property_uuid').'/tenant/'.$this->tenant_details->uuid.'/reference/'.Str::random(8).'/create');
     }
 
     public function redirectToTheCreateConcernPage(){
         
 
-        return redirect('/property/'. $this->property->uuid.'/tenant/'.$this->tenant_details->uuid.'/concern/create');
+        return redirect('/property/'. Session::get('property_uuid').'/tenant/'.$this->tenant_details->uuid.'/concern/create');
     }
 
     public function redirectToTheCreateContractPage(){
         
 
-        return redirect('/property/'. $this->property->uuid.'/tenant/'.$this->tenant_details->uuid.'/units');
+        return redirect('/property/'. Session::get('property_uuid').'/tenant/'.$this->tenant_details->uuid.'/units');
     }
 
     public function sendCredentials()
@@ -213,7 +211,7 @@ class TenantShowComponent extends Component
             app('App\Http\Controllers\UserController')->send_email($user_id->role_id, $user_id->email, $user_id->username, $temporary_password);
         }
 
-        app('App\Http\Controllers\ActivityController')->store($this->property->uuid, auth()->user()->id,'sends',18);
+        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'sends',18);
        
 
        return back()->with('success', 'Success');
@@ -226,7 +224,7 @@ class TenantShowComponent extends Component
         User::where('email', $this->tenant_details->email)
         ->delete();
         
-        app('App\Http\Controllers\ActivityController')->store($this->property->uuid, auth()->user()->id,'removes', 18);
+        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'removes', 18);
 
         session()->flash('success', 'Success!');
     }
@@ -260,7 +258,7 @@ class TenantShowComponent extends Component
             'contracts' => app('App\Http\Controllers\TenantController')->show_tenant_contracts($this->tenant_details->uuid),
             'bills' => app('App\Http\Controllers\BillController')->show_tenant_bills($this->tenant_details->uuid),
             'concerns' => app('App\Http\Controllers\TenantController')->show_tenant_concerns($this->tenant_details->uuid),
-            'collections' => app('App\Http\Controllers\CollectionController')->get_tenant_collections($this->property->uuid, $this->tenant_details->uuid),
+            'collections' => app('App\Http\Controllers\CollectionController')->get_tenant_collections(Session::get('property_uuid'), $this->tenant_details->uuid),
             'wallets' => Wallet::where('tenant_uuid', $this->tenant_details->uuid)->orderBy('id','desc')->get(),
             'username' => User::where('tenant_uuid', $this->tenant_details->uuid)->value('username'),
          ]);

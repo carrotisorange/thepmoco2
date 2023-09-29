@@ -11,14 +11,12 @@ class BillDraftComponent extends Component
 {
     public $bills;
     public $batch_no;
-    public $property_uuid;
     public $bill_to = '';
     public $isBillSplit = '';
 
-    public function mount($batch_no, $property_uuid){
+    public function mount($batch_no){
         $this->bills = $this->getBills();
         $this->batch_no = $batch_no;
-        $this->property_uuid = $property_uuid;
     }
 
     protected function rules()
@@ -39,7 +37,7 @@ class BillDraftComponent extends Component
     }
     
     public function getBills(){
-        return Bill::where('property_uuid', $this->property_uuid)->where('batch_no', $this->batch_no)->get();
+        return Bill::where('property_uuid', Session::get('property_uuid'))->where('batch_no', $this->batch_no)->get();
     }
 
     public function postBills(){
@@ -55,7 +53,7 @@ class BillDraftComponent extends Component
                     $tenant_uuid = Contract::where('unit_uuid', $bill->unit_uuid)->get()[0]['tenant_uuid'];
 
                     Bill::where('batch_no', $this->batch_no)
-                    ->where('property_uuid', $this->property_uuid)
+                    ->where('property_uuid', Session::get('property_uuid'))
                     ->where('unit_uuid', $bill->unit_uuid)
                     ->update([
                         'tenant_uuid' => $tenant_uuid,
@@ -63,7 +61,7 @@ class BillDraftComponent extends Component
                     ]);
                 }else{
                     Bill::where('batch_no', $this->batch_no)
-                    ->where('property_uuid', $this->property_uuid)
+                    ->where('property_uuid', Session::get('property_uuid'))
                     ->where('unit_uuid', $bill->unit_uuid)
                     ->update([
                         'is_posted' => true
@@ -77,7 +75,7 @@ class BillDraftComponent extends Component
            $owner_uuid = DeedOfSale::where('unit_uuid', $bill->unit_uuid)->get()[0]['owner_uuid'];
 
                     Bill::where('batch_no', $this->batch_no)
-                    ->where('property_uuid', $this->property_uuid)
+                    ->where('property_uuid', Session::get('property_uuid'))
                     ->where('unit_uuid', $bill->unit_uuid)
                     ->update([
                         'owner_uuid' => $owner_uuid,
@@ -85,7 +83,7 @@ class BillDraftComponent extends Component
                     ]);
                 }else{
                     Bill::where('batch_no', $this->batch_no)
-                    ->where('property_uuid', $this->property_uuid)
+                    ->where('property_uuid', Session::get('property_uuid'))
                     ->where('unit_uuid', $bill->unit_uuid)
                     ->update([
                         'is_posted' => true
@@ -94,14 +92,14 @@ class BillDraftComponent extends Component
             }
         }else{
             Bill::where('batch_no', $this->batch_no)
-                    ->where('property_uuid', $this->property_uuid)
+                    ->where('property_uuid', Session::get('property_uuid'))
                     ->update([
                         'is_posted' => true
             ]);
         }
         
     
-        return redirect('/property/'.$this->property_uuid.'/bill')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/bill')->with('success', 'Success!');
     }
 
     public function render()

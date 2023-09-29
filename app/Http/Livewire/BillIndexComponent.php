@@ -14,14 +14,12 @@ use App\Models\Contract;
 use App\Models\Tenant;
 use App\Models\Particular;
 use App\Models\PropertyParticular;
-use Illuminate\Support\Str;
+use Session;
 use App\Models\Unit;
 
 class BillIndexComponent extends Component
 {
    use WithPagination;
-
-   public $property;
 
    public $search;
 
@@ -71,7 +69,7 @@ class BillIndexComponent extends Component
    public function redirectToUnitsPage(){
       
 
-      return redirect('/property/'.$this->property->uuid.'/unit/');
+      return redirect('/property/'.Session::get('property_uuid').'/unit/');
    }
 
    public function updatedSelectAllBills($value)
@@ -97,7 +95,7 @@ class BillIndexComponent extends Component
 
    public function get_bills_per_period($start){
       return Bill::orderBy('bill_no', 'desc')
-               ->where('property_uuid', $this->property->uuid)
+               ->where('property_uuid', Session::get('property_uuid'))
                ->posted()
                ->when($this->status, function($query){
                $query->whereIn('status', [$this->status]);
@@ -123,7 +121,7 @@ class BillIndexComponent extends Component
    public function get_delinquents(){
       return Bill::selectRaw('sum(bill-initial_payment) as balance, tenant_uuid, owner_uuid, guest_uuid, particular_id, bill,
       initial_payment, created_at, unit_uuid')
-      ->where('property_uuid', $this->property->uuid)
+      ->where('property_uuid', Session::get('property_uuid'))
       ->where('bill', '>','initial_payment')
       ->whereNotNull('tenant_uuid')
       ->where('start', '>', Carbon::now()->subMonth()->toDateTimeString())
@@ -184,11 +182,11 @@ class BillIndexComponent extends Component
          if($particular_id){
          PropertyParticular::updateOrCreate(
                 [
-                'property_uuid' => $this->property->uuid,
+                'property_uuid' => Session::get('property_uuid'),
                 'particular_id' => $particular_id
                 ],
                 [
-                'property_uuid' => $this->property->uuid,
+                'property_uuid' => Session::get('property_uuid'),
                 'particular_id' => $particular_id
                 ]
                 );
@@ -211,26 +209,26 @@ class BillIndexComponent extends Component
 
       $attributes = $this->validate();
 
-      $tenant_uuid = Contract::where('property_uuid', $this->property->uuid)
+      $tenant_uuid = Contract::where('property_uuid', Session::get('property_uuid'))
       ->where('contracts.status','active')
       ->pluck('tenant_uuid');
 
-      $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no($this->property->uuid);
+      $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property_uuid'));
 
       $batch_no = app('App\Http\Controllers\BillController')->generate_bill_batch_no($bill_no);
 
-      $bill_count = Contract::where('property_uuid', $this->property->uuid)->where('status', 'active')->count();
+      $bill_count = Contract::where('property_uuid', Session::get('property_uuid'))->where('status', 'active')->count();
 
       try{
          for($i=0; $i<$bill_count; $i++){ 
-            $unit_uuid=Contract::where('property_uuid', $this->property->uuid)
+            $unit_uuid=Contract::where('property_uuid', Session::get('property_uuid'))
                 ->where('contracts.status','active')
                 ->where('tenant_uuid', $tenant_uuid[$i])
                 ->pluck('unit_uuid');
 
             $reference_no = Tenant::find($tenant_uuid[$i]);
 
-            $rent = Contract::where('property_uuid', $this->property->uuid)
+            $rent = Contract::where('property_uuid', Session::get('property_uuid'))
                 ->where('contracts.status','active')
                 ->where('tenant_uuid', $tenant_uuid[$i])
                 ->pluck('rent');
@@ -260,7 +258,7 @@ class BillIndexComponent extends Component
                 $attributes['reference_no'] = $reference_no->bill_reference_no;
                 $attributes['user_id'] = auth()->user()->id;
                 $attributes['due_date'] = Carbon::parse($this->start)->addDays(7);
-                $attributes['property_uuid'] = $this->property->uuid;
+                $attributes['property_uuid'] = Session::get('property_uuid');
                 $attributes['batch_no'] = $batch_no;
                 $attributes['status'] = 'unpaid';
                 $attributes['created_at'] = Carbon::now();
@@ -280,7 +278,7 @@ class BillIndexComponent extends Component
                    'reference_no' => $reference_no->bill_reference_no,
                    'due_date' => Carbon::parse($this->start)->addDays(7),
                    'user_id' => auth()->user()->id,
-                   'property_uuid' => $this->property->uuid,
+                   'property_uuid' => Session::get('property_uuid'),
                    'tenant_uuid' => $tenant_uuid[$i],
                    'batch_no' => $batch_no,
                    'status' => 'unpaid',
@@ -299,7 +297,7 @@ class BillIndexComponent extends Component
                    'reference_no' => $reference_no->bill_reference_no,
                    'due_date' => Carbon::parse($this->start)->addDays(7),
                    'user_id' => auth()->user()->id,
-                   'property_uuid' => $this->property->uuid,
+                   'property_uuid' => Session::get('property_uuid'),
                    'tenant_uuid' => $tenant_uuid[$i],
                    'batch_no' => $batch_no,
                     'created_at' => Carbon::now(),
@@ -309,7 +307,7 @@ class BillIndexComponent extends Component
 
                 }
 
-                return redirect('/property/'.$this->property->uuid.'/bill/'.'customized'.'/'.$batch_no)->with('success', 'Success!');
+                return redirect('/property/'.Session::get('property_uuid').'/bill/'.'customized'.'/'.$batch_no)->with('success', 'Success!');
 
             }catch(\Exception $e)
             {
@@ -333,7 +331,7 @@ class BillIndexComponent extends Component
 
    public function render()
    {
-      $particulars = app('App\Http\Controllers\PropertyParticularController')->index($this->property->uuid);
+      $particulars = app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid'));
 
       $dates_posted = $this->get_posted_dates(); 
 
@@ -343,7 +341,7 @@ class BillIndexComponent extends Component
          
       return view('livewire.bill-index-component', [
          'bills' => $this->get_bills(),
-         'collections' => Collection::where('property_uuid', $this->property->uuid)->posted()->get(),
+         'collections' => Collection::where('property_uuid', Session::get('property_uuid'))->posted()->get(),
          'statuses' =>  $this->get_statuses(),
          'particulars' => $particulars,
          'dates_posted' => $dates_posted,
@@ -354,14 +352,14 @@ class BillIndexComponent extends Component
 
    public function get_statuses()
    {
-      return Bill::where('bills.property_uuid', $this->property->uuid)
+      return Bill::where('bills.property_uuid', Session::get('property_uuid'))
       ->groupBy('status')
       ->get();
    }
 
    public function get_posted_dates()
    {
-      return Bill::where('property_uuid', $this->property->uuid)
+      return Bill::where('property_uuid', Session::get('property_uuid'))
       ->select('*',DB::raw("(DATE_FORMAT(created_at,'%M %d, %Y')) as date_posted"), DB::raw('count(*) as count'))
       ->groupBy('date_posted')
       ->orderBy('created_at')
@@ -370,7 +368,7 @@ class BillIndexComponent extends Component
 
    public function get_period_covered_starts()
    {
-      return Bill::where('property_uuid', $this->property->uuid)
+      return Bill::where('property_uuid', Session::get('property_uuid'))
       ->select('*',DB::raw("(DATE_FORMAT(start,'%M %d, %Y')) as period_covered_start"), DB::raw('count(*) as count'))
       ->groupBy('period_covered_start')
       ->orderBy('start')
@@ -379,7 +377,7 @@ class BillIndexComponent extends Component
 
    public function get_period_covered_ends()
    {
-      return Bill::where('property_uuid', $this->property->uuid)
+      return Bill::where('property_uuid', Session::get('property_uuid'))
       ->select('*',DB::raw("(DATE_FORMAT(end,'%M %d, %Y')) as period_covered_end"), DB::raw('count(*) as count'))
       ->groupBy('period_covered_end')
       ->orderBy('end')
@@ -388,7 +386,7 @@ class BillIndexComponent extends Component
 
    public function exportBills(){
       
-      return redirect('/property/'.$this->property->uuid.'/bill/export/status/'.$this->status.'/particular/'.$this->particular.'/date/'.$this->posted_dates);
+      return redirect('/property/'.Session::get('property_uuid').'/bill/export/status/'.$this->status.'/particular/'.$this->particular.'/date/'.$this->posted_dates);
    }
 
 }

@@ -12,7 +12,6 @@ use Session;
 
 class EditBookingComponent extends Component
 {
-    public $property;
     public Booking $booking;
 
     //input variables
@@ -94,7 +93,7 @@ class EditBookingComponent extends Component
     public function render()
     {
         return view('livewire.edit-booking-component',[
-            'units' => Unit::where('property_uuid',$this->property->uuid)->get(),
+            'units' => Unit::where('property_uuid',Session::get('property_uuid'))->get(),
         ]);
     }
 }

@@ -9,19 +9,22 @@ use App\Models\AccountPayable;
 use App\Models\AccountPayableParticular;
 use Carbon\Carbon;
 
-class PropertyAccountPayableController extends Controller
+class AccountPayableController extends Controller
 {
+    public function getAccountPayables($property_uuid){
+        return Property::find($property_uuid)->accountpayables();
+    }
+
     public function index(Property $property, $status=null)
     {
         if(!app('App\Http\Controllers\UserRestrictionController')->isRestricted(13)){
             return abort(403);
         }
 
-         app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
+        app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
 
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',17);
 
-        //$this->authorize('is_account_payable_read_allowed');
 
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
 
@@ -53,7 +56,7 @@ class PropertyAccountPayableController extends Controller
     }
 
     public function export($property_uuid, $status=null, $created_at=null, $request_for=null, $limitDisplayTo=null){
-      
+
         $data = [
           'accountpayables' => Property::find($property_uuid)->accountpayables
         ];
@@ -75,25 +78,25 @@ class PropertyAccountPayableController extends Controller
           array(0,0,0),2,2,-30);
 
           return $pdf->stream(Property::find($property_uuid)->property.'-'.Carbon::now()->format('M d, Y').'accountpayables.pdf');
-        
+
     }
 
-    public function get_statuses(Property $property)
-    {       
-        return AccountPayable::where('property_uuid', $property->uuid)
+    public function get_statuses()
+    {
+        return AccountPayable::where('property_uuid', Session::get('property_uuid'))
         ->groupBy('status')
         ->get();
     }
-    
-    public function get_dates(Property $property){
-        return  AccountPayable::where('property_uuid', $property->uuid)
+
+    public function get_dates(){
+        return AccountPayable::where('property_uuid', Session::get('property_uuid'))
         ->select('created_at')
         ->groupBy('created_at')
         ->get();
     }
 
-    public function get_types(Property $property){
-        return  AccountPayable::where('property_uuid', $property->uuid)
+    public function get_types(){
+        return AccountPayable::where('property_uuid', Session::get('property_uuid'))
         ->select('request_for')
         ->groupBy('request_for')
         ->get();
@@ -131,7 +134,7 @@ class PropertyAccountPayableController extends Controller
     }
 
     public function update($id, $request_for, $created_at, $due_date, $requester_id, $amount, $vendor, $bank, $bank_name, $bank_account, $delivery_at, $approver_id, $approver2_id, $status, $selected_quotation){
-        
+
         AccountPayable::where('id', $id)
         ->update([
             'request_for' => $request_for,

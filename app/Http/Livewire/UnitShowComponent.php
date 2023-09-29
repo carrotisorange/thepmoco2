@@ -21,8 +21,7 @@ use App\Models\DeedOfSale;
 
 class UnitShowComponent extends Component
 {
-    public $property;
-    
+   
     public $unit_details;
     //unit input fields
     public $unit;
@@ -109,35 +108,35 @@ class UnitShowComponent extends Component
     public function redirectToTheCreateUnitInventoryPage(){
         
 
-        return redirect('/property/'.$this->property->uuid.'/unit/'.$this->unit_details->uuid.'/inventory/'.Str::random(8).'/create');
+        return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit_details->uuid.'/inventory/'.Str::random(8).'/create');
     }
 
     public function redirectToTheCreateOwnerPage(){
         
         
 
-        return redirect('/property/'.$this->property->uuid.'/unit/'.$this->unit_details->uuid.'/owner/'.Str::random(8).'/create');
+        return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit_details->uuid.'/owner/'.Str::random(8).'/create');
     }
 
     public function redirectToTheCreateTenantPage(){
         
         
 
-        return redirect('/property/'.$this->property->uuid.'/unit/'.$this->unit_details->uuid.'/tenant/'.Str::random(8).'/create');
+        return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit_details->uuid.'/tenant/'.Str::random(8).'/create');
     }
 
     public function redirectToTheCreateGuestPage(){
         
         
 
-        return redirect('/property/'.$this->property->uuid.'/calendar');
+        return redirect('/property/'.Session::get('property_uuid').'/calendar');
     }
 
     public function redirectToTheCreateUtilitiesPage(){
         
         
 
-        return redirect('/property/'.$this->property->uuid.'/utilities/');
+        return redirect('/property/'.Session::get('property_uuid').'/utilities/');
     }
 
     public function redirectToTheCreateConcernPage(){

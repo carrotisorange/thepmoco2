@@ -6,10 +6,8 @@ use Livewire\Component;
 
 class PropertyCreateSuccessComponent extends Component
 {
-    public $property;
-
     public function redirectToUnitPage(){
-        return redirect('property/'.$this->property->uuid.'/unit');
+        return redirect('property/'.Session::get('property_uuid').'/unit');
     }
 
     public function render()

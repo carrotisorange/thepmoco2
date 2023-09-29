@@ -7,8 +7,6 @@ use App\Models\Bill;
 
 class BillEditComponent extends Component
 {
-    public $property;
-
     public $bill;
 
     public $start;
@@ -57,7 +55,7 @@ class BillEditComponent extends Component
     public function render()
     {
         return view('livewire.bill-edit-component',[
-            'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($this->property->uuid)
+            'particulars' => app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid'))
         ]);
     }
 }

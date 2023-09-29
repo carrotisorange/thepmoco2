@@ -19,7 +19,6 @@ use App\Mail\SendWelcomeMailToGuest;
 
 class GuestShowComponent extends Component
 {
-    public $property;
     public $guest_details;
 
     //guest input fields
@@ -91,7 +90,7 @@ class GuestShowComponent extends Component
 
     public function store_additional_guest(){
         if(!$this->additional_guest){
-            return redirect('/property/'.$this->property->uuid.'/guest/'.$this->guest_details->uuid)->with('error', 'Error!');
+            return redirect('/property/'.Session::get('property_uuid').'/guest/'.$this->guest_details->uuid)->with('error', 'Error!');
         }
 
         AdditionalGuest::create([
@@ -99,7 +98,7 @@ class GuestShowComponent extends Component
             'guest_uuid' => $this->guest_details->uuid
         ]);
 
-          return redirect('/property/'.$this->property->uuid.'/guest/'.$this->guest_details->uuid)->with('success', 'Success!');
+          return redirect('/property/'.Session::get('property_uuid').'/guest/'.$this->guest_details->uuid)->with('success', 'Success!');
     }
 
     public function deleteGuest(){
@@ -112,14 +111,14 @@ class GuestShowComponent extends Component
         Guest::where('uuid', $this->guest_details->uuid)->delete();
         Booking::where('guest_uuid', $this->guest_details->uuid)->delete();
         
-        return redirect('/property/'.$this->property->uuid.'/guest/')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/guest/')->with('success', 'Success!');
 
     }
 
     public function exportGuest(){
         
 
-        return redirect('/property/'.$this->property->uuid.'/guest/'.$this->guest_details->uuid.'/export');
+        return redirect('/property/'.Session::get('property_uuid').'/guest/'.$this->guest_details->uuid.'/export');
     }
 
     public function storeBooking(){
@@ -132,7 +131,7 @@ class GuestShowComponent extends Component
         ]);
 
         $validated['uuid'] = app('App\Http\Controllers\PropertyController')->generate_uuid();
-        $validated['property_uuid'] = $this->property->uuid;
+        $validated['property_uuid'] = Session::get('property_uuid');
         $validated['guest_uuid'] = $this->guest_details->uuid;
 
         $booking = Booking::create($validated);
@@ -167,14 +166,14 @@ class GuestShowComponent extends Component
     public function redirectToTheCreateBillPage(){
         
 
-        return redirect('/property/'.$this->property->uuid.'/guest/'.$this->guest_details->uuid.'/bills');
+        return redirect('/property/'.Session::get('property_uuid').'/guest/'.$this->guest_details->uuid.'/bills');
     }
 
     public function render()
     {
          $collections = Collection::
           select('*', DB::raw("SUM(collection) as collection"),DB::raw("count(collection) as count") )
-          ->where('property_uuid', $this->property->uuid)
+          ->where('property_uuid', Session::get('property_uuid'))
           ->where('guest_uuid', $this->guest_details->uuid)
           ->posted()
           ->groupBy('ar_no')
@@ -182,7 +181,7 @@ class GuestShowComponent extends Component
           ->get();
 
         return view('livewire.guest-show-component',[
-            'units' => Property::find($this->property->uuid)->units->where('rent_duration', 'daily'),
+            'units' => Property::find(Session::get('property_uuid'))->units->where('rent_duration', 'daily'),
             'bills' => Guest::find($this->guest_details->uuid)->bills()->orderBy('created_at', 'desc')->get(),
             'collections' => $collections,
             'additional_guests' => AdditionalGuest::where('guest_uuid', $this->guest_details->uuid)->get(),

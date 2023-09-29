@@ -9,8 +9,6 @@ use Livewire\Component;
 class PropertyCreateComponent extends Component
 {
      use WithFileUploads;
-
-     public $property;
      
      public $type_id;
      public $thumbnail;

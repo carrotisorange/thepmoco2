@@ -23,8 +23,6 @@ use App\Models\PaymentRequest;
 class TenantBillCreateComponent extends Component
 {
    use WithPagination;
-
-   public $property;
    public $tenant;
 
    public $selectedBills = [];
@@ -107,7 +105,7 @@ class TenantBillCreateComponent extends Component
 
       try {
 
-         $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no($this->property->uuid);
+         $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property_uuid'));
           $marketing_fee = Unit::find($this->unit_uuid)->marketing_fee;
           $management_fee = Unit::find($this->unit_uuid)->management_fee;
 
@@ -129,7 +127,7 @@ class TenantBillCreateComponent extends Component
             'reference_no' => $this->tenant->reference_no,
             'due_date' => Carbon::parse($this->start)->addDays(7),
             'user_id' => auth()->user()->id,
-            'property_uuid' => $this->property->uuid,
+            'property_uuid' => Session::get('property_uuid'),
             'tenant_uuid' => $this->tenant->uuid,
             'status' => 'unpaid',
             'created_at' => Carbon::now(),
@@ -150,7 +148,7 @@ class TenantBillCreateComponent extends Component
              'reference_no' => $this->tenant->reference_no,
              'due_date' => Carbon::parse($this->start)->addDays(7),
              'user_id' => auth()->user()->id,
-             'property_uuid' => $this->property->uuid,
+             'property_uuid' => Session::get('property_uuid'),
              'tenant_uuid' => $this->tenant->uuid,
              'is_posted' => true,
               'created_at' => Carbon::now(),
@@ -169,7 +167,7 @@ class TenantBillCreateComponent extends Component
              'reference_no' => $this->tenant->reference_no,
              'due_date' => Carbon::parse($this->start)->addDays(7),
              'user_id' => auth()->user()->id,
-             'property_uuid' => $this->property->uuid,
+             'property_uuid' => Session::get('property_uuid'),
              'tenant_uuid' => $this->tenant->uuid,
              'is_posted' => true,
               'created_at' => Carbon::now(),
@@ -177,11 +175,11 @@ class TenantBillCreateComponent extends Component
            }
           }
 
-            // app('App\Http\Controllers\BillController')->store($this->property->uuid, auth()->user()->id, 1, 3);
+            // app('App\Http\Controllers\BillController')->store(Session::get('property_uuid'), auth()->user()->id, 1, 3);
 
-            app('App\Http\Controllers\PointController')->store($this->property->uuid, auth()->user()->id, 1, 3);
+            app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, 1, 3);
 
-            return redirect('/property/'.$this->property->uuid.'/tenant/'.$this->tenant->uuid.'/bills')->with('success','Success!');
+            return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant->uuid.'/bills')->with('success','Success!');
       }
         catch(\Exception $e)
         {
@@ -208,11 +206,11 @@ class TenantBillCreateComponent extends Component
          if($particular_id){
          PropertyParticular::updateOrCreate(
                 [
-                'property_uuid' => $this->property->uuid,
+                'property_uuid' => Session::get('property_uuid'),
                 'particular_id' => $particular_id
                 ],
                 [
-                'property_uuid' => $this->property->uuid,
+                'property_uuid' => Session::get('property_uuid'),
                 'particular_id' => $particular_id
                 ]
                 );
@@ -225,7 +223,7 @@ class TenantBillCreateComponent extends Component
    {      
 
       //generate collection acknowledgement receipt no
-      $collection_ar_no = Property::find($this->property->uuid)->acknowledgementreceipts->max('ar_no')+1;
+      $collection_ar_no = Property::find(Session::get('property_uuid'))->acknowledgementreceipts->max('ar_no')+1;
 
       //generate a collection batch no
       $collection_batch_no = Carbon::now()->timestamp.''.$collection_ar_no;
@@ -242,7 +240,7 @@ class TenantBillCreateComponent extends Component
             $particular_id = Bill::find($this->selectedBills[$i])->particular_id;
             $tenant_uuid = $this->tenant->uuid;
             $unit_uuid = Bill::find($this->selectedBills[$i])->unit_uuid;
-            $property_uuid = $this->property->uuid;
+            $property_uuid = Session::get('property_uuid');
          
             $bill_id = Bill::find($this->selectedBills[$i])->id;
             $bill_reference_no = Tenant::find($this->tenant->uuid)->bill_reference_no;
@@ -288,7 +286,7 @@ class TenantBillCreateComponent extends Component
             return back()->with('error',$e);
          } 
       }
-         return redirect('/property/'.$this->property->uuid.'/tenant/'.$this->tenant->uuid.'/bills/'.$collection_batch_no.'/pay');
+         return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant->uuid.'/bills/'.$collection_batch_no.'/pay');
 
    }
    public function updatedSelectAll($value)
@@ -321,7 +319,7 @@ class TenantBillCreateComponent extends Component
         })
       ->get();
 
-      $statuses = Bill::where('bills.property_uuid', $this->property->uuid)
+      $statuses = Bill::where('bills.property_uuid', Session::get('property_uuid'))
       ->select('status', DB::raw('count(*) as count'))
       ->groupBy('status')
       ->get();
@@ -353,7 +351,7 @@ class TenantBillCreateComponent extends Component
       ->whereIn('status', ['paid', 'partially_paid'])
       ->count();
 
-      $particulars = app('App\Http\Controllers\PropertyParticularController')->index($this->property->uuid);
+      $particulars = app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid'));
 
       return view('livewire.tenant-bill-create-component',[
          'bills' => $bills,
@@ -365,7 +363,7 @@ class TenantBillCreateComponent extends Component
          'statuses' => $statuses,
          'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
          'unpaid_bills' => app('App\Http\Controllers\BillController')->get_tenant_balance($this->tenant->uuid),
-         // 'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($this->property->uuid),
+         // 'particulars' => app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid')),
          'units' => app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($this->tenant->uuid),
          'note_to_bill' => $this->property->note_to_bill,
          'particulars' => $particulars

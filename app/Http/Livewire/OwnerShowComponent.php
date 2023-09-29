@@ -22,9 +22,7 @@ use Livewire\Component;
 class OwnerShowComponent extends Component
 {
     use WithFileUploads;
-
-    public $property;
-
+    
     public $owner_details;
 
     public $owner;
@@ -176,7 +174,7 @@ class OwnerShowComponent extends Component
             app('App\Http\Controllers\UserController')->send_email($user_id->role_id, $user_id->email, $user_id->username, $temporary_password);
         }
 
-        app('App\Http\Controllers\ActivityController')->store($this->property->uuid, auth()->user()->id,'sends',17);
+        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'sends',17);
        
 
        return back()->with('success', 'Success');
@@ -189,7 +187,7 @@ class OwnerShowComponent extends Component
         User::where('email', $this->owner_details->email)
         ->delete();
 
-        app('App\Http\Controllers\ActivityController')->store($this->property->uuid, auth()->user()->id,'removes', 19);
+        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'removes', 19);
 
         session()->flash('success', 'Success!');
     }
@@ -270,7 +268,7 @@ class OwnerShowComponent extends Component
             'enrollees' => app('App\Http\Controllers\OwnerController')->show_owner_enrollees($this->owner_details->uuid),
             'credentials' => User::where('owner_uuid', $this->owner_details->uuid)->get(),
             'bills' => Bill::where('owner_uuid', $this->owner_details->uuid)->posted()->get(),
-            'collections' => app('App\Http\Controllers\OwnerCollectionController')->get_owner_collections($this->property->uuid, $this->owner_details->uuid),
+            'collections' => app('App\Http\Controllers\OwnerCollectionController')->get_owner_collections(Session::get('property_uuid'), $this->owner_details->uuid),
             'username' => User::where('owner_uuid', $this->owner_details->uuid)->value('username'),
             'spouse' => Spouse::where('owner_uuid', $this->owner_details->uuid)->get()
         ]);

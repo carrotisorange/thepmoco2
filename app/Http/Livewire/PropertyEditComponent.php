@@ -17,7 +17,6 @@ class PropertyEditComponent extends Component
     use WithFileUploads;
 
     public $property_details;
-    public $property;
     public $type_id;
     public $thumbnail;
     public $description;

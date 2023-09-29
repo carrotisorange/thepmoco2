@@ -62,29 +62,28 @@ class ContractController extends Controller
        ]);
     }
 
-    public function getContracts($property)
-    {
-        return Contract::where('property_uuid', $property)->where('status', 'active')->orderBy('start', 'asc')->get();
-    }
+    // public function getContracts($property)
+    // {
+    //     return Contract::where('property_uuid', $property)->where('status', 'active')->orderBy('start', 'asc')->get();
+    // }
 
-    public function get_property_contracts($property_uuid, $status, $dateBeforeExpiration, $movein, $moveout)
+    public function getContracts($property_uuid)
     {
-
-        return Property::find($property_uuid)->contracts()
-        ->when($status, function ($query) use ($status) {
-          $query->where('status', $status);
-        })
-        ->when($dateBeforeExpiration, function ($query) use ($dateBeforeExpiration) {
-          $query->where('end','<=', $dateBeforeExpiration);
-        })
-        ->when($movein, function ($query) use ($movein) {
-          $query->whereMonth('start', $movein);
-        })
-        ->when($moveout, function ($query) use ($moveout) {
-          $query->whereMonth('end', $moveout);
-        })
-        ->orderBy('start', 'desc')
-        ->get();
+        return Property::find($property_uuid)->contracts();
+        // ->when($status, function ($query) use ($status) {
+        //   $query->where('status', $status);
+        // })
+        // ->when($dateBeforeExpiration, function ($query) use ($dateBeforeExpiration) {
+        //   $query->where('end','<=', $dateBeforeExpiration);
+        // })
+        // ->when($movein, function ($query) use ($movein) {
+        //   $query->whereMonth('start', $movein);
+        // })
+        // ->when($moveout, function ($query) use ($moveout) {
+        //   $query->whereMonth('end', $moveout);
+        // })
+        // ->orderBy('start', 'desc')
+        // ->get();
     }
 
     public function get_contracts_trend_count($property_uuid)

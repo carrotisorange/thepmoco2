@@ -7,12 +7,11 @@
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
 
                 @if($created_at || $status || $request_for || $limitDisplayTo)
-                <button type="button" wire:click="clearFilters"
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                    Clear Filters
-                </button>
+                <x-button type="button" wire:click="clearFilters"
+                  >   Clear Filters
+                </x-button>
                 @endif
-                <a href="/property/{{$property->uuid}}/accountpayable/export/{{ $status }}/{{ $created_at }}/{{ $request_for }}/{{ $limitDisplayTo }}"
+                <a href="/property/{{Session::get('property_uuid')}}/accountpayable/export/{{ $status }}/{{ $created_at }}/{{ $request_for }}/{{ $limitDisplayTo }}"
                     target="_blank"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                     Export All
@@ -21,8 +20,6 @@
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                     New Request
                 </a>
-
-
 
             </div>
 
@@ -36,7 +33,7 @@
             </div>
             <div class="sm:col-span-3">
                 <small for="">Filter status</small>
-              <x-form-select id="status" name="status" wire:model="status" class="">     
+              <x-select id="status" name="status" wire:model="status" class="">     
                 <option value="">Show all</option>
                  @foreach ($statuses as $status)
                      <option value="{{ $status->status }}" {{ $status->status===$status? 'selected' : 'Select one' }}>
@@ -64,12 +61,12 @@
                      <option value="completed" {{ "completed"===$status? 'selected' : 'Select one' }}>
                       completed
                     </option> --}}
-               </x-form-select>
+               </x-select>
             </div>
 
             <div class="sm:col-span-3">
                 <small for="">Filter date requested</small>
-             <x-form-select id="created_at" name="created_at" wire:model="created_at" class="">        
+             <x-select id="created_at" name="created_at" wire:model="created_at" class="">        
                 <option value="">Select date</option>      
                 <option value="{{ $created_at }}">{{ Carbon\Carbon::parse($created_at)->format('M, Y') }}</option>
                     @foreach ($dates as $date)
@@ -77,7 +74,7 @@
                     <option value="{{ $date->created_at }}">{{ Carbon\Carbon::parse($date->created_at)->format('M, Y') }}</option>
                     @endif
                     @endforeach
-                </x-form-select>
+                </x-select>
                 {{-- <select id="limitDisplayTo" wire:model="limitDisplayTo"
                     class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                     <option value="" selected>Limit display to</option>
@@ -127,21 +124,7 @@
                                         </span>
                                     </button>
 
-                                    {{-- <ul
-                                        class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
-                                                                                      transition duration-150 ease-in-out origin-top min-w-32">
-
-                                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
-                                                href="/property/{{ Session::get('property_uuid') }}/accountpayable/{{ 'payment' }}/{{ Str::random(3) }}/store"
-                                                data-modal-toggle="create-particular-modal">payment</a>
-                                        </li>
-                                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
-                                                href="/property/{{ Session::get('property_uuid') }}/accountpayable/{{ 'payment' }}/{{ Str::random(3) }}/store"
-                                                data-modal-toggle="create-particular-modal"> purchase</a>
-                                        </li>
-
-                                    </ul> --}}
-
+                                   
                                 </div>
 
                             </div>

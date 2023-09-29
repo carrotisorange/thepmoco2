@@ -34,7 +34,7 @@ class TenantController extends Controller
 
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
 
-        $tenants = $this->get_property_tenants($property->uuid);
+        $tenants = $this->getTenants($property->uuid);
 
         return view('properties.tenants.index',[
             'tenants'=>$tenants
@@ -61,7 +61,7 @@ class TenantController extends Controller
 
     //other functions
 
-    public function get_property_tenants($property_uuid)
+    public function getTenants($property_uuid)
     {
         return Property::find($property_uuid)->tenants;
     }
@@ -90,7 +90,7 @@ class TenantController extends Controller
      * @param  \App\Models\Tenant  $tenant
      * @return \Illuminate\Http\Response
      */
-    
+
 
     public function show_all_guardians($tenant_uuid)
     {
@@ -131,18 +131,18 @@ class TenantController extends Controller
           }
 
         try{
-    
-        
+
+
             DB::beginTransaction();
             $tenant->update($attributes);
             DB::commit();
             return back()->with('success', 'Success!');
         }catch(\Exception $e){
             DB::rollback();
-            
+
             return back()->with('error', 'Cannot perform your action.');
         }
-        
+
     }
 
     public function update_tenant_status($tenant_uuid, $status)

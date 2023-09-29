@@ -15,7 +15,6 @@ use App\Models\User;
 
 class AccountPayableCreateStep3Component extends Component
 {
-    public $property;
     public $accountpayable;
 
     public $comment;
@@ -45,7 +44,7 @@ class AccountPayableCreateStep3Component extends Component
         
 
         return
-        redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step1/export');
+        redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step1/export');
 
     }
 
@@ -55,7 +54,7 @@ class AccountPayableCreateStep3Component extends Component
 
         app('App\Http\Controllers\RequestForPurchaseController')->update_approval($this->accountpayable->id, 'approved by ap', $this->comment, $this->vendor);
 
-        $ap = UserProperty::where('property_uuid', $this->property->uuid)->where('role_id', 4)->approved()->pluck('user_id')->first();
+        $ap = UserProperty::where('property_uuid', Session::get('property_uuid'))->where('role_id', 4)->approved()->pluck('user_id')->first();
 
 
         $content = $this->accountpayable;
@@ -68,7 +67,7 @@ class AccountPayableCreateStep3Component extends Component
 
         }
 
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-4')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-4')->with('success', 'Success!');
     }
 
     public function rejectRequest(){
@@ -84,7 +83,7 @@ class AccountPayableCreateStep3Component extends Component
 
         Notification::route('mail', $requester_email)->notify(new SendAccountPayableStep4NotificationToAdmin($content));
 
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-3')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-3')->with('success', 'Success!');
     }
 
     

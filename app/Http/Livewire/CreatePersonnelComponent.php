@@ -11,12 +11,10 @@ use App\Models\Role;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use DB;
+use Session;
 
 class CreatePersonnelComponent extends Component
 {
-    public $property;
-
-    //input variables
     public $role_id;
     public $email;
     public $mobile_number;
@@ -28,13 +26,13 @@ class CreatePersonnelComponent extends Component
         'role_id' => ['required', Rule::exists('roles', 'id')],
     ]);
     
-    $username = Role::find($this->role_id)->role.''.UserProperty::where('property_uuid', $this->property->uuid)->where('role_id',$this->role_id)->count();
+    $username = Role::find($this->role_id)->role.''.UserProperty::where('property_uuid', Session::get('property_uuid'))->where('role_id',$this->role_id)->count();
 
     $password = Str::random(8);
     
     $is_user_exists = User::where('email', $this->email)->pluck('id')->first();
     
-        $is_role_exists = UserProperty::where('property_uuid',$this->property->uuid)->where('user_id', $is_user_exists)->where('role_id', $this->role_id)->pluck('id')->first();
+        $is_role_exists = UserProperty::where('property_uuid',Session::get('property_uuid'))->where('user_id', $is_user_exists)->where('role_id', $this->role_id)->pluck('id')->first();
 
         if($is_role_exists){
             return redirect(url()->previous())->with('error', 'Role already exists!');
@@ -65,7 +63,7 @@ class CreatePersonnelComponent extends Component
     UserProperty::create(
 
         [
-               'property_uuid' => $this->property->uuid,
+               'property_uuid' => Session::get('property_uuid'),
                'user_id' => $user->id,
                'is_account_owner' => false,
                'is_approved' => true,
@@ -83,7 +81,7 @@ class CreatePersonnelComponent extends Component
             ]);
 
         }else{
-            app('App\Http\Controllers\UserRestrictionController')->store($this->property->uuid, $user->id);
+            app('App\Http\Controllers\UserRestrictionController')->store(Session::get('property_uuid'), $user->id);
             app('App\Http\Controllers\UserController')->send_email($this->role_id, $this->email, $this->email, $password);
     }
 
@@ -101,7 +99,7 @@ class CreatePersonnelComponent extends Component
     public function render()
     {
         return view('livewire.create-personnel-component',[
-            'roles' => app('App\Http\Controllers\RoleController')->get_roles($this->property->uuid),
+            'roles' => app('App\Http\Controllers\RoleController')->get_roles(Session::get('property_uuid')),
         ]);
     }
 }

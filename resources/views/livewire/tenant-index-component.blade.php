@@ -40,7 +40,7 @@
             
             </div>
 
-                <div class="sm:col-span-2">
+                <div class="sm:col-span-3">
                     <x-select name="category" wire:model="category">    
                          <option value="" selected>Filter category</option>
                         @foreach ($categories as $category)
@@ -50,7 +50,7 @@
 
                 </div>
 
-                <div class="sm:col-span-2">
+                <div class="sm:col-span-3">
                     <x-select name="status" wire:model="status">
                         <option value="" selected>Filter status</option>
                         @foreach ($statuses as $status)

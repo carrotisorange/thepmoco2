@@ -88,5 +88,5 @@
             </div>
         </div>
     </div>
-    @livewire('create-personnel-component',['property' => $property])
+    @livewire('create-personnel-component')
 </div>

@@ -18,9 +18,14 @@ class PersonnelController extends Controller
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
 
         return view('properties.personnels.index',[
-            'users' => app('App\Http\Controllers\UserPropertyController')->get_property_users($property->uuid,auth()->user()->id),
+            'users' => app('App\Http\Controllers\UserPropertyController')->getPersonnels($property->uuid,auth()->user()->id),
             'properties' => app('App\Http\Controllers\UserPropertyController')->get_user_properties($property->uuid,auth()->user()->id),
             'property' => $property
         ]);
+    }
+
+    public function getPersonnels($property_uuid)
+    {
+        return Property::find($property_uuid)->property_users()->get();
     }
 }

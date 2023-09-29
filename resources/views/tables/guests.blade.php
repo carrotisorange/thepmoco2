@@ -6,12 +6,9 @@
             <x-th>Unit</x-th>
             <x-th>Mobile</x-th>
             <x-th>Email</x-th>
-            {{-- <x-th>Price</x-th> --}}
             <x-th>Status</x-th>
             <x-th>Checkin</x-th>
             <x-th>Checkout</x-th>
-
-
         </tr>
     </thead>
     @foreach ($guests as $index => $item)
@@ -40,18 +37,6 @@
                 {{Carbon\Carbon::parse($item->moveout_at)->format('M d, Y')}} @ {{
                 Carbon\Carbon::parse($item->departure_time)->format('H:i:s') }}
             </x-td>
-            {{-- <x-td>{{ $item->vehicle_details }}</x-td>
-            <x-td>{{ $item->plate_number }}</x-td> --}}
-            {{-- <x-td>
-                @if($item->status === 'pending')
-                <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $item->unit_uuid }}/guest/{{ $item->uuid }}/movein"
-                    class="text-indigo-500 text-decoration-line: underline">Movein</a>
-                @elseif($item->status === 'active')
-                <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $item->unit_uuid }}/guest/{{ $item->uuid }}/moveout"
-                    class="text-indigo-500 text-decoration-line: underline">Moveout</a>
-                @endif
-            </x-td> --}}
-
         </tr>
     </tbody>
     @endforeach

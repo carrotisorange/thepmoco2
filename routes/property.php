@@ -30,7 +30,6 @@ use App\Http\Controllers\GuestController;
 use App\Http\Controllers\UserPropertyController;
 use App\Http\Controllers\OwnerBillController;
 use App\Http\Controllers\OwnerCollectionController;
-use App\Http\Controllers\PropertyDashboardController;
 use App\Http\Controllers\UtilityController;
 use App\Http\Controllers\UnitConcernController;
 use App\Http\Controllers\UnitInventoryController;
@@ -39,10 +38,10 @@ use App\Http\Controllers\TenantReferenceController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\TenantWalletController;
 use App\Http\Controllers\BillController;
-use App\Http\Controllers\PropertyAccountPayableController;
+use App\Http\Controllers\AccountPayableController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CalendarController;
-use App\Http\Controllers\PropertyFinancialController;
+use App\Http\Controllers\FinancialController;
 use App\Http\Controllers\PropertyUtilityController;
 use App\Http\Controllers\PropertyGuestController;
 use App\Http\Controllers\LiquidationController;
@@ -67,10 +66,10 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //property remittances
     //remittance
     Route::get('/unit/{unit}/remittances', [RemittanceController::class, 'show']);
-    
+
     Route::prefix('remittance')->group(function(){
-        Route::get('/', [RemittanceController::class, 'index'])->name('remittances');
-      
+        Route::get('/', [RemittanceController::class, 'index'])->name('remittance');
+
     });
 
     //Routes for Property
@@ -85,7 +84,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::get('user_property/{user_property}/remove-access',[UserPropertyController::class, 'remove_access']);
     Route::get('user_property/{user_property}/restore-access',[UserPropertyController::class, 'restore_access']);
-       
+
     //Route for contract
     Route::get('contract/{status}',[ContractController::class, 'show_moveout_request'])->name('contract');
     Route::get('contract', [ContractController::class, 'index'])->name('contract');
@@ -100,13 +99,13 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::prefix('utilities')->group(function(){
         Route::get('/',[PropertyUtilityController::class, 'index'])->name('utilities');
         Route::get('/{batch_no}/{option}',[UtilityController::class, 'edit'])->name('utilities');
-        
+
     });
 
     //route for adding bill to unit based on the utility reading
     Route::get('unit/{unit}/{type}/utility/{utility}', [UnitBillController::class, 'create'])->name('unit');
     Route::get('unit/{unit}/utility/{utility}/edit', [UnitBillController::class, 'edit'])->name('unit');
-    
+
     Route::get('unit/{unit}/{type}/utility/{utility}/success', [UnitBillController::class, 'success'])->name('unit');
 
     Route::prefix('guest')->group(function(){
@@ -130,15 +129,15 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     //Routes for calendar
     Route::get('calendar', [CalendarController::class, 'index'])->name('calendar');
-    
-  
+
+
 
     //Routes for Unitf
     Route::prefix('unit')->group(function(){
         Route::get('/', [UnitController::class, 'index'])->name('unit');
         Route::get('{batch_no?}/edit', [UnitController::class, 'edit'])->name('unit');
         Route::get('{unit:uuid}', [UnitController::class, 'show'])->name('unit')->scopeBindings();
-        
+
         Route::prefix('{unit:uuid}')->group(function(){
             Route::get('/contract/{contract}/inventory/export', [UnitInventoryController::class, 'export_movein']);
             Route::get('enrollee', [UnitEnrolleeController::class, 'index']);
@@ -151,11 +150,11 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
                 Route::get('{random_str}/create', [UnitContractController::class, 'create'])->name('unit');
                 Route::get('{random_str}/create/export', [UnitContractController::class, 'export']);
                 Route::get('{tenant}/contract/{random_str}/create',[ContractController::class,'create']);
-                
+
             });
 
             Route::prefix('guest')->group(function(){
-                
+
                 Route::get('{random_str}/create', [GuestController::class, 'create'])->name('guest');
                 Route::post('store', [GuestController::class, 'store']);
             });
@@ -164,11 +163,11 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
                 Route::get('{random_str}/create', [UnitInventoryController::class, 'create'])->name('unit');
                 Route::get('{unit_inventory}', [UnitInventoryController::class, 'upload_image'])->name('unit');
                 Route::get('{random_str}/export', [UnitInventoryController::class, 'export'])->name('unit');
-          
+
             });
 
             Route::get('/tenant/{tenant}/contract/{contract}/inventory/create', [UnitInventoryController::class, 'movein_create'])->name('unit');
-                
+
             Route::prefix('owner')->group(function(){
                 Route::get('/', [OwnerController::class, 'index'])->scopeBindings();
                 Route::get('{random_str}/create', [OwnerController::class, 'create'])->name('unit');
@@ -177,7 +176,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
 
                 Route::prefix('{owner}')->group(function(){
-        
+
                     Route::prefix('deed_of_sale')->group(function(){
                         Route::get('create',[DeedOfSaleController::class,'create']);
                         Route::get('{deed_of_sale}/delete', [DeedOfSaleController::class, 'destroy']);
@@ -199,12 +198,12 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
                     });
 
                 });
-       
+
             });
-            
+
             Route::get('deed_of_sales', [UnitDeedOfSalesController::class, 'index']);
-            
-            
+
+
             Route::get('bills', [UnitBillController::class, 'index'])->name('unit');
         });
     });
@@ -239,12 +238,12 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::get('/', [TenantController::class, 'index'])->name('tenant');
         Route::get('/unlock', [TenantController::class, 'unlock'])->name('tenant');
         Route::get('{tenant:uuid}', [TenantController::class, 'show'])->name('tenant');
-    
+
         Route::prefix('{tenant}')->group(function(){
-            Route::get('bills', [BillController::class, 'get_bills'])->name('tenant-bill');
+            Route::get('bills', [BillController::class, 'index'])->name('tenant-bill');
             Route::get('bills/{batch_no}/pay', [CollectionController::class, 'edit_collections'])->name('tenant');
             Route::patch('bills/{batch_no}/pay/update', [CollectionController::class, 'update_collections']);
-            Route::get('collections', [CollectionController::class,'getCollections'])->name('tenant');
+            Route::get('collections', [CollectionController::class,'tenant_collection_index'])->name('tenant');
             Route::get('payment_requests/{payment_request}',[CollectionController::class, 'show_payment_request'])->name('tenant');
             Route::get('contracts', [TenantContractController::class,'index']);
             Route::get('bill/export', [BillController::class, 'export_soa']);
@@ -252,7 +251,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('collection/{collection}/view', [CollectionController::class, 'export_ar']);
             Route::get('concerns', [TenantConcernController::class, 'index'])->name('tenant');
             Route::get('concern/create', [TenantConcernController::class, 'create'])->name('concern');
-         
+
             Route::get('units', [TenantContractController::class, 'create']);
             Route::get('ledger', [TenantLedgerController::class, 'index']);
 
@@ -274,7 +273,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
                 Route::get('{unit?}/create', [ReferenceController::class, 'create']);
                 Route::delete('{reference_id:id}', [ReferenceController::class, 'destroy']);
             });
-        
+
             Route::prefix('/contract')->group(function(){
                 Route::prefix('{contract}')->group(function(){
                     Route::get('renew', [ContractController::class, 'renew'])->name('tenant');
@@ -293,12 +292,12 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
                     Route::get('movein', [ContractController::class, 'movein'])->name('tenant');
                     Route::get('moveout/export', [ContractController::class, 'export_moveout_form']);
                     Route::get('delete', [ContractController::class, 'destroy']);
-                  
+
                 });
-            });  
+            });
         });
 });
-    
+
     //Routes for Owner
     Route::prefix('owner')->group(function(){
         Route::get('/', [OwnerController::class, 'index'])->name('owner')->scopeBindings();
@@ -312,10 +311,10 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
             Route::prefix('bank')->group(function(){
                 Route::get('create', [BankController::class, 'create'])->name('owner');
-            });        
-            
-          
-           
+            });
+
+
+
             Route::get('unit', [OwnerDeedOfSalesController::class, 'create']);
 
             Route::get('deed_of_sales', [OwnerDeedOfSalesController::class, 'index']);
@@ -333,56 +332,56 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
             Route::get('bills/{batch_no}/pay', [OwnerCollectionController::class, 'edit']);
             Route::patch('bills/{batch_no}/pay/update', [OwnerCollectionController::class, 'update']);
-        });      
+        });
     });
 
     Route::get('/guest/{guest}/bill/{bill}/edit', [BillController::class, 'edit_bill'])->name('bill');
-  
+
     //Routes for Bill
     Route::prefix('bill')->group(function(){
-        Route::get('{type?}/{type_id?}/{batch_no?}/{drafts?}', [BillController::class, 'get_bills'])->name('bill');
+        Route::get('{type?}/{type_id?}/{batch_no?}/{drafts?}', [BillController::class, 'index'])->name('bill');
         Route::get('export/status/{status?}/particular/{particular?}/date/{date?}', [BillController::class, 'export']);
         // Route::get('customized/{batch_no}',[PropertyBillController::class,'edit'])->name('bill');
         Route::get('{random_str}/delete/{count}', [BillController::class, 'confirm_bill_deletion'])->name('bill');
 
         Route::get('/batch/{batch_no}/drafts', [BillController::class, 'drafts'])->name('bill');
-       
-      
+
+
     });
 
     //Routes for Cashflow
     Route::prefix('financial')->group(function(){
-        Route::get('/', [PropertyFinancialController::class, 'index'])->name('financial');
-        Route::get('{type}/export/{filter}', [PropertyFinancialController::class, 'export']);
+        Route::get('/', [FinancialController::class, 'index'])->name('financial');
+        Route::get('{type}/export/{filter}', [FinancialController::class, 'export']);
     });
 
 
     Route::get('dcr/{date}/{format}', [CollectionController::class, 'export_dcr']);
-    
+
     //Routes for Collection
     Route::prefix('collection')->group(function(){
-        Route::get('{type?}/{type_id?}', [CollectionController::class, 'getCollections'])->name('collection');
+        Route::get('{type?}/{type_id?}', [CollectionController::class, 'index'])->name('collection');
 
     });
 
     //Routes for Account Payable
     Route::prefix('accountpayable')->group(function(){
-        Route::get('/', [PropertyAccountPayableController::class, 'index'])->name('accountpayable');
-        Route::get('export/{status?}/{created_at?}/{request_for?}/{limitDisplayTo?}', [PropertyAccountPayableController::class, 'export']);
+        Route::get('/', [AccountPayableController::class, 'index'])->name('accountpayable');
+        Route::get('export/{status?}/{created_at?}/{request_for?}/{limitDisplayTo?}', [AccountPayableController::class, 'export']);
 
 
-        Route::get('{accountPayable}', [PropertyAccountPayableController::class, 'show'])->name('accountpayable');
+        Route::get('{accountPayable}', [AccountPayableController::class, 'show'])->name('accountpayable');
         Route::get('{accountPayable}/liquidation/step-1', [LiquidationController::class, 'step1'])->name('accountpayable');
         Route::post('{accountPayable}/liquidation/step-1', [LiquidationController::class, 'step1'])->name('accountpayable');
         Route::get('{accountPayable}/liquidation/step-2', [LiquidationController::class, 'step2'])->name('accountpayable');
         Route::get('{accountPayable}/liquidation/{liquidation}/export', [LiquidationController::class, 'export'])->name('accountpayable');
         Route::get('{accountPayable}/export/complete', [LiquidationController::class,'export_complete'])->name('accountpayable');
 
-        
-        Route::get('{accountPayable}/download', [PropertyAccountPayableController::class, 'download']);
+
+        Route::get('{accountPayable}/download', [AccountPayableController::class, 'download']);
 
         Route::controller(RequestForPurchaseController::class)->group(function () {
-    
+
             Route::get('{accountPayable}', 'show')->name('accountpayable');
             Route::get('{id}/attachment',  'download');
 
@@ -403,7 +402,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('{accountpayable}/step-2', 'create_step_2')->name('accountpayable');
 
             Route::get('{accountpayable}/step-3', 'create_step_3')->name('accountpayable');
-    
+
 
             //step 4
             Route::get('{accountpayable}/step-4', 'create_step_4')->name('accountpayable');
@@ -415,7 +414,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('{accountpayable}/step-6', 'create_step_6')->name('accountpayable');
 
             Route::get('{accountpayable}/step-7', 'create_step_7')->name('accountpayable');
-   
+
 
             //request status sample
             Route::get('{random_str}/request-status', 'create_request_status')->name('accountpayable');
@@ -425,7 +424,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::get('{random_str}/request-comment', 'create_request_comment')->name('accountpayable');
             Route::post('request-comment', 'store_request_comment');
 
-            //pdf 
+            //pdf
 
             Route::get('{random_str}/step1', 'create_step1')->name('accountpayable');
             Route::post('step1', 'store_step1');
@@ -443,11 +442,11 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             Route::post('step5', 'store_step5');
 
             Route::get('{random_str}/step6', 'create_step6')->name('accountpayable');
-            Route::post('step6', 'store_step6');            
+            Route::post('step6', 'store_step6');
 
-            
+
         });
-        
+
 
     });
 
@@ -473,7 +472,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::prefix('referral')->group(function(){
         Route::get('/', [ReferralController::class, 'index'])->name('referral');
     });
-   
+
     //Routes for Timestamp
     Route::prefix('timestamp')->group(function(){
         Route::get('/', [TimestampController::class, 'index'])->name('timestamp');
@@ -482,7 +481,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for Enrollee
     Route::prefix('enrollees')->group(function(){
         Route::get('/', [EnrolleeController::class, 'index'])->name('enrollees');
-    });    
+    });
 
     //show contracts
     Route::get('/tenant_contract', [PropertyController::class, 'show_tenant_contract']);
@@ -511,6 +510,6 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     });
 
 
-   
+
 
 });

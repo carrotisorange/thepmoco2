@@ -8,10 +8,10 @@ use App\Models\UserProperty;
 use Illuminate\Validation\Rule;
 use App\Models\UserRestriction;
 use DB;
+use Session;
 
 class EditPersonnelComponent extends Component
 {
-    public $property;
     public $personnel;
 
     public $name;
@@ -64,7 +64,7 @@ class EditPersonnelComponent extends Component
         UserProperty::where('id', $this->personnel->id)
         ->update($validatedUserPropertyData);
     
-        app('App\Http\Controllers\UserRestrictionController')->store($this->property->uuid, $this->personnel->user->id);
+        app('App\Http\Controllers\UserRestrictionController')->store(Session::get('property_uuid'), $this->personnel->user->id);
 
         $this->validate();
 
@@ -74,7 +74,7 @@ class EditPersonnelComponent extends Component
             }
         });
 
-        app('App\Http\Controllers\PropertyController')->store_property_session($this->property->uuid);
+        app('App\Http\Controllers\PropertyController')->store_property_session(Session::get('property_uuid'));
 
         return redirect(url()->previous())->with('success', 'Success!');
     }
@@ -82,7 +82,7 @@ class EditPersonnelComponent extends Component
     public function render()
     {
         return view('livewire.edit-personnel-component',[
-            'roles' => app('App\Http\Controllers\RoleController')->get_roles($this->property->uuid),
+            'roles' => app('App\Http\Controllers\RoleController')->get_roles(Session::get('property_uuid')),
         ]);
     }
 }
