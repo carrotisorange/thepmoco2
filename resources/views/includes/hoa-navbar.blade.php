@@ -13,7 +13,28 @@
 
         <div class="font-medium leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Messages</div>
 
-        <!-- Units -->
+        <!-- Community Bulletin -->
+        @if(Session::get('property_uuid'))
+        <x-nav-link href="/property/{{ Session::get('property_uuid') }}/unit" :active="request()->routeIs('unit')">
+            <span class="sr-only">Community Bulletin</span>
+            <img class="h-7 w-auto" src="{{ asset('/brands/community-bulletin.png') }}" fill="none" viewBox="0 0 24 24"
+                stroke-width="2" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+        </x-nav-link>
+        @else
+        <x-nav-link href="/property/" :active="request()->routeIs('unit')">
+            <span class="sr-only">Community Bulletin</span>
+            <img class="h-7 w-auto" src="{{ asset('/brands/community-bulletin.png') }}" fill="none" viewBox="0 0 24 24"
+                stroke-width="2" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+        </x-nav-link>
+        @endif
+
+        <div class="font-medium leading-3 -ml-2 text-xs text-center text-gray-900 mt-10">Community <br>Bulletin</div>
+
+        <!-- Houses -->
         @if(Session::get('property_uuid'))
         <x-nav-link href="/property/{{ Session::get('property_uuid') }}/unit" :active="request()->routeIs('unit')">
             <span class="sr-only">Houses</span>
