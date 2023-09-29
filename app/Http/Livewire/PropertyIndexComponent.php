@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 use App\Models\UserProperty;
-
+use Session;
 use Livewire\Component;
 
 class PropertyIndexComponent extends Component
@@ -19,8 +19,17 @@ class PropertyIndexComponent extends Component
         $this->limitDisplayTo = null;
     }
 
+    public function redirectToTheProperty(){
+        // if(Session::get('property_type') === 'HOA'){
+            return redirect('/property/'.Session::get('property_uuid').'/unit');
+        // }else{
+        //     return redirect('/property/'.Session::get('property_uuid'));
+        // }
+
+    }
+
     public function render()
-    {    
+    {
         $userId = auth()->user()->id;
         $properties  = app('App\Http\Controllers\PropertyController')->get_properties($userId, $this->search,$this->sortBy, $this->filterByPropertyType, $this->limitDisplayTo);
         $propertyTypes = app('App\Http\Controllers\PropertyController')->get_property_types(auth()->user()->id);
@@ -34,5 +43,5 @@ class PropertyIndexComponent extends Component
     }
 
 
-  
+
 }

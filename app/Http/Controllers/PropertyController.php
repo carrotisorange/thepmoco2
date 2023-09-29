@@ -30,6 +30,7 @@ class PropertyController extends Controller
 {
     public function index()
     {
+
         $this->destroy_property_session();
 
         $this->is_user_allowed_to_access(auth()->user()->status);

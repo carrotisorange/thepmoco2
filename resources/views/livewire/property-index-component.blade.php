@@ -98,7 +98,7 @@
         <h3 class="mt-2 text-sm font-medium text-gray-900">No properties</h3>
         <p class="mt-1 text-sm text-gray-500">Get started by creating a new property.</p>
         <div class="mt-6">
-           
+
             <x-button onclick="window.location.href='/property/{{Str::random(8)}}/create'">
                 New Property
             </x-button>
@@ -122,16 +122,16 @@
             @endif
 
             <x-button type="button" onclick="window.location.href='/user/{{ auth()->user()->id }}/export/portfolio'">Export Portfolio</x-button>
-   
+
             <x-button type="button" onclick="window.location.href='/property/{{Str::random(8)}}/create'">New Property</x-button>
-  
+
 
         </div>
     </div>
 
     <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
       <div class="sm:col-span-6">
-    
+
         <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
         <div class="relative w-full mb-5">
             <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
@@ -144,9 +144,9 @@
             <input type="search" id="search" wire:model="search"
                 class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Search for property..." required>
-    
+
         </div>
-    
+
     </div>
 
         <div class="sm:col-span-2">
@@ -189,13 +189,13 @@
         @foreach ($properties->where('status', 'active') as $property)
         <div class="group relative">
             <div class="w-full h-32 bg-white rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                <a href="/property/{{ $property->property_uuid }}/calendar">
+                <a href="#/" wire:click="redirectToTheProperty">
                     <img src="{{ asset('/brands/property_page.png') }}" title="{{ $property->property }}" alt="building"
                         class="w-40 object-center object-cover lg:w-full lg:h-full">
                 </a>
             </div>
-            <h3 class="text-center mt-2"><a class="text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ $property->property_uuid }}/calendar">{{ $property->property }}</a></h3>
+            <h3 class="text-center mt-2"><a href="#/"" class="text-blue-500 text-decoration-line: underline"
+                    wire:click="redirectToTheProperty">{{ $property->property }}</a></h3>
         </div>
         @endforeach
     </div>
