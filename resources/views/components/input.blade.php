@@ -1,6 +1,6 @@
 @props([
         'disabled' => false,
-        'name' => 'name'
+        'name'
     ])
 
 <input {{ $disabled ? 'disabled' : '' }} name={{ $name }}

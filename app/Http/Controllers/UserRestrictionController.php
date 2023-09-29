@@ -18,7 +18,7 @@ class UserRestrictionController extends Controller
 
         $featuresArray = explode(",", $features);
 
-        if($property_type_id == 8){
+        if($property_type_id === 8){
              foreach($featuresArray as $featureArray){
              for ($restriction_id=1; $restriction_id<=Restriction::all()->count(); $restriction_id++) {
                 UserRestriction::firstOrCreate(
@@ -39,7 +39,6 @@ class UserRestrictionController extends Controller
                 }
                 }
         }else{
-        
             for ($feature_id=1; $feature_id <=Feature::all()->count(); $feature_id++) {  
                 for ($restriction_id=1; $restriction_id<=Restriction::all()->count() ; $restriction_id++ ) { 
                 UserRestriction::firstOrCreate(

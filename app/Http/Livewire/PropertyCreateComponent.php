@@ -58,9 +58,11 @@ class PropertyCreateComponent extends Component
 
      public function create()
      {
+           $validatedData = $this->validate();
+           
          try {
 
-            $validatedData = $this->validate();
+         
 
             DB::transaction(function () use ($validatedData){
 
