@@ -13,4 +13,8 @@ class Type extends Model
     {
         return $this->hasMany(Property::class);
     }
+
+    public function landing_page_feature_id(){
+        return $this->belongsTo(Type::class);
+    }
 }

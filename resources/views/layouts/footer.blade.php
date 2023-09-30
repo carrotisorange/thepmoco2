@@ -1,12 +1,14 @@
 <footer id="footer">
+    @if(Session::get('role'))
     <div class="border-t mt-5 max-w-8xl mx-auto py-3 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
         <div class="flex justify-center space-x-6 md:order-2">
-           @if(Session::get('property_uuid'))
+
                <p class="text-center text-base text-gray-400">You're logged in as a <b>{{ Session::get('role') }}</b></p>
-           @endif
+
         </div>
     </div>
-    <div class="border-t max-w-8xl mx-auto py-10 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
+    @endif
+    <div class="border-t mt-5 max-w-8xl mx-auto py-10 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
         <div class="flex justify-center space-x-6 md:order-2">
             <a title="Like us on Facebook." target="_blank" href="https://www.facebook.com/onlinepropertymanager/"
                 class="text-gray-400 hover:text-gray-500">

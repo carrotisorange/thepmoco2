@@ -1,3 +1,6 @@
+<?php $name = auth()->user()->name;
+    $firstName = explode(" ",$name);
+?>
 <div>
     @if(!$userPropertyCount)
     <div class="mt-10">
@@ -109,9 +112,9 @@
 
     <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
-            <h2 class="text-2xl mt-5 font-bold tracking-tight text-gray-900 font-pop">Welcome back, {{
-                auth()->user()->name }}!</h2>
-            {{-- <h1 class="text-xl font-semibold text-gray-900">Portfolio</h1> --}}
+            <h2 class="text-2xl mt-5 font-bold tracking-tight text-gray-900 font-pop">
+
+                Welcome back, {{ $firstName[0] }}!</h2>
         </div>
         <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
             @if($search || $sortBy || $filterByPropertyType)
@@ -176,10 +179,7 @@
                     @endif
                     @endfor
             </x-select>
-
         </div>
-
-
     </div>
 
     <div class="mt-5 mb-5">
@@ -187,32 +187,20 @@
     </div>
     <div class="mt-1 mb-5 grid grid-cols-5 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
         @foreach ($properties->where('status', 'active') as $property)
+        <?php $propertyTypeLandingPage = App\Models\Feature::find(App\Models\Type::find( $property->type_id)->landing_page_feature_id)->alias;
+              $propertyTypeIcon = App\Models\Type::find( $property->type_id)->icon;
+        ?>
         <div class="group relative">
             <div class="w-full h-32 bg-white rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-               @if($property->type_id == 8)
-                <a href="/property/{{ $property->property_uuid }}/unit">
-                    <img src="{{ asset('/brands/property_page.png') }}" title="{{ $property->property }}" alt="building"
+                <a href="/property/{{ $property->property_uuid }}/{{ $propertyTypeLandingPage }}">
+                    <img src="{{ asset('/brands/'.$propertyTypeIcon) }}" title="{{ $property->property }}" alt="building"
                         class="w-40 object-center object-cover lg:w-full lg:h-full">
                 </a>
-               @else
-                <a href="/property/{{ $property->property_uuid }}/dashboard">
-                    <img src="{{ asset('/brands/property_page.png') }}" title="{{ $property->property }}" alt="building"
-                        class="w-40 object-center object-cover lg:w-full lg:h-full">
-                </a>
-               @endif
-
             </div>
             <h3 class="text-center mt-2">
-                @if($property->type == 8)
-                <a title="{{ $property->property }}" class="text-blue-500 text-decoration-line: underline" href="/property/{{ $property->property_uuid }}/unit">
+                <a title="{{ $property->property }}" class="text-blue-500 text-decoration-line: underline" href="/property/{{ $property->property_uuid }}/{{ $propertyTypeLandingPage }}">
                 {{ Str::limit($property->property,15) }}
                 </a>
-                @else
-                <a title="{{ $property->property }}" class="text-blue-500 text-decoration-line: underline" href="/property/{{ $property->property_uuid }}/dashboard">
-                {{ Str::limit($property->property,15) }}
-                </a>
-                @endif
-
             </h3>
         </div>
         @endforeach

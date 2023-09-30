@@ -10,7 +10,7 @@ class PropertyIndexComponent extends Component
     public $search;
     public $sortBy;
     public $filterByPropertyType;
-    public $limitDisplayTo = 4;
+    public $limitDisplayTo = 8;
 
     public function clearFilters(){
         $this->search = null;

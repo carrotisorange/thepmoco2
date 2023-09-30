@@ -1,3 +1,6 @@
+<?php $name = auth()->user()->name;
+    $firstName = explode(" ",$name);
+?>
 <div class="h-full pb-36">
     <div class=" fixed w-1/2 bg-gray-50" aria-hidden="true"></div>
     <div class=" fixed min-h-screen right-1 w-1/3 lg:bg-gradient-to-r from-purple-400 to-gray-400  sm:bg-gray-50" aria-hidden="true"></div>
@@ -9,9 +12,7 @@
                 <div class="mx-10 m-5 grid sm:grid-cols-1 gap-x-4 lg:grid-cols-6">
                     <div class="col-span-3">
                     <h1 class="text-left text-xl font-bold tracking-tight sm:text-xl lg:text-2xl">
-                                        <?php $name = auth()->user()->name;
-                                                    $firstName = explode(" ",$name)
-                                                ?>
+
                                         <span class="block  font-semibold text-gray-700">Welcome back, <span
                                                 class=" text-purple-900 font-bold ">{{ $firstName[0] }}!</span></span>
 
@@ -166,7 +167,7 @@
 
 
                                                                 <div class="text-3xl font-bold text-white mr-2">
-                                                                    {{App\Http\Controllers\CollectionController::shortNumber($expenses->where('created_at', Carbon\Carbon::now()->month())->where('status', 'completed')->sum('amount')) }}    
+                                                                    {{App\Http\Controllers\CollectionController::shortNumber($expenses->where('created_at', Carbon\Carbon::now()->month())->where('status', 'completed')->sum('amount')) }}
                                                                 </div>
                                                                 <?php $change_in_monthly_expenses = App\Http\Controllers\CollectionController::divNumber($expenses->where('created_at', Carbon\Carbon::now()->month())->where('status', 'completed')->sum('amount'), $expenses->where('created_at', Carbon\Carbon::now()->subMonth())->where('status', 'completed')->sum('amount'))*100;?>
                                                                 @if($expenses->where('created_at', Carbon\Carbon::now()->subMonth())->where('status', 'completed')->sum('amount') > $expenses->where('created_at', Carbon\Carbon::now()->month())->where('status', 'completed')->sum('amount'))
@@ -982,4 +983,3 @@
                     </script>
                 </div>
 
-                             
