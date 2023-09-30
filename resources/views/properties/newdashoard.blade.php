@@ -143,8 +143,8 @@
 
                                     <div class="max-w-8xl mx-auto mt-2 px-4 sm:px-6">
                                         <div class="relative text-gray-400 focus-within:text-gray-500">
-                                            <label for="mobile-search" class="sr-only">The Property Manager</label>
-                                            <input id="mobile-search" type="search" placeholder="The Property Manager"
+                                            <label for="mobile-search" class="sr-only">{{ env('APP_NAME') }}</label>
+                                            <input id="mobile-search" type="search" placeholder="{{ env('APP_NAME') }}"
                                                 class="block w-full rounded-md border-gray-300 pl-10 placeholder-gray-500 focus:border-indigo-600 focus:ring-indigo-600">
                                             <div
                                                 class="absolute inset-y-0 left-0 flex items-center justify-center pl-3">

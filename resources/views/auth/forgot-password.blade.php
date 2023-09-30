@@ -3,7 +3,7 @@
 
 <head>
     @include('layouts.head')
-    <title>Forgot Password | The Property Manager</title>
+    <title>Forgot Password | {{ env('APP_NAME') }}</title>
 </head>
 
 <body class="font-sans antialiased" body x-data="{'isModalOpen': false}" x-on:keydown.escape="isModalOpen=false">

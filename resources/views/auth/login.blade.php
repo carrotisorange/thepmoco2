@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('/brands/favicon.ico') }}" type="image/png">
-    
+
     <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-    <title>Sign in | The Property Manager</title>
+    <title>Sign in | {{ env('APP_NAME') }}</title>
 <style>
     body{
         font-family: Poppins;
@@ -29,7 +29,7 @@
 
                 <div class="flex justify-center items-center">
                     <img class="mt-10 mb-5 h-32 w-auto" src="{{ asset('/brands/propsuite.png') }}" alt="propsuite logo">
-                    
+
 
                 </div>
                 <h2 class="mb-10 text-center mt-2 text-2xl tracking-tight font-semibold text-gray-700">Sign in to
@@ -53,7 +53,7 @@
                                     <x-input id="username" name="username" type="username" autocomplete="username"
                                         value="{{ old('username') }}" required/>
                                 </div>
-                              
+
                             </div>
 
                             <div class="space-y-1">
@@ -61,7 +61,7 @@
                                 <div class="mt-1">
                                     <x-input id="password" name="password" type="password" autocomplete="current-password"/>
                                 </div>
-                              
+
                             </div>
 
                             <div class="flex items-center justify-between">
