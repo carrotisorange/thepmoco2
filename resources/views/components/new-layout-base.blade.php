@@ -18,7 +18,7 @@
 
                         <div class="shrink-0 flex items-center">
                             <a href="/property">
-                                <img class="h-24 w-15" src="{{ asset('/brands/propsuite-logo.png') }}" />
+                                <img class="h-24 w-15" src="{{ asset('/brands/'.env('APP_LOGO')) }}" />
                             </a>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                         <a href="/help"><button title="help" class="py-5 px-3">
                                 <div class="p-1.5 bg-purple-500 rounded-md inline-block font-medium text-white text-sm">Need help?</div></a>
                             </button>
-                            
+
                         <x-dropdown align="right" width="48">
                             <x-slot name="trigger">
                                 <button

@@ -38,10 +38,10 @@
         <div class="mt-3">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                 @if(App\Models\Property::find(Session::get('property_uuid'))->units()->count())
-   
+
                 <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                    <div class="sm:col-span-6">
-                
+
                     <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
                     <div class="relative w-full mb-5">
                         <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
@@ -54,9 +54,9 @@
                         <input type="search" id="search" wire:model="search"
                             class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Search for unit..." required>
-                
+
                     </div>
-                
+
                 </div>
 
                     <div class="sm:col-span-1">
@@ -239,88 +239,38 @@
                             <button type="button" data-modal-toggle="instructions-create-unit-modal"
                                 class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
 
-
                                 New unit
                             </button>
                         </div>
                     </div>
-
                     @else
                     @if($view === 'thumbnail')
-
                     <div class="max-w-2xl mx-auto py-8 px-4 sm:px-6 lg:max-w-7xl lg:px-8 mb-24">
-
                         <div class="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-6">
                             @foreach ($units as $unit)
+                            <?php $statusIcon = App\Models\Status::find($unit->status_id)->icon;  ?>
                             @if(Session::get('tenant_uuid'))
-                            <a
-                                href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}/tenant/{{ Session::get('tenant_uuid') }}/contract/{{ Str::random(8) }}/create">
+                            <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}/tenant/{{ Session::get('tenant_uuid') }}/contract/{{ Str::random(8) }}/create">
                                 <div class="hover:bg-purple-200">
-                                    @if($unit->status_id == '1')
-                                    <img src="{{ asset('/brands/vacant.png') }}"
+                                  <img src="{{ asset('/brands/'.$statusIcon) }}"
                                         class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
-                                    @elseif($unit->status_id == '2')
-                                    <img src="{{ asset('/brands/occupied.png') }}"
-                                        class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
-                                    @elseif($unit->status_id == '3')
-                                    <img src="{{ asset('/brands/maintenance.png') }}"
-                                        class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
-
-                                    @elseif($unit->status_id == '4' || ($unit->status_id == '6'))
-                                    <img src="{{ asset('/brands/reserved.png') }}"
-                                        class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
-                                    @else
-                                    <img src="{{ asset('/brands/maintenance.png') }}"
-                                        class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
-                                    @endif
                                     <h3 class="text-center mt-2">{{ $unit->unit }}</h3>
                                 </div>
                             </a>
-                            {{-- @endif --}}
-                            @elseif(Session::get('owner_uuid'))
-                            <a
-                                href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}/owner/{{ Session::get('owner_uuid') }}/deed_of_sale/create">
-                                <div class="hover:bg-purple-200">
-                                    @if($unit->status_id == '1')
-                                    <img src="{{ asset('/brands/vacant.png') }}"
-                                        class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
-                                    @elseif($unit->status_id == '2')
-                                    <img src="{{ asset('/brands/occupied.png') }}"
-                                        class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
-                                    @elseif($unit->status_id == '3')
-                                    <img src="{{ asset('/brands/maintenance.png') }}"
-                                        class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
 
-                                    @elseif($unit->status_id == '4' || ($unit->status_id == '6'))
-                                    <img src="{{ asset('/brands/reserved.png') }}"
+                            @elseif(Session::get('owner_uuid'))
+                            <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}/owner/{{ Session::get('owner_uuid') }}/deed_of_sale/create">
+                                <div class="hover:bg-purple-200">
+                                   <img src="{{ asset('/brands/'.$statusIcon) }}"
                                         class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
-                                    @else
-                                    <img src="{{ asset('/brands/maintenance.png') }}"
-                                        class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
-                                    @endif
                                     <h3 class="text-center mt-2">{{ $unit->unit }}</h3>
                                 </div>
                             </a>
                             @else
                             <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}">
                                 <div class="hover:bg-purple-200">
-                                    @if($unit->status_id == '1')
-                                    <img src="{{ asset('/brands/vacant.png') }}"
+                                   <img src="{{ asset('/brands/'.$statusIcon) }}"
                                         class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
-                                    @elseif($unit->status_id == '2')
-                                    <img src="{{ asset('/brands/occupied.png') }}"
-                                        class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
-                                    @elseif($unit->status_id == '3')
-                                    <img src="{{ asset('/brands/maintenance.png') }}"
-                                        class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
-
-                                    @elseif($unit->status_id == '4' || ($unit->status_id == '6'))
-                                    <img src="{{ asset('/brands/reserved.png') }}"
-                                        class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
-                                    @else
-                                    <img src="{{ asset('/brands/maintenance.png') }}"
-                                        class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
-                                    @endif
                                     <h3 class="text-center mt-2">{{ $unit->unit }}</h3>
                                 </div>
                             </a>
@@ -328,13 +278,10 @@
                             @endforeach
                         </div>
                     </div>
-
                     @else
                     @include('tables.units')
                     @endif
                     @endif
-
-
                 </div>
             </div>
         </div>

@@ -1,3 +1,4 @@
+<?php $propertyName= App\Models\Property::find(Session::get('property_uuid'))->property.' '.App\Models\Property::find(Session::get('property_uuid'))->type->type; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,15 +18,14 @@
 
                         <div class="shrink-0 flex items-center">
                             <a href="/property">
-                                <img class="h-24 w-15" src="{{ asset('/brands/propsuite-logo.png') }}" />
+                                <img class="h-24 w-15" src="{{ asset('/brands/'.env('APP_LOGO')) }}" />
                             </a>
                         </div>
 
                         <div class="hidden space-x-3 sm:-my-px sm:ml-10 sm:flex">
                             <h1 class="text-xl pt-2 tracking-tight font-medium leading-tight text-gray-700">
                                 @if (Session::has('property'))
-                                {{ App\Models\Property::find(Session::get('property_uuid'))->property.'
-                                '.App\Models\Property::find(Session::get('property_uuid'))->type->type }}
+                                {{ $propertyName }}
 
                                 <a class="mt-2 inline-block" href="/property/{{ Session::get('property_uuid') }}/edit"
                                     title="Edit your Property">
@@ -56,53 +56,7 @@
                                     Need help?</div></a>
                         </button>
 
-                        <x-dropdown align="right" width="48">
-                            <x-slot name="trigger">
-
-                                <button
-                                    class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-
-                                    <div class="ml-2 text-xl">
-
-                                        {{ auth()->user()->name }}
-
-                                    </div>
-
-                                    <div class="ml-1 text-xl">
-                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd"
-                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                    </div>
-                                </button>
-                            </x-slot>
-
-                            <x-slot name="content">
-
-                                <x-dropdown-link href="/user/{{ Auth::user()->username }}/edit">
-                                    Profile
-                                </x-dropdown-link>
-
-                                @if(auth()->user()->role_id != 7 && auth()->user()->role_id != 8)
-                                <x-dropdown-link href="/user/{{ Auth::user()->username }}/subscriptions">
-                                    Subscriptions
-                                </x-dropdown-link>
-                                @endif
-                                <x-dropdown-link href="/property">
-                                    Portfolio
-                                </x-dropdown-link>
-
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <x-dropdown-link :href="route('logout')"
-                                        onclick="event.preventDefault(); this.closest('form').submit();">
-                                        Log Out
-                                    </x-dropdown-link>
-                                </form>
-                            </x-slot>
-                        </x-dropdown>
+                        @include('includes.profile-dropdown')
 
                     </div>
 
@@ -124,9 +78,9 @@
             </div>
 
             <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-                @auth
+            @auth
                 @include('includes.mobilenavbar')
-                @endauth
+            @endauth
             </div>
         </nav>
         <!-- Bottom section -->

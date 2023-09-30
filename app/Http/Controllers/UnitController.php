@@ -17,7 +17,7 @@ class UnitController extends Controller
 {
 
       public function show(Property $property, Unit $unit, $action=null)
-    {        
+    {
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens one',2);
 
         return view('units.show',[
@@ -31,13 +31,13 @@ class UnitController extends Controller
      public function edit(Property $property, $batch_no)
     {
         return view('units.edit-bulk',[
-            'property' => $property, 
+            'property' => $property,
             'batch_no' => $batch_no,
         ]);
     }
-    
+
     public function index(Property $property, $batch_no=null, $action=null)
-    {   
+    {
         app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
 
         if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(3, auth()->user()->id)){
@@ -47,7 +47,7 @@ class UnitController extends Controller
         Session::forget('tenant_uuid');
 
         Session::forget('owner_uuid');
-        
+
 
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
 
@@ -58,7 +58,7 @@ class UnitController extends Controller
             'batch_no' => $batch_no,
         ]);
     }
-    
+
     public function updateUnitOccupancyInfo(Property $property, Unit $unit, Owner $owner)
     {
         return view('occupancy.create',[
@@ -92,7 +92,7 @@ class UnitController extends Controller
         ->groupBy('rent')
         ->get();
     }
-    
+
     public function getUnitDiscounts($property_uuid)
     {
         return Unit::where('units.property_uuid', $property_uuid)
@@ -102,9 +102,9 @@ class UnitController extends Controller
         ->get();
     }
 
-       
+
     public function getUnitSizes($property_uuid)
-    { 
+    {
         return Unit::where('units.property_uuid', $property_uuid)
           ->whereNotNull('size')
          ->select('size', DB::raw('count(*) as count'))
@@ -114,7 +114,7 @@ class UnitController extends Controller
     }
 
     public function getUnitOccupancies($property_uuid)
-    { 
+    {
         return Unit::where('units.property_uuid', $property_uuid)
         ->whereNotNull('occupancy')
         ->select('occupancy', DB::raw('count(*) as count'))
@@ -124,7 +124,7 @@ class UnitController extends Controller
     }
 
     public function getUnitEnrollmentStatuses($property_uuid)
-    { 
+    {
         return Unit::where('units.property_uuid', $property_uuid)
         ->select('is_enrolled', DB::raw('count(*) as count'))
         ->groupBy('is_enrolled')
@@ -135,10 +135,10 @@ class UnitController extends Controller
     public function getUnits($property_uuid)
     {
         return Property::find($property_uuid)->units();
-        
+
     }
 
-    
+
     // public function getUnits($property_uuid, $status, $duration, $unlisted)
     // {
     //     return Unit::where('property_uuid', $property_uuid)
