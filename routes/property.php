@@ -348,12 +348,19 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     //Routes for Bill
     Route::prefix('bill')->group(function(){
-        Route::get('{type?}/{type_id?}/{batch_no?}/{drafts?}', [BillController::class, 'index'])->name('bill');
-        Route::get('export/status/{status?}/particular/{particular?}/date/{date?}', [BillController::class, 'export']);
-        // Route::get('customized/{batch_no}',[PropertyBillController::class,'edit'])->name('bill');
-        Route::get('{random_str}/delete/{count}', [BillController::class, 'confirm_bill_deletion'])->name('bill');
+        // // Route::get('{type?}/{type_id?}/{batch_no?}/{drafts?}', [BillController::class, 'index'])->name('bill');
+        // Route::get('export/status/{status?}/particular/{particular?}/date/{date?}', [BillController::class, 'export']);
+        // Route::get('customized/{batch_no}',[BillController::class,'bulk_edit'])->name('bill');
+        // Route::get('{random_str}/delete/{count}', [BillController::class, 'confirm_bill_deletion'])->name('bill');
 
-        Route::get('/batch/{batch_no}/drafts', [BillController::class, 'drafts'])->name('bill');
+        // Route::get('/batch/{batch_no}/drafts', [BillController::class, 'drafts'])->name('bill');
+
+         Route::get('{batch_no?}/{drafts?}', [BillController::class, 'index'])->name('bill');
+         Route::get('export/status/{status?}/particular/{particular?}/date/{date?}', [PropertyBillController::class,'export']);
+         Route::get('customized/{batch_no}/edit',[BillController::class,'bulk_edit'])->name('bill');
+        //  Route::get('{random_str}/delete/{count}', [PropertyBillController::class,'confirm_bill_deletion'])->name('bill');
+
+         Route::get('/batch/{batch_no}/drafts', [BillController::class, 'drafts'])->name('bill');
 
 
     });

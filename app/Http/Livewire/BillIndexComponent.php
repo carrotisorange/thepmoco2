@@ -16,6 +16,7 @@ use App\Models\Particular;
 use App\Models\PropertyParticular;
 use Session;
 use App\Models\Unit;
+use App\Models\Property;
 
 class BillIndexComponent extends Component
 {
@@ -338,6 +339,8 @@ class BillIndexComponent extends Component
       $period_covered_starts = $this->get_period_covered_starts();
 
       $period_covered_ends = $this->get_period_covered_ends();
+
+      $propertyBillsCount = Property::find(Session::get('property_uuid'))->bills->count();
          
       return view('livewire.bill-index-component', [
          'bills' => $this->get_bills(),
@@ -346,7 +349,8 @@ class BillIndexComponent extends Component
          'particulars' => $particulars,
          'dates_posted' => $dates_posted,
          'period_covered_starts' => $period_covered_starts,
-         'period_covered_ends' => $period_covered_ends
+         'period_covered_ends' => $period_covered_ends,
+         'propertyBillsCount' => $propertyBillsCount
         ]);
    }
 

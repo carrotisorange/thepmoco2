@@ -7,6 +7,7 @@ use Session;
 use DB;
 use Carbon\Carbon;
 use App\Models\Collection;
+use App\Models\Property;
 
 class CollectionIndexComponent extends Component
 {
@@ -38,9 +39,12 @@ class CollectionIndexComponent extends Component
         ->groupBy('form')
         ->get();
 
+        $propertyCollectionsCount = Property::find(Session::get('property_uuid'))->collections->count();
+
         return view('livewire.collection-index-component',[
             'collections' => $collections,
-            'mode_of_payments' => $mode_of_payments
+            'mode_of_payments' => $mode_of_payments,
+            'propertyCollectionsCount' => $propertyCollectionsCount
 
         ]);
     }

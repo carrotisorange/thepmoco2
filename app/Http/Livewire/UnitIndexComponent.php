@@ -8,6 +8,7 @@ use Livewire\WithPagination;
 use Illuminate\Support\Str;
 use App\Models\Plan;
 use Session;
+use App\Models\Feature;
 
 use Livewire\Component;
 
@@ -41,7 +42,7 @@ class UnitIndexComponent extends Component
     public $numberOfUnits = 1;
 
     public function storeUnits(){
-      
+
       if($this->numberOfUnits <= 0 || !$this->numberOfUnits){
          session()->flash('error', 'Cannot accept value less than 0 or null.');
 
@@ -73,20 +74,24 @@ class UnitIndexComponent extends Component
         $units = Unit::where('batch_no', $batch_no)->count();
 
         app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, $this->numberOfUnits, 5);
-        
-        return redirect('/property/'.Session::get('property_uuid').'/unit/'.$batch_no.'/edit')->with('success', 'Changes Saved!');
+
+        if(Session::get('property_type') === 'HOA'){
+             return redirect('/property/'.Session::get('property_uuid').'/guest/')->with('success', 'Changes Saved!');
+        }else{
+            return redirect('/property/'.Session::get('property_uuid').'/tenant/')->with('success', 'Changes Saved!');
+        }
     }
 
     public function changeView($value)
     {
         $this->view = $value;
-        
+
     }
 
     public function clearFilters()
     {
         $this->sortBy = '';
-        $this->orderBy = '';  
+        $this->orderBy = '';
         $this->search = '';
         $this->status_id = '';
         $this->category_id = '';
@@ -127,7 +132,7 @@ class UnitIndexComponent extends Component
       ->when($this->floor_id, function($query){
       $query->whereIn('floor_id', $this->floor_id);
       })
-      
+
       ->when($this->rent, function($query){
       $query->whereIn('rent', $this->rent);
       })
@@ -147,14 +152,22 @@ class UnitIndexComponent extends Component
     }
 
     public function editUnits(){
-      
-      
+
+
 
       return redirect('/property/'.Session::get('property_uuid').'/unit/all/edit');
     }
 
    public function render()
     {
+        $featureId = 20;
+
+        $propertySubFeatures = Feature::where('id', $featureId)->pluck('subfeatures')->first();
+
+        $propertySubfeaturesArray = explode(",", $propertySubFeatures);
+
+        $propertyUnitCount = Property::find(Session::get('property_uuid'))->units()->count();
+
         return view('livewire.unit-index-component',[
             'units' => $this->get_units(),
             'statuses' => app('App\Http\Controllers\StatusController')->index(Session::get('property_uuid')),
@@ -166,7 +179,9 @@ class UnitIndexComponent extends Component
             'sizes' => app('App\Http\Controllers\UnitController')->getUnitSizes(Session::get('property_uuid')),
             'occupancies' => app('App\Http\Controllers\UnitController')->getUnitOccupancies(Session::get('property_uuid')),
             'enrollment_statuses' => app('App\Http\Controllers\UnitController')->getUnitEnrollmentStatuses(Session::get('property_uuid')),
-            'units_count' => Property::find(Session::get('property_uuid'))->units->count()
+            'units_count' => Property::find(Session::get('property_uuid'))->units->count(),
+            'propertySubfeaturesArray' => $propertySubfeaturesArray,
+            'propertyUnitCount' => $propertyUnitCount
         ]);
     }
 }

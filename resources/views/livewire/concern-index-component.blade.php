@@ -80,6 +80,7 @@
                 <div class="mt-3">
                     {{ $concerns->links() }}
                 </div>
+                @if($propertyConcernsCount)
                 <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                    <div class="sm:col-span-6">
                 
@@ -111,6 +112,7 @@
                     </div>
 
                 </div>
+                @endif
                 <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
 
 

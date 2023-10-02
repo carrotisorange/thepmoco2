@@ -78,6 +78,8 @@ class AccountPayableIndexComponent extends Component
 
     public function render()
     {
+        $propertyRfpCount = Property::find(Session::get('property_uuid'))->collections->count();
+
        return view('livewire.account-payable-index-component',[
           'accountpayables' => $this->get_accountpayables(),
           'statuses' => app('App\Http\Controllers\AccountPayableController')->get_statuses(Session::get('property_uuid')),
@@ -86,6 +88,7 @@ class AccountPayableIndexComponent extends Component
           'dates' => AccountPayable::where('property_uuid', Session::get('property_uuid'))
          ->groupByRaw('MONTHNAME(created_at)')
           ->get(),
+          'propertyRfpCount' => $propertyRfpCount
         ]);
     }
 }

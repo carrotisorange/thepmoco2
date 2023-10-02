@@ -56,20 +56,20 @@ body{
                         <div>
                            <x-label for="gender" > Gender</x-label>
                             <div class="mt-1">
-                                <x-select id="gender" name="gender" type="text" value="{{ old('gender') }}">
+                                <x-select id="gender" name="gender">
                                     <option value="">Select one</option>
-                                    <option value="female" {{ 'female'==old('gender') ? 'Select one' : 'selected' }}>female</option>
-                                    <option value="male" {{ 'male'==old('gender') ? 'Select one' : 'selected' }}>male</option>
+                                    <option value="female" {{ 'female'==old('gender') ? 'Select one' : '' }}>female</option>
+                                    <option value="male" {{ 'male'==old('gender') ? 'Select one' : '' }}>male</option>
                                 </x-select>
                             </div>
                         </div>
 
-                        <div class="lg:col-span-2">
+                        {{-- <div class="lg:col-span-2">
                             <x-label for="username" > Username</x-label>
                             <div class="mt-1">
                                 <x-input id="username" name="username" type="text" value="{{ old('username') }}"/>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="lg:col-span-2">
                             <x-label for="email" > Email </x-label>

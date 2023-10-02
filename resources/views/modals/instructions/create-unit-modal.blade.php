@@ -22,12 +22,16 @@
             <div class="mt-2 sm:mt-6">
                 <x-input type="text" wire:model="numberOfUnits" name="numberOfUnits" />
             </div>
-        
+
             <div class="mt-5 sm:mt-6">
-                <button type="button" wire:click="storeUnits"
-                    class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
-                    Confirm
-                </button>
+                <p class="text-center">
+                    <x-button type="button" class="bg-red-500 hover:bg-red-300" data-modal-toggle="instructions-create-unit-modal">
+                        Cancel
+                    </x-button>
+                    <x-button type="button" wire:click="storeUnits">
+                        Confirm
+                    </x-button>
+                </p>
 
             </div>
         </div>

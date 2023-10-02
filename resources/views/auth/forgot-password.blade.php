@@ -31,10 +31,9 @@
                             class="w-full px-5 py-3 placeholder-gray-500 focus:ring-purple-500 focus:border-purple-500 sm:max-w-xs border-gray-300 rounded-md"
                             placeholder="Enter your email">
                         <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
-                            <button type="submit"
-                                class="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                            <x-button type="submit">
                                 Email Password Reset Link
-                            </button>
+                            </x-button>
                         </div>
                     </form>
 

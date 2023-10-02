@@ -1,4 +1,5 @@
 <?php $propertyName= App\Models\Property::find(Session::get('property_uuid'))->property.' '.App\Models\Property::find(Session::get('property_uuid'))->type->type; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,10 +52,13 @@
                         </svg>
 
                         <!-- help icon -->
-                        <a href="/help"><button title="help" class="py-5 px-3">
-                                <div class="p-1.5 bg-purple-500 rounded-md inline-block font-medium text-white text-sm">
-                                    Need help?</div></a>
-                        </button>
+                        @if(Session::has('property'))
+                        <a href="/help">
+                            <x-button title="help">
+                                Need help?
+                            </x-button>
+                        </a>
+                        @endif
 
                         @include('includes.profile-dropdown')
 

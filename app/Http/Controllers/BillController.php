@@ -51,6 +51,20 @@ class BillController extends Controller
         ]);
     }
 
+    public function bulk_edit(Property $property, $batch_no)
+    {
+        $particulars = Particular::join('property_particulars', 'particulars.id', 'property_particulars.particular_id')
+
+        ->where('property_uuid', $property->uuid)
+        ->get();
+
+        return view('bills.edit', [
+            'property' => $property,
+            'batch_no' => $batch_no,
+            'particulars' => $particulars
+        ]);
+    }
+
     public function owner_index(Property $property, Owner $owner)
     {
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens', 10);

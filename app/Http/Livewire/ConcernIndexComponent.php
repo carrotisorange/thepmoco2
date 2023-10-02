@@ -18,6 +18,8 @@ class ConcernIndexComponent extends Component
     
     public function render()
     {
+        $propertyConcernsCount = Property::find(Session::get('property_uuid'))->concerns->count();
+
         $concerns = Concern::search(Session::get('property_uuid'))
         ->orderBy('created_at', 'desc')
         ->where('property_uuid', Session::get('property_uuid'))
@@ -37,7 +39,8 @@ class ConcernIndexComponent extends Component
 
         return view('livewire.concern-index-component',[
             'concerns' => $concerns,
-            'statuses' => $statuses
+            'statuses' => $statuses,
+            'propertyConcernsCount' => $propertyConcernsCount
         ]);
     }
 }

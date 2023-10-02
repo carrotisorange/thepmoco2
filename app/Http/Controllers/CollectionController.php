@@ -101,7 +101,7 @@ class CollectionController extends Controller
         ->where('tenants.property_uuid', $property_uuid)
         ->where('payment_requests.status', $status)
         ->orderBy('payment_requests.created_at', 'desc');
-        
+
         return view('payment_requests.index',[
         'requests' => $paymentRequests
         ]);
@@ -146,7 +146,6 @@ class CollectionController extends Controller
         ->where('tenants.property_uuid', $property_uuid)
         ->where('payment_requests.status', 'pending')
         ->orderBy('payment_requests.created_at', 'desc')->get();
-        //return Property::find($property_uuid)->paymentrequests;
     }
 
     public function export_dcr(Property $property, $date, $format){

@@ -20,7 +20,7 @@ class OwnerCollectionController extends Controller
 {
     public function index(Property $property, owner $owner)
     {
-       
+
     }
 
     public function get_owner_collections($property_uuid, $owner_uuid){
@@ -103,7 +103,7 @@ class OwnerCollectionController extends Controller
          $ar_no = app('App\Http\Controllers\CollectionController')->getLatestAr($property->uuid);
 
          $counter = $this->get_selected_bills_count($batch_no);
-      
+
          for($i=0; $i< $counter; $i++)
          {
             $collection = (double) $request->input("collection_amount_".$i);
@@ -133,7 +133,7 @@ class OwnerCollectionController extends Controller
          }
 
          app('App\Http\Controllers\CollectionController')
-         ->storeAr( 
+         ->storeAr(
                  '',
                   $owner->uuid,
                   Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->sum('collection'),
@@ -152,8 +152,8 @@ class OwnerCollectionController extends Controller
 
          app('App\Http\Controllers\PointController')->store($property->uuid, auth()->user()->id,
          Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);
-         
-         return redirect('/property/'.$property->uuid.'/owner/'.$owner->uuid.'/collections')->with('success','Changes Saved!');
+
+         return redirect('/property/'.$property->uuid.'/owner/'.$owner->uuid)->with('success','Changes Saved!');
 
     }
 

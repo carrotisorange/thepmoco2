@@ -16,7 +16,7 @@
             <div class="grid grid-cols-3">
                 <div class="col-span-1">
 			        <div class="font-light underline text-gray-800 text-sm mb-4">
-				    < Go back to Unit</div>
+				     Go back to Unit</div>
                 </div>
 
                 <div class="col-span-1">

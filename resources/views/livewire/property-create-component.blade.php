@@ -1,5 +1,5 @@
 <div>
-   <form class="space-y-1" method="POST" wire:submit.prevent="create()">
+   <form class="space-y-1" wire:submit.prevent="create()">
       <div class="pt-10">
          <div>
             <h3 class="mb-10 mt-10 text-center text-2xl font-bold leading-6 text-gray-900">Create a new property</h3>
@@ -82,10 +82,9 @@
                Cancel
             </a>
          
-            <button type="button" wire:click="create"
-               class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            <x-button wire:click="create">
                Create
-            </button>
+            </x-button>
          
          </div>
          <div>

@@ -4,11 +4,11 @@
             <div class="sm:flex-auto">
                 <h1 class="text-3xl font-bold text-gray-700">Request for Purchases</h1>
             </div>
+            @if($propertyRfpCount)
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
 
                 @if($created_at || $status || $request_for || $limitDisplayTo)
-                <x-button type="button" wire:click="clearFilters"
-                  >   Clear Filters
+                <x-button type="button" wire:click="clearFilters" >   Clear Filters
                 </x-button>
                 @endif
                 <a href="/property/{{Session::get('property_uuid')}}/accountpayable/export/{{ $status }}/{{ $created_at }}/{{ $request_for }}/{{ $limitDisplayTo }}"
@@ -22,15 +22,11 @@
                 </a>
 
             </div>
-
+            @endif
         </div>
-
+        @if($propertyRfpCount)
         <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-            <div class="sm:col-span-6">
-                {{-- <input id="search" wire:model="search" placeholder="Search for batch no..."
-                    class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                --}}
-            </div>
+          
             <div class="sm:col-span-3">
                 <small for="">Filter status</small>
               <x-select id="status" name="status" wire:model="status" class="">     
@@ -40,27 +36,7 @@
                         {{ $status->status }}
                     </option>
                  @endforeach
-                    {{-- <option value="released"{{ "released"===$status? 'selected' : 'Select one' }}>
-                        released
-                    </option>
-                    <option value="approved by manager" {{ "approved by manager"===$status? 'selected' : 'Select one' }}>
-                        approved by manager
-                    </option>
-                    <option value="rejected by manager" {{ "rejected by manager"===$status? 'selected' : 'Select one' }}>
-                        rejected by manager
-                    </option>
-                    <option value="approved by ap" {{ "approved by ap"===$status? 'selected' : 'Select one' }}>
-                        approved by ap
-                    </option>
-                    <option value="liquidated" {{ "liquidated"===$status? 'selected' : 'Select one' }}>
-                        liquidated
-                    </option>
-                    <option value="liquidation approved by manager" {{ "liquidation approved by manager"===$status? 'selected' : 'Select one' }}>
-                        liquidation approved by manager
-                    </option>
-                     <option value="completed" {{ "completed"===$status? 'selected' : 'Select one' }}>
-                      completed
-                    </option> --}}
+                  
                </x-select>
             </div>
 
@@ -75,18 +51,12 @@
                     @endif
                     @endforeach
                 </x-select>
-                {{-- <select id="limitDisplayTo" wire:model="limitDisplayTo"
-                    class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                    <option value="" selected>Limit display to</option>
-                    @for ($i = 1; $i <= $totalAccountPayableCount; $i++) @if($i%10===0 || $i==$totalAccountPayableCount)
-                        <option value="{{ $i }}">{{ $i }} </option>
-                        @endif
-                        @endfor
-                </select> --}}
+              
             </div>
 
         </div>
-        {{-- {{ $accountpayables->links() }} --}}
+        @endif
+
         <div class="overflow-x-auto -my-2 -mx-4 sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
@@ -109,20 +79,18 @@
                             <p class="mt-1 text-sm text-gray-500">Get started by creating a new request</p>
                             <div class="mt-6">
                                 <div class="group inline-block">
-                                    <a href="/property/{{ Session::get('property_uuid') }}/accountpayable/{{ 'purchase' }}/{{ Str::random(3) }}/store"
-                                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                                    <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/accountpayable/{{ 'purchase' }}/{{ Str::random(3) }}/store'">
                                         <span class="pr-1 font-semibold flex-1">
                                             New Request</span>
                                       
-                                    </a>
+                                    </x-button>
                                     or
-                                    <button wire:click="clearFilters"
-                                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                                    <x-button wire:click="clearFilters">
                                         <span class="pr-1 font-semibold flex-1"> &nbsp
                                             Show All Requests</span>
 
                                         </span>
-                                    </button>
+                                    </x-button>
 
                                    
                                 </div>

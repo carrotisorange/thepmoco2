@@ -46,7 +46,7 @@ class BillBulkEditComponent extends Component
              'is_posted' => true,
             ]);
 
-            return redirect('/property/'.Session::get('property_uuid').'/bill/'.'property'.'/'.Session::get('property_uuid'))->with('success', 'Changes Saved!');
+            return redirect('/property/'.Session::get('property_uuid').'/bill/')->with('success', 'Changes Saved!');
 
             // session()->flash('success', count($this->bills). ' bills are successfully saved as draft.');
 
@@ -67,14 +67,14 @@ class BillBulkEditComponent extends Component
                         'start' => $bill->start,
                         'end' =>  $bill->end,
                         'bill' => $bill->bill,
-                     ]);    
+                     ]);
 
                   $this->bills = $this->get_bills();
                 }
 
            session()->flash('success', 'Saved');
 
-        }catch(\Exception $e){  
+        }catch(\Exception $e){
             return back()->with('error','Cannot perform the action. Please try again.');
         }
     }

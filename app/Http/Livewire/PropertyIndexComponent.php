@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire;
 use App\Models\UserProperty;
-use Session;
 use Livewire\Component;
+use App\Models\Feature;
 
 class PropertyIndexComponent extends Component
 {
@@ -26,10 +26,17 @@ class PropertyIndexComponent extends Component
         $propertyTypes = app('App\Http\Controllers\PropertyController')->get_property_types(auth()->user()->id);
         $userPropertyCount = UserProperty::where('user_id', $userId)->count();
 
+        $featureId = 20;
+
+        $propertySubFeatures = Feature::where('id', $featureId)->pluck('subfeatures')->first();
+
+        $propertySubfeaturesArray = explode(",", $propertySubFeatures);
+
         return view('livewire.property-index-component',[
             'properties' => $properties,
             'propertyTypes' => $propertyTypes,
-            'userPropertyCount' => $userPropertyCount
+            'userPropertyCount' => $userPropertyCount,
+            'propertySubfeaturesArray' => $propertySubfeaturesArray
         ]);
     }
 

@@ -28,9 +28,9 @@ class RegisteredUserController extends Controller
         $attributes = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'username' => ['required', 'string', 'max:255', 'unique:users'],
+            // 'username' => ['required', 'string', 'max:255', 'unique:users'],
             'mobile_number' => ['required', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],    
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'gender' => 'required'
         ]);
 
@@ -38,13 +38,14 @@ class RegisteredUserController extends Controller
         $attributes['checkoutoption_id'] = 4;
         $attributes['plan_id'] = 1;
         $attributes['user_type'] = 1;
-        
+
         $attributes['role_id'] = 5;
         $attributes['trial_ends_at'] = Carbon::now()->addMonths(2);
         $attributes['discount_code'] = 'none';
+        $attributes['username'] = $request->email;
 
         $user = User::create($attributes);
-       
+
       event(new Registered($user));
 
         Auth::login($user);
