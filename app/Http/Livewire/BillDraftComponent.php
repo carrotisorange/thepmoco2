@@ -99,7 +99,7 @@ class BillDraftComponent extends Component
         }
         
     
-        return redirect('/property/'.Session::get('property_uuid').'/bill')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/bill')->with('success', 'Changes Saved!');
     }
 
     public function render()

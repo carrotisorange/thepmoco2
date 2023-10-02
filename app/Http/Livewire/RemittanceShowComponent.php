@@ -89,7 +89,7 @@ class RemittanceShowComponent extends Component
             'cause_of_magnet_description' => $this->causeOfMagnetDescription
         ]);
 
-        session()->flash('success', 'Success!');
+        session()->flash('success', 'Changes Saved!');
     }
 
     public function getRemittanceId(){
@@ -195,7 +195,7 @@ class RemittanceShowComponent extends Component
 
             Mail::to($owner->email)->send(new SendRemittanceToOwner($data));
 
-            session()->flash('success', 'Success!');
+            session()->flash('success', 'Changes Saved!');
         }
 
         return redirect('/property/'.$this->unit->property_uuid.'/unit/'.$this->unit->uuid.'/remittances');

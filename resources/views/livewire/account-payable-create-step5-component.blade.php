@@ -343,5 +343,5 @@
             <!-- /approval section -->
 
         </div>
-        @include('layouts.notifications')
+
 </div>

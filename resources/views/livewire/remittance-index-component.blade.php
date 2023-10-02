@@ -34,5 +34,4 @@
             </div>
         </div>
         @include('modals.instructions.create-remittance-modal')
-        @include('layouts.notifications')
 </div>

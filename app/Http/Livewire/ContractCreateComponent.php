@@ -69,7 +69,7 @@ class ContractCreateComponent extends Component
         app('App\Http\Controllers\ContractController')->store(auth()->user()->id, $contract_uuid, Session::get('property_uuid'), $this->start, $this->end, $this->interaction_id, $this->rent, $this->tenant->uuid, $this->unit->uuid, 'reserved', 4, 'reserved', 1, 1, $this->referral, $this->sendContractToTenant);
 
         return
-        redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$contract_uuid)->with('success','Success!');
+        redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$contract_uuid)->with('success','Changes Saved!');
       }
 
       public function submitForm()
@@ -96,9 +96,9 @@ class ContractCreateComponent extends Component
         
         if(auth()->user()->role_id === 1)
         {
-          return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant->uuid.'/contracts/')->with('success','Success!');
+          return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant->uuid.'/contracts/')->with('success','Changes Saved!');
         }else{
-          return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$contract_uuid.'/inventory/create')->with('success', 'Success!');
+          return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$contract_uuid.'/inventory/create')->with('success', 'Changes Saved!');
         }
       }
 

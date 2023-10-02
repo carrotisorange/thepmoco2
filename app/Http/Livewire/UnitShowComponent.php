@@ -17,11 +17,12 @@ use App\Models\UnitInventory;
 use App\Models\Collection;
 use App\Models\Remittance;
 use App\Models\DeedOfSale;
+use App\Models\Feature;
 
 
 class UnitShowComponent extends Component
 {
-   
+
     public $unit_details;
     //unit input fields
     public $unit;
@@ -76,7 +77,7 @@ class UnitShowComponent extends Component
         $this->unit_uuid = $unit_details->uuid;
         $this->remittance_date = Carbon::now()->format('Y-m-d');
     }
-    
+
     protected function rules()
     {
         return [
@@ -90,7 +91,7 @@ class UnitShowComponent extends Component
             'is_the_unit_for_rent_to_tenant' => 'required',
             'price' => 'nullable',
             'rent_type' => ['required_if:is_the_unit_for_rent_to_tenant,1'],
-            'rent_duration' => ['required_if:is_the_unit_for_rent_to_tenant,1'],
+            'rent_duration' => ['nullable'],
             'transient_rent' => ['required_if:rent_duration,transient'],
             'transient_discount' => ['required_if:rent_duration,transient'],
             'rent' => ['required_if:rent_duration,long_term'],
@@ -106,58 +107,58 @@ class UnitShowComponent extends Component
     }
 
     public function redirectToTheCreateUnitInventoryPage(){
-        
+
 
         return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit_details->uuid.'/inventory/'.Str::random(8).'/create');
     }
 
     public function redirectToTheCreateOwnerPage(){
-        
-        
+
+
 
         return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit_details->uuid.'/owner/'.Str::random(8).'/create');
     }
 
     public function redirectToTheCreateTenantPage(){
-        
-        
+
+
 
         return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit_details->uuid.'/tenant/'.Str::random(8).'/create');
     }
 
     public function redirectToTheCreateGuestPage(){
-        
-        
+
+
 
         return redirect('/property/'.Session::get('property_uuid').'/calendar');
     }
 
     public function redirectToTheCreateUtilitiesPage(){
-        
-        
+
+
 
         return redirect('/property/'.Session::get('property_uuid').'/utilities/');
     }
 
     public function redirectToTheCreateConcernPage(){
-        
-        
+
+
 
         return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit_details->uuid.'/concern/'.Str::random(8).'/create');
     }
-    
+
     public function submitForm()
     {
         $validatedData = $this->validate();
-         
+
         try{
-        
+
             $this->unit_details->update($validatedData);
 
             app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'updates',2);
 
-            session()->flash('success', 'Success!');
-                    
+            session()->flash('success', 'Changes Saved!');
+
         }catch(\Exception $e){
 
             session()->flash('error', 'Something went wrong.');
@@ -180,11 +181,11 @@ class UnitShowComponent extends Component
         Remittance::where('unit_uuid', $this->unit_details->uuid)->delete();
 
 
-        return redirect('/property/'.$this->unit_details->property_uuid.'/unit/')->with('success', 'Success!');
+        return redirect('/property/'.$this->unit_details->property_uuid.'/unit/')->with('success', 'Changes Saved!');
     }
 
     public function closeModal(){
-        
+
         return redirect('/property/'.$this->unit_details->property_uuid.'/unit/'.$this->unit_details->uuid);
     }
 
@@ -223,6 +224,12 @@ class UnitShowComponent extends Component
             ->orderBy('amount', 'desc')
             ->get();
 
+            $featureId = 3;
+
+            $unitSubfeatures = Feature::where('id', $featureId)->pluck('subfeatures')->first();
+
+            $unitSubfeaturesArray = explode(",", $unitSubfeatures);
+
         return view('livewire.unit-show-component',[
             'buildings' => app('App\Http\Controllers\PropertyBuildingController')->index($this->unit_details->property_uuid),
             'floors' => app('App\Http\Controllers\FloorController')->index(null),
@@ -243,7 +250,8 @@ class UnitShowComponent extends Component
             'remittances' => Remittance::where('unit_uuid', $this->unit_details->uuid)
             // ->whereMonth('created_at', Carbon::parse($this->remittance_date)->month)
             ->get(),
- 
+            'unitSubfeaturesArray' => $unitSubfeaturesArray
+
         ]);
     }
 }

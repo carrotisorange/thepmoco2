@@ -1,5 +1,4 @@
 <div>
-    @include('layouts.notifications')
     <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
             <h1 class="text-3xl font-bold text-gray-500">Account Payables</h1>

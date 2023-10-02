@@ -62,7 +62,7 @@ class AccountPayableCreateStep7Component extends Component
 
               $this->particulars = $this->get_particulars();
 
-            session()->flash('success', 'Success!');
+            session()->flash('success', 'Changes Saved!');
 
         }catch(\Exception $e){
         
@@ -88,7 +88,7 @@ class AccountPayableCreateStep7Component extends Component
 
         Notification::route('mail', $requester_email)->notify(new SendAccountPayableStep4NotificationToAdmin($content));
 
-       return redirect('/property/'.Session::get('property_uuid').'/accountpayable/')->with('success', 'Success!');
+       return redirect('/property/'.Session::get('property_uuid').'/accountpayable/')->with('success', 'Changes Saved!');
     }
 
     public function render()

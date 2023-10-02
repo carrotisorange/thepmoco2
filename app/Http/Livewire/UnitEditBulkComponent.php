@@ -76,11 +76,11 @@ class UnitEditBulkComponent extends Component
             //redirect user with a success message
             if($tenants_count)
             {
-                return redirect('/property/'.Session::get('property_uuid').'/unit/')->with('success', 'Success!');
+                return redirect('/property/'.Session::get('property_uuid').'/unit/')->with('success', 'Changes Saved!');
             }
             else
             {
-                return redirect('/property/'.Session::get('property_uuid').'/tenant/')->with('success', 'Success!');
+                return redirect('/property/'.Session::get('property_uuid').'/tenant/')->with('success', 'Changes Saved!');
             }
 
         }catch(\Exception $e){
@@ -104,7 +104,7 @@ class UnitEditBulkComponent extends Component
 
     //             $this->units = $this->get_units();
 
-    //             session()->flash('success', 'Success!');
+    //             session()->flash('success', 'Changes Saved!');
     //         }
     //     }
     //      $this->selectedUnits = [];

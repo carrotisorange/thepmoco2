@@ -1,16 +1,16 @@
-<form id="updateTenant" method="POST" wire:submit.prevent="submitForm()" class="w-full" enctype="multipart/form-data">
-    @csrf
-    @method('PATCH')
+<?php
+    $formDivClasses = 'bg-white relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600';
+;?>
+
+<form id="updateTenant" wire:submit.prevent="submitForm()" class="w-full" enctype="multipart/form-data">
 
     <div class="h-full grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-8">
 
         <div class="sm:col-span-4">
-            <div
-                class="bg-white relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="tenant" class="block text-xs font-medium text-gray-900">Full Name</label>
-                <input type="text" wire:model.debounce.500ms.lazy="tenant"
-                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
-                    placeholder="">
+            <div class="{{ $formDivClasses }}">
+                <x-label for="tenant" >Full Name</x-label>
+                <x-form-input type="text" wire:model="tenant"
+                  />
                 @error('tenant')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
@@ -19,10 +19,9 @@
         </div>
 
         <div class="sm:col-span-2">
-            <div
-                class="bg-white relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="status" class="block text-xs font-medium text-gray-900">Status</label>
-                <select wire:model.debounce.500ms="status"
+            <div class="{{ $formDivClasses }}">
+                <x-label for="status">Status</x-label>
+                <x-form-select wire:model="status"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
                    <option value="active" {{ "active"===$status? 'selected' : 'Select one' }}>
                         active
@@ -39,7 +38,7 @@
                     <option value="reserved" {{ "reserved"===$status? 'selected' : 'Select one' }}>
                         reserved
                     </option>
-                </select>
+                </x-form-select>
                 @error('status')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
@@ -47,43 +46,26 @@
         </div>
 
         <div class="sm:col-span-2">
-            <div
-                class="bg-white relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="category" class="block text-xs font-medium text-gray-900">Category</label>
-                <select wire:model.debounce.500ms="category"
-                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
+            <div  class="{{ $formDivClasses }}">
+            <x-label for="category" >Category</x-label>
+                <x-form-select wire:model="category">
                     <option value="primary" {{ old('category', $category)=='primary' ? 'selected' : 'selected' }}>
                         primary
                     </option>
                     <option value="secondary" {{ old('category', $category)=='secondary' ? 'selected' : 'selected' }}>
                         secondary
                     </option>
-                </select>
+                </x-form-select>
                 @error('category')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
             </div>
         </div>
 
-        {{-- <div class="sm:col-span-4">
-            <div
-                class="bg-white relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="name" class="block text-xs font-medium text-gray-900">Tenant
-                    Reference No</label>
-                <input type="text" wire:model.debounce.500ms.lazy="bill_reference_no" readonly
-                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
-                    placeholder="">
-
-            </div>
-        </div> --}}
-
         <div class="sm:col-span-4">
-            <div
-                class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="mobile_number" class="block text-xs font-medium text-gray-900">Mobile #</label>
-                <input type="text" wire:model.debounce.500ms.lazy="mobile_number"
-                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
-                    placeholder="">
+            <div  class="{{ $formDivClasses }}">
+                <x-label for="mobile_number" >Mobile #</x-label>
+                <x-form-input type="text" wire:model="mobile_number"/>
                 @error('mobile_number')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
@@ -91,13 +73,10 @@
         </div>
 
         <div class="sm:col-span-4">
-            <div
-                class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="email" class="block text-xs font-medium text-gray-900">Email
-                </label>
-                <input type="email" wire:model.debounce.500ms.lazy="email"
-                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
-                    placeholder="">
+            <div class="{{ $formDivClasses }}">
+                <x-label for="email" >Email
+                </x-label>
+                <x-form-input type="email" wire:model="email"/>
                 @error('email')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
@@ -105,19 +84,17 @@
         </div>
 
         <div class="sm:col-span-2">
-            <div
-                class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="country_id" class="block text-xs font-medium text-gray-900">Country
-                </label>
-                <select wire:model.debounce.500ms="country_id"
-                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
+            <div class="{{ $formDivClasses }}">
+                <x-label for="country_id">Country
+                </x-label>
+                <x-form-select wire:model="country_id">
                     @foreach($countries as $country)
                     <option value="{{ $country->id }}" {{ old('country_id', $tenant_details->
                         country_id) == $country->id ? 'selected' : '' }}>
                         {{ $country->country }}
                     </option>
                     @endforeach
-                </select>
+                </x-form-select>
                 @error('country_id')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
@@ -126,52 +103,27 @@
 
 
         <div class="sm:col-span-2">
-            <div
-                class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="province_id" class="block text-xs font-medium text-gray-900">Province</label>
-                <select wire:model.debounce.500ms="province_id"
-                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
+            <div class="{{ $formDivClasses }}">
+                <x-label for="province_id" >Province</x-label>
+                <x-form-select wire:model="province_id">
                     @foreach($provinces as $province)
                     <option value="{{ $province->id }}" {{ old('province_id', $tenant_details->
                         province_id) == $province->id ? 'selected' : '' }}>
                         {{ $province->province }}
                     </option>
                     @endforeach
-                </select>
+                </x-form-select>
                 @error('province_id')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
             </div>
         </div>
 
-        {{-- <div class="sm:col-span-2">
-            <div
-                class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="city_id" class="block text-xs font-medium text-gray-900">City</label>
-                <select wire:model.debounce.500ms="city_id"
-                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
-                    @foreach($cities as $city)
-                    <option value="{{ $city->id }}" {{ old('city_id', $tenant_details->
-                        city_id) == $city->id ? 'selected' : '' }}>
-                        {{ $city->city }}
-                    </option>
-                    @endforeach
-                </select>
-                @error('city_id')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
-
-            </div>
-        </div> --}}
-
         <div class="sm:col-span-4">
-            <div
-                class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="barangay" class="block text-xs font-medium text-gray-900">
-                    Address</label>
-                <input type="text" wire:model.debounce.500ms.lazy="barangay"
-                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
-                    placeholder="">
+            <div class="{{ $formDivClasses }}">
+                <x-label for="barangay">
+                    Address</x-label>
+                <x-form-input type="text" wire:model="barangay"/>
                 @error('barangay')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
@@ -179,19 +131,17 @@
         </div>
 
         <div class="sm:col-span-8">
-            <div
-                class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="type" class="block text-xs font-medium text-gray-900">
-                    Type</label>
-                <select wire:model.debounce.500ms="type"
-                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
+            <div class="{{ $formDivClasses }}">
+                <x-label for="type">
+                    Type</x-label>
+                <x-form-select wire:model="type">
                     <option value="studying" {{ old('type', $type)=='studying' ? 'selected' : 'selected' }}>
                         studying
                     </option>
                     <option value="working" {{ old('type', $type)=='working' ? 'selected' : 'selected' }}>
                         working
                     </option>
-                </select>
+                </x-form-select>
 
                 @error('type')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -202,11 +152,9 @@
 
         @if($type=='studying')
         <div class="sm:col-span-2">
-            <div
-                class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="course" class="block text-xs font-medium text-gray-900">Course</label>
-                <input type="text" wire:model.debounce.500ms.lazy="course"
-                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
+            <div class="{{ $formDivClasses }}">
+                <x-label for="course" >Course</x-label>
+                <x-form-input type="text" wire:model="course"/>
                 @error('course')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
@@ -214,10 +162,9 @@
         </div>
 
         <div class="sm:col-span-2">
-            <div
-                class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="year_level" class="block text-xs font-medium text-gray-900">Year Level</label>
-                <input type="text" wire:model.debounce.500ms.lazy="year_level"
+            <div class="{{ $formDivClasses }}">
+                <x-label for="year_level" >Year Level</x-label>
+                <input type="text" wire:model="year_level"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
                 @error('year_level')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -226,11 +173,9 @@
         </div>
 
         <div class="sm:col-span-2">
-            <div
-                class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="school" class="block text-xs font-medium text-gray-900">School</label>
-                <input type="text" wire:model.debounce.500ms.lazy="school"
-                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
+            <div class="{{$formDivClasses}}">
+                <x-label for="school" >School</x-label>
+                <x-form-input type="text" wire:model="school"/>
                 @error('school')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
@@ -238,11 +183,9 @@
         </div>
 
         <div class="sm:col-span-2">
-            <div
-                class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="school_address" class="block text-xs font-medium text-gray-900">Address</label>
-                <input type="text" wire:model.debounce.500ms.lazy="school_address"
-                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
+            <div class="{{$formDivClasses}}">
+                <x-label for="school_address" >Address</x-label>
+                <x-form-input type="text" wire:model="school_address"/>
                 @error('school_address')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
@@ -252,11 +195,9 @@
         @else
 
         <div class="sm:col-span-4">
-            <div
-                class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="occupation" class="block text-xs font-medium text-gray-900">Occupation</label>
-                <input type="text" wire:model.debounce.500ms.lazy="occupation"
-                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
+            <div class="{{ $formDivClasses }}">
+                <x-label for="occupation" >Occupation</x-label>
+                <x-form-input type="text" wire:model="occupation"/>
                 @error('occupation')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
@@ -264,11 +205,9 @@
         </div>
 
         <div class="sm:col-span-2">
-            <div
-                class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="employer" class="block text-xs font-medium text-gray-900">Employer</label>
-                <input type="text" wire:model.debounce.500ms.lazy="employer"
-                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
+            <div class="{{ $formDivClasses }}">
+                <x-label for="employer" >Employer</x-label>
+                <x-form-input type="text" wire:model="employer"/>
                 @error('employer')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
@@ -276,11 +215,9 @@
         </div>
 
         <div class="sm:col-span-2">
-            <div
-                class="bg-white relative border border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                <label for="employer_address" class="block text-xs font-medium text-gray-900">Address</label>
-                <input type="text" wire:model.debounce.500ms.lazy="employer_address"
-                    class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
+            <div class="{{ $formDivClasses }}">
+                <x-label for="employer_address" >Address</x-label>
+                <x-form-input type="text" wire:model="employer_address"/>
                 @error('employer_address')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
@@ -291,16 +228,15 @@
     </div>
 
     <div class="mt-5 flex justify-end">
-        <button type="button" data-modal-toggle="warning-destroy-tenant-modal"
-            class="inline-flex items-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+        <x-button data-modal-toggle="warning-destroy-tenant-modal"
+            class=" bg-red-600  hover:bg-red-700">
             Delete
-        </button>
-   
-        <button type="button" wire:click="submitForm()"
-            class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+        </x-button>
+
+        <x-button wire:click="submitForm()" >
             Update
-        </button>
-       
+        </x-button>
+
     </div>
 </form>
 @include('modals.warnings.destroy-tenant-modal')

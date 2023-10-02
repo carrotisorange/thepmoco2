@@ -60,7 +60,7 @@ class BillCreateComponent extends Component
     {
         Bill::where('id', $bill_id)->delete();
 
-        return session()->flash('success', 'Success!');
+        return session()->flash('success', 'Changes Saved!');
     }
 
 
@@ -80,7 +80,7 @@ class BillCreateComponent extends Component
          
         $this->reset_form();
 
-         return session()->flash('success', 'Success!');
+         return session()->flash('success', 'Changes Saved!');
 
        }catch(\Exception $e)
        {

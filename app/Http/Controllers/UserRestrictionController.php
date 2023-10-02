@@ -18,17 +18,17 @@ class UserRestrictionController extends Controller
 
         $featuresArray = explode(",", $features);
 
-        foreach($featuresArray as $featureArray){
+        foreach($featuresArray as $feature){
             for ($restrictionId=1; $restrictionId<=Restriction::all()->count(); $restrictionId++) {
                 UserRestriction::firstOrCreate(
                 [
-                 'feature_id' => (int) $featureArray,
+                 'feature_id' => (int) $feature,
                  'user_id' => $userId,
                  'property_uuid' => $propertyUuid,
                  'restriction_id' => $restrictionId
                 ],
                 [
-                 'feature_id' => (int) $featureArray,
+                 'feature_id' => (int) $feature,
                  'user_id' => $userId,
                  'property_uuid' => $propertyUuid,
                  'restriction_id' => $restrictionId,

@@ -19,6 +19,6 @@ class BookingController extends Controller
 
        Booking::where('uuid', $booking->uuid)->update($validated);
 
-        return back()->with('success', 'Success!');
+        return back()->with('success', 'Changes Saved!');
     }
 }

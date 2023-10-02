@@ -13,7 +13,7 @@ class DeleteUnitInventoryComponent extends Component
        
         UnitInventory::where('id', $this->inventory->id)->delete();
 
-        return redirect(url()->previous())->with('success', 'Success!');
+        return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 
     public function render()

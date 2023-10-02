@@ -40,9 +40,9 @@ class EditBillComponent extends Component
             'particular_id' => $this->particular_id
         ]);
 
-    return redirect(url()->previous())->with('success', 'Success!');
+    return redirect(url()->previous())->with('success', 'Changes Saved!');
 
-        // return back()->with('success', 'Success!');
+        // return back()->with('success', 'Changes Saved!');
     }
     
     public function render()

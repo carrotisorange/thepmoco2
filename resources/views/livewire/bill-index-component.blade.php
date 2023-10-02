@@ -176,7 +176,6 @@
 
             </div>
         </div>
-        @include('layouts.notifications')
         @include('modals.instructions.create-bill-modal')
         @include('modals.instructions.create-particular-modal')
     </div>

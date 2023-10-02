@@ -127,7 +127,7 @@ class AccountPayableCreateStep5Component extends Component
             Notification::route('mail', $first_approver)->notify(new SendAccountPayableStep2NotificationToManager($content));
         }
 
-        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-5')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-5')->with('success', 'Changes Saved!');
     }
 
     public function updateParticular($id){
@@ -149,7 +149,7 @@ class AccountPayableCreateStep5Component extends Component
                 $this->total = AccountPayableLiquidationParticular::where('batch_no', $this->accountpayable->batch_no)->sum('total');
                 $this->cash_advance = AccountPayableLiquidation::where('batch_no',  $this->accountpayable->batch_no)->pluck('cash_advance')->first();
 
-                session()->flash('success', 'Success!');
+                session()->flash('success', 'Changes Saved!');
             }
              
        }catch(\Exception $e){
@@ -167,7 +167,7 @@ class AccountPayableCreateStep5Component extends Component
         
         $this->cash_advance = AccountPayableLiquidation::where('batch_no',  $this->accountpayable->batch_no)->pluck('cash_advance')->first();
 
-        return back()->with('success', 'Success!');
+        return back()->with('success', 'Changes Saved!');
     }
 
     public function get_particulars(){
@@ -195,7 +195,7 @@ class AccountPayableCreateStep5Component extends Component
         $this->total = AccountPayableLiquidationParticular::where('batch_no', $this->accountpayable->batch_no)->sum('total');
         $this->cash_advance = AccountPayableLiquidation::where('batch_no',  $this->accountpayable->batch_no)->pluck('cash_advance')->first();
 
-        return back()->with('success', 'Success!');
+        return back()->with('success', 'Changes Saved!');
     }
 
     public function skipLiquidation(){
@@ -206,7 +206,7 @@ class AccountPayableCreateStep5Component extends Component
          'status'=> 'liquidation approved by manager'
          ]);
 
-       return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-5')->with('success', 'Success!');
+       return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-5')->with('success', 'Changes Saved!');
     }
     public function render()
     {

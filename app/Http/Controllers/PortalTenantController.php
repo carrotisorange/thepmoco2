@@ -137,7 +137,7 @@ class PortalTenantController extends Controller
     {
        PaymentRequest::where('batch_no', $batch_no)->delete();
 
-      return redirect(auth()->user()->role_id.'/tenant/'. auth()->user()->username.'/bills/')->with('success', 'Success!');
+      return redirect(auth()->user()->role_id.'/tenant/'. auth()->user()->username.'/bills/')->with('success', 'Changes Saved!');
     }  
 
     public function payment_request_update(Request $request, $role_id, User $user, $batch_no)
@@ -162,7 +162,7 @@ class PortalTenantController extends Controller
                 //     'property_uuid' => Session::get('property_uuid') 
                 // ]);
 
-         return redirect('/property/'.Session::get('property_uuid').'/collection/approved')->with('success', 'Success!');
+         return redirect('/property/'.Session::get('property_uuid').'/collection/approved')->with('success', 'Changes Saved!');
         }
          else{
     
@@ -187,7 +187,7 @@ class PortalTenantController extends Controller
       } 
 
       return redirect(auth()->user()->role_id.'/tenant/'.
-      auth()->user()->username.'/payments/declined')->with('success', 'Success!');
+      auth()->user()->username.'/payments/declined')->with('success', 'Changes Saved!');
 
 
     }  
@@ -212,7 +212,7 @@ class PortalTenantController extends Controller
         //         'property_uuid' => Session::get('property_uuid') 
         //     ]);
 
-        return redirect('/property/'.Session::get('property_uuid').'/collection/declined')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/collection/declined')->with('success', 'Changes Saved!');
     }
 
 

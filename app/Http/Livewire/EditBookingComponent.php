@@ -86,7 +86,7 @@ class EditBookingComponent extends Component
 
         Booking::where('uuid', $this->booking->uuid)->update($validated);
 
-       return redirect(url()->previous())->with('success', 'Success!');
+       return redirect(url()->previous())->with('success', 'Changes Saved!');
 
     }
 

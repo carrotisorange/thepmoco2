@@ -90,7 +90,7 @@ class TransferContractComponent extends Component
 
         // $this->send_email_to_tenant();
 
-        return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->contract_details->tenant_uuid.'/contracts')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->contract_details->tenant_uuid.'/contracts')->with('success', 'Changes Saved!');
       
       });
 

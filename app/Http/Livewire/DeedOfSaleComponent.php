@@ -50,7 +50,7 @@ class DeedOfSaleComponent extends Component
 
             app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, 5, 7);
 
-            return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/bank/create')->with('success','Success!');
+            return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/bank/create')->with('success','Changes Saved!');
             
         }catch(\Exception $e)
         {

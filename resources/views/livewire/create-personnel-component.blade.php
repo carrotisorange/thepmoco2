@@ -1,5 +1,4 @@
 <x-modal-component>
-    @include('layouts.notifications')
     <x-slot name="id">
         create-personnel-modal
     </x-slot>

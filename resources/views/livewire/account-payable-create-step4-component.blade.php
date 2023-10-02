@@ -208,5 +208,5 @@
         </form>
         {{-- end-step-1-form --}}
     </div>
-    @include('layouts.notifications')
+
 </div>

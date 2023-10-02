@@ -281,5 +281,5 @@
             </div>
         </form>
     </div>
-    @include('layouts.notifications')
+
 </div>

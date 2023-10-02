@@ -144,7 +144,7 @@ class PropertyGuestController extends Controller
 
         //  $this->send_payment_to_guest($guest, $ar_no, $request->form, $request->created_at, User::find(auth()->user()->id)->name, User::find(auth()->user()->id)->role->role, Collection::where('guest_uuid',$guest->uuid)->where('batch_no', $batch_no)->get());
    
-         return redirect('/property/'.$property->uuid.'/guest/'.$guest->uuid)->with('success', 'Success!');
+         return redirect('/property/'.$property->uuid.'/guest/'.$guest->uuid)->with('success', 'Changes Saved!');
 
          // return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$tenant->uuid.'/ar/'.$ar_id.'/view')->with('success', 'Payment is successfully created.');
      }
@@ -258,7 +258,7 @@ class PropertyGuestController extends Controller
             'movein_at' => Carbon::now()
         ]);
 
-        return back()->with('success', 'Success!');
+        return back()->with('success', 'Changes Saved!');
     }
 
     public function update(Request $request ,$uuid)
@@ -285,7 +285,7 @@ class PropertyGuestController extends Controller
             'moveout_at' => Carbon::now()
         ]);
 
-        return back()->with('success', 'Success!');
+        return back()->with('success', 'Changes Saved!');
     }
 
     public function destroy($unit_uuid){

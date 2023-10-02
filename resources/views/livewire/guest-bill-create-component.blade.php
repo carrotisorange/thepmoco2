@@ -7,7 +7,7 @@
 
                     <li class="flex">
                         <div class="flex items-center">
-                            <button onclick="window.location.href='/property/{{ $property->uuid }}/guest'"
+                            <button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/guest'"
                                 class="text-lg font-medium text-gray-500 hover:text-gray-700" aria-current="page">
                                 Guests</button>
                         </div>
@@ -21,7 +21,7 @@
                                 <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
                             </svg>
                             <button
-                                onclick="window.location.href='/property/{{ $property->uuid }}/guest/{{ $guest->uuid }}'"
+                                onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/guest/{{ $guest->uuid }}'"
                                 class="ml-4 text-lg font-medium text-gray-500 hover:text-gray-700 ">
                                 {{ $guest->guest }} </button>
                         </div>
@@ -35,7 +35,7 @@
                                 <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
                             </svg>
                             <button
-                                onclick="window.location.href='/property/{{ $property->uuid }}/guest/{{ $guest->uuid }}/bills'"
+                                onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/guest/{{ $guest->uuid }}/bills'"
                                 class="ml-4 text-lg font-bold text-gray-700 hover:text-gray-700" aria-current="page">
                                 Bills</button>
                         </div>
@@ -55,21 +55,7 @@
                         }})</a></button>
 
                     @endif
-                    {{--
-                    <button type="button" data-modal-toggle="send-guest-bill"
-                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Send
-                        Bills ({{ App\Models\Guest::find($guest->uuid)->bills()->where('status',
-                        '!=', 'paid')->count() }})</a></button>
-                    --}}
 
-
-                    {{-- <button type="button" data-modal-toggle="instructions-create-guest-bill-modal"
-                        class="inline-flex items-end justify-end rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-                        Create Bill</a></button>
-
-                    <button type="button" data-modal-toggle="create-particular-modal"
-                        class="inline-flex items-end justify-end rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-                        Create Particular</a></button> --}}
                 </div>
             </div>
 
@@ -89,7 +75,7 @@
                 <option value="paid" {{ $status=='paid' ? 'selected' : 'selected' }}> paid </option>
                 <option value="partially_paid" {{ $status=='partially_paid' ? 'selected' : 'selected' }}> partially paid </option>
                 <option value="unpaid" {{ $status=='unpaid' ? 'selected' : 'selected' }}> unpaid </option>
-        
+
             </select>
 
             @endif
@@ -124,7 +110,7 @@
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Pay Bills
                 </button>
-              
+
                 <div class="mt-5">
                     <span>You've selected <b>{{ count($selectedBills) }}</b> {{ Str::plural('bill',
                         count($selectedBills))}}
@@ -138,7 +124,7 @@
                 {{-- @endcan --}}
 
             </div>
-           
+
         </div>
     </div>
 
@@ -155,7 +141,6 @@
             </div>
         </div>
     </div>
-    @include('layouts.notifications')
     @include('modals.instructions.create-guest-bill-modal')
     @include('modals.export-guest-bill')
     @include('modals.send-guest-bill')

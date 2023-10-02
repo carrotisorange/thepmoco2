@@ -192,7 +192,7 @@ class BillIndexComponent extends Component
                 );
          }
 
-         session()->flash('success', 'Success!');
+         session()->flash('success', 'Changes Saved!');
    }
 
    protected function rules()
@@ -307,7 +307,7 @@ class BillIndexComponent extends Component
 
                 }
 
-                return redirect('/property/'.Session::get('property_uuid').'/bill/'.'customized'.'/'.$batch_no)->with('success', 'Success!');
+                return redirect('/property/'.Session::get('property_uuid').'/bill/'.'customized'.'/'.$batch_no)->with('success', 'Changes Saved!');
 
             }catch(\Exception $e)
             {

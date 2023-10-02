@@ -51,7 +51,7 @@ class RequestForPurchaseController extends Controller
                 'status' => 'pending'
         ]);
 
-        return redirect('/property/'.$property->uuid.'/accountpayable/'.$account_payable->id.'/step-1')->with('success', 'Success!');
+        return redirect('/property/'.$property->uuid.'/accountpayable/'.$account_payable->id.'/step-1')->with('success', 'Changes Saved!');
 
     }
 
@@ -346,7 +346,7 @@ class RequestForPurchaseController extends Controller
             'status' => 'approved'
         ]);
 
-        return back()->with('success', 'Success!');
+        return back()->with('success', 'Changes Saved!');
     }
 
     /**

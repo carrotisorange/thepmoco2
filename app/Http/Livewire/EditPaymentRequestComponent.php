@@ -61,7 +61,7 @@ class EditPaymentRequestComponent extends Component
         ]);
 
         if(auth()->user()->role_id === 8){
-            return redirect('/8/tenant/'.auth()->user()->username.'/payments/pending')->with('success', 'Success!');
+            return redirect('/8/tenant/'.auth()->user()->username.'/payments/pending')->with('success', 'Changes Saved!');
         }else{
             return redirect('/property/'.Session::get('property_uuid').'/collection/pending');
         }

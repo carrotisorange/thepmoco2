@@ -9,6 +9,7 @@ use Illuminate\Validation\Rule;
 use App\Models\Bill;
 use App\Models\Guest;
 use App\Models\Contract;
+use Session;
 
 class CreateBillComponent extends Component
 {
@@ -69,7 +70,7 @@ class CreateBillComponent extends Component
 
         Bill::create($validated);
 
-       return redirect(url()->previous())->with('success', 'Success!');
+       return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 
     public function render()

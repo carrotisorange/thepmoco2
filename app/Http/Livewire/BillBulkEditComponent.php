@@ -46,7 +46,7 @@ class BillBulkEditComponent extends Component
              'is_posted' => true,
             ]);
 
-            return redirect('/property/'.Session::get('property_uuid').'/bill/'.'property'.'/'.Session::get('property_uuid'))->with('success', 'Success!');
+            return redirect('/property/'.Session::get('property_uuid').'/bill/'.'property'.'/'.Session::get('property_uuid'))->with('success', 'Changes Saved!');
 
             // session()->flash('success', count($this->bills). ' bills are successfully saved as draft.');
 

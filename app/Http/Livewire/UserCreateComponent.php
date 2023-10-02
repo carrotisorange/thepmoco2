@@ -174,11 +174,11 @@ class UserCreateComponent extends Component
         if($this->createAnotherPersonnel)
         {
         //prompt user withe a sucess page
-        return redirect('/property/'.Session::get('property_uuid').'/user/'.Str::random(8).'/create')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/user/'.Str::random(8).'/create')->with('success', 'Changes Saved!');
 
         }else{
         //prompt user withe a sucess page
-        return redirect('/property/'.Session::get('property_uuid').'/user/')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/user/')->with('success', 'Changes Saved!');
         }
        
      }
@@ -209,6 +209,6 @@ class UserCreateComponent extends Component
 
          UserProperty::where('user_id', $id)->delete();
 
-         return back()->with('success', 'Success!');
+         return back()->with('success', 'Changes Saved!');
      }
 }

@@ -5,7 +5,7 @@
 
                 <li class="flex">
                     <div class="flex items-center">
-                        <button onclick="window.location.href='/property/{{ $property->uuid }}/guest'"
+                        <button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/guest'"
                             class="text-lg font-medium text-gray-500 hover:text-gray-700" aria-current="page">
                             Guests</button>
                     </div>
@@ -19,7 +19,7 @@
                             <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
                         </svg>
                         <button
-                            onclick="window.location.href='/property/{{ $property->uuid }}/guest/{{ $guest->uuid }}'"
+                            onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/guest/{{ $guest->uuid }}'"
                             class="ml-4 text-lg font-medium text-gray-500 hover:text-gray-700 ">
                             {{ $guest->guest }} </button>
                     </div>

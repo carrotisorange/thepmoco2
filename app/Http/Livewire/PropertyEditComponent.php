@@ -101,7 +101,7 @@ class PropertyEditComponent extends Component
 
             app('App\Http\Controllers\ActivityController')->store($this->property_details->uuid, auth()->user()->id,'updates',1);
 
-            return session()->flash('success', 'Success!');
+            return session()->flash('success', 'Changes Saved!');
 
         }catch(\Exception $e){
             return session()->flash('error', 'Something went wrong.');

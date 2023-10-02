@@ -111,7 +111,7 @@
             @if($isPaymentAllowed)
             <x-th>
                 @if(!App\Models\Collection::where('bill_id', $bill->id)->posted()->sum('collection'))
-                <x-input type="checkbox" wire:model="selectedBills" value="{{ $bill->id }}" />
+                <x-input name="selectedBills" type="checkbox" wire:model="selectedBills" value="{{ $bill->id }}" />
                 @endif
             </x-th>
             @endif

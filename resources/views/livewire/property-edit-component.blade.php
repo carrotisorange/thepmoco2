@@ -1,5 +1,4 @@
 <div>
-    @include('layouts.notifications')
    <form class="space-y-6" method="POST" wire:submit.prevent="submitForm()" enctype="multipart/form-data">
 
     <div class=" space-y-8 divide-y divide-gray-200 sm:space-y-5">

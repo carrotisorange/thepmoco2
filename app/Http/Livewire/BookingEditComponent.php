@@ -64,7 +64,7 @@ class BookingEditComponent extends Component
             DB::transaction(function () use ($validatedData){
                 $this->guest_details->update($validatedData);
 
-                session()->flash('success', 'Success!');
+                session()->flash('success', 'Changes Saved!');
             });
             
         }catch(\Exception $e){
@@ -88,7 +88,7 @@ class BookingEditComponent extends Component
             'guest_uuid' => $this->guest_details->uuid
         ]);
 
-          return redirect('/property/'.Session::get('property_uuid').'/guest/'.$this->guest_details->uuid)->with('success', 'Success!');
+          return redirect('/property/'.Session::get('property_uuid').'/guest/'.$this->guest_details->uuid)->with('success', 'Changes Saved!');
     }
 
     public function render()

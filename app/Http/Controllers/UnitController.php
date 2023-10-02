@@ -175,7 +175,7 @@ class UnitController extends Controller
 
         $unit->update($attributes);
 
-        return back()->with('success', 'Success!');
+        return back()->with('success', 'Changes Saved!');
     }
 
     public function updateUnitStatus($unit_uuid, $status_id)

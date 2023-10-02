@@ -41,19 +41,30 @@ class BillController extends Controller
         ]);
     }
 
+    public function tenant_index(Property $property, Tenant $tenant)
+    {
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens', 10);
+
+        return view('tenants.bills.index',[
+        'tenant' => $tenant,
+        'property' => $property,
+        ]);
+    }
+
+    public function owner_index(Property $property, Owner $owner)
+    {
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens', 10);
+
+        return view('owners.bills.index',[
+        'owner' => $owner,
+        'property' => $property,
+        ]);
+    }
+
     public function getBills($property_uuid){
         return Property::find($property_uuid)->bills();
     }
 
-    // public function get_bills(Property $property, Tenant $tenant)
-    // {
-    //     app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens', 10);
-
-    //     return view('tenants.bills.index',[
-    //         'tenant' => $tenant,
-    //         'property' => $property,
-    //     ]);
-    // }
 
   public function send_bills(Request $request, Property $property, Tenant $tenant)
     {
@@ -63,7 +74,7 @@ class BillController extends Controller
 
         Mail::to($request->email)->send(new SendBillToTenant($data));
 
-        return back()->with('success', 'Success!');
+        return back()->with('success', 'Changes Saved!');
     }
 
 

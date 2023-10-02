@@ -74,7 +74,7 @@ class UnitIndexComponent extends Component
 
         app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, $this->numberOfUnits, 5);
         
-        return redirect('/property/'.Session::get('property_uuid').'/unit/'.$batch_no.'/edit')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/unit/'.$batch_no.'/edit')->with('success', 'Changes Saved!');
     }
 
     public function changeView($value)

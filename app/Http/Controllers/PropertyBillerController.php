@@ -41,7 +41,7 @@ class PropertyBillerController extends Controller
             'property_uuid' => Session::get('property_uuid')
         ]);
 
-        return back()->with('success', 'Success!');
+        return back()->with('success', 'Changes Saved!');
 
     }
 

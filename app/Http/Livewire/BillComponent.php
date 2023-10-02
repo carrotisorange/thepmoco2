@@ -66,7 +66,7 @@ class BillComponent extends Component
 
         $this->resetForm();
 
-        return redirect('/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$this->contract->uuid.'/bill/'.Str::random(8).'/create')->with('success', 'Success!');
+        return redirect('/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$this->contract->uuid.'/bill/'.Str::random(8).'/create')->with('success', 'Changes Saved!');
       } 
       catch (\Throwable $e) {
         DB::rollback();

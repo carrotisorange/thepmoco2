@@ -48,7 +48,7 @@ class TenantPortalBillComponent extends Component
             ]
         );
 
-        return redirect(auth()->user()->role_id.'/tenant/'. auth()->user()->username.'/payments_request/'.$batch_no)->with('success', 'Success!');
+        return redirect(auth()->user()->role_id.'/tenant/'. auth()->user()->username.'/payments_request/'.$batch_no)->with('success', 'Changes Saved!');
     }
 
 

@@ -248,7 +248,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::get('{tenant:uuid}', [TenantController::class, 'show'])->name('tenant');
 
         Route::prefix('{tenant}')->group(function(){
-            Route::get('bills', [BillController::class, 'index'])->name('tenant-bill');
+            Route::get('bills', [BillController::class, 'tenant_index'])->name('tenant-bill');
             Route::get('bills/{batch_no}/pay', [CollectionController::class, 'edit_collections'])->name('tenant');
             Route::patch('bills/{batch_no}/pay/update', [CollectionController::class, 'update_collections']);
             Route::get('collections', [CollectionController::class,'tenant_collection_index'])->name('tenant');
@@ -322,6 +322,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
             });
 
 
+            Route::get('bills', [BillController::class, 'owner_index']);
 
             Route::get('unit', [OwnerDeedOfSalesController::class, 'create']);
 
@@ -370,7 +371,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     //Routes for Collection
     Route::prefix('collection')->group(function(){
-        Route::get('{type?}/{type_id?}', [CollectionController::class, 'index'])->name('collection');
+           Route::get('/', [CollectionController::class, 'index'])->name('collection');
+           Route::get('/{status}', [CollectionController::class, 'paymentVerificationIndex'])->name('collection');;
 
     });
 

@@ -1,5 +1,4 @@
 <div>
-    @include('layouts.notifications')
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -79,8 +78,8 @@
 
 
                     <div class="sm:col-span-1">
-                        <x-select name="status_id" id="status_id" wire:model="status_id"
-                          >  <option value="">Filter status</option>
+                        <x-select name="status_id" id="status_id" wire:model="status_id">  \
+                            <option value="">Filter status</option>
                             @foreach ($statuses as $item)
                             <option value="{{ $item->status_id }}">{{ $item->status }}</option>
                             @endforeach
@@ -88,8 +87,8 @@
                     </div>
 
                     <div class="sm:col-span-1">
-                        <x-select name="sortBy" id="small" wire:model="sortBy"
-                          >   <option value="unit" selected>Sort by</option>
+                        <x-select name="sortBy" id="small" wire:model="sortBy">
+                            <option value="unit" selected>Sort by</option>
                             <option value="created_at">date created</option>
                             <option value="floor_id">floor</option>
                             <option value="occupancy">occupancy</option>
@@ -99,27 +98,25 @@
                     </div>
 
                     <div class="sm:col-span-1">
-                        <x-select name="orderBy" id="small" wire:model="orderBy"
-                           > <option value="" selected>Sorting order</option>
+                        <x-select name="orderBy" id="small" wire:model="orderBy">
+                            <option value="" selected>Sorting order</option>
                             <option value="asc">ascending</option>
                             <option value="desc">descending</option>
                         </x-select>
                     </div>
                     <div class="sm:col-span-1">
-                        <x-select name="limitDisplayTo" id="small" wire:model="limitDisplayTo"
-                           > <option value="" selected>Limit display to</option>
-                            @for ($i = 1; $i <= $totalUnitsCount; $i++) @if($i%10==0 || $i==$totalUnitsCount) <option
-                                value="{{ $i }}">{{ $i }}
-                                </option>
+                        <x-select name="limitDisplayTo" id="small" wire:model="limitDisplayTo">
+                            <option value="" selected>Limit display to</option>
+                            @for ($i = 1; $i <= $totalUnitsCount; $i++)
+                                @if($i%10==0 || $i==$totalUnitsCount)
+                                <option value="{{ $i }}">{{ $i }} </option>
                                 @endif
-                                @endfor
-                            </x-select>
+                            @endfor
+                        </x-select>
                     </div>
                 </div>
                 <div class="mt-5">
                     {{ $units->links() }}
-
-
                 </div>
 
             </div>
@@ -128,7 +125,6 @@
         </div>
         <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-
                 <div class="mb-5 mt-2 relative overflow-hidden ring-opacity-5">
                     @if(!App\Models\Property::find(Session::get('property_uuid'))->units()->count())
                     <nav aria-label="Progress">
@@ -236,11 +232,9 @@
                         <h3 class="mt-2 text-sm font-medium text-gray-900">No units</h3>
                         <p class="mt-1 text-sm text-gray-500">1 down, 3 more to go...</p>
                         <div class="mt-6">
-                            <button type="button" data-modal-toggle="instructions-create-unit-modal"
-                                class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-
+                            <x-button data-modal-toggle="instructions-create-unit-modal">
                                 New unit
-                            </button>
+                            </x-button>
                         </div>
                     </div>
                     @else
@@ -279,7 +273,7 @@
                         </div>
                     </div>
                     @else
-                    @include('tables.units')
+                        @include('tables.units')
                     @endif
                     @endif
                 </div>

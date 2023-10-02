@@ -87,11 +87,11 @@ class ContractMoveinComponent extends Component
             if(auth()->user()->role_id === 1)
             {
                 return
-                redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->contract_details->tenant->uuid.'/contracts/')->with('success','Success!');
+                redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->contract_details->tenant->uuid.'/contracts/')->with('success','Changes Saved!');
 
             }else{
                   return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->contract_details->unit->uuid.'/tenant/'.$this->contract_details->tenant->uuid.'/bill/'.Str::random(8).'/create')
-                  ->with('success', 'Success!');
+                  ->with('success', 'Changes Saved!');
             }
           });
             

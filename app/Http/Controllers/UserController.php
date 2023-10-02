@@ -147,7 +147,7 @@ class UserController extends Controller
     {
         app('App\Http\Controllers\UserPropertyController')->store($property_uuid,$user_id,false,false);
 
-        return back()->with('success', 'Success!');
+        return back()->with('success', 'Changes Saved!');
     }
 
     /**
@@ -214,7 +214,7 @@ class UserController extends Controller
 
         $user->update($attributes);
 
-        return redirect('/user/'.$user->username.'/edit')->with('success', 'Success!');
+        return redirect('/user/'.$user->username.'/edit')->with('success', 'Changes Saved!');
     }
 
     /**

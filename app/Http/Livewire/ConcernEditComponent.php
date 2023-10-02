@@ -118,7 +118,7 @@ class ConcernEditComponent extends Component
 
         app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'),auth()->user()->id,'updates', 13);
 
-        session()->flash('success', 'Success!');
+        session()->flash('success', 'Changes Saved!');
 
        }catch(\Exception $e){
             return back()->with('error',$e);

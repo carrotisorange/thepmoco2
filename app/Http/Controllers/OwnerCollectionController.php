@@ -153,7 +153,7 @@ class OwnerCollectionController extends Controller
          app('App\Http\Controllers\PointController')->store($property->uuid, auth()->user()->id,
          Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);
          
-         return redirect('/property/'.$property->uuid.'/owner/'.$owner->uuid.'/collections')->with('success','Success!');
+         return redirect('/property/'.$property->uuid.'/owner/'.$owner->uuid.'/collections')->with('success','Changes Saved!');
 
     }
 

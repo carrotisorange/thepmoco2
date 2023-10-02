@@ -111,7 +111,7 @@ class CreateAccountPayableLiquidationStep1Component extends Component
                 'cv_number' => sprintf('%08d', AccountPayable::where('property_uuid',Session::get('property_uuid'))->where('status','!=', 'pending')->count())
         ]);
 
-        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/liquidation/step-2')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/liquidation/step-2')->with('success', 'Changes Saved!');
     }
 
     public function updateParticular(){
@@ -126,7 +126,7 @@ class CreateAccountPayableLiquidationStep1Component extends Component
                     'or_number' => $particular->or_number,
                     'total' => $particular->quantity * $particular->price,
                 ]);
-                session()->flash('success', 'Success!');
+                session()->flash('success', 'Changes Saved!');
             }
              
        }catch(\Exception $e){
@@ -140,7 +140,7 @@ class CreateAccountPayableLiquidationStep1Component extends Component
 
         $this->particulars = $this->get_particulars();
 
-        return back()->with('success', 'Success!');
+        return back()->with('success', 'Changes Saved!');
     }
 
     public function get_particulars(){
@@ -164,7 +164,7 @@ class CreateAccountPayableLiquidationStep1Component extends Component
 
         $this->particulars = $this->get_particulars();
 
-        return back()->with('success', 'Success!');
+        return back()->with('success', 'Changes Saved!');
     }
 
     public function render()

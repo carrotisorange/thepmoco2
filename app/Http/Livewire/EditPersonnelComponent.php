@@ -76,7 +76,7 @@ class EditPersonnelComponent extends Component
 
         app('App\Http\Controllers\PropertyController')->store_property_session(Session::get('property_uuid'));
 
-        return redirect(url()->previous())->with('success', 'Success!');
+        return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 
     public function render()

@@ -166,8 +166,6 @@
             </div>
         </div>
     </div>
-    @include('layouts.notifications')
-    @include('layouts.notifications')
     @include('modals.instructions.create-tenant-bill-modal')
     @include('modals.export-tenant-bill')
     @include('modals.send-tenant-bill')

@@ -23,22 +23,22 @@ class AccountPayableShowComponent extends Component
         ]);
 
         if($this->status === 'pending'){
-            return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-2')->with('success', 'Success!');
+            return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-2')->with('success', 'Changes Saved!');
         }
         elseif($this->status === 'released'){
-            return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id)->with('success', 'Success!');
+            return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id)->with('success', 'Changes Saved!');
         }
         elseif($this->status === 'prepared'){
-            return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-3')->with('success', 'Success!');
+            return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-3')->with('success', 'Changes Saved!');
         }
         elseif($this->status === 'approved by manager'){
-            return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-4')->with('success', 'Success!');
+            return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-4')->with('success', 'Changes Saved!');
         }
         elseif($this->status === 'approved by ap'){
-            return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-6')->with('success', 'Success!');
+            return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-6')->with('success', 'Changes Saved!');
         }
         else{
-            return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id)->with('success', 'Success!');        
+            return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id)->with('success', 'Changes Saved!');        
         }
        
     }
@@ -53,7 +53,7 @@ class AccountPayableShowComponent extends Component
 
       AccountPayableParticular::where('batch_no', $batch_no)->delete();
 
-    return redirect('/property/'.Session::get('property_uuid').'/accountpayable/')->with('success', 'Success!');   
+    return redirect('/property/'.Session::get('property_uuid').'/accountpayable/')->with('success', 'Changes Saved!');   
 
     }
 

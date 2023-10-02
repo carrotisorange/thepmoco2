@@ -81,6 +81,5 @@
                 </p>
             </div>
         </div>
-        @include('layouts.notifications')
     </div>
 </div>

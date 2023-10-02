@@ -26,7 +26,7 @@ class TenantBillCreateComponent extends Component
    public $tenant;
 
    public $selectedBills = [];
-   public $selectAll = false;  
+   public $selectAll = false;
    public $status = 'unpaid';
 
    public $particular_id;
@@ -74,7 +74,7 @@ class TenantBillCreateComponent extends Component
 
       $this->selectedBills = [];
 
-      return back()->with('success', 'Success!');
+      return back()->with('success', 'Changes Saved!');
    }
 
    public function mount($tenant){
@@ -134,7 +134,7 @@ class TenantBillCreateComponent extends Component
             'is_posted' => true
          ]);
 
-        
+
           if($this->particular_id === '1'){
            if($marketing_fee>0){
              Bill::create([
@@ -179,7 +179,7 @@ class TenantBillCreateComponent extends Component
 
             app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, 1, 3);
 
-            return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant->uuid.'/bills')->with('success','Success!');
+            return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant->uuid.'/bills')->with('success','Changes Saved!');
       }
         catch(\Exception $e)
         {
@@ -188,7 +188,7 @@ class TenantBillCreateComponent extends Component
    }
 
       public function storeParticular(){
-      
+
       $particular_id = Particular::
       where('particular', strtolower($this->new_particular))
       ->pluck('id')
@@ -216,32 +216,32 @@ class TenantBillCreateComponent extends Component
                 );
          }
 
-         session()->flash('success', 'Success!');
+         session()->flash('success', 'Changes Saved!');
    }
 
    public function payBills()
-   {      
+   {
 
       //generate collection acknowledgement receipt no
       $collection_ar_no = Property::find(Session::get('property_uuid'))->acknowledgementreceipts->max('ar_no')+1;
 
       //generate a collection batch no
       $collection_batch_no = Carbon::now()->timestamp.''.$collection_ar_no;
-      
+
 
       for($i=0; $i<count($this->selectedBills); $i++){
 
-         try 
+         try
          {
             //begin the transaction
             DB::transaction(function () use ($i, $collection_ar_no, $collection_batch_no) {
-            
+
             //get the attributes for collections
             $particular_id = Bill::find($this->selectedBills[$i])->particular_id;
             $tenant_uuid = $this->tenant->uuid;
             $unit_uuid = Bill::find($this->selectedBills[$i])->unit_uuid;
             $property_uuid = Session::get('property_uuid');
-         
+
             $bill_id = Bill::find($this->selectedBills[$i])->id;
             $bill_reference_no = Tenant::find($this->tenant->uuid)->bill_reference_no;
             $form = 'cash';
@@ -284,7 +284,7 @@ class TenantBillCreateComponent extends Component
          }
             catch (\Throwable $e) {
             return back()->with('error',$e);
-         } 
+         }
       }
          return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant->uuid.'/bills/'.$collection_batch_no.'/pay');
 
@@ -353,6 +353,8 @@ class TenantBillCreateComponent extends Component
 
       $particulars = app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid'));
 
+      $noteToBill = Property::find(Session::get('property_uuid'))->note_to_bill;
+
       return view('livewire.tenant-bill-create-component',[
          'bills' => $bills,
          'total' => ($unpaid_bills + $partially_paid_bills) - $paid_bills,
@@ -365,7 +367,7 @@ class TenantBillCreateComponent extends Component
          'unpaid_bills' => app('App\Http\Controllers\BillController')->get_tenant_balance($this->tenant->uuid),
          // 'particulars' => app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid')),
          'units' => app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($this->tenant->uuid),
-         'note_to_bill' => $this->property->note_to_bill,
+         'note_to_bill' => $noteToBill,
          'particulars' => $particulars
         ]);
     }

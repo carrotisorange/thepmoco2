@@ -74,7 +74,7 @@ class EnrolleeComponent extends Component
 
             DB::commit();
         
-            return redirect('property/'.Session::get('property_uuid').'/owner/'.$this->owner->uuid)->with('success','Success!');
+            return redirect('property/'.Session::get('property_uuid').'/owner/'.$this->owner->uuid)->with('success','Changes Saved!');
 
         }catch (\Throwable $e) 
         {

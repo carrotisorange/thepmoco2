@@ -101,7 +101,7 @@ class RemittanceIndexComponent extends Component
             $this->remittances = $this->get_remittances();
             }
 
-            session()->flash('success', 'Success!');
+            session()->flash('success', 'Changes Saved!');
 
         }catch(\Exception $e){
         
@@ -136,7 +136,7 @@ class RemittanceIndexComponent extends Component
             continue;
         }
 
-        return redirect('/property/'.Session::get('property_uuid').'/remittance')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/remittance')->with('success', 'Changes Saved!');
 
     }
 

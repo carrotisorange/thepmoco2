@@ -105,7 +105,7 @@ class AccountPayableCreateStep1Component extends Component
 
         $this->send_email_to_approvers();
 
-        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-2')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-2')->with('success', 'Changes Saved!');
     }
 
     public function updateAccountPayable(){
@@ -182,7 +182,7 @@ class AccountPayableCreateStep1Component extends Component
 
         $this->particulars = $this->get_particulars();
 
-        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-1')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-1')->with('success', 'Changes Saved!');
 
     }
 
@@ -203,16 +203,16 @@ class AccountPayableCreateStep1Component extends Component
             'biller' => $this->biller
         ]);
 
-        session()->flash('success', 'Success!');
+        session()->flash('success', 'Changes Saved!');
 
-        // return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-1')->with('success', 'Success!');
+        // return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-1')->with('success', 'Changes Saved!');
     }
 
     public function removeParticular($id){
 
         AccountPayableParticular::where('id', $id)->delete();
 
-        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-1')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-1')->with('success', 'Changes Saved!');
     }
 
     public function cancelRequest(){
@@ -223,7 +223,7 @@ class AccountPayableCreateStep1Component extends Component
 
     //     AccountPayableParticular::where('batch_no', $batch_no)->delete();
 
-        return redirect('/property/'.Session::get('property_uuid').'/accountpayable')->with('success','Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/accountpayable')->with('success','Changes Saved!');
     }
 
     public function updateParticular($id){
@@ -247,7 +247,7 @@ class AccountPayableCreateStep1Component extends Component
 
             $this->particulars = $this->get_particulars();
 
-            session()->flash('success', 'Success!');
+            session()->flash('success', 'Changes Saved!');
             }
 
        }catch(\Exception $e){
@@ -268,7 +268,7 @@ class AccountPayableCreateStep1Component extends Component
 
       AccountPayableParticular::where('batch_no', $batch_no)->delete();
 
-    return redirect('/property/'.Session::get('property_uuid').'/accountpayable/')->with('success', 'Success!');
+    return redirect('/property/'.Session::get('property_uuid').'/accountpayable/')->with('success', 'Changes Saved!');
 
     }
 

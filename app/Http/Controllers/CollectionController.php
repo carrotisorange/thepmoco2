@@ -93,6 +93,20 @@ class CollectionController extends Controller
           ]);
     }
 
+    public function paymentVerificationIndex($property_uuid, $status)
+    {
+        $paymentRequests = PaymentRequest::join('tenants', 'payment_requests.tenant_uuid', 'tenants.uuid')
+        ->select('*', 'payment_requests.status as payment_status', 'payment_requests.created_at as date_uploaded',
+        'payment_requests.updated_at as date_approved')
+        ->where('tenants.property_uuid', $property_uuid)
+        ->where('payment_requests.status', $status)
+        ->orderBy('payment_requests.created_at', 'desc');
+        
+        return view('payment_requests.index',[
+        'requests' => $paymentRequests
+        ]);
+    }
+
 
     public function edit_collections(Property $property, Tenant $tenant, $batch_no)
     {
@@ -284,7 +298,7 @@ class CollectionController extends Controller
          // $this->send_payment_to_tenant($tenant, $ar_no, $request->form, $request->created_at, User::find(auth()->user()->id)->name, User::find(auth()->user()->id)->role->role, Collection::where('tenant_uuid',$tenant->uuid)->where('batch_no', $batch_no)->get());
 
          return redirect('/property/'.$property->uuid.'/collection/'.'tenant'.'/'.$tenant->uuid)->with('success',
-         'Success!');
+         'Changes Saved!');
 
          }
 

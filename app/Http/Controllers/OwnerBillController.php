@@ -99,7 +99,7 @@ class OwnerBillController extends Controller
 
         Mail::to($request->email)->send(new SendBillToOwner($data));
 
-        return back()->with('success', 'Success!');
+        return back()->with('success', 'Changes Saved!');
     }
 
     public function get_bill_data($owner, $due_date, $penalty, $note)

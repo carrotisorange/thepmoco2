@@ -85,7 +85,7 @@ class CreatePersonnelComponent extends Component
             app('App\Http\Controllers\UserController')->send_email($this->role_id, $this->email, $this->email, $password);
     }
 
-        return redirect(url()->previous())->with('success', 'Success!');
+        return redirect(url()->previous())->with('success', 'Changes Saved!');
 
    }
 

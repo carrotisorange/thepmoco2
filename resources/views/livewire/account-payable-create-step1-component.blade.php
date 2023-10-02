@@ -466,6 +466,6 @@
         </form>
 
     </div>
-    @include('layouts.notifications')
+
     @include('modals.instructions.create-vendor-modal')
 </div>

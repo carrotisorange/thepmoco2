@@ -236,5 +236,4 @@
         </main>
         @endcannot
     </div>
-    @include('layouts.notifications')
 </div>

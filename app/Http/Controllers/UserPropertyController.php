@@ -62,7 +62,7 @@ class UserPropertyController extends Controller
             'is_approved' => 0,
         ]);
 
-        return back()->with('success', 'Success!');
+        return back()->with('success', 'Changes Saved!');
     }
 
     public function restore_access(Property $property, UserProperty $userProperty)
@@ -72,6 +72,6 @@ class UserPropertyController extends Controller
             'is_approved' => 1,
         ]);
 
-        return back()->with('success', 'Success!');
+        return back()->with('success', 'Changes Saved!');
     }
 }

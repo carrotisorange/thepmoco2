@@ -54,7 +54,7 @@ class CreateParticularComponent extends Component
         ]
       );
 
-         return redirect(url()->previous())->with('success', 'Success!');
+         return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 
     public function render()

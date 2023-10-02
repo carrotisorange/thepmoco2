@@ -154,6 +154,5 @@
             </div>
         </div>
     </div>
-    @include('layouts.notifications')
     @include('modals.instructions.update-utility-parameter-modal')
 </div>
