@@ -1,5 +1,5 @@
 <x-index-layout>
-    @section('title', '| Referrals')
+    @section('title', 'Referrals | '. env('APP_NAME'))
     <x-slot name="labels">
        
         <li class="text-gray-500">

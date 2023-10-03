@@ -104,6 +104,10 @@ class Unit extends Model
         return $this->hasMany(Collection::class);
     }
 
+    public function remittances(){
+        return $this->hasMany(Remittance::class);
+    }
+
     public function acknowledgementreceipts()
     {
         return $this->hasMany(AcknowledgementReceipt::class);

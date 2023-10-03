@@ -35,6 +35,6 @@ class BankController extends Controller
         $bank = Bank::where('id', $id);
         $bank->delete();
 
-        return back()->with('success', 'Success!');
+        return back()->with('success', 'Changes Saved!');
     }
 }

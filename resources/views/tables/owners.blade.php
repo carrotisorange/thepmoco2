@@ -2,8 +2,9 @@
     <thead class="bg-gray-50">
         <tr>
             <x-th>#</x-th>
-            <x-th>NAME</x-th>
             <x-th>UNIT</x-th>
+            <x-th>NAME</x-th>
+           
             <x-th>CONTACT</x-th>
             <x-th>ADDRESS</x-th>
         </tr>
@@ -14,6 +15,21 @@
         @foreach($owners as $index => $owner )
         <tr>
            <x-td>{{ $index+1 }}</x-td>
+           <x-td>
+            <?php $deed_of_sales = App\Models\DeedOfSale::where('owner_uuid', $owner->uuid)->get(); ?>
+        
+            @if($deed_of_sales->count())
+        
+            @foreach ($deed_of_sales->take(1) as $item)
+            <?php $unit = App\Models\Unit::where('uuid', $item->unit_uuid) ;?>
+            <a class="text-blue-500 text-decoration-line: underline"
+                href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->pluck('uuid')->first() }}">
+                {{$unit->pluck('unit')->first() }}</a>
+            @endforeach
+            @else
+            NA
+            @endif
+        </x-td>
            <x-td>
             <div class="flex items-center">
                 <div class="h-10 w-10 flex-shrink-0">
@@ -32,19 +48,7 @@
                 </div>
             </div>
            </x-td>
-           <x-td>
-            <?php $deed_of_sales = App\Models\DeedOfSale::where('owner_uuid', $owner->uuid)->get(); ?>
            
-                @if($deed_of_sales->count())
-                @foreach ($deed_of_sales->take(1) as $item)
-                <a class="text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ $item->unit->property_uuid }}/unit/{{ $item->unit->uuid }}">
-                    {{ $item->unit->unit }}</a>
-                @endforeach
-                @else
-                NA
-                @endif
-           </x-td>
            <x-td>{{ $owner->mobile_number   }}</x-td>
            <x-td>
             {{

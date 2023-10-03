@@ -9,6 +9,7 @@ use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Str;
 use App\Models\Concern;
+use Session;
 
 class CreateConcernComponent extends Component
 {
@@ -30,8 +31,8 @@ class CreateConcernComponent extends Component
             'category_id' => ['required', Rule::exists('concern_categories', 'id')],
             'unit_uuid' => ['required', Rule::exists('units', 'uuid')],
             'concern' => 'required',
-            'image' => 'nullable | mimes:jpg,png|max:102400',
-            ];
+            'image' => 'required |max:102400',
+        ];
     }
     
     public function updated($propertyName)
@@ -41,20 +42,24 @@ class CreateConcernComponent extends Component
 
     public function submitButton(){
 
+        sleep(2);
+
         $validated = $this->validate();
      
         $validated['tenant_uuid'] = $this->tenant->uuid;
         $validated['reference_no'] = auth()->user()->id.'_'.Str::random(8);
         $validated['property_uuid'] = $this->tenant->property_uuid;
+        $validated['email'] = $this->tenant->email;
+        $validated['mobile_number'] = $this->tenant->mobile_number;
 
-        if($this->image)
-        {
+        // if($this->image)
+        // {
           $validated['image'] = $this->image->store('concerns');
-        }
+        // }
 
-        Concern::create($validated);
+        $concern = Concern::create($validated);
  
-       return redirect(url()->previous())->with('success', 'Success!');
+       return redirect('/property/'.Session::get('property_uuid').'/concern/'.$concern->id.'/edit')->with('success', 'Changes Saved!');
     }
 
     public function render()

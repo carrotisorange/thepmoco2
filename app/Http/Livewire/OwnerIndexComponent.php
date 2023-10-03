@@ -16,16 +16,16 @@ class OwnerIndexComponent extends Component
     public function redirectToUnitSelectionPage(){
         
 
-        return redirect('/property/'.Session::get('property').'/unit');
+        return redirect('/property/'.Session::get('property_uuid').'/unit');
     }
 
     public function render()
     {
         return view('livewire.owner-index-component', [
         'owners' => Owner::search($this->search)
-        ->where('property_uuid', Session::get('property'))
+        ->where('property_uuid', Session::get('property_uuid'))
         ->orderBy('created_at', 'asc')
-        ->get()
+        ->paginate(10)
     ]);
     }
 }

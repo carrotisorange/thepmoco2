@@ -48,6 +48,7 @@
                 @foreach ($bill_nos->take(2) as $bill_no)
                 {{ $bill_no->bill->bill_no }},
                 @endforeach
+                ...
             </x-td>
             <x-td>
                 @if($collection->tenant_uuid)
@@ -66,7 +67,7 @@
                 NA
                 @endif
             </x-td>
-            <x-td> {{ Carbon\Carbon::parse($collection->updated_at)->format('M d, Y') }} </x-td>
+            <x-td> {{ Carbon\Carbon::parse($collection->created_at)->format('M d, Y') }} </x-td>
             {{-- <x-td>
                 @if($collection->date_deposited)
                 {{ Carbon\Carbon::parse($collection->date_deposited)->format('M d, Y') }}
@@ -93,7 +94,7 @@
                 $collections_count = App\Models\Collection::where('batch_no', $collection->collection_batch_no)->posted()->count();
             ?>
             <x-td>
-                {{ number_format($collection->collection,2) }} ({{ $collection->count }})
+                {{ number_format(App\Models\Collection::where('property_uuid', $collection->property_uuid)->posted()->where('ar_no', $collection->ar_no)->sum('collection'),2) }} ({{ $collection->count }})
             </x-td>
             <x-td>
                 <button id="dropdownDefaultButton({{ $collection->id }})" data-dropdown-placement="left-end"

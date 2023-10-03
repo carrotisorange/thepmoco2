@@ -94,11 +94,11 @@ class DeedOfSaleEditComponent extends Component
                 ]);
            }
 
-            session()->flash('success', 'Success!');
+            session()->flash('success', 'Changes Saved!');
 
         }catch(\Exception $e)
         {
-           session()->flash('error');
+           session()->flash('error', 'Something went wrong.');
         }
     }
 

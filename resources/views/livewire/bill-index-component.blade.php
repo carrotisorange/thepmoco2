@@ -4,27 +4,22 @@
             <div class="sm:flex-auto">
                 <h1 class="text-3xl font-bold text-gray-700">Bills</h1>
             </div>
+            @if($propertyBillsCount)
+          
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 @if($search || $status || $particular || $posted_dates || $bill_type)
-                <button wire:click="clearFilters()" wire.loading.remove
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+                <x-button wire:click="clearFilters()" wire.loading.remove
+                   
                     type="button">Clear Filters
-                </button>
+                </x-button>
                 @endif
                 
                 <div class="group inline-block">
-                    <button wire.loading.remove
-                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                    <x-button wire.loading.remove >
                         <span class="pr-1 font-semibold flex-1"> New
                             bill</span>
-                        <span>
-                            <svg class="fill-current h-4 w-4 transform group-hover:-rotate-180
-                                            transition duration-150 ease-in-out" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 20 20">
-                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                            </svg>
-                        </span>
-                    </button>
+                      &nbsp; <i class="fa-solid fa-caret-down"></i>
+                    </x-button>
 
                     <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
                               transition duration-150 ease-in-out origin-top min-w-32">
@@ -33,103 +28,91 @@
                                 Tenant
                             </button>
                         </li>
-                        {{-- <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
-                            <button type="button" data-modal-toggle="instructions-create-bill-modal">
-                                Owner
-                            </button>
-                        </li> --}}
+                     
                     </ul>
 
                 </div>
 
-                <button wire:click="viewDelinquents" wire.loading.remove
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+                <x-button wire:click="viewDelinquents" wire.loading.remove
+                  
                     type="button">
                     @if($filter_bill_to === 'delinquent')
                     View All
                     @else
                     View Delinquents
                     @endif
-                </button>
+                </x-button>
 
                 @if($view === 'listView')
-                <button wire:click="changeView('agingSummaryView')" wire.loading.remove
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+                <x-button wire:click="changeView('agingSummaryView')" wire.loading.remove
                     type="button"> View Aging Summary
-                </button>
+                </x-button>
                 @else
-                <button wire:click="changeView('listView')" wire.loading.remove
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+                <x-button wire:click="changeView('listView')" wire.loading.remove
+
                     type="button"> View List
-                </button>
+                </x-button>
                 @endif
 
             </div>
-
+            @endif
+           
 
         </div>
+        @if($propertyBillsCount)
         <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
 
             <div class="sm:col-span-3">
-                <select id="bill_type" wire:model="bill_type"
-                    class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                <x-select name="bill_type" wire:model="bill_type">
                     <option value="">Filter bill to</option>
                     <option value="guest_uuid">Guest</option>
                     <option value="owner_uuid">Owner</option>
                     <option value="tenant_uuid">Tenant</option>
-                </select>
+                </x-select>
 
             </div>
 
             <div class="sm:col-span-3">
-                <select id="status" wire:model="status"
-                    class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                <x-select name="status" wire:model="status">
                     <option value="">Filter bill status</option>
                     @foreach ($statuses as $item)
                     <option value="{{ $item->status }}">{{ $item->status }}</option>
                     @endforeach
 
-                </select>
+                </x-select>
 
             </div>
             <div class="sm:col-span-3">
-                <select id="particular" wire:model="particular"
-                    class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                <x-select name="particular" wire:model="particular">
                     <option value="">Filter bill particulars</option>
                     @foreach ($particulars as $item)
                     <option value="{{ $item->particular_id }}">{{ $item->particular }}</option>
                     @endforeach
 
-                </select>
+                </x-select>
 
             </div>
             <div class="sm:col-span-3">
-                <select id="posted_dates" wire:model="posted_dates"
-                    class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                <x-select name="posted_dates" wire:model="posted_dates">
                     <option value="">Filter bill dates</option>
                     <option value="monthly">1-30 days</option>
                     <option value="quaterly">1-90 days</option>
                     <option value="alltime">90 days and over</option>
 
-                </select>
+                </x-select>
 
             </div>
 
         </div>
+        @endif
 
         <div class="mt-3">
-            <p class="text-center">
-                <span class="text-blue-300 text-sm">Showing {{ $bills->count() }} bills...</span>
-            </p>
+          {{ $bills->links() }}
         </div>
 
         <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-
-
-
                 <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-
 
                     @if($bills->count())
 
@@ -147,7 +130,7 @@
                             <p class="mt-1 text-sm text-gray-500">Get started by creating a new bill</p>
                             <div class="mt-6">
                                 <div class="group inline-block">
-                                    <button
+                                    <x-button
                                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                         <span class="pr-1 font-semibold flex-1"><i class="fa-solid fa-plus"></i>
                                             &nbsp
@@ -160,7 +143,7 @@
                                                     d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                             </svg>
                                         </span>
-                                    </button>
+                                    </x-button>
 
                                     <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
                                               transition duration-150 ease-in-out origin-top min-w-32">
@@ -168,9 +151,9 @@
 
 
                                         <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
-                                            <button type="button" data-modal-toggle="instructions-create-bill-modal">
+                                            <x-button type="button" data-modal-toggle="instructions-create-bill-modal">
                                                 Tenant
-                                            </button>
+                                            </x-button>
 
 
                                         </li>
@@ -187,7 +170,6 @@
 
             </div>
         </div>
-        @include('layouts.notifications')
         @include('modals.instructions.create-bill-modal')
         @include('modals.instructions.create-particular-modal')
     </div>

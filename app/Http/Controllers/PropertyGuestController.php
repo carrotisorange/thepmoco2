@@ -22,6 +22,10 @@ class PropertyGuestController extends Controller
 {
     public function index(Property $property){
 
+        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(7, auth()->user()->id)){
+            return abort(403);
+         }
+
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',22);
 
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
@@ -71,7 +75,7 @@ class PropertyGuestController extends Controller
      {
           Property::find($property->uuid)->collections()->where('guest_uuid', $guest->uuid)->where('is_posted', 0)->where('batch_no', '!=', $batch_no)->forceDelete();
 
-         $ar_no = app('App\Http\Controllers\AcknowledgementReceiptController')->get_latest_ar($property->uuid);
+         $ar_no = app('App\Http\Controllers\CollectionController')->getLatestAr($property->uuid);
 
          $counter = $this->get_selected_bills_count($batch_no, $guest->uuid);
       
@@ -81,6 +85,8 @@ class PropertyGuestController extends Controller
 
             $form = $request->form;
 
+            $created_at = $request->created_at;
+
             $bill_id = $request->input("bill_id_".$i);
 
             $total_amount_due = $this->get_bill_balance($bill_id);
@@ -88,7 +94,7 @@ class PropertyGuestController extends Controller
             $bill = Bill::find($bill_id);
             
             //store the collection
-            app('App\Http\Controllers\CollectionController')->update($ar_no, $bill_id, $collection, $form);
+            app('App\Http\Controllers\CollectionController')->update($ar_no, $bill_id, $collection, $form, $created_at);
 
             if(($total_amount_due) <= $collection)
             {
@@ -138,9 +144,9 @@ class PropertyGuestController extends Controller
 
         //  $this->send_payment_to_guest($guest, $ar_no, $request->form, $request->created_at, User::find(auth()->user()->id)->name, User::find(auth()->user()->id)->role->role, Collection::where('guest_uuid',$guest->uuid)->where('batch_no', $batch_no)->get());
    
-         return redirect('/property/'.$property->uuid.'/guest/'.$guest->uuid)->with('success', 'Success!');
+         return redirect('/property/'.$property->uuid.'/guest/'.$guest->uuid)->with('success', 'Changes Saved!');
 
-         // return redirect('/property/'.Session::get('property').'/tenant/'.$tenant->uuid.'/ar/'.$ar_id.'/view')->with('success', 'Payment is successfully created.');
+         // return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$tenant->uuid.'/ar/'.$ar_id.'/view')->with('success', 'Payment is successfully created.');
      }
 
      public function send_payment_to_guest($guest, $ar_no, $form, $payment_made, $user, $role, $collection)
@@ -169,11 +175,11 @@ class PropertyGuestController extends Controller
 
     public function get_selected_bills_count($batch_no, $guest_uuid)
       {
-      return Collection::where('property_uuid', Session::get('property'))
+      return Collection::where('property_uuid', Session::get('property_uuid'))
       ->where('guest_uuid',$guest_uuid)
       ->where('batch_no', $batch_no)
       ->where('is_posted', false)
-      ->max('id');
+      ->count();
       }
 
     public function view_attachment(Property $property, Guest $guest, AcknowledgementReceipt $ar)
@@ -201,9 +207,11 @@ class PropertyGuestController extends Controller
 
         $folder_path = 'properties.guests.export-collections';
 
-        $pdf = app('App\Http\Controllers\FileExportController')->generate_pdf($property, $data, $folder_path);
+        $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
 
-        return $pdf->stream($guest->guest.'-ar.pdf');
+        $pdf_name = str_replace(' ', '_', $property->property).'_AR_'.$collection->ar_no.'.pdf';
+
+        return $pdf->stream($pdf_name);
      }
 
     public function get_collection_data($guest, $collection, $balance)
@@ -250,7 +258,7 @@ class PropertyGuestController extends Controller
             'movein_at' => Carbon::now()
         ]);
 
-        return back()->with('success', 'Success!');
+        return back()->with('success', 'Changes Saved!');
     }
 
     public function update(Request $request ,$uuid)
@@ -277,7 +285,7 @@ class PropertyGuestController extends Controller
             'moveout_at' => Carbon::now()
         ]);
 
-        return back()->with('success', 'Success!');
+        return back()->with('success', 'Changes Saved!');
     }
 
     public function destroy($unit_uuid){
@@ -316,7 +324,7 @@ class PropertyGuestController extends Controller
 
         $folder_path = 'properties.guests.export-bills';
     
-        $pdf = app('App\Http\Controllers\FileExportController')->generate_pdf($property, $data, $folder_path);
+        $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
 
         return $pdf->stream(Carbon::now()->format('M d, Y').'-'.$guest->guest.'-soa.pdf');
     }

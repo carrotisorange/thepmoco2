@@ -1,5 +1,5 @@
 <x-app-layout>
-    @section('title', '| Bills | Create')
+    @section('title', '| Bills | '. env('APP_NAME'))
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <div class="flex">
@@ -7,9 +7,9 @@
                     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                         <nav class="rounded-md">
                             <ol class="list-reset flex">
-                                <li><a href="/property/{{ Session::get('property') }}"
+                                <li><a href="/property/{{ Session::get('property_uuid') }}"
                                         class="text-blue-600 hover:text-blue-700">{{
-                                        Session::get('property_name') }}</a>
+                                        Session::get('property') }}</a>
                                 </li>
 
                                 <li><span class="text-gray-500 mx-2">/</span></li>

@@ -32,7 +32,12 @@ class UnitContractController extends Controller
 
     public function export(Property $property, Unit $unit)
     {
-        $pdf = PDF::loadView('tenants.export');
-        return $pdf->stream('tenant_information_sheet.pdf');
+          $folder_path = 'tenants.export';
+
+          $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, null);
+
+          $pdf_name = 'tenant_information_sheet.pdf';
+
+          return $pdf->stream($pdf_name);
     }
 }

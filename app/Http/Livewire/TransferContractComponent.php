@@ -90,7 +90,7 @@ class TransferContractComponent extends Component
 
         // $this->send_email_to_tenant();
 
-        return redirect('/property/'.Session::get('property').'/tenant/'.$this->contract_details->tenant_uuid.'/contracts')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->contract_details->tenant_uuid.'/contracts')->with('success', 'Changes Saved!');
       
       });
 
@@ -103,14 +103,14 @@ class TransferContractComponent extends Component
     {
         $contract_uuid = Str::uuid();
 
-        $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property'));
+        $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property_uuid'));
         
         $reference_no = Carbon::now()->timestamp.''.$bill_no;
 
         $validatedData['uuid'] = $contract_uuid;
         $validatedData['tenant_uuid'] = $this->contract_details->tenant_uuid;
         $validatedData['unit_uuid'] = $this->unit_uuid;
-        $validatedData['property_uuid'] = Session::get('property');
+        $validatedData['property_uuid'] = Session::get('property_uuid');
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['bill_reference_no'] = $reference_no;
 
@@ -121,7 +121,7 @@ class TransferContractComponent extends Component
         {
         $validatedData['contract'] = $this->contract->store('contracts');
         }else{
-        $validatedData['contract'] = Property::find(Session::get('property'))->tenant_contract;
+        $validatedData['contract'] = Property::find(Session::get('property_uuid'))->tenant_contract;
         }
 
         return Contract::create($validatedData);
@@ -170,7 +170,7 @@ class TransferContractComponent extends Component
     public function render()
     {
         return view('livewire.transfer-contract-component', [
-            'units' => Property::find(Session::get('property'))->units,
+            'units' => Property::find(Session::get('property_uuid'))->units,
         ]);
     }
 }

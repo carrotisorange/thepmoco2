@@ -198,16 +198,17 @@
         <div class="mt-5 bg-white-500">
             <div class="relative overflow-x-auto sm:rounded-lg">
                 <form method="POST" id="edit-form" enctype="multipart/form-data"
-                    action="/property/{{ Session::get('property') }}/owner/{{ $owner->uuid }}/bills/{{ $batch_no }}/pay/update">
+                    action="/property/{{ Session::get('property_uuid') }}/owner/{{ $owner->uuid }}/bills/{{ $batch_no }}/pay/update">
                     @method('patch')
                     @csrf
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
-                                <x-th>#</x-th>
+                           
+                                <x-th>Bill #</x-th>
                                 <x-th>Date posted</x-th>
                                 <x-th>Particular</x-th>
-                                {{-- <x-th>Unit</x-th> --}}
+                                <x-th>Unit</x-th>
                                 <x-th>Period</x-th>
                                 <x-th>Amount Due</x-th>
                                 <x-th>Payment</x-th>
@@ -216,11 +217,12 @@
                         <tbody>
                             @foreach ($collections as $index => $bill)
                             <tr>
+                 
                                 <x-td>{{ $bill->bill_no }}</x-td>
                                 <x-td>{{Carbon\Carbon::parse($bill->created_at)->format('M d,Y')}}
                                 </x-td>
                                 <x-td>{{$bill->particular->particular }}</x-td>
-                                {{-- <x-td>{{$bill->unit->unit }}</x-td> --}}
+                                <x-td>{{ App\Models\Unit::find($bill->unit_uuid)->unit }}</x-td>
                                 <x-td>{{Carbon\Carbon::parse($bill->start)->format('M d,
                                     Y').'-'.Carbon\Carbon::parse($bill->end)->format('M d, Y') }}
                                 </x-td>
@@ -239,6 +241,28 @@
                             </tr>
                             @endforeach
                         </tbody>
+                        <tbody>
+
+                            <tr>
+                                <x-td><b>Total</b></x-td>
+                                <x-td></x-td>
+                                <x-td>
+                                </x-td>
+                                <x-td></x-td>
+                                {{-- <x-td>{{$bill->unit->unit }}</x-td> --}}
+                                <x-td>
+                                </x-td>
+
+                                <x-td>
+                                    <b>{{ number_format($collections->sum('bill'), 2) }}</b>
+                                </x-td>
+
+                                <x-td>
+                                    <b>{{ number_format($collections->sum('bill'), 2) }}</b>
+                                </x-td>
+                            </tr>
+
+                        </tbody>
                     </table>
                 </form>
             </div>
@@ -246,15 +270,15 @@
     </div>
 
     <div class="flex justify-end p-10 mt-5">
-        <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-            href="/property/{{ Session::get('property') }}/owner/{{ $owner->uuid }}/bills">
+      
+        <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/owner/{{ $owner->uuid }}/bills'">
             Cancel
-        </a>
-        <button type="button" form="edit-form"
-            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        </x-button>
+
+        <x-button type="button" form="edit-form"
             onclick="this.form.submit(); this.disabled = true; this.value = 'Submitting the form';">
             Confirm Payment
-        </button>
+        </x-button>
     </div>
 
 

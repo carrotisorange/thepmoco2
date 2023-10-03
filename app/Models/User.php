@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use PDO;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -146,4 +147,6 @@ class User extends Authenticatable implements MustVerifyEmail
         ->orWhere('mobile_number','like', '%'.$search.'%')
         ->orWhere('email','like', '%'.$search.'%');
     }
+
+
 }

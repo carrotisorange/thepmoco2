@@ -12,66 +12,48 @@ use Carbon\Carbon;
 use App\Models\Property;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
-use Auth;;
-use \PDF;
 use App\Models\Subscription;
 use Session;
 
 class UserController extends Controller
 {
-
     public function export($user_id, $export_option)
     {
         if($export_option == 'portfolio'){
 
-            $portfolio = User::find(Auth::user()->id)->user_properties()->limit(6)->get();
+            $portfolio = User::find($user_id)->user_properties()->limit(6)->get();
 
-            $data = $this->get_data($portfolio);
+            $data = [
+                'data' => $portfolio,
+            ];
 
-            $pdf = $this->generate_pdf($data, $export_option);
+            $folder_path = 'users.exports.portfolio';
 
-            return $pdf->stream(Carbon::now().'-'.auth()->user()->name.'-portfolio.pdf');
+            $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
+
+            $pdf_name = str_replace(' ', '_', auth()->user()->name).'-properties.pdf';
+
+            return $pdf->stream($pdf_name);
+
         }elseif($export_option == 'property')
         {
-            $property = Property::find(Session::get('property'));
+            $property = Property::find(Session::get('property_uuid'));
 
-            $data = $this->get_data($property);
+            $data = [
+                'data' => $property,
+            ];
 
-            $pdf = $this->generate_pdf($data, $export_option);
+            $folder_path = 'users.exports.property';
 
-            return $pdf->stream(Carbon::now().'-'.auth()->user()->name.'-property.pdf');
+            $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
+
+            $pdf_name = str_replace(' ', '_', $property->property).'_DCR_'.str_replace(' ', '_', Carbon::now()).'.pdf';
+
+            return $pdf->stream($pdf_name);
         }
 
     }
 
-    public function get_data($data)
-    {
-        return $data = [
-            'data' => $data,
-        ];
-    }
-    
-    public function generate_pdf($data, $export_option)
-    {
-        $pdf = PDF::loadView('users.exports.'.$export_option, $data);
-
-        $pdf->output();
-
-        $canvas = $pdf->getDomPDF()->getCanvas();
-
-        $height = $canvas->get_height();
-
-        $width = $canvas->get_width();
-
-        $canvas->set_opacity(.2,"Multiply");
-
-        $canvas->set_opacity(.2);
-
-        $canvas->page_text($width/5, $height/2, "", null, 55, array(0,0,0),2,2,-30);
-
-        return $pdf;
-    }
-    
     public function create(Property $property, $random_str)
     {
         $this->authorize('accountownerandmanager');
@@ -81,7 +63,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function is_trial_expired($date)
+    public function isTrialExpired($date)
     {
         if($date <= Carbon::now() && $date!=null){
             return true; 
@@ -165,7 +147,7 @@ class UserController extends Controller
     {
         app('App\Http\Controllers\UserPropertyController')->store($property_uuid,$user_id,false,false);
 
-        return back()->with('success', 'Success!');
+        return back()->with('success', 'Changes Saved!');
     }
 
     /**
@@ -232,7 +214,7 @@ class UserController extends Controller
 
         $user->update($attributes);
 
-        return redirect('/user/'.$user->username.'/edit')->with('success', 'Success!');
+        return redirect('/user/'.$user->username.'/edit')->with('success', 'Changes Saved!');
     }
 
     /**

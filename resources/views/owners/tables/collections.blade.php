@@ -77,7 +77,7 @@
             <x-td></x-td>
             <x-td></x-td>
             <?php
-            $property_collections_count = App\Models\Collection::where('property_uuid', Session::get('property'))->posted()->count();
+            $property_collections_count = App\Models\Collection::where('property_uuid', Session::get('property_uuid'))->posted()->count();
         ?>
             <x-td>
                 {{ number_format($collections->sum('amount'), 2) }} ({{ $property_collections_count }})
@@ -90,16 +90,12 @@
 </table>
 @else
 <div class=" mt-10 text-center mb-10 ">
-    <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-        aria-hidden="true">
-        <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-    </svg>
+   <i class="fa-solid fa-circle-plus"></i>
     <h3 class="mt-2 text-sm font-medium text-gray-900">No collections</h3>
     <p class="mt-1 text-sm text-gray-500">You're almost there!</p>
     <div class="mt-6">
         <button type="button"
-            onclick="window.location.href='/property/{{ Session::get('property') }}/owner/{{ $owner_details->uuid }}/bills'"
+            onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/bill/{{ 'owner' }}/{{ $owner_details->uuid }}'"
             class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
 
             New collection

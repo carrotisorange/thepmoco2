@@ -8,13 +8,12 @@ use App\Models\UserProperty;
 use Illuminate\Validation\Rule;
 use App\Models\UserRestriction;
 use DB;
+use Session;
 
 class EditPersonnelComponent extends Component
 {
-    public $property;
     public $personnel;
 
-    //input variable
     public $name;
     public $email;
     public $role_id;
@@ -42,7 +41,7 @@ class EditPersonnelComponent extends Component
     }
 
     public function get_user_restrictions(){
-        return UserRestriction::where('user_id', $this->personnel->user->id)->get();
+        return UserRestriction::where('user_id', $this->personnel->user->id)->where('restriction_id',2)->get();
     }
 
     public function updateButton(){
@@ -64,8 +63,8 @@ class EditPersonnelComponent extends Component
     
         UserProperty::where('id', $this->personnel->id)
         ->update($validatedUserPropertyData);
-
-        app('App\Http\Controllers\UserRestrictionController')->store($this->property->uuid, $this->personnel->user->id);
+    
+        app('App\Http\Controllers\UserRestrictionController')->store(Session::get('property_uuid'), $this->personnel->user->id);
 
         $this->validate();
 
@@ -75,13 +74,15 @@ class EditPersonnelComponent extends Component
             }
         });
 
-        return redirect(url()->previous())->with('success', 'Success!');
+        app('App\Http\Controllers\PropertyController')->store_property_session(Session::get('property_uuid'));
+
+        return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 
     public function render()
     {
         return view('livewire.edit-personnel-component',[
-            'roles' => app('App\Http\Controllers\RoleController')->get_roles($this->property->uuid),
+            'roles' => app('App\Http\Controllers\RoleController')->get_roles(Session::get('property_uuid')),
         ]);
     }
 }

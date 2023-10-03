@@ -95,7 +95,7 @@
                 </div>
                 @endif
 
-                @if($form === 'cheque')
+                @if($form === 'cheque' || $form === 'e-wallet')
                 <div class="col-span-2">
                     <label for="check_no" class="block text-sm font-medium text-gray-700">Check No
                     </label>
@@ -115,19 +115,23 @@
                     <div class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
 
-                            <div class="flex text-sm text-gray-600">
+                            <div class="text-sm text-gray-600">
                                 <label for="attachment"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                    <span>Upload a file</span>
-                                    <span wire:loading>Loading...</span>
+                                    <span wire:loading.remove>Upload a file</span>
+                                    <span disabled wire:loading>Loading...</span>
                                     <input form="edit-form" name="attachment" id="attachment" type="file"
                                         class="sr-only" wire:model="attachment">
                                 </label>
                             </div>
                             <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
-                            @if($attachment)
+                           @if($attachment)
                             <span class="text-red-500 text-xs mt-2">
                                 <a href="#/" wire:click="removeAttachment('attachment')">Remove the
+                                    attachment</a></span>
+                            or
+                            <span class="text-blue-500 text-xs mt-2">
+                                <a target="_blank" href="{{ asset('/storage/'.$attachment) }}">View the
                                     attachment.</a></span>
                             @endif
                         </div>
@@ -155,11 +159,11 @@
                     <div class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
 
-                            <div class="flex text-sm text-gray-600">
+                            <div class="text-sm text-gray-600">
                                 <label for="proof_of_payment"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                    <span>Upload a file</span>
-                                    <span wire:loading>Loading...</span>
+                                  <span wire:loading.remove>Upload a file</span>
+                                <span disabled wire:loading>Loading...</span>
                                     <input form="edit-form" name="proof_of_payment" id="proof_of_payment" type="file"
                                         class="sr-only" wire:model="proof_of_payment">
                                 </label>
@@ -168,6 +172,10 @@
                             @if($proof_of_payment)
                             <span class="text-red-500 text-xs mt-2">
                                 <a href="#/" wire:click="removeAttachment('proof_of_payment')">Remove the
+                                    attachment</a></span>
+                            or
+                            <span class="text-blue-500 text-xs mt-2">
+                                <a target="_blank" href="{{ asset('/storage/'.$proof_of_payment) }}">View the
                                     attachment.</a></span>
                             @endif
                         </div>
@@ -190,17 +198,18 @@
         <div class="mt-5 bg-white-500">
             <div class="relative overflow-x-auto sm:rounded-lg">
                 <form method="POST" id="edit-form" enctype="multipart/form-data"
-                    action="/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}/bills/{{ $batch_no }}/pay/update">
+                    action="/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant->uuid }}/bills/{{ $batch_no }}/pay/update">
                     @method('patch')
                     @csrf
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <x-th>#</x-th>
-                                <x-th>AR #</x-th>
+
+                                <x-th>Bill #</x-th>
                                 <x-th>Date posted</x-th>
                                 <x-th>Particular</x-th>
-                                {{-- <x-th>Unit</x-th> --}}
+                                <x-th>Unit</x-th>
                                 <x-th>Period</x-th>
                                 <x-th>Amount Due</x-th>
                                 <x-th>Payment</x-th>
@@ -210,11 +219,12 @@
                             @foreach ($collections as $index => $bill)
                             <tr>
                                 <x-td>{{ $index+1 }}</x-td>
+
                                 <x-td>{{ $bill->bill_no }}</x-td>
                                 <x-td>{{Carbon\Carbon::parse($bill->created_at)->format('M d,Y')}}
                                 </x-td>
                                 <x-td>{{$bill->particular->particular }}</x-td>
-                                {{-- <x-td>{{$bill->unit->unit }}</x-td> --}}
+                                <x-td>{{ App\Models\Unit::find($bill->unit_uuid)->unit }}</x-td>
                                 <x-td>{{Carbon\Carbon::parse($bill->start)->format('M d,
                                     Y').'-'.Carbon\Carbon::parse($bill->end)->format('M d, Y') }}
                                 </x-td>
@@ -233,6 +243,29 @@
                             </tr>
                             @endforeach
                         </tbody>
+                        <tbody>
+
+                            <tr>
+                                <x-td><b>Total</b></x-td>
+                                <x-td></x-td>
+                                <x-td>
+                                </x-td>
+                                <x-td></x-td>
+                                {{-- <x-td>{{$bill->unit->unit }}</x-td> --}}
+                                <x-td>
+                                </x-td>
+                                <x-td></x-td>
+                                <x-td>
+                                    <b>{{ number_format($collections->sum('bill'), 2) }}</b>
+                                </x-td>
+
+                                <x-td>
+                                    <b>{{ number_format($collections->sum('bill'), 2) }}</b>
+                                </x-td>
+                            </tr>
+
+                        </tbody>
+
                     </table>
                 </form>
             </div>
@@ -240,14 +273,13 @@
     </div>
 
     <div class="flex justify-end p-10 mt-5">
-        <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-            href="/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}/bills">
-            Cancel
-        </a>
-        <button type="button" form="edit-form"
-            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant->uuid }}/bills'">
+                    Cancel
+                </x-button>
+
+        <x-button type="button" form="edit-form"
             onclick="this.form.submit(); this.disabled = true; this.value = 'Submitting the form';">
             Confirm Payment
-        </button>
+        </x-button>
     </div>
 </div>

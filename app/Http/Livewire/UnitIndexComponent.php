@@ -7,6 +7,8 @@ use App\Models\Property;
 use Livewire\WithPagination;
 use Illuminate\Support\Str;
 use App\Models\Plan;
+use Session;
+use App\Models\Feature;
 
 use Livewire\Component;
 
@@ -14,7 +16,6 @@ class UnitIndexComponent extends Component
 {
     use WithPagination;
 
-    public $property;
     public $batch_no;
 
     //filter fields
@@ -41,7 +42,7 @@ class UnitIndexComponent extends Component
     public $numberOfUnits = 1;
 
     public function storeUnits(){
-      
+
       if($this->numberOfUnits <= 0 || !$this->numberOfUnits){
          session()->flash('error', 'Cannot accept value less than 0 or null.');
 
@@ -52,7 +53,7 @@ class UnitIndexComponent extends Component
 
       $plan_unit_limit =  Plan::find(auth()->user()->plan_id)->description;
 
-      $total_unit_created = Property::find($this->property->uuid)->units()->count() + 1;
+      $total_unit_created = Property::find(Session::get('property_uuid'))->units()->count() + 1;
 
         // if($plan_unit_limit <= $total_unit_created){
         //     return back()->with('error', 'Sorry. You have reached your plan unit limit');
@@ -64,7 +65,7 @@ class UnitIndexComponent extends Component
                 'unit' => 'Unit '.$total_unit_created++,
                 'building_id' => '1',
                 'floor_id' => '1',
-                'property_uuid' => $this->property->uuid,
+                'property_uuid' => Session::get('property_uuid'),
                 'user_id' => auth()->user()->id,
                 'batch_no' => $batch_no
             ]);
@@ -72,21 +73,25 @@ class UnitIndexComponent extends Component
 
         $units = Unit::where('batch_no', $batch_no)->count();
 
-        app('App\Http\Controllers\PointController')->store($this->property->uuid, auth()->user()->id, $this->numberOfUnits, 5);
-        
-        return redirect('/property/'.$this->property->uuid.'/unit/'.$batch_no.'/edit')->with('success', 'Success!');
+        app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, $this->numberOfUnits, 5);
+
+        if(Session::get('property_type') === 'HOA'){
+             return redirect('/property/'.Session::get('property_uuid').'/guest/')->with('success', 'Changes Saved!');
+        }else{
+            return redirect('/property/'.Session::get('property_uuid').'/tenant/')->with('success', 'Changes Saved!');
+        }
     }
 
     public function changeView($value)
     {
         $this->view = $value;
-        
+
     }
 
     public function clearFilters()
     {
         $this->sortBy = '';
-        $this->orderBy = '';  
+        $this->orderBy = '';
         $this->search = '';
         $this->status_id = '';
         $this->category_id = '';
@@ -95,7 +100,7 @@ class UnitIndexComponent extends Component
     }
 
     public function mount(){
-        $this->totalUnitsCount = Property::find($this->property->uuid)->units->count();
+        $this->totalUnitsCount = Property::find(Session::get('property_uuid'))->units->count();
     }
 
     public function get_units()
@@ -110,11 +115,11 @@ class UnitIndexComponent extends Component
         $query->orderBy($this->sortBy, $this->orderBy);
        })
 
-      ->where('property_uuid', $this->property->uuid)
+      ->where('property_uuid', Session::get('property_uuid'))
       ->when($this->status_id, function($query){
       $query->where('status_id',$this->status_id);
       })
-      ->where('property_uuid', $this->property->uuid)
+      ->where('property_uuid', Session::get('property_uuid'))
       ->when($this->category_id, function($query){
       $query->where('category_id', $this->category_id);
       })
@@ -127,7 +132,7 @@ class UnitIndexComponent extends Component
       ->when($this->floor_id, function($query){
       $query->whereIn('floor_id', $this->floor_id);
       })
-      
+
       ->when($this->rent, function($query){
       $query->whereIn('rent', $this->rent);
       })
@@ -147,26 +152,36 @@ class UnitIndexComponent extends Component
     }
 
     public function editUnits(){
-      
-      
 
-      return redirect('/property/'.$this->property->uuid.'/unit/all/edit');
+
+
+      return redirect('/property/'.Session::get('property_uuid').'/unit/all/edit');
     }
 
    public function render()
     {
+        $featureId = 20;
+
+        $propertySubFeatures = Feature::where('id', $featureId)->pluck('subfeatures')->first();
+
+        $propertySubfeaturesArray = explode(",", $propertySubFeatures);
+
+        $propertyUnitCount = Property::find(Session::get('property_uuid'))->units()->count();
+
         return view('livewire.unit-index-component',[
             'units' => $this->get_units(),
-            'statuses' => app('App\Http\Controllers\StatusController')->index($this->property->uuid),
-            'categories' => app('App\Http\Controllers\CategoryController')->index($this->property->uuid),
-            'buildings' => app('App\Http\Controllers\PropertyBuildingController')->index($this->property->uuid),
-            'floors' => app('App\Http\Controllers\FloorController')->index($this->property->uuid),
-            'rents' => app('App\Http\Controllers\UnitController')->get_property_unit_rents($this->property->uuid),
-            'discounts' => app('App\Http\Controllers\UnitController')->get_property_unit_discounts($this->property->uuid),
-            'sizes' => app('App\Http\Controllers\UnitController')->get_property_unit_sizes($this->property->uuid),
-            'occupancies' => app('App\Http\Controllers\UnitController')->get_property_unit_occupancies($this->property->uuid),
-            'enrollment_statuses' => app('App\Http\Controllers\UnitController')->get_property_unit_enrollment_statuses($this->property->uuid),
-            'units_count' => Property::find($this->property->uuid)->units->count()
+            'statuses' => app('App\Http\Controllers\StatusController')->index(Session::get('property_uuid')),
+            'categories' => app('App\Http\Controllers\CategoryController')->index(Session::get('property_uuid')),
+            'buildings' => app('App\Http\Controllers\PropertyBuildingController')->index(Session::get('property_uuid')),
+            'floors' => app('App\Http\Controllers\FloorController')->index(Session::get('property_uuid')),
+            'rents' => app('App\Http\Controllers\UnitController')->getUnitRents(Session::get('property_uuid')),
+            'discounts' => app('App\Http\Controllers\UnitController')->getUnitDiscounts(Session::get('property_uuid')),
+            'sizes' => app('App\Http\Controllers\UnitController')->getUnitSizes(Session::get('property_uuid')),
+            'occupancies' => app('App\Http\Controllers\UnitController')->getUnitOccupancies(Session::get('property_uuid')),
+            'enrollment_statuses' => app('App\Http\Controllers\UnitController')->getUnitEnrollmentStatuses(Session::get('property_uuid')),
+            'units_count' => Property::find(Session::get('property_uuid'))->units->count(),
+            'propertySubfeaturesArray' => $propertySubfeaturesArray,
+            'propertyUnitCount' => $propertyUnitCount
         ]);
     }
 }

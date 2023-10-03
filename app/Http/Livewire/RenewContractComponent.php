@@ -82,12 +82,11 @@ class RenewContractComponent extends Component
          // if(auth()->user()->role_id == '8'){
          //    return redirect('/8/tenant/'.auth()->user()->username.'/contracts/')->with('success', 'Contract renewal has been requested.');
          // }else{
-            redirect('/property/'.$this->contract_details->property_uuid.'/tenant/'.$this->contract_details->tenant_uuid.'/contracts')->with('success','Success!');
+            redirect('/property/'.$this->contract_details->property_uuid.'/tenant/'.$this->contract_details->tenant_uuid.'/contracts')->with('success','Changes Saved!');
          // }
          
          } catch (\Throwable $e) {
-            ddd($e);
-            return back()->with('error','Cannot complete your action.');
+            return back()->with('error',$e);
          }
    }
 
@@ -148,7 +147,7 @@ class RenewContractComponent extends Component
          {
             $validatedData['contract'] = $this->contract->store('contracts');
          }else{
-            //$validatedData['contract'] = Property::find(Session::get('property'))->tenant_contract;
+            //$validatedData['contract'] = Property::find(Session::get('property_uuid'))->tenant_contract;
          }
 
          Contract::create($validatedData);

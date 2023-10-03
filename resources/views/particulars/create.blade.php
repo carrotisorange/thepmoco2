@@ -1,5 +1,5 @@
 <x-app-layout>
-    @section('title', '| Particulars | Create')
+    @section('title', '| Particulars | Create | '. env('APP_NAME'))
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <div class="flex">
@@ -7,11 +7,11 @@
                     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                         <nav class="rounded-md">
                             <ol class="list-reset flex">
-                                <li><a href="/properties/{{ Session::get('property') }}"
+                                <li><a href="/properties/{{ Session::get('property_uuid') }}"
                                         class="text-blue-600 hover:text-blue-700">{{
-                                        Session::get('property_name') }}</a></li>
+                                        Session::get('property') }}</a></li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
-                                <li><a href="/property/{{ Session::get('property') }}/particulars"
+                                <li><a href="/property/{{ Session::get('property_uuid') }}/particulars"
                                         class="text-blue-600 hover:text-blue-700">Particulars</a></li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">Create</li>
@@ -41,9 +41,8 @@
                             <div>
                                 <x-label for="particular_id" :value="__('Particular')" />
 
-                                <x-input id="particular_id" class="block mt-1 w-full" type="text"
-                                    name="particular_id" :value="old('particular_id')" form="create-form" required
-                                    autofocus />
+                                <x-input id="particular_id" class="block mt-1 w-full" type="text" name="particular_id"
+                                    :value="old('particular_id')" form="create-form" required autofocus />
                                 {{-- <select
                                     class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                     name="particular_id" id="particular_id" form="create-form" required>

@@ -50,6 +50,13 @@ class OwnerPortalController extends Controller
         ]);
     }
 
+    public function show_remittances($role_id, User $user)
+    {
+        return view('portals.owners.remittances',[
+          'remittances' => Owner::findOrFail($user->owner_uuid)->remittances
+        ]);
+    }
+
     public function show_concerns($role_id, User $user)
     {
         return view('portals.owners.concerns',[

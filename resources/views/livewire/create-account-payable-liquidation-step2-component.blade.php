@@ -26,7 +26,7 @@
                                     <th scope="col"
                                         class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
                                         Date
-                                        created
+                                        Requested
                                     </th>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{
                                         Carbon\Carbon::parse($accountpayableliquidation->created_at)->format('M d, Y')
@@ -189,22 +189,17 @@
                 <div>
                     <p class="mt-5 px-6 text-right">
                         @if($accountpayableliquidation->approved_by)
-                        <button type="button" disabled
-                            class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                        <x-button type="button" disabled>
                             Liquidation has been approved.
-                        </button>
+                        </x-button>
                         @else
-                        <button type="button" wire:target="approveLiquidation"
-                            onclick="window.location.href='/property/{{ $property->uuid }}/accountpayable'"
-                            class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                        <x-button type="button" wire:target="approveLiquidation"
+                            onclick="window.location.href='/property/{{ $property->uuid }}/accountpayable'">
                             Cancel
-                        </button>
-                        <button type="button" wire:click="approveLiquidation"
-                            class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                        </x-button>
+                        <x-button type="button" wire:click="approveLiquidation">
                             Approve
-                        </button>
-
-                        
+                        </x-button>
                         @endif
                     </p>
                 </div>
@@ -236,5 +231,4 @@
         </main>
         @endcannot
     </div>
-    @include('layouts.notifications')
 </div>

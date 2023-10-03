@@ -12,7 +12,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-    <title>Sign up | The Property Manager Online</title>
+    <title>Sign up | {{ env('APP_NAME') }}</title>
 </head>
 
 <style>
@@ -28,7 +28,7 @@ body{
 
         <div class="hidden lg:block relative flex-1 items-center justify-center">
             <img class="absolute inset-0 w-auto pt-32 ml-10" src="{{ asset('/brands/signup_vector.png') }}" alt="">
-            <img class="absolute inset-0 w-32 py-12 ml-10" src="{{ asset('/brands/propsuite.png') }}" alt="">
+            <img class="absolute inset-0 w-32 py-12 ml-10" src="{{ asset('/brands/'.env('APP_LOGO')) }}" alt="">
         </div>
         <div class="">
             <div class="flex-1 flex flex-col py-2 px-4 sm:px-6 lg:flex-none lg:px-10 ">
@@ -46,75 +46,49 @@ body{
                         </h2>
                     <form class="px-5 sm:px-5 md:px-10 lg:px-20 space-x-5 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2" action="/register" method="POST">
                         @csrf
-                        
+
                         <div>
-                            <label for="username" class="block text-sm font-medium text-gray-700"> Full Name</label>
+                            <x-label for="username"> Full Name</x-label>
                             <div class="mt-1">
-                                <input id="name" name="name" type="text" value="{{ old('name') }}"
-                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                @error('name')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                                <x-input id="name" name="name" type="text" value="{{ old('name') }}" />
                             </div>
                         </div>
                         <div>
-                           <label for="gender" class="block text-sm font-medium text-gray-700"> Gender</label>
+                           <x-label for="gender" > Gender</x-label>
                             <div class="mt-1">
-                                <select id="gender" name="gender" type="text" value="{{ old('gender') }}" 
-                                class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <x-select id="gender" name="gender">
                                     <option value="">Select one</option>
-                                    <option value="female" {{ 'female'==old('gender') ? 'Select one' : 'selected' }}>female</option>
-                                    <option value="male" {{ 'male'==old('gender') ? 'Select one' : 'selected' }}>male</option>
-                                </select>
-                                @error('gender')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                                    <option value="female" {{ 'female'==old('gender') ? 'Select one' : '' }}>female</option>
+                                    <option value="male" {{ 'male'==old('gender') ? 'Select one' : '' }}>male</option>
+                                </x-select>
+                            </div>
+                        </div>
+
+                        {{-- <div class="lg:col-span-2">
+                            <x-label for="username" > Username</x-label>
+                            <div class="mt-1">
+                                <x-input id="username" name="username" type="text" value="{{ old('username') }}"/>
+                            </div>
+                        </div> --}}
+
+                        <div class="lg:col-span-2">
+                            <x-label for="email" > Email </x-label>
+                            <div class="mt-1">
+                                <x-input id="email" name="email" type="email" value="{{ old('email') }}"/>
                             </div>
                         </div>
 
                         <div class="lg:col-span-2">
-                            <label for="username" class=" block text-sm font-medium text-gray-700"> Username</label>
+                            <x-label for="mobile_number" > Mobile </x-label>
                             <div class="mt-1">
-                                <input id="username" name="username" type="text" value="{{ old('username') }}"
-                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                @error('username')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="lg:col-span-2">
-                            <label for="email" class="block text-sm font-medium text-gray-700"> Email </label>
-                            <div class="mt-1">
-                                <input id="email" name="email" type="email" value="{{ old('email') }}"
-                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                @error('email')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="lg:col-span-2">
-                            <label for="mobile_number" class="block text-sm font-medium text-gray-700"> Mobile </label>
-                            <div class="mt-1">
-                                <input id="mobile_number" name="mobile_number" type="text"
-                                    value="{{ old('mobile_number') }}"
-                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                @error('mobile_number')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                                <x-input id="mobile_number" name="mobile_number" type="text" value="{{ old('mobile_number') }}"/>
                             </div>
                         </div>
 
                         <div>
-                            <label for="password" class="block text-sm font-medium text-gray-700"> Password </label>
+                        <x-label for="password" > Password </x-label>
                             <div class="mt-1">
-                                <input id="password" name="password" type="password" autocomplete="password"
-                                    value="{{ old('password') }}"
-                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                @error('password')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                                <x-input id="password" name="password" type="password" autocomplete="password" value="{{ old('password') }}"/>
                             </div>
                         </div>
 
@@ -161,4 +135,3 @@ body{
     </body>
 
     </html>
-    

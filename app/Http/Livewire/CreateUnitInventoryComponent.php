@@ -16,13 +16,15 @@ class CreateUnitInventoryComponent extends Component
     public $image;
 
     
+
+    
     protected function rules()
     {
         return [
             'item' => 'required',
             'quantity' => 'required',
             'remarks' => 'nullable',
-            'image' => 'nullable | mimes:jpg,png|max:102400',
+            // 'image' => 'nullable | mimes:jpg,png|max:102400',
             ];
     }
     
@@ -39,7 +41,7 @@ class CreateUnitInventoryComponent extends Component
 
         UnitInventory::create($validated);
 
-        return redirect(url()->previous())->with('success', 'Success!');
+        return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 
     public function render()

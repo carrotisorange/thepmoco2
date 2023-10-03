@@ -52,17 +52,17 @@ class AccountPayableCreateComponent extends Component
 
      public function submitForm()
       {
-        
+
 
         //validate inputs
         $validatedData = $this->validate();
 
         try {
 
-            DB::transaction(function () use ($validatedData){ 
+            DB::transaction(function () use ($validatedData){
 
             $validatedData['remarks'] = 'none';
-            $validatedData['property_uuid'] = Session::get('property');
+            $validatedData['property_uuid'] = Session::get('property_uuid');
 
             if($this->attachment)
             {
@@ -76,12 +76,12 @@ class AccountPayableCreateComponent extends Component
                 $this->send_mail_to_tenant();
             }
             });
-                  
+
             return
-            redirect('/property/'.Session::get('property').'/accountpayable/pending')->with('success','Success!');
-            
+            redirect('/property/'.Session::get('property_uuid').'/accountpayable/pending')->with('success','Changes Saved!');
+
         }catch (\Exception $e) {
-            session()->flash('error');
+            session()->flash('error', 'Something went wrong.');
         }
       }
 
@@ -92,7 +92,7 @@ class AccountPayableCreateComponent extends Component
 
       public function get_statuses()
       {
-           return AccountPayable::where('property_uuid', Session::get('property'))
+           return AccountPayable::where('property_uuid', Session::get('property_uuid'))
            ->select('status', DB::raw('count(*) as count'))
            ->groupBy('status')
            ->get();
@@ -101,9 +101,9 @@ class AccountPayableCreateComponent extends Component
     public function render()
     {
         return view('livewire.account-payable-create-component',[
-            'particulars' => app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property')),
-            'users' => app('App\Http\Controllers\UserPropertyController')->get_property_users(Session::get('property')),
-            'billers' => app('App\Http\Controllers\PropertyBillerController')->show(Session::get('property')),
+            'particulars' => app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid')),
+            'users' => app('App\Http\Controllers\UserPropertyController')->getPersonnels(Session::get('property_uuid')),
+            'billers' => app('App\Http\Controllers\PropertyBillerController')->show(Session::get('property_uuid')),
             'statuses' => $this->get_statuses()
         ]);
     }

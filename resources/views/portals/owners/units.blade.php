@@ -1,5 +1,5 @@
 <x-owner-portal-layout>
-    @section('title', 'Units')
+    @section('title', 'Units | '. env('APP_NAME'))
 
     @section('header', 'Units')
 

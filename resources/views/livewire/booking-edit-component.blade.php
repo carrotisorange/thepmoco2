@@ -1,5 +1,4 @@
 <div>
-    @include('layouts.notifications')
     <div class="mt-8 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
         <div class="lg:grid lg:grid-cols-12 lg:auto-rows-min lg:gap-x-8">
             <div class="lg:col-start-4 lg:col-span-9">
@@ -274,15 +273,11 @@
 
                 </div>
                 <div class="mt-5 flex justify-end">
-                    <button type="button" data-modal-toggle="warning-destroy-guest-modal"
-                        class="inline-flex items-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                        Delete
-                    </button>
+                    <x-button type="button" data-modal-toggle="warning-destroy-guest-modal">    Delete
+                    </x-button>
                 
-                    <button type="submit" wire:target="updateBooking"
-                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        Update
-                    </button>
+                    <x-button type="submit" wire:target="updateBooking">   Update
+                    </x-button>
                    
                 </div>
 

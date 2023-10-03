@@ -37,7 +37,7 @@ class WalletCreateComponent extends Component
 
         $this->reset_form();
         
-        return session()->flash('success', 'Success!');
+        return session()->flash('success', 'Changes Saved!');
     }
 
     public function reset_form(){
@@ -48,7 +48,7 @@ class WalletCreateComponent extends Component
     public function remove($deposit_id){
        Wallet::where('id', $deposit_id)->delete();
 
-       return session()->flash('success', 'Success!');
+       return session()->flash('success', 'Changes Saved!');
     }
     
     public function render()

@@ -1,5 +1,5 @@
 <form class="px-6 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8" method="POST"
-    action="/property/{{ Session::get('property') }}/bill/express/{{ $active_contracts->count() }}/store">
+    action="/property/{{ Session::get('property_uuid') }}/bill/express/{{ $active_contracts->count() }}/store">
     @csrf
     <h3 class="text-xl font-medium text-gray-900 dark:text-white">Configure your express bills</h3>
     <p class="text-sm font-medium text-gray-900 dark:text-white">You're about to create <b>{{
@@ -32,8 +32,8 @@
                 <x-label for="start">
                     Start
                 </x-label>
-                <x-form-input  id="start" type="date"
-                    value="{{ old('start', Carbon\Carbon::now()->format('Y-m-d')) }}" name="start" />
+                <x-form-input id="start" type="date" value="{{ old('start', Carbon\Carbon::now()->format('Y-m-d')) }}"
+                    name="start" />
 
                 @error('start')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -53,6 +53,6 @@
         </div>
     </div>
     <p class="text-right">
-        <x-form-button>Create</x-form-button>
+        <x-button>Create</x-button>
     </p>
 </form>

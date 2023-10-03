@@ -19,7 +19,7 @@
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('/brands/favicon.ico') }}" type="image/png">
 
-    <title>{{ Session::get('property_name')? Session::get('property_name'): config('APP_NAME') }} @yield('title')
+    <title>{{ Session::get('property')? Session::get('property'): config('APP_NAME') }} @yield('title')
     </title>
 
     <!-- Fonts -->
@@ -163,6 +163,12 @@
                     </div>
 
                     <div class="pt-2 pb-3 space-y-1">
+                        <x-dropdown-link href="/{{auth()->user()->role_id}}/owner/{{ auth()->user()->username }}/remittances">
+                            Remittances
+                        </x-dropdown-link>
+                    </div>
+
+                    <div class="pt-2 pb-3 space-y-1">
                         <x-dropdown-link
                             href="/{{auth()->user()->role_id}}/owner/{{ auth()->user()->username }}/concerns">
                             Concerns
@@ -234,6 +240,15 @@
                             d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
                     </x-nav-link>
                     <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Payments</div>
+
+                    <x-nav-link href="/{{auth()->user()->role_id}}/owner/{{ auth()->user()->username }}/remittances"
+                        :active="request()->routeIs('owner-remittances')"> <span class="sr-only">Remittances</span>
+                        <img class="h-8 w-auto" src="{{ asset('/brands/credit-card.png') }}" fill="none"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
+                    </x-nav-link>
+                    <div class="leading-3 ml-0 text-xs text-center text-gray-400 mt-10">Remittances</div>
 
                     <!-- Concerns -->
                     <x-nav-link href="/{{auth()->user()->role_id}}/owner/{{ auth()->user()->username }}/concerns"

@@ -39,10 +39,7 @@
             </div>
 
             <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
-                {{-- <p class="text-right">
-                    <x-button onclick="window.location.href='/tenant/{{ $tenant->uuid }}/contract/create'">Confirm</x-button> --}}
                     <x-button data-modal-toggle="create-tenant-contract-modal" type="button">Cancel</x-button>
-                {{-- </p> --}}
             </div>
         </div>
     </div>

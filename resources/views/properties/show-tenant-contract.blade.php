@@ -9,7 +9,7 @@
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('/brands/favicon.ico') }}" type="image/png">
 
-    <title>The Property Manager | Properties</title>
+    <title>Properties | {{ env('APP_NAME') }}</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -78,7 +78,7 @@
             </div>
         </main>
     </div>
- 
+
 </body>
 
 </html>

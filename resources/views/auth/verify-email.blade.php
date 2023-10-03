@@ -1,5 +1,5 @@
 <x-new-layout-base>
-    @section('title', 'Verify Email | The Property Manager')
+    @section('title', 'Verify Email | '. env('APP_NAME'))
 
 
 
@@ -46,10 +46,9 @@
                     @csrf
 
                     <div>
-                        <button type="submit"
-                            class="mr-3 w-56 items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white text-center bg-purple-900 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        <x-button type="submit">
                             Resend verification email
-                        </button>
+                        </x-button>
                     </div>
                 </form>
 
@@ -60,17 +59,7 @@
 
 
         </div>
-{{-- 
-        <div class="mt-3 flex items-center justify-center">
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
 
-                <button type="submit"
-                    class="w-32 items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white text-center bg-gray-900 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Log Out</button>
-            </form>
-
-        </div> --}}
         @if (session('status') == 'verification-link-sent')
         <p class="mt-5 text-center text-sm font-normal text-green-500">
             A new verification link has been sent to the email address you provided during

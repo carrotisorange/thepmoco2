@@ -17,19 +17,20 @@
             <x-td>{{ $index+1 }}</x-td>
             <x-td>{{ $concern->reference_no }}</x-td>
         
-                        <x-td>
-                            @if($concern->tenant_uuid)
-                            <a href=" /property/{{ $concern->property_uuid }}/tenant/{{ $concern->tenant_uuid }}/concerns"
-                    class="text-blue-500 text-decoration-line: underline" target="_blank"">{{ $concern->tenant->tenant
-                    }}</a>
+             <x-td>
+                @if($concern->tenant_uuid)
+                            <a href=" /property/{{ $concern->property_uuid }}/tenant/{{ $concern->tenant_uuid }}" class="text-blue-500 text-decoration-line: underline" target="_blank"">{{ $concern->tenant->tenant}}</a>
                 @else
                 NA
                 @endif
             </x-td>
             <x-td>
-            <a href="/property/{{ $concern->property_uuid }}/unit/{{ $concern->unit_uuid }}/concerns"
-                        class="text-blue-500 text-decoration-line: underline" target="_blank"">{{ $concern->unit->unit }}</a>
-                                      </x-td>
+                @if($concern->unit_uuid)
+                    <a href=" /property/{{ $concern->property_uuid }}/unit/{{ $concern->unit_uuid }}" class="text-blue-500 text-decoration-line: underline" target="_blank"">{{ $concern->unit->unit}}</a>
+                @else
+                NA
+                @endif
+            </x-td>
             <x-td>{{ $concern->subject }}
             @if($concern->status === 'closed')
             <span title="{{ $concern->status }}" class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -45,13 +46,17 @@
             <x-td>{{ Carbon\Carbon::parse($concern->created_at)->format('M d, Y') }}</x-td>
             <x-td>{{ $concern->category->category }}</x-td>
             <x-td>
-                @if($concern->tenant_uuid)
-                <a href="/property/{{ $concern->property_uuid }}/tenant/{{ $concern->tenant_uuid }}/concern/{{ $concern->id }}/edit"
+                @can('tenant')
+                <a href="/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/concerns/{{ $concern->id }}"
                     class="text-blue-500 text-decoration-line: underline" target="_blank"">Review</a>
+
                 @else
-                <a href=" /property/{{ $concern->property_uuid }}/unit/{{ $concern->unit_uuid }}/concern/{{ $concern->id }}/edit"
+                
+         
+                <a href="/property/{{ $concern->property_uuid }}/concern/{{ $concern->id }}/edit"
                     class="text-blue-500 text-decoration-line: underline" target="_blank"">Review</a>
-                @endif
+                    @endcannot
+              
             </x-td>
         </tr>
         @endforeach

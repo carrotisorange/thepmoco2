@@ -9,6 +9,7 @@ use App\Models\Property;
 use Carbon\Carbon;
 use App\Models\Unit;
 use Livewire\WithFileUploads;
+use App\Models\Tenant;
 
 class EditContractComponent extends Component
 {
@@ -23,6 +24,7 @@ class EditContractComponent extends Component
     public $status;
     public $rent;
     public $interaction_id;
+    public $updateTenantStatus = true;
 
     public $tenant_contract;
 
@@ -61,6 +63,12 @@ class EditContractComponent extends Component
         
         $validated = $this->validate();
 
+
+        if($this->updateTenantStatus){
+           Tenant::where('uuid', $this->contract->tenant_uuid)
+           ->update(['status'=> $this->status]);
+        }
+
          if ($this->tenant_contract === null) {
             $tenant_contract = $this->contract->contract;
          }else{
@@ -72,7 +80,7 @@ class EditContractComponent extends Component
         Contract::where('uuid', $this->contract->uuid)
         ->update($validated);
 
-         return redirect(url()->previous())->with('success', 'Success!');
+         return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 
     public function render()

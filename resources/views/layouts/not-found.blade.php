@@ -1,6 +1,6 @@
-<x-landing-page-template>
-    @section('title', 'Page not found')
-    
+
+                <x-landing-page-template>
+    @section('title', 'Page not found |' . env('APP_NAME'))
     <div class="py-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
   <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8 mt-5">

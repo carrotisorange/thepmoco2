@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title','Tenants | '. Session::get('property_name'))
+    @section('title','Tenants | '. env('APP_NAME'))
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
             <div class="mx-auto px-4 sm:px-6 lg:px-8">
@@ -92,10 +92,9 @@
                                     </ul>
                                     <div class="mt-8">
                                         <div>
-                                            <button type="submit"
-                                                onclick="window.location.href='/user/{{ auth()->user()->username }}/unlock'"
-                                                class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-purple-700 hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Unlock
-                                                now</a></button>
+                                            <x-button type="submit"
+                                                onclick="window.location.href='/user/{{ auth()->user()->username }}/unlock'">Unlock
+                                                now</a></x-button>
 
                                         </div>
                                     </div>

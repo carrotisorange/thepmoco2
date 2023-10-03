@@ -16,6 +16,7 @@ class Bill extends Model
         'bill' => 0
     ];
 
+
     public function property()
     {
         return $this->belongsTo(Property::class, 'property_uuid');
@@ -29,6 +30,7 @@ class Bill extends Model
         return $this->belongsTo(Collection::class, 'bill_id');
      }
 
+     
 
     public function tenant()
     {

@@ -1,15 +1,19 @@
-<table class="w-full mb-10 text-sm text-left text-gray-500 dark:text-gray-400">
+
+<div>
+<table class="">
     <thead class="bg-gray-50">
-        <tr>
+        <tr class="">
             {{-- <x-th>#</x-th> --}}
-               <x-th>REQUESTED ON</x-th>
-            <x-th>BATCH NO</x-th>
-         
-            <x-th>REQUESTED BY</x-th>
-         
-            <x-th>UNITS</x-th>
-            <x-th>PARTICULARS</x-th>
-            <x-th>AMOUNT</x-th>
+            <x-th class="sticky-col first-col">REQUESTED ON</x-th>
+            <x-th class="sticky-col first-col">BATCH NO</x-th>
+        
+            <x-th class="sticky-col first-col">REQUESTER</x-th>
+            <x-th class="sticky-col first-col">FIRST APPROVER</x-th>
+            <x-th class="sticky-col first-col">SECOND APPROVER</x-th>
+            <x-th class="sticky-col first-col">STATUS</x-th>
+            <x-th class="sticky-col first-col">UNITS</x-th>
+            <x-th class="sticky-col first-col">PARTICULARS</x-th>
+            <x-th class="sticky-col first-col">AMOUNT</x-th>
             {{-- <x-th></x-th> --}}
             <x-th></x-th>
         </tr>
@@ -19,12 +23,14 @@
         <tr>
             {{-- <x-td>{{ $index+1 }}</x-td> --}}
             <x-td>{{ Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}</x-td>
-            <x-td>{{ $accountpayable->batch_no }} ({{ App\Models\AccountPayableParticular::where('batch_no',
-                    $accountpayable->batch_no)->count(); }})</x-td>
+            <x-td>{{ $accountpayable->batch_no }} </x-td>
         
                         <?php $firstName= explode(' ', $accountpayable->requester->name); ?>
             <x-td>{{ Str::limit($firstName[0], 10) }}</x-td>
-     
+
+    <x-td>{{ (App\Models\User::where('id', $accountpayable->approver_id)->pluck('name')->first()) }}</x-td>
+    <x-td>{{ (App\Models\User::where('id', $accountpayable->approver2_id)->pluck('name')->first()) }}</x-td>
+     <x-td>{{ $accountpayable->status }}</x-td>
             <x-td>
                 <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->limit(2)->get()->unique('unit_uuid'); ?>
                 @foreach ($particulars as $particular)
@@ -50,9 +56,11 @@
             </x-td>--}}
 
             <x-td>
+                ({{ App\Models\AccountPayableParticular::where('batch_no',
+                $accountpayable->batch_no)->count(); }})
                 <?php  $particulars  = App\Models\AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->limit(2)->get() ;?>
-                @foreach ($particulars as $particular)
-                {{ Str::limit($particular->item, 10) }},
+                @foreach ($particulars->take(1) as $particular)
+                {{ ($particular->item) }}...
                 @endforeach
             </x-td> 
             {{-- <x-td>{{ $accountpayable->status }}</x-td> --}}
@@ -62,165 +70,97 @@
                 ->sum('total')
                 
             ;?>
+    
            
             <x-td>{{ number_format($amount, 2) }}
-              @if($accountpayable->status === 'released')
-               <span title="released"
-                    class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                    <i class="fa-solid fa-circle-check"></i>
-                </span>
-                @elseif($accountpayable->status === 'approved by manager')
-                <span title="{{ $accountpayable->status }}"
-                    class="px-2 text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                
-                 <i class="fa-solid fa-clock"></i>
-                
-                </span>
-                
-               <span title="{{ $accountpayable->status }}"
-                    class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                
-                    <i class="fa-solid fa-user-check"></i>
-                
-                </span>
-                @elseif($accountpayable->status === 'approved by ap')
-                <span title="{{ $accountpayable->status }}"
-                                class="px-2 text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                            
-                                <i class="fa-solid fa-clock"></i>
-                            
-                            </span>
-                <span title="{{ $accountpayable->status }}"
-                    class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                
-          <i class="fa-solid fa-user-check"></i>
-                
-                </span>
-              @else
-                <span title="{{ $accountpayable->status }}"
-                    class="px-2 text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                  <i class="fa-solid fa-clock"></i>
-                  
-                </span>
-                @endif
       
             </x-td>
           
             <x-td>
-                <button id="dropdownDefaultButton({{ $accountpayable->id }})({{ $accountpayable->id }})" data-dropdown-placement="left-end"
-                    data-dropdown-toggle="dropdown({{ $accountpayable->id }})"
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium
-                    text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2
-                    sm:w-auto"
-                    type="button">Options <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg></button>
-                <!-- Dropdown menu -->
-                <div id="dropdown({{ $accountpayable->id }})"
-                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                        aria-labelledby="dropdownDefaultButton({{ $accountpayable->id }})">
-                        <li>
-                            @if($accountpayable->status === 'released')
-                                @if(App\Models\AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->whereNotNull('approved_by')->count())
-                                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/liquidation/step-2"  target="_blank" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Liquidated</a>
-                                @else
-                                    @cannot('manager')
-                                    <form  action="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/liquidation/step-1" method="POST">
-                                        @csrf
-                                        <button type="submit" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Create Liquidation</button>
-                                    </form>
-                                    @else
-                                     @if(App\Models\AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->count())
-                                        <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/liquidation/step-2"
-                                            target="_blank" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                            Approve/Reject Liquidation
-                                        </a>
-                                     @else
-                                        {{-- <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/liquidation/step-2"
-                                            target="_blank" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                            Approve/Reject Liquidation
-                                        </a> --}}
-                                     @endif
-                                 
-                                    @endcannot
-                                @endif
-                            @endif
-                        </li>
-                        <li>
-                            @if($accountpayable->status==='pending' || $accountpayable->status==='unknown')
-                            <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step1/export"
-                                target="_blank"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Export
-                                Request</a>
-                            @endif
-                        </li>
-                        <li>
-                            @if(auth()->user()->id === $accountpayable->requester_id &&
-                            ($accountpayable->status==='pending' || $accountpayable->status==='unknown'))
-                            <a href="#/" data-modal-target="delete-accountpayable-modal-{{$accountpayable->id}}" data-modal-toggle="delete-accountpayable-modal-{{$accountpayable->id}}"
-                                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                               >Delete
-                                Request</a>
-                            @endif
-                        </li>
-                        <li>
-                            @can('accountownerandmanager')
-                                @if($accountpayable->status === 'released')
-                                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View
-                                    Request</a>
-                                @else
-                                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-1"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit
-                                    Request</a>
-                                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-3"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Approve/Reject
-                                    Request</a>
-                                @endif
-                            @elsecan('accountpayable')
-                                @if($accountpayable->status === 'released')
-                                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View
-                                    Request</a>
-                                @elseif($accountpayable->status === 'approved by ap')
-                                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-6"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Upload
-                                    Payment </a>
-                                @else
-                                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-5"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Approve/Reject
-                                    Request</a>
-                                @endif
-                            @elsecan('ancillary')
-                                @if($accountpayable->status === 'released')
-                                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View
-                                    Request</a>
-                                @else
-                                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-1"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit
-                                    Request</a>
-                                @endif
-                                @else
-                                @if($accountpayable->status === 'released')
-                                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">View
-                                    Request</a>
-                                @else
-                                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-1"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit
-                                    Request</a>
-                                @endif
-                            @endcan
-                        </li>
+                {{-- step 1 --}}
+                @if($accountpayable->requester_id === auth()->user()->id && ($accountpayable->status === 'pending' || $accountpayable->status === 'rejected by manager'))
+                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-1" class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
+                    type="button">
+                    View
+                </a>
 
-                    </ul>
-                </div>
+        
+                {{-- step 2 --}}
+                @elseif($accountpayable->approver_id === auth()->user()->id && $accountpayable->status  === 'pending')
+                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-2"
+                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
+                        type="button">
+                        Approve
+                 </a>
+
+                {{-- step 3 --}}
+                @elseif(($accountpayable->approver2_id === auth()->user()->id || Session::get('role_id') === 4) && $accountpayable->status === 'approved by manager') 
+                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-3"
+                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
+                        type="button">
+                        Approve
+                </a>
+
+                {{-- step 4 --}}
+                @elseif(($accountpayable->approver2_id === auth()->user()->id || Session::get('role_id') === 4) && $accountpayable->status === 'approved by ap')
+                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-4"
+                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
+                    type="button">
+                    Upload a payment
+                </a>
+
+
+                {{-- step 5 --}}
+                @elseif(auth()->user()->id === $accountpayable->requester_id && $accountpayable->status === 'released')
+               
+
+                <a target="_blank" href="/property/{{ $accountpayable->property->uuid }}/accountpayable/{{ $accountpayable->id }}/step1/export"
+                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
+                    type="button">
+                    Export
+                </a>
+
+                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-5"
+                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
+                    type="button">
+                    Liquidate
+                </a>
+
+                {{-- step 6   --}}
+                @elseif($accountpayable->approver_id === auth()->user()->id && $accountpayable->status === 'liquidated')
+                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-6"
+                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
+                    type="button">
+                    Approve
+                </a>
+
+                {{-- step 7 --}}
+                @elseif($accountpayable->approver2_id === auth()->user()->id && $accountpayable->status === 'liquidation approved by manager')
+                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-7"
+                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
+                    type="button">
+                    Chart of Account
+                </a>
+                @elseif($accountpayable->status === 'completed')
+                <a target="_blank" href="/property/{{ Session::get('property_uuid')}}/accountpayable/{{ $accountpayable->id}}/export/complete"
+                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
+                    type="button">
+                  Export
+                </a>
+                <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-7"
+                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
+                    type="button">
+                  Edit
+                </a>
+
+              
+
+                @else
+                
+                @endif
+              
             </x-td>
-            @livewire('view-accountpayable-component',['accountpayable' => $accountpayable], key($accountpayable->id))
-            @livewire('delete-accountpayable-component',['accountpayable' => $accountpayable], key($accountpayable->id))
+       
         </tr>
         @endforeach
         <tr>
@@ -230,8 +170,13 @@
             <x-th></x-th>
             <x-th></x-th>
             <x-th></x-th>
+            <x-th></x-th>
+            <x-th></x-th>
+            <x-th></x-th>
             <x-td><b>{{ number_format($accountpayables->sum('amount'), 2) }}</b></x-td>
             <x-th></x-th>
         </tr>
     </tbody>
 </table>
+
+    </div>

@@ -1,5 +1,5 @@
 <x-index-layout>
-    @section('title', '| Enrollees')
+    @section('title', 'Enrollees | '. env('APP_NAME'))
     <x-slot name="labels">
         {{ Str::plural('Enrollees', $enrollees->count())}} ({{
         $enrollees->count()

@@ -44,7 +44,7 @@ class DeleteBillComponent extends Component
 
         // AcknowledgementReceipt::where('ar_no', $ar_no)->delete();
 
-        return redirect(url()->previous())->with('success', 'Success!');
+        return redirect(url()->previous())->with('success', 'Changes Saved!');
 
     }
 

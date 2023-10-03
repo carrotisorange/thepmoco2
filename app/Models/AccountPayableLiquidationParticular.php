@@ -12,4 +12,9 @@ class AccountPayableLiquidationParticular extends Model
     protected $attributes = [
         'or_number' => '0000'
     ];
+
+    public function expense()
+    {
+        return $this->belongsTo(ExpenseType::class, 'expense_type_id');
+    }
 }

@@ -1,5 +1,5 @@
 <x-tenant-portal-layout>
-    @section('title', 'Payment Requests')
+    @section('title', 'Payment Requests | '. env('APP_NAME'))
 
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
@@ -57,11 +57,14 @@
                                         class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
                                         REMARKS</th>
 
+                                  <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
+                                        </th>      
 
-                                    <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
+
+                                    {{-- <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
 
                                         <span class="sr-only">Attachment</span>
-                                    </th>
+                                    </th> --}}
 
 
                                 </tr>
@@ -114,11 +117,19 @@
                                         @endif
 
                                     </td>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    {{-- <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         @if(!$item->proof_of_payment == null)
                                         <a href="/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/payments_request/{{ $item->id }}/download"
                                             class="text-indigo-600 hover:text-indigo-900">View Attachment</a>
                                         @endif
+                                    </td> --}}
+
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-blue-500 text-decoration-line: underline">
+                                       
+                                 
+                                        <a  target_="_blank" href="/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/payments_request/{{ $item->batch_no }}"
+                                            class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                       
                                     </td>
 
                                 </tr>

@@ -1,5 +1,5 @@
 <x-tenant-portal-layout>
-    @section('title', 'Concerns')
+    @section('title', 'Concerns |' . env('APP_NAME'))
 
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
@@ -24,6 +24,8 @@
 
                         </div>
 
+                        @include('tables.concerns')
+{{-- 
                         <table class="min-w-full table-fixed">
                             <thead class="">
                                 <tr>
@@ -55,17 +57,12 @@
                             </thead>
                             @forelse ($concerns as $index => $item)
                             <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
-                                <!-- Selected: "bg-gray-50" -->
+                               
                                 <tr>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         {{ $item->reference_no }}
                                     </td>
-                                    {{-- <td class="relative w-12 px-6 sm:w-16 sm:px-8"> --}}
-                                        <!-- Selected row marker, only show when row is selected. -->
-
-                                        {{-- <input type="checkbox"
-                                            class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 sm:left-6"> --}}
-                                    {{-- </td> --}}
+                                 
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y')}}
                                     </td>
@@ -101,7 +98,7 @@
                             </tr>
                             @endforelse
 
-                        </table>
+                        </table> --}}
                     </div>
 
                     {{-- <button type="button"

@@ -17,6 +17,10 @@ class ContractMoveoutStep1Component extends Component
     public $moveout_reason;
     public $tenant;
     public $unit;
+    public $bank_name;
+    public $account_name;
+    public $account_number;
+    public $contact_number;
 
     public $unpaid_bills;
 
@@ -28,6 +32,10 @@ class ContractMoveoutStep1Component extends Component
         $this->tenant = $contract->tenant->tenant;
         $this->unit = $contract->unit->building->building.' '.$contract->unit->unit;
         $this->unpaid_bills = Tenant::find($this->contract->tenant->uuid)->bills()->whereIn('status', ['unpaid', 'partially_paid'])->sum(DB::raw('bill-initial_payment'));
+        $this->bank_name = $contract->bank_name;
+        $this->account_name = $contract->account_name;
+        $this->account_number = $contract->account_number;
+        $this->contact_number = $contract->contact_number;
     }
 
     protected function rules()
@@ -35,6 +43,10 @@ class ContractMoveoutStep1Component extends Component
          return [
             'moveout_at' => 'required',
             'moveout_reason' => 'required',
+            'bank_name' => 'nullable',
+            'account_name' => 'nullable',
+            'account_number' => 'nullable',
+            'contact_number' => 'nullable'
         ];
     }
 
@@ -45,8 +57,6 @@ class ContractMoveoutStep1Component extends Component
 
     public function submitForm()
     {
-        
-
         $validatedData = $this->validate();
    
         if(auth()->user()->role_id == '8'){
@@ -57,7 +67,7 @@ class ContractMoveoutStep1Component extends Component
 
             // app('App\Http\Controllers\NotificationController')->store('concern', 'requested to moveout', 'pending', Tenant::find($this->contract->tenant_uuid)->property->uuid);
 
-            return redirect('/8/tenant/'.auth()->user()->username.'/contracts/')->with('success', 'Success!');
+            return redirect('/8/tenant/'.auth()->user()->username.'/contracts/')->with('success', 'Changes Saved!');
 
         }else{  
             if(!$this->unpaid_bills > 0){
@@ -67,12 +77,11 @@ class ContractMoveoutStep1Component extends Component
             } else{
                 $validatedData['status'] = 'pendingmoveout';
 
-
             }   
             
         $this->contract->update($validatedData);
 
-         return redirect('/property/'.Session::get('property').'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-2')->with('success', 'Success!');        
+         return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-3')->with('success', 'Changes Saved!');        
         }
        
     }

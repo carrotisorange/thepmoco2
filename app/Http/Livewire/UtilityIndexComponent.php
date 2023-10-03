@@ -18,8 +18,6 @@ class UtilityIndexComponent extends Component
 
     public $search;
 
-    public $property_uuid;
-
     public $status;
 
     public $type;
@@ -34,6 +32,8 @@ class UtilityIndexComponent extends Component
 
     public $kwh;
 
+    public $utility_type;
+
     public $filter_date;
     public $start_date;
     public $end_date;
@@ -41,10 +41,9 @@ class UtilityIndexComponent extends Component
 
     public function mount()
     {
-        $this->property_uuid = Session::get('property');
-        $this->totalUtilitiesCount = Property::find(Session::get('property'))->utilities->count();
-        $this->totalUnitsCount = Property::find($this->property_uuid)->units()->count();
-        $this->filter_date = Carbon::parse(Property::find($this->property_uuid)->utilities()->orderBy('start_date', 'desc')->pluck('start_date')->first())->format('Y-m-d');
+        $this->totalUtilitiesCount = Property::find(Session::get('property_uuid'))->utilities->count();
+        $this->totalUnitsCount = Property::find(Session::get('property_uuid'))->units()->count();
+        $this->filter_date = Carbon::parse(Property::find(Session::get('property_uuid'))->utilities()->orderBy('start_date', 'desc')->pluck('start_date')->first())->format('Y-m-d');
         $this->start_date = Carbon::now()->format('Y-m-d');
         $this->end_date = Carbon::now()->addMonth()->format('Y-m-d');
         $this->limitDisplayTo = 10;
@@ -64,60 +63,64 @@ class UtilityIndexComponent extends Component
                 'start_date' => 'required|date',
                 'end_date' => 'required|date|after:start_date',
                 'kwh' => 'required',
-                'min_charge' => 'required'
+                'min_charge' => 'required',
+                'utility_type' => 'required'
             ];
     }
 
-    public function storeUtilities($option)
+    public function updated($propertyName)
+      {
+        $this->validateOnly($propertyName);
+    }
+
+    public function storeUtilities()
     {   
         $this->validate();
 
         set_time_limit(1000);
 
-        $units = Unit::where('property_uuid', $this->property_uuid)->get();
+        $units = Unit::where('property_uuid', Session::get('property_uuid'))->get();
         
         $batch_no = auth()->user()->id.Str::random(8);
 
-        for ($i=0; $i < $units->count(); $i++) { 
-            //store utilities
+        foreach($units as $unit){
             app('App\Http\Controllers\UtilityController')->store(
-                $units->toArray()[$i]['property_uuid'], 
-                $units->toArray()[$i]['uuid'], 
-                $units->toArray()[$i]['previous_water_utility_reading'],
-                $units->toArray()[$i]['previous_electric_utility_reading'],
+                Session::get('property_uuid'),
+                $unit->uuid, 
+                $unit->previous_water_utility_reading,
+                $unit->previous_electric_utility_reading,
                 auth()->user()->id,
                 $this->start_date,
                 $this->end_date,
                 $batch_no,
-                $option,
+                $this->utility_type,
                 $this->kwh,
                 $this->min_charge,
-            );
-
+            );    
         }
         
-        return redirect('/property/'.$this->property_uuid.'/utilities/'.$batch_no.'/'.$option);
+        return redirect('/property/'.Session::get('property_uuid').'/utilities/'.$batch_no.'/'.$this->utility_type);
 
     }
 
     public function render()
     {
 
-          $statuses = Utility::where('property_uuid', $this->property_uuid)
+          $statuses = Utility::where('property_uuid', Session::get('property_uuid'))
           ->select('status')
           ->whereNotNull('status')
           ->posted()
           ->groupBy('status')
           ->get();
 
-        $types = Utility::where('property_uuid', $this->property_uuid)
+        $types = Utility::where('property_uuid', Session::get('property_uuid'))
           ->select('type')
           ->whereNotNull('type')
              ->posted()
           ->groupBy('type')
           ->get();
 
-          $dates = Utility::where('property_uuid', $this->property_uuid)
+          $dates = Utility::where('property_uuid', Session::get('property_uuid'))
           ->select('start_date')
           ->whereNotNull('start_date')
           ->posted()
@@ -127,7 +130,7 @@ class UtilityIndexComponent extends Component
           $utilities = Utility::posted()
           ->select('*', 'units.unit as unit_name' )
           ->join('units', 'utilities.unit_uuid', 'units.uuid')
-          ->where('utilities.property_uuid', $this->property_uuid)
+          ->where('utilities.property_uuid', Session::get('property_uuid'))
           ->when($this->status, function($query){
           $query->where('utilities.status',$this->status);
           })

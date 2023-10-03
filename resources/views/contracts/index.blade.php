@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title','Contracts | '. Session::get('property_name'))
+    @section('title','Contracts | '. env('APP_NAME'))
     {{-- @can('contract')
     @include('admin.restrictedpages.contract')
     @else --}}
@@ -14,7 +14,8 @@
                     target="_blank" href="{{ asset('/brands/docs/Contract of Lease TEMPLATE.docx') }}" target="_blank"
                     class=" hover:text-indigo-900">Download Sample Lease Contract</a>
 
-                <button type="button" onclick="window.location.href='/property/{{ Session::get('property') }}/unit'"
+                <button type="button"
+                    onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/unit'"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-700 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
                     New</button>
 

@@ -1,7 +1,10 @@
+<?php $name = auth()->user()->name;
+    $firstName = explode(" ",$name);
+?>
 <div class="h-full pb-36">
     <div class=" fixed w-1/2 bg-gray-50" aria-hidden="true"></div>
     <div class=" fixed min-h-screen right-1 w-1/3 lg:bg-gradient-to-r from-purple-400 to-gray-400  sm:bg-gray-50" aria-hidden="true"></div>
-    
+
     <div class="relative flex min-h-screen flex-col">
         <div class="mt-5  lg:px-1">
             <div class="mt-1 flex items-end justify-end">
@@ -9,9 +12,7 @@
                 <div class="mx-10 m-5 grid sm:grid-cols-1 gap-x-4 lg:grid-cols-6">
                     <div class="col-span-3">
                     <h1 class="text-left text-xl font-bold tracking-tight sm:text-xl lg:text-2xl">
-                                        <?php $name = auth()->user()->name; 
-                                                    $firstName = explode(" ",$name)
-                                                ?>
+
                                         <span class="block  font-semibold text-gray-700">Welcome back, <span
                                                 class=" text-purple-900 font-bold ">{{ $firstName[0] }}!</span></span>
 
@@ -52,23 +53,18 @@
                         </h1>
 
                     </div>
-                    
+
                 </div>
             </div>
 
 
-            
+            <div class="ml-auto mr-auto px-5 gap-y-5  sm:mt-10 sm:grid grid-cols-1 lg:grid-cols-8 lg:">
 
 
-
-
-                <div class="ml-auto mr-auto px-5 gap-y-5  sm:mt-10 sm:grid grid-cols-1 lg:grid-cols-8 lg:">
-
-               
 
                     <div class="col-span-5">
                         <div class="">
-                            
+
                             <div class="border-b border-gray-200 dark:border-gray-700 mb-4">
                                 <ul class="flex flex-wrap -mb-px" id="dashboard" data-tabs-toggle="#dashboardTab" role="tablist">
                                     <li class="mr-2" role="presentation">
@@ -77,12 +73,12 @@
                                     <li class="mr-2" role="presentation">
                                         <button class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300" id="charts-tab" data-tabs-target="#charts" type="button" role="tab" aria-controls="charts" aria-selected="false">Charts</button>
                                     </li>
-                                    
+
                                 </ul>
                             </div>
                             <div id="dashboardTab">
                                 <div class="p-2 rounded-lg dark:bg-gray-800" id="overview" role="tabpanel" aria-labelledby="overview-tab">
-                                    
+
                                 <!-- metrics -->
                                 <div class="w-max-screen-xl mx-auto px-4">
                                     <!--grid wrapper div-->
@@ -92,13 +88,13 @@
                                         <div class="w-full sm:w-1/2 lg:w-1/5 flex flex-col p-4">
                                             <!--grid content div 1-->
                                             <div class="flex-1 px-2 py-3">
-                                            
+
                                                 <div class="sm:w-full bg-purple-300 lg:w-36  h-full overflow-hidden rounded-lg shadow-md rounded-5xl mb-5">
                                                     <div class="flex items-center px-5 py-3">
-    
+
                                                         <div class="mr-5">
                                                             <div class="">
-                                                                @if($previous_monthly_collections > $current_monthly_collections)
+                                                                @if($collections->posted()->where('created_at', Carbon\Carbon::now()->subMonth())->sum('collection') > $collections->posted()->where('created_at', Carbon\Carbon::now()->month())->sum('collection'))
                                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                                     stroke-width="1.5" stroke="currentColor" class="text-purple-900 w-8 h-8">
                                                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -111,39 +107,38 @@
                                                                         d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
                                                                 </svg>
                                                                 @endif
-    
-    
+
+
                                                             </div>
                                                             <div class="flex items-center">
-    
-    
-                                                                <div class="text-3xl font-bold text-white mr-2">{{
-                                                                    App\Http\Controllers\CollectionController::shortNumber($current_monthly_collections)
-                                                                    }}</div>
-                                                                <?php $change_in_monthly_collections = App\Http\Controllers\CollectionController::divNumber($current_monthly_collections, $previous_monthly_collections)*100;?>
-                                                                @if($previous_monthly_collections > $current_monthly_collections)
-                                                                <div class="text-md font-medium text-red-500">-{{
+
+                                                                <div class="text-3xl font-bold text-white mr-2">
+                                                                    {{App\Http\Controllers\CollectionController::shortNumber($collections->posted()->where('created_at', Carbon\Carbon::now()->month)->sum('collection'))}}
+                                                                </div>
+                                                                <?php $change_in_monthly_collections = App\Http\Controllers\CollectionController::divNumber($collections->posted()->where('created_at', Carbon\Carbon::now()->month())->sum('collection'), $collections->where('created_at', Carbon\Carbon::now()->subMonth())->sum('collection'))*100;?>
+                                                                @if($collections->where('created_at', Carbon\Carbon::now()->subMonth())->sum('collection') > $collections->posted()->where('created_at', Carbon\Carbon::now()->month())->sum('collection'))
+                                                                <div class="text-md font-medium text-red-500">{{
                                                                     number_format($change_in_monthly_collections, 1) }}%</div>
                                                                 @else
                                                                 <div class="text-md font-medium text-green-500">{{
                                                                     number_format($change_in_monthly_collections, 1) }}%</div>
                                                                 @endif
-    
+
                                                             </div>
                                                             <div class="mt-2 text-sm text-gray-500"><span class="font-light">Monthly</span>
                                                             </div>
                                                             <div class="text-md text-gray-700"><span class="font-semibold">Revenue</span>
                                                             </div>
-    
+
                                                         </div>
-    
+
                                                     </div>
                                                 </div>
 
-                   
+
                                             </div>
-                                            
-                                            
+
+
                                         </div>
                                         <!--grid column div 2-->
                                         <div class="w-full sm:w-1/2 lg:w-1/5 flex flex-col p-4">
@@ -153,7 +148,7 @@
                                                     <div class="flex items-center px-5 py-3">
                                                         <div class="mr-5">
                                                             <div class="">
-                                                                @if($previous_monthly_expenses > $current_monthly_expenses)
+                                                                @if($expenses->where('created_at', Carbon\Carbon::now()->subMonth())->where('status', 'completed')->sum('amount') > $expenses->where('created_at', Carbon\Carbon::now()->month)->where('status', 'completed')->sum('amount'))
                                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                                     stroke-width="1.5" stroke="currentColor" class="text-purple-900 w-8 h-8">
                                                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -171,16 +166,16 @@
                                                             <div class="flex items-center">
 
 
-                                                                <div class="text-3xl font-bold text-white mr-2">{{
-                                                                    App\Http\Controllers\CollectionController::shortNumber($current_monthly_expenses)
-                                                                    }}</div>
-                                                                <?php $change_in_monthly_expenses = App\Http\Controllers\CollectionController::divNumber($current_monthly_expenses, $previous_monthly_expenses)*100;?>
-                                                                @if($previous_monthly_expenses > $current_monthly_expenses)
+                                                                <div class="text-3xl font-bold text-white mr-2">
+                                                                    {{App\Http\Controllers\CollectionController::shortNumber($expenses->where('created_at', Carbon\Carbon::now()->month())->where('status', 'completed')->sum('amount')) }}
+                                                                </div>
+                                                                <?php $change_in_monthly_expenses = App\Http\Controllers\CollectionController::divNumber($expenses->where('created_at', Carbon\Carbon::now()->month())->where('status', 'completed')->sum('amount'), $expenses->where('created_at', Carbon\Carbon::now()->subMonth())->where('status', 'completed')->sum('amount'))*100;?>
+                                                                @if($expenses->where('created_at', Carbon\Carbon::now()->subMonth())->where('status', 'completed')->sum('amount') > $expenses->where('created_at', Carbon\Carbon::now()->month())->where('status', 'completed')->sum('amount'))
                                                                 <div class="text-md font-medium text-red-500">-{{
-                                                                    number_format($change_in_monthly_expenses, 1) }}%</div>
+                                                                    number_format($expenses->where('created_at', Carbon\Carbon::now()->subMonth())->where('status', 'completed')->sum('amount'), 1) }}%</div>
                                                                 @else
                                                                 <div class="text-md font-medium text-green-500">{{
-                                                                    number_format($change_in_monthly_expenses, 1) }}%</div>
+                                                                    number_format($expenses->where('created_at', Carbon\Carbon::now()->month())->where('status', 'completed')->sum('amount'), 1) }}%</div>
                                                                 @endif
 
                                                             </div>
@@ -209,7 +204,7 @@
 
                                                             <div class="flex items-center">
                                                                 <div class="text-3xl font-semibold text-gray-400 mr-2">{{
-                                                                    number_format($current_occupancy_rate->occupancy_rate, 1) }}%</div>
+                                                                    number_format($currentOccupancyRate->occupancy_rate, 1) }}%</div>
 
                                                             </div>
                                                             <div class="text-sm text-gray-700">Occupancy</div>
@@ -219,7 +214,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                                    
+
                                         <!--grid column div 4-->
                                         <div class="w-full sm:w-1/2 lg:w-1/5 flex flex-col p-4">
                                             <!--grid content div 4-->
@@ -234,10 +229,7 @@
                                                             </svg>
 
                                                             <div class="flex items-center">
-                                                                <div class="text-3xl font-semibold text-gray-400 mr-2">{{
-                                                                    $current_monthly_moveins
-                                                                    }}</div>
-
+                                                                <div class="text-3xl font-semibold text-gray-400 mr-2">{{ $contracts->where('status', 'active')->whereDate('start',Carbon\Carbon::now()->month)->count() }}</div>
                                                             </div>
                                                             <div class="text-sm text-gray-700">Moveins</div>
                                                         </div>
@@ -261,7 +253,7 @@
 
                                                             <div class="flex items-center">
                                                                 <div class="text-3xl font-semibold text-gray-400 mr-2">{{
-                                                                    $current_monthly_moveins
+                                                                    $contracts->where('status', 'inactive')->whereDate('end',Carbon\Carbon::now()->month)->count()
                                                                     }}</div>
                                                             </div>
                                                             <div class="text-sm text-gray-500">Moveouts</div>
@@ -283,7 +275,7 @@
                                     <div class="w-full md:w-full lg:w-1/2 flex flex-col p-4">
                                         <div class="flex-1 px-2 py-2">
                                             <div class=" bg-white rounded-lg shadow-md p-5 h-full">
-               
+
                                                 <div class="border-b border-gray-200 dark:border-gray-700 mb-4">
                                                     <ul class="flex flex-wrap -mb-px" id="myTab" data-tabs-toggle="#myTabContent"
                                                         role="tablist">
@@ -305,44 +297,44 @@
                                                                 id="settings-tab" data-tabs-target="#settings" type="button" role="tab"
                                                                 aria-controls="settings" aria-selected="false">Moveout</button>
                                                         </li>
-                                            
+
                                                     </ul>
                                                 </div>
-                
+
                                                 <div id="myTabContent">
 
-                                                    <div class=" rounded-lg dark:bg-gray-800 hidden" id="profile" role="tabpanel"
+                                                    <div class="rounded-lg dark:bg-gray-800 hidden" id="profile" role="tabpanel"
                                                         aria-labelledby="profile-tab">
                                                         <div
                                                             class="mt-3 mb-5 justify-center  grid grid-cols-2 gap-y-5 gap-x-2 sm:grid-cols-2 lg:grid-cols-2 lg:gap-x-2">
-                                            
+
                                                             <div class="col-span-1">
                                                                 <div class="h-5 w-full overflow-hidden">
                                                                     <div class="flex items-center ">
                                                                         <div class="">
                                                                             <div class="ml-2 flex items-center">
-                                            
-                                            
+
+
                                                                                 <span class="animate-pulse mx-1 text-red-600">{{
-                                                                                    $payment_requests->count() }}</span>
+                                                                                    $paymentRequests->count() }}</span>
                                                                                 <div class="text-sm font-regular text-gray-600">
                                                                                     Pending Payments</div>
-                                            
+
                                                                             </div>
-                                            
+
                                                                         </div>
-                                            
+
                                                                     </div>
-                                            
+
                                                                 </div>
-                                            
-                                            
-                                            
+
+
+
                                                             </div>
-                                            
-                                            
+
+
                                                         </div>
-                                                        @foreach ($payment_requests->take(4)->get() as $item)
+                                                        @foreach ($paymentRequests->take(4)->get() as $item)
                                                         <li class="border-gray-400 flex flex-row mb-2">
                                                             <div
                                                                 class="select-none cursor-pointer bg-white rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
@@ -353,15 +345,15 @@
                                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                                             d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
                                                                     </svg>
-                                            
+
                                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                                         d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                                                                     </svg>
-                                            
+
                                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                                         d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
                                                                     </svg>
-                                            
+
                                                                 </div>
                                                                 <div class="flex-1 pl-1 mr-16">
                                                                     <div class="font-medium">{{ $item->tenant }}</div>
@@ -370,8 +362,8 @@
                                                                 </div>
                                                                 <div button type="button"
                                                                     class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                                    <a
-                                                                        href="/property/{{ $property->uuid }}/tenant/{{ $item->tenant_uuid }}/payment_requests/{{ $item->id }}">View</a></button>
+                                                                    <a target="_blank"
+                                                                        href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $item->tenant_uuid }}/payment_requests/{{ $item->id }}">View</a></button>
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -381,37 +373,42 @@
                                                         <div class="flex justify-end gap-2">
                                                             <div
                                                                 class="items-center text-center px-2.5 py-1 mt-3  text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-900">
-                                                                <a href="/property/{{ $property->uuid }}/collection/pending">See more
+                                                                <a href="/property/{{ Session::get('property_uuid') }}/collection/{{ 'pending' }}/{{ Session::get('property_uuid') }}">See more
                                                                     payment
                                                                     requests</a></button>
                                                             </div>
-                                            
+
                                                         </div>
                                                     </div>
 
                                                     <div class="rounded-lg dark:bg-gray-800" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
                                                         <div class="mt-3 mb-5 justify-center  grid grid-cols-2 gap-y-5 gap-x-2 sm:grid-cols-2 lg:grid-cols-2 lg:gap-x-2">
-                                                            <div class="col-span-1">
+                                                           <div class="col-span-1">
                                                                 <div class="h-5 w-full overflow-hidden">
-                                                                    <!-- <div class="flex items-center ">
+                                                                    <div class="flex items-center ">
                                                                         <div class="">
                                                                             <div class="ml-2 flex items-center">
+
+
                                                                                 <span class="animate-pulse mx-1 text-red-600">{{
-                                                                                    $pending_concerns->count() }}</span>
+                                                                                    $concerns->where('status', 'pending')->count() }}</span>
                                                                                 <div class="text-sm font-regular text-gray-600">
-                                                                                    Concerns Received</div>
-                                            
+                                                                                    Pending Concerns</div>
+
                                                                             </div>
-                                            
+
                                                                         </div>
-                                            
-                                                                    </div> -->
-                                            
+
+                                                                    </div>
+
                                                                 </div>
+
+
+
                                                             </div>
                                                         </div>
 
-                                                        @foreach ($pending_concerns->take(4)->get() as $item)
+                                                        @foreach ($concerns->where('status', 'pending')->take(4)->get() as $item)
                                                         <li class="border-gray-400 flex flex-row mb-2">
                                                             <div
                                                                 class="select-none cursor-pointer bg-white rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
@@ -422,36 +419,40 @@
                                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                                             d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                                                                     </svg>
-                                            
+
                                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                                         d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
                                                                     </svg>
-                                            
+
                                                                 </div>
                                                                 <div class="flex-1 pl-1 mr-16">
-                                                                    <div class="font-medium">{{ $item->tenant->tenant }}</div>
+                                                                    <div class="font-medium">
+                                                                        @if($item->tenant_uuid)
+                                                                        {{ $item->tenant->tenant }} - {{ $item->unit->unit }}
+                                                                        @else
+                                                                        {{ $item->unit->unit }}
+                                                                        @endif
+                                                                    </div>
                                                                     <div class="text-gray-600 text-sm">{{ $item->category->category }}</div>
                                                                 </div>
                                                                 <div button type="button"
                                                                     class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                                    <a
-                                                                        href="/property/{{ $property->uuid }}/tenant/{{ $item->tenant_uuid }}/concern/{{ $item->id }}/edit">Respond</a></button>
+                                                                   @if($item->tenant_uuid)
+                                                                                <a target="_blank"
+                                                                                    href="/property/{{ Session::get('property_uuid') }}/concern/{{ $item->id }}/edit">Respond</a>
+                                                                                @else
+                                                                                <a target="_blank"
+                                                                                    href="/property/{{ Session::get('property_uuid') }}/concern/{{ $item->id }}/edit">Respond</a>
+                                                                                @endif
                                                                 </div>
-                                            
+
                                                             </div>
-                                            
+
                                                         </li>
                                                         <span class="text-sm">{{ Carbon\Carbon::parse($item->created_at)->diffForHumans()
                                                             }}</span>
                                                         @endforeach
-                                                        <!-- <div class="flex justify-end gap-2">
-                                                            <div
-                                                                class="items-center text-center px-2.5 py-1 mt-3  text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-900">
-                                                                <a href="/property/{{ $property->uuid }}/concern">See more
-                                                                    concerns</a></button>
-                                                            </div>
-                                            
-                                                        </div> -->
+
                                                     </div>
 
                                                     <div class="rounded-lg dark:bg-gray-800 hidden" id="settings" role="tabpanel"  aria-labelledby="settings-tab">
@@ -462,20 +463,20 @@
                                                                         <div class="">
                                                                             <div class="ml-2 flex items-center">
                                                                                 <span class="animate-pulse mx-1 text-red-600">{{
-                                                                                    $pending_contracts->count() }}</span>
+                                                                                    $contracts->where('status', 'pending')->count() }}</span>
                                                                                 <div class="text-sm font-regular text-gray-600">
                                                                                     Moveout Requests</div>
-                                            
+
                                                                             </div>
-                                            
+
                                                                         </div>
-                                            
+
                                                                     </div>
-                                            
+
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        @foreach ($pending_contracts->take(4) as $item)
+                                                        @foreach ($contracts->where('status', 'pending')->take(4) as $item)
                                                         <li class="border-gray-400 flex flex-row mb-2">
                                                             <div
                                                                 class="select-none cursor-pointer bg-white rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
@@ -486,8 +487,8 @@
                                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                                             d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
                                                                     </svg>
-                                            
-                                            
+
+
                                                                 </div>
                                                                 <div class="flex-1 pl-1 mr-16">
                                                                     <div class="font-medium">{{ $item->tenant->tenant }}</div>
@@ -496,7 +497,7 @@
                                                                 <div button type="button"
                                                                     class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                                                     <a
-                                                                        href="/property/{{ $property->uuid }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout">View</a></button>
+                                                                        href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout">View</a></button>
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -506,11 +507,11 @@
                                                         <div class="flex justify-end gap-2">
                                                             <div
                                                                 class="items-center text-center px-2.5 py-1 mt-3  text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-900">
-                                                                <a href="/property/{{ $property->uuid }}/contract/pendingmoveout">See more
+                                                                <a href="/property/{{ Session::get('property_uuid') }}/contract/pendingmoveout">See more
                                                                     moveout
                                                                     requests</a></button>
                                                             </div>
-                                            
+
                                                         </div>
                                                     </div>
 
@@ -536,61 +537,56 @@
                                                                 <div class="p-4">
                                                                     <div class="flex items-start">
                                                                         <div class="flex-shrink-0">
-                                                                            
+
                                                                         </div>
                                                                         <div class="ml-3 w-0 flex-1 pt-0.5">
-    
+
                                                                             <p class="text-sm font-medium text-gray-900">Total
                                                                                 Bills for Collection</p>
                                                                             <p class="mt-1 text-2xl font-semibold text-gray-500">
-                                                                                {{
-                                                                                App\Http\Controllers\CollectionController::shortNumber($total_uncollected_bills
-                                                                                + $total_collected_bills)
-                                                                                }}
+                                                                                {{ App\Http\Controllers\CollectionController::shortNumber($bills->posted()->where('created_at', Carbon\Carbon::now()->month())->sum('bill'))  }}
                                                                             </p>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-    
+
                                                             <div
                                                                 class="mb-5 bg-purple-100 w-full shadow-md rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
                                                                 <div class="p-4">
                                                                     <div class="flex items-start">
-    
+
                                                                         <div class="flex-shrink-0">
-                                                                            
+
                                                                         </div>
                                                                         <div class="ml-3 w-0 flex-1 pt-0.5">
-    
+
                                                                             <p class="text-sm font-medium text-gray-900">
-                                                                                Collected Amount </p>
+                                                                                Collected Bills </p>
                                                                             <p class="mt-1 text-2xl font-semibold text-gray-500">
-                                                                                {{
-                                                                                App\Http\Controllers\CollectionController::shortNumber($total_collected_bills)
-                                                                                }}</p>
+                                                                                {{  App\Http\Controllers\CollectionController::shortNumber($collections->posted()->where('created_at', Carbon\Carbon::now()->month())->sum('collection'))  }}
+                                                                            </p>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-    
-    
+
+
                                                             <div
                                                                 class="mb-5 bg-indigo-200 w-full shadow-md rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
                                                                 <div class="p-4">
                                                                     <div class="flex items-start">
                                                                         <div class="flex-shrink-0">
-                                                                            
+
                                                                         </div>
-    
+
                                                                         <div class="ml-3 w-0 flex-1 pt-0.5">
-    
+
                                                                             <p class="text-sm font-medium text-gray-900">Total
                                                                                 Unpaid Collection:</p>
                                                                             <p class="mt-1 text-2xl font-semibold text-gray-500">
-                                                                                {{
-                                                                                App\Http\Controllers\CollectionController::shortNumber($total_uncollected_bills)
-                                                                                }}</p>
+                                                                                {{  App\Http\Controllers\CollectionController::shortNumber($bills->posted()->where('status', 'unpaid')->where('created_at', Carbon\Carbon::now()->month())->sum('bill')) }}
+                                                                            </p>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -599,7 +595,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>        
+                                        </div>
                                         </div>
                                    </div>
                                    <!-- expiring contracts -->
@@ -616,11 +612,11 @@
                                                  class="items-center text-center px-2.5 py-1.5 border w-20 mt-5 border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                                  </button>
                                              </div>
-                 
-                 
+
+
                                          </div>
                                     </div>
-                    
+
                                 </div>
                             </div>
                                     <!--grid column div 2-->
@@ -635,13 +631,13 @@
                                                             <div class="pl-5 ml-4 text-xl font-semibold text-black ">Delinquents</div>
                                                         </div>
                                                     </div>
-        
+
                                                     <!-- component -->
                                                     <div class="container flex mx-auto w-full items-center justify-center">
-                            
+
                                                         <ul class="flex flex-col bg-gray-200 p-4">
-                                                            @foreach ($delinquent_tenants->take(4) as $item)
-                                                            <a href="/property/{{ $property->uuid }}/tenant/{{ $item->tenant->uuid }}/bills">
+                                                            @forelse ($delinquentTenants as $item)
+                                                            <a href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $item['tenant_uuid'] }}/bills">
                                                                 <li class="border-gray-400 flex flex-row mb-2">
                                                                     <div
                                                                         class="select-none cursor-pointer bg-white rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
@@ -653,33 +649,31 @@
                                                                                     d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
                                                                                     clip-rule="evenodd" />
                                                                             </svg>
-                            
-                            
+
+
                                                                         </div>
                                                                         <div class="flex-1 pl-1 mr-16">
-                                                                            <div class="font-medium">{{ $item->tenant->tenant }} (T)</div>
-                                                                            <div class="font-light">{{
-                                                                                App\Http\Controllers\CollectionController::shortNumber(number_format($item->balance,
-                                                                                2))
-                                                                                }}</div>
+                                                                            <div class="font-medium">{{ $item['tenant'] }} (T)</div>
+                                                                            <div class="font-light">{{App\Http\Controllers\CollectionController::shortNumber(($item['balance']))}}</div>
                                                                         </div>
-                            
+
                                                                     </div>
                                                                 </li>
                                                             </a>
-                                                            @endforeach
-                            
+                                                            @empty
+                                                            @endforelse
+
                                                         </ul>
-                            
-                            
-                            
+
+
+
                                                     </div>
-                            
-                                                    {{-- <div class="container flex mx-auto w-full items-center justify-center">
-                            
+
+                                                    <div class="container flex mx-auto w-full items-center justify-center">
+
                                                         <ul class="flex flex-col bg-gray-200 p-4">
-                                                            @foreach ($delinquent_owners as $item)
-                                                            <a href="/property/{{ $property->uuid }}/owner/{{ $item->owner->uuid }}/bills">
+                                                            @forelse ($delinquentOwners as $item)
+                                                            <a href="/property/{{ Session::get('property_uuid') }}/owner/{{ $item['owner_uuid'] }}/bills">
                                                                 <li class="border-gray-400 flex flex-row mb-2">
                                                                     <div
                                                                         class="select-none cursor-pointer bg-white rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
@@ -691,30 +685,30 @@
                                                                                     d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
                                                                                     clip-rule="evenodd" />
                                                                             </svg>
-                            
-                            
+
+
                                                                         </div>
                                                                         <div class="flex-1 pl-1 mr-16">
-                                                                            <div class="font-medium">{{ $item->owner->owner }} (O)</div>
+                                                                            <div class="font-medium">{{ $item['owner'] }} (O)</div>
                                                                             <div class="font-light">{{
-                                                                                App\Http\Controllers\CollectionController::shortNumber(number_format($item->balance,
-                                                                                2))
+                                                                                App\Http\Controllers\CollectionController::shortNumber(($item['balance']))
                                                                                 }}</div>
                                                                         </div>
-                            
+
                                                                     </div>
                                                                 </li>
                                                             </a>
-                                                            @endforeach
-                            
+                                                            @empty
+                                                            @endforelse
+
                                                         </ul>
-                                                    </div> --}}
-                            
-                                                    {{-- <div class="container flex mx-auto w-full items-center justify-center">
-                            
+                                                    </div>
+
+                                                <div class="container flex mx-auto w-full items-center justify-center">
+
                                                         <ul class="flex flex-col bg-gray-200 p-4">
-                                                            @foreach ($delinquent_guests as $item)
-                                                            <a href="/property/{{ $property->uuid }}/guest/{{ $item->guest->uuid }}/bills">
+                                                            @forelse ($delinquentGuests as $item)
+                                                            <a href="/property/{{ Session::get('property_uuid')}}/guest/{{ $item['guest_uuid'] }}/bills">
                                                                 <li class="border-gray-400 flex flex-row mb-2">
                                                                     <div
                                                                         class="select-none cursor-pointer bg-white rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
@@ -726,30 +720,30 @@
                                                                                     d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
                                                                                     clip-rule="evenodd" />
                                                                             </svg>
-                            
-                            
+
+
                                                                         </div>
                                                                         <div class="flex-1 pl-1 mr-16">
-                                                                            <div class="font-medium">{{ $item->guest->guest }} (O)</div>
+                                                                            <div class="font-medium">{{ $item['guest'] }} (G)</div>
                                                                             <div class="font-light">{{
-                                                                                App\Http\Controllers\CollectionController::shortNumber(number_format($item->balance,
-                                                                                2))
+                                                                                App\Http\Controllers\CollectionController::shortNumber(($item['balance']))
                                                                                 }}</div>
                                                                         </div>
-                            
+
                                                                     </div>
                                                                 </li>
                                                             </a>
-                                                            @endforeach
-                            
+                                                            @empty
+                                                            @endforelse
+
                                                         </ul>
-                                                    </div> --}}
-                            
-                            
+                                                    </div>
+
+
                                                 </div>
-                            
-                            
-                                            </div>                                            
+
+
+                                            </div>
                                         </div>
                                         <!--grid column div 2-->
                                     <div class="w-full sm:w-1/2 lg:w-1/2 flex flex-col p-4">
@@ -763,14 +757,14 @@
                                                             <div class="pl-5 ml-4 text-xl font-semibold text-black ">Personnels</div>
                                                         </div>
                                                     </div>
-        
+
                                                     <!-- component -->
                                                     <div class="container flex mx-auto w-full items-center justify-center">
-                            
+
                                                         <ul class="flex flex-col bg-indigo-200 p-4">
-                                                        
+
                                                         @foreach ($personnels->take(4) as $item)
-                                                        
+
                                                                 <li class="border-gray-400 flex flex-row mb-2">
                                                                     <div
                                                                         class="select-none cursor-pointer bg-white rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
@@ -782,27 +776,27 @@
                                                                                     d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
                                                                                     clip-rule="evenodd" />
                                                                             </svg>
-                            
-                            
+
+
                                                                         </div>
                                                                         <div class="flex-1 pl-1 mr-16">
                                                                             <div class="font-medium">{{ $item->user->name }}</div>
                                                                             <div class="text-gray-600 text-sm">{{ $item->user->role->role }}</div>
                                                                         </div>
-                            
+
                                                                     </div>
                                                                 </li>
-                                                          
+
                                                             @endforeach
-                            
+
                                                         </ul>
-                            
-                            
-                            
+
+
+
                                                     </div>
-                            
+
                                                     <div class="flex justify-end pb-5 pr-5 gap-2">
-                                                        <a href="/property/{{ $property->uuid }}/user">
+                                                        <a href="/property/{{ Session::get('property_uuid')}}/user">
                                                             <div
                                                                 class="items-center text-center px-2.5 mt-3 py-2 text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                                                 See more personnels
@@ -810,22 +804,22 @@
                                                         </a>
                                                     </div>
 
-                                                    
+
                                                 </div>
-                            
-                                            </div>                                            
+
+                                            </div>
                                         </div>
                                     </div>
-                                                   
+
                                 </div>
-                            
+
                             </div>
-                            
-                            
+
+
 
                                 <!-- charts tab -->
                                 <div class="p-4 rounded-lg dark:bg-gray-800 hidden" id="charts" role="tabpanel" aria-labelledby="charts-tab">
-                                
+
                                 <div class="mx-10 lg:-ml-1 mt-10 col-span-4">
 
                                 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer>
@@ -917,6 +911,7 @@
                             </div>
                         </div>
                     </div>
+                                </div>
 
                     <script>
                         function app() {
@@ -968,19 +963,19 @@
                                         backgroundColor: [
                                           "rgb(133, 105, 241)",
                                           "rgb(199, 210, 254)",
-                                         
+
                                         ],
                                         hoverOffset: 4,
                                       },
                                     ],
                                   };
-          
+
                                   const configDoughnut = {
                                     type: "doughnut",
                                     data: dataDoughnut,
                                     options: {},
                                   };
-          
+
                                   var chartBar = new Chart(
                                     document.getElementById("chartDoughnut"),
                                     configDoughnut
@@ -988,445 +983,3 @@
                     </script>
                 </div>
 
-                                <!-- income expense chart -->
-                                <div class="hidden">
-                                    <div class="bg-white mt-5 mr-5 pt-12 px-5 rounded-lg shadow-lg lg:my-10 sm:my-20 pb-4 col-span-4">
-                                        <div class="px-4 py-3 flex justify-end  sm:px-6">
-                                            <div>
-                                                {{-- <select wire:model="collectionLineValue"
-                                                    class="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
-                                                    <option value="30_days">30 days</option>
-                                                    <option value="90_days">90 days</option>
-                                                    <option value="this_year">This year</option>
-                                                </select> --}}
-                                            </div>
-                                        </div>
-                                        <div class="relative flex flex-col  break-words  mb-6 ">
-                                            <div class="p-4 flex-auto">
-                                                <!-- Chart -->
-                                                <div class="relative h-350-px">
-                                                    <canvas id="line-chart"></canvas>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" charset="utf-8">
-                                        </script>
-
-                                        <script type="text/javascript">
-                                            (function () {
-                                    /* Chart initialisations */
-                                    /* Line Chart */
-                                    var config = {
-                                    
-                                    type: "line",
-                                    data: {
-                                        labels: {!!$collection_rate_date!!}, 
-                                        datasets: [
-                                        {
-                                            label: "Income",
-                                            backgroundColor: "#9370DB",
-                                            borderColor: "#9370DB",
-                                            data: {!!$collection_rate_value!!},
-                                            fill: false,
-                                        },
-                                        {
-                                            label: "Expense",
-                                            fill: false,
-                                            backgroundColor: "#DB7093",
-                                            borderColor: "	#DB7093",
-                                            data: {!!$expense_rate_value!!},
-                                        },
-                                        ],
-                                    },
-                                    options: {
-                                        maintainAspectRatio: false,
-                                        responsive: true,
-                                        title: {
-                                        display: false,
-                                        text: "Sales Charts",
-                                        fontColor: "gray",
-                                        },
-                                        legend: {
-                                        labels: {
-                                            fontColor: "gray",
-                                        },
-                                        align: "end",
-                                        position: "bottom",
-                                        },
-                                        tooltips: {
-                                        mode: "index",
-                                        intersect: false,
-                                        },
-                                        hover: {
-                                        mode: "nearest",
-                                        intersect: true,
-                                        },
-                                        scales: {
-                                        xAxes: [
-                                            {
-                                            ticks: {
-                                                fontColor: "rgba(169,169,169,.7)",
-                                            },
-                                            display: true,
-                                            scaleLabel: {
-                                                display: false,
-                                                labelString: "Month",
-                                                fontColor: "gray",
-                                            },
-                                            gridLines: {
-                                                display: false,
-                                                borderDash: [2],
-                                                borderDashOffset: [2],
-                                                color: "rgba(147,112,219,0.3)",
-                                                zeroLineColor: "rgba(0, 0, 0, 0)",
-                                                zeroLineBorderDash: [2],
-                                                zeroLineBorderDashOffset: [2],
-                                            },
-                                            },
-                                        ],
-                                        yAxes: [
-                                            {
-                                            ticks: {
-                                                fontColor: "rgba(169,169,169,.7)",
-                                            },
-                                            display: true,
-                                            scaleLabel: {
-                                                display: false,
-                                                labelString: "Value",
-                                                fontColor: "gray",
-                                            },
-                                            gridLines: {
-                                                borderDash: [3],
-                                                borderDashOffset: [3],
-                                                drawBorder: false,
-                                                color: "",
-                                                zeroLineColor: "rgba(147,112,219,0)",
-                                                zeroLineBorderDash: [2],
-                                                zeroLineBorderDashOffset: [2],
-                                            },
-                                            },
-                                        ],
-                                        },
-                                    },
-                                    };
-                                    var ctx = document.getElementById("line-chart").getContext("2d");
-                                    window.myLine = new Chart(ctx, config);
-                                })();
-                                    </script>
-
-
-                                    </div>
-                                </div>
-
-                                <!-- collection rate -->
-
-
-                                <!-- occupancy graph -->
-                                <div>
-                                    <div class="lg:my-10 sm:my-5 mt-10 col-span-2 mx-2">
-                                        <div class=" px-2 bg-white h-full py-10 rounded-lg shadow-md  w-full">
-                                            <h2 class="px-2 font-semibold text-lg">Occupancy Graph</h2>
-                                            <canvas class="" id="chartLine"></canvas>
-                                            <!-- graph chart.js -->
-                                            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                                        
-                                            <!-- chart line -->
-                                            <script>
-                                                const data = {
-                                                labels: {!!$occupancy_rate_date!!},
-                                                datasets: [
-                                                {
-                                                label: "Occupancy ",
-                                                backgroundColor: "rgba(244, 114, 182)",
-                                                borderColor: "rgba(244, 114, 182)",
-                                                data: {!!$occupancy_rate_value!!},
-                                                },
-                                                
-                                                ],
-                                                
-                                                };
-                                                
-                                                const configLineChart = {
-                                                type: "line",
-                                                data,
-                                                options: {},
-                                                };
-                                                
-                                                var chartLine = new Chart(
-                                                document.getElementById("chartLine"),
-                                                configLineChart
-                                                );
-                                            </script>
-                                        </div>
-                                    </div>
-                                </div>
-                                                
-
-                                
-
-
-
-                                
-                                </div>
-                                
-                                
-                            </div>
-
-                            
-                        
-                    </div>
-                    
-                        
-                        <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script> 
-                    
-                    </div>
-                    
-                    
-                    
-
-                    <div class="lg:my-6 sm:my-2 lg:mx-12 sm:mx-2 w-full col-span-3">
-
-                        <!-- calendar -->
-                        <div
-                            class='flex justify-center items-center mb-8 sm:mx-0 lg:mx-5 bg-white shadow-md rounded-lg p-1 max-w-full '>
-                            <?php $period = Carbon\CarbonPeriod::create(now(), now()->addDays(6)) ;?>
-                            @foreach ($period as $date)
-                            @if($date->format('D') == Carbon\Carbon::now()->format('D') )
-                            <div
-                                class='flex group bg-purple-300 shadow-lg light-shadow rounded-lg mx-1 cursor-pointer justify-center relative w-16 content-center'>
-                                <span class="flex h-3 w-3 absolute -top-1 -right-1">
-                                    <span
-                                        class="animate-ping absolute group-hover:opacity-75 opacity-0 inline-flex h-full w-full rounded-full bg-purple-400 "></span>
-                                    <span class="relative inline-flex rounded-full h-3 w-3 bg-purple-500"></span>
-                                </span>
-                                <div class='flex items-center px-4 py-4'>
-                                    <div class='text-center'>
-                                        <p class='text-purple-900 text-sm'> {{ $date->format('D') }} </p>
-                                        <p class='text-purple-900  mt-3 font-bold'> {{ $date->format('d') }} </p>
-                                    </div>
-                                </div>
-                            </div>
-                            @else
-                            <div
-                                class='flex group hover:bg-purple-100 hover:shadow-lg hover-light-shadow rounded-lg mx-1 transition-all	duration-300	 cursor-pointer justify-center w-10'>
-                                <div class='flex items-center px-4 py-4'>
-                                    <div class='text-center'>
-                                        <p
-                                            class='text-gray-900 group-hover:text-purple-900 text-sm transition-all	duration-300'>
-                                            {{ $date->format('D') }}
-                                        </p>
-                                        <p
-                                            class='text-gray-900 group-hover:text-purple-900 mt-3 group-hover:font-bold transition-all	duration-300'>
-                                            {{ $date->format('d') }} </p>
-                                    </div>
-                                </div>
-                            </div>
-                            @endif
-                            @endforeach
-
-
-                        </div>
-
-
-                        <div
-                            class="bg-white sm:mx-0 lg:mx-5 sm:items-center mb-5 lg:h-72 sm:h-48 md:h-80  overflow-hidden rounded-lg shadow-md rounded-5xl">
-                            <div class="flex items-center pl-7 pr-5 py-5">
-                                <div class="col-span-1">
-                                    <div class="flex justify-end ">
-                                        <div class="underline text-xs text-gray-500"><a href="/property">See
-                                                all properties</a></div>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="1.5" stroke="currentColor" class="text-gray-500 w-10 h-10">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
-                                        </svg>
-                                        <div class="text-xl font-bold text-purple-800 ml-2 mr-2">
-                                            {{ $property->property }}
-                                        </div>
-                                    </div>
-
-
-
-                                    <div
-                                        class="bg-gray-100 w-full rounded-lg mx-3 py-3 justify-center items-center mt-5 grid grid-cols-3 gap-y-5 gap-x-10 sm:grid-cols-3 lg:grid-cols-3 lg:gap-x-10">
-
-                                        <div class="col-span-1 mt-2 -mr-5 border-r border-gray-300">
-                                            <div class="">
-                                                <div class="flex ">
-                                                    <div class="flex-shrink-0">
-                                                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg"
-                                                            viewBox="0 0 53 53" style="enable-background:new 0 0 53 53"
-                                                            xml:space="preserve">
-                                                            <path d="M27 29h3v2h-3z" />
-                                                            <path
-                                                                d="M45 51V1a.999.999 0 0 0-.071-.351c-.008-.02-.013-.04-.022-.06a1.01 1.01 0 0 0-.185-.274l-.049-.046c-.029-.026-.054-.056-.085-.079A.991.991 0 0 0 44.4.085l-.014-.008a.991.991 0 0 0-.349-.07C44.024.007 44.013 0 44 0H10a1 1 0 0 0-1 1v50H4v2h45v-2h-4zm-20-3.82V8.227l18-5.85V50.78l-18-3.6zM11 2h26.687L23.69 6.549A1 1 0 0 0 23 7.5V48a1 1 0 0 0 .804.98L33.901 51H11V2z" />
-                                                        </svg>
-                                                    </div>
-                                                    <div class="w-0 flex-1 -pt-2">
-
-                                                        <p class="ml-2 text-lg font-semibold text-gray-900">
-                                                            {{ $vacant_units->count() }}</p>
-
-                                                    </div>
-
-                                                </div>
-                                                <p class="ml-2 mt-2 text-md font-regular text-indigo-700">
-                                                    Vacant</p>
-                                            </div>
-
-
-
-                                        </div>
-
-
-
-
-                                        <div class="col-span-1 mt-2 -mr-5 border-r border-gray-300">
-                                            <div class="">
-                                                <div class="flex ">
-                                                    <div class="flex-shrink-0">
-                                                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg"
-                                                            viewBox="0 0 52 52" style="enable-background:new 0 0 52 52"
-                                                            xml:space="preserve">
-                                                            <path d="M16.5 28h7v2h-7z" />
-                                                            <path
-                                                                d="M44.5 50V1a1 1 0 0 0-1-1h-34a1 1 0 0 0-1 1v49h-5v2h45v-2h-4zm-31 0V5h26v45h-26zm28 0V4a1 1 0 0 0-1-1h-28a1 1 0 0 0-1 1v46h-1V2h32v48h-1z" />
-                                                        </svg>
-                                                    </div>
-                                                    <div class="w-0 flex-1 -pt-2">
-
-                                                        <p class="ml-2 text-lg font-semibold text-gray-900">
-                                                            {{ $occupied_units->count() }}</p>
-
-                                                    </div>
-
-                                                </div>
-                                                <p class="ml-1 mt-2 text-md font-regular text-indigo-700">
-                                                    Occupied</p>
-                                            </div>
-
-
-
-                                        </div>
-
-
-                                        <div class="col-span-1 mt-2 ">
-                                            <div class="">
-                                                <div class="flex ">
-                                                    <div class="flex-shrink-0">
-                                                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg"
-                                                            viewBox="0 0 433.521 433.521"
-                                                            style="enable-background:new 0 0 433.521 433.521"
-                                                            xml:space="preserve">
-                                                            <path
-                                                                d="M269.568 250.041a7 7 0 1 1 0 14H209.34a7 7 0 1 1 0-14h60.228zm38.856-24.547a7 7 0 0 0-7-7H209.34a7 7 0 1 0 0 14h92.084a7 7 0 0 0 7-7zM157.206 65.186V34.173a7 7 0 0 1 7-7l25.395-.015C189.601 12.184 201.784 0 216.76 0c14.977 0 27.161 12.184 27.161 27.158v.015h25.393a7 7 0 0 1 7 7v31.013a7 7 0 0 1-7 7H164.206a7 7 0 0 1-7-7zm14-7h91.107V41.173H236.92a7 7 0 0 1-7-7v-7.015c0-7.256-5.903-13.158-13.159-13.158-7.257 0-13.161 5.902-13.161 13.158v7.015a7 7 0 0 1-7 7h-25.395v17.013zm212.387-7.181v365.651c0 9.3-7.565 16.865-16.865 16.865H66.793c-9.299 0-16.864-7.565-16.864-16.865V51.005c0-9.3 7.565-16.865 16.864-16.865h67.815a7 7 0 1 1 0 14H95.517v337.661h242.487V48.14h-39.092a7 7 0 1 1 0-14h67.815c9.3 0 16.866 7.565 16.866 16.865zm-14 0c0-1.553-1.313-2.865-2.865-2.865h-14.724v344.661a7 7 0 0 1-7 7H88.517a7 7 0 0 1-7-7V48.14H66.793c-1.553 0-2.864 1.313-2.864 2.865v365.651c0 1.553 1.312 2.865 2.864 2.865h299.935c1.553 0 2.865-1.313 2.865-2.865V51.005zm-240.899 77.317a7 7 0 0 0-2.717 9.52l12.862 23.137a7 7 0 0 0 12.236 0l22.422-40.331a7 7 0 1 0-12.237-6.803l-16.304 29.326-6.744-12.132a6.997 6.997 0 0 0-9.518-2.717zm42.087 86.662a7.001 7.001 0 0 0-9.52 2.717l-16.304 29.325-6.744-12.132a6.998 6.998 0 0 0-9.52-2.717 7 7 0 0 0-2.717 9.52l12.862 23.137a7 7 0 0 0 12.236 0l22.422-40.33a6.998 6.998 0 0 0-2.715-9.52zm38.559-54.799h60.229a7 7 0 1 0 0-14H209.34a7 7 0 1 0 0 14zm92.084-45.547H209.34a7 7 0 1 0 0 14h92.084a7 7 0 1 0 0-14z" />
-                                                        </svg>
-                                                    </div>
-                                                    <div class="w-0 flex-1 -pt-2">
-
-                                                        <p class="ml-2 text-lg font-semibold text-gray-900">
-                                                            {{ $unlisted_units->count() }}</p>
-
-                                                    </div>
-
-                                                </div>
-                                                <p class="ml-1 mt-2 text-md font-regular text-indigo-700">
-                                                    Unlisted</p>
-                                            </div>
-
-
-
-                                        </div>
-
-
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div
-                                class="mx-2 py-3 justify-center items-center grid grid-cols-2 gap-y-5 gap-x-10 sm:grid-cols-2 lg:grid-cols-2 lg:gap-x-2">
-                                <div class="col-span-1">
-                                    <div class="h-10 w-full overflow-hidden">
-                                        <div class="flex items-center ">
-                                            <div class="ml-20 mt-2">
-                                                <div class="flex items-center">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="text-gray-500 w-6 h-6">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819" />
-                                                    </svg>
-                                                    <span class="font-semibold text-gray-800 text-lg mx-1">{{
-                                                        $units->count() }}</span>
-                                                    <div class="text-md font-medium text-purple-600">Units
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-
-                                </div>
-                                <div class="col-span-1">
-                                    <div class="h-10 w-full overflow-hidden">
-                                        <div class="flex items-center ">
-                                            <div class="mt-2">
-                                                <div class="flex items-center">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="text-gray-500 w-6 h-6">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                                                    </svg>
-
-                                                    <span class="font-semibold text-gray-800 text-lg mx-1">{{
-                                                        $tenants->count() }}</span>
-                                                    <div class="text-md font-medium text-purple-600">Tenants
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-                        </div>
-                    </div>
-
-
-
-                </div>
-
-
-
-
-
-
-            </div>
-
-
-
-            
-
-            
-        </div>
-
-        </div>
-        </div>
-
-    </div>
-</div>

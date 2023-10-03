@@ -2,31 +2,49 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Feature;
 use App\Models\Restriction;
 use App\Models\UserRestriction;
+use Session;
+use App\Models\Property;
+use App\Models\Type;
 
 class UserRestrictionController extends Controller
 {
-    public function store($property_uuid, $user_id){
-        for ($feature_id=1; $feature_id <=Feature::all()->count(); $feature_id++) { 
-           for ($restriction_id=1; $restriction_id<=Restriction::all()->count() ; $restriction_id++ ) { 
-            UserRestriction::updateOrCreate(
-            [
-              'feature_id' => $feature_id,
-              'user_id' => $user_id,
-              'property_uuid' => $property_uuid,
-              'restriction_id' => $restriction_id
-            ],
-            [
-              'feature_id' => $feature_id,
-              'user_id' => $user_id,
-              'property_uuid' => $property_uuid,
-              'restriction_id' => $restriction_id,
-              'is_approved' => 1,
-            ]
-            );
-          }
+    public function store($propertyUuid, $userId){
+
+        $propertyTypeId = Property::find($propertyUuid)->type_id;
+
+        $features = Type::where('id', $propertyTypeId)->pluck('features')->first();
+
+        $featuresArray = explode(",", $features);
+
+        foreach($featuresArray as $feature){
+            for ($restrictionId=1; $restrictionId<=Restriction::all()->count(); $restrictionId++) {
+                UserRestriction::firstOrCreate(
+                [
+                 'feature_id' => (int) $feature,
+                 'user_id' => $userId,
+                 'property_uuid' => $propertyUuid,
+                 'restriction_id' => $restrictionId
+                ],
+                [
+                 'feature_id' => (int) $feature,
+                 'user_id' => $userId,
+                 'property_uuid' => $propertyUuid,
+                 'restriction_id' => $restrictionId,
+                 'is_approved' => 1,
+                ]
+                );
+            }
         }
+    }
+
+    public function isFeatureRestricted($featureId, $userId){
+        return UserRestriction::where('property_uuid', Session::get('property_uuid'))
+         ->where('user_id', $userId)
+         ->where('feature_id', $featureId)
+         ->where('restriction_id', 2)
+         ->pluck('is_approved')
+         ->first() === 1;
     }
 }

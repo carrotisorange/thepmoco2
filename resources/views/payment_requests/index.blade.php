@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title','Payment Requests | '. Session::get('property_name'))
+    @section('title','Payment Requests | '. env('APP_NAME'))
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
             <div>
@@ -10,9 +10,17 @@
                     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
 
                         <button type="button"
-                            onclick="window.location.href='/property/{{ Session::get('property') }}/collection/pending'"
-                            class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+                          onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/{{ 'pending' }}'"
+                            class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
                             Show Pending</button>
+
+                            <button type="button" onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/{{ 'approved' }}'"
+                                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+                                Show Approved</button>
+
+                                <button type="button" onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/{{ 'declined' }}'"
+                                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+                                    Show Declined</button>
 
                     </div>
                 </div>
@@ -33,6 +41,8 @@
                             <table class="min-w-full table-fixed">
                                 <thead class="">
                                     <tr>
+                                        <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
+                                                        #</th>
 
                                         <th scope="col"
                                             class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
@@ -53,13 +63,15 @@
                                         <th scope="col"
                                             class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
                                             MODE OF PAYMENT</th>
-
+                                        
                                         <th scope="col"
                                             class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
                                             STATUS</th>
-                                        {{-- <th scope="col"
+                                            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
+                                                REMARKS</th>
+                                        <th scope="col"
                                             class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
-                                            REMARKS</th> --}}
+                                            </th>
 
 
                                     </tr>
@@ -70,9 +82,13 @@
                                     <!-- Selected: "bg-gray-50" -->
                                     @forelse($requests as $index => $item )
                                     <tr>
-
+                                        <td>
+                                           {{ $index+1 }}
+                                        </td>
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                            {{ $item->tenant }}
+                                            <a title="tenant" target="_blank" class="text-blue-500 text-decoration-line: underline"
+                                                href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}">
+                                                {{ Str::limit($item->tenant,20) }} </a> 
                                         </td>
 
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -81,11 +97,11 @@
                                         <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
 
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                            {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}
+                                            {{ Carbon\Carbon::parse($item->date_uploaded)->format('M d, Y') }}
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                            @if($item->updated_at)
-                                            {{ Carbon\Carbon::parse($item->updated_at)->format('M d, Y') }}
-                                            @else
+                                            @if($item->date_approved)
+                                            {{ Carbon\Carbon::parse($item->date_approved)->format('M d, Y') }}
+                                                @else
                                             NA
                                             @endif
                                         </td>
@@ -98,15 +114,26 @@
                                         </td>
 
                                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                            {{ $item->status }}
+                                            {{ $item->payment_status }}
+                                        </td>
+
+                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                            @if($item->reason_for_rejection)
+                                                {{ $item->reason_for_rejection }}
+                                            @else
+                                                NA
+                                            @endif
+                                           
                                         </td>
 
                                         <td
                                             class="whitespace-nowrap px-3 py-4 text-sm text-blue-500 text-decoration-line: underline">
-                                            <a 
-                                                href="/property/{{ Session::get('property') }}/tenant/{{ $item->tenant_uuid }}/payment_requests/{{ $item->id }}">
+                                           @if($item->payment_status != 'approved')
+                                            <a target="_blank"
+                                                href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $item->tenant_uuid }}/payment_requests/{{ $item->id }}">
                                                 Review
                                             </a>
+                                           @endif
                                         </td>
 
 

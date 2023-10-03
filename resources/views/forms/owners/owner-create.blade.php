@@ -168,7 +168,7 @@
                             <option value="male" {{ old('gender')=='male' ? 'selected' : 'Select one' }}>{{
                                 'male' }}</option>
                             <option value="LGBTQ" {{ old('gender')=='LGBTQ' ? 'selected' : 'Select one' }}>{{
-                                'LGBTQ' }}</option>    
+                                'LGBTQ' }}</option>
                         </select>
                         @error('gender')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -353,16 +353,13 @@
                 </div>
             </div>
             <div class="flex justify-end">
-
-                <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-                    href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}">
+                <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}'">
                     Cancel
-                </a>
-                <button type="submit"
-                    class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                </x-button>
 
+                <x-button type="submit"></x-button>
                     Next
-                </button>
+                </x-button>
             </div>
         </div>
     </div>

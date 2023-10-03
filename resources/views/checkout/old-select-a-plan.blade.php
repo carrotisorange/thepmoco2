@@ -1,5 +1,5 @@
 <x-index-layout>
-    @section('title', 'Select a Plan | The PMO Co')
+    @section('title', 'Select a Plan | '. env('APP_NAME'))
     <x-slot name="labels">
         Select a plan... </x-slot>
 

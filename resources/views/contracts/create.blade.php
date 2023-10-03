@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title', $tenant->tenant.' | '.Session::get('property_name'))
+    @section('title', $tenant->tenant.' | '. env('APP_NAME'))
 
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -167,8 +167,7 @@
                                             </span>
                                         </span>
                                         <span class="mt-0.5 ml-4 min-w-0 flex flex-col">
-                                            <span
-                                                class="text-sm font-medium text-gray-500 group-hover:text-gray-900">
+                                            <span class="text-sm font-medium text-gray-500 group-hover:text-gray-900">
                                                 Unit Inventory
                                             </span>
 

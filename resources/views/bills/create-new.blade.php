@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title', $tenant->tenant.' | '.Session::get('property_name'))
+    @section('title', $tenant->tenant.' | '. env('APP_NAME'))
 
     <div class="mx-auto px-4 sm:px-6 lg:px-8 mb-10">
 
@@ -236,7 +236,8 @@
             </div>
 
 
-            @livewire('bill-create-component', [ 'property' => $property, 'unit' => $unit,'tenant' => $tenant,  'contract'=> $contract])
+            @livewire('bill-create-component', [ 'property' => $property, 'unit' => $unit,'tenant' => $tenant,
+            'contract'=> $contract])
         </div>
 
 

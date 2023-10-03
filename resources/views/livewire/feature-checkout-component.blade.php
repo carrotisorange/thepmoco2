@@ -60,7 +60,5 @@
                 </section>
             </div>
         </div>
-
     </div>
-    @include('layouts.notifications')
 </div>

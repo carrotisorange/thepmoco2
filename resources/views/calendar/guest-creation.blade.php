@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title','')
+    @section('title','Guests |'. env('APP_NAME'))
     <div class="mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 xl:py-10">
         <div class="flex justify-end">
             {{-- <button type="button"

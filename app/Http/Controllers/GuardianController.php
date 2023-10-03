@@ -61,12 +61,12 @@ class GuardianController extends Controller
 
             DB::commit();
 
-            return back()->with('success','Success!');
+            return back()->with('success','Changes Saved!');
 
          }catch(\Exception $e)
          {
             DB::rollback();
-           session()->flash('error');
+           session()->flash('error', 'Something went wrong.');
          }
 
     }
@@ -116,6 +116,6 @@ class GuardianController extends Controller
     
        Guardian::destroy($guardian_id);
 
-       return back()->with('success', 'Success!');
+       return back()->with('success', 'Changes Saved!');
     }
 }

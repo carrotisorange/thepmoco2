@@ -16,6 +16,36 @@ use App\Models\Guest;
 class OwnerController extends Controller
 {
 
+    public function index(Property $property){
+
+        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(8, auth()->user()->id)){
+            return abort(403);
+        }
+
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',4);
+
+        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
+
+        return view('properties.owners.index');
+    }
+
+    public function unlock(Property $property)
+    {
+        return view('admin.restrictedpages.ownerportal');
+    }
+
+    public function show(Property $property, Owner $owner)
+    {
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens one',2);
+
+        Session::forget('tenant_uuid');
+
+        return view('owners.show',[
+            'property' => $property,
+            'owner_details' => $owner,
+        ]);
+    }
+    
     public function show_owner_collections($owner_uuid)
     {
        return AcknowledgementReceipt::where('owner_uuid', $owner_uuid)->orderBy('id','desc')->get();
@@ -61,14 +91,6 @@ class OwnerController extends Controller
          'Owner has been created.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Owner  $owner
-     * @return \Illuminate\Http\Response
-     */
-  
-
     public function show_owner_representatives($owner_uuid)
     {
         return Owner::find($owner_uuid)->representatives()->paginate(5);
@@ -94,35 +116,6 @@ class OwnerController extends Controller
         return Owner::find($owner_uuid)->spouses()->paginate(5);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Owner  $owner
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Owner $owner)
-    {
-       
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Owner  $owner
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Owner $owner)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Owner  $owner
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Property $property, Unit $unit, Owner $owner)
     {
         Owner::where('uuid', $owner->uuid)->delete();

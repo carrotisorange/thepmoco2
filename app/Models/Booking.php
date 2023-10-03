@@ -14,7 +14,7 @@ class Booking extends Model
     protected $primaryKey = 'uuid';
 
     protected $attributes = [
-        'status' => 'reserved'
+        'status' => 'reserved',
     ];
 
     public function unit(){

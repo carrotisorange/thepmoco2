@@ -16,7 +16,7 @@
             </div>
 
             <form class="px-12 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8"
-                action="/property/{{ Session::get('property') }}/guest/{{ $guest->uuid }}/bill/export">
+                action="/property/{{ Session::get('property_uuid') }}/guest/{{ $guest->uuid }}/bill/export">
                 @csrf
 
                 <h3 class="text-xl font-medium text-gray-900 dark:text-white">Export Unpaid Bills</h3>
@@ -87,7 +87,7 @@ peer" placeholder="Put your notes here." name="note_to_bill">{{ $note_to_bill }}
                 @endif --}}
                 <div class="mt-5">
                     <p class="text-right">
-                        <x-form-button>Export</x-form-button>
+                        <x-button type="submit">Export</x-button>
                     </p>
                 </div>
             </form>

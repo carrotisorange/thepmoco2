@@ -143,8 +143,8 @@
 
                                     <div class="max-w-8xl mx-auto mt-2 px-4 sm:px-6">
                                         <div class="relative text-gray-400 focus-within:text-gray-500">
-                                            <label for="mobile-search" class="sr-only">The Property Manager</label>
-                                            <input id="mobile-search" type="search" placeholder="The Property Manager"
+                                            <label for="mobile-search" class="sr-only">{{ env('APP_NAME') }}</label>
+                                            <input id="mobile-search" type="search" placeholder="{{ env('APP_NAME') }}"
                                                 class="block w-full rounded-md border-gray-300 pl-10 placeholder-gray-500 focus:border-indigo-600 focus:ring-indigo-600">
                                             <div
                                                 class="absolute inset-y-0 left-0 flex items-center justify-center pl-3">
@@ -566,7 +566,7 @@
 
                                 </div>
                                 <div button type="button"
-                                    class="items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm 
+                                    class="items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm
 text-white text-center bg-gray-900 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">View
                                     More</button>
                                 </div>
@@ -867,8 +867,8 @@ text-white text-center bg-gray-900 hover:bg-purple-700 focus:outline-none focus:
                             </a>
                         </div>
                         <div class="mt-8 md:mt-0 md:order-1">
-                            <p class="text-center text-base text-gray-400">&copy; 2020 The PMO Co. All rights reserved.
-                            </p>
+                         <p class="text-center text-base text-gray-400">&copy; 2020 {{ env('APP_NAME') }}. All rights reserved.
+                        </p>
                         </div>
                     </div>
                 </footer>

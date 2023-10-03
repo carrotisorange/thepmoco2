@@ -27,7 +27,6 @@ class EditUtilityComponent extends Component
     public $status;
     public $min_charge;
 
-
     public function mount($utility){
         $this->total_amount_due = $utility->total_amount_due;
         $this->previous_reading = $utility->previous_reading;
@@ -58,7 +57,9 @@ class EditUtilityComponent extends Component
 
     public function updateUtility()
     {
-        
+ 
+        sleep(2);
+
         $tenant_uuid = Tenant::where('uuid', $this->bill_to)->pluck('uuid')->first();
         $owner_uuid = Owner::where('uuid', $this->bill_to)->pluck('uuid')->first();
         $status = '';
@@ -92,7 +93,7 @@ class EditUtilityComponent extends Component
 
         app('App\Http\Controllers\BillController')->store($this->utility->property_uuid, $this->utility->unit_uuid, $tenant_uuid, $owner_uuid, $particular_id, $this->utility->start_date, $this->utility->end_date, $this->total_amount_due, $this->utility->batch_no, 1);
 
-        return redirect(url()->previous())->with('success', 'Success!');
+        return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
     
 

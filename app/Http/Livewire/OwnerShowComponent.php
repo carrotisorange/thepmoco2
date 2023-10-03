@@ -16,14 +16,12 @@ use App\Models\Bill;
 use App\Models\DeedOfSale;
 use App\Models\Spouse;
 use App\Models\Collection;
-
+use App\Models\Feature;
 use Livewire\Component;
 
 class OwnerShowComponent extends Component
 {
     use WithFileUploads;
-
-    public $property;
 
     public $owner_details;
 
@@ -74,13 +72,13 @@ class OwnerShowComponent extends Component
         $this->employer_address = $owner_details->employer_address;
         $this->bill_reference_no = $owner_details->bill_reference_no;
         $this->owner_uuid = $owner_details->uuid;
-    
+
     }
 
 
     protected function rules()
     {
-        return 
+        return
         [
             'owner' => 'required',
             'email' => ['nullable', 'string', 'email', 'max:255', Rule::unique('owners','email')->ignore($this->owner_details->uuid, 'uuid')],
@@ -105,26 +103,26 @@ class OwnerShowComponent extends Component
 
     public function submitForm()
     {
-        
+
 
         $validatedData = $this->validate();
-        
+
         try
         {
             $this->update_owner($validatedData);
-       
-            session()->flash('success','Success!');
+
+            session()->flash('success','Changes Saved!');
 
         }catch(\Exception $e)
-        {  
-            session()->flash('error');
+        {
+            session()->flash('error', 'Something went wrong.');
         }
 
     }
 
     public function sendCredentials()
     {
-        
+
 
         if(!$this->owner_details->email){
             return back()->with('error', 'Error');
@@ -176,22 +174,22 @@ class OwnerShowComponent extends Component
             app('App\Http\Controllers\UserController')->send_email($user_id->role_id, $user_id->email, $user_id->username, $temporary_password);
         }
 
-        app('App\Http\Controllers\ActivityController')->store($this->property->uuid, auth()->user()->id,'sends',17);
-       
+        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'sends',17);
+
 
        return back()->with('success', 'Success');
     }
 
     public function removeCredentials()
     {
-        
+
 
         User::where('email', $this->owner_details->email)
         ->delete();
 
-        app('App\Http\Controllers\ActivityController')->store($this->property->uuid, auth()->user()->id,'removes', 19);
+        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'removes', 19);
 
-        session()->flash('success', 'Success!');
+        session()->flash('success', 'Changes Saved!');
     }
 
     public function update_owner($validatedData)
@@ -216,8 +214,8 @@ class OwnerShowComponent extends Component
 
     public function resetPassword()
     {
-        
-        
+
+
         $new_password = app('App\Http\Controllers\UserController')->generate_temporary_username();
 
         $user_id = User::where('owner_uuid',$this->owner_details->uuid)->pluck('id')[0];
@@ -228,21 +226,21 @@ class OwnerShowComponent extends Component
         ->update([
             'password' => Hash::make($new_password)
         ]);
-       
+
         app('App\Http\Controllers\UserController')->send_email($user->role_id,$user->email, $user->username, $new_password);
 
-        session()->flash('success','Success!');
+        session()->flash('success','Changes Saved!');
     }
-    
+
       public function removeRepresentative($id)
         {
                 Representative::destroy($id);
 
-                return back()->with('success', 'Success!');
+                return back()->with('success', 'Changes Saved!');
         }
 
     public function deleteOwner(){
-        
+
         DeedOfSale::where('owner_uuid', $this->owner_details->uuid)->delete();
         Spouse::where('owner_uuid', $this->owner_details->uuid)->delete();
         Representative::where('owner_uuid', $this->owner_details->uuid)->delete();
@@ -252,12 +250,17 @@ class OwnerShowComponent extends Component
         Owner::where('uuid', $this->owner_details->uuid)->delete();
         User::where('owner_uuid', $this->owner_details->uuid)->delete();
 
-        return redirect('/property/'.$this->owner_details->property_uuid.'/owner/')->with('success', 'Success!');
+        return redirect('/property/'.$this->owner_details->property_uuid.'/owner/')->with('success', 'Changes Saved!');
 
     }
 
     public function render()
     {
+        $featureId = 8;
+
+        $ownerSubfeatures = Feature::where('id', $featureId)->pluck('subfeatures')->first();
+
+        $ownerSubfeaturesArray = explode(",", $ownerSubfeatures);
 
         return view('livewire.owner-show-component',[
            'cities' => app('App\Http\Controllers\CityController')->index($this->province_id),
@@ -270,9 +273,10 @@ class OwnerShowComponent extends Component
             'enrollees' => app('App\Http\Controllers\OwnerController')->show_owner_enrollees($this->owner_details->uuid),
             'credentials' => User::where('owner_uuid', $this->owner_details->uuid)->get(),
             'bills' => Bill::where('owner_uuid', $this->owner_details->uuid)->posted()->get(),
-            'collections' => app('App\Http\Controllers\OwnerCollectionController')->get_owner_collections($this->property->uuid, $this->owner_details->uuid),
+            'collections' => app('App\Http\Controllers\OwnerCollectionController')->get_owner_collections(Session::get('property_uuid'), $this->owner_details->uuid),
             'username' => User::where('owner_uuid', $this->owner_details->uuid)->value('username'),
-            'spouse' => Spouse::where('owner_uuid', $this->owner_details->uuid)->get()
+            'spouse' => Spouse::where('owner_uuid', $this->owner_details->uuid)->get(),
+            'ownerSubfeaturesArray' => $ownerSubfeaturesArray
         ]);
     }
 }

@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title', $unit->unit.' | '. Session::get('property_name'))
+    @section('title', $unit->unit.' | '. env('APP_NAME'))
 
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
@@ -12,7 +12,8 @@
                 </div>
 
                 <div class=" mt-10 flex items-center justify-center">
-                    <button type="button" onclick="window.location.href='/property/{{ Session::get('property') }}/utilities'"
+                    <button type="button"
+                        onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/utilities'"
                         class="w-64 items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white text-center bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         Go back.</button>
 

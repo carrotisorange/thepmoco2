@@ -130,7 +130,7 @@ class CheckoutComponent extends Component
         {   
             DB::rollback();
 
-           session()->flash('error');
+           session()->flash('error', 'Something went wrong.');
         }
     }
 

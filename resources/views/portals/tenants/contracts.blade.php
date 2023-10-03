@@ -1,5 +1,5 @@
     <x-tenant-portal-layout>
-    @section('title', 'Contracts')
+    @section('title', 'Contracts | '. env('APP_NAME'))
 
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
@@ -23,7 +23,7 @@
 
                         </div>
 
-                        <table class="min-w-full table-fixed">
+                        {{-- <table class="min-w-full table-fixed">
                             <thead class="bg-yellow-950">
                                 <tr>
                  
@@ -131,7 +131,8 @@
 
                             </tbody>
                             @endforelse
-                        </table>
+                        </table> --}}
+                        @include('tables.contracts')
                     </div>
 
                     {{-- <button type="button"

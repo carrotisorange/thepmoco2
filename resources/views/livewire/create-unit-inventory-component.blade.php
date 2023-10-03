@@ -8,7 +8,7 @@
             <div>
 
                 <div class="mt-3 text-center sm:mt-5">
-                    <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Unit Inventory Information
+                    <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Unit Inventory
                     </h3>
                     {{-- <div class="mt-2">
                         <p class="text-sm text-gray-500">Before you can create a new tenant, first you need to
@@ -48,7 +48,7 @@
                 @enderror
             </div>
 
-            <div class="mt-5 sm:mt-6">
+            {{-- <div class="mt-5 sm:mt-6">
                 <label class="text-sm" for="image">Image</label>
                 <input
                     class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
@@ -57,13 +57,12 @@
                 @error('image')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
-            </div>
+            </div> --}}
 
             <div class="mt-5 sm:mt-6">
-                <button type="button" wire:click="submitButton"
-                    class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
+                <x-button type="button" wire:click="submitButton">
                     Confirm
-                </button>
+                </x-button>
 
             </div>
         </div>

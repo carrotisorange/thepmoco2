@@ -16,7 +16,7 @@
             </div>
 
             <form class="px-12 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8"
-                action="/property/{{ Session::get('property') }}/tenant/{{ $tenant->uuid }}/bill/send">
+                action="/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant->uuid }}/bill/send">
                 @csrf
 
                 <h3 class="text-xl font-medium text-gray-900 dark:text-white">Send Unpaid Bills</h3>
@@ -84,7 +84,7 @@ peer" placeholder="Put your notes here." name="note_to_bill">{{ $note_to_bill }}
                 </div>
                 <div class="mt-5">
                     <p class="text-right">
-                        <x-form-button>Send</x-form-button>
+                        <x-button type="submit">Send</x-button>
                     </p>
                 </div>
             </form>

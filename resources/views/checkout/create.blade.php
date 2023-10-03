@@ -1,5 +1,5 @@
 <x-checkout-base-component>
-    @section('title', 'Checkout | The Property Manager')
+    @section('title', 'Checkout | '. env('APP_NAME'))
 
     @section('styles')
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">

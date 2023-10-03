@@ -1,15 +1,14 @@
 <x-new-layout>
-    @section('title','Contracts | '. Session::get('property_name'))
+    @section('title','Contracts | '. env('APP_NAME'))
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
             {{-- @can('is_contract_read_allowed')
             @include('admin.restrictedpages.contract')
             @else --}}
             @livewire('contract-index-component', [
-                'property' => $property
+            'property' => $property
             ])
             {{-- @endcan --}}
         </div>
     </div>
 </x-new-layout>
-

@@ -15,7 +15,7 @@ class UserPropertyController extends Controller
         return User::find($user_id)->user_properties()->get();
     }
 
-    public function get_property_users($property_uuid)
+    public function getPersonnels($property_uuid)
     {
         return Property::find($property_uuid)->property_users()->get();
     }
@@ -62,7 +62,7 @@ class UserPropertyController extends Controller
             'is_approved' => 0,
         ]);
 
-        return back()->with('success', 'Success!');
+        return back()->with('success', 'Changes Saved!');
     }
 
     public function restore_access(Property $property, UserProperty $userProperty)
@@ -72,6 +72,6 @@ class UserPropertyController extends Controller
             'is_approved' => 1,
         ]);
 
-        return back()->with('success', 'Success!');
+        return back()->with('success', 'Changes Saved!');
     }
 }

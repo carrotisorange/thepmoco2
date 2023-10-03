@@ -9,8 +9,6 @@ use Session;
 
 class ContractIndexComponent extends Component
 {
-    public $property;
-
     public $status;
     
     public function redirectToUnitSelectionPage(){
@@ -18,7 +16,7 @@ class ContractIndexComponent extends Component
 
         // Session::put('tenant_uuid', $tenant->uuid);
 
-        return redirect('/property/'.Session::get('property').'/tenant');
+        return redirect('/property/'.Session::get('property_uuid').'/tenant');
     }
 
     public function clearFilters(){
@@ -27,13 +25,13 @@ class ContractIndexComponent extends Component
 
     public function render()
     {   
-        $statuses = Contract::where('property_uuid', $this->property->uuid)
+        $statuses = Contract::where('property_uuid', Session::get('property_uuid'))
         ->select('status')
         ->whereNotNull('status')
         ->groupBy('status')
         ->get();
 
-        $contracts = Property::find($this->property->uuid)->contracts()
+        $contracts = Property::find(Session::get('property_uuid'))->contracts()
         ->when($this->status, function($query){
         $query->where('status',$this->status);
         })

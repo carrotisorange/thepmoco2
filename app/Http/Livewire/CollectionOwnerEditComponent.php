@@ -55,14 +55,14 @@ class CollectionOwnerEditComponent extends Component
 
     public function get_bills()
     {
-        return Bill::where('property_uuid', Session::get('property'))
+        return Bill::where('property_uuid', Session::get('property_uuid'))
         ->where('is_posted', false)
         ->where('batch_no', $this->batch_no)->get();
     }
 
     public function get_collections()
     {
-      return Collection::where('property_uuid', Session::get('property'))
+      return Collection::where('property_uuid', Session::get('property_uuid'))
       ->where('is_posted', false)
       ->where('batch_no', $this->batch_no)->get();
     }

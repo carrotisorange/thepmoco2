@@ -10,6 +10,7 @@ Route::prefix('{role_id:id}/owner/{user:username}')->group(function(){
         Route::get('/units','show_units')->name('owner-units');
         Route::get('/bills', 'show_bills')->name('owner-bills');
         Route::get('/payments', 'show_payments')->name('owner-payments');
+        Route::get('/remittances', 'show_remittances')->name('owner-remittances');
         Route::get('/concerns', 'show_concerns')->name('owner-concerns');
         Route::get('/unit/{unit}/guests', 'show_guests')->name('owner-units');
     });

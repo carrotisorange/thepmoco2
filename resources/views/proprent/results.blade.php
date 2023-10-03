@@ -41,11 +41,11 @@ body {
   <body>
 
 
-  
+
 
 <!-- component -->
 <style>
- 
+
 
   /* Custom style */
   .header-right {
@@ -57,7 +57,7 @@ body {
   @media only screen and (min-width: 768px) {
       .header-right {
           width: calc(100% - 16rem);
-      }        
+      }
   }
 </style>
 <div x-data="setup()" :class="{ 'dark': isDark }">
@@ -76,8 +76,8 @@ body {
             <input type="search" name="" id="" placeholder="Search" class="w-full pl-3 text-sm text-black outline-none focus:outline-none bg-transparent" />
           </div>
           <ul class="flex items-center">
-            
-            
+
+
             <li>
             <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
 
@@ -89,7 +89,7 @@ body {
                               <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
                         </div>
-                      
+
                         <div class="font-medium text-gray-800 text-sm">
                             <div class="cursor-pointer">FirstName</div>
                         </div>
@@ -99,7 +99,7 @@ body {
                             </svg>
                         </div>
                     </div>
-                        
+
                     <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute w-60 px-5 py-3 dark:bg-gray-800 bg-white rounded-lg shadow border dark:border-transparent mt-5">
                       <ul class="space-y-3 dark:text-white">
                         <li class="font-medium">
@@ -137,7 +137,7 @@ body {
         </div>
       </div>
       <!-- ./Header -->
-    
+
       <!-- Sidebar -->
       <div id="" class="h-full pb-10 fixed flex flex-col top-14 left-0 w-14 hover:w-64 md:w-64 bg-white dark:bg-gray-900  text-white transition-all duration-300 border-none z-10 sidebar">
         <div class="px-6 overflow-y-auto overflow-x-hidden flex flex-col justify-between flex-grow">
@@ -155,11 +155,11 @@ body {
                   </svg>
                     <p class=" text-gray-900">Filters</p>
               </div>
-              
-              
+
+
             </li>
 
-            
+
 
 
             <li>
@@ -172,7 +172,7 @@ body {
               -webkit-appearance: none;
               /* @apply w-6 h-6 appearance-none pointer-events-auto; */
               }
-            </style> 
+            </style>
             <div class="py-3 flex justify-center items-center">
               <div x-data="range()" x-init="mintrigger(); maxtrigger()" class="relative max-w-xl w-full">
                 <div>
@@ -183,7 +183,7 @@ body {
                         x-model="minprice"
                         class="absolute pointer-events-none appearance-none z-20 h-2 w-full opacity-0 cursor-pointer">
 
-                  <input type="range" 
+                  <input type="range"
                         step="100"
                         x-bind:min="min" x-bind:max="max"
                         x-on:input="maxtrigger"
@@ -199,11 +199,11 @@ body {
                     <div class="purple absolute z-30 w-6 h-6 top-0 left-0  rounded-full -mt-2 -ml-1" x-bind:style="'left: '+minthumb+'%'"></div>
 
                     <div class="purple absolute z-30 w-6 h-6 top-0 right-0  rounded-full -mt-2 -mr-3" x-bind:style="'right: '+maxthumb+'%'"></div>
-            
+
                   </div>
 
                 </div>
-                
+
                 <div class="flex justify-between items-center py-5">
                   <div>
                     <input type="text" maxlength="5" x-on:input="mintrigger" x-model="minprice" class="text-xs text-gray-900 px-1 py-1 border border-gray-200 rounded w-24 text-center">
@@ -212,33 +212,33 @@ body {
                     <input type="text" maxlength="5" x-on:input="maxtrigger" x-model="maxprice" class="text-xs text-gray-900 px-1 py-1 border border-gray-200 rounded w-24 text-center">
                   </div>
                 </div>
-                
+
               </div>
 
               <script>
                   function range() {
                       return {
-                        minprice: 1000, 
+                        minprice: 1000,
                         maxprice: 7000,
-                        min: 100, 
+                        min: 100,
                         max: 10000,
                         minthumb: 0,
-                        maxthumb: 0, 
-                        
-                        mintrigger() {   
-                          this.minprice = Math.min(this.minprice, this.maxprice - 500);      
+                        maxthumb: 0,
+
+                        mintrigger() {
+                          this.minprice = Math.min(this.minprice, this.maxprice - 500);
                           this.minthumb = ((this.minprice - this.min) / (this.max - this.min)) * 100;
                         },
-                        
+
                         maxtrigger() {
-                          this.maxprice = Math.max(this.maxprice, this.minprice + 500); 
-                          this.maxthumb = 100 - (((this.maxprice - this.min) / (this.max - this.min)) * 100);    
-                        }, 
+                          this.maxprice = Math.max(this.maxprice, this.minprice + 500);
+                          this.maxthumb = 100 - (((this.maxprice - this.min) / (this.max - this.min)) * 100);
+                        },
                       }
                   }
               </script>
             </div>
-              
+
             </li>
 
             <li class="text-gray-800 text-sm font-bold py-1">Property Type</li>
@@ -317,22 +317,23 @@ body {
               </div>
             </li>
 
-       
+
           </ul>
-          <p class="mb-14 px-2 py-3 hidden md:block text-center text-xs text-gray-600">The PMO Co. Copyright @2023</p>
+        <p class="text-center text-base text-gray-400">&copy; 2020 {{ env('APP_NAME') }}. All rights reserved.
+        </p>
         </div>
       </div>
       <!-- ./Sidebar -->
-    
+
       <div class="min-h-screen ml-14 mt-14 mb-10 md:ml-64">
-    
+
         <div class="md:pl-17">
             <div class="mx-auto max-w-2xl px-4 py-10 sm:px-6 lg:max-w-7xl lg:px-8">
 
                 <!-- search results -->
-                <h2 class="pb-10">Showing 5 
-                <span class="font-semibold">units</span> 
-                in 
+                <h2 class="pb-10">Showing 5
+                <span class="font-semibold">units</span>
+                in
                 <span class="text-purple-900 font-semibold">Baguio</span>
                 </h2>
 
@@ -341,7 +342,7 @@ body {
 
                     <a href="room" class="group border border-gray-300 rounded-lg p-3">
                         <div class="aspect-w-1  w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 ">
-                        <img class="h-72 w-full object-cover object-center group-hover:opacity-75" src="{{ asset('/brands/proprent/room-sample.jpg') }}" alt="pmo logo"> 
+                        <img class="h-72 w-full object-cover object-center group-hover:opacity-75" src="{{ asset('/brands/proprent/room-sample.jpg') }}" alt="pmo logo">
                         </div>
                         <div class="grid grid-cols-2">
                             <div class="cols-start-1">
@@ -361,25 +362,25 @@ body {
                                 </h1>
                         <!-- description -->
                         <p class="mt-2 text-xs  text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget lacus et urna pharetra aliquam. </p>
-                        
-                        <div class="mt-3 grid grid-cols-3 text-center justify-center">
-                            
-                           
 
-                            <div class="cols-start-1">               
+                        <div class="mt-3 grid grid-cols-3 text-center justify-center">
+
+
+
+                            <div class="cols-start-1">
                               <h1 class="inline-flex">
                               <img width="20" height="20" src="https://img.icons8.com/metro/26/single-bed.png" alt="single-bed"/>
                                 <span class="font-light text-sm"><span class="text-yellow-400 font-bold">10</span> Rooms</span>
                               </h1>
                             </div>
 
-                            <div class="cols-start-2">               
+                            <div class="cols-start-2">
                               <h1 class="inline-flex">
                               <img width="20" height="20" src="https://img.icons8.com/metro/26/toilet-bowl.png" alt="toilet-bowl"/>
                                 <span class="font-light text-sm"><span class="text-yellow-400 font-bold">10</span> Toilet</span>
                               </h1>
                             </div>
-              
+
                             <div class="cols-start-3">
                               <h1 class="inline-flex">
                               <img width="20" height="20" src="https://img.icons8.com/metro/26/user-group-man-man.png" alt="user-group-man-man"/>
@@ -392,7 +393,7 @@ body {
 
                     <a href="room" class="group border border-gray-300 rounded-lg p-3">
                         <div class="aspect-w-1  w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 ">
-                        <img class="h-72 w-full object-cover object-center group-hover:opacity-75" src="{{ asset('/brands/proprent/room-sample-2.jpg') }}" alt="pmo logo"> 
+                        <img class="h-72 w-full object-cover object-center group-hover:opacity-75" src="{{ asset('/brands/proprent/room-sample-2.jpg') }}" alt="pmo logo">
                         </div>
                         <div class="grid grid-cols-2">
                             <div class="cols-start-1">
@@ -412,25 +413,25 @@ body {
                                 </h1>
                         <!-- description -->
                         <p class="mt-2 text-xs  text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget lacus et urna pharetra aliquam. </p>
-                        
-                        <div class="mt-3 grid grid-cols-3 text-center justify-center">
-                            
-                           
 
-                            <div class="cols-start-1">               
+                        <div class="mt-3 grid grid-cols-3 text-center justify-center">
+
+
+
+                            <div class="cols-start-1">
                               <h1 class="inline-flex">
                               <img width="20" height="20" src="https://img.icons8.com/metro/26/single-bed.png" alt="single-bed"/>
                                 <span class="font-light text-sm"><span class="text-yellow-400 font-bold">10</span> Rooms</span>
                               </h1>
                             </div>
 
-                            <div class="cols-start-2">               
+                            <div class="cols-start-2">
                               <h1 class="inline-flex">
                               <img width="20" height="20" src="https://img.icons8.com/metro/26/toilet-bowl.png" alt="toilet-bowl"/>
                                 <span class="font-light text-sm"><span class="text-yellow-400 font-bold">10</span> Toilet</span>
                               </h1>
                             </div>
-              
+
                             <div class="cols-start-3">
                               <h1 class="inline-flex">
                               <img width="20" height="20" src="https://img.icons8.com/metro/26/user-group-man-man.png" alt="user-group-man-man"/>
@@ -443,7 +444,7 @@ body {
 
                     <a href="room" class="group border border-gray-300 rounded-lg p-3">
                         <div class="aspect-w-1  w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 ">
-                        <img class="h-72 w-full object-cover object-center group-hover:opacity-75" src="{{ asset('/brands/proprent/room-sample-3.jpg') }}" alt="pmo logo"> 
+                        <img class="h-72 w-full object-cover object-center group-hover:opacity-75" src="{{ asset('/brands/proprent/room-sample-3.jpg') }}" alt="pmo logo">
                         </div>
                         <div class="grid grid-cols-2">
                             <div class="cols-start-1">
@@ -463,25 +464,25 @@ body {
                                 </h1>
                         <!-- description -->
                         <p class="mt-2 text-xs  text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget lacus et urna pharetra aliquam. </p>
-                        
-                        <div class="mt-3 grid grid-cols-3 text-center justify-center">
-                            
-                           
 
-                            <div class="cols-start-1">               
+                        <div class="mt-3 grid grid-cols-3 text-center justify-center">
+
+
+
+                            <div class="cols-start-1">
                               <h1 class="inline-flex">
                               <img width="20" height="20" src="https://img.icons8.com/metro/26/single-bed.png" alt="single-bed"/>
                                 <span class="font-light text-sm"><span class="text-yellow-400 font-bold">10</span> Rooms</span>
                               </h1>
                             </div>
 
-                            <div class="cols-start-2">               
+                            <div class="cols-start-2">
                               <h1 class="inline-flex">
                               <img width="20" height="20" src="https://img.icons8.com/metro/26/toilet-bowl.png" alt="toilet-bowl"/>
                                 <span class="font-light text-sm"><span class="text-yellow-400 font-bold">10</span> Toilet</span>
                               </h1>
                             </div>
-              
+
                             <div class="cols-start-3">
                               <h1 class="inline-flex">
                               <img width="20" height="20" src="https://img.icons8.com/metro/26/user-group-man-man.png" alt="user-group-man-man"/>
@@ -494,7 +495,7 @@ body {
 
                     <a href="room" class="group border border-gray-300 rounded-lg p-3">
                         <div class="aspect-w-1  w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 ">
-                        <img class="h-72 w-full object-cover object-center group-hover:opacity-75" src="{{ asset('/brands/proprent/room-sample-4.jpg') }}" alt="pmo logo"> 
+                        <img class="h-72 w-full object-cover object-center group-hover:opacity-75" src="{{ asset('/brands/proprent/room-sample-4.jpg') }}" alt="pmo logo">
                         </div>
                         <div class="grid grid-cols-2">
                             <div class="cols-start-1">
@@ -514,25 +515,25 @@ body {
                                 </h1>
                         <!-- description -->
                         <p class="mt-2 text-xs  text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget lacus et urna pharetra aliquam. </p>
-                        
-                        <div class="mt-3 grid grid-cols-3 text-center justify-center">
-                            
-                           
 
-                            <div class="cols-start-1">               
+                        <div class="mt-3 grid grid-cols-3 text-center justify-center">
+
+
+
+                            <div class="cols-start-1">
                               <h1 class="inline-flex">
                               <img width="20" height="20" src="https://img.icons8.com/metro/26/single-bed.png" alt="single-bed"/>
                                 <span class="font-light text-sm"><span class="text-yellow-400 font-bold">10</span> Rooms</span>
                               </h1>
                             </div>
 
-                            <div class="cols-start-2">               
+                            <div class="cols-start-2">
                               <h1 class="inline-flex">
                               <img width="20" height="20" src="https://img.icons8.com/metro/26/toilet-bowl.png" alt="toilet-bowl"/>
                                 <span class="font-light text-sm"><span class="text-yellow-400 font-bold">10</span> Toilet</span>
                               </h1>
                             </div>
-              
+
                             <div class="cols-start-3">
                               <h1 class="inline-flex">
                               <img width="20" height="20" src="https://img.icons8.com/metro/26/user-group-man-man.png" alt="user-group-man-man"/>
@@ -545,7 +546,7 @@ body {
 
                     <a href="room" class="group border border-gray-300 rounded-lg p-3">
                         <div class="aspect-w-1  w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 ">
-                        <img class="h-72 w-full object-cover object-center group-hover:opacity-75" src="{{ asset('/brands/proprent/room-sample-5.jpg') }}" alt="pmo logo"> 
+                        <img class="h-72 w-full object-cover object-center group-hover:opacity-75" src="{{ asset('/brands/proprent/room-sample-5.jpg') }}" alt="pmo logo">
                         </div>
                         <div class="grid grid-cols-2">
                             <div class="cols-start-1">
@@ -565,25 +566,25 @@ body {
                                 </h1>
                         <!-- description -->
                         <p class="mt-2 text-xs  text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget lacus et urna pharetra aliquam. </p>
-                        
-                        <div class="mt-3 grid grid-cols-3 text-center justify-center">
-                            
-                           
 
-                            <div class="cols-start-1">               
+                        <div class="mt-3 grid grid-cols-3 text-center justify-center">
+
+
+
+                            <div class="cols-start-1">
                               <h1 class="inline-flex">
                               <img width="20" height="20" src="https://img.icons8.com/metro/26/single-bed.png" alt="single-bed"/>
                                 <span class="font-light text-sm"><span class="text-yellow-400 font-bold">10</span> Rooms</span>
                               </h1>
                             </div>
 
-                            <div class="cols-start-2">               
+                            <div class="cols-start-2">
                               <h1 class="inline-flex">
                               <img width="20" height="20" src="https://img.icons8.com/metro/26/toilet-bowl.png" alt="toilet-bowl"/>
                                 <span class="font-light text-sm"><span class="text-yellow-400 font-bold">10</span> Toilet</span>
                               </h1>
                             </div>
-              
+
                             <div class="cols-start-3">
                               <h1 class="inline-flex">
                               <img width="20" height="20" src="https://img.icons8.com/metro/26/user-group-man-man.png" alt="user-group-man-man"/>
@@ -593,7 +594,7 @@ body {
 
                         </div>
                     </a>
-                    
+
 
 
 

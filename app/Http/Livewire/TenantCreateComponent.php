@@ -101,7 +101,7 @@ class TenantCreateComponent extends Component
 
                 // }
 
-            return redirect('/property/'.Session::get('property').'/unit/'.$this->unit->uuid.'/tenant/'.$tenant_uuid.'/guardian/'.Str::random(8).'/create')->with('success', 'Success!');
+            return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/tenant/'.$tenant_uuid.'/guardian/'.Str::random(8).'/create')->with('success', 'Changes Saved!');
       
             });
         
@@ -137,11 +137,11 @@ class TenantCreateComponent extends Component
     {
         $validatedData['uuid'] = Str::uuid();
 
-        $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property'));
+        $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property_uuid'));
 
         $bill_reference_no = app('App\Http\Controllers\BillController')->generate_bill_reference_no('t', $bill_no);
 
-        $validatedData['property_uuid'] = Session::get('property');
+        $validatedData['property_uuid'] = Session::get('property_uuid');
         
         $validatedData['bill_reference_no'] = $bill_reference_no;
 

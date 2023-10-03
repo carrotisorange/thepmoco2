@@ -12,4 +12,6 @@ class AccountPayableLiquidation extends Model
     protected $attributes = [
         'total' => 0,
     ];
+
+
 }

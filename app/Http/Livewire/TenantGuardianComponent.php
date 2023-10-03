@@ -64,7 +64,7 @@ class TenantGuardianComponent extends Component
 
         Guardian::create($validated_data);
 
-        return redirect('/property/'.Session::get('property').'/tenant/'.$this->tenant->uuid)->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant->uuid)->with('success', 'Changes Saved!');
 
     }
 

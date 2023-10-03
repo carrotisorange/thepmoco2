@@ -1,5 +1,5 @@
 <x-tenant-portal-layout>
-    @section('title', 'Dashboard')
+    @section('title', 'Dashboard | '. env('APP_NAME'))
 
     @section('header', 'Dashboard')
 

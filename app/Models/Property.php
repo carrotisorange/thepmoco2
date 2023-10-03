@@ -13,8 +13,9 @@ class Property extends Model
     public $primaryKey = 'uuid';
 
     protected $attributes = [
-         'thumbnail' => 'thumbnails/thumbnail.png',
-         'status' => 'active'
+        'thumbnail' => 'thumbnails/thumbnail.png',
+        'status' => 'active',
+        'note_to_transient' => 'Cancellation Policy: Deposits are non-refundable but can be rebook with surcharge.'
     ];
 
     public function getRouteKeyName()

@@ -1,4 +1,5 @@
-<x-new-layout>
+
+<x-new-layout-calendar>
     @section('styles')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,7 +51,7 @@
 
     @endsection
 
-    @section('title','Calendar | '. $property->property)
+    @section('title','Calendar | '. env('APP_NAME'))
 
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
@@ -93,13 +94,19 @@
                         var movein_at = moment(start).format('YYYY-MM-DD');
                         var moveout_at = moment(end).format('YYYY-MM-DD');
                         var agent_id = $('#agent_id').val();
+                        var no_of_guests = $('#no_of_guests').val();
+                        var no_of_children = $('#no_of_children').val();
+                        var no_of_senior_citizens = $('#no_of_senior_citizens').val();
+                        var no_of_pwd = $('#no_of_pwd').val();
+                        var remarks = $('#remarks').val();
                         
                         $.ajax({
                             url:"{{ route('calendar.store') }}",
                             type:"POST",
                             dataType: 'json',
                             data:{
-                                guest, email, mobile_number, movein_at, moveout_at, unit_uuid, property_uuid,agent_id
+                                guest, email, mobile_number, movein_at, moveout_at, unit_uuid, property_uuid,agent_id,
+                                no_of_guests, no_of_children, no_of_senior_citizens, no_of_pwd,remarks 
                             },
                             success:function(response){
                                 $('#bookingModal').modal('hide')
@@ -118,6 +125,11 @@
                                 document.getElementById("mobile_number").value = "";
                                 document.getElementById("unit_uuid").value = "";
                                 document.getElementById("agent_id").value = "";
+                                document.getElementById("no_of_guests").value = "";
+                                document.getElementById("no_of_children").value = "";
+                                document.getElementById("no_of_senior_citizens").value = "";
+                                document.getElementById("no_of_pwd").value = "";
+                                document.getElementById("remarks").value = "";
                
                             },
                             error:function(error){     
@@ -130,6 +142,11 @@
                                     $('#mobileNumberError').html(error.responseJSON.errors.mobile_number);
                                     $('#unitUuidError').html(error.responseJSON.errors.unit_uuid);
                                     $('#agentIdError').html(error.responseJSON.errors.agent_id);
+                                    $('#noOfGuestsError').html(error.responseJSON.errors.no_of_guests);
+                                    $('#noOfChildrenError').html(error.responseJSON.errors.no_of_children);
+                                    $('#noOfCitizenError').html(error.responseJSON.errors.no_of_senior_citizens);
+                                    $('#noOfPwdError').html(error.responseJSON.errors.no_of_pwd);
+                                    $('#remarkError').html(error.responseJSON.errors.remarks);
                                 }
                             }
                         });
@@ -169,4 +186,4 @@
     </script>
     @endsection
 
-</x-new-layout>
+</x-new-layout-calendar>

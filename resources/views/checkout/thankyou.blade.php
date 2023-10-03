@@ -1,5 +1,5 @@
 <x-checkout-base-component>
-    @section('title', 'Thank you | The Property Manager')
+    @section('title', 'Thank you | '. env('APP_NAME'))
 
     <div class="container px-4 -mx-auto">
         <!-- This example requires Tailwind CSS v2.0+ -->

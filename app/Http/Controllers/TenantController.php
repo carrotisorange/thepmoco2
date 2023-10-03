@@ -21,12 +21,54 @@ use Session;
 class TenantController extends Controller
 {
 
-    public function get_property_tenants($property_uuid, $duration)
+      //core functions
+    public function index(Property $property)
     {
-        return Tenant::where('property_uuid', $property_uuid)
-         ->when($duration, function ($query) use ($duration) {
-         $query->whereMonth('created_at', $duration);
-         });
+        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(5, auth()->user()->id)){
+            return abort(403);
+        }
+
+        Session::forget('tenant_uuid');
+
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',3);
+
+        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
+
+        $tenants = $this->getTenants($property->uuid);
+
+        return view('properties.tenants.index',[
+            'tenants'=>$tenants
+        ]);
+    }
+
+    public function show(Property $property, Tenant $tenant)
+    {
+        //store activity for opening a particular tenant.
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens one',3);
+
+        $list_of_all_relationships = app('App\Http\Controllers\RelationshipController')->index();
+
+        return view('tenants.show',[
+            'property' => $property,
+            'tenant_details' => $tenant,
+            'relationships' => $list_of_all_relationships
+        ]);
+    }
+
+    public function destroy($tenant_uuid){
+       Tenant::where('uuid', $tenant_uuid)->delete();
+    }
+
+    //other functions
+
+    public function getTenants($property_uuid)
+    {
+        return Property::find($property_uuid)->tenants;
+    }
+
+    public function unlock(Property $property)
+    {
+        return view('admin.restrictedpages.tenantportal');
     }
 
     /**
@@ -48,7 +90,7 @@ class TenantController extends Controller
      * @param  \App\Models\Tenant  $tenant
      * @return \Illuminate\Http\Response
      */
-    
+
 
     public function show_all_guardians($tenant_uuid)
     {
@@ -89,18 +131,18 @@ class TenantController extends Controller
           }
 
         try{
-    
-        
+
+
             DB::beginTransaction();
             $tenant->update($attributes);
             DB::commit();
-            return back()->with('success', 'Success!');
+            return back()->with('success', 'Changes Saved!');
         }catch(\Exception $e){
             DB::rollback();
-            
+
             return back()->with('error', 'Cannot perform your action.');
         }
-        
+
     }
 
     public function update_tenant_status($tenant_uuid, $status)

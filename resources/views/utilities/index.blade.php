@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title','Utilities | '. Session::get('property_name'))
+    @section('title','Utilities | '. env('APP_NAME'))
 
     @livewire('utility-index-component')
 </x-new-layout>

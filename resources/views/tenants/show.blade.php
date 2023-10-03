@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title', $tenant_details->tenant. ' | '. Session::get('property_name'))
+    @section('title', $tenant_details->tenant. ' | '. env('APP_NAME'))
     <div class="min-h-screen bg-no-repeat bg-cover" style="">
         <div class="h-full w-full mb-20">
             <div class="max-w-full mx-auto sm:px-6">
@@ -8,7 +8,7 @@
                         <ol role="list" class="flex items-center space-x-4">
                             <li>
                                 <div class="flex items-center">
-                                    <a class="" href="/property/{{ Session::get('property')}}/tenant">
+                                    <a class="" href="/property/{{ Session::get('property_uuid')}}/tenant">
                                         <img class="h-5 w-auto" src="{{ asset('/brands/back-button.png') }}">
                                     </a>
                                 </div>

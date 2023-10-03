@@ -1,5 +1,4 @@
 <div>
-    @include('layouts.notifications')
     <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
             <h1 class="text-3xl font-bold text-gray-500">Guest / {{ $bill->guest->guest }} / Bill # {{ $bill->bill_no }}
@@ -109,10 +108,8 @@
             <div class="col-start-6 flex items-center justify-end">
                 
 
-                <button type="button" wire:click="updateBill"
-                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-
+                <x-button type="button" wire:click="updateBill">
                     Update
-                </button>
+                </x-button>
             </div>
         </div>

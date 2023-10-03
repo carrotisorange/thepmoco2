@@ -17,24 +17,6 @@ use App\Models\Collection;
 
 class OwnerBillController extends Controller
 {
-
-    public function index(Property $property, Owner $owner)
-    {
-        $bills = Owner::find($owner->uuid)
-            ->bills()
-            ->orderBy('bill_no','desc')
-            ->get();
-
-        return view('owners.bills.index',[
-            'owner' => $owner,
-            'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
-            'unpaid_bills' => $this->get_owner_balance($owner->uuid),
-            'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($property->uuid),
-            'units' => app('App\Http\Controllers\OwnerDeedOfSalesController')->show_deed_of_sales($owner->uuid),
-            'note_to_bill' => $property->note_to_bill,
-        ]);
-    }
-
     
     public function get_bill_balance($bill_id)
     {
@@ -84,7 +66,7 @@ class OwnerBillController extends Controller
 
             Bill::create($attributes);
 
-            app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id, 1, 3);
+            app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, 1, 3);
 
         });
 
@@ -92,8 +74,7 @@ class OwnerBillController extends Controller
         }
         catch(\Exception $e)
         {   
-            ddd($e);
-            return back()->with('error','Cannot perform the action. Please try again.');
+            return back()->with('error',$e);
         }
     }
 
@@ -105,7 +86,7 @@ class OwnerBillController extends Controller
     
        $folder_path = 'owners.bills.export';
 
-       $pdf = app('App\Http\Controllers\FileExportController')->generate_pdf($property, $data, $folder_path);
+       $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
 
        return $pdf->stream(Carbon::now()->format('M d, Y').'-'.$owner->owner.'-soa.pdf');
     }
@@ -118,7 +99,7 @@ class OwnerBillController extends Controller
 
         Mail::to($request->email)->send(new SendBillToOwner($data));
 
-        return back()->with('success', 'Success!');
+        return back()->with('success', 'Changes Saved!');
     }
 
     public function get_bill_data($owner, $due_date, $penalty, $note)

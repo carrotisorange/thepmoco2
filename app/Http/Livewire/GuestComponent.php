@@ -59,14 +59,13 @@ class GuestComponent extends Component
             app('App\Http\Controllers\GuestController')->store($guest_uuid, $this->unit_uuid, $this->guest, $this->email, $this->mobile_number, $this->movein_at, $this->moveout_at, $this->vehicle_details, $this->plate_number);
 
             return
-            redirect('/property/'.Session::get('property').'/unit/'.$this->unit_uuid)->with('success','Success!');
+            redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit_uuid)->with('success','Changes Saved!');
       
             });
         
        }catch(\Exception $e)
        {
-        ddd($e);
-            return back()->with('error');
+            return back()->with('error',$e);
        }
     }
 

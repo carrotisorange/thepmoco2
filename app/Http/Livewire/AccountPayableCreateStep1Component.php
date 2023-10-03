@@ -4,10 +4,9 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Carbon\Carbon;
-use Session;
+
 use App\Models\AccountPayable;
 use App\Models\AccountPayableParticular;
-use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use App\Models\Property;
 use App\Models\PropertyBiller;
@@ -15,6 +14,7 @@ use App\Notifications\SendAccountPayableStep2NotificationToManager;
 use Illuminate\Support\Facades\Notification;
 use App\Models\UserProperty;
 use App\Models\User;
+use Session;
 
 class AccountPayableCreateStep1Component extends Component
 {
@@ -23,15 +23,13 @@ class AccountPayableCreateStep1Component extends Component
     public $accountpayable;
 
     public $request_for;
-    public $created_at; 
+    public $created_at;
     public $due_date;
     public $requester_id;
 
     public $batch_no;
 
     public $particulars;
-
-    public $property;
 
     public $vendor;
     public $delivery_at;
@@ -57,6 +55,8 @@ class AccountPayableCreateStep1Component extends Component
         $this->request_for = 'payment/purchase';
         $this->batch_no = $accountpayable->batch_no;
         $this->requester_id = $accountpayable->requester_id;
+        $this->first_approver = $accountpayable->approver_id;
+        $this->second_approver = $accountpayable->approver2_id;
         $this->created_at = Carbon::parse($this->created_at)->format('Y-m-d');
         $this->due_date = Carbon::parse($this->due_date)->format('Y-m-d');
         $this->quotation1 = $accountpayable->quotation1;
@@ -70,128 +70,110 @@ class AccountPayableCreateStep1Component extends Component
         $this->delivery_at = Carbon::parse($this->delivery_at)->format('Y-m-d');
         $this->particulars = $this->get_particulars();
         $this->amount = AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->sum('total');
-
+        $this->particulars = $this->get_particulars();
     }
 
-     protected function rules()
+    protected function rules()
     {
-        return [
-            'particulars.*.item' => 'nullable',
-            'particulars.*.quantity' => 'nullable',
-            'particulars.*.price' => 'nullable',
-            'particulars.*.total' => 'nullable',
-            // 'particulars.*.file' => 'nullable',
-            'particulars.*.unit_uuid' => 'nullable',
-            'particulars.*.vendor_id' => 'nullable',
-        ];
+         return [
+         'particulars.*.item' => 'nullable',
+         'particulars.*.quantity' => 'nullable',
+         'particulars.*.price' => 'nullable',
+         'particulars.*.total' => 'nullable',
+         // 'particulars.*.file' => 'nullable',
+         'particulars.*.unit_uuid' => 'nullable',
+         'particulars.*.vendor_id' => 'nullable',
+         ];
     }
 
     public function updated($propertyName){
-        $this->validateOnly($propertyName);
+         $this->validateOnly($propertyName);
     }
 
     public function submitForm()
     {
+        sleep(2);
+
         $this->validate([
-             'quotation1' => 'nullable | max:102400',
-             'quotation2' => 'nullable | max:102400',
-             'quotation3' => 'nullable | max:102400',
-             'selected_quotation' => ['required_with:quotation1'],
+            'first_approver' => 'required',
+            'second_approver' => 'required'
         ]);
 
-        if(!$this->get_particulars()->count()){
-            return redirect(url()->previous())->with('error', 'Please add at least 1 particular.');
-        }
+        $this->updateAccountPayable();
 
-        AccountPayable::where('id', $this->accountpayable->id)
-        ->update([
-            'request_for' => $this->request_for,
-             'created_at' => $this->created_at,
-             'due_date' => $this->due_date,
-             'requester_id' => $this->requester_id,
-             'amount' => $this->get_particulars()->sum('total'),
-             'vendor' => $this->vendor,
-             'bank' => $this->bank,
-             'bank_name' => $this->bank_name,
-             'bank_account' => $this->bank_account,
-             'delivery_at' => $this->delivery_at,
-             'status' => 'pending'
-        ]);
+        $this->upload_quotations();
 
-        AccountPayable::where('id', $this->accountpayable->id)
-        ->update([
-          'approver_id' => null,
-          'approver2_id' => null
+        $this->send_email_to_approvers();
+
+        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-2')->with('success', 'Changes Saved!');
+    }
+
+    public function updateAccountPayable(){
+        app('App\Http\Controllers\AccountPayableController')->update(
+            $this->accountpayable->id,
+            $this->request_for,
+            $this->created_at,
+            $this->due_date,
+            $this->requester_id,
+            $this->get_particulars()->sum('total'),
+            $this->vendor,
+            $this->bank,
+            $this->bank_name,
+            $this->bank_account,
+            $this->delivery_at,
+            $this->first_approver,
+            $this->second_approver,
+            'pending',
+            $this->selected_quotation,
+        );
+    }
+
+    public function upload_quotations(){
+        $this->validate([
+            'quotation1' => 'nullable | max:102400',
+            'quotation2' => 'nullable | max:102400',
+            'quotation3' => 'nullable | max:102400',
+            'selected_quotation' => ['required_with:quotation1'],
+
         ]);
 
         if($this->quotation1 && $this->accountpayable->quotation1 != $this->quotation1){
-        AccountPayable::where('id', $this->accountpayable->id)
-        ->update([
-        'quotation1' => $this->quotation1->store('accountpayables'),
-        ]);
-
-        } if($this->quotation2 && $this->accountpayable->quotation2 != $this->quotation2){
-        AccountPayable::where('id', $this->accountpayable->id)
-        ->update([
-        'quotation2' => $this->quotation2->store('accountpayables'),
-        ]);
-
-        } if($this->quotation3 && $this->accountpayable->quotation3 != $this->quotation3){
-        AccountPayable::where('id', $this->accountpayable->id)
-        ->update([
-        'quotation3' => $this->quotation3->store('accountpayables'),
-        ]);
-
+          AccountPayable::where('id', $this->accountpayable->id)
+          ->update([
+            'quotation1' => $this->quotation1->store('accountpayables'),
+          ]);
         }
 
-        AccountPayable::where('id', $this->accountpayable->id)
-              ->update([
-             'selected_quotation' => $this->selected_quotation,
-              'amount' => AccountPayableParticular::where('batch_no', $this->batch_no)->sum('total'),
-              'vendor' => $this->vendor,
-        ]);
-
-        $manager = UserProperty::where('property_uuid', $this->property->uuid)->where('role_id', 9)->pluck('user_id')->first();
-        
-        $accountpayable = UserProperty::where('property_uuid', $this->property->uuid)->where('role_id', 4)->pluck('user_id')->first();
-
-        $content = $this->accountpayable;
-
-        if($manager){
-            if($this->first_approver)
-            {
-                 $email_manager = User::find($this->first_approver)->email;
-            }
-            else
-            {
-                 $email_manager = User::find($manager)->email;
-            }
-
-            Notification::route('mail', $email_manager)->notify(new SendAccountPayableStep2NotificationToManager($content));
-    
+        if($this->quotation2 && $this->accountpayable->quotation2 != $this->quotation2){
+          AccountPayable::where('id', $this->accountpayable->id)
+          ->update([
+            'quotation2' => $this->quotation2->store('accountpayables'),
+          ]);
         }
 
-        if($accountpayable){
-            if($this->second_approver)
-            {
-                $email_accountpayable = User::find($this->second_approver)->email;
-            }
-            else
-            {
-                $email_accountpayable = User::find($accountpayable)->email;
-            }
-
-            Notification::route('mail', $email_accountpayable)->notify(new SendAccountPayableStep2NotificationToManager($content));
-    
+        if($this->quotation3 && $this->accountpayable->quotation3 != $this->quotation3){
+          AccountPayable::where('id', $this->accountpayable->id)
+          ->update([
+            'quotation3' => $this->quotation3->store('accountpayables'),
+          ]);
         }
-
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-3')->with('success', 'Success!');
     }
 
     public function get_particulars(){
         return AccountPayableParticular::where('batch_no', $this->batch_no)
-        ->orderBy('created_at', 'desc')
+        ->orderBy('created_at', 'asc')
         ->get();
+    }
+
+    public function send_email_to_approvers(){
+
+        $content = $this->accountpayable;
+
+        if($this->first_approver)
+        {
+            $first_approver = User::find($this->first_approver)->email;
+            Notification::route('mail', $first_approver)->notify(new SendAccountPayableStep2NotificationToManager($content));
+        }
     }
 
     public function addNewParticular(){
@@ -200,13 +182,11 @@ class AccountPayableCreateStep1Component extends Component
 
         $this->particulars = $this->get_particulars();
 
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-1')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-1')->with('success', 'Changes Saved!');
 
-        // session()->flash('success', 'Success!');
     }
 
     public function storeVendor(){
-        
 
         $this->validate([
             'biller' => 'required'
@@ -214,46 +194,45 @@ class AccountPayableCreateStep1Component extends Component
 
         PropertyBiller::updateOrCreate(
         [
-             'property_uuid' => $this->property->uuid,
+             'property_uuid' => Session::get('property_uuid'),
              'biller' => $this->biller
         ],
-            
+
         [
-            'property_uuid' => $this->property->uuid,
+            'property_uuid' => Session::get('property_uuid'),
             'biller' => $this->biller
         ]);
-        
-        session()->flash('success', 'Success!');
-        
-        // return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-1')->with('success', 'Success!');
+
+        session()->flash('success', 'Changes Saved!');
+
+        // return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-1')->with('success', 'Changes Saved!');
     }
 
     public function removeParticular($id){
-        
-        
+
         AccountPayableParticular::where('id', $id)->delete();
 
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-1')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-1')->with('success', 'Changes Saved!');
     }
 
     public function cancelRequest(){
 
-        
+    //    $batch_no = AccountPayable::find($this->accountpayable->id)->batch_no;
 
-       $batch_no = AccountPayable::find($this->accountpayable->id)->batch_no;
+    //     AccountPayable::where('batch_no', $batch_no)->delete();
 
-        AccountPayable::where('batch_no', $batch_no)->delete();
+    //     AccountPayableParticular::where('batch_no', $batch_no)->delete();
 
-        AccountPayableParticular::where('batch_no', $batch_no)->delete();
-
-        return redirect('/property/'.$this->property->uuid.'/accountpayable')->with('success','Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/accountpayable')->with('success','Changes Saved!');
     }
 
-    public function updateParticulars(){
+    public function updateParticular($id){
+
+        $this->validate();
+
         try{
-            foreach ($this->particulars as $particular) {      
-              $particular
-                // ->where('id', $id)
+            foreach ($this->particulars->where('id', $id) as $particular) {
+              AccountPayableParticular::where('id', $id)
                 ->update([
                     'unit_uuid' => $particular->unit_uuid,
                     'vendor_id' => $particular->vendor_id,
@@ -266,9 +245,11 @@ class AccountPayableCreateStep1Component extends Component
 
             $this->amount = AccountPayableParticular::where('batch_no', $this->accountpayable->batch_no)->sum('total');
 
-            session()->flash('success', 'Success!');
+            $this->particulars = $this->get_particulars();
+
+            session()->flash('success', 'Changes Saved!');
             }
-            
+
        }catch(\Exception $e){
             session()->flash('error', $e);
        }
@@ -281,27 +262,23 @@ class AccountPayableCreateStep1Component extends Component
 
     public function deleteAccountPayable($accountpayableId){
 
-      
-
       $batch_no = AccountPayable::find($accountpayableId)->batch_no;
 
       AccountPayable::where('batch_no', $batch_no)->delete();
 
       AccountPayableParticular::where('batch_no', $batch_no)->delete();
 
-    return redirect('/property/'.$this->property->uuid.'/accountpayable/')->with('success', 'Success!');   
+    return redirect('/property/'.Session::get('property_uuid').'/accountpayable/')->with('success', 'Changes Saved!');
 
     }
 
     public function render()
     {
-        // $this->particulars = $this->get_particulars();
-
         return view('livewire.account-payable-create-step1-component',[
-            'units' => Property::find($this->property->uuid)->units,
-            'vendors' => Property::find($this->property->uuid)->billers,
-            'managers' => UserProperty::where('property_uuid', $this->property->uuid)->where('role_id', 9)->get(),
-            'accountpayables' => UserProperty::where('property_uuid', $this->property->uuid)->where('role_id', 4)->get()
+            'units' => Property::find(Session::get('property_uuid'))->units,
+            'vendors' => Property::find(Session::get('property_uuid'))->billers,
+            'managers' => UserProperty::where('property_uuid', Session::get('property_uuid'))->where('role_id', 9)->where('user_id', '!=',97)->approved()->get(),
+            'accountpayables' => UserProperty::where('property_uuid', Session::get('property_uuid'))->where('role_id', 4)->where('user_id','!=' ,97)->approved()->get()
         ]);
     }
 }

@@ -9,10 +9,10 @@ use Illuminate\Validation\Rule;
 use App\Models\Bill;
 use App\Models\Guest;
 use App\Models\Contract;
+use Session;
 
 class CreateBillComponent extends Component
 {
-    public $property;
     public $bill_to;
 
     //input variables
@@ -51,7 +51,7 @@ class CreateBillComponent extends Component
             $this->bill *=-1;
         }
 
-        $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no($this->property->uuid);
+        $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property_uuid'));
         
         $validated['bill_no'] = $bill_no;
         $validated['bill'] = $this->bill;
@@ -65,12 +65,12 @@ class CreateBillComponent extends Component
           $validated['tenant_uuid'] = $this->bill_to->uuid;
         }
       
-        $validated['property_uuid'] =$this->property->uuid;
+        $validated['property_uuid'] =Session::get('property_uuid');
         $validated['is_posted'] = true;
 
         Bill::create($validated);
 
-       return redirect(url()->previous())->with('success', 'Success!');
+       return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 
     public function render()
@@ -83,7 +83,7 @@ class CreateBillComponent extends Component
       }
         return view('livewire.create-bill-component',[
             'units' => $units,
-            'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($this->property->uuid),
+            'particulars' => app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid')),
         ]);
     }
 }

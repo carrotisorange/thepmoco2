@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title','Request Status - Account Payables')
+    @section('title','Request Status | '. env('APP_NAME'))
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 ">
         
   <div class="p-4 mt-2">

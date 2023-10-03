@@ -1,5 +1,5 @@
 <x-new-layout>
-    @section('title', $tenant->tenant.' | '.Session::get('property_name'))
+    @section('title', $tenant->tenant.' | '. env('APP_NAME'))
 
     <div>
         <div class="mt-10 px-4 sm:px-6 lg:px-8">
@@ -27,7 +27,7 @@
 
                             </div>
 
-                          @livewire('tenant-guardian-component', ['tenant'=>$tenant])
+                            @livewire('tenant-guardian-component', ['tenant'=>$tenant])
                         </div>
 
                         {{-- <button type="button"

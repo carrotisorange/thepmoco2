@@ -1,7 +1,8 @@
 <div>
-    @include('layouts.notifications')
-    @livewire('create-bill-component', ['property'=> $property, 'bill_to' => $tenant])
-    <div class="mt-10 mb-10">
+    @livewire('create-bill-component', [ 'bill_to' => $tenant])
+
+    <div class="mt-5 mb-10">
+
         <p class="text-right">
             <button type="button" data-modal-toggle="create-bill-modal"
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">

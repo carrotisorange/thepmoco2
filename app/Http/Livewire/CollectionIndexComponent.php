@@ -7,10 +7,10 @@ use Session;
 use DB;
 use Carbon\Carbon;
 use App\Models\Collection;
+use App\Models\Property;
 
 class CollectionIndexComponent extends Component
 {
-    public $property;
     public $search = null;
     public $start = [];
     public $end = [];
@@ -35,26 +35,29 @@ class CollectionIndexComponent extends Component
     {
         $collections = $this->get_ars();
 
-        $mode_of_payments = Collection::where('property_uuid', $this->property->uuid)
+        $mode_of_payments = Collection::where('property_uuid', Session::get('property_uuid'))
         ->groupBy('form')
         ->get();
 
+        $propertyCollectionsCount = Property::find(Session::get('property_uuid'))->collections->count();
+
         return view('livewire.collection-index-component',[
             'collections' => $collections,
-            'mode_of_payments' => $mode_of_payments
+            'mode_of_payments' => $mode_of_payments,
+            'propertyCollectionsCount' => $propertyCollectionsCount
 
         ]);
     }
 
     public function exportDCR(){
-        return redirect('/property/'.$this->property->uuid .'/dcr/'.$this->date);
+        return redirect('/property/'.Session::get('property_uuid') .'/dcr/'.$this->date);
     }
 
     public function get_ars()
     {
         return Collection::search($this->search)
-        ->select('*', DB::raw("SUM(collection) as collection"),DB::raw("count(collection) as count") )
-        ->where('property_uuid', $this->property->uuid)
+        ->select('*', DB::raw("SUM(collection) as collections"),DB::raw("count(collection) as count") )
+        ->where('property_uuid', Session::get('property_uuid'))
         ->when($this->start, function($query){
             $query->whereDate('updated_at', $this->start);
         })
@@ -70,6 +73,6 @@ class CollectionIndexComponent extends Component
         ->posted()
         ->groupBy('ar_no')
         ->orderBy('ar_no', 'desc')
-        ->get();
+        ->paginate(10);
     }
 }

@@ -1,5 +1,5 @@
 <x-app-layout>
-    @section('title', '| Particulars')
+    @section('title', '| Particulars | '. env('APP_NAME'))
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <div class="flex">
@@ -7,9 +7,9 @@
                     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                         <nav class="rounded-md">
                             <ol class="list-reset flex">
-                                <li><a href="/property/{{ Session::get('property') }}"
+                                <li><a href="/property/{{ Session::get('property_uuid') }}"
                                         class="text-blue-600 hover:text-blue-700">{{
-                                        Session::get('property_name') }}</a>
+                                        Session::get('property') }}</a>
                                 </li>
                                 <li><span class="text-gray-500 mx-2">/</span></li>
                                 <li class="text-gray-500">Particulars ({{ $particulars->count() }})</li>
@@ -18,7 +18,8 @@
                     </h2>
                 </div>
                 <h5 class="flex-1 text-right">
-                    <x-button onclick="window.location.href='/particular/{{ Str::random(10) }}/create'">Create Particular   
+                    <x-button onclick="window.location.href='/particular/{{ Str::random(10) }}/create'">Create
+                        Particular
                     </x-button>
                 </h5>
 

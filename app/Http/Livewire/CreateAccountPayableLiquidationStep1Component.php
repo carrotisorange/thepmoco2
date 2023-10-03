@@ -12,7 +12,6 @@ use App\Models\Role;
 
 class CreateAccountPayableLiquidationStep1Component extends Component
 {
-    public $property;
     public $accountpayable;
     public $particulars;
 
@@ -41,7 +40,7 @@ class CreateAccountPayableLiquidationStep1Component extends Component
         $this->unit_uuid = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('unit_uuid')->first();
         $this->total = AccountPayableLiquidationParticular::where('batch_no', $accountpayable->batch_no)->sum('total');
         $this->cash_advance = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('cash_advance')->first();
-        $this->cv_number = sprintf('%08d', AccountPayable::where('property_uuid',$this->property->uuid)->where('status', '!=', 'unknown')->count());
+        $this->cv_number = sprintf('%08d', AccountPayable::where('property_uuid',Session::get('property_uuid'))->where('status', '!=', 'pending')->count());
         $this->total_type = AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('total_type')->first();
         $this->total_amount = (double) $this->total- (double) $this->cash_advance;
         $this->return_type =  AccountPayableLiquidation::where('batch_no', $accountpayable->batch_no)->pluck('return_type')->first();
@@ -109,10 +108,10 @@ class CreateAccountPayableLiquidationStep1Component extends Component
                 'noted_by' => $this->noted_by,
                 'approved_by' => $this->approved_by,
                 'return_type' => $this->return_type,
-                'cv_number' => sprintf('%08d', AccountPayable::where('property_uuid',$this->property->uuid)->where('status','!=', 'unknown')->count())
+                'cv_number' => sprintf('%08d', AccountPayable::where('property_uuid',Session::get('property_uuid'))->where('status','!=', 'pending')->count())
         ]);
 
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/liquidation/step-2')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/liquidation/step-2')->with('success', 'Changes Saved!');
     }
 
     public function updateParticular(){
@@ -127,7 +126,7 @@ class CreateAccountPayableLiquidationStep1Component extends Component
                     'or_number' => $particular->or_number,
                     'total' => $particular->quantity * $particular->price,
                 ]);
-                session()->flash('success', 'Success!');
+                session()->flash('success', 'Changes Saved!');
             }
              
        }catch(\Exception $e){
@@ -141,7 +140,7 @@ class CreateAccountPayableLiquidationStep1Component extends Component
 
         $this->particulars = $this->get_particulars();
 
-        return back()->with('success', 'Success!');
+        return back()->with('success', 'Changes Saved!');
     }
 
     public function get_particulars(){
@@ -165,14 +164,14 @@ class CreateAccountPayableLiquidationStep1Component extends Component
 
         $this->particulars = $this->get_particulars();
 
-        return back()->with('success', 'Success!');
+        return back()->with('success', 'Changes Saved!');
     }
 
     public function render()
     {
         return view('livewire.create-account-payable-liquidation-step1-component',[
-            'units' => Property::find($this->property->uuid)->units,
-            'vendors' => Property::find($this->property->uuid)->billers,
+            'units' => Property::find(Session::get('property_uuid'))->units,
+            'vendors' => Property::find(Session::get('property_uuid'))->billers,
             'departments' => Role::whereNotIn('id', [5, 7, 8, 10, 12, 13])->get(),
             'accountpayableliquidation' => AccountPayableLiquidation::where('batch_no', $this->accountpayable->batch_no)->pluck('cv_number')->first()
         ]);

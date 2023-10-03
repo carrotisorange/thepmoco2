@@ -1,6 +1,6 @@
 <x-new-layout>
-    @section('title', $tenant->tenant.' | '.Session::get('property_name'))
+    @section('title','Concern | '. env('APP_NAME'))
 
-    @livewire('tenant-concern-create-component', ['tenant' => $tenant])
+    @livewire('tenant-concern-create-component')
 
 </x-new-layout>

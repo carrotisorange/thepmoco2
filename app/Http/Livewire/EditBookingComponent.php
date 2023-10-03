@@ -8,10 +8,10 @@ use Carbon\Carbon;
 use App\Models\Booking;
 use Illuminate\Validation\Rule;
 use App\Models\Unit;
+use Session;
 
 class EditBookingComponent extends Component
 {
-    public $property;
     public Booking $booking;
 
     //input variables
@@ -86,14 +86,14 @@ class EditBookingComponent extends Component
 
         Booking::where('uuid', $this->booking->uuid)->update($validated);
 
-       return redirect(url()->previous())->with('success', 'Success!');
+       return redirect(url()->previous())->with('success', 'Changes Saved!');
 
     }
 
     public function render()
     {
         return view('livewire.edit-booking-component',[
-            'units' => Property::find($this->property->uuid)->units->where('rent_duration', 'transient'),
+            'units' => Unit::where('property_uuid',Session::get('property_uuid'))->get(),
         ]);
     }
 }

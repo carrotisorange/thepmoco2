@@ -9,7 +9,7 @@
 
                 <div class="mt-3 text-center sm:mt-5">
                     <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Edit Contract
-                        Information
+                        
                     </h3>
                     <div class="mt-2">
 
@@ -103,6 +103,27 @@
                     @enderror
                 </div>
 
+                {{-- @if($status === 'inactive') --}}
+                <div class="mt-5 sm:mt-6">
+                    <label class="text-sm" for="unit_uuid">Would you like to update the tenant status?</label>
+                    <x-form-select id="markTenantAsInactive" name="markTenantAsInactive" wire:model="markTenantAsInactive" class="">
+                        <option value="true" {{ true===$status? 'selected' : 'Select one' }}>
+                            yes
+                        </option>
+
+                        <option value="false" {{ false===$status? 'selected' : 'Select one' }}>
+                            no
+                        </option>
+                       
+
+                    </x-form-select>
+
+                    @error('markTenantAsInactive')
+                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                    @enderror
+                </div>
+                {{-- @endif --}}
+
                 <div class="mt-5 sm:mt-6">
                     <label class="text-sm" for="interaction_id">Interaction</label>
                     <x-form-select id="interaction_id" name="interaction_id" wire:model="interaction_id" class="">
@@ -157,10 +178,9 @@
 
                 <div class="mt-5 sm:mt-6">
 
-                    <button type="button" wire:click="updateContract"
-                        class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
+                    <x-button type="button" wire:click="updateContract">
                         Update
-                    </button>
+                    </x-button>
 
                 </div>
             </form>

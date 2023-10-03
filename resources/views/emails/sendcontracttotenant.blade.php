@@ -1,9 +1,9 @@
 @component('mail::message')
 # Hi {{ $details['tenant'] }}!
 
-We're thrilled you've selected <b>{{ Session::get('property_name') }}</b> as your new home.
+We're thrilled you've selected <b>{{ Session::get('property') }}</b> as your new home.
 <br><br>
-We've attached some useful information to help get you ready for your move-in on {{ $details['start'] }}. 
+We've attached some useful information to help get you ready for your move-in on {{ $details['start'] }}.
 <br>
 <br>
 The details of your contract are summarized below:
@@ -24,11 +24,11 @@ Status: pending
 <br><br>
 I hope this information helps you settle in and feel right at home.
 <br>
+
 Regards,<br>
-{{ auth()->user()->name }}
+{{ Session::get('property') }}
 <br><br>
-For inquiries reach us at: {{ App\Models\Property::find(Session::get('property'))->email }} /
-{{ App\Models\Property::find(Session::get('property'))->mobile }}
+For inquiries reach us at: {{ Session::get('property_email') }} / {{ Session::get('property_mobile') }}
 <br><br>
 
 @endcomponent

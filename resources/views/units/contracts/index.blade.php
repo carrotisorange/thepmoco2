@@ -1,5 +1,5 @@
 <x-index-layout>
-    @section('title', '| Contracts')
+    @section('title', 'Contracts | '. env('APP_NAME'))
     <x-slot name="labels">
         <li class="text-gray-500">{{ $unit->unit }}</li>
         <li><span class="text-gray-500 mx-2">/</span></li>

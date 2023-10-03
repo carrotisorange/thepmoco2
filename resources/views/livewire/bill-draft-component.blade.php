@@ -181,6 +181,5 @@
             </div>
             @endif
         </div>
-        @include('layouts.notifications')
     </div>
 </div>

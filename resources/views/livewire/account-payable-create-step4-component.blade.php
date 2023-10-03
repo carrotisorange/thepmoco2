@@ -1,10 +1,12 @@
 <div>
-
     <div class="mt-5 px-4 sm:px-6 lg:px-8">
         <div class="flex justify-end">
+            {{-- <button type="button"
+                class="mb-4 bg-white py-2 px-4 underline rounded-md text-sm font-medium text-gray-700 hover:bg-purple-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Export</button>
+            --}}
         </div>
         {{-- start-step-1-form --}}
-        <form class="space-y-6" wire:submit.prevent="submitForm()" method="POST">
+        <form class="space-y-6" wire:submit.prevent="submitForm()">
 
             <div class="md:grid md:grid-cols-6 md:gap-6">
 
@@ -18,12 +20,14 @@
                         <thead class="bg-gray-50">
                             <tr>
                                 <x-th>#</x-th>
+                                <x-th>UNIT</x-th>
+                                <x-th>VENDOR</x-th>
                                 <x-th>ITEM </x-th>
                                 <x-th>QUANTITY</x-th>
-                                @if($accountpayable->request_for === 'payment')
+                                {{-- @if($accountpayable->request_for === 'payment') --}}
                                 <x-th>Price</x-th>
                                 <x-th>Total</x-th>
-                                @endif
+                                {{-- @endif --}}
 
                             </tr>
                         </thead>
@@ -33,133 +37,172 @@
                                 <tr>
                                     <x-td>{{ $index+1 }}</x-td>
                                     <x-td>
+                                        @if($particular->unit_uuid)
+                                        {{ App\Models\Unit::find($particular->unit_uuid)->unit }}
+                                        @else
+                                        NA
+                                        @endif
+                                    </x-td>
+                                    <x-td>
+                                        @if($particular->vendor_id)
+                                        {{ App\Models\PropertyBiller::find($particular->vendor_id)->biller }}
+                                        @else
+                                        NA
+                                        @endif
+                                    </x-td>
+                                    <x-td>
                                         {{ $particular->item }}
                                     </x-td>
                                     <x-td>
                                         {{ $particular->quantity }}
                                     </x-td>
-                                    @if($accountpayable->request_for === 'payment')
+                                    {{-- @if($accountpayable->request_for === 'payment') --}}
                                     <x-td>
-                                        {{ number_format($particular->price, 2) }}
+                                        {{ $particular->price }}
                                     </x-td>
                                     <x-td>
                                         {{ number_format($particular->price * $particular->quantity, 2) }}
                                     </x-td>
-                                    @endif
+                                    {{-- @endif --}}
 
                                 </tr>
                             </div>
                             @endforeach
+                            <tr>
+                                <x-td>Total</x-td>
+                                <x-td></x-td>
+                                <x-td></x-td>
+                                <x-td></x-td>
+                                <x-td></x-td>
+                                <x-td></x-td>
+                                <x-td>{{ number_format($particulars->sum('total'),2) }}</x-td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
 
-                {{-- request for purchase --}}
-                <div class="sm:col-span-6">
-                    <label for="request" class="block text-sm font-medium text-gray-700">Request for: </label>
-                    <input type="text" value="{{ $accountpayable->request_for }}" readonly
-                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
-                </div>
-
-
-                {{-- creation date --}}
-                <div class="sm:col-span-3">
-                    <label for="creation-date" class="block text-sm font-medium text-gray-700">Request Date:</label>
-                    <input type="text" value="{{ Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}"
-                        readonly
-                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
-                </div>
-
-                <div class="sm:col-span-3">
-                    <label for="due_date" class="block text-sm font-medium text-gray-700">Due Date:</label>
-                    <input type="text" value="{{ Carbon\Carbon::parse($accountpayable->due_date)->format('M d, Y') }}"
-                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
-                </div>
-
-
-
-                {{-- requester's name --}}
-                <div class="sm:col-span-3">
-                    <label for="requester" class="block text-sm font-medium text-gray-700">Requester's Name:</label>
-                    <input type="text" value="{{ App\Models\User::find($accountpayable->requester_id)->name     }}"
-                        readonly
-                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
-                </div>
-
-
-
-
-                {{-- price --}}
-                <div class="sm:col-span-3">
-                    <label for="price" class="block text-sm font-medium text-gray-700">Amount:</label>
-                    <input type="text" value="{{ number_format($accountpayable->amount, 2) }}" readonly
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                </div>
-
-
-                {{-- vendor details --}}
-                <div class="sm:col-span-3">
-                    <label for="vendor" class="block text-sm font-medium text-gray-700">Vendor Name:</label>
-                    <input type="text" value="{{ $accountpayable->vendor }}" wire:model="vendor"
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
-                </div>
-
-                {{-- delivery date --}}
-                <div class="sm:col-span-3">
-                    <label for="delivery-date" class="block text-sm font-medium text-gray-700">Delivery Date:</label>
-                    <input type="date" wire:model="delivery_at"
-                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
-                    @error('delivery_at')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div>
 
                 <div class="sm:col-span-6">
-                    <label for="vendor" class="block text-sm font-medium text-gray-700">Bank Details</label>
+                    <label for="vendor-details" class="block text-sm font-medium text-gray-700">Vendor Details</label>
+
                 </div>
 
-                <div class="sm:col-span-2">
-                    <label for="bank" class="block text-sm font-medium text-gray-700">Bank</label>
-                    <input type="text" wire:model="bank"
-                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
-                    @error('bank')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+
+                <div class="sm:col-span-6">
+                    <label class="block text-sm font-medium text-gray-700"> Selected quotation</label>
+                    <div
+                        class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                        <div class="space-y-1 text-center">
+                            <div class="flex text-sm text-gray-600">
+                                <label for="selected_quotation"
+                                    class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
+                                    <span>
+
+                                        @if($accountpayable->selected_quotation == 'quotation1')
+
+                                        <a href="{{ asset('/storage/'.$accountpayable->quotation1) }}" target="_blank"
+                                            class="text-blue-500 text-decoration-line: underline">View
+                                            Selected Quotation</a>
+
+                                        @elseif($accountpayable->selected_quotation == 'quotation2')
+
+                                        <a href="{{ asset('/storage/'.$accountpayable->quotation1) }}" target="_blank"
+                                            class="text-blue-500 text-decoration-line: underline">View
+                                            Selected Quotation</a>
+
+                                        @elseif($accountpayable->selected_quotation == 'quotation3')
+
+                                        <a href="{{ asset('/storage/'.$accountpayable->quotation3) }}" target="_blank"
+                                            class="text-blue-500 text-decoration-line: underline">View
+                                            Selected Quotation</a>
+
+                                        @else
+                                        <a href="#" class="text-red-500 text-decoration-line: underline">No Selected
+                                            Quotation
+                                            was uploaded</a>
+                                        @endif
+
+                                    </span>
+
+
+                                </label>
+
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
 
-                <div class="sm:col-span-2">
-                    <label for="bank_name" class="block text-sm font-medium text-gray-700">Bank Name</label>
-                    <input type="text" wire:model="bank_name"
-                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
-                    @error('bank_name')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                <div class="sm:col-span-7">
+                    <label class="block text-sm font-medium text-gray-700">Upload the proof of payment</label>
+                    <div
+                        class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                        <div class="space-y-1 text-center">
+                            <div class="flex text-sm text-gray-600">
+                                <label for="attachment"
+                                    class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
+                                    <span wire:loading.remove>Upload a file</span>
+                                    <span wire:loading>Loading...</span>
+                                    <input id="attachment" wire:model="attachment" type="file" class="sr-only">
+                                    <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
+                                    @if($attachment)
+                                    <span class="text-red-500 text-xs mt-2">
+                                        <a href="#/" wire:click="removeAttachment('attachment')">Remove the
+                                            attachment
+                                            .</a></span>
+                                    @endif
+
+                                </label>
+
+                            </div>
+
+                            @error('attachment')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @enderror
+                            @if ($attachment)
+                            <p class="text-green-500 text-xs mt-2">File has been attached. <i
+                                    class="fa-solid fa-circle-check"></i></p>
+                            @endif
+                        </div>
+                    </div>
                 </div>
 
-                <div class="sm:col-span-2">
-                    <label for="bank_account" class="block text-sm font-medium text-gray-700">Bank Account</label>
-                    <input type="text" wire:model="bank_account"
-                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
-                    @error('bank_account')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                @can('accountpayable')
+                <div class="mt-3 col-span-7">
+                    <div class="form-check">
+                        <input wire:model="skipLiquidation"
+                            class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                            type="checkbox" value="{{ old('skipLiquidation'), $skipLiquidation }}" id="flexCheckChecked">
+                        <label class="form-check-label inline-block text-gray-800" for="flexCheckChecked">
+                            Would you like to skip the liquidation process? If checked, will proceed directly to chart of account (Step 7)
+                        </label>
+                    </div>
                 </div>
+                @endcan
 
-                {{-- cancel & next button --}}
+
+
+
+                {{-- reject, approve button --}}
                 <div class="col-start-6 flex items-center justify-end">
-                    <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-                        href="/property/{{ $property_uuid }}/accountpayable/{{ $accountpayable_id }}/step-">
-                        Back
+
+                    <a target="_blank" href="/property/{{ $this->property->uuid }}/accountpayable/{{ $this->accountpayable->id }}/step1/export" wire:loading.remove class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                        Export 
                     </a>
-                    <button
-                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
 
+                    <x-button type="submit" wire:loading.remove>
+                        Confirm
+                    </x-button>
 
-                        Next
-                    </button>
+                    <x-button type="button" wire:loading disabled>
+                        Loading...
+                    </x-button>
+
                 </div>
+
             </div>
         </form>
         {{-- end-step-1-form --}}
     </div>
+
 </div>

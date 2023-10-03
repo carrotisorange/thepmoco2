@@ -70,14 +70,14 @@ class ContractMoveinComponent extends Component
             //store new referral
             if($this->referral)
             {
-              app('App\Http\Controllers\ReferralController')->update($this->referral, $this->contract_details->uuid,  Session::get('property'));
+              app('App\Http\Controllers\ReferralController')->update($this->referral, $this->contract_details->uuid,  Session::get('property_uuid'));
             }
 
             //update status of the tenant
             app('App\Http\Controllers\TenantController')->update_tenant_status($this->contract_details->tenant->uuid,'active');
 
             //store new point
-            app('App\Http\Controllers\PointController')->store(Session::get('property'), auth()->user()->id,4, 1);
+            app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id,4, 1);
                   
             if($this->sendContractToTenant)
             {
@@ -87,16 +87,16 @@ class ContractMoveinComponent extends Component
             if(auth()->user()->role_id === 1)
             {
                 return
-                redirect('/property/'.Session::get('property').'/tenant/'.$this->contract_details->tenant->uuid.'/contracts/')->with('success','Success!');
+                redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->contract_details->tenant->uuid.'/contracts/')->with('success','Changes Saved!');
 
             }else{
-                  return redirect('/property/'.Session::get('property').'/unit/'.$this->contract_details->unit->uuid.'/tenant/'.$this->contract_details->tenant->uuid.'/bill/'.Str::random(8).'/create')
-                  ->with('success', 'Success!');
+                  return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->contract_details->unit->uuid.'/tenant/'.$this->contract_details->tenant->uuid.'/bill/'.Str::random(8).'/create')
+                  ->with('success', 'Changes Saved!');
             }
           });
             
         }catch (\Exception $e) {
-          session()->flash('error');
+          session()->flash('error', 'Something went wrong.');
         }
     }
 

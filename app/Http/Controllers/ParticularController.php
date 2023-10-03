@@ -19,7 +19,7 @@ class ParticularController extends Controller
     {
         $particulars = Particular::join('property_particulars', 'particulars.id',
         'property_particulars.particular_id')
-        ->where('property_uuid', Session::get('property'))
+        ->where('property_uuid', Session::get('property_uuid'))
         ->orderBy('particulars.id', 'desc')
         ->paginate();
 
@@ -73,18 +73,18 @@ class ParticularController extends Controller
              try {
                 DB::beginTransaction();
 
-                $particular_attributes['property_uuid'] = Session::get('property');
+                $particular_attributes['property_uuid'] = Session::get('property_uuid');
                 $particular_attributes['particular_id'] = $particular;
 
                 PropertyParticular::create($particular_attributes);
 
                 DB::commit();
 
-             return back()->with('success', 'Success!');
+             return back()->with('success', 'Changes Saved!');
              } catch (\Throwable $e) {
         
                 DB::rollback();
-               session()->flash('error');
+               session()->flash('error', 'Something went wrong.');
              }
         }
         else{
@@ -95,18 +95,18 @@ class ParticularController extends Controller
                     'particular' => request('particular_id')
                 ]);
 
-                $particular_attributes['property_uuid'] = Session::get('property');
+                $particular_attributes['property_uuid'] = Session::get('property_uuid');
                 $particular_attributes['particular_id'] = $particular->id;
 
                 PropertyParticular::create($particular_attributes);
 
                 DB::commit();
 
-                return back()->with('success', 'Success!');
+                return back()->with('success', 'Changes Saved!');
              } catch (\Throwable $e) {
           
                 DB::rollback();
-               session()->flash('error');
+               session()->flash('error', 'Something went wrong.');
              }
         }
     }

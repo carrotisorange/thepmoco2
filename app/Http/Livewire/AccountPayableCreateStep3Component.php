@@ -8,13 +8,13 @@ use Session;
 use App\Models\AccountPayable;
 use App\Models\AccountPayableParticular;
 use App\Notifications\SendAccountPayableStep3NotificationToAP;
+use App\Notifications\SendAccountPayableStep4NotificationToAdmin;
 use Illuminate\Support\Facades\Notification;
 use App\Models\UserProperty;
 use App\Models\User;
 
 class AccountPayableCreateStep3Component extends Component
 {
-    public $property;
     public $accountpayable;
 
     public $comment;
@@ -44,19 +44,17 @@ class AccountPayableCreateStep3Component extends Component
         
 
         return
-        redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step1/export');
+        redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step1/export');
 
     }
 
     public function approveRequest()
     {
-        
-
         $this->validate();
 
-        app('App\Http\Controllers\AccountPayableController')->store_step_3($this->accountpayable->id, 'approved by manager', $this->comment, $this->vendor);
+        app('App\Http\Controllers\RequestForPurchaseController')->update_approval($this->accountpayable->id, 'approved by ap', $this->comment, $this->vendor);
 
-        $ap = UserProperty::where('property_uuid', $this->property->uuid)->where('role_id', 4)->pluck('user_id')->first();
+        $ap = UserProperty::where('property_uuid', Session::get('property_uuid'))->where('role_id', 4)->approved()->pluck('user_id')->first();
 
 
         $content = $this->accountpayable;
@@ -68,19 +66,27 @@ class AccountPayableCreateStep3Component extends Component
             Notification::route('mail', $email_ap)->notify(new SendAccountPayableStep3NotificationToAP($content));
 
         }
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-5')->with('success', 'Success!');
+
+        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-4')->with('success', 'Changes Saved!');
     }
 
     public function rejectRequest(){
-        
-        
 
         $this->validate();
 
-        app('App\Http\Controllers\AccountPayableController')->store_step_3($this->accountpayable->id, 'rejected by manager', $this->comment, $this->vendor);
+        app('App\Http\Controllers\RequestForPurchaseController')->update_approval($this->accountpayable->id, 'rejected
+        by ap', $this->comment, $this->vendor);
 
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-5')->with('success', 'Success!');
+        $content = $this->accountpayable;
+
+        $requester_email = User::find($this->accountpayable->requester_id)->email;
+
+        Notification::route('mail', $requester_email)->notify(new SendAccountPayableStep4NotificationToAdmin($content));
+
+        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-3')->with('success', 'Changes Saved!');
     }
+
+    
 
     public function render()
     {

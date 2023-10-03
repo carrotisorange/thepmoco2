@@ -1,5 +1,4 @@
 <div>
-    @include('layouts.notifications')
     <form class="space-y-6" wire:submit.prevent="submitForm()" method="POST">
         <div class="bg-gray-100 mt-5 px-4 py-5 sm:rounded-lg sm:p-6">
             <div class="md:grid md:grid-cols-1 md:gap-6">
@@ -44,11 +43,11 @@
                 <button type="submit"
                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 
-                 
+
                     Save
                 </button>
                 <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ Session::get('property') }}/unit/{{ $unit->uuid }}/tenant/{{ $tenant->uuid }}/bill/{{ Str::random(8) }}/create">
+                    href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}/tenant/{{ $tenant->uuid }}/bill/{{ Str::random(8) }}/create">
                     Next
                 </a>
             </div>

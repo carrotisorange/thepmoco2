@@ -45,7 +45,7 @@ class EditReferenceComponent extends Component
 
         Reference::where('id', $this->reference_details->id)->update($validated);
 
-        return redirect(url()->previous())->with('success', 'Success!');
+        return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 
     public function render()

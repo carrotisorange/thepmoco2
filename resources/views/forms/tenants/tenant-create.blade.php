@@ -70,7 +70,7 @@
                             <option value="male" {{ old('gender')=='male' ? 'selected' : 'Select one' }}>{{
                                 'male' }}</option>
                             <option value="LGBTQ" {{ old('gender')=='LGBTQ' ? 'selected' : 'Select one' }}>{{
-                                 'LGBTQ' }}</option>
+                                'LGBTQ' }}</option>
                         </select>
                         @error('gender')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -375,32 +375,18 @@
                 </div>
             </div>
             <div class="flex justify-end mt-2">
-
-
-                <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
-                    target="_blank" href="{{ asset('/brands/docs/Contract of Lease TEMPLATE.docx') }}" target="_blank"
-                    class="text-indigo-600 hover:text-indigo-900">Export Sample Lease Contract</a>
-
-                <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-                    href="/property/{{ Session::get('property') }}/unit">
+                <x-button onclick="window.location.href='{{ asset('/brands/docs/Contract of Lease TEMPLATE.docx') }}'">
+                        Export Sample Lease Contract
+                </x-button>
+                
+                <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/unit'">
                     Cancel
-                </a>
-
-                {{-- <button type="button" wire:click="exportTenantInformationSheet"
-                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Tenant Information Sheet
-                </button> --}}
-
-
-                <button type="submit"
-                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                </x-button>
+                
+                <x-button type="submit">     
                     Next
-                </button>
+                </x-button>
 
-                <button type="button" wire:loading disabled
-                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Loading...
-                </button>
             </div>
         </div>
     </div>

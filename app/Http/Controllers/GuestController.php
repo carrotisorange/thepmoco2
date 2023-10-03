@@ -35,7 +35,7 @@ class GuestController extends Controller
             'mobile_number' => $mobile_number,
             'movein_at' => $movein_at,
             'moveout_at' => $moveout_at,
-            'property_uuid' => Session::get('property'), 
+            'property_uuid' => Session::get('property_uuid'), 
             'vehicle_details' => $vehicle_details, 
             'plate_number' => $plate_number
         ]);

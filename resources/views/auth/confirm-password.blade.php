@@ -1,5 +1,5 @@
 <x-guest-layout>
-    @section('title', 'Confirm Password')
+    @section('title', 'Confirm Password | '. env('APP_NAME'))
     <x-auth-card>
        <x-slot name="logo">
             <a href="/">

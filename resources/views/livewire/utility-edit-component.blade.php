@@ -61,13 +61,14 @@
                                 <div wire:key="utility-field-{{ $item->id }}">
                                     <tr>
                                         <x-td>
-                                            <x-table-input form="edit-form" type="text" value="{{ $item->unit }}"
+                                            <x-table-input form="edit-form" type="text" value="{{ App\Models\Unit::find($item->unit_uuid)->unit }}"
                                                 readonly />
                                         </x-td>
                                         {{-- <x-td> --}}
                                             <x-table-input form="edit-form" type="hidden"
+                                                wire:model="utilities.{{ $index }}.start_date"
                                                 wire:change="updateUtilities({{ $item->id }})"
-                                                wire:model="utilities.{{ $index }}.start_date" readonly />
+                                                readonly />
                                             @error('utilities.{{ $index }}.start_date')
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                             @enderror
@@ -84,16 +85,18 @@
                                         </x-td> --}}
                                         <x-td>
                                             <x-table-input form="edit-form" type="number" step="0.001"
-                                                wire:keyup="updateUtilities({{ $item->id }})"
-                                                wire:model.debounce.500ms="utilities.{{ $index }}.previous_reading" />
+                                                wire:model="utilities.{{ $index }}.previous_reading"
+                                                wire:change="updateUtilities({{ $item->id }})"
+                                                />
                                             @error('utilities.{{ $index }}.previous_reading')
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                             @enderror
                                         </x-td>
                                         <x-td>
                                             <x-table-input form="edit-form" type="number" step="0.001"
-                                                wire:keyup="updateUtilities({{ $item->id }})"
-                                                wire:model.debounce.500ms="utilities.{{ $index }}.current_reading" />
+                                            wire:model="utilities.{{ $index }}.current_reading"
+                                                wire:change="updateUtilities({{ $item->id }})"
+                                              />
                                             @error('utilities.{{ $index }}.current_reading')
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                             @enderror
@@ -108,8 +111,9 @@
                                         </x-td>
                                         <x-td>
                                             <x-table-input form="edit-form" type="number" step="0.001"
-                                                wire:keyup="updateUtilities({{ $item->id }})"
-                                                wire:model.debounce.500ms="utilities.{{ $index }}.kwh" />
+                                                wire:model="utilities.{{ $index }}.kwh"
+                                                wire:change="updateUtilities({{ $item->id }})"
+                                              />
 
                                             @error('utilities.{{ $index }}.kwh')
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -117,8 +121,9 @@
                                         </x-td>
                                         <x-td>
                                             <x-table-input form="edit-form" type="number" step="0.001"
-                                                wire:keyup="updateUtilities({{ $item->id }})"
-                                                wire:model.debounce.500ms="utilities.{{ $index }}.min_charge" />
+                                                wire:model="utilities.{{ $index }}.min_charge"
+                                                wire:change="updateUtilities({{ $item->id }})"
+                                               />
 
                                             @error('utilities.{{ $index }}.min_charge')
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -149,6 +154,5 @@
             </div>
         </div>
     </div>
-    @include('layouts.notifications')
     @include('modals.instructions.update-utility-parameter-modal')
 </div>

@@ -46,9 +46,9 @@ class UnitInventoryUploadImageComponent extends Component
             'image' => $image
         ]);
 
-         return redirect('/property/'.$this->unit->property_uuid.'/unit/'.$this->unit->uuid.'/inventory/'.$this->unit_inventory->id)->with('success', 'Success!');
+         return redirect('/property/'.$this->unit->property_uuid.'/unit/'.$this->unit->uuid.'/inventory/'.$this->unit_inventory->id)->with('success', 'Changes Saved!');
 
-        // session()->flash('success', 'Success!');
+        // session()->flash('success', 'Changes Saved!');
     }
 
     public function render()
