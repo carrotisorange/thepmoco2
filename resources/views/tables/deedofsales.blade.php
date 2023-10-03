@@ -35,7 +35,7 @@
                   
                     type="button">
                     View
-                </button>
+                </x-button>
             </x-td>
             {{-- <x-td>
                 @if($deedofsale->status == 'active')

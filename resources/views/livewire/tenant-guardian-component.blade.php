@@ -69,7 +69,7 @@
                     @if($guardian)
                     <x-button type="submit">
                         Submit
-                    </button>
+                    </x-button>
                     @endif
                 </div>
             </div>

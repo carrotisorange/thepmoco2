@@ -30,7 +30,7 @@
 
                         <x-button type="submit">
                             Confirm
-                        </button>
+                        </x-button>
 
                     </div>
                 </div>

@@ -59,7 +59,7 @@
         
                     type="button">
                     Edit
-                </button>
+                </x-button>
             </x-td>
         </tr>
         @livewire('edit-personnel-component', ['personnel' => $personnel], key(Carbon\Carbon::now()->timestamp.''.$index.''.$personnel->id))

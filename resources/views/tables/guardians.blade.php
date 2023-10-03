@@ -42,7 +42,7 @@
                   
                     type="button">
                     Edit
-                </button>
+                </x-button>
             </x-td>
         </tr>
        @livewire('edit-guardian-component', ['guardian_details' => $guardian], key($guardian->id))

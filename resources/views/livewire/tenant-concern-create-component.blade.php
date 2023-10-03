@@ -139,7 +139,7 @@
                                         </a>
                                         <x-button type="submit">
                                             Report
-                                        </button>
+                                        </x-button>
                                     </div>
                                 </div>
                         </form>

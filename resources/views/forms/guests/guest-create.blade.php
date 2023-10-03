@@ -87,7 +87,7 @@
 
                 <x-button type="submit">  
                      Finish
-                </button>
+                </x-button>
 
 
             </div>

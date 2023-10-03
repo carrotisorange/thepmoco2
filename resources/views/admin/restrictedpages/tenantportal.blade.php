@@ -94,7 +94,7 @@
                                         <div>
                                             <x-button type="submit"
                                                 onclick="window.location.href='/user/{{ auth()->user()->username }}/unlock'">Unlock
-                                                now</a></button>
+                                                now</a></x-button>
 
                                         </div>
                                     </div>

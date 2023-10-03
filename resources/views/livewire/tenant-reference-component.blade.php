@@ -69,7 +69,7 @@
                     @if($reference)
                     <x-button type="submit">
                         Submit
-                    </button>
+                    </x-button>
                     @endif
                 </div>
             </div>

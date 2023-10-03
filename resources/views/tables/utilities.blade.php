@@ -75,7 +75,7 @@
                   
                     type="button">
                     Edit
-                </button>
+                </x-button>
             </x-td>
         </tr>
         @livewire('edit-utility-component', ['utility' => $utility], key($utility->id))

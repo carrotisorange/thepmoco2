@@ -83,7 +83,7 @@
 
                 <x-button type="submit" wire:loading.remove>
                     Confirm
-                </button>
+                </x-button>
 
                 <x-button type="button" wire:loading>
                     Loading...

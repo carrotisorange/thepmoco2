@@ -67,10 +67,7 @@
                             <h3 class="mt-2 text-sm font-medium text-gray-900">No guests</h3>
                             <p class="mt-1 text-sm text-gray-500">Get started by creating a new guest</p>
                             <div class="mt-6">
-                                <x-button type="button"
-                                    onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/calendar'"
-                                   >
-
+                                <x-button type="button" onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/calendar'">
                                     New Guest
                                 </x-button>
                             </div>

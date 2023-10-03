@@ -45,7 +45,7 @@
                 </a>
                 <x-button type="submit">
                     Save
-                </button>
+                </x-button>
 
             </div>
         </div>

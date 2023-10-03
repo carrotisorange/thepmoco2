@@ -71,7 +71,7 @@
 
                     <x-button type="submit">
                         Post Bill to {{ $type }}
-                    </button>
+                    </x-button>
 
                 </div>
             </div>

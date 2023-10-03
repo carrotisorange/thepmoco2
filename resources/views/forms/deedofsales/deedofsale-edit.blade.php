@@ -299,7 +299,7 @@
 
                 <x-button type="submit">
                     Update
-                </button>
+                </x-button>
             </div>
         </div>
     </div>

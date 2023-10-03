@@ -68,7 +68,7 @@
 
                 <x-button type="button" wire:click="store_guardian">
                     Confirm
-                </button>
+                </x-button>
 
             </div>
         </div>

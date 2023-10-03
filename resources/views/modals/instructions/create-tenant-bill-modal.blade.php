@@ -79,7 +79,7 @@
                 <button type="button" wire:loading disabled
                    >
                     Loading...
-                </button>
+                </x-button>
 
             </div>
             </form>

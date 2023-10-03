@@ -170,6 +170,6 @@
             
             <x-button type="submit">
                 Create
-            </button>
+            </x-button>
         </div>
 </form>

@@ -326,10 +326,10 @@
                     <x-button type="button"
                         onclick="window.location.href='/property/{{ $property->uuid }}/accountpayable'">
                         Cancel
-                    </button>
+                    </x-button>
                     <x-button type="button" wire:click="storeAccountPayableLiquidation">
                         Next
-                    </button>
+                    </x-button>
 
                   
                 </p>

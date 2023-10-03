@@ -181,9 +181,9 @@
                     Cancel
                     </x-button>
                     
-                        <button type="button" wire:click="create">
+                        <x-button type="button" wire:click="create">
                         Save
-                        </button>
+                        </x-button>
                     
                     </div>
                     <div>

@@ -359,7 +359,7 @@
 
                 <x-button type="submit"></x-button>
                     Next
-                </button>
+                </x-button>
             </div>
         </div>
     </div>

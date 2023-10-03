@@ -107,7 +107,7 @@
                </a>
                <x-button type="submit">
                   Next
-               </button>
+               </x-button>
             </div>
          </div>
    </form>

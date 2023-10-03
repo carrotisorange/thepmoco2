@@ -35,7 +35,7 @@
                 <x-button type="button" wire:click="storeVendor"
                   >
                     Confirm
-                </button>
+                </x-button>
 
             </div>
         </div>

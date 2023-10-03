@@ -79,7 +79,7 @@
                         <div class="mt-8">
                             <div>
                                 <x-button type="submit" onclick="window.location.href='/user/{{ auth()->user()->username }}/unlock'"
-                                  >Unlock now</a></button>
+                                  >Unlock now</a></x-button>
 
                             </div>
                         </div>
