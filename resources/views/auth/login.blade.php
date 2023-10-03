@@ -28,12 +28,12 @@
             <div class="mx-auto w-full max-w-sm lg:w-96">
 
                 <div class="flex justify-center items-center">
-                    <img class="mt-10 mb-5 h-32 w-auto" src="{{ asset('/brands/'.env('APP_LOGO')) }}" alt="propsuite logo">
-
+                    <img class="mt-10 mb-5 h-32 w-auto" src="{{ asset('/brands/'.env('APP_LOGO_V2')) }}" alt="propsuite logo">
 
                 </div>
-                <h2 class="mb-10 text-center mt-2 text-2xl tracking-tight font-semibold text-gray-700">Sign in to
-                        your account</h2>
+                <h2 class="mb-10 mt-2 text-lg tracking-tight text-purple-700">"{{ $randomQuote['quoteText']}}"
+                   <br> <span class="text-sm text-right"> - {{ $randomQuote['quoteAuthor'] }}</span>
+                </h2>
 
                 <div class="mt-5">
                     <div>
@@ -85,7 +85,7 @@
                             </div>
 
                             <div>
-                                <x-button type="submit">Sign
+                                <x-button class="mt-5 w-full" type="submit">Sign
                                     in</x-button>
                             </div>
 

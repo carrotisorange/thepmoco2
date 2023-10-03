@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "ajaz/random-quotes-generator-php": "^1.0",
         "algolia/algoliasearch-client-php": "^3.3",
         "algolia/scout-extended": "2.0",
         "barryvdh/laravel-dompdf": "^1.0",

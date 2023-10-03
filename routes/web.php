@@ -39,9 +39,9 @@ require __DIR__.'/marketing.php';
 //All routes that do not require authentication and verification
 require __DIR__.'/checkout.php';
 
-  
+
 use App\Http\Controllers\ExportExcelController;
-  
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,9 +52,9 @@ use App\Http\Controllers\ExportExcelController;
 | contains the "web" middleware group. Now create something great!
 |
 */
- 
+
 Route::controller(ExportExcelController::class)->group(function(){
-    Route::get('index', 'index');    
+    Route::get('index', 'index');
     Route::get('export/excel', 'exportExcelFile')->name('export.excel');
 });
 
@@ -116,9 +116,6 @@ Route::get('/proxy-voters', function(){
 Route::get('/qualified-votes', function(){
     return view('HOA.election.management.qualified-votes');
 });
-
-
-
 
 
 //liq rfp

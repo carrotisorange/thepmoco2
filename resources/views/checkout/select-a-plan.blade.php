@@ -115,9 +115,9 @@ body{
 
 
                         <div class="lg:col-span-2">
-                            <button type="submit"
-                                class="mt-5 w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-500 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Sign
-                                up</button>
+                            <x-button type="submit"
+                                class="mt-5 w-full ">Sign
+                                up</x-button>
                         </div>
 
                         <div class="mt-5 text-sm text-center lg:col-span-2">

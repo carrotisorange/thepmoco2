@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b16560e4db623839437442168058ad25",
+    "content-hash": "2322275795bceecc377eb11f0a224be0",
     "packages": [
         {
             "name": "aeon-php/calendar",
@@ -54,6 +54,43 @@
                 "source": "https://github.com/aeon-php/calendar/tree/1.0.7"
             },
             "time": "2022-09-10T13:11:14+00:00"
+        },
+        {
+            "name": "ajaz/random-quotes-generator-php",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ajazsaif/random-quotes-generator-php.git",
+                "reference": "995b6404e3737debea583e2e75ff9a44ea00bba6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ajazsaif/random-quotes-generator-php/zipball/995b6404e3737debea583e2e75ff9a44ea00bba6",
+                "reference": "995b6404e3737debea583e2e75ff9a44ea00bba6",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "RandomQuotes\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ajaz",
+                    "email": "ajazaalam@gmail.com"
+                }
+            ],
+            "description": "This library will generate random quotes",
+            "support": {
+                "issues": "https://github.com/ajazsaif/random-quotes-generator-php/issues",
+                "source": "https://github.com/ajazsaif/random-quotes-generator-php/tree/1.0"
+            },
+            "time": "2020-11-06T10:48:46+00:00"
         },
         {
             "name": "algolia/algoliasearch-client-php",
