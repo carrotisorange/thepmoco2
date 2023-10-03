@@ -53,39 +53,17 @@
                                 utilities</span>
                             <span>
 
-                                {{-- <svg class="fill-current h-4 w-4 transform group-hover:-rotate-180
-                                                        transition duration-150 ease-in-out"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path
-                                        d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                </svg> --}}
+
                             </span>
                         </button>
 
-
-
-
                     </span>
-
-                    {{-- <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
-                                      transition duration-150 ease-in-out origin-top min-w-32">
-
-                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/"
-                                data-modal-toggle="instructions-create-utility-electric-modal">Electric</a>
-                        </li>
-                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/"
-                                data-modal-toggle="instructions-create-utility-water-modal">Water</a>
-                        </li>
-
-                    </ul> --}}
 
                 </div>
 
             </div>
 
         </div>
-
-
 
         <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
             <div class="sm:col-span-6">
@@ -142,17 +120,7 @@
 
             </div>
 
-            {{-- <div class="sm:col-span-1">
-                <select id="small" wire:model="limitDisplayTo"
-                    class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                    <option value="" selected>Limit display to</option>
-                    @for ($i = 1; $i <= $totalUtilitiesCount; $i++) @if($i%10===0) <option value="{{ $i }}">
-                        {{ $i }}
-                        </option>
-                        @endif
-                        @endfor
-                </select>
-            </div> --}}
+
 
         </div>
 
@@ -181,31 +149,13 @@
                             <div class="mt-6">
 
                                 <div class="group inline-block">
-                                    <button data-modal-toggle="instructions-create-utility-modal"
-                                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                                    <x-button data-modal-toggle="instructions-create-utility-modal">
                                         <span class="pr-1 font-semibold flex-1">
                                             New utilities</span>
-                                        {{-- <span>
-                                            <svg class="fill-current h-4 w-4 transform group-hover:-rotate-180
-                                                                            transition duration-150 ease-in-out"
-                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                                <path
-                                                    d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                            </svg>
-                                        </span> --}}
-                                    </button>
 
-                                    {{-- <ul
-                                        class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
-                                                                      transition duration-150 ease-in-out origin-top min-w-32">
-                                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/"
-                                                data-modal-toggle="instructions-create-utility-electric-modal">Electric</a>
-                                        </li>
-                                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="#/"
-                                                data-modal-toggle="instructions-create-utility-water-modal">Water</a>
-                                        </li>
+                                    </x-button>
 
-                                    </ul> --}}
+
 
                                 </div>
 
@@ -220,5 +170,4 @@
         </div>
     </div>
     @include('modals.instructions.create-utility-modal')
-    {{-- @include('modals.instructions.create-utility-water-modal') --}}
 </div>

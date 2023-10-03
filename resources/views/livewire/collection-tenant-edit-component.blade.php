@@ -273,14 +273,13 @@
     </div>
 
     <div class="flex justify-end p-10 mt-5">
-        <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-            href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant->uuid }}/bills">
-            Cancel
-        </a>
-        <button type="button" form="edit-form"
-            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant->uuid }}/bills'">
+                    Cancel
+                </x-button>
+
+        <x-button type="button" form="edit-form"
             onclick="this.form.submit(); this.disabled = true; this.value = 'Submitting the form';">
             Confirm Payment
-        </button>
+        </x-button>
     </div>
 </div>

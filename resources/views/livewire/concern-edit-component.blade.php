@@ -398,22 +398,12 @@
                
                @cannot('tenant')
                <div class="flex justify-end">
-                  <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline" wire:loading.remove
-                     href="/property/{{ Session::get('property_uuid') }}/concern">
-                     Cancel
-                  </a>
-                  <button type="submit" wure:loading.remove
-                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-   
-   
+                <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/concern'">
+                    Cancel
+                </x-button>
+                  <x-button type="submit">
                      Update
-                  </button>
-                  <button type="button" disabled wire:loading
-                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                  
-                  
-                     Loading...
-                  </button>
+                  </x-button>
                </div>
                @endcannot
             </div>

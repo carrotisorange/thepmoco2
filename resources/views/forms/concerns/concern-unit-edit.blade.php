@@ -278,16 +278,13 @@
                 </div>
 
                 <div class="flex justify-end">
-                    <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-                        href="/property/{{ Session::get('property_uuid') }}/concern">
+                    <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/concern'">
                         Cancel
-                    </a>
-                    <button type="submit"
-                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-
-
+                    </x-button>
+                    
+                    <x-button type="submit">
                         Update
-                    </button>
+                    </x-button>
                 </div>
             </div>
 

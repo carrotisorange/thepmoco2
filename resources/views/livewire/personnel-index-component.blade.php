@@ -5,12 +5,12 @@
                 <h1 class="text-3xl font-bold text-gray-700">Personnels</h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-               
+
                 <x-button type="button" data-modal-target="create-personnel-modal"
                     data-modal-toggle="create-personnel-modal"
                   >     New Personnel
                 </x-button>
-            
+
             </div>
 
         </div>
@@ -72,12 +72,12 @@
                             <h3 class="mt-2 text-sm font-medium text-gray-900">No personnels</h3>
                             <p class="mt-1 text-sm text-gray-500">Get started by creating a new personnel</p>
                             <div class="mt-6">
-                                <button type="button" data-modal-target="create-personnel-modal"
+                                <x-button type="button" data-modal-target="create-personnel-modal"
                     data-modal-toggle="create-personnel-modal"
-                                    class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                                
+                                  >
+
                                     New Personnel
-                                </button>
+                                </x-button>
                             </div>
                         </div>
                     </div>

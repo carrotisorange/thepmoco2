@@ -24,7 +24,7 @@
         </div>
 
         <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-    
+
 
             <div class="sm:col-span-6">
                 <x-select name="status" wire:model="status">
@@ -58,11 +58,10 @@
                             <h3 class="mt-2 text-sm font-medium text-gray-900">No contracts</h3>
                             <p class="mt-1 text-sm text-gray-500">Get started by creating a new contract</p>
                             <div class="mt-6">
-                                <button type="button" data-modal-toggle="instructions-create-contract-modal"
-                                    class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-                               
+                                <x-button type="button" data-modal-toggle="instructions-create-contract-modal" >
+
                                     New Contract
-                                </button>
+                                </x-button>
                             </div>
                         </div>
                     </div>

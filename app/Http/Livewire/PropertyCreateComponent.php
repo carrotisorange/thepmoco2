@@ -62,8 +62,6 @@ class PropertyCreateComponent extends Component
            
          try {
 
-         
-
             DB::transaction(function () use ($validatedData){
 
                $new_property = app('App\Http\Controllers\PropertyController')->store($validatedData);
@@ -79,6 +77,8 @@ class PropertyCreateComponent extends Component
                app('App\Http\Controllers\PointController')->store($new_property->uuid->toString(), auth()->user()->id, 50, 6);
 
                app('App\Http\Controllers\PropertyController')->store_property_session($new_property->uuid->toString());
+
+               app('App\Http\Controllers\PropertyDocumentController')->store($new_property->uuid->toString());
 
                return redirect('/property/'.$new_property->uuid->toString().'/success')->with('success', 'Changes Saved!');
 

@@ -114,24 +114,20 @@
                 </div>
                 <div class="mt-5 sm:mt-6">
 
-                    <button type="button" wire:loading.remove wire:click="updateUtility"
-                        class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
+                    <x-button type="button" wire:loading.remove wire:click="updateUtility">
                         Update
-                    </button>
+                    </x-button>
 
-                    <button type="button" wire:loading disabled
-                        class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
+                    <x-button type="button" wire:loading disabled>
                         Loading...
-                    </button>
+                    </x-button>
 
                 </div>
                 @else
                 <div class="mt-5 sm:mt-6">
-                    <button type="button" disabled
-                        class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
+                    <x-button type="button" disabled>
                        {{$status}}
-                    </button>
-
+                    </x-button>
                 </div>
                 @endif
 

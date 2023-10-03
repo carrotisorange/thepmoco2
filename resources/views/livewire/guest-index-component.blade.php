@@ -1,6 +1,6 @@
 <div>
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
-      
+
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
                 <h1 class="text-3xl font-bold text-gray-500">Guests</h1>
@@ -67,12 +67,12 @@
                             <h3 class="mt-2 text-sm font-medium text-gray-900">No guests</h3>
                             <p class="mt-1 text-sm text-gray-500">Get started by creating a new guest</p>
                             <div class="mt-6">
-                                <button type="button"
+                                <x-button type="button"
                                     onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/calendar'"
-                                    class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+                                   >
 
                                     New Guest
-                                </button>
+                                </x-button>
                             </div>
                         </div>
                     </div>

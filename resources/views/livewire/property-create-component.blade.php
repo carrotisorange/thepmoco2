@@ -52,7 +52,7 @@
                </div>
 
             <div class="lg:col-span-1">
-              
+
                <div class="mt-2">
                   <x-label>Select a country</x-label>
                   <x-select name="country_id" wire:model="country_id">
@@ -63,9 +63,9 @@
                         }}>{{ $country->country }}</option>
                      @endforeach
                   </x-select>
-                 
+
                </div>
-              
+
             </div>
 
             <div class="lg:col-span-1">
@@ -78,14 +78,14 @@
 
          <div class="flex justify-end mt-5">
             <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-               href="{{ url()->previous() }}">
+               href="/property">
                Cancel
             </a>
-         
+
             <x-button wire:click="create">
                Create
             </x-button>
-         
+
          </div>
          <div>
    </form>

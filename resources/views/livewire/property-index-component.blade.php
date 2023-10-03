@@ -93,46 +93,6 @@
                 @endforeach
 
 
-
-                {{-- <li class="relative md:flex md:flex-1">
-                    <!-- Current Step -->
-                    <a href="#" class="group flex items-center">
-                        <span class="flex items-center px-6 py-4 text-sm font-medium">
-                            <span
-                                class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
-                                <span class="text-gray-500 group-hover:text-gray-900">03</span>
-                            </span>
-                            <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add
-                                tenants</span>
-                        </span>
-                    </a>
-
-
-                    <!-- Arrow separator for lg screens and up -->
-                    <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
-                        <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none"
-                            preserveAspectRatio="none">
-                            <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke" stroke="currentcolor"
-                                stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                </li>
-
-
-
-                <li class="relative md:flex md:flex-1">
-                    <!-- Upcoming Step -->
-                    <a href="#" class="group flex items-center">
-                        <span class="flex items-center px-6 py-4 text-sm font-medium">
-                            <span
-                                class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
-                                <span class="text-gray-500 group-hover:text-gray-900">04</span>
-                            </span>
-                            <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add
-                                personnels</span>
-                        </span>
-                    </a>
-                </li> --}}
             </ol>
         </nav>
     </div>

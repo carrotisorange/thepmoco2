@@ -236,7 +236,7 @@ class RequestForPurchaseController extends Controller
     public function create_step_7(Property $property, AccountPayable $accountpayable){
 
         //accessible only to ap
-        if(Session::get('role_id') === 4){
+        if($accountpayable->approver2_id === auth()->user()->id){
             // if($accountpayable->status === 'liquidation approved by manager'){
 
                 if(Session::get('skipLiquidation')){

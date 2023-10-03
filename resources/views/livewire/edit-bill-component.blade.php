@@ -91,14 +91,10 @@
                     
                     <div class="mt-5 sm:mt-6">
                        
-                        <button type="submit" wire:loading.remove
-                            class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
-                            Update
-                        </button>
-                        <button type="button" wire:loading
-                            class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
-                            Loading...
-                        </button>
+                        <x-button type="submit" wire:loading.remove>   Update
+                        </x-button>
+                        <x-button type="button" wire:loading>   Loading...
+                        </x-button>
                      
                     
                     </div>

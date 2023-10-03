@@ -445,27 +445,16 @@
                 </div>
 
                 <div class="col-start-6 flex items-center justify-end">
-                  <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline" href="#/"
-                    wire:click="cancelRequest()" wire:loading.remove>
-                    Cancel
-                    </a>
+                    <x-button wire:click="cancelRequest()">
+                        Cancel
+                    </x-button>
                    
-                    <button type="submit" wire:loading.remove
-                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                    <x-button type="submit">
                         Confirm
-                    </button>
-
-                    <button type="button" wire:loading disabled
-                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                        Loading...
-                    </button>
+                    </x-button>
                 </div>
-
             </div>
-
         </form>
-
     </div>
-
     @include('modals.instructions.create-vendor-modal')
 </div>

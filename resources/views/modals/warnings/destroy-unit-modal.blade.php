@@ -27,15 +27,15 @@
                 </div>
                 <div class="mt-5 sm:mt-6">
                     @can('accountownerandmanager')
-                    <button type="button" wire:click="deleteUnit"
-                        class="inline-flex w-full justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:text-sm">
+                    <x-button type="button" wire:click="deleteUnit"
+                      >
                         Confirm
-                    </button>
+                    </x-button>
                     @else
-                    <button type="button" disabled
-                        class="inline-flex w-full justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:text-sm">
+                    <x-button type="button" disabled
+                       >
                         Confirm
-                    </button>
+                    </x-button>
                     <p class="text-left text-red-500 text-xs mt-2">This feature is locked. Please contact your manager.
                     </p>
                     @endcan

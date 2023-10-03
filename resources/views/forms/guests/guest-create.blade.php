@@ -80,20 +80,13 @@
                 </div>
             </div>
             <div class="flex justify-end mt-2">
-
-                {{-- <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline"
-                    target="_blank" href="{{ asset('/brands/docs/Contract of Lease TEMPLATE.docx') }}" target="_blank"
-                    class="text-indigo-600 hover:text-indigo-900">Download Sample Lease Contract</a> --}}
-
-                <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-                    href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit_uuid }}">
+                <x-button
+                    onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/unit/{{ $unit_uuid }}'">
                     Cancel
-                </a>
+                </x-button>
 
-
-                <button type="submit"
-                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Finish
+                <x-button type="submit">  
+                     Finish
                 </button>
 
 
