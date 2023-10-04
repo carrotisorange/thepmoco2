@@ -61,6 +61,11 @@ class Property extends Model
      return $this->hasMany(Point::class);
      }
 
+     public function elections()
+     {
+     return $this->hasMany(Election::class);
+     }
+
     public function users()
     {
         return $this->hasMany(UserProperty::class, 'user_id');

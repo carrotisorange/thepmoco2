@@ -16,7 +16,7 @@
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="overflow-hidden border border-gray-200 rounded-t-md border-b-0 lg:border-0">
                         <!-- Completed Step -->
-                        <a href="#" class="group">
+                       <a href="/property/{{ Session::get('property_uuid')}}/election/{{ $year }}/step-1" aria-current="step">
                             <span class="absolute left-0 top-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full" aria-hidden="true"></span>
                             <span class="flex items-start px-6 py-5 text-sm font-medium">
                             <span class="ml-4 mt-0.5 flex min-w-0 flex-col">
@@ -29,7 +29,7 @@
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="overflow-hidden border border-gray-200 lg:border-0">
                         <!-- Current Step -->
-                        <a href="#" aria-current="step">
+                        <a href="/property/{{ Session::get('property_uuid')}}/election/{{ $year }}/step-2" aria-current="step">
                             <span class="absolute left-0 top-0 h-full w-1 bg-indigo-600 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full" aria-hidden="true"></span>
                             <span class="flex items-start px-6 py-5 text-sm font-medium lg:pl-9">
                             <span class="ml-4 mt-0.5 flex min-w-0 flex-col">
@@ -48,7 +48,7 @@
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="overflow-hidden border border-gray-200 rounded-b-md border-t-0 lg:border-0">
                         <!-- Upcoming Step -->
-                        <a href="#" class="group">
+                        <a href="/property/{{ Session::get('property_uuid')}}/election/{{ $year }}/step-3" aria-current="step">
                             <span class="absolute left-0 top-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full" aria-hidden="true"></span>
                             <span class="flex items-start px-6 py-5 text-sm font-medium lg:pl-9">
                             <span class="ml-4 mt-0.5 flex min-w-0 flex-col">
@@ -74,100 +74,76 @@
                 <div class="py-6">
 
                     <div class="space-x-5 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
-                        <div class="lg:col-span-1 mt-2 ml-5">
-                            <div
-                                class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                <label for="floor_id" class="block text-base font-medium text-gray-900">Number of Candidates</label>
-                                    <input
-                                        class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
-                                    </input>
-                            </div>           
-                        </div>
-
-                        <div class="lg:col-span-1 mt-2 ml-5">
-                            <div
-                                class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                <label for="floor_id" class="block text-base font-medium text-gray-900">Number of Winning Candidates</label>
-                                    <input
-                                        class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
-                                    </input>
-                            </div>           
-                        </div>
-
-                        <div class="lg:col-span-2 mt-2 ml-5">
-                            <div class="flex justify-between py-6">    
-                                <p class="">Candidates</p>
-                                <button class="px-2 py-2 bg-purple-500 rounded-lg text-white text-sm">Add a New Candidate</button>
-                            </div>
-                        </div>
-
-
-                        <div class="lg:col-span-2 mt-2">
-                        <div class="space-x-5 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-4">
-                            <div class="lg:col-span-1 mt-2">
-                                <div
-                                    class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                    <label for="floor_id" class="block text-base font-medium text-gray-900">Name</label>
-                                        <input
-                                            class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
-                                        </input>
-                                </div>           
-                            </div>
-                            <div class="lg:col-span-1 mt-2">
-                                <div
-                                    class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                    <label for="floor_id" class="block text-base font-medium text-gray-900">Position</label>
-                                        <input
-                                            class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
-                                        </input>
-                                </div>           
-                            </div>
-                            <div class="lg:col-span-1 mt-2">
-                                <div
-                                    class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                    <label for="floor_id" class="block text-base font-medium text-gray-900"># of Years as HOA member</label>
-                                        <input
-                                            class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
-                                        </input>
-                                </div>           
-                            </div>
-                            <div class="lg:col-span-1 mt-2">
-                                    <div
-                                        class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                        <label for="floor_id" class="block text-base font-medium text-gray-900">Resume</label>
-                                        <div class="flex text-base text-gray-600">
-                                                <label for="file-upload"
-                                                    class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                                    <span>Upload a file</span>
-                                                    <input id="file-upload" type="file" wire:model="contract" class="sr-only">
-                                                </label>
-                                            </div>
-                                    </div>           
-                            </div>
-                            <!-- <div class="lg:col-span-1 mt-2">
-                                <div
-                                    class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                    <label for="floor_id" class="block text-sm font-medium text-gray-900">Picture</label>
-                                        <input
-                                            class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
-                                        </input>
-                                </div>           
-                            </div>
-                            <div class="lg:col-span-1 mt-2">
-                                <div
-                                    class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                    <label for="floor_id" class="block text-sm font-medium text-gray-900">Valid ID</label>
-                                        <input
-                                            class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
-                                        </input>
-                                </div>           
-                            </div> -->
-
-
+         <div class="lg:col-span-1 mt-2 ml-5">
+            <div
+                class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                <label for="" class="block text-base font-medium text-gray-900">Number of Candidates</label>
+                <x-form-input name="no_of_candidates">
+                </x-form-input>
+            </div>
+        </div>
+        
+        <div class="lg:col-span-1 mt-2 ml-5">
+            <div
+                class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                <label for="floor_id" class="block text-base font-medium text-gray-900">Number of Winning Candidates</label>
+                <x-form-input name="number_of_winning_candidates">
+                </x-form-input>
+            </div>
+        </div>
+        
+        <div class="lg:col-span-2 mt-2 ml-5">
+            <div class="flex justify-between py-6">
+                <p class="">Candidates</p>
+        
+        
+                <x-button>Add a New Candidate</x-button>
+            </div>
+        </div>
+        
+        
+        <div class="lg:col-span-2 mt-2">
+            <div class="space-x-5 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-4">
+                <div class="lg:col-span-1 mt-2">
+                    <div
+                        class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                        <label for="floor_id" class="block text-base font-medium text-gray-900">Name</label>
+                        <x-form-input name="name">
+                        </x-form-input>
+                    </div>
+                </div>
+                <div class="lg:col-span-1 mt-2">
+                    <div
+                        class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                        <label for="floor_id" class="block text-base font-medium text-gray-900">Position</label>
+                        <x-form-input name="position">
+                        </x-form-input>
+                    </div>
+                </div>
+                <div class="lg:col-span-1 mt-2">
+                    <div
+                        class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                        <label for="floor_id" class="block text-base font-medium text-gray-900"># of Years as HOA
+                            member</label>
+                        <x-form-input name="number_of_years_of_hoa">
+                        </x-form-input>
+                    </div>
+                </div>
+                <div class="lg:col-span-1 mt-2">
+                    <div
+                        class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                        <label for="floor_id" class="block text-base font-medium text-gray-900">Resume</label>
+                        <div class="flex text-base text-gray-600">
+                            <label for="file-upload"
+                                class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                <span>Upload a file</span>
+                                <x-form-input id="file-upload" type="file" wire:model="contract" class="sr-only" />
+                            </label>
                         </div>
                     </div>
-
-                            
+                </div>
+            </div>
+        </div>
                   
 
 
@@ -178,7 +154,7 @@
                     <div class="flex justify-end mt-5">
                       
                     <x-button onclick="window.location.href='{{ url()->previous() }}'">
-                    Cancel
+                    Back
                     </x-button>
                     
                         <x-button type="button" wire:click="create">

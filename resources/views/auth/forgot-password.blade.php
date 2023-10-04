@@ -10,7 +10,7 @@
     <div class="max-w-12xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
         <div class="rounded-lg shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4">
             <div class="pt-10 pb-12 px-6 sm:pt-16 sm:px-16 lg:py-16 lg:pr-0 xl:py-20 xl:px-20">
-                <img class="object-cover h-40 w-48" src="{{ asset('/brands/pm_logo_3.png') }}" alt="Workflow">
+                <img class="object-cover h-40 w-48" src="{{ asset('/brands/'.env('APP_LOGO')) }}" alt="{{ env('APP_LOGO_DESC ') }}">
                 <div class="lg:self-center">
 
                     <h2 class="text-3xl font-extrabold text-gray-800 sm:text-4xl">
@@ -30,7 +30,7 @@
                             value="{{ old('email') }}"
                             class="w-full px-5 py-3 placeholder-gray-500 focus:ring-purple-500 focus:border-purple-500 sm:max-w-xs border-gray-300 rounded-md"
                             placeholder="Enter your email">
-                        <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
+                        <div class="mt-3 sm:mt-0 sm:ml-3 sm:flex-shrink-0">
                             <x-button type="submit">
                                 Email Password Reset Link
                             </x-button>

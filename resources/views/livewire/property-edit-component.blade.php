@@ -11,16 +11,16 @@
             </div>
 
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-             
+
 
             </div>
         </div>
-      
+
         <div class="-my-2 mt-5 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <form id="updateTenant" wire:submit.prevent="submitForm()" class="w-full" enctype="multipart/form-data">
-        
+
             <div class="h-full grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-8">
-        
+
                 <div class="sm:col-span-12">
                     <div class="{{ $formDivClasses }}">
                        <x-label for="name">
@@ -34,12 +34,12 @@
                             @error('property')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
-                        
+
                         </div>
 
                     </div>
                 </div>
-        
+
                 <div class="sm:col-span-12">
                     <div class="{{ $formDivClasses }}">
                                    <x-label for="registered_tin" >
@@ -53,11 +53,11 @@
                                     @error('registered_tin')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                     @enderror
-            
+
                                 </div>
                     </div>
                 </div>
-        
+
                 <div class="sm:col-span-6">
                     <div class="{{ $formDivClasses }}">
                    <x-label for="ownership" >
@@ -80,12 +80,12 @@
                                     @error('ownership')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                     @enderror
-            
+
                                 </div>
-                        
+
                     </div>
                 </div>
-        
+
                 <div class="sm:col-span-6">
                     <div class="{{ $formDivClasses }}">
                             <x-label for="ownership" >
@@ -106,11 +106,11 @@
                                     @error('type_id')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                     @enderror
-            
+
                                 </div>
                     </div>
                 </div>
-        
+
                 <div class="sm:col-span-4">
                     <div class="{{ $formDivClasses }}">
                      <x-label for="name" >
@@ -124,11 +124,11 @@
                         @error('email')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
-                    
+
                     </div>
                     </div>
                 </div>
-        
+
                 <div class="sm:col-span-4">
                     <div class="{{ $formDivClasses }}">
                        <x-label for="mobile">
@@ -142,12 +142,12 @@
                             @error('mobile')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
-                        
+
                         </div>
                     </div>
                 </div>
-        
-        
+
+
                 <div class="sm:col-span-4">
                     <div class="{{ $formDivClasses }}">
                        <x-label for="telephone" >
@@ -161,11 +161,11 @@
                             @error('telephone')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
-                        
+
                         </div>
                     </div>
                 </div>
-        
+
                 <div class="sm:col-span-12">
                     <div class="{{ $formDivClasses }}">
                        <x-label for="facebook_page" >
@@ -179,13 +179,13 @@
                             @error('facebook_page')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
-                        
+
                         </div>
                     </div>
                 </div>
-        
-               
-        
+
+
+
                 <div class="sm:col-span-3">
                     <div class="{{ $formDivClasses }}">
                       <x-label for="ownership" >
@@ -194,7 +194,7 @@
                     <div class="mt-1 sm:mt-0 sm:col-span-12">
                         <div class=" flex rounded-md shadow-sm">
                             <x-form-select name="country_id" id="country_id" autocomplete="country_id" wire:model="country_id">
-                    
+
                                 @foreach ($countries as $country)
                                 <option value="{{ $country->id }}" {{ old('country_id', $country_id)==$country->
                                     id?'selected':
@@ -205,11 +205,11 @@
                         @error('country_id')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
-                    
+
                     </div>
                     </div>
                 </div>
-        
+
                 <div class="sm:col-span-3">
                     <div class="{{$formDivClasses}}">
                        <x-label for="ownership" >
@@ -230,11 +230,11 @@
                         @error('province_id')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
-                    
+
                     </div>
                     </div>
                 </div>
-        
+
                 <div class="sm:col-span-3">
                     <div class="{{$formDivClasses}}">
                        <x-label for="ownership">
@@ -257,9 +257,9 @@
                         </div>
                     </div>
                 </div>
-        
-    
-        
+
+
+
                 <div class="sm:col-span-3">
                     <div class="{{ $formDivClasses }}">
                        <x-label for="name" >
@@ -273,7 +273,7 @@
                             @error('barangay')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
-                        
+
                         </div>
                     </div>
                 </div>
@@ -292,13 +292,13 @@
                             @error('note_to_transient')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
-                
+
                         </div>
                     </div>
                 </div>
-                
-                
-                
+
+
+
                 <div class="sm:col-span-12">
                     <div class="{{ $formDivClasses }}">
                         <x-label for="note_to_bill">
@@ -312,11 +312,11 @@
                             @error('note_to_bill')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
-                
+
                         </div>
                     </div>
                 </div>
-        
+
                 <div class="sm:col-span-12">
                     <div class="{{ $formDivClasses }}">
                        <x-label for="status">
@@ -335,11 +335,11 @@
                             @error('status')
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
-                        
+
                         </div>
                     </div>
                 </div>
-        
+
                 <div class="sm:col-span-12">
                     <div class="{{ $formDivClasses }}">
                        <x-label for="thumbnail">
@@ -347,24 +347,24 @@
                         </x-label>
                         <div class="mt-2 flex justify-center rounded-md border-2 border-gray-300">
                             <div class="space-y-1 text-center">
-                        
+
                                 <div class="flex text-sm text-gray-600">
-                        
+
                                     <label for="thumbnail"
                                         class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
                                         <span>Upload a file</span>
                                         <input id="thumbnail" name="thumbnail" type="file" wire:model="thumbnail" class="sr-only">
                                     </label>
-                        
-                        
+
+
                                     @if($property_details->thumbnail)
                                     &nbsp; or &nbsp;
                                     <a target="_blank"
                                         class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
                                         href="{{ asset('/storage/'.$property_details->thumbnail) }}">View attachment</a>
-                        
+
                                     @endif
-                        
+
                                 </div>
                                 <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
                                 <p class="text-center">
@@ -386,37 +386,37 @@
                         <x-label for="status">
                             Documents
                         </x-label>
-                       
+
                     </div>
                 </div>
 
 
-             {{-- @foreach($propertyDocuments as $document)
+             @foreach($propertyDocuments as $document)
             <div class="sm:col-span-6">
                 <div class="{{ $formDivClasses }}">
                     <x-label for="{{ $document->id }}">
                         {{ $document->name }}
                     </x-label>
-                    <div class="mt-2 flex justify-center rounded-md border-2 border-gray-300">r
+                    <div class="mt-2 flex justify-center rounded-md border-2 border-gray-300">
                         <div class="space-y-1 text-center">
-            
+
                             <div class="flex text-sm text-gray-600">
-            
+
                                 <x-label for="{{ $document->id }}"
                                     class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
                                     <span>Upload a file</span>
                                     <input id="{{ $document->id }}" name="{{ $document->id }}" type="file"
                                         wire:model="{{ $document->id }}" class="sr-only">
                                 </x-label>
-            
-            
+
+
                                 @if($document->file)
                                 &nbsp; or &nbsp;
                                 <a target="_blank"
                                     class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
                                     href="{{ asset('/storage/'.$document->file) }}">View attachment</a>
                                 @endif
-            
+
                             </div>
                             <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
                             <p class="text-center">
@@ -432,19 +432,19 @@
                     </div>
                 </div>
             </div>
-            @endforeach --}}
-        
+            @endforeach
+
             </div>
-        
+
             <div class="mt-5 flex justify-end">
                <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline" href="/property/">
                     Cancel
                 </a>
-        
+
               <x-button type="submit">
                 Update
                 </x-button>
-        
+
             </div>
         </form>
         </div>

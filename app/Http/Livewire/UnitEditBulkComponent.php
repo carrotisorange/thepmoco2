@@ -80,7 +80,11 @@ class UnitEditBulkComponent extends Component
             }
             else
             {
-                return redirect('/property/'.Session::get('property_uuid').'/tenant/')->with('success', 'Changes Saved!');
+                if(Session::get('property_type') == 'HOA'){
+                    return redirect('/property/'.Session::get('property_uuid').'/unit/')->with('success', 'Changes Saved!');
+                }else{
+                    return redirect('/property/'.Session::get('property_uuid').'/tenant/')->with('success', 'Changes Saved!');
+        }
             }
 
         }catch(\Exception $e){

@@ -1,4 +1,5 @@
 <x-modal-component>
+    @include('layouts.notifications')
     <x-slot name="id">
         delete-unit-inventory-modal-{{$inventory->id}}
     </x-slot>

@@ -337,15 +337,15 @@ Route::get('/survey', function(){
     return view('landing.survey');
 });
 
-Route::post('/register', function(Request $request){
+// Route::post('/register', function(Request $request){
 
-    $attributes = $request->validate([
-    'name' => ['required', 'string', 'max:255'],
-    'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-    'mobile_number' => ['required', 'unique:users'],
-    ]);
+//     $attributes = $request->validate([
+//     'name' => ['required', 'string', 'max:255'],
+//     'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+//     'mobile_number' => ['required', 'unique:users'],
+//     ]);
 
-    User::create($attributes);
+//     User::create($attributes);
 
-    return back()->with('success', 'The form has been submitted!');
-});
+//     return back()->with('success', 'The form has been submitted!');
+// });

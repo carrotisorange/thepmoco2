@@ -17,7 +17,6 @@ use App\Models\Feature;
 
 class RegisteredUserController extends Controller
 {
-
     public function create()
     {
         return redirect('/select-a-plan');

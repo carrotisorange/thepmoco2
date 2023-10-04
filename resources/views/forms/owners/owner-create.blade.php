@@ -357,7 +357,7 @@
                     Cancel
                 </x-button>
 
-                <x-button type="submit"></x-button>
+                <x-button type="submit">
                     Next
                 </x-button>
             </div>

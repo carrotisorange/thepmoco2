@@ -1,4 +1,5 @@
 <div>
+    @include('layouts.notifications')
     @livewire('create-bill-component', [ 'bill_to' => $tenant])
 
     <div class="mt-5 mb-10">

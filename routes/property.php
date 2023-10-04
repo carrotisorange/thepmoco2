@@ -47,6 +47,7 @@ use App\Http\Controllers\PropertyGuestController;
 use App\Http\Controllers\LiquidationController;
 use App\Http\Controllers\RemittanceController;
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\ElectionController;
 use App\Http\Controllers\PersonnelController;
 use App\Http\Controllers\TenantController;
 
@@ -96,11 +97,12 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     });
 
     //Routes for Bulletin
-    Route::prefix('bulletin')->group(function(){
-        // calendar
-        Route::get('/', function(){
-           return view('layouts.under-construction-general');
-        });
+    Route::prefix('election')->group(function(){
+        Route::get('/',[ElectionController::class, 'index'])->name('election');
+        Route::get('/{year}/step-1',[ElectionController::class, 'createStep1'])->name('election');
+        Route::post('/{id}/step-1',[ElectionController::class, 'storeStep1']);
+        Route::get('/{year}/step-2',[ElectionController::class, 'createStep2'])->name('election');
+        Route::get('/{year}/step-3',[ElectionController::class, 'createStep3'])->name('election');
     });
 
     //Route for utilities

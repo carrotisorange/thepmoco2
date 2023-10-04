@@ -59,13 +59,15 @@
                             Welcome to The Property Manager Online</h1>
                         <p
                             class="mt-10 text-md leading-normal text-center text-gray-600 md:w-9/12 lg:w-7/12 dark:text-white">
-                            <span class="font-bold text-xl">Free trial</span> until full setup ready.</p>
+                            <span class="font-bold text-xl">Free trial</span> until full setup ready.
+                        </p>
                         <p
                             class="mt-3 mb-3 text-base leading-normal text-center text-gray-600 md:w-9/12 dark:text-white">
                             <span class="font-bold text-purple-700 text-lg">No credit card required,</span> no strings
-                            attached</p>
+                            attached
+                        </p>
                         <div class="mt-12 md:mt-14 w-full flex justify-center">
-                            <a href="https://thepmo.co/select-a-plan"><button
+                            <a href="/select-a-plan"><button
                                     class="bg-purple-900 dark:text-white dark:border-white w-full sm:w-auto border border-purple-800 text-base font-medium text-white py-5 px-14 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 hover:bg-purple-600 hover:text-white dark:hover:text-white dark:hover:bg-gray-700">Start
                                     my Free Trial</button></a>
                         </div>
@@ -152,7 +154,7 @@
                     and money!</p>
 
                 <div class="mt-10 flex justify-center items-center space-x-5">
-                    <button id="button1"> <a href="https://thepmo.co/select-a-plan"
+                    <button id="button1"> <a href="/select-a-plan"
                             class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white   focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Free
                             Trial</a></button>
                     <button> <a href="demopage"
@@ -808,13 +810,12 @@
                             </svg>
                         </div>
                         <h3 class="text-3xl font-medium text-white">Contact Us</h3>
-                        <h3 class="mt-2 text-xl font-medium text-white">The PMO Co.</h3>
+                        <h3 class="mt-2 text-xl font-medium text-white">{{ env('APP_NAME') }}</h3>
                         <p class="mt-6 max-w-3xl text-sm text-purple-200">Makati Address:
-                        <p class="text-base mt-2 text-white">Asian Institute of Management - Dado Banatao Incubator
-                            Benavidez Street, corner Trasierra, Legazpi Village, Makati, 1229 Metro Manila</p>
+                        <p class="text-base mt-2 text-white">{{ env('APP_SECOND_ADDRESS') }}</p>
                         </p>
                         <p class="mt-6 max-w-3xl text-sm text-purple-200">Baguio Address:
-                        <p class="text-base mt-2 text-white">39 Engineers Hill, Baguio City</p>
+                        <p class="text-base mt-2 text-white">{{ env('APP_FIRST_ADDRESS') }}</p>
                         </p>
                         <dl class="mt-8 space-y-6">
                             <dt><span class="sr-only">Phone number</span></dt>
@@ -826,7 +827,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
                                 </svg>
-                                <p class="ml-3">(+63) 916 779 9750</span>
+                                <p class="ml-3">{{env('APP_MOBILE')}}</span>
                             </dd>
                             <dt><span class="sr-only">Email</span></dt>
                             <dd class="flex text-base text-indigo-50">
@@ -837,11 +838,11 @@
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                                 </svg>
-                                <p class="ml-3">pamelatecson@thepmo.co</span>
+                                <p class="ml-3">{{ env('APP_EMAIL') }}</span>
                             </dd>
                             <ul role="list" class="mt-8 flex space-x-12">
                                 <li>
-                                    <a href="https://www.facebook.com/onlinepropertymanager">
+                                    <a href="https://www.{{  env('APP_FACEBOOK_PAGE') }}">
                                         <dt><span class="sr-only">Facebook</span></dt>
                                         <dd class="flex text-base text-indigo-50">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -851,7 +852,7 @@
                                                     d="M22.258 1H2.242C1.556 1 1 1.556 1 2.242v20.016c0 .686.556 1.242 1.242 1.242h10.776v-8.713h-2.932V11.39h2.932V8.887c0-2.906 1.775-4.489 4.367-4.489 1.242 0 2.31.093 2.62.134v3.037l-1.797.001c-1.41 0-1.683.67-1.683 1.653v2.168h3.362l-.438 3.396h-2.924V23.5h5.733c.686 0 1.242-.556 1.242-1.242V2.242C23.5 1.556 22.944 1 22.258 1"
                                                     fill="currentColor" />
                                             </svg>
-                                            <p class="ml-3">facebook.com/onlinepropertymanager</span>
+                                            <p class="ml-3">{{ env('APP_FACEBOOK_PAGE') }}</span>
                                         </dd>
                                     </a>
                                 </li>

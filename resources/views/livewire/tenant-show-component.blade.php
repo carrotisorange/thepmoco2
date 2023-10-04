@@ -1,10 +1,9 @@
 <?php
-    $addAnchorClass = 'block py-2 px-4 text-sm
-    text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
-    dark:text-gray-200 dark:hover:text-white';
+    $addAnchorClass = '';
 ?>
 
 <div>
+    @include('layouts.notifications')
     <div class="min-h-screen mt-8 max-w-2xl mx-auto pb-56 sm:px-20 lg:max-w-7xl lg:px-8">
         <div class="lg:grid lg:grid-cols-12 lg:gap-x-8">
             <div class="lg:col-start-4 lg:col-span-9">

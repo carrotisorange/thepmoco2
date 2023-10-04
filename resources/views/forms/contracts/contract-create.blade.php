@@ -109,8 +109,8 @@
 
                     </div>
 
-                    
-                  
+
+
                     <div class="mt-3 col-span-2">
                         <div class="form-check">
                             <input wire:model="autoGenerateBills"
@@ -122,7 +122,7 @@
                             </label>
                         </div>
                     </div>
-                 
+
 
                     @if($tenant->email)
                     <div class="mt-3 col-span-2">
@@ -143,24 +143,14 @@
         </div>
 
         <div class="flex justify-end mt-5">
-            {{-- <a class="whitespace-nowrap px-3 py-2 text-sm text-blue-500 text-decoration-line: underline" href="#/"
-                wire:click="makeReservation()">
-                For reservation only
-            </a> --}}
-            <button type="button" wire:click="makeReservation()" wire:loading.remove
-                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            <x-button type="button" wire:click="makeReservation()" wire:loading.remove>
                 Mark as RESERVED
-            </button>
-          
-            <button type="submit" wire:loading.remove
-                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                Next
-            </button>
+            </x-button>
 
-            <button type="button" wire:loading
-                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                Loading...
-            </button>
+             <x-button type="submit">
+                Next
+            </x-button>
+
         </div>
     </div>
 </form>

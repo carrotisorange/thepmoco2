@@ -1,3 +1,3 @@
 User-agent: *
 Disallow:
-Sitemap: https://www.thepropertymanager.online/sitemap.xml
+Sitemap: {{env('APP_URL')}}/sitemap.xml

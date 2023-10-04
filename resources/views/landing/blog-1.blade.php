@@ -1,5 +1,5 @@
 <x-landing-page-template>
-@section('title','Propsuite — Articles')
+@section('title', env('APP_NAME').' — Articles')
 @section('description', 'A product to make easy the life of property managers and property owners. The property management system is a handy application to simplify operations in rental properties from tenant finding, lease contract management, billing and collection management, and concerns and maintenance requests for landlords, dormitories, apartment rentals, and other rentals.')
 
 
@@ -15,7 +15,7 @@
 
         <div class="mx-10 flex justify-end items-center space-y-2 text-xs sm:space-y-0 sm:space-x-3 ">
 	    <span class="block">Page 1 of 2</span>
-		
+
 
     <!-- <a href="#" class="flex items-center px-4 py-2 mx-1 text-gray-500 bg-white rounded-md cursor-not-allowed dark:bg-gray-800 dark:text-gray-600">
         previous
@@ -50,11 +50,11 @@
                 <a href="How-To-Be-An-Environmentally-Friendly-Rental-Property" class="mt-2 block">
                     <p class="text-base font-semibold text-gray-900">How To Be An Environmentally Friendly Rental Property</p>
                     <p class="mt-3 text-sm text-gray-500">
-                    How to reduce solid waste in your rental property and make environmentally friendly conscious choices.</a>    
+                    How to reduce solid waste in your rental property and make environmentally friendly conscious choices.</a>
                     <span class="text-sm text-gray-500 dark:text-gray-300">23 June 2023</span>
                 </div>
             </div>
-            
+
             <div class="lg:flex">
                 <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article21.jpg') }}" alt="man washing hands">
 
@@ -63,7 +63,7 @@
                     <p class="text-base font-semibold text-gray-900">How To Reduce Water Wastage in multiple unit buildings for sustainable operations</p>
                     <p class="mt-3 text-sm text-gray-500">
                     Improving water management in multiple-unit buildings is essential for both conservation efforts and reducing operational costs.</p>
-                </a>    
+                </a>
                     <span class="text-sm text-gray-500 dark:text-gray-300">23 June 2023</span>
                 </div>
             </div>
@@ -76,7 +76,7 @@
                     <p class="text-base font-semibold text-gray-900">How to Reduce Energy Consumption in a Rental Property</p>
                     <p class="mt-3 text-sm text-gray-500">
                     Lower utility bills benefit the environment, and potentially attract energy-conscious tenants.</p>
-                </a>    
+                </a>
                     <span class="text-sm text-gray-500 dark:text-gray-300">23 June 2023</span>
                 </div>
             </div>
@@ -89,7 +89,7 @@
                     <p class="text-base font-semibold text-gray-900">How to Maximize Profits and Minimize Stress when Managing Rental Properties</p>
                     <p class="mt-3 text-sm text-gray-500">
                     With the right strategies in place, you can maximize profits and minimize stress.</p>
-                </a>    
+                </a>
                     <span class="text-sm text-gray-500 dark:text-gray-300">1 May 2023</span>
                 </div>
             </div>
@@ -103,11 +103,11 @@
                     <p class="text-base font-semibold text-gray-900">How to be great and effective at rental property operations</p>
                     <p class="mt-3 text-sm text-gray-500">
                     Being great at rental property operations involves a combination of skills, knowledge, and experience. Here are some tips to help you excel in this field.</p>
-                </a>    
+                </a>
                     <span class="text-sm text-gray-500 dark:text-gray-300">26 April 2023</span>
                 </div>
             </div>
-            
+
             <div class="lg:flex">
                 <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article17.jpg') }}" alt="businessman signing a contract">
 
@@ -116,7 +116,7 @@
                     <p class="text-base font-semibold text-gray-900">How to Choose the right Property Management Company</p>
                     <p class="mt-3 text-sm text-gray-500">
                     Choosing the right property management company can make a significant difference in the success of your investment</p>
-                </a>    
+                </a>
                     <span class="text-sm text-gray-500 dark:text-gray-300">6 March 2023</span>
                 </div>
             </div>
@@ -129,7 +129,7 @@
                     <p class="text-base font-semibold text-gray-900">10 Tips to increase occupancy rate and profitability for vacation homes</p>
                     <p class="mt-3 text-sm text-gray-500">
                     If you're a business owner, it's easy to get wrapped up in the day-to-day operations of your company.</p>
-                </a>    
+                </a>
                     <span class="text-sm text-gray-500 dark:text-gray-300">2 March 2023</span>
                 </div>
             </div>
@@ -142,29 +142,29 @@
                     <p class="text-base font-semibold text-gray-900">Is a vacation rental more profitable than a long-term rental property</p>
                     <p class="mt-3 text-sm text-gray-500">
                     Vacation rentals are becoming more popular, but they can be a little bit tricky to navigate. The good news is </p>
-                </a>    
+                </a>
                     <span class="text-sm text-gray-500 dark:text-gray-300">27 February 2023</span>
                 </div>
             </div>
 
-            
-            
 
-           
 
-            
 
-            
 
-            
 
-            
+
+
+
+
+
+
+
 
         </div>
 
         <div class="mx-10 mt-5 flex justify-end items-center space-y-2 text-xs sm:space-y-0 sm:space-x-3 ">
 	    <span class="block">Page 1 of 2</span>
-		
+
 
     <!-- <a href="#" class="flex items-center px-4 py-2 mx-1 text-gray-500 bg-white rounded-md cursor-not-allowed dark:bg-gray-800 dark:text-gray-600">
         previous

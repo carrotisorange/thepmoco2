@@ -1,4 +1,5 @@
 <div>
+    @include('layouts.notifications')
     <div class="flex h-full flex-col">
 
         <div class="bg-white">

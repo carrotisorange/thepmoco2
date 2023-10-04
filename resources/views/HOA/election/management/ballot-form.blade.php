@@ -1,4 +1,4 @@
-<x-hoa-layout>
+    <x-hoa-layout>
     @section('title','Ballot Form | '. env('APP_NAME'))
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
@@ -16,7 +16,7 @@
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="overflow-hidden border border-gray-200 rounded-t-md border-b-0 lg:border-0">
                         <!-- Completed Step -->
-                        <a href="#" class="group">
+                         <a href="/property/{{ Session::get('property_uuid')}}/election/{{ $year }}/step-1" aria-current="step">
                             <span class="absolute left-0 top-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full" aria-hidden="true"></span>
                             <span class="flex items-start px-6 py-5 text-sm font-medium">
                             <span class="ml-4 mt-0.5 flex min-w-0 flex-col">
@@ -30,7 +30,7 @@
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="overflow-hidden border border-gray-200 rounded-t-md border-b-0 lg:border-0">
                         <!-- Completed Step -->
-                        <a href="#" class="group">
+                         <a href="/property/{{ Session::get('property_uuid')}}/election/{{ $year }}/step-2" aria-current="step">
                             <span class="absolute left-0 top-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full" aria-hidden="true"></span>
                             <span class="flex items-start px-6 py-5 text-sm font-medium">
                             <span class="ml-4 mt-0.5 flex min-w-0 flex-col">
@@ -48,7 +48,7 @@
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="overflow-hidden border border-gray-200 lg:border-0">
                         <!-- Current Step -->
-                        <a href="#" aria-current="step">
+                       <a href="/property/{{ Session::get('property_uuid')}}/election/{{ $year }}/step-3" aria-current="step">
                             <span class="absolute left-0 top-0 h-full w-1 bg-indigo-600 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full" aria-hidden="true"></span>
                             <span class="flex items-start px-6 py-5 text-sm font-medium lg:pl-9">
                             <span class="ml-4 mt-0.5 flex min-w-0 flex-col">
@@ -74,190 +74,201 @@
 
                     <div class="space-x-5 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
                     <div class="lg:col-span-2 mt-2 ml-5">
-                            <div
-                                class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                <label for="floor_id" class="block text-base font-medium text-gray-900">Heading <span class="font-light text-gray-300">optional</span></label>
-                                    <input
-                                        class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
-                                    </input>
-                            </div>           
+                        <div
+                            class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                            <label for="floor_id" class="block text-base font-medium text-gray-900">Heading/Greetings <span
+                                    class="font-light text-gray-500">optional</span></label>
+                            <x-form-input name="headings">
+                            </x-form-input>
                         </div>
-                        <div class="lg:col-span-2 mt-2 ml-5">
-                            <div
-                                class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                <label for="floor_id" class="block text-base font-medium text-gray-900">Elecom Rules</label>
-                                    <input
-                                        class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
-                                    </input>
-                            </div>           
+                    </div>
+                    <div class="lg:col-span-2 mt-2 ml-5">
+                        <div
+                            class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                            <label for="floor_id" class="block text-base font-medium text-gray-900">Elecom Rules</label>
+                            <x-form-input name="elecon_rules">
+                            </x-form-input>
                         </div>
-
-                        <div class="lg:col-span-2 mt-2 ml-5">
-                            <div
-                                class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                <label for="floor_id" class="block text-base font-medium text-gray-900">General Instructions</label>
-                                    <input
-                                        class="block w-full border-0 p-0 text-gray-900  focus:ring-0 sm:text-base">
-                                    </input>
-                            </div>           
+                    </div>
+                    
+                    <div class="lg:col-span-2 mt-2 ml-5">
+                        <div
+                            class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                            <label for="floor_id" class="block text-base font-medium text-gray-900">General Instructions</label>
+                            <x-form-input name="general_instructions">
+                            </x-form-input>
                         </div>
-
-                        <div class="lg:col-span-2 mt-2 ml-5">
-                            <div class="flex justify-between py-6">    
-                                <p class="">List of Running Candidates</p>
-                                <button class="px-2 py-2 bg-purple-500 rounded-lg text-white text-sm">Edit Candidates</button>
+                    </div>
+                    
+                    <div class="lg:col-span-2 mt-2 ml-5">
+                        <div class="flex justify-between py-6">
+                            <p class="">List of Running Candidates</p>
+                            <button class="px-2 py-2 bg-purple-500 rounded-lg text-white text-base">Edit Candidates</button>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="lg:col-span-2 ">
+                    
+                    
+                        <h2 class="sr-only">Candidates</h2>
+                    
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 space-x-0 lg:space-x-5">
+                    
+                            <div class="lg:col-span-1 mt-2">
+                                <div class="bg-white">
+                    
+                                    <form class="">
+                    
+                                        <ul role="list" class="divide-y divide-gray-200 border-b border-t border-gray-200">
+                    
+                                            <li class="flex py-6">
+                                                <div class="flex-shrink-0">
+                                                    <img src="{{ asset('/brands/user.png') }}" alt=""
+                                                        class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32">
+                                                </div>
+                    
+                                                <div class="ml-4 flex flex-1 flex-col sm:ml-6">
+                                                    <div>
+                    
+                                                        <h4 class="text-sm">
+                                                            <a href="#" class="font-medium text-gray-700 hover:text-gray-800">Name</a>
+                                                        </h4>
+                                                        <div class="flex justify-between">
+                                                            <p class="text-sm font-medium text-gray-900">Position</p>
+                                                            <div class="flex items-center mb-4">
+                                                                <input id="default-checkbox" type="checkbox" value=""
+                                                                    class="w-8 h-8 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                                <label for="default-checkbox"
+                                                                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"></label>
+                                                            </div>
+                                                        </div>
+                                                        <p class="mt-1 text-sm text-gray-500"># of Years as HOA Member</p>
+                    
+                                                        <p class="mt-1 text-sm text-blue-500 underline">Resume</p>
+                                                    </div>
+                    
+                    
+                                            </li>
+                                            <li class="flex py-6">
+                                                <div class="flex-shrink-0">
+                                                    <img src="{{ asset('/brands/user.png') }}" alt=""
+                                                        class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32">
+                                                </div>
+                    
+                                                <div class="ml-4 flex flex-1 flex-col sm:ml-6">
+                                                    <div>
+                    
+                                                        <h4 class="text-sm">
+                                                            <a href="#" class="font-medium text-gray-700 hover:text-gray-800">Name</a>
+                                                        </h4>
+                                                        <div class="flex justify-between">
+                                                            <p class="text-sm font-medium text-gray-900">Position</p>
+                                                            <div class="flex items-center mb-4">
+                                                                <input id="default-checkbox" type="checkbox" value=""
+                                                                    class="w-8 h-8 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                                <label for="default-checkbox"
+                                                                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"></label>
+                                                            </div>
+                                                        </div>
+                                                        <p class="mt-1 text-sm text-gray-500"># of Years as HOA Member</p>
+                    
+                                                        <p class="mt-1 text-sm text-blue-500 underline">Resume</p>
+                                                    </div>
+                    
+                    
+                                            </li>
+                                        </ul>
+                    
+                    
+                    
+                                    </form>
+                    
+                                </div>
+                    
                             </div>
+                    
+                            <div class="lg:col-span-1 mt-2">
+                                <div class="bg-white">
+                    
+                                    <form class="">
+                    
+                                        <ul role="list" class="divide-y divide-gray-200 border-b border-t border-gray-200">
+                                            <li class="flex py-6">
+                                                <div class="flex-shrink-0">
+                                                    <img src="{{ asset('/brands/user.png') }}" alt=""
+                                                        class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32">
+                                                </div>
+                    
+                                                <div class="ml-4 flex flex-1 flex-col sm:ml-6">
+                                                    <div>
+                    
+                                                        <h4 class="text-sm">
+                                                            <a href="#" class="font-medium text-gray-700 hover:text-gray-800">Name</a>
+                                                        </h4>
+                                                        <div class="flex justify-between">
+                                                            <p class="text-sm font-medium text-gray-900">Position</p>
+                                                            <div class="flex items-center mb-4">
+                                                                <input id="default-checkbox" type="checkbox" value=""
+                                                                    class="w-8 h-8 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                                <label for="default-checkbox"
+                                                                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"></label>
+                                                            </div>
+                                                        </div>
+                                                        <p class="mt-1 text-sm text-gray-500"># of Years as HOA Member</p>
+                    
+                                                        <p class="mt-1 text-sm text-blue-500 underline">Resume</p>
+                                                    </div>
+                    
+                    
+                                            </li>
+                                            <li class="flex py-6">
+                                                <div class="flex-shrink-0">
+                                                    <img src="{{ asset('/brands/user.png') }}" alt=""
+                                                        class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32">
+                                                </div>
+                    
+                                                <div class="ml-4 flex flex-1 flex-col sm:ml-6">
+                                                    <div>
+                    
+                                                        <h4 class="text-sm">
+                                                            <a href="#" class="font-medium text-gray-700 hover:text-gray-800">Name</a>
+                                                        </h4>
+                                                        <div class="flex justify-between">
+                                                            <p class="text-sm font-medium text-gray-900">Position</p>
+                                                            <div class="flex items-center mb-4">
+                                                                <input id="default-checkbox" type="checkbox" value=""
+                                                                    class="w-8 h-8 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                                <label for="default-checkbox"
+                                                                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"></label>
+                                                            </div>
+                                                        </div>
+                                                        <p class="mt-1 text-sm text-gray-500"># of Years as HOA Member</p>
+                    
+                                                        <p class="mt-1 text-sm text-blue-500 underline">Resume</p>
+                                                    </div>
+                    
+                    
+                                            </li>
+                    
+                                            <!-- More products... -->
+                                        </ul>
+                    
+                    
+                    
+                                    </form>
+                    
+                                </div>
+                    
+                            </div>
+                    
+                    
+                    
                         </div>
-
-
-                        <div class="lg:col-span-2 ">
-
-
-<h2 class="sr-only">Candidates</h2>
-
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 space-x-0 lg:space-x-5">
-
-<div class="lg:col-span-1 mt-2">
-<div class="bg-white">
-
-    <form class="">
-
-        <ul role="list" class="divide-y divide-gray-200 border-b border-t border-gray-200">
-
-        <li class="flex py-6">
-            <div class="flex-shrink-0">
-            <img src="{{ asset('/brands/user.png') }}" alt="" class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32"> 
-            </div>
-
-            <div class="ml-4 flex flex-1 flex-col sm:ml-6">
-            <div>
-                
-                <h4 class="text-sm">
-                    <a href="#" class="font-medium text-gray-700 hover:text-gray-800">Name</a>
-                </h4>
-                <div class="flex justify-between">
-                    <p class="text-sm font-medium text-gray-900">Position</p>
-                        <div class="flex items-center mb-4">
-                            <input id="default-checkbox" type="checkbox" value="" class="w-8 h-8 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"></label>
-                        </div>
-                </div>
-                <p class="mt-1 text-sm text-gray-500"># of Years as HOA Member</p>
-
-                <p class="mt-1 text-sm text-blue-500 underline">Resume</p>
-            </div>
-
-            
-        </li>
-        <li class="flex py-6">
-            <div class="flex-shrink-0">
-            <img src="{{ asset('/brands/user.png') }}" alt="" class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32"> 
-            </div>
-
-            <div class="ml-4 flex flex-1 flex-col sm:ml-6">
-            <div>
-                
-                <h4 class="text-sm">
-                    <a href="#" class="font-medium text-gray-700 hover:text-gray-800">Name</a>
-                </h4>
-                <div class="flex justify-between">
-                    <p class="text-sm font-medium text-gray-900">Position</p>
-                        <div class="flex items-center mb-4">
-                            <input id="default-checkbox" type="checkbox" value="" class="w-8 h-8 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"></label>
-                        </div>
-                </div>
-                <p class="mt-1 text-sm text-gray-500"># of Years as HOA Member</p>
-
-                <p class="mt-1 text-sm text-blue-500 underline">Resume</p>
-            </div>
-
-            
-        </li>
-        </ul>
-
-
-
-    </form>
-
-    </div>
-
-</div>
-
-<div class="lg:col-span-1 mt-2">
-<div class="bg-white">
-
-    <form class="">
-
-        <ul role="list" class="divide-y divide-gray-200 border-b border-t border-gray-200">
-        <li class="flex py-6">
-            <div class="flex-shrink-0">
-            <img src="{{ asset('/brands/user.png') }}" alt="" class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32"> 
-            </div>
-
-            <div class="ml-4 flex flex-1 flex-col sm:ml-6">
-            <div>
-                
-                <h4 class="text-sm">
-                    <a href="#" class="font-medium text-gray-700 hover:text-gray-800">Name</a>
-                </h4>
-                <div class="flex justify-between">
-                    <p class="text-sm font-medium text-gray-900">Position</p>
-                        <div class="flex items-center mb-4">
-                            <input id="default-checkbox" type="checkbox" value="" class="w-8 h-8 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"></label>
-                        </div>
-                </div>
-                <p class="mt-1 text-sm text-gray-500"># of Years as HOA Member</p>
-
-                <p class="mt-1 text-sm text-blue-500 underline">Resume</p>
-            </div>
-
-            
-        </li>
-        <li class="flex py-6">
-            <div class="flex-shrink-0">
-            <img src="{{ asset('/brands/user.png') }}" alt="" class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32"> 
-            </div>
-
-            <div class="ml-4 flex flex-1 flex-col sm:ml-6">
-            <div>
-                
-                <h4 class="text-sm">
-                    <a href="#" class="font-medium text-gray-700 hover:text-gray-800">Name</a>
-                </h4>
-                <div class="flex justify-between">
-                    <p class="text-sm font-medium text-gray-900">Position</p>
-                        <div class="flex items-center mb-4">
-                            <input id="default-checkbox" type="checkbox" value="" class="w-8 h-8 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"></label>
-                        </div>
-                </div>
-                <p class="mt-1 text-sm text-gray-500"># of Years as HOA Member</p>
-
-                <p class="mt-1 text-sm text-blue-500 underline">Resume</p>
-            </div>
-
-            
-        </li>
-
-        <!-- More products... -->
-        </ul>
-
-
-
-    </form>
-
-    </div>
-
-</div>
-
-
-
-</div>
-
-</div>
-</div>
+                    
+                    </div>
+    
+                    </div>
 
 </div>
 

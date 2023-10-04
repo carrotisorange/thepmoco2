@@ -1,4 +1,5 @@
 <div>
+    @include('layouts.notifications')
    <form action="#" method="POST" wire:submit.prevent="submitForm">
       <div class="shadow sm:rounded-md sm:overflow-hidden">
          <div class="px-4 py-5 bg-white space-y-6 sm:p-6">

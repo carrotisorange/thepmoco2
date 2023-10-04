@@ -1,4 +1,5 @@
 <div>
+    @include('layouts.notifications')
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">

@@ -1,4 +1,5 @@
 <div>
+    @include('layouts.notifications')
     <div class="mx-10">
         <form wire:submit.prevent="approveLiquidation">
         <div class="px-4 sm:px-6 lg:px-8">

@@ -1,5 +1,5 @@
 <x-landing-page-template>
-@section('title','Propsuite — Articles')
+@section('title', env('APP_NAME').' — Articles')
 @section('description', 'A product to make easy the life of property managers and property owners. The property management system is a handy application to simplify operations in rental properties from tenant finding, lease contract management, billing and collection management, and concerns and maintenance requests for landlords, dormitories, apartment rentals, and other rentals.')
 
 
@@ -15,11 +15,11 @@
 
         <div class="mx-10 mt-4 flex justify-end items-center space-y-2 text-xs sm:space-y-0 sm:space-x-3 ">
 	<span class="block">Page 1 of 3</span>
-		
+
 
    <a href="blog-2" class="items-center px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:flex dark:bg-gray-800 dark:text-gray-200 hover:bg-yellow-500 dark:hover:bg-yellow-500 hover:text-white dark:hover:text-gray-200">
         previous
-    </a> 
+    </a>
 
     <a href="blog-1" class="items-center hidden px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:flex dark:bg-gray-800 dark:text-gray-200 hover:bg-yellow-500 dark:hover:bg-yellow-500 hover:text-white dark:hover:text-gray-200">
         1
@@ -107,7 +107,7 @@
                     <span class="text-sm text-gray-500 dark:text-gray-300">2 January 2023</span>
                 </div>
             </div>
-        
+
             <div class="lg:flex">
                 <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ asset('/brands/landing/article1.avif') }}" alt="desk showing a keyboard, smartphone, and office supplies">
 
@@ -121,17 +121,17 @@
                 </div>
             </div>
 
-            
+
 
         </div>
 
         <div class="mx-10 mt-4 flex justify-end items-center space-y-2 text-xs sm:space-y-0 sm:space-x-3 ">
 	<span class="block">Page 1 of 3</span>
-		
+
 
    <a href="blog-1" class="items-center px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:flex dark:bg-gray-800 dark:text-gray-200 hover:bg-yellow-500 dark:hover:bg-yellow-500 hover:text-white dark:hover:text-gray-200">
         previous
-    </a> 
+    </a>
 
     <a href="blog-1" class="items-center hidden px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:flex dark:bg-gray-800 dark:text-gray-200 hover:bg-yellow-500 dark:hover:bg-yellow-500 hover:text-white dark:hover:text-gray-200">
         1

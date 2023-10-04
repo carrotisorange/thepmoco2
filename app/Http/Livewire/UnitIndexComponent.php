@@ -75,8 +75,8 @@ class UnitIndexComponent extends Component
 
         app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, $this->numberOfUnits, 5);
 
-        if(Session::get('property_type') === 'HOA'){
-             return redirect('/property/'.Session::get('property_uuid').'/guest/')->with('success', 'Changes Saved!');
+        if(Session::get('property_type') == 'HOA'){
+             return redirect('/property/'.Session::get('property_uuid').'/unit/')->with('success', 'Changes Saved!');
         }else{
             return redirect('/property/'.Session::get('property_uuid').'/tenant/')->with('success', 'Changes Saved!');
         }

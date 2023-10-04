@@ -1,4 +1,5 @@
 <div>
+    @include('layouts.notifications')
     <div class="my-5 px-4 sm:px-6 lg:px-8">
         <div class="sm:grid grid-cols-1 lg:grid-cols-4 sm:items-center">
 

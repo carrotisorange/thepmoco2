@@ -1,4 +1,5 @@
 <div>
+    @include('layouts.notifications')
     @section('styles')
     <style>
         input::-webkit-outer-spin-button,

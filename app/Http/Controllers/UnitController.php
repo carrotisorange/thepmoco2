@@ -28,6 +28,15 @@ class UnitController extends Controller
 
     }
 
+        public function update_unit_occupancy_info(Property $property, Unit $unit, Owner $owner)
+        {
+        return view('occupancy.create',[
+        'unit' => $unit,
+        'owner' => $owner,
+        ]);
+        }
+        
+
      public function edit(Property $property, $batch_no)
     {
         return view('units.edit-bulk',[

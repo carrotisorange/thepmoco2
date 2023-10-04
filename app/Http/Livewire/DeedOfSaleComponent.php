@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\DeedOfSale;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
-use App\Models\Unit;
+use Session;
 
 use Livewire\Component;
 
@@ -51,7 +51,7 @@ class DeedOfSaleComponent extends Component
             app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, 5, 7);
 
             return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/bank/create')->with('success','Changes Saved!');
-            
+
         }catch(\Exception $e)
         {
             return back()->with($e);
@@ -83,17 +83,17 @@ class DeedOfSaleComponent extends Component
         {
             $validatedData['tax_declaration'] = $this->tax_declaration->store('tax_declarations');
         }
-          
+
         if($this->deed_of_sales)
         {
             $validatedData['deed_of_sales'] = $this->deed_of_sales->store('deed_of_sales');
         }
-           
+
         if($this->contract_to_sell)
         {
             $validatedData['contract_to_sell'] = $this->contract_to_sell->store('contract_to_sells');
         }
-        
+
         if($this->certificate_of_membership)
         {
             $validatedData['certificate_of_membership'] = $this->certificate_of_membership->store('certificate_of_memberships');

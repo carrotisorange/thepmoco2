@@ -55,17 +55,17 @@
 
     <script type="application/ld+json">
         {
-  "@context": "https://schema.org", 
-  "@type": "Saas Business",             
-  "name": "The PMO Co",            
-  "image": "https://thepropertymanager.online/brands/landing/pmo-logo.webp",          
-  "@id": "https://thepropertymanager.online/", 
+  "@context": "https://schema.org",
+  "@type": "Saas Business",
+  "name": "The PMO Co",
+  "image": "https://thepropertymanager.online/brands/landing/pmo-logo.webp",
+  "@id": "https://thepropertymanager.online/",
   "url": "https://thepropertymanager.online/",
-  "telephone": "(+63) 916 779 9750",                
-   "email": "sales@thepmo.co",	
+  "telephone": "(+63) 916 779 9750",
+   "email": "sales@thepmo.co",
   "address": {
-    "@type": "PostalAddress",          
-    "streetAddress": "39 Engineers Hill", 
+    "@type": "PostalAddress",
+    "streetAddress": "39 Engineers Hill",
     "addressLocality": "Baguio City",
     "postalCode": "2600",
     "addressCountry": "Philippines"
@@ -73,7 +73,7 @@
   "sameAs" : [
     "https://www.linkedin.com/company/the-pmo-co/",
   ]
-  
+
 
     </script>
 
@@ -168,7 +168,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <body>
         <nav id="nav" class="lg:sticky top-0 z-10 relative px-4 py-6 flex justify-between items-center">
             <a class="text-3xl font-bold leading-none" href="/">
-                <img class="h-10" src="{{ asset('/brands/landing/pmo-logo.webp') }}" alt="the pmo logo">
+                <img class="h-10" src="{{ asset('/brands/landing/pmo-logo.webp') }}" alt="{{ env('APP_LOGO_DESC') }}">
             </a>
             <div class="lg:hidden">
                 <button class="navbar-burger flex items-center text-white p-3">
@@ -194,9 +194,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </ul>
             <a id="button1"
                 class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm font-bold text-white hover:bg-gray-300  rounded-xl transition duration-200"
-                href="https://thepmo.co/select-a-plan">Sign Up</a>
+                href="/select-a-plan">Sign Up</a>
             <a class="hidden lg:inline-block py-2 px-6  text-sm text-white hover:bg-gray-400 rounded-2xl transition duration-200"
-                href="https://thepmo.co/">Sign In</a>
+                href="/login">Sign In</a>
         </nav>
         <div class="navbar-menu relative z-50 hidden">
             <div class="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
@@ -204,7 +204,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 class="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
                 <div class="flex items-center mb-8">
                     <a class="mr-auto text-3xl font-bold leading-none" href="#">
-                        <img class="h-20" src="{{ asset('/brands/pm_logo_2.png') }}" alt="the pmo logo">
+                        <img class="h-20" src="{{ asset('/brands/'.env('APP_LOGO')) }}"
+                            alt="{{ env('APP_LOGO_DESC') }}">
                     </a>
                     <button class="navbar-close">
                         <svg class="h-6 w-6 text-gray-400 cursor-pointer hover:text-gray-500"
@@ -242,9 +243,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="mt-auto">
                     <div class="pt-6">
                         <a class="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold leading-none bg-gray-50 hover:bg-gray-100 rounded-xl"
-                            href="https://thepmo.co/">Sign in</a>
+                            href="/login">Sign in</a>
                         <a class="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-purple-600 hover:bg-purple-700  rounded-xl"
-                            href="https://thepmo.co/select-a-plan">Sign Up</a>
+                            href="/select-a-plan">Sign Up</a>
                     </div>
                     <p class="my-4 text-xs text-center text-gray-400">
                         <span>Copyright © 2022</span>
@@ -301,7 +302,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <!-- Social Sharing Bar -->
         <div class="fixed right-0 bottom-10 z-50 px-5 py-3 bg-transparent flex flex-col space-y-3">
             <!-- Facebook -->
-            <a href="https://www.facebook.com/onlinepropertymanager" title="Share on Facebook">
+            <a href="https://www.{{  env('APP_FACEBOOK_PAGE') }}" title="Share on Facebook">
                 <?xml version="1.0" ?>
                 <!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg
                     height="100%" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"
@@ -409,7 +410,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             <div class="mt-12 border-t border-gray-200 pt-8 flex items-center justify-center lg:mt-16">
 
-                <p class="mt-8 text-base text-gray-400 md:order-1 md:mt-0">&copy; 2022 The PMO Co. All rights reserved.
+                <p class="mt-8 text-base text-gray-400 md:order-1 md:mt-0">&copy; 2022 {{ env('APP_NAME') }} All rights
+                    reserved.
                 </p>
             </div>
         </div>

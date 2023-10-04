@@ -65,7 +65,7 @@ class PropertyEditComponent extends Component
         return [
             'property' => 'required',
             'type_id' => ['required', Rule::exists('types', 'id')],
-            'thumbnail' => 'nullable | mimes:jpg,png, max:10240',
+            'thumbnail' => 'nullable | mimes:jpg,png, max:102400',
             'description' => 'nullable',
             'country_id' => ['required', Rule::exists('countries', 'id')],
             'province_id' => ['required', Rule::exists('provinces', 'id')],

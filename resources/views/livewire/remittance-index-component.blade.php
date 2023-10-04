@@ -1,4 +1,5 @@
 <div>
+    @include('layouts.notifications')
         <div class="sm:flex sm:items-center justify-between pb-8">
             <div class="sm:flex-auto">
                 <h1 class="text-xl font-semibold text-gray-900">Remittances</h1>

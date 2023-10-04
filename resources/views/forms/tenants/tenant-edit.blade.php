@@ -1,5 +1,5 @@
 <?php
-    $formDivClasses = 'bg-white relative border border-gray-300 rounded-md rounded-b-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600';
+    $formDivClasses = '';
 ;?>
 
 <form id="updateTenant" wire:submit.prevent="submitForm()" class="w-full" enctype="multipart/form-data">

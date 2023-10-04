@@ -1,4 +1,5 @@
 <div>
+    @include('layouts.notifications')
     <form method="POST" wire:submit.prevent="submitForm" action="/contract/{{ $contract->uuid }}/moveout" class="w-full"
         id="create-form">
         @csrf

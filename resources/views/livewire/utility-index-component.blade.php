@@ -1,4 +1,5 @@
  <div>
+    @include('layouts.notifications')
     <style>
         li>ul {
             transform: translatex(100%) scale(0)
