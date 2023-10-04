@@ -2,7 +2,7 @@
 @section('title','10 Tips to increase occupancy rate and profitability for vacation homes')
 @section('description', 'Increase occupancy rate and profitability for vacation homes')
 
-@section('og-url','https://thepropertymanager.online/10-Tips-to-increase-occupancy-rate-and-profitability-for-vacation-homes')
+@section('og-url','propsuite.net/10-Tips-to-increase-occupancy-rate-and-profitability-for-vacation-homes')
 @section('og-title','10 Tips to increase occupancy rate and profitability for vacation homes')
 @section('og-description','If you are a business owner, it is easy to get wrapped up in the day-to-day operations of your company, read more...')
 @section('og-image','https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')

@@ -2,7 +2,7 @@
 @section('title','How to be great and effective at rental property operations')
 @section('description', 'How to be great and effective at rental property operations as a property owner or land lord')
 
-@section('og-url','https://thepropertymanager.online/How-to-be-great-and-effective-at-rental-property-operations')
+@section('og-url','propsuite.net/How-to-be-great-and-effective-at-rental-property-operations')
 @section('og-title','How to be great and effective at rental property operations')
 @section('og-description','Being great at rental property operations involves a combination of skills, knowledge, and experience. Here are some tips to help you excel in this field, read more...')
 @section('og-image','https://images.pexels.com/photos/5383211/pexels-photo-5383211.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')

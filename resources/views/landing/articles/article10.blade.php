@@ -2,7 +2,7 @@
 @section('title','Why Designing Beautiful Rentable Spaces Has Over All Positive Results')
 @section('description', 'Why designing rentable space has positive impact result')
 
-@section('og-url','https://thepropertymanager.online/Why-Designing-Beautiful-Rentable-Spaces-Has-Over-All-Positive-Results')
+@section('og-url','propsuite.net/Why-Designing-Beautiful-Rentable-Spaces-Has-Over-All-Positive-Results')
 @section('og-title','Why Designing Beautiful Rentable Spaces Has Over All Positive Results')
 @section('og-description',' A bad design costs money and can even make your tenants unhappy. Here are some
 tips and tricks for making your rental property beautiful: read more...')

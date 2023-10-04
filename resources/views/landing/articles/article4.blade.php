@@ -2,7 +2,7 @@
 @section('title','Secret Recipe For Brand Building As Small Business.')
 @section('description', 'Brand Building for small businesses is a crucial process, here are a few key tips for building brands')
 
-@section('og-url','https://thepropertymanager.online/Secret-Recipe-For-Brand-Building-As-Small-Business')
+@section('og-url','propsuite.net/Secret-Recipe-For-Brand-Building-As-Small-Business')
 @section('og-title','Secret Recipe For Brand Building As Small Business')
 @section('og-description','Brand Building for small businesses is a crucial process, here are a few key tips for building brands, read more...')
 @section('og-image','https://www.wealthmanagement.com/sites/wealthmanagement.com/files/styles/article_featured_standard/public/cre-delinquencies-decline.jpg?itok=WlHNDdgj')

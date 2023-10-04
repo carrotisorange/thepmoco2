@@ -2,7 +2,7 @@
 @section('title','How to Maximize Profits and Minimize Stress when Managing Rental Properties')
 @section('description', 'How to Maximize Profits and Minimize Stress when Managing Rental Properties as a property owner or land lord')
 
-@section('og-url','https://thepropertymanager.online/How-to-Maximize-Profits-and-Minimize-Stress-when-Managing-Rental-Properties')
+@section('og-url','propsuite.net/How-to-Maximize-Profits-and-Minimize-Stress-when-Managing-Rental-Properties')
 @section('og-title','How to Maximize Profits and Minimize Stress when Managing Rental Properties')
 @section('og-description','Managing rental properties can be a rewarding venture, but it can also be a stressful one. From finding the right tenants to dealing with maintenance requests, rental property management can be a full-time job. However, with the right strategies in place, you can maximize profits and minimize stress, read more...')
 @section('og-image','https://images.pexels.com/photos/3807738/pexels-photo-3807738.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')

@@ -3,7 +3,7 @@
 @section('description', 'Lower utility bills benefit the environment, and potentially attract energy-conscious tenants.
 Here are some practical steps you can take to achieve energy efficiency:')
 
-@section('og-url','https://thepropertymanager.online/How-to-Reduce-Energy-Consumption-in-a-Rental-Property')
+@section('og-url','propsuite.net/How-to-Reduce-Energy-Consumption-in-a-Rental-Property')
 @section('og-title','How to Reduce Energy Consumption in a Rental Property')
 @section('og-description','Lower utility bills benefit the environment, and potentially attract energy-conscious tenants.
 Here are some practical steps you can take to achieve energy efficiency: read more...')

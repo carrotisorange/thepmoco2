@@ -2,7 +2,7 @@
 @section('title','How to Choose the Right Property Management Company')
 @section('description', 'How to Choose the right property management company as a business owner or a land lord')
 
-@section('og-url','https://thepropertymanager.online/How-to-Choose-the-Right-Property-Management-Company')
+@section('og-url','propsuite.net/How-to-Choose-the-Right-Property-Management-Company')
 @section('og-title','How to Choose the Right Property Management Company')
 @section('og-description','Choosing the right property management company can make a significant difference in the success of your, read more...')
 @section('og-image','https://images.pexels.com/photos/3771097/pexels-photo-3771097.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')

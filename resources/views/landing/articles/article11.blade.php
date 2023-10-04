@@ -2,7 +2,7 @@
 @section('title','How an Online Property Management System Instantly Improves Business Profitability for Landlords')
 @section('description', 'Online Property System improves a business for landlords')
 
-@section('og-url','https://thepropertymanager.online/How-an-Online-Property-Management-System-Improves-Business-Profitability-for-Landlords')
+@section('og-url','propsuite.net/How-an-Online-Property-Management-System-Improves-Business-Profitability-for-Landlords')
 @section('og-title','How an Online Property Management System Instantly Improves Business Profitability for Landlords')
 @section('og-description','If you own a rental property, you&#39;re probably familiar with the challenges of managing it. You&#39;ll
 have bad tenants read more...')

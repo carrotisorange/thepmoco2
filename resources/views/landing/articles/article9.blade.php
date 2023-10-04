@@ -2,7 +2,7 @@
 @section('title','How to reduce digitalization pain points')
 @section('description', 'How to overcome digitalization challenges as a property owner')
 
-@section('og-url','https://thepropertymanager.online/How-to-reduce-digitalization-pain-points')
+@section('og-url','propsuite.net/How-to-reduce-digitalization-pain-points')
 @section('og-title','How to reduce digitalization pain points')
 @section('og-description','The digitalization of business has introduced a whole new set of challenges for many organizations. As
 technology changes, read more...')

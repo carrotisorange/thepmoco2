@@ -3,7 +3,7 @@
 @section('description', 'How to reduce solid waste in your rental property
 and make environmentally friendly conscious choices.')
 
-@section('og-url','https://thepropertymanager.online/How-To-Be-An-Environmentally-Friendly-Rental-Property')
+@section('og-url','propsuite.net/How-To-Be-An-Environmentally-Friendly-Rental-Property')
 @section('og-title','How To Be An Environmentally Friendly Rental Property')
 @section('og-description','How to reduce solid waste in your rental property and make environmentally friendly conscious choices. read more...')
 @section('og-image','https://images.pexels.com/photos/6632867/pexels-photo-6632867.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')

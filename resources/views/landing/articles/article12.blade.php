@@ -2,7 +2,7 @@
 @section('title','How Digital Systems Improve Tenant Retention and Satisfaction')
 @section('description', 'Improve tenant satisfaction with property management digital systems')
 
-@section('og-url','https://thepropertymanager.online/How-Digital-Systems-Improve-Tenant-Retention-and-Satisfaction')
+@section('og-url','propsuite.net/How-Digital-Systems-Improve-Tenant-Retention-and-Satisfaction')
 @section('og-title','How Digital Systems Improve Tenant Retention and Satisfaction')
 @section('og-description','When you own a building, you want to make sure that it is running smoothly. You also want to
 keep your tenants happy and satisfied so that read more...')

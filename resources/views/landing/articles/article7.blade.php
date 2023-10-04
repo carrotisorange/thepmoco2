@@ -2,7 +2,7 @@
 @section('title','How To Improve Tenant Retention Rates')
 @section('description', ' As a property manager or landlord, these are steps on how to improve tenant retention rates using the property manager online.')
 
-@section('og-url','https://thepropertymanager.online/How-To-Improve-Tenant-Retention-Rates')
+@section('og-url','propsuite.net/How-To-Improve-Tenant-Retention-Rates')
 @section('og-title','How To Improve Tenant Retention Rates')
 @section('og-description','As a property manager or landlord, these are steps on how to improve tenant retention rates, read more...')
 @section('og-image','https://images.pexels.com/photos/7642000/pexels-photo-7642000.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')

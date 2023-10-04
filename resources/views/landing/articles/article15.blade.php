@@ -2,7 +2,7 @@
 @section('title','Is a vacation rental more profitable than a long-term rental property')
 @section('description', 'How to keep tenants happy')
 
-@section('og-url','https://thepropertymanager.online/Is-a-vacation-rental-more-profitable-than-a-long-term-rental-property')
+@section('og-url','propsuite.net/Is-a-vacation-rental-more-profitable-than-a-long-term-rental-property')
 @section('og-title','Is a vacation rental more profitable than a long-term rental property')
 @section('og-description','Vacation rentals are becoming more popular, but they can be a little bit tricky to navigate. The good news is, read more...')
 @section('og-image','https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')

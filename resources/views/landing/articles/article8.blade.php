@@ -2,7 +2,7 @@
 @section('title','Importance of having a Housekeeping Program for Rental Properties')
 @section('description', ' As a property manager or landlord, be aware of the importance of having a housekeeping program for rental properties')
 
-@section('og-url','https://thepropertymanager.online/Importance-of-having-a-Housekeeping-Program-for-Rental-Properties')
+@section('og-url','propsuite.net/Importance-of-having-a-Housekeeping-Program-for-Rental-Properties')
 @section('og-title','Importance of having a Housekeeping Program for Rental Properties')
 @section('og-description','Training housekeeping staff is an important aspect of ensuring that guests have a positive
 experience and that the property is well-maintained, read more...')

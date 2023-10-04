@@ -2,7 +2,7 @@
 @section('title','Leasing management system user guide')
 @section('description', 'A leasing management system is a tool that can help leasing managers to improve operational efficiency and save time and money.')
 
-@section('og-url','https://thepropertymanager.online/How-to-use-a-leasing-management-system-to-improve-operational-efficiency')
+@section('og-url','propsuite.net/How-to-use-a-leasing-management-system-to-improve-operational-efficiency')
 @section('og-title','How to use a leasing management system to improve operational efficiency?')
 @section('og-description','If you have ever tried to manage a property, you know how hard it can be, read more...')
 @section('og-image','https://images.pexels.com/photos/7652039/pexels-photo-7652039.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
@@ -39,7 +39,7 @@
       <div class="px-4 lg:px-0 mt-12 text-gray-700 max-w-screen-md mx-auto text-base leading-relaxed">
 
       <p class="pb-6">
-      If you've ever tried to manage a property, you know how hard it can be. From accounting for rent payments to tracking expenses, there are just so many things that need to get done—and there's no way to do them all manually. Now imagine if you could streamline all those processes with an automated system like the  Leasing Management System (PMS) of The PMO Co. This new tool will help your organization run more efficiently by automating everything from invoicing vendors to tracking work orders. 
+      If you've ever tried to manage a property, you know how hard it can be. From accounting for rent payments to tracking expenses, there are just so many things that need to get done—and there's no way to do them all manually. Now imagine if you could streamline all those processes with an automated system like the  Leasing Management System (PMS) of Propsuite. This new tool will help your organization run more efficiently by automating everything from invoicing vendors to tracking work orders. 
       </p>
       <h3 class="font-semibold text-xl pb-6">
       Onboard new tenants.

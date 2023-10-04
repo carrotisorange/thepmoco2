@@ -2,7 +2,7 @@
 @section('title','How Smart Landlords Keep Tenants Happy So They Don&#39;t Move Out')
 @section('description', 'How to keep tenants happy')
 
-@section('og-url','https://thepropertymanager.online/How-Smart-Landlords-Keep-Tenants-Happy-So-They-Dont-Move-Out')
+@section('og-url','propsuite.net/How-Smart-Landlords-Keep-Tenants-Happy-So-They-Dont-Move-Out')
 @section('og-title','How Smart Landlords Keep Tenants Happy So They Don&#39;t Move Out')
 @section('og-description','Landlords are the hardest people to deal with, right? They&#39;re always asking for more money, read more...')
 @section('og-image','https://images.pexels.com/photos/5998706/pexels-photo-5998706.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')

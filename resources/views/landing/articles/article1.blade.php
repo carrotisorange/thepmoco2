@@ -1,10 +1,10 @@
 <x-article-page-template>
-@section('title','How The PMO Started')
+@section('title','How Propsuite Started')
 @section('description', 'A product to make easy the life of property managers and property owners. The property management system is a handy application to simplify operations in rental properties from tenant finding, lease contract management, billing and collection management, and concerns and maintenance requests for landlords, dormitories, apartment rentals, and other rentals.')
 
-@section('og-url','https://thepropertymanager.online/How-The-PMO-Started')
-@section('og-title','How The PMO Started')
-@section('og-description','See How The PMO Started, read more')
+@section('og-url','propsuite.net/How-The-PMO-Started')
+@section('og-title','How Propsuite Started')
+@section('og-description','See How Propsuite Started, read more')
 @section('og-image','https://upload.wikimedia.org/wikipedia/commons/8/8a/Overhead_desktop_workspace_%28Unsplash%29.jpg')
 
 <!-- start article -->
@@ -51,7 +51,7 @@
       </x-ad-section-template>
 
       <p class="pb-6">
-          But the good old days are long gone; we need to advance and adapt to the technological evolution! And before you know it, we have built The PMO for all landlords and professional property managers out there who, like us, want to make work easier and better. 
+          But the good old days are long gone; we need to advance and adapt to the technological evolution! And before you know it, we have built Propsuite for all landlords and professional property managers out there who, like us, want to make work easier and better. 
       </p>
       <p class="pb-6">
           Automating our process enables us to increase customer service satisfaction, become efficient in our operations, and improve transparency in management.</p>

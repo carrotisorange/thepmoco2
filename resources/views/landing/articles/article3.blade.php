@@ -2,7 +2,7 @@
 @section('title','Benefits and advantages of a property management system')
 @section('description', 'A property management system is a tool that can help property managers to improve operational efficiency and save time and money')
 
-@section('og-url','https://thepropertymanager.online/What-are-the-benefits-of-a-property-management-system-for-property-managers')
+@section('og-url','propsuite.net/What-are-the-benefits-of-a-property-management-system-for-property-managers')
 @section('og-title','Benefits and advantages of a property management system')
 @section('og-description','A property management system can be a great tool for landlords and property managers. It can help you to manage your, read more...')
 @section('og-image','https://images.pexels.com/photos/7652040/pexels-photo-7652040.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')

@@ -2,7 +2,7 @@
 @section('title','Why Digitalization is the best strategy for 2023')
 @section('description', ' As a property manager or landlord, digitalization is the best strategy in 2023 for managing your properties')
 
-@section('og-url','https://thepropertymanager.online/Why-Digitalization-is-the-best-strategy-for-2023')
+@section('og-url','propsuite.net/Why-Digitalization-is-the-best-strategy-for-2023')
 @section('og-title','Why Digitalization is the best strategy for 2023')
 @section('og-description','Digitalization is a strategic approach to business that seeks to leverage the power of digital technologies to achieve business objectives. In short, read more...')
 @section('og-image','https://storage.googleapis.com/unbiased-www-production-backend/uploads/media/news/0001/03/thumb_2459_news_standard.jpeg')
