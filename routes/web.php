@@ -271,6 +271,29 @@ Route::get('/How-To-Be-An-Environmentally-Friendly-Rental-Property', function(){
     return view('landing.articles.article22');
 });
 
+Route::get('/hoa-payable', function(){
+    return view('HOA.AP.hoa-payable');
+});
+
+Route::get('/receipts', function(){
+    return view('HOA.AP.receipts');
+});
+
+Route::get('/homeowners', function(){
+    return view('HOA.homeowners.homeowners');
+});
+
+//homeowner portal
+
+Route::get('/welcome', function(){
+    return view('HOA.homeowner.welcome');
+});
+
+Route::get('/profile-setup', function(){
+    return view('HOA.homeowner.profile-setup');
+});
+
+
 
 
 Route::get('/propsuite', function(){
