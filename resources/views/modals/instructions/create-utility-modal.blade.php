@@ -22,7 +22,7 @@
                 <label class="text-sm" for="utility_type">Select a utility</label>
                 <x-form-select id="utility_type" name="utility_type" wire:model="utility_type" class="">
                     <option value="">Select one</option>
-            
+
                     <option value="electric" {{ "electric"===$utility_type? 'selected' : 'Select one' }}>
                         electric
                     </option>
@@ -30,9 +30,9 @@
                     <option value="water" {{ "water"===$utility_type? 'selected' : 'Select one' }}>
                         water
                     </option>
-            
+
                 </x-form-select>
-            
+
                 @error('utility_type')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
@@ -81,16 +81,16 @@
 
             <div class="mt-5 sm:mt-6">
 
-                <x-button type="submit" wire:loading.remove>
+                <x-button class="w-full" type="submit" wire:loading.remove>
                     Confirm
                 </x-button>
 
-                <x-button type="button" wire:loading>
+                <x-button class="w-full" type="button" wire:loading>
                     Loading...
                 </x-button>
 
 
-              
+
 
             </div>
         </div>

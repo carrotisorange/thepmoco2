@@ -123,7 +123,7 @@
 
 
                             <div class="lg:col-span-2">
-                                <x-button type="submit" class="mt-5 w-full ">Sign
+                                <x-button type="submit" class="mt-5 w-full">Sign
                                     up</x-button>
                             </div>
 

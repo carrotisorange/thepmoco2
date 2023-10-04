@@ -13,7 +13,7 @@
                             class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="" required>
                     </div>
-                    
+
                     <div class="mt-5 sm:mt-6">
                         <label class="text-sm" for="tenant">Bill to</label>
                         @if($bill_details->tenant_uuid)
@@ -34,7 +34,7 @@
                             placeholder="" required>
                         @endif
                     </div>
-                    
+
                     <div class="mt-5 sm:mt-6">
                         <label class="text-sm" for="status">Status</label>
                         <input type="text" readonly value="{{ $bill_details->status}}"
@@ -52,12 +52,12 @@
                             }}>{{ $particular->particular }}</option>
                         @endforeach
                         </x-form-select>
-                    
+
                         @error('particular_id')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </div>
-                    
+
                     <div class="mt-5 sm:mt-6">
                         <label class="text-sm" for="bill">Start</label>
                         <input type="date" id="start" wire:model="start"
@@ -67,7 +67,7 @@
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </div>
-                    
+
                     <div class="mt-5 sm:mt-6">
                         <label class="text-sm" for="bill">End</label>
                         <input type="date" id="end" wire:model="end"
@@ -77,8 +77,8 @@
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </div>
-                    
-                    
+
+
                     <div class="mt-5 sm:mt-6">
                         <label class="text-sm" for="bill">Amount</label>
                         <input type="number" step="0.001" id="bill" wire:model="bill"
@@ -88,16 +88,16 @@
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </div>
-                    
-                    
+
+
                     <div class="mt-5 sm:mt-6">
-                       
-                        <x-button type="submit" wire:loading.remove>   Update
+
+                        <x-button class="w-full" type="submit" wire:loading.remove>   Update
                         </x-button>
-                        <x-button type="button" wire:loading>   Loading...
+                        <x-button class="w-full" type="button" wire:loading>   Loading...
                         </x-button>
-                     
-                    
+
+
                     </div>
                 </form>
     </div>

@@ -27,12 +27,12 @@
                 </div>
                 <div class="mt-5 sm:mt-6">
                     @can('accountownerandmanager')
-                    <x-button type="button" wire:click="deleteUnit"
+                    <x-button class="w-full" type="button" wire:click="deleteUnit"
                       >
                         Confirm
                     </x-button>
                     @else
-                    <x-button type="button" disabled
+                    <x-button class="w-full" type="button" disabled
                        >
                         Confirm
                     </x-button>

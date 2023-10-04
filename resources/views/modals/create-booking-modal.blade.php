@@ -68,7 +68,7 @@
 
             <div class="mt-5 sm:mt-6">
 
-                <x-button type="submit" wire:click="storeBooking">
+                <x-button class="w-full" type="submit" wire:click="storeBooking">
                     Confirm
                 </x-button>
 

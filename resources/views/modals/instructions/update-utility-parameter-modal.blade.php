@@ -21,7 +21,7 @@
             </div>
 
             <div class="mt-5 sm:mt-6">
-                <x-button type="button" wire:click="updateParameters">
+                <x-button class="w-full" type="button" wire:click="updateParameters">
                     Confirm
                 </x-button>
 

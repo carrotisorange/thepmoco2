@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="mt-5 sm:mt-6">
-                    <x-button type="button" wire:click="deleteUnit"
+                    <x-button class="w-full" type="button" wire:click="deleteUnit"
                      >
                         Confirm
                     </button>

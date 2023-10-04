@@ -73,10 +73,10 @@
                 @enderror
             </div>
             <div class="mt-5 sm:mt-6">
-                <x-button type="submit"  wire:loading.remove >
+                <x-button class="w-full" type="submit"  wire:loading.remove >
                     Confirm
                 </x-button>
-                <button type="button" wire:loading disabled
+                <button class="w-full" type="button" wire:loading disabled
                    >
                     Loading...
                 </x-button>
@@ -84,5 +84,5 @@
             </div>
             </form>
         </div>
-      
+
 </x-modal-component>

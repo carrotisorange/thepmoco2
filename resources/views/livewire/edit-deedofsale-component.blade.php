@@ -27,13 +27,13 @@
                     @enderror
                 </div>
 
-            
+
               <div class="sm:col-span-3">
                 <label for="contract" class="block mt-3 text-sm font-medium leading-6 text-gray-900">Contract</label>
-               
+
                 <div class="mt-2 flex justify-center rounded-md border-2 border-gray-300">
                     <div class="space-y-1 text-center">
-            
+
                         <div class="flex text-sm text-gray-600">
                             <label for="contract"
                                 class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
@@ -45,9 +45,9 @@
                                     <a target="_blank"
                                         class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
                                         href="{{ asset('/storage/'.$deedofsale->title) }}">View attachment</a>
-                                    
+
                                     @endif
-            
+
                         </div>
                         <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
                         <p class="text-center">
@@ -62,13 +62,13 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="sm:col-span-3">
                 <label for="title" class="block mt-3 text-sm font-medium leading-6 text-gray-900">Title</label>
-               
+
                 <div class="mt-2 flex justify-center rounded-md border-2 border-gray-300">
                     <div class="space-y-1 text-center">
-            
+
                         <div class="flex text-sm text-gray-600">
                             <label for="title"
                                 class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
@@ -80,7 +80,7 @@
                     <a target="_blank"
                         class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
                         href="{{ asset('/storage/'.$deedofsale->title) }}">View attachment</a>
-                    
+
                     @endif
 
                         </div>
@@ -99,10 +99,10 @@
             </div>
             <div class="sm:col-span-3">
                 <label for="tax_declaration" class="block mt-3 text-sm font-medium leading-6 text-gray-900">Tax Declaration</label>
-               
+
                 <div class="mt-2 flex justify-center rounded-md border-2 border-gray-300">
                     <div class="space-y-1 text-center">
-            
+
                         <div class="flex text-sm text-gray-600">
                             <label for="tax_declaration"
                                 class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
@@ -114,9 +114,9 @@
                             @if($deedofsale->tax_declaration)
                             &nbsp; or &nbsp;
                             <a target="_blank" class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500" href="{{ asset('/storage/'.$deedofsale->tax_declaration) }}">View attachment</a>
-                            
+
                             @endif
-            
+
                         </div>
                         <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
                         <p class="text-center">
@@ -131,13 +131,13 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="sm:col-span-3">
                 <label for="deed_of_sales" class="block mt-3 text-sm font-medium leading-6 text-gray-900">Deeds of Sale</label>
-               
+
                 <div class="mt-2 flex justify-center rounded-md border-2 border-gray-300">
                     <div class="space-y-1 text-center">
-            
+
                         <div class="flex text-sm text-gray-600">
                             <label for="deed_of_sales"
                                 class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
@@ -149,9 +149,9 @@
                             @if($deedofsale->deed_of_sales)
                             &nbsp; or &nbsp;
                             <a target="_blank" class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500" href="{{ asset('/storage/'.$deedofsale->deed_of_sales) }}">View attachment</a>
-                            
+
                             @endif
-            
+
                         </div>
                         <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
                         <p class="text-center">
@@ -166,15 +166,15 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="sm:col-span-3">
-            
+
                 <label for="contract_to_sell" class="block mt-3 text-sm font-medium leading-6 text-gray-900">Contract to
                     Sell</label>
-              
+
                 <div class="mt-2 flex justify-center rounded-md border-2 border-gray-300">
                     <div class="space-y-1 text-center">
-            
+
                         <div class="flex text-sm text-gray-600">
                             <label for="contract_to_sell"
                                 class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
@@ -186,9 +186,9 @@
                             @if($deedofsale->contract_to_sell)
                             &nbsp; or &nbsp;
                             <a target="_blank" class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500" href="{{ asset('/storage/'.$deedofsale->contract_to_sell) }}">View attachment</a>
-                            
+
                             @endif
-            
+
                         </div>
                         <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
                         <p class="text-center">
@@ -203,16 +203,16 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="sm:col-span-3">
-            
-            
+
+
                 <label for="certificate_of_membership" class="block mt-3 text-sm font-medium leading-6 text-gray-900">Certificate of
                     Membership</label>
-            
+
                 <div class="mt-2 flex justify-center rounded-md border-2 border-gray-300">
                     <div class="space-y-1 text-center">
-            
+
                         <div class="flex text-sm text-gray-600">
                             <label for="certificate_of_membership"
                                 class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
@@ -224,9 +224,9 @@
                             @if($deedofsale->certificate_of_membership)
                             &nbsp; or &nbsp;
                             <a target="_blank" class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500" href="{{ asset('/storage/'.$deedofsale->certificate_of_membership) }}">View attachment</a>
-                            
+
                             @endif
-            
+
                         </div>
                         <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
                         <p class="text-center">
@@ -242,29 +242,29 @@
                 </div>
             </div>
 
-            <div class="sm:col-span-3">    
+            <div class="sm:col-span-3">
                 <label for="business_permit" class="block mt-3 text-sm font-medium leading-6 text-gray-900">Business Permit
                 </label>
-             
+
                 <div class="mt-2 flex justify-center rounded-md border-2 border-gray-300">
                     <div class="space-y-1 text-center">
-            
+
                         <div class="flex text-sm text-gray-600">
-                          
+
                             <label for="business_permit"
                                 class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
                                 <span>Upload a file</span>
                                 <input id="business_permit" name="business_permit" type="file"
                                     wire:model="business_permit" class="sr-only">
                             </label>
-                           
-                            
+
+
                            @if($deedofsale->business_permit)
                             &nbsp; or &nbsp;
                             <a target="_blank" class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500" href="{{ asset('/storage/'.$deedofsale->business_permit) }}">View attachment</a>
-                            
+
                             @endif
-            
+
                         </div>
                         <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
                         <p class="text-center">
@@ -282,7 +282,7 @@
 
 
                 <div class="mt-5 sm:mt-6">
-                    <x-button type="button" wire:click="updateDeedofsale">
+                    <x-button class="w-full" type="button" wire:click="updateDeedofsale">
                         Update
                     </x-button>
                 </div>

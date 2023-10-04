@@ -69,7 +69,7 @@
 
                 <div class="mt-5 sm:mt-6">
 
-                    <x-button type="button" wire:click="updateReference">
+                    <x-button class="w-full" type="button" wire:click="updateReference">
                         Update
                     </x-button>
 

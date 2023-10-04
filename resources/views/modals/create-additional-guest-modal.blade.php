@@ -26,10 +26,10 @@
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
             </div>
-        
+
             <div class="mt-5 sm:mt-6">
 
-                <x-button type="button" wire:click="store_additional_guest">
+                <x-button class="w-full" type="button" wire:click="store_additional_guest">
                     Confirm
                 </x-button>
 

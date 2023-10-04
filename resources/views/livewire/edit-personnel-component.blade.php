@@ -51,9 +51,9 @@
                         <option value="1" {{ '1'==$is_approved ? 'Select one' : 'selected' }}>
                             Yes</option>
                         <option value="0" {{ '0'==$is_approved ? 'Select one' : 'selected' }}>No</option>
-                
+
                     </x-form-select>
-                
+
                     @error('is_approved')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
@@ -167,25 +167,25 @@
 
 
                     </div>
-                   
-                   
+
+
                 </div>
 
                 -->
 
                 <div class="mt-5 sm:mt-6">
 
-                
 
-            
-                
+
+
+
                 <fieldset>
                   <label class="text-sm" for="is_approved">Restrictions</label>
-                  
+
                   @foreach($user_restrictions as $index => $user_restriction)
                   <div wire:key="user-restriction-{{ $user_restriction->id }}">
                     <div class="space-y-5 mt-4">
-                      
+
                         <div class="relative flex items-start">
                             <div class="flex h-6 items-center">
                                 <input wire:model="user_restrictions.{{ $index }}.is_approved" type="checkbox" @if('user_restrictions.{{ $index }}.is_approved') checked @endif
@@ -201,16 +201,16 @@
                   </div>
                     @endforeach
                 </fieldset>
-                    
+
                 </div>
 
                 <div class="mt-5 sm:mt-6">
                     @can('accountownerandmanager')
-                    <x-button type="button" wire:target="updateButton" wire:click="updateButton">
+                    <x-button class="w-full" type="button" wire:target="updateButton" wire:click="updateButton">
                         Update
                     </x-button>
                     @else
-                    <x-button type="button" disabled wire:target="updateButton">
+                    <x-button class="w-full" type="button" disabled wire:target="updateButton">
                        Update
                     </x-button>
                     <p class="text-left text-red-500 text-xs mt-2">This feature is locked. Please contact your manager.

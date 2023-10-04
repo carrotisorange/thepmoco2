@@ -8,7 +8,7 @@
             class="relative transform overflow-hidden rounded-lgpx-4 pt-5 pb-4 text-left transition-all  sm:w-full sm:max-w-sm sm:p-6">
             <div class="mt-3 text-center sm:mt-5">
                 <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Edit Utility
-                    
+
                 </h3>
 
             </div>
@@ -126,7 +126,7 @@
                 </div>
                 @else
                 <div class="mt-5 sm:mt-6">
-                    <x-button type="button" disabled>
+                    <x-button class="w-full" type="button" disabled>
                        {{$status}}
                     </x-button>
                 </div>

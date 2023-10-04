@@ -3,7 +3,7 @@
     <x-slot name="id">
         create-concern-modal
     </x-slot>
-  
+
     <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
         <div
             class="relative transform overflow-hidden rounded-lgpx-4 pt-5 pb-4 text-left transition-all  sm:w-full sm:max-w-sm sm:p-6">
@@ -75,18 +75,18 @@
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
             </div>
-          
+
                 <div class="mt-5 sm:mt-6">
 
-                    <x-button type="submit" wire:loading.remove wire:click="submitButton">
+                    <x-button class="w-full" type="submit" wire:loading.remove wire:click="submitButton">
                         Confirm
-                    </button>
+                    </x-button>
 
                     <x-button type="button" wire:loading disabled>
                         Loading...
                     </x-button>
                 </div>
-            
+
         </div>
     </div>
 

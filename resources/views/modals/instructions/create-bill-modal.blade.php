@@ -100,7 +100,7 @@
 
                 @else
                 <div class="mt-5 sm:mt-6">
-                    <x-button type="button" wire:click="redirectToUnitsPage">
+                    <x-button class="w-full" type="button" wire:click="redirectToUnitsPage">
                         Add Tenant
                     </x-button>
 

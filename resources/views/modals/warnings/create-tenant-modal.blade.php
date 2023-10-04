@@ -26,10 +26,10 @@
                     </div>
                 </div>
                 <div class="mt-5 sm:mt-6">
-                    <button type="button" wire:click="closeModal"
-                        class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:purple-red-500 focus:ring-offset-2 sm:text-sm">
+                    <x-button class="w-full" type="button" wire:click="closeModal"
+                        >
                         Close
-                    </button>
+                    </x-button>
                 </div>
             </div>
         </div>

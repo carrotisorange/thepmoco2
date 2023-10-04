@@ -17,7 +17,7 @@
                 <div class="mt-5 sm:mt-6">
                     <label class="text-sm" for="unit_uuid">Unit</label>
                     <x-form-select wire:model="unit_uuid" class="">
-                        
+
                         @foreach ($units as $unit)
                         <option value="{{ $unit->uuid }}" {{ $unit->uuid === $unit_uuid?
                             'selected': 'Select one' }}> {{ $unit->unit }}
@@ -213,7 +213,7 @@
 
                 <div class="mt-5 sm:mt-6">
 
-                    <x-button type="button" wire:click="updateBooking">
+                    <x-button class="w-full" type="button" wire:click="updateBooking">
                         Update
                     </x-button>
 

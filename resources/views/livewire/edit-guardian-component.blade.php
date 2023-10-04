@@ -68,7 +68,7 @@
                 </div>
 
                 <div class="mt-5 sm:mt-6">
-                    <x-button type="button" wire:click="updateGuardian">
+                    <x-button class="w-full" type="button" wire:click="updateGuardian">
                         Update
                     </x-button>
 

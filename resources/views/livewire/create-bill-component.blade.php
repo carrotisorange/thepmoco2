@@ -88,9 +88,9 @@
                 @enderror
             </div>
             <div class="mt-5 sm:mt-6">
-                <x-button type="button" wire:click="submitButton">
+                <x-button type="button" class="w-full" wire:click="submitButton">
                     Confirm
-                </button>
+                </x-button>
             </div>
         </div>
     </div>

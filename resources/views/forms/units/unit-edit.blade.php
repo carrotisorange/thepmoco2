@@ -279,10 +279,10 @@
 
     </div>
     <div class="mt-10 flex justify-end">
-        <x-button type="button" data-modal-toggle="warning-destroy-unit-modal"
+        {{-- <x-button type="button" data-modal-toggle="warning-destroy-unit-modal"
             class=" bg-red-600 hover:bg-red-700">
             Delete
-        </x-button>
+        </x-button> --}}
         &nbsp
         <x-button type="button" wire:click="submitForm()">
             Update

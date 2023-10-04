@@ -14,7 +14,7 @@
                         @if($collectionsCount)
                         <p class="text-sm text-gray-500">You're about to create <b
                                 class="font-bold text-lg text-red-500">{{
-                                $collectionsCount }}</b> remittances 
+                                $collectionsCount }}</b> remittances
                             </b> You may still modify
                             these bills when you click
                             <b>CONFIRM
@@ -31,7 +31,7 @@
             <form wire:submit.prevent="storeRemittance">
             <div class="mt-5 sm:mt-6">
                 <label class="text-sm" for="">Specify the date</label>
-              
+
               <input type="date" wire:model="date"
                     class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="">
@@ -42,15 +42,15 @@
 
             <div class="mt-5 sm:mt-6">
                 @if($collectionsCount)
-                <x-button type="submit" wire:loading.remove>
+                <x-button class="w-full" type="submit" wire:loading.remove>
                     Confirm
                 </x-button>
 
-                <x-button type="button" disabled wire:loading >
+                <x-button class="w-full" type="button" disabled wire:loading >
                     Loading...
                 </x-button>
                 @else
-                <x-button type="button" wire:click="redirectToOwnerPage">
+                <x-button class="w-full" type="button" wire:click="redirectToOwnerPage">
                     Add a collection
                 </x-button>
                 @endif
@@ -59,6 +59,6 @@
 
         </form>
         </div>
-        
+
     </div>
 </x-modal-component>

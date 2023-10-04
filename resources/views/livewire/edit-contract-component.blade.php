@@ -10,7 +10,7 @@
 
                 <div class="mt-3 text-center sm:mt-5">
                     <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Edit Contract
-                        
+
                     </h3>
                     <div class="mt-2">
 
@@ -115,7 +115,7 @@
                         <option value="false" {{ false===$status? 'selected' : 'Select one' }}>
                             no
                         </option>
-                       
+
 
                     </x-form-select>
 
@@ -150,18 +150,18 @@
                 <span>No file is uploaded. </span>
                 @else
                 <a target="_blank" href="{{ asset('/storage/'.$contract->contract) }}">View file</a>
-            
+
                 @endif
                 <div class="mt-2 flex justify-center rounded-md border-2 border-gray-300">
                     <div class="space-y-1 text-center">
-            
+
                         <div class="flex text-sm text-gray-600">
                             <label for="tenant_contract"
                                 class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
                                 <span>Upload a file</span>
                                 <input id="tenant_contract" name="tenant_contract" type="file" wire:model="tenant_contract" class="sr-only">
                             </label>
-            
+
                         </div>
                         <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
                         <p class="text-center">
@@ -179,7 +179,7 @@
 
                 <div class="mt-5 sm:mt-6">
 
-                    <x-button type="button" wire:click="updateContract">
+                    <x-button class="w-full" type="button" wire:click="updateContract">
                         Update
                     </x-button>
 

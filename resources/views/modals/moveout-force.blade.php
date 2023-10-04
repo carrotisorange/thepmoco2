@@ -22,7 +22,7 @@
                     wire:click="exitModal()">
                    Cancel
                 </a>
-                <x-button type="submit">
+                <x-button class="w-full" type="submit">
                     Force Moveout
                 </x-button>
             </div>

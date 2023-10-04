@@ -12,13 +12,13 @@
                         @foreach ($roles as $role)
                         <option value="{{ $role->id }}">{{ $role->role }}</option>
                         @endforeach
-                
+
                     </x-form-select>
                     @error('role_id')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
-                
+
                 <div class="mt-5 sm:mt-6">
                     <label class="text-sm" for="email">Email </label>
                     <input type="email" id="email" wire:model="email"
@@ -28,7 +28,7 @@
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
-                
+
                 <div class="mt-5 sm:mt-6">
                     <label class="text-sm" for="mobile_number">Mobile </label>
                     <input type="text" id="mobile_number" wire:model="mobile_number"
@@ -38,20 +38,20 @@
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
-                
+
                 <div class="mt-5 sm:mt-6">
                     @can('accountownerandmanager')
-                    <x-button type="button" wire:click="submitButton">
+                    <x-button class="w-full" type="button" wire:click="submitButton">
                         Confirm
                     </x-button>
                     @else
-                    <x-button type="button" disabled disabled>
+                    <x-button class="w-full" type="button" disabled disabled>
                        Confirm
                     </x-button>
                     <p class="text-red-500 text-xs mt-2">This feature is locked. Please contact your manager.</p>
-                
+
                     @endcan
-                
+
                 </div>
    </div>
 </x-modal-component>
