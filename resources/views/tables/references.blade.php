@@ -20,12 +20,12 @@
             <x-td>
                 <x-button data-modal-target="edit-reference-modal-{{$reference->id}}"
                     data-modal-toggle="edit-reference-modal-{{$reference->id}}"
-                 
+
                     type="button">
                     Edit
-                </button>
+                </x-button>
             </x-td>
-            
+
         </tr>
         @livewire('edit-reference-component', ['reference_details' => $reference], key($reference->id))
         @endforeach
