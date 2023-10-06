@@ -156,8 +156,8 @@
                             <label for="concern" class="block text-sm font-medium text-gray-700"> Details of the concern
                             </label>
                             <div class="mt-1">
-                                <textarea id="concern" wire:model="concern" rows="3"
-                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-700 rounded-md">
+                                <textarea id="concern" wire:model="concern" rows="20"
+                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block h-full w-full sm:text-sm border border-gray-700 rounded-md">
                                         {{ $concern_details->concern }}
                                         </textarea>
                                 @error('concern')

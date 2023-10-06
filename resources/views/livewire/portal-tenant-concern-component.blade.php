@@ -87,10 +87,10 @@
                                             <label for="concern" class="block text-sm font-medium text-gray-700">
                                                 Details of the concern</label>
                                             <div class="mt-1">
-                                                <textarea wire:model="concern" rows="3" 
+                                                <textarea wire:model="concern" rows="20" 
                                                 placeholder="I am writing to bring to your attention a concern regarding my recent bill. I received my billing statement on {{ Carbon\Carbon::now()->format('M d, Y') }}, and after reviewing it thoroughly, I noticed some discrepancies that I believe require clarification and resolution. 
                                                 The details of the issue are as follows:"
-                                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-700 rounded-md"></textarea>
+                                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block h-full w-full sm:text-sm border border-gray-700 rounded-md"></textarea>
                                             </div>
                                             <p class="mt-2 text-sm text-gray-500">Please share your concern in
                                                 detail.
