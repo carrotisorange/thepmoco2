@@ -7,7 +7,7 @@
                     @if(Session::get("property_type") === 'HOA')
                     House
                     @else
-                    Unit
+                    Units
                     @endif
                 </h1>
             </div>
