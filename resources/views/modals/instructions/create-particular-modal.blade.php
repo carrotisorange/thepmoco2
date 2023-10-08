@@ -28,10 +28,10 @@
             </div>
             @endif
             <div class="mt-5 sm:mt-6">
-                <button class="w-full" type="button" wire:click="storeParticular"
+                <x-button class="w-full" type="button" wire:click="storeParticular"
                   >
                     Save
-                </button>
+                </x-button>
 
             </div>
         </div>

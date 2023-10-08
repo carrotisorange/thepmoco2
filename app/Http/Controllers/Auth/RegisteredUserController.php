@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendThankyouMailToUser;
 use App\Models\Feature;
 
 class RegisteredUserController extends Controller
@@ -44,6 +46,8 @@ class RegisteredUserController extends Controller
         $attributes['username'] = $request->email;
 
         $user = User::create($attributes);
+
+        Mail::to($user->email)->send(new SendThankyouMailToUser($user));
 
       event(new Registered($user));
 

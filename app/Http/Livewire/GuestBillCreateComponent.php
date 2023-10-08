@@ -94,7 +94,7 @@ class GuestBillCreateComponent extends Component
 
       try {
 
-         $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property_uuid'));
+         $bill_no = app('App\Http\Controllers\BillController')->getLatestBillNo(Session::get('property_uuid'));
 
          if($this->particular_id === '8'){
             $this->bill *=-1;

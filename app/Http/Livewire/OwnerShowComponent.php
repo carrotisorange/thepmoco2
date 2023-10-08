@@ -123,9 +123,10 @@ class OwnerShowComponent extends Component
     public function sendCredentials()
     {
 
+        if($this->email == null){
+            session()->flash('error', 'The email address is required.');
 
-        if(!$this->owner_details->email){
-            return back()->with('error', 'Error');
+            return back();
         }
 
         $count_user = User::where('email', $this->owner_details->email)->count();
@@ -177,7 +178,7 @@ class OwnerShowComponent extends Component
         app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'sends',17);
 
 
-       return back()->with('success', 'Success');
+        return redirect('/property/'.Session::get('property_uuid').'/owner/'.$this->owner_details->uuid)->with('success', 'Changes Saved!');
     }
 
     public function removeCredentials()
@@ -275,8 +276,10 @@ class OwnerShowComponent extends Component
             'bills' => Bill::where('owner_uuid', $this->owner_details->uuid)->posted()->get(),
             'collections' => app('App\Http\Controllers\OwnerCollectionController')->get_owner_collections(Session::get('property_uuid'), $this->owner_details->uuid),
             'username' => User::where('owner_uuid', $this->owner_details->uuid)->value('username'),
+            'email_cred' => User::where('owner_uuid', $this->owner_details->uuid)->value('email'),
             'spouse' => Spouse::where('owner_uuid', $this->owner_details->uuid)->get(),
-            'ownerSubfeaturesArray' => $ownerSubfeaturesArray
+            'ownerSubfeaturesArray' => $ownerSubfeaturesArray,
+            'sessions' => DB::table('sessions')->where('user_id', User::where('owner_uuid', $this->owner_details->uuid)->value('id'))->orderBy('created_at', 'desc')->limit(5)->get()
         ]);
     }
 }

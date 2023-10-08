@@ -17,7 +17,6 @@
 
     <tbody class="bg-white divide-y divide-gray-200">
         @foreach ($bookings as $index => $booking)
-
         <tr>
             <x-td>{{ $index+1 }}</x-td>
             {{-- <x-td>{{ Str::limit($booking->uuid, 10) }}</x-td> --}}

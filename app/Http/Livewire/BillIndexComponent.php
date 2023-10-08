@@ -34,7 +34,7 @@ class BillIndexComponent extends Component
 
    public $status = 'unpaid';
 
-   public $view = 'listView';  
+   public $view = 'listView';
 
    public $isPaymentAllowed = false;
 
@@ -68,7 +68,7 @@ class BillIndexComponent extends Component
    }
 
    public function redirectToUnitsPage(){
-      
+
 
       return redirect('/property/'.Session::get('property_uuid').'/unit/');
    }
@@ -88,7 +88,7 @@ class BillIndexComponent extends Component
    public function clearFilters()
    {
       $this->search = '';
-      $this->particular = ''; 
+      $this->particular = '';
       $this->posted_dates = '';
       $this->status = '';
       $this->bill_type = '';
@@ -132,7 +132,7 @@ class BillIndexComponent extends Component
    }
 
    public function get_bills()
-   {  
+   {
       $bills = '';
 
       if($this->filter_bill_to === 'delinquent')
@@ -165,7 +165,7 @@ class BillIndexComponent extends Component
 
 
    public function storeParticular(){
-      
+
       $particular_id = Particular::
       where('particular', strtolower($this->new_particular))
       ->pluck('id')
@@ -214,14 +214,14 @@ class BillIndexComponent extends Component
       ->where('contracts.status','active')
       ->pluck('tenant_uuid');
 
-      $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property_uuid'));
+      $bill_no = app('App\Http\Controllers\BillController')->getLatestBillNo(Session::get('property_uuid'));
 
       $batch_no = app('App\Http\Controllers\BillController')->generate_bill_batch_no($bill_no);
 
       $bill_count = Contract::where('property_uuid', Session::get('property_uuid'))->where('status', 'active')->count();
 
       try{
-         for($i=0; $i<$bill_count; $i++){ 
+         for($i=0; $i<$bill_count; $i++){
             $unit_uuid=Contract::where('property_uuid', Session::get('property_uuid'))
                 ->where('contracts.status','active')
                 ->where('tenant_uuid', $tenant_uuid[$i])
@@ -239,22 +239,22 @@ class BillIndexComponent extends Component
             $attributes['unit_uuid']= $unit_uuid;
             $attributes['tenant_uuid'] = $tenant_uuid[$i];
 
-               if($this->particular_id === '1')
-               {
-               
-                  $marketing_fee = Unit::find($unit_uuid)->marketing_fee;
-                  $management_fee = Unit::find($unit_uuid)->management_fee;
+            //    if($this->particular_id === '1')
+            //    {
 
-                  $bill = $rent[0];
+            //       $marketing_fee = Unit::find($unit_uuid)->marketing_fee;
+            //       $management_fee = Unit::find($unit_uuid)->management_fee;
 
-                  $attributes['bill'] = ($bill)-($marketing_fee + $management_fee);
+            //       $bill = $rent[0];
 
-               }
- 
+            //       $attributes['bill'] = ($bill)-($marketing_fee + $management_fee);
+
+            //    }
+
                if($this->particular_id === '8'){
                   $attributes['bill'] = -($this->bill);
                }
-               
+
                 $attributes['bill_no'] = $bill_no++;
                 $attributes['reference_no'] = $reference_no->bill_reference_no;
                 $attributes['user_id'] = auth()->user()->id;
@@ -264,47 +264,47 @@ class BillIndexComponent extends Component
                 $attributes['status'] = 'unpaid';
                 $attributes['created_at'] = Carbon::now();
 
-                $bill_id = Bill::insertGetId($attributes);
-               
-                if($this->particular_id === '1'){
-                   if($marketing_fee>0){
-                  Bill::create([
-                     'bill_id' => $bill_id,
-                   'bill_no' => $bill_no++,
-                   'unit_uuid' => $unit_uuid,
-                   'particular_id' => 71,
-                   'start' => $this->start,
-                   'end' => $this->end,
-                   'bill' => $marketing_fee,
-                   'reference_no' => $reference_no->bill_reference_no,
-                   'due_date' => Carbon::parse($this->start)->addDays(7),
-                   'user_id' => auth()->user()->id,
-                   'property_uuid' => Session::get('property_uuid'),
-                   'tenant_uuid' => $tenant_uuid[$i],
-                   'batch_no' => $batch_no,
-                   'status' => 'unpaid',
-                     'created_at' => Carbon::now(),
-                  ]);
-               }
-                if($management_fee>0){
-                  Bill::create([
-                   'bill_id' => $bill_id,
-                   'bill_no' => $bill_no++,
-                   'unit_uuid' => $unit_uuid,
-                   'particular_id' => 72,
-                   'start' => $this->start,
-                   'end' => $this->end,
-                   'bill' => $management_fee,
-                   'reference_no' => $reference_no->bill_reference_no,
-                   'due_date' => Carbon::parse($this->start)->addDays(7),
-                   'user_id' => auth()->user()->id,
-                   'property_uuid' => Session::get('property_uuid'),
-                   'tenant_uuid' => $tenant_uuid[$i],
-                   'batch_no' => $batch_no,
-                    'created_at' => Carbon::now(),
-                  ]);
-               }
-                }
+               $bill_id = Bill::insertGetId($attributes);
+
+            //     if($this->particular_id === '1'){
+            //        if($marketing_fee>0){
+            //       Bill::create([
+            //          'bill_id' => $bill_id,
+            //        'bill_no' => $bill_no++,
+            //        'unit_uuid' => $unit_uuid,
+            //        'particular_id' => 71,
+            //        'start' => $this->start,
+            //        'end' => $this->end,
+            //        'bill' => $marketing_fee,
+            //        'reference_no' => $reference_no->bill_reference_no,
+            //        'due_date' => Carbon::parse($this->start)->addDays(7),
+            //        'user_id' => auth()->user()->id,
+            //        'property_uuid' => Session::get('property_uuid'),
+            //        'tenant_uuid' => $tenant_uuid[$i],
+            //        'batch_no' => $batch_no,
+            //        'status' => 'unpaid',
+            //          'created_at' => Carbon::now(),
+            //       ]);
+            //    }
+            //     if($management_fee>0){
+            //       Bill::create([
+            //        'bill_id' => $bill_id,
+            //        'bill_no' => $bill_no++,
+            //        'unit_uuid' => $unit_uuid,
+            //        'particular_id' => 72,
+            //        'start' => $this->start,
+            //        'end' => $this->end,
+            //        'bill' => $management_fee,
+            //        'reference_no' => $reference_no->bill_reference_no,
+            //        'due_date' => Carbon::parse($this->start)->addDays(7),
+            //        'user_id' => auth()->user()->id,
+            //        'property_uuid' => Session::get('property_uuid'),
+            //        'tenant_uuid' => $tenant_uuid[$i],
+            //        'batch_no' => $batch_no,
+            //         'created_at' => Carbon::now(),
+            //       ]);
+            //    }
+            //     }
 
                 }
 
@@ -334,14 +334,14 @@ class BillIndexComponent extends Component
    {
       $particulars = app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid'));
 
-      $dates_posted = $this->get_posted_dates(); 
+      $dates_posted = $this->get_posted_dates();
 
       $period_covered_starts = $this->get_period_covered_starts();
 
       $period_covered_ends = $this->get_period_covered_ends();
 
       $propertyBillsCount = Property::find(Session::get('property_uuid'))->bills->count();
-         
+
       return view('livewire.bill-index-component', [
          'bills' => $this->get_bills(),
          'collections' => Collection::where('property_uuid', Session::get('property_uuid'))->posted()->get(),
@@ -389,7 +389,7 @@ class BillIndexComponent extends Component
    }
 
    public function exportBills(){
-      
+
       return redirect('/property/'.Session::get('property_uuid').'/bill/export/status/'.$this->status.'/particular/'.$this->particular.'/date/'.$this->posted_dates);
    }
 

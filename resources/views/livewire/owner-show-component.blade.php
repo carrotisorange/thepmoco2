@@ -1,5 +1,7 @@
 <?php
-    $addAnchorClass = '';
+    $addAnchorClass = 'block py-2 px-4 text-sm
+                                                    text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
+                                                    dark:text-gray-200 dark:hover:text-white';
 ?>
 <div>
     @include('layouts.notifications')
@@ -69,11 +71,11 @@
 
                     <div class="mt-5 flex items-center justify-center">
                         <p class="mt-5 text-lg text-center text-gray-700">
-                            {{-- @if(!App\Models\User::where('email', $tenant_details->email)->count()) --}}
+                            @if(!$email_cred)
                             <x-button wire:click="sendCredentials">
                                 Send access to owner
                             </x-button>
-
+                            @endif
                         </p>
                     </div>
                 </div>
@@ -108,7 +110,50 @@
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                                 <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                                @if($subfeature === 'unit')
+                                @if($subfeature === 'credentials')
+                                    @if($email_cred)
+                                  <div class="sm:col-span-4">
+                                        <div class="">
+                                            <x-label for="tenant">Email</x-label>
+                                            <x-form-input type="text" value="{{ $email_cred }}"  disabled />
+                                        </div>
+                                    </div>
+                                    <div class="sm:col-span-4 mt-8">
+                                        <div class="">
+                                            <x-label for="tenant">Username</x-label>
+                                            <x-form-input type="text" value="{{ $username }}" disabled />
+
+
+                                        </div>
+                                </div>
+                                @else
+                                <div class="mt-10 text-center mb-10">
+                                    {{-- <i class="fa-solid fa-circle-plus"></i> --}}
+                                    <h3 class="mt-2 text-sm font-medium text-gray-900">No credentials.</h3>
+
+                                    <div class="mt-6">
+                                        {{-- <x-button disabled>
+                                            New session
+                                        </x-button> --}}
+                                    </div>
+                                </div>
+                                @endif
+                                @elseif($subfeature === 'session')
+                                @if($sessions->count())
+                                    @include('tables.sessions')
+                                @else
+                                <div class="mt-10 text-center mb-10">
+                                    {{-- <i class="fa-solid fa-circle-plus"></i> --}}
+                                    <h3 class="mt-2 text-sm font-medium text-gray-900">No sessions.</h3>
+
+                                    <div class="mt-6">
+                                        {{-- <x-button disabled>
+                                            New session
+                                        </x-button> --}}
+                                    </div>
+                                </div>
+                                @endif
+                                @elseif($subfeature === 'unit')
                                     @include('tables.deedofsales')
                                 @elseif($subfeature === 'spouse')
                                     @include('tables.spouses')

@@ -278,10 +278,6 @@
                     Go Back
                 </a>
 
-                {{-- <button class="px-3 py-2 bg-purple-500 rounded-full text-base text-white">
-                    Send Another Email
-                </button> --}}
-
             </div>
         </div>
 </x-new-layout>

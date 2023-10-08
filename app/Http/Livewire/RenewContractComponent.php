@@ -62,13 +62,13 @@ class RenewContractComponent extends Component
 
       public function submitForm()
       {
-         
+
 
          $validatedData = $this->validate();
 
          try {
             DB::transaction(function () use ($validatedData){
-               
+
                $this->store_contract($validatedData);
 
                $this->update_current_contract($this->contract_details->uuid);
@@ -84,7 +84,7 @@ class RenewContractComponent extends Component
          // }else{
             redirect('/property/'.$this->contract_details->property_uuid.'/tenant/'.$this->contract_details->tenant_uuid.'/contracts')->with('success','Changes Saved!');
          // }
-         
+
          } catch (\Throwable $e) {
             return back()->with('error',$e);
          }
@@ -124,7 +124,7 @@ class RenewContractComponent extends Component
    {
          $contract_uuid = Str::uuid();
 
-         $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no($this->contract_details->property_uuid);
+         $bill_no = app('App\Http\Controllers\BillController')->getLatestBillNo($this->contract_details->property_uuid);
 
          $reference_no = Carbon::now()->timestamp.''.$bill_no;
 
@@ -153,7 +153,7 @@ class RenewContractComponent extends Component
          Contract::create($validatedData);
 
       }
-    
+
     public function render()
     {
         return view('livewire.renew-contract-component');

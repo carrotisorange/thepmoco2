@@ -103,6 +103,9 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::post('/{id}/step-1',[ElectionController::class, 'storeStep1']);
         Route::get('/{year}/step-2',[ElectionController::class, 'createStep2'])->name('election');
         Route::get('/{year}/step-3',[ElectionController::class, 'createStep3'])->name('election');
+        Route::get('/{year}/step-4',[ElectionController::class, 'createStep4'])->name('election');
+        Route::get('/{year}/step-5',[ElectionController::class, 'createStep5'])->name('election');
+        Route::get('/{year}/step-6',[ElectionController::class, 'createStep6'])->name('election');
     });
 
     //Route for utilities
@@ -352,7 +355,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::prefix('bill')->group(function(){
         // // Route::get('{type?}/{type_id?}/{batch_no?}/{drafts?}', [BillController::class, 'index'])->name('bill');
         // Route::get('export/status/{status?}/particular/{particular?}/date/{date?}', [BillController::class, 'export']);
-        // Route::get('customized/{batch_no}',[BillController::class,'bulk_edit'])->name('bill');
+        Route::get('customized/{batch_no}',[BillController::class,'bulk_edit'])->name('bill');
         // Route::get('{random_str}/delete/{count}', [BillController::class, 'confirm_bill_deletion'])->name('bill');
 
         // Route::get('/batch/{batch_no}/drafts', [BillController::class, 'drafts'])->name('bill');

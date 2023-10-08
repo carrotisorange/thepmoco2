@@ -163,7 +163,7 @@
                                 <tr>
                                     <td class="relative w-12 px-6 sm:w-16 sm:px-8">
                                         @if(!App\Models\Collection::where('bill_id', $item->id)->posted()->sum('collection'))
-                                        <x-input type="checkbox" wire:model="selectedBills" value="{{ $item->id }}" />
+                                        <x-input name="" type="checkbox" wire:model="selectedBills" value="{{ $item->id }}" />
                                         @endif
                                     </td>
                                     <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
@@ -191,22 +191,22 @@
                                         y').'-'.Carbon\Carbon::parse($item->end)->format('M d, y') }}
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        @if($item->particular_id === 1)
+                                        {{-- @if($item->particular_id === 1)
                                         Due to unit owner
-                                        @else
+                                        @else --}}
                                         {{ $item->particular->particular}}
-                                        @endif
+                                        {{-- @endif --}}
 
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <?php 
-                                            $marketing_fee = App\Models\Bill::where('particular_id', '71')->where('bill_id',$item->id)->posted()->pluck('bill')->last();
+
+                                            {{-- $marketing_fee = App\Models\Bill::where('particular_id', '71')->where('bill_id',$item->id)->posted()->pluck('bill')->last();
                                             $management_fee = App\Models\Bill::where('particular_id', '72')->where('bill_id',$item->id)->posted()->pluck('bill')->last();
-                                            
-                                            $other_fees = $marketing_fee + $management_fee ?>
+
+                                            $other_fees = $marketing_fee + $management_fee --}}
 
 
-                                        {{ number_format($item->bill+$other_fees, 2) }}
+                                        {{ number_format($item->bill, 2) }}
 
 
 
@@ -236,8 +236,7 @@
 
                                     <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">
 
-                                        {{ number_format((($item->bill +
-                                        $other_fees)-App\Models\Collection::where('tenant_uuid',
+                                        {{ number_format((($item->bill)-App\Models\Collection::where('tenant_uuid',
                                         $item->tenant_uuid)->where('bill_id',$item->id)->posted()->sum('collection')),
                                         2) }}
                                     </td>
@@ -276,7 +275,7 @@
                         </table>
                     </div>
 
-                
+
                 </div>
             </div>
         </div>

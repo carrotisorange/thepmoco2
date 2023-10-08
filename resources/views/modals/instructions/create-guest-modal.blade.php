@@ -17,10 +17,10 @@
                 </div>
             </div>
             <div class="mt-5 sm:mt-6">
-                <button class="w-full" type="button" wire:click="redirectToUnitSelectionPage"
+                <x-button class="w-full" type="button" wire:click="redirectToUnitSelectionPage"
                  >
                     Select a unit
-                </button>
+                </x-button>
 
             </div>
         </div>

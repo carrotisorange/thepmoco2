@@ -43,7 +43,7 @@ class CreateBillComponent extends Component
     }
 
     public function submitButton(){
-        
+
 
         $validated = $this->validate();
 
@@ -51,8 +51,8 @@ class CreateBillComponent extends Component
             $this->bill *=-1;
         }
 
-        $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property_uuid'));
-        
+        $bill_no = app('App\Http\Controllers\BillController')->getLatestBillNo(Session::get('property_uuid'));
+
         $validated['bill_no'] = $bill_no;
         $validated['bill'] = $this->bill;
         $validated['reference_no'] = $this->bill_to->reference_no;
@@ -64,7 +64,7 @@ class CreateBillComponent extends Component
         else{
           $validated['tenant_uuid'] = $this->bill_to->uuid;
         }
-      
+
         $validated['property_uuid'] =Session::get('property_uuid');
         $validated['is_posted'] = true;
 

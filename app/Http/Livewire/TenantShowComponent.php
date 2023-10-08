@@ -160,10 +160,10 @@ class TenantShowComponent extends Component
 
     public function sendCredentials()
     {
-
-
-        if(!$this->email){
+        if($this->email == null){
             session()->flash('error', 'The email address is required.');
+
+            return back();
         }
 
         $count_user = User::where('email', $this->tenant_details->email)->count();
@@ -215,7 +215,7 @@ class TenantShowComponent extends Component
         app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'sends',18);
 
 
-       return back()->with('success', 'Success');
+       return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant_details->uuid)->with('success', 'Changes Saved!');
     }
 
     public function removeCredentials()
@@ -268,7 +268,9 @@ class TenantShowComponent extends Component
             'collections' => app('App\Http\Controllers\CollectionController')->get_tenant_collections(Session::get('property_uuid'), $this->tenant_details->uuid),
             'wallets' => Wallet::where('tenant_uuid', $this->tenant_details->uuid)->orderBy('id','desc')->get(),
             'username' => User::where('tenant_uuid', $this->tenant_details->uuid)->value('username'),
-            'tenantSubfeaturesArray' => $tenantSubfeaturesArray
+            'email_cred' => User::where('tenant_uuid', $this->tenant_details->uuid)->value('email'),
+            'tenantSubfeaturesArray' => $tenantSubfeaturesArray,
+            'sessions' => DB::table('sessions')->where('user_id', User::where('tenant_uuid', $this->tenant_details->uuid)->value('id'))->orderBy('created_at', 'desc')->limit(5)->get()
          ]);
     }
 }

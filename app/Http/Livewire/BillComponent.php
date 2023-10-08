@@ -52,11 +52,11 @@ class BillComponent extends Component
 
     public function submitForm()
     {
-      
+
 
       $validated_data = $this->validate();
 
-      $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property_uuid')->uuid);
+      $bill_no = app('App\Http\Controllers\BillController')->getLatestBillNo(Session::get('property_uuid')->uuid);
 
       try
       {
@@ -67,7 +67,7 @@ class BillComponent extends Component
         $this->resetForm();
 
         return redirect('/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$this->contract->uuid.'/bill/'.Str::random(8).'/create')->with('success', 'Changes Saved!');
-      } 
+      }
       catch (\Throwable $e) {
         DB::rollback();
         return redirect('/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$this->contract->uuid.'/bill/'.Str::random(8).'/create')->with('error', 'Cannot perform the action. Please try again.');
@@ -103,7 +103,7 @@ class BillComponent extends Component
       $particulars = Particular::join('property_particulars', 'particulars.id','property_particulars.particular_id')
       ->where('property_uuid', Session::get('property_uuid'))
       ->get();
-        
+
       return view('livewire.bill-component',[
         'particulars' => $particulars,
         'contract' => $contract

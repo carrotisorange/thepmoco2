@@ -33,7 +33,7 @@ class UnitIndexComponent extends Component
     public $occupancy = [];
     public $sortBy;
     public $orderBy;
-    public $limitDisplayTo;
+    public $limitDisplayTo = 54;
 
     public $totalUnitsCount;
 
@@ -96,7 +96,6 @@ class UnitIndexComponent extends Component
         $this->status_id = '';
         $this->category_id = '';
         $this->building_id = '';
-        $this->limitDisplayTo = 10;
     }
 
     public function mount(){

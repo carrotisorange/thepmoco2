@@ -105,15 +105,16 @@ class TenantBillCreateComponent extends Component
 
       try {
 
-         $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property_uuid'));
-          $marketing_fee = Unit::find($this->unit_uuid)->marketing_fee;
-          $management_fee = Unit::find($this->unit_uuid)->management_fee;
+         $bill_no = app('App\Http\Controllers\BillController')->getLatestBillNo(Session::get('property_uuid'));
+        //   $marketing_fee = Unit::find($this->unit_uuid)->marketing_fee;
+        //   $management_fee = Unit::find($this->unit_uuid)->management_fee;
 
          if($this->particular_id === '8'){
             $this->bill *=-1;
-         }elseif($this->particular_id === '1'){
-            $this->bill = ($this->bill)-($marketing_fee + $management_fee);
-         }else{
+        //  }elseif($this->particular_id === '1'){
+        //     $this->bill = ($this->bill)-($marketing_fee + $management_fee);
+         }
+         else{
             $this->bill = $this->bill;
          }
 
@@ -135,45 +136,45 @@ class TenantBillCreateComponent extends Component
          ]);
 
 
-          if($this->particular_id === '1'){
-           if($marketing_fee>0){
-             Bill::create([
-             'bill_id' => $bill_id,
-             'bill_no' => $bill_no+1,
-             'unit_uuid' => $this->unit_uuid,
-             'particular_id' => 71,
-             'start' => $this->start,
-             'end' => $this->end,
-             'bill' => $marketing_fee,
-             'reference_no' => $this->tenant->reference_no,
-             'due_date' => Carbon::parse($this->start)->addDays(7),
-             'user_id' => auth()->user()->id,
-             'property_uuid' => Session::get('property_uuid'),
-             'tenant_uuid' => $this->tenant->uuid,
-             'is_posted' => true,
-              'created_at' => Carbon::now(),
-             ]);
-           }
+        //   if($this->particular_id === '1'){
+        //    if($marketing_fee>0){
+        //      Bill::create([
+        //      'bill_id' => $bill_id,
+        //      'bill_no' => $bill_no+1,
+        //      'unit_uuid' => $this->unit_uuid,
+        //      'particular_id' => 71,
+        //      'start' => $this->start,
+        //      'end' => $this->end,
+        //      'bill' => $marketing_fee,
+        //      'reference_no' => $this->tenant->reference_no,
+        //      'due_date' => Carbon::parse($this->start)->addDays(7),
+        //      'user_id' => auth()->user()->id,
+        //      'property_uuid' => Session::get('property_uuid'),
+        //      'tenant_uuid' => $this->tenant->uuid,
+        //      'is_posted' => true,
+        //       'created_at' => Carbon::now(),
+        //      ]);
+        //    }
 
-           if($management_fee>0){
-             Bill::create([
-             'bill_id' => $bill_id,
-             'bill_no' => $bill_no+2,
-             'unit_uuid' => $this->unit_uuid,
-             'particular_id' => 72,
-             'start' => $this->start,
-             'end' => $this->end,
-             'bill' => $management_fee,
-             'reference_no' => $this->tenant->reference_no,
-             'due_date' => Carbon::parse($this->start)->addDays(7),
-             'user_id' => auth()->user()->id,
-             'property_uuid' => Session::get('property_uuid'),
-             'tenant_uuid' => $this->tenant->uuid,
-             'is_posted' => true,
-              'created_at' => Carbon::now(),
-             ]);
-           }
-          }
+        // //    if($management_fee>0){
+        // //      Bill::create([
+        // //      'bill_id' => $bill_id,
+        // //      'bill_no' => $bill_no+2,
+        // //      'unit_uuid' => $this->unit_uuid,
+        // //      'particular_id' => 72,
+        // //      'start' => $this->start,
+        // //      'end' => $this->end,
+        // //      'bill' => $management_fee,
+        // //      'reference_no' => $this->tenant->reference_no,
+        // //      'due_date' => Carbon::parse($this->start)->addDays(7),
+        // //      'user_id' => auth()->user()->id,
+        // //      'property_uuid' => Session::get('property_uuid'),
+        // //      'tenant_uuid' => $this->tenant->uuid,
+        // //      'is_posted' => true,
+        // //       'created_at' => Carbon::now(),
+        // //      ]);
+        // //    }
+        //   }
 
             // app('App\Http\Controllers\BillController')->store(Session::get('property_uuid'), auth()->user()->id, 1, 3);
 

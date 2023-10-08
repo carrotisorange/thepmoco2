@@ -28,13 +28,13 @@ class CalendarController extends Controller
         app('App\Http\Controllers\PropertyController')->save_unit_stats($property->uuid);
 
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
-                
+
         $events = array();
 
         $bookings = Property::find($property->uuid)->bookings->where('status', '!=',
         'cancelled');
 
-   
+
 
         foreach($bookings as $booking){
             $events[] = [
@@ -73,9 +73,9 @@ class CalendarController extends Controller
         ]);
 
         // try{
-        
+
             // DB::transaction(function () use ($request, $validatedData){
-        
+
             $start = strtotime($request->movein_at); // convert to timestamps
             $end = strtotime($request->moveout_at); // convert to timestamps
             $days = (int)(($end - $start)/86400);
@@ -109,7 +109,7 @@ class CalendarController extends Controller
                 $request->no_of_pwd,
                 $request->remarks
             );
-            $particular_id = 1; //rent 
+            $particular_id = 1; //rent
 
             $this->store_bill($request->property_uuid, $request->unit_uuid, $particular_id, $request->movein_at, $request->moveout_at, $price, $guest->uuid);
 
@@ -118,9 +118,9 @@ class CalendarController extends Controller
             $this->update_unit($request->unit_uuid);
 
             return response()->json($guest);
-      
+
         // });
-        
+
         // }catch(\Exception $e)
         // {
         //     return back()->with('error',$e);
@@ -135,7 +135,7 @@ class CalendarController extends Controller
 
     public function store_booking($booking_uuid, $guest_uuid, $unit_uuid, $property_uuid, $movein_at, $moveout_at,
     $price, $agent_id, $no_of_guests, $no_of_children, $no_of_senior_citizens, $no_of_pwd, $remarks){
-        
+
         $booking = Booking::create(
         [
             'uuid' => $booking_uuid,
@@ -157,7 +157,7 @@ class CalendarController extends Controller
     }
 
     public function store_guest($guest_uuid, $guest, $email, $mobile_number, $movein_at, $moveout_at, $unit_uuid, $property_uuid, $price){
-        
+
         $guest = Guest::create(
             [
                 'uuid' => $guest_uuid,
@@ -176,7 +176,7 @@ class CalendarController extends Controller
 
     public function store_bill($property_uuid, $unit_uuid, $particular_id, $start, $end, $bill, $guest_uuid){
          Bill::create([
-            'bill_no' => app('App\Http\Controllers\BillController')->get_latest_bill_no($property_uuid),
+            'bill_no' => app('App\Http\Controllers\BillController')->getLatestBillNo($property_uuid),
             'unit_uuid' => $unit_uuid,
             'particular_id' => $particular_id,
             'start' => $start,
@@ -237,9 +237,9 @@ class CalendarController extends Controller
                 'error' => 'Unable to locate the guest'
             ], 404);
         }
-        
+
         $guest->delete();
-        
+
         return $id;
     }
 

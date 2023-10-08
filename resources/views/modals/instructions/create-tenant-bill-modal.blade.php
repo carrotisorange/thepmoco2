@@ -76,7 +76,7 @@
                 <x-button class="w-full" type="submit"  wire:loading.remove >
                     Confirm
                 </x-button>
-                <button class="w-full" type="button" wire:loading disabled
+                <x-button class="w-full" type="button" wire:loading disabled
                    >
                     Loading...
                 </x-button>

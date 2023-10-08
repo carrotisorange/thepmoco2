@@ -52,7 +52,7 @@ class TransferContractComponent extends Component
       $this->discount = Unit::find($unit_uuid)->discount;
     }
 
-        
+
     protected function rules()
     {
        return [
@@ -72,14 +72,14 @@ class TransferContractComponent extends Component
 
     public function submitForm()
     {
-      
-     
+
+
       $validatedData = $this->validate();
 
       try {
-      
+
         DB::transaction(function () use ($validatedData){
-                    
+
         $this->store_contract($validatedData);
 
         $this->update_current_contract($this->contract_details->uuid);
@@ -91,7 +91,7 @@ class TransferContractComponent extends Component
         // $this->send_email_to_tenant();
 
         return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->contract_details->tenant_uuid.'/contracts')->with('success', 'Changes Saved!');
-      
+
       });
 
       }catch (\Exception $e) {
@@ -103,8 +103,8 @@ class TransferContractComponent extends Component
     {
         $contract_uuid = Str::uuid();
 
-        $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property_uuid'));
-        
+        $bill_no = app('App\Http\Controllers\BillController')->getLatestBillNo(Session::get('property_uuid'));
+
         $reference_no = Carbon::now()->timestamp.''.$bill_no;
 
         $validatedData['uuid'] = $contract_uuid;

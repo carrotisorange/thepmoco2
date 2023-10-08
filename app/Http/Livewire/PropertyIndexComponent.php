@@ -11,12 +11,18 @@ class PropertyIndexComponent extends Component
     public $sortBy;
     public $filterByPropertyType;
     public $limitDisplayTo = 8;
+    public $propertyView = 'thumbnail';
 
     public function clearFilters(){
         $this->search = null;
         $this->sortBy = null;
         $this->filterByPropertyType = null;
         $this->limitDisplayTo = null;
+    }
+
+    public function changePropertyView($value)
+    {
+        $this->propertyView = $value;
     }
 
     public function render()

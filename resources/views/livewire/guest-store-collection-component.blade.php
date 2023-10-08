@@ -44,20 +44,16 @@
         <div class="mt-5 md:mt-0 md:col-span-2">
             <div class="grid grid-cols-2 gap-6">
                 <div class="col-span-1">
-                    <label for="created_at" class="block text-sm font-medium text-gray-700">Payment Date</label>
-                    <input type="date" form="edit-form" name="created_at" wire:model.lazy="created_at"
-                        autocomplete="created_at"
-                        class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                    <label for="created_at" class="">Payment Date</label>
+                    <x-form-input type="date" form="edit-form" name="created_at" wire:model="created_at"/>
                     @error('created_at')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div class="col-span-1">
-                    <label for="form" class="block text-sm font-medium text-gray-700">Mode of Payment</label>
-                    <select wire:model.lazy="form" form="edit-form" name="form" autocomplete="form"
-                        class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-
+                    <label for="form" class="">Mode of Payment</label>
+                    <x-form-select wire:model="form" form="edit-form" name="form" autocomplete="form">
                         <option value="bank" {{ old('form')=='bank' ? 'selected' : 'Select one' }}>bank</option>
                         <option value="cash" {{ old('form')=='cash' ? 'selected' : 'Select one' }} selected>cash
                         </option>
@@ -68,7 +64,7 @@
                         </option>
 
 
-                    </select>
+                    </x-form-select>
                     @error('form')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
@@ -77,20 +73,17 @@
 
                 @if($form === 'bank')
                 <div class="col-span-1">
-                    <label for="bank" class="block text-sm font-medium text-gray-700">Name of the bank</label>
-                    <input type="text" form="edit-form" name="bank" wire:model.lazy="bank" autocomplete="bank"
-                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                    <label for="bank" class="">Name of the bank</label>
+                    <x-form-input type="text" form="edit-form" name="bank" wire:model="bank" autocomplete="bank"/>
                     @error('bank')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div class="col-span-1">
-                    <label for="date_deposited" class="block text-sm font-medium text-gray-700">Date Deposited
+                    <label for="date_deposited" class="">Date Deposited
                     </label>
-                    <input type="date" form="edit-form" name="date_deposited" wire:model.lazy="date_deposited"
-                        autocomplete="date_deposited"
-                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                    <x-form-input type="date" form="edit-form" name="date_deposited" wire:model="date_deposited"/>
                     @error('date_deposited')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
@@ -99,11 +92,9 @@
 
                 @if($form === 'cheque')
                 <div class="col-span-2">
-                    <label for="check_no" class="block text-sm font-medium text-gray-700">Check No
+                    <label for="check_no" class="">Check No
                     </label>
-                    <input type="text" form="edit-form" name="check_no" wire:model.lazy="check_no"
-                        autocomplete="check_no"
-                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                    <x-form-input type="text" form="edit-form" name="check_no" wire:model="check_no"/>
                     @error('check_no')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
@@ -112,7 +103,7 @@
 
                 <div class="col-span-2">
 
-                    <label class="block text-sm font-medium text-gray-700"> You may upload the deposit slip here.
+                    <label class=""> You may upload the deposit slip here.
                     </label>
                     <div class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
@@ -151,7 +142,7 @@
                 </div>
                 <div class="col-span-2">
 
-                    <label class="block text-sm font-medium text-gray-700"> You may upload the proof of payment
+                    <label class=""> You may upload the proof of payment
                         here.
                     </label>
                     <div class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
@@ -182,16 +173,9 @@
                     @if ($proof_of_payment)
                     <p class="text-green-500 text-xs mt-2">File has been attached. <i
                             class="fa-solid fa-circle-check"></i></p>
-
                     @endif
                     @enderror
-
-
-
                 </div>
-
-
-
             </div>
         </div>
 
@@ -272,14 +256,21 @@
     </div>
 
     <div class="flex justify-end p-10 mt-5">
-        <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-            href="/property/{{ Session::get('property_uuid') }}/guest/{{ $guest->uuid }}/bills">
+        <x-button
+            onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/guest/{{ $guest->uuid }}/bills'">
             Cancel
-        </a>
+        </x-button>
+
+        @if($collections->sum('bill') == 0)
+
+        @else
         <x-button type="button" form="edit-form"
             onclick="this.form.submit(); this.disabled = true; this.value = 'Submitting the form';">
             Confirm Payment
         </x-button>
+        @endif
+
+
     </div>
 
 

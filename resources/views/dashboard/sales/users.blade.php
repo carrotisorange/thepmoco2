@@ -31,7 +31,7 @@
                     <x-td>{{ $index + 1 }}</x-td>
 
                     <x-td>{{ Carbon\Carbon::parse($user->created_at)->format('M d, Y') }}</x-td>
-                
+
 
                     <x-td><a class="text-blue-600" href="/user/{{ $user->username }}/activity">
                             {{ $user->name }}
@@ -50,7 +50,7 @@
                     </x-td>
                     <x-td>{{ $user->email }}</x-td>
                     <x-td>
-                        {{ $user->role->role }}
+                        {{ $user->role }}
                     </x-td>
                     <x-td>
                         {{ $user->mobile_number }}

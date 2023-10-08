@@ -329,7 +329,7 @@ class PropertyController extends Controller
             $owners = Owner::where('property_uuid', $property_uuid)->get();
 
             foreach($owners as $owner){
-                
+
             $balance = Bill::where('owner_uuid', $owner->uuid)->posted()->sum('bill') - Collection::where('owner_uuid', $owner->uuid)->posted()->sum('collection');
 
             if($balance > 0){

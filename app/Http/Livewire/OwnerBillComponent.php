@@ -23,7 +23,7 @@ class OwnerBillComponent extends Component
       public $owner;
 
       public $selectedBills = [];
-      public $selectAll = false;  
+      public $selectAll = false;
       public $status = 'unpaid';
       public $particular;
 
@@ -73,7 +73,7 @@ class OwnerBillComponent extends Component
 
         try {
 
-        $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property_uuid'));
+        $bill_no = app('App\Http\Controllers\BillController')->getLatestBillNo(Session::get('property_uuid'));
         $marketing_fee = Unit::find($this->unit_uuid)->marketing_fee;
         $management_fee = Unit::find($this->unit_uuid)->management_fee;
 
@@ -156,28 +156,28 @@ class OwnerBillComponent extends Component
     }
 
      public function payBills()
-   {      
+   {
       //generate collection acknowledgement receipt no
       $collection_ar_no = Property::find($this->property->uuid)->acknowledgementreceipts->max('ar_no')+1;
 
       //generate a collection batch no
       $collection_batch_no = Carbon::now()->timestamp.''.$collection_ar_no;
-      
+
 
       for($i=0; $i<count($this->selectedBills); $i++){
 
-         try 
+         try
          {
             //begin the transaction
             DB::transaction(function () use ($i, $collection_ar_no, $collection_batch_no) {
-            
+
             //get the attributes for collections
             $particular_id = Bill::find($this->selectedBills[$i])->particular_id;
             $owner_uuid = $this->owner->uuid;
             $unit_uuid = Bill::find($this->selectedBills[$i])->unit_uuid;
             $property_uuid = $this->property->uuid;
 
-         
+
             $bill_id = Bill::find($this->selectedBills[$i])->id;
             $bill_reference_no = Owner::find($this->owner->uuid)->bill_reference_no;
             $form = 'cash';
@@ -220,7 +220,7 @@ class OwnerBillComponent extends Component
          }
             catch (\Throwable $e) {
                return back()->with('error',$e);
-         } 
+         }
       }
          return redirect('/property/'.$this->property->uuid.'/owner/'.$this->owner->uuid.'/bills/'.$collection_batch_no.'/pay');
 
@@ -242,7 +242,7 @@ class OwnerBillComponent extends Component
 
           $this->selectedBills = [];
 
-          return redirect('/owner/'.$this->owner->uuid.'/bills')->with('success','Success!');
+          return redirect('/owner/'.$this->owner->uuid.'/bills')->with('success','Changes Saved!');
 
      }
 

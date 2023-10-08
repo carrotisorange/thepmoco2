@@ -27,7 +27,7 @@ class BillEditComponent extends Component
             'start' => ['required','date'],
             'end' => ['required', 'date'],
             'bill_amount' => ['required'],
-            'particular_id' => ['required']            
+            'particular_id' => ['required']
         ];
     }
 
@@ -49,9 +49,9 @@ class BillEditComponent extends Component
             'particular_id' => $this->particular_id
         ]);
 
-        return session()->flash('success', 'Success');
+        return session()->flash('success', 'Changes Saved!');
     }
-    
+
     public function render()
     {
         return view('livewire.bill-edit-component',[

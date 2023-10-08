@@ -20,7 +20,6 @@
             <x-td>
                 <x-button data-modal-target="edit-reference-modal-{{$reference->id}}"
                     data-modal-toggle="edit-reference-modal-{{$reference->id}}"
-
                     type="button">
                     Edit
                 </x-button>

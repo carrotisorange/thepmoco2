@@ -61,7 +61,7 @@ class ElectionController extends Controller
             ]);
         }else{
             $electionId = $propertyElection->pluck('id')->first();
-            
+
             $election = Election::find($electionId);
         }
 
@@ -97,11 +97,16 @@ class ElectionController extends Controller
 
         $electionSubfeaturesArray = explode(",", $electionSubfeatures);
 
+        $electionId = Carbon::parse(Election::whereYear('date_of_election',$year)->pluck('id')->first());
+
+
          return view('HOA.election.management.candidates',[
             'year' => $year,
-            'electionSubfeaturesArray' => $electionSubfeaturesArray
+            'electionSubfeaturesArray' => $electionSubfeaturesArray,
+            'election' => $election
          ]);
     }
+
 
     public function createStep3(Property $property, $year){
         $featureId = 21;
@@ -109,7 +114,46 @@ class ElectionController extends Controller
         $electionSubfeatures = Feature::where('id', $featureId)->pluck('subfeatures')->first();
 
         $electionSubfeaturesArray = explode(",", $electionSubfeatures);
+
+         return view('HOA.election.management.candidates',[
+            'year' => $year,
+            'electionSubfeaturesArray' => $electionSubfeaturesArray
+         ]);
+    }
+
+    public function createStep4(Property $property, $year){
+        $featureId = 21;
+
+        $electionSubfeatures = Feature::where('id', $featureId)->pluck('subfeatures')->first();
+
+        $electionSubfeaturesArray = explode(",", $electionSubfeatures);
          return view('HOA.election.management.ballot-form',[
+            'year' => $year,
+            'electionSubfeaturesArray' => $electionSubfeaturesArray
+         ]);
+    }
+
+    public function createStep5(Property $property, $year){
+        $featureId = 21;
+
+        $electionSubfeatures = Feature::where('id', $featureId)->pluck('subfeatures')->first();
+
+        $electionSubfeaturesArray = explode(",", $electionSubfeatures);
+
+         return view('HOA.election.management.qualified-voters',[
+            'year' => $year,
+            'electionSubfeaturesArray' => $electionSubfeaturesArray
+         ]);
+    }
+
+    public function createStep6(Property $property, $year){
+        $featureId = 21;
+
+        $electionSubfeatures = Feature::where('id', $featureId)->pluck('subfeatures')->first();
+
+        $electionSubfeaturesArray = explode(",", $electionSubfeatures);
+
+         return view('HOA.election.management.results',[
             'year' => $year,
             'electionSubfeaturesArray' => $electionSubfeaturesArray
          ]);

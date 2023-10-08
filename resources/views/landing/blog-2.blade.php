@@ -1,5 +1,5 @@
 <x-landing-page-template>
-@section('title', env('APP_NAME').' — Articles')
+@section('title', env('APP_NAME').' | Articles')
 @section('description', 'A product to make easy the life of property managers and property owners. The property management system is a handy application to simplify operations in rental properties from tenant finding, lease contract management, billing and collection management, and concerns and maintenance requests for landlords, dormitories, apartment rentals, and other rentals.')
 
 

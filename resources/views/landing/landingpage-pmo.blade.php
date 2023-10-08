@@ -1,6 +1,6 @@
 <x-landing-page-template>
 
-    @section('title','The PMO — Home')
+    @section('title',env('APP_NAME').' | Home')
     @section('description', 'Increase transparency, and efficiency in rental property operations with a simple and easy
     to
     use system for leasing and property management.')

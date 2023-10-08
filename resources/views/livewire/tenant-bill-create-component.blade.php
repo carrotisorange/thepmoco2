@@ -123,9 +123,9 @@
                     <b>Please check the bill you want to pay</b>
                 </div>
                 @endif
-        
+
             </div>
-        
+
             <div class="sm:col-span-3 text-right">
                 @if($selectedBills)
                 <x-button type="button" wire:click="payBills">
@@ -133,35 +133,9 @@
                 </x-button>
                 @endif
             </div>
-        
+
         </div>
-{{-- 
-    <div class="mt-5">
-        <div class="flex flex-row">
-            <div class="basis-3/4">
 
-
-                @if($selectedBills)
-                <x-button type="button" wire:click="payBills">
-                    Pay Bills
-                </x-button>
-
-                <div class="mt-5">
-                    <span>You've selected <b>{{ count($selectedBills) }}</b> {{ Str::plural('bill',
-                        count($selectedBills))}}
-                        amounting to <b>{{ number_format($total, 2) }}</b></span>
-                </div>
-                @else
-                <div class="mt-1">
-                    <b>Please check the bill you want to pay</b>
-                </div>
-                @endif
-
-
-            </div>
-           
-        </div>
-    </div> --}}
     <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="bg-white border-b border-gray-200">
             <div class="flex flex-col">

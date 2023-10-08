@@ -1,5 +1,5 @@
 <x-landing-page-template>
-    @section('title','The PMO — Demo')
+    @section('title', env('APP_NAME').'| Demo')
     @section('description', 'A product to make easy the life of property managers and property owners. The property
     management system is a handy application to simplify operations in rental properties from tenant finding, lease
     contract management, billing and collection management, and concerns and maintenance requests for landlords,
@@ -18,7 +18,7 @@
 
         <p class="pt-5 text-center text-light text-sm">A demo video for creating a property, adding units and tenants.
         <p class="text-center text-light text-sm"><span class="font-semibold text-purple-700"><a
-                    href="/select-a-plan">Subscribe</a></span> to The PMO for a full demo!</p>
+                    href="/select-a-plan">Subscribe</a></span> to {{ env('APP_NAME') }} for a full demo!</p>
         </p>
     </div>
 

@@ -48,10 +48,10 @@ class UnitUtilityEditComponent extends Component
 
 
 
-        return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->utility->unit->uuid)->with('success', 'Success');
+        return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->utility->unit->uuid)->with('success', 'Changes Saved!');
     }
 
-    
+
     public function render()
     {
         // ddd($this->get_particular_id($this->utility->type));

@@ -41,7 +41,7 @@ class CollectionController extends Controller
 
     public function getLatestAr($property)
     {
-        return Property::find($property)->collections()->posted()->max('ar_no')+1;
+        return Property::find($property)->collections()->posted()->withTrashed()->max('ar_no')+1;
     }
 
     public function getCollections($property_uuid){
@@ -110,12 +110,8 @@ class CollectionController extends Controller
 
     public function edit_collections(Property $property, Tenant $tenant, $batch_no)
     {
-      $collections = Bill::where('tenant_uuid', $tenant->uuid)
-      ->where('batch_no', $batch_no)
-      ->get();
 
       return view('tenants.collections.edit',[
-         'collections' => $collections,
          'tenant' => $tenant,
          'batch_no' => $batch_no
       ]);
@@ -296,9 +292,7 @@ class CollectionController extends Controller
 
          // $this->send_payment_to_tenant($tenant, $ar_no, $request->form, $request->created_at, User::find(auth()->user()->id)->name, User::find(auth()->user()->id)->role->role, Collection::where('tenant_uuid',$tenant->uuid)->where('batch_no', $batch_no)->get());
 
-         return redirect('/property/'.$property->uuid.'/collection/'.'tenant'.'/'.$tenant->uuid)->with('success',
-         'Changes Saved!');
-
+         return redirect('/property/'.$property->uuid.'/tenant/'.$tenant->uuid)->with('success', 'Changes Saved!');
          }
 
     public function storeAr($tenant_uuid,$owner_uuid,$collection, $property_uuid, $user_id, $ar_no,

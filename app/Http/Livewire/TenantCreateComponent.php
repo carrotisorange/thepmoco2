@@ -84,13 +84,13 @@ class TenantCreateComponent extends Component
 
     public function submitForm()
     {
-        
+
 
         $validatedData = $this->validate();
 
        try{
             DB::transaction(function () use ($validatedData){
-               
+
                 $tenant_uuid = $this->store_tenant($validatedData);
 
                 // if($this->generateCredentials)
@@ -102,16 +102,16 @@ class TenantCreateComponent extends Component
                 // }
 
             return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/tenant/'.$tenant_uuid.'/guardian/'.Str::random(8).'/create')->with('success', 'Changes Saved!');
-      
+
             });
-        
+
        }catch(\Exception $e)
-       { 
+       {
             return back()->with('error', $e);
        }
 
     }
-    
+
     public function removeId($photo_id)
     {
        $this->$photo_id = '';
@@ -137,12 +137,12 @@ class TenantCreateComponent extends Component
     {
         $validatedData['uuid'] = Str::uuid();
 
-        $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property_uuid'));
+        $bill_no = app('App\Http\Controllers\BillController')->getLatestBillNo(Session::get('property_uuid'));
 
         $bill_reference_no = app('App\Http\Controllers\BillController')->generate_bill_reference_no('t', $bill_no);
 
         $validatedData['property_uuid'] = Session::get('property_uuid');
-        
+
         $validatedData['bill_reference_no'] = $bill_reference_no;
 
         if($this->photo_id)

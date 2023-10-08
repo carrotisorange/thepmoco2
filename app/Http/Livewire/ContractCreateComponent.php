@@ -40,7 +40,7 @@ class ContractCreateComponent extends Component
         $this->discount = $unit->discount;
         // $this->end = Carbon::now()->addYear()->format('Y-m-d');
         $this->start = Carbon::now()->format('Y-m-d');
-    
+
       }
 
       protected function rules()
@@ -62,7 +62,7 @@ class ContractCreateComponent extends Component
 
       public function makeReservation()
       {
-        
+
 
         $contract_uuid = app('App\Http\Controllers\PropertyController')->generate_uuid();
 
@@ -93,7 +93,7 @@ class ContractCreateComponent extends Component
             ]
           );
         }
-        
+
         if(auth()->user()->role_id === 1)
         {
           return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant->uuid.'/contracts/')->with('success','Changes Saved!');
@@ -113,7 +113,7 @@ class ContractCreateComponent extends Component
                   'bill' => $this->rent,
                   'property_uuid' => Session::get('property_uuid'),
                   'bill_no'=>
-                  app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property_uuid')),
+                  app('App\Http\Controllers\BillController')->getLatestBillNo(Session::get('property_uuid')),
                   'user_id' => auth()->user()->id,
                   'due_date' => Carbon::parse($this->start)->addDays(7),
                   'is_posted' => true

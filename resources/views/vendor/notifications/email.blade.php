@@ -44,7 +44,7 @@
 {{ $salutation }}
 @else
 @lang('Regards'),<br>
-The PMO Team
+{{ env('APP_NAME') }}
 @endif
 
 {{-- Subcopy --}}

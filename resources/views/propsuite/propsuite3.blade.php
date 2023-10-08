@@ -448,7 +448,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     class="py-20 mx-auto max-w-4xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 xl:grid xl:grid-flow-col-dense xl:grid-cols-2 xl:gap-x-8">
                     <div class="relative pt-12 xl:col-span-2 xl:pb-24">
 
-                        <p class="mt-3 text-3xl font-bold tracking-tight text-white">The PMO Values</p>
+                        <p class="mt-3 text-3xl font-bold tracking-tight text-white">{{ env('APP_NAME') }} Values</p>
 
                         <div class="mt-10 grid grid-cols-1 gap-y-5 gap-x-6 sm:grid-cols-6">
                             <p>

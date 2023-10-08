@@ -17,7 +17,7 @@
                             </span>
                             <span class="ml-4 text-sm font-medium text-purple-500">Add a {{ $subfeature }}</span>
                         </a>
-                       
+
                         <!-- Arrow separator for lg screens and up -->
                         <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
                             <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none" preserveAspectRatio="none">
@@ -70,17 +70,22 @@
     @else
 
 
-    <div class="sm:flex sm:items-center">
+    <div class="sm:flex sm:items-center mt-5">
         <div class="sm:flex-auto">
             <h2 class="text-2xl mt-5 font-bold tracking-tight text-gray-900 font-pop">
 
-                Welcome back, {{ $firstName[0] }}!</h2>
+                Welcome back, <b>{{ $firstName[0] }}</b>!</h2>
         </div>
         <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-            @if($search || $sortBy || $filterByPropertyType)
 
-            <x-button type="button" wire:click="clearFilters">
-                Clear Filters
+            @if($propertyView === 'list')
+            <x-button type="button" wire:click="changePropertyView('thumbnail')">
+                View as Thumbnail
+
+            </x-button>
+            @else
+            <x-button type="button" wire:click="changePropertyView('list')">
+                View as List
             </x-button>
             @endif
 
@@ -145,27 +150,30 @@
     <div class="mt-5 mb-5">
         {{ $properties->links() }}
     </div>
+    @if($propertyView == 'thumbnail')
     <div class="mt-1 mb-5 grid grid-cols-5 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
         @foreach ($properties->where('status', 'active') as $property)
         <?php $propertyTypeLandingPage = App\Models\Feature::find(App\Models\Type::find( $property->type_id)->landing_page_feature_id)->alias;
               $propertyTypeIcon = App\Models\Type::find( $property->type_id)->icon;
+              $propertyType = App\Models\Type::find( $property->type_id)->type;
+
         ?>
         <div class="group relative">
             <div class="w-full h-32 bg-white rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
                 <a href="/property/{{ $property->property_uuid }}/{{ $propertyTypeLandingPage }}">
-                    <img src="{{ asset('/brands/'.$propertyTypeIcon) }}" title="{{ $property->property }}" alt="building"
+                    <img src="{{ asset('/brands/'.$propertyTypeIcon) }}" title="{{ $propertyType }}" alt="building"
                         class="w-40 object-center object-cover lg:w-full lg:h-full">
                 </a>
             </div>
             <h3 class="text-center mt-2">
-                <a title="{{ $property->property }}" class="text-blue-500 text-decoration-line: underline" href="/property/{{ $property->property_uuid }}/{{ $propertyTypeLandingPage }}">
+                <a title="{{ $propertyType }}" class="text-blue-500 text-decoration-line: underline" href="/property/{{ $property->property_uuid }}/{{ $propertyTypeLandingPage }}">
                 {{ Str::limit($property->property,15) }}
                 </a>
             </h3>
         </div>
         @endforeach
     </div>
-
+    @else
     <div class="mt-8 flex flex-col">
         <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-9">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -175,5 +183,6 @@
             </div>
         </div>
     </div>
+    @endif
     @endif
 </div>

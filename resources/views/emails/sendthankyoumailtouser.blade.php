@@ -1,5 +1,5 @@
 @component('mail::message')
-# Hi, {{ auth()->user()->name }}!
+# Hi, {{ $data['name'] }}!
 
 I am one of the co-founders of {{ env('APP_NAME') }},
 and I am excited you have decided to sign up.
@@ -15,14 +15,14 @@ to this email.
 I hope we can help you to simplify your rental property operations!
 
 <br>
-
-{{-- @component('mail::button', ['url' => '/property/{{ Str::random(8) }}/create'])
+{{--
+@component('mail::button', ['url' => '/property/{{ Str::random(8) }}/create'])
     Start Now
 @endcomponent --}}
 
 Stay in touch!<br>
 
--Pam, Co-Founder
+-Pam, CEO
 <br>
 Thanks for Signing Up
 

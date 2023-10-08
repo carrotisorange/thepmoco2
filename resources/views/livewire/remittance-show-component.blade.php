@@ -16,8 +16,8 @@
                     <div class="flex justify-end w-full px-10">
                         <p class="text-sm font-light">Filter by Month:</p>
     
-                        <select id="small" wire:model="remittanceDate"
-                            class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                        <x-form-select id="small" wire:model="remittanceDate"
+                         >
     
                           @foreach ($dates as $date)
                             {{-- @if(Carbon\Carbon::parse($date->created_at)->format('M, Y') != Carbon\Carbon::parse($remittance_date)->format('M, Y')) --}}
@@ -25,14 +25,14 @@
                             <option value="{{ $date->created_at }}">{{ Carbon\Carbon::parse($date->created_at)->format('M, Y') }}</option>
                             {{-- @endif --}}
                             @endforeach
-                        </select>
+                        </x-form-select>
                     </div>
                     
                     <form wire:submit.prevent="sendRemittanceToOwner">
-                    <button type="submit" wire:loading.remove class="px-2 py-1 rounded-full text-sm text-center w-56 text-white bg-purple-500">Send to
-                        Owner</button>
-                    <button type="button" disabled wire:loading class="px-2 py-1 rounded-full text-sm text-center w-56 text-white bg-purple-500">
-                        Loading...</button>    
+                    <x-button type="submit" wire:loading.remove >Send to
+                        Email</x-button>
+                    <x-button type="button" disabled wire:loading>
+                        Loading...</x-button>    
                     </form>
                 </div>
     

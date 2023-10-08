@@ -6,9 +6,16 @@
                 <h1 class="text-3xl font-bold text-gray-700">Collections</h1>
             </div>
             @if($propertyCollectionsCount)
-            <div class="mt-4">
+            <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+
+
+        </div>
+           
+            <div class="sm:col-span-6">
                 <x-input name="date" type="date" wire:model="date"/>
-               
+            </div>
+                    
+            <div class="sm:col-span-6"> 
                 <div class="group inline-block">
                     <x-button>  
                         <span class="pr-1 font-semibold flex-1"> Export
@@ -61,22 +68,22 @@
         <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
         
             <div class="sm:col-span-3">
-                <x-select name="bill_type" wire:model="bill_type">
+                <x-form-select name="bill_type" wire:model="bill_type">
                     <option value="">Filter collection to</option>
                     <option value="guest_uuid">Guest</option>
                     <option value="owner_uuid">Owner</option>
                     <option value="tenant_uuid">Tenant</option>
-                </x-select>
+                </x-form-select>
 
             </div>
 
             <div class="sm:col-span-3">
-                <x-select name="form" wire:model="form">
+                <x-form-select name="form" wire:model="form">
                     <option value="">Filter mode of payments </option>
                     @foreach ($mode_of_payments as $item)
                     <option value="{{ $item->form }}">{{ $item->form }}</option>
                     @endforeach
-                </x-select>
+                </x-form-select>
 
             </div>
 
