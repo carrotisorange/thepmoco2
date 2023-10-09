@@ -42,23 +42,21 @@
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 @if($date_created || $search || $type || $status)
-                <button type="button" wire:click="clearFilters"
-                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <x-button type="button" wire:click="clearFilters"
+                  >
                     Clear Filters
-                </button>
+                </x-button>
                 @endif
 
                 <div class="group inline-block">
                     <span>
-                        <button data-modal-toggle="instructions-create-utility-modal"
-                            class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                            <span class="pr-1 font-semibold flex-1">New
-                                utilities</span>
+                        <x-button data-modal-toggle="instructions-create-utility-modal">
+                          New utilities
                             <span>
 
 
                             </span>
-                        </button>
+                        </x-button>
 
                     </span>
 
@@ -90,36 +88,35 @@
             </div>
 
             <div class="sm:col-span-2">
-                <select id="date_created" wire:model="filter_date"
-                    class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                <x-form-select id="date_created" wire:model="filter_date">
                     <option value="">Filter date</option>
                     @foreach ($dates as $date)
                     <option value="{{ $date->start_date }}">{{ Carbon\Carbon::parse($date->start_date)->format('M d, Y')
                         }}</option>
                     @endforeach
-                </select>
+                </x-form-select>
 
             </div>
 
             <div class="sm:col-span-2">
-                <select id="type" wire:model="type"
-                    class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                <x-form-select id="type" wire:model="type"
+                  >
                     <option value="">Filter utility</option>
                     @foreach ($types as $item)
                     <option value="{{ $item->type }}">{{ $item->type }}</option>
                     @endforeach
-                </select>
+                </x-form-select>
 
             </div>
 
             <div class="sm:col-span-2">
-                <select id="small" wire:model="status"
-                    class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                <x-form-select id="small" wire:model="status"
+               >
                     <option value="">Filter status</option>
                     @foreach ($statuses as $item)
                     <option value="{{ $item->status }}">{{ $item->status }}</option>
                     @endforeach
-                </select>
+                </x-form-select>
 
             </div>
 
