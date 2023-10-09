@@ -30,15 +30,15 @@ class TenantPortalBillComponent extends Component
 
         $batch_no = auth()->user()->id.'_'.Str::random(8);
 
-        $request_id = PaymentRequest::updateOrCreate(
+        $request_id = PaymentRequest::firstOrCreate(
             [
                 'tenant_uuid' => $this->tenant->uuid,
                 'bill_nos' => Bill::whereIn('id', $this->selectedBills)->pluck('bill_no'),
-                // 'amount' => $amount_to_be_paid,
+                'amount' => $amount_to_be_paid,
                 // 'batch_no' => $batch_no,
                 // 'status' => 'pending',
             ],
-            
+
             [
                 'tenant_uuid' => $this->tenant->uuid,
                 'bill_nos' => Bill::whereIn('id', $this->selectedBills)->pluck('bill_no'),
@@ -85,11 +85,11 @@ class TenantPortalBillComponent extends Component
     }
 
     public function render()
-    {        
+    {
         $statuses = Bill::where('tenant_uuid', $this->tenant->uuid)
         ->groupBy('status')
         ->get();
-        
+
         $start_dates = Bill::where('tenant_uuid', $this->tenant->uuid)
         ->select('*',DB::raw("(DATE_FORMAT(start,'%M %d, %Y')) as period_covered_start"), DB::raw('count(*) as count'))
         ->groupBy('period_covered_start')
@@ -101,7 +101,7 @@ class TenantPortalBillComponent extends Component
         ->groupBy('period_covered_end')
         ->orderBy('end')
         ->get();
-        
+
         //$particulars = app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid'));
 
         $unpaid_bills = $this->get_unpaid_bills($this->selectedBills);
@@ -113,14 +113,14 @@ class TenantPortalBillComponent extends Component
         $bills = app('App\Http\Controllers\PortalTenantController')->get_bills($this->tenant->uuid);
 
         return view('livewire.tenant-portal-bill-component',[
-     
+
            'bills' =>  Bill::where('tenant_uuid', $this->tenant->uuid)
            ->posted()
             ->when($this->status, function($query){
              $query->whereIn('status', [$this->status]);
              })
            ->orderBy('id','desc')->get(),
-           
+
             'total' => ($unpaid_bills + $partially_paid_bills) - $paid_bills,
             'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
             'statuses' => $statuses,
