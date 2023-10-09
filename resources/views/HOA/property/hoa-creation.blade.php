@@ -7,9 +7,6 @@
     </style>
     @endsection
 
-
-
-
 <div>
    <form class="space-y-1" method="POST">
       <div class="pt-10">
@@ -20,7 +17,7 @@
          <div class="space-x-5 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
             <div class="lg:col-span-1 ml-5">
                <label for="" class="block text-md font-medium text-gray-700">DHSUD Registration</label>
-             
+
                     <div
                         class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
@@ -66,7 +63,7 @@
                             </div>
                     </div>
                 </div>
-           
+
 
             <div class="lg:col-span-1 ml-5">
                <label for="" class="block text-md font-medium text-gray-700">Bylaws</label>
@@ -91,7 +88,7 @@
                             </div>
                     </div>
                 </div>
-            
+
 
             <div class="lg:col-span-1 ml-5">
                <label for="" class="block text-md font-medium text-gray-700">House Rules and Regulation</label>
@@ -116,7 +113,7 @@
                             </div>
                     </div>
                 </div>
-            
+
 
             <div class="lg:col-span-1 ml-5">
                <label for="" class="block text-md font-medium text-gray-700">2023 Audited Financial Statement</label>
@@ -141,7 +138,7 @@
                             </div>
                     </div>
             </div>
-        
+
 
             <div class="lg:col-span-1 ml-5">
                <label for="" class="block text-md font-medium text-gray-700">Board Resolutions</label>
@@ -166,7 +163,7 @@
                             </div>
                     </div>
             </div>
-        
+
 
             <div class="lg:col-span-1 ml-5">
                <label for="" class="block text-md font-medium text-gray-700">Minutes of General Assembly</label>
@@ -193,19 +190,19 @@
                 </div>
     </div>
 
-            
+
 
          <div class="flex justify-end mt-5">
             <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
                href="{{ url()->previous() }}">
                Cancel
             </a>
-         
+
             <button type="button" wire:click="create"
                class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-md font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                Create
             </button>
-         
+
          </div>
          <div>
    </form>

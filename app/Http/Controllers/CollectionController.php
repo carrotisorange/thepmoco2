@@ -144,19 +144,20 @@ class CollectionController extends Controller
         ->orderBy('payment_requests.created_at', 'desc')->get();
     }
 
-    public function export_dcr(Property $property, $date, $format){
+    public function export_dcr(Property $property, $start_date, $end_date, $format){
 
         $collections = Collection::
          select('*')
         ->where('property_uuid', $property->uuid)
-        ->whereDate('created_at', $date)
+        ->whereBetween('created_at', [$start_date, $end_date])
         ->posted()->orderBy('ar_no')
         ->distinct()
         ->get();
 
         $data = [
             'collections' => $collections,
-            'date' => $date
+            'start_date' => $start_date,
+            'end_date' => $end_date
         ];
 
         if($format === 'pdf'){
@@ -165,15 +166,16 @@ class CollectionController extends Controller
 
             $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
 
-            $pdf_name = str_replace(' ', '_', $property->property).'_DCR_'.str_replace(' ', '_', $date).'.pdf';
+            $pdf_name = str_replace(' ', '_', $property->property).'_DCR_'.str_replace(' ', '_', $start_date.'_'.$end_date).'.pdf';
 
             return $pdf->stream($pdf_name);
 
         }else{
 
-            Session::put('export_dcr_date', $date);
+            Session::put('export_dcr_start_date', $start_date);
+            Session::put('export_dcr_end_date', $end_date);
 
-            $pdf_name = str_replace(' ', '_', $property->property).'_DCR_'.str_replace(' ', '_', $date).'.xlsx';
+            $pdf_name = str_replace(' ', '_', $property->property).'_DCR_'.str_replace(' ', '_', $start_date.'_'.$end_date).'.xlsx';
 
             return Excel::download(new ExportCollection(), $pdf_name);
         }

@@ -48,7 +48,7 @@ class PropertyController extends Controller
 
         if($current_user_role_id == $sales)
         {
-            return redirect('/dashboard/sales');
+            return redirect($current_user_role_id.'/sale/'.$current_user_username.'/signup');
         }
         elseif($current_user_role_id == $dev)
         {
@@ -56,11 +56,11 @@ class PropertyController extends Controller
         }
         elseif($current_user_role_id == $tenant)
         {
-            return redirect($current_user_role_id.'/tenant/'.$current_user_username.'/contracts');
+            return redirect($current_user_role_id.'/tenant/'.$current_user_username.'/contract');
         }
         elseif($current_user_role_id == $owner)
         {
-            return redirect($current_user_role_id.'/owner/'.$current_user_username.'/units');
+            return redirect($current_user_role_id.'/owner/'.$current_user_username.'/unit');
         }
         elseif($current_user_role_id != ['12', '10', '8', '7'])
         {

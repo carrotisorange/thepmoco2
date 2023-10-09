@@ -1,5 +1,4 @@
 <x-new-layout>
-    @section('title','Tenants | '. env('APP_NAME'))
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
             <div class="mx-auto px-4 sm:px-6 lg:px-8">

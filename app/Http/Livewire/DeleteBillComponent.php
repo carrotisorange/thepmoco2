@@ -29,7 +29,7 @@ class DeleteBillComponent extends Component
     public function deleteBill(){
 
         $this->validate();
-        
+
         Bill::where('id', $this->bill->id)
         ->update([
             'description' => $this->description
@@ -38,11 +38,8 @@ class DeleteBillComponent extends Component
         Bill::where('id', $this->bill->id)
         ->delete();
 
-        // $bill_id = Collection::where('bill_id', $this->bill->id)->pluck('bill_id')->first();
+        Collection::where('bill_id', $this->bill->id)->delete();
 
-        // Collection::where('bill_id', $bill_id)->delete();
-
-        // AcknowledgementReceipt::where('ar_no', $ar_no)->delete();
 
         return redirect(url()->previous())->with('success', 'Changes Saved!');
 

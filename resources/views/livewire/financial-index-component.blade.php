@@ -1,6 +1,11 @@
 <div>
     @include('layouts.notifications')
     <div class="px-4 sm:px-6 lg:px-8">
+           <div class="sm:flex-auto">
+                <h1 class="text-3xl font-bold text-gray-700">
+                      {{ucfirst(Route::current()->getName())}}
+                </h1>
+            </div>
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
                 <h1 class="text-xl font-semibold text-gray-900">Financial Reports as of ({{ Carbon\Carbon::now()->timezone('Asia/Manila')->format('M d, Y, H:i')  }})</h1>

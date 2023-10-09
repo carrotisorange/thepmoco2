@@ -379,7 +379,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
 
 
-    Route::get('dcr/{date}/{format}', [CollectionController::class, 'export_dcr']);
+    Route::get('dcr/{start_date}/{end_date}/{format}', [CollectionController::class, 'export_dcr']);
 
     //Routes for Collection
     Route::prefix('collection')->group(function(){
@@ -482,8 +482,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     });
 
     //Routes for Team
-    Route::prefix('user')->group(function(){
-        Route::get('/', [PersonnelController::class, 'index'])->name('user');
+    Route::prefix('personnel')->group(function(){
+        Route::get('/', [PersonnelController::class, 'index'])->name('personnel');
         Route::get('{random_str}/create', [UserController::class, 'create'])->name('user');
 
 

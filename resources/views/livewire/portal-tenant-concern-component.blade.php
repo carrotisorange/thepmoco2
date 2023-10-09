@@ -6,11 +6,11 @@
                 <h1 class="text-3xl font-bold text-gray-700">Tenant Concern Form</h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <button type="button"
+                <x-button type="button"
                     onclick="window.location.href='/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/concerns'"
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+                  >
                     View reported concerns
-                </button>
+                </x-button>
 
             </div>
         </div>
@@ -32,11 +32,10 @@
                                     <div class="grid grid-cols-4 gap-6">
 
                                         <div class="sm:col-span-6">
-                                            <label for="subject" class="block text-sm font-medium text-gray-700">
-                                                Subject </label>
+                                            <x-label for="subject">
+                                                Subject </x-label>
                                             <div class="mt-1 flex rounded-md shadow-sm">
-                                                <input wire:model="subject" type="text" value="{{ old('subject') }}" placeholder="Statements of Account is not updated."
-                                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700  rounded-md">
+                                                <x-form-input wire:model="subject" type="text" value="{{ old('subject') }}" placeholder="Statements of Account is not updated."/>
                                             </div>
                                             @error('subject')
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -47,8 +46,8 @@
                                             <label for="category_id"
                                                 class="block text-sm font-medium text-gray-700">Select a category </label>
 
-                                            <select wire:model="category_id"
-                                                class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+                                            <x-form-select wire:model="category_id"
+                                              >
                                                 <option value="">Select one</option>
                                                 @foreach ($categories as $item)
                                                 <option value="{{ $item->id }}" {{ old('category_id')==$item->id?
@@ -56,7 +55,7 @@
                                                     {{ $item->category }}
                                                 </option>
                                                 @endforeach
-                                            </select>
+                                            </x-form-select>
                                             @error('category_id')
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                             @enderror
@@ -64,11 +63,10 @@
 
 
                                         <div class="sm:col-span-3">
-                                            <label for="unit_uuid" class="block text-sm font-medium text-gray-700">Select a unit
-                                            </label>
+                                            <x-label for="unit_uuid">Select a unit
+                                            </x-label>
 
-                                            <select wire:model="unit_uuid"
-                                                class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+                                            <x-form-select wire:model="unit_uuid">
                                                 <option value="">Select one</option>
                                                 @foreach ($units as $item)
                                                 <option value="{{ $item->unit->uuid }}" {{ old('unit_uuid')==$item->
@@ -76,7 +74,7 @@
                                                     {{ $item->unit->unit }}
                                                 </option>
                                                 @endforeach
-                                            </select>
+                                            </x-form-select>
                                             @error('unit_uuid')
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                             @enderror
@@ -84,28 +82,23 @@
 
 
                                         <div class="sm:col-span-6">
-                                            <label for="concern" class="block text-sm font-medium text-gray-700">
-                                                Details of the concern</label>
+                                            <x-label for="concern" >
+                                                Details of the concern</x-label>
                                             <div class="mt-1">
-                                                <textarea wire:model="concern" rows="20" 
-                                                placeholder="I am writing to bring to your attention a concern regarding my recent bill. I received my billing statement on {{ Carbon\Carbon::now()->format('M d, Y') }}, and after reviewing it thoroughly, I noticed some discrepancies that I believe require clarification and resolution. 
-                                                The details of the issue are as follows:"
-                                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block h-96 w-full sm:text-sm border border-gray-700 rounded-md"></textarea>
+                                                <x-form-textarea wire:model="concern" rows="20"
+                                                placeholder=""></x-form-textarea>
                                             </div>
-                                            <p class="mt-2 text-sm text-gray-500">Please share your concern in
-                                                detail.
-                                            </p>
+
                                             @error('concern')
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                             @enderror
                                         </div>
 
                                         <div class="sm:col-span-3">
-                                            <label for="availability_date" class="block text-sm font-medium text-gray-700">
-                                                Date Available </label>
+                                            <x-label for="availability_date" >
+                                                Date Available </x-label>
                                             <div class="mt-1 flex rounded-md shadow-sm">
-                                                <input wire:model="availability_date" type="date" value="{{ old('availability_date') }}"
-                                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700  rounded-md">
+                                                <x-form-input wire:model="availability_date" type="date" value="{{ old('availability_date') }}" />
                                             </div>
                                             @error('availability_date')
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -113,11 +106,10 @@
                                         </div>
 
                                         <div class="sm:col-span-3">
-                                            <label for="availability_time" class="block text-sm font-medium text-gray-700">
-                                                Time Available </label>
+                                            <x-label for="availability_time">
+                                                Time Available </x-label>
                                             <div class="mt-1 flex rounded-md shadow-sm">
-                                                <input wire:model="availability_time" type="time" value="{{ old('availability_time') }}"
-                                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700  rounded-md">
+                                                <x-form-input wire:model="availability_time" type="time" value="{{ old('availability_time') }}"/>
                                             </div>
                                             @error('availability_time')
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -126,7 +118,7 @@
 
                                         <div class="col-span-6">
                                             <label class="block text-sm font-medium text-gray-700"> Please attach an image of your concern
-                                            
+
                                             </label>
                                             <div
                                                 class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
@@ -172,15 +164,11 @@
                         </form>
                     </div>
 
-                    {{-- <button type="button"
-                        class="mb-5 inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Select
-                        All</button> --}}
+
                 </div>
             </div>
         </div>
 
-        {{-- <div class="px-4 mt-5 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
-            {{ $collections->links() }}
-        </div> --}}
+
     </div>
 </div>

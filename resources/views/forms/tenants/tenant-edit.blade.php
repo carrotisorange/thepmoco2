@@ -228,10 +228,6 @@
     </div>
 
     <div class="mt-5 flex justify-end">
-        {{-- <x-button data-modal-toggle="warning-destroy-tenant-modal"
-            class=" bg-red-600  hover:bg-red-700">
-            Delete
-        </x-button> --}}
 
         <x-button wire:click="submitForm()" >
             Update

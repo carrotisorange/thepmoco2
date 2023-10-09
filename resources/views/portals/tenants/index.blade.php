@@ -1,11 +1,9 @@
 <x-tenant-portal-layout>
-    @section('title', 'Dashboard | '. env('APP_NAME'))
 
     @section('header', 'Dashboard')
 
     <div class="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
 
-        <!-- card Welcome back -->
         <div class="bg-white overflow-hidden shadow rounded-lg">
             <div class="p-5">
                 <div class="flex items-center">
@@ -129,12 +127,11 @@
 
         </div>
 
-        <!-- card Notifications -->
         <div class="bg-white">
             <div class="p-5">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
-                        <!-- Heroicon name: outline/scale -->
+
 
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
@@ -154,72 +151,13 @@
                     </div>
                 </div>
             </div>
-
-            {{-- asdad --}}
-            {{-- <div class="bg-gray-50 px-5 py-3">
-                @forelse ($notifications->take(3)->get() as $item)
-                <div class="text-sm">
-                    <div
-                        class="mb-5 max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
-                        <div class="p-4">
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0">
-                                    <!-- Heroicon name: outline/check-circle -->
-                                    <svg class="h-6 w-6 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                </div>
-
-                                <div class="ml-3 w-0 flex-1 pt-0.5">
-                                    <p class="text-sm font-medium text-gray-900">{{ $item->user->name }} {{
-                                        $item->details }}</p>
-                                    <p class="mt-1 text-sm text-gray-500">{{
-                                        Carbon\Carbon::parse($item->created_at)->diffForHumans() }}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-                @empty
-                <div class="text-sm">
-                    <div
-                        class="mb-5 max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
-                        <div class="p-4">
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0">
-                                    <!-- Heroicon name: outline/check-circle -->
-                                    <i class="fa-solid fa-folder-open"></i>
-                                </div>
-
-                                <div class="ml-3 w-0 flex-1 pt-0.5">
-                                    <p class="text-sm font-medium text-gray-900">No new notifications
-                                    </p>
-                                    <p class="mt-1 text-sm text-gray-500">
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                </div>
-                @endforelse
-
-            </div>
-{{--  --}}
             <div button
-                class=" justify-self-end items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm 
+                class=" justify-self-end items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm
     text-white text-center bg-gray-600 hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 onclick="window.location.href='/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}/payments'">
                 View
                 More</>
-            </div> 
+            </div>
 
 
         </div>

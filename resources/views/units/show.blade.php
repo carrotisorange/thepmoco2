@@ -1,5 +1,4 @@
 <x-new-layout>
-    @section('title', $unit_details->unit. ' | '. env('APP_NAME'))
     <div class="mt-8">
         <div class="max-w-full mx-auto sm:px-6">
             <div class="pt-6 sm:pb-5">

@@ -1,25 +1,8 @@
 <x-new-layout-base>
     @section('title', 'Verify Email | '. env('APP_NAME'))
 
-
-
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!--
-      This example requires Tailwind CSS v2.0+ 
-      
-      This example requires some changes to your config:
-      
-      ```
-      // tailwind.config.js
-      module.exports = {
-        // ...
-        plugins: [
-          // ...
-          require('@tailwindcss/aspect-ratio'),
-        ],
-      }
-      ```
-    -->
+
 
         <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8 mt-5">
             <div class=" flex items-center justify-center">

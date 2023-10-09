@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+ 
 
 <head>
     @include('layouts.head')
-    <title>Forgot Password | {{ env('APP_NAME') }}</title>
+      <title>Forgot Password | {{ env('APP_NAME') }}</title>
+         <!-- Favicon -->
+    <link rel="icon" href="{{ asset('/brands/favicon.ico') }}" type="image/png">
 </head>
 
 <body class="font-sans antialiased" body x-data="{'isModalOpen': false}" x-on:keydown.escape="isModalOpen=false">
@@ -26,10 +29,10 @@
                     <form class="mt-8 sm:flex" method="POST" action="{{ route('password.email') }}">
                         @csrf
                         <label for="email" class="sr-only">Email address</label>
-                        <input id="email" name="email" type="email" autocomplete="email" required
+                        <x-form-input id="email" name="email" type="email" autocomplete="email" required
                             value="{{ old('email') }}"
-                            class="w-full px-5 py-3 placeholder-gray-500 focus:ring-purple-500 focus:border-purple-500 sm:max-w-xs border-gray-300 rounded-md"
-                            placeholder="Enter your email">
+                          
+                            placeholder="Enter your email"/>
                         <div class="mt-3 sm:mt-0 sm:ml-3 sm:flex-shrink-0">
                             <x-button type="submit">
                                 Email Password Reset Link

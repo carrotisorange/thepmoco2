@@ -15,20 +15,16 @@ class CollectionIndexComponent extends Component
     public $start = [];
     public $end = [];
 
-    public $date;
+    public $start_date;
+    public $end_date;
 
     public $form;
 
     public $bill_type;
 
     public function mount(){
-        $this->date = Carbon::now()->format('Y-m-d');
-    }
-
-    public function resetFilters()
-    {
-        $this->start = [];
-        $this->end = [];
+        $this->start_date = Carbon::now()->format('Y-m-d');
+        $this->end_date = Carbon::now()->format('Y-m-d');
     }
 
     public function render()
@@ -50,7 +46,7 @@ class CollectionIndexComponent extends Component
     }
 
     public function exportDCR(){
-        return redirect('/property/'.Session::get('property_uuid') .'/dcr/'.$this->date);
+        return redirect('/property/'.Session::get('property_uuid') .'/dcr/'.$this->start_date.'/'.$this->end_date);
     }
 
     public function get_ars()
@@ -58,9 +54,9 @@ class CollectionIndexComponent extends Component
         return Collection::search($this->search)
         ->select('*', DB::raw("SUM(collection) as collections"),DB::raw("count(collection) as count") )
         ->where('property_uuid', Session::get('property_uuid'))
-        ->when($this->start, function($query){
-            $query->whereDate('updated_at', $this->start);
-        })
+        // ->when($this->start, function($query){
+        ->whereBetween('created_at', [$this->start_date, $this->end_date])
+        // })
          ->when($this->form, function($query){
          $query->where('form', $this->form);
          })

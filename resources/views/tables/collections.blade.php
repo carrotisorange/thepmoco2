@@ -45,10 +45,9 @@
             <x-td>{{ $collection->ar_no }}</x-td>
             <x-td>
                 <?php $bill_nos = App\Models\Collection::where('property_uuid', $collection->property_uuid)->posted()->where('ar_no', $collection->ar_no)->get();?>
-                @foreach ($bill_nos->take(2) as $bill_no)
+                @foreach ($bill_nos as $bill_no)
                 {{ $bill_no->bill->bill_no }},
                 @endforeach
-                ...
             </x-td>
             <x-td>
                 @if($collection->tenant_uuid)
@@ -98,7 +97,7 @@
             </x-td>
             <x-td>
                 <x-button id="dropdownDefaultButton({{ $collection->id }})" data-dropdown-placement="left-end"
-                    data-dropdown-toggle="dropdown({{ $collection->id }})">View 
+                    data-dropdown-toggle="dropdown({{ $collection->id }})">View
                   &nbsp; <i class="fa-solid fa-caret-down"></i>
                 </x-button>
 
@@ -147,11 +146,15 @@
                         @endif
                     </ul>
                 </div>
-
+            <x-button class="bg-red-500" data-modal-target="delete-collection-modal-{{$collection->id}}" data-modal-toggle="delete-collection-modal-{{$collection->id}}"
+                type="button">
+                Delete
+            </x-button>
 
             </x-td>
-           
+
         </tr>
+        @livewire('delete-collection-component', ['collection' => $collection], key(Carbon\Carbon::now()->timestamp.''.$collection->id))
         @endforeach
 
     </tbody>

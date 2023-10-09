@@ -118,26 +118,26 @@
     </div>
 
         <div class="sm:col-span-2">
-            <x-select name="filterByPropertyType" wire:model="filterByPropertyType">
+            <x-form-select name="filterByPropertyType" wire:model="filterByPropertyType">
                 <option value="" selected>Filter by property type</option>
                 @foreach ($propertyTypes as $item)
                 <option value="{{ $item->type_id }}">{{ $item->type }}</option>
                 @endforeach
-            </x-select>
+            </x-form-select>
 
         </div>
 
         <div class="sm:col-span-2">
-            <x-select name="sortBy" wire:model="sortBy"
+            <x-form-select name="sortBy" wire:model="sortBy"
              >      <option value="" selected>Sort property by</option>
                 <option value="property">name</option>
                 <option value="created_at">date created</option>
-            </x-select>
+            </x-form-select>
 
         </div>
 
         <div class="sm:col-span-2">
-            <x-select name="limitDisplayTo" wire:model="limitDisplayTo">
+            <x-form-select name="limitDisplayTo" wire:model="limitDisplayTo">
                 <option value="" selected>Limit display to</option>
                 @for ($i = 1; $i <= $userPropertyCount; $i++) @if($i%4==0 || $i==$userPropertyCount) <option
                     value="{{ $i }}">{{ $i }}</option>

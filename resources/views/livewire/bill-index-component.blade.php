@@ -3,7 +3,9 @@
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
-                <h1 class="text-3xl font-bold text-gray-700">Bills</h1>
+                <h1 class="text-3xl font-bold text-gray-700">
+                      {{ucfirst(Route::current()->getName())}}
+                </h1>
             </div>
             @if($propertyBillsCount)
 
@@ -17,8 +19,7 @@
 
                 <div class="group inline-block">
                     <x-button wire.loading.remove >
-                        <span class="pr-1 font-semibold flex-1"> New
-                            bill</span>
+                       New bill
                       &nbsp; <i class="fa-solid fa-caret-down"></i>
                     </x-button>
 

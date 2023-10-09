@@ -11,16 +11,13 @@
                 type="button">Export
             </a>
             {{-- @can('is_account_payable_delete_allowed') --}}
-            <button wire:click="deleteAccountPayable({{ $accountpayable->id }})"
-                class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto"
-                type="button">Delete
-            </button>
-            
+            <x-button class="bg-red-500" wire:click="deleteAccountPayable({{ $accountpayable->id }})">Delete
+            </x-button>
+
             {{-- @endcan --}}
-            <button onclick="window.location.href='/property/{{ $accountpayable->property_uuid }}/accountpayable'"
-                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
-                type="button">Back
-            </button>
+            <x-button onclick="window.location.href='/property/{{ $accountpayable->property_uuid }}/accountpayable'"
+                >Back
+            </x-button>
 
         </div>
     </div>

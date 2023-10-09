@@ -7,7 +7,7 @@
                     @if(Session::get("property_type") === 'HOA')
                     House
                     @else
-                    Unit
+                    {{ucfirst(Route::current()->getName())}}
                     @endif
                 </h1>
             </div>
@@ -68,60 +68,60 @@
                 </div>
 
                     <div class="sm:col-span-1">
-                        <x-select name="building_id" id="building_id" wire:model="building_id"
+                        <x-form-select name="building_id" id="building_id" wire:model="building_id"
                            >  <option value="">Filter building</option>
                             @foreach ($buildings as $item)
                             <option value="{{ $item->building_id }}">{{ $item->building }}</option>
                             @endforeach
-                        </x-select>
+                        </x-form-select>
                     </div>
 
                     <div class="sm:col-span-1">
-                        <x-select name="category_id" id="category_id" wire:model="category_id"
+                        <x-form-select name="category_id" id="category_id" wire:model="category_id"
                           >   <option value="">Filter category</option>
                             @foreach ($categories as $item)
                             <option value="{{ $item->id }}">{{ $item->category }}</option>
                             @endforeach
-                        </x-select>
+                        </x-form-select>
                     </div>
 
 
                     <div class="sm:col-span-1">
-                        <x-select name="status_id" id="status_id" wire:model="status_id">  \
+                        <x-form-select name="status_id" id="status_id" wire:model="status_id">  \
                             <option value="">Filter status</option>
                             @foreach ($statuses as $item)
                             <option value="{{ $item->status_id }}">{{ $item->status }}</option>
                             @endforeach
-                        </x-select>
+                        </x-form-select>
                     </div>
 
                     <div class="sm:col-span-1">
-                        <x-select name="sortBy" id="small" wire:model="sortBy">
+                        <x-form-select name="sortBy" id="small" wire:model="sortBy">
                             <option value="unit" selected>Sort by</option>
                             <option value="created_at">date created</option>
                             <option value="floor_id">floor</option>
                             <option value="occupancy">occupancy</option>
                             <option value="rent">rent</option>
                             <option value="unit">unit</option>
-                        </x-select>
+                        </x-form-select>
                     </div>
 
                     <div class="sm:col-span-1">
-                        <x-select name="orderBy" id="small" wire:model="orderBy">
+                        <x-form-select name="orderBy" id="small" wire:model="orderBy">
                             <option value="" selected>Sorting order</option>
                             <option value="asc">ascending</option>
                             <option value="desc">descending</option>
-                        </x-select>
+                        </x-form-select>
                     </div>
                     <div class="sm:col-span-1">
-                        <x-select name="limitDisplayTo" id="small" wire:model="limitDisplayTo">
+                        <x-form-select name="limitDisplayTo" id="small" wire:model="limitDisplayTo">
                             <option value="" selected>Limit display to</option>
                             @for ($i = 1; $i <= $totalUnitsCount; $i++)
                                 @if($i%10==0 || $i==$totalUnitsCount)
                                 <option value="{{ $i }}">{{ $i }} </option>
                                 @endif
                             @endfor
-                        </x-select>
+                        </x-form-select>
                     </div>
                 </div>
                 <div class="mt-5">

@@ -1,7 +1,5 @@
 <x-new-layout>
-    @section('title','Owners | '. env('APP_NAME'))
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
-
 
         <div class="flex min-h-full flex-col bg-white lg:relative">
             <div class="flex flex-grow flex-col">

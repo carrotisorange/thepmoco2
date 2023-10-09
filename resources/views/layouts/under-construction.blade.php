@@ -1,5 +1,4 @@
 <x-new-layout>
-    @section('title','Pending Approval | '. env('APP_NAME'))
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
             <nav class="mx-auto max-w-9xl px-4 sm:px-6 lg:px-8" aria-label="Progress">
@@ -19,15 +18,15 @@
                                             <span class="text-purple-600">02</span>
                                         </span>
                                     </span>
-                    
-                    
+
+
                                     <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
                                         <span class="text-xs font-medium text-gray-500">Step 1:</span>
                                         <span class="text-xs font-medium text-gray-500">Internal Document</span>
                                     </span>
                                 </span>
                             </a>
-                    
+
                             <!-- Separator -->
                             <div class="absolute inset-0 top-0 left-0 hidden w-3 lg:block" aria-hidden="true">
                                 <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none" preserveAspectRatio="none">
@@ -50,15 +49,15 @@
                                             <span class="text-gray-500">03</span>
                                         </span>
                                     </span>
-                    
-                    
+
+
                                     <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
                                         <span class="text-xs font-medium text-gray-500">Step 2:</span>
                                         <span class="text-xs font-medium text-gray-500">Approval (manager)</span>
                                     </span>
                                 </span>
                             </a>
-                    
+
                             <!-- Separator -->
                             <div class="absolute inset-0 top-0 left-0 hidden w-3 lg:block" aria-hidden="true">
                                 <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none" preserveAspectRatio="none">
@@ -69,7 +68,7 @@
                     </li>
 
                     <!-- Step 2 -->
-                   
+
                     <!-- Step 3 -->
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="border border-gray-200 overflow-hidden border-t-0 rounded-b-md lg:border-0">

@@ -23,7 +23,7 @@ require __DIR__.'/portfolio.php';
 
 require __DIR__.'/property.php';
 
-require __DIR__.'/dashboard.php';
+require __DIR__.'/sale.php';
 
 require __DIR__.'/tenant.php';
 

@@ -6,7 +6,7 @@
 
 <meta name="facebook-domain-verification" content="q3z93v1eg3wsq648g7aq2cuby3ibcv" />
 
-<title>@yield('title')</title>
+<title> {{ucfirst(Route::current()->getName())}}  |  {{env('APP_NAME')}}  </title>
 
 {{-- <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.4/dist/flowbite.min.css" /> --}}
 

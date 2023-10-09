@@ -1,6 +1,4 @@
 <x-new-layout>
-    @section('title', $tenant->tenant.' | '. env('APP_NAME'))
-
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="pt-6 sm:pb-5">

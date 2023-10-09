@@ -1,5 +1,4 @@
 <x-new-layout>
-    @section('title','Help |'. env('APP_NAME'))
     <div class="mx-20 mt-4 inline-flex">
         <a href="/help">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

@@ -3,7 +3,9 @@
 
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
-                <h1 class="text-3xl font-bold text-gray-500">Guests</h1>
+                <h1 class="text-3xl font-bold text-gray-500">
+                      {{ucfirst(Route::current()->getName())}}
+                </h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 <x-button type="button"

@@ -49,9 +49,9 @@ class ExportCollection implements FromCollection, WithHeadings {
       $collections = Collection::
       select(
         DB::raw('CAST(collections.created_at AS DATE)'),
-        'ar_no', 
-        'bill_no', 
-        'unit', 
+        'ar_no',
+        'bill_no',
+        'unit',
          'tenant',
         'owner',
         'guest',
@@ -66,8 +66,9 @@ class ExportCollection implements FromCollection, WithHeadings {
       ->leftJoin('guests', 'collections.guest_uuid', 'guests.uuid')
       ->leftJoin('units', 'collections.unit_uuid', 'units.uuid')
       ->where('collections.property_uuid', Session::get('property_uuid'))
-      ->whereDate('collections.created_at',Session::get('export_dcr_date'))
+      ->whereBetween('collections.created_at',[Session::get('export_dcr_start_date'), Session::get('export_dcr_end_date')])
       ->where('collections.is_posted',1)
+      ->orderBy('collections.ar_no', 'desc')
       ->get();
 
        return collect($collections);

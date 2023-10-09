@@ -1,5 +1,4 @@
 <x-new-layout>
-    @section('title','Concerns | '. env('APP_NAME'))
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
             {{-- @can('is_concern_read_allowed')

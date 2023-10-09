@@ -1,5 +1,4 @@
 <x-new-layout>
-    @section('title', $tenant_details->tenant. ' | '. env('APP_NAME'))
     <div class="min-h-screen bg-no-repeat bg-cover" style="">
         <div class="h-full w-full mb-20">
             <div class="max-w-full mx-auto sm:px-6">

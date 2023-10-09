@@ -1,5 +1,4 @@
 <x-new-layout>
-    @section('title','Collections | '. env('APP_NAME'))
     {{-- @can('is_account_receivable_read_allowed')
     @include('admin.restrictedpages.accountreceivable')
     @else --}}

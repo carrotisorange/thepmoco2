@@ -1,15 +1,12 @@
 <x-tenant-portal-layout>
-    @section('title', 'Payments | '. env('APP_NAME'))
     @foreach ($payment_request as $item)
-
-
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <nav aria-label="Breadcrumb" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <ol role="list" class="flex items-center space-x-4">
                 <li>
                     <div class="flex items-center">
                         <a
-                            href="/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}/payments_request/{{ $item->batch_no }}/destroy">
+                            href="/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}/payments/pending">
                             <img class="h-5 w-auto" src="{{ asset('/brands/back-button.png') }}">
                         </a>
                     </div>

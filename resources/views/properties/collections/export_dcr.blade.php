@@ -2,7 +2,7 @@
 @section('title', 'Daily Collection Report')
 @section('content')
 <p>
-            Date: {{ Carbon\Carbon::parse($date)->format('M d, Y') }} ({{ $collections->count() }} collections )
+            Date: {{ Carbon\Carbon::parse($start_date)->format('M d, Y').'-'.Carbon\Carbon::parse($end_date)->format('M d, Y') }} ({{ $collections->count() }} collections )
         </p>
         <table class="">
             <tr>

@@ -1,5 +1,4 @@
 <x-new-layout>
-    @section('title', $tenant->tenant.' | '. env('APP_NAME'))
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
         <div class="mt-5 px-4 sm:px-6 lg:px-8">
             <div class="sm:flex sm:items-center">
@@ -27,7 +26,7 @@
 
                         @include('tables.collections')
                     </div>
-              
+
                 </div>
             </div>
 

@@ -1,5 +1,4 @@
 <x-new-layout>
-    @section('title', 'Concerns | '. env('APP_NAME'))
 
     <div>
         <div class="mt-10 px-4 sm:px-6 lg:px-8">
@@ -138,11 +137,11 @@
 
                                         </div>
                                         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                                 
+
                                             <x-button onclick="window.location.href='/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/concerns/'">
                                                 Cancel
                                             </x-button>
-                                          
+
                                             <x-button type="submit">
                                                 Report
                                             </x-button>
@@ -156,7 +155,7 @@
                 </div>
             </div>
 
-         
+
         </div>
     </div>
 

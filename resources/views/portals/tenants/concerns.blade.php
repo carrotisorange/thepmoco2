@@ -1,16 +1,15 @@
 <x-tenant-portal-layout>
-    @section('title', 'Concerns |' . env('APP_NAME'))
-
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
-                <h1 class="text-3xl font-bold text-gray-700">Concerns</h1>
+                <h1 class="text-3xl font-bold text-gray-700">
+                    {{ucfirst(Route::current()->getName())}}
+                </h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <button type="button" onclick="window.location.href='/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/concerns/create'"
-                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+                <x-button type="button" onclick="window.location.href='/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/concerns/create'">
                     New Concern
-                </button>
+                </x-button>
 
             </div>
         </div>
@@ -19,97 +18,15 @@
                 <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
                     <div class="mb-10 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                        <!-- Selected row actions, only show when rows are selected. -->
+
                         <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
 
                         </div>
 
                         @include('tables.concerns')
-{{-- 
-                        <table class="min-w-full table-fixed">
-                            <thead class="">
-                                <tr>
-                                   <th scope="col" class="px-3 py-3.5 text-sm font-semibold text-gray-900">
-                                        REFERENCE #
-                                    </th>
-                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                        REPORTED ON
-                                    </th>
-                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                        SUBJECT
-                                    </th>
 
-                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                        UNIT
-                                    </th>
-
-                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                        CATEGORY 
-                                    </th>
-                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                        CONCERN
-                                    </th>
-                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                        STATUS
-                                    </th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            @forelse ($concerns as $index => $item)
-                            <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
-                               
-                                <tr>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        {{ $item->reference_no }}
-                                    </td>
-                                 
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y')}}
-                                    </td>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        {{ $item->subject }}
-                                    </td>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        {{ $item->unit->unit }}
-                                    </td>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        {{ $item->category->category }}
-                                    </td>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        {{ $item->concern }}
-                                    </td>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        {{ $item->status }}
-                                    </td>
-
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                      
-                                       <a class="font-medium text-blue-500 text-decoration-line: underline" href="/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/concerns/{{ $item->id }}"
-                                            class="text-indigo-600 hover:text-indigo-900">Review</a>
-                                      
-                                    </td>
-                                </tr>
-                            </tbody>
-                            @empty
-                            <tr>
-                                <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
-                                    No concerns
-                                    found.</td>
-                            </tr>
-                            @endforelse
-
-                        </table> --}}
-                    </div>
-
-                    {{-- <button type="button"
-                        class="mb-5 inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Select
-                        All</button> --}}
                 </div>
             </div>
         </div>
-
-        {{-- <div class="px-4 mt-5 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
-            {{ $collections->links() }}
-        </div> --}}
     </div>
 </x-tenant-portal-layout>

@@ -187,13 +187,10 @@
 
             </x-td>
             <x-td>
-                @if($bill->status === 'unpaid')
-                <x-button data-modal-target="delete-bill-modal-{{$bill->id}}"
-                    data-modal-toggle="delete-bill-modal-{{$bill->id}}"
-                   >
+                <x-button class="bg-red-500" data-modal-target="delete-bill-modal-{{$bill->id}}"
+                    data-modal-toggle="delete-bill-modal-{{$bill->id}}">
                     Delete
                 </x-button>
-                @endif
             </x-td>
         </tr>
         @livewire('edit-bill-component', ['bill_details' => $bill], key(Carbon\Carbon::now()->timestamp.''.$bill->id))

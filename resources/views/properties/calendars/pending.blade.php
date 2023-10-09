@@ -1,13 +1,12 @@
 <x-new-layout>
-    @section('title','Calendar | '. env('APP_NAME'))
 
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
 
-       
+
             <html class="h-full">
             <body class="h-full">
-  
+
             <div class="grid min-h-full grid-cols-1 grid-rows-[1fr,auto,1fr] bg-white lg:grid-cols-[max(50%,36rem),1fr]">
                 <header class="mx-auto w-full max-w-7xl px-6 pt-6 sm:pt-10 lg:col-span-2 lg:col-start-1 lg:row-start-1 lg:px-8">
                     <a href="/">
@@ -28,13 +27,13 @@
                         </div>
                     </div>
                 </main>
-              
+
                 <div class="lg:relative lg:col-start-2 lg:row-start-1 lg:row-end-4 lg:block">
                     <img src="{{ asset('/brands/full-logo.png') }}"
                         alt="" class="absolute inset-0 h-full w-full object-cover" />
                 </div>
             </div>
-  
+
         </div>
     </div>
 

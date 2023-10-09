@@ -3,7 +3,9 @@
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
-                <h1 class="text-3xl font-bold text-gray-700">Request for Purchases</h1>
+                <h1 class="text-3xl font-bold text-gray-700">
+                      {{ucfirst(Route::current()->getName())}}
+                </h1>
             </div>
             @if($propertyRfpCount)
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">

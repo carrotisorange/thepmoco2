@@ -3,45 +3,44 @@
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
-                <h1 class="text-3xl font-bold text-gray-700">Collections</h1>
+                <h1 class="text-3xl font-bold text-gray-700">
+                      {{ucfirst(Route::current()->getName())}}
+                </h1>
             </div>
             @if($propertyCollectionsCount)
             <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-
-
         </div>
-           
+
             <div class="sm:col-span-6">
-                <x-input name="date" type="date" wire:model="date"/>
-            </div>
-                    
-            <div class="sm:col-span-6"> 
-                <div class="group inline-block">
-                    <x-button>  
-                        <span class="pr-1 font-semibold flex-1"> Export
-                        </span>
-                       &nbsp; <i class="fa-solid fa-caret-down"></i>
-                    </x-button>
 
-                    <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
-                                                                      transition duration-150 ease-in-out origin-top min-w-32">
+                            <div class="group inline-block">
+                                <x-button>Export
 
-                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="/property/{{ Session::get('property_uuid') }}/dcr/{{ $date }}/excel" target="_blank"
-                               >as Excel</a>
-                        </li>
-                       <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="/property/{{ Session::get('property_uuid') }}/dcr/{{ $date }}/pdf"
-                                target="_blank">as PDF</a>
-                        </li>
+                                    &nbsp; <i class="fa-solid fa-caret-down"></i>
+                                </x-button>
 
-                    </ul>
+                                <ul
+                                    class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
+                                                                                                              transition duration-150 ease-in-out origin-top min-w-32">
 
-                </div>
+                                    <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
+                                            href="/property/{{ Session::get('property_uuid') }}/dcr/{{ $start_date }}/{{ $end_date }}/excel" target="_blank">as
+                                            Excel</a>
+                                    </li>
+                                    <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
+                                            href="/property/{{ Session::get('property_uuid') }}/dcr/{{ $start_date }}/{{ $end_date }}/pdf" target="_blank">as PDF</a>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+
 
                 <x-button type="button"
                     onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/pending'"> Verify Payments
                 </x-button>
                 <div class="group inline-block">
-                    <x-button>  <span class="pr-1 font-semibold flex-1"> New
+                    <x-button> New
                             collection</span>
                      &nbsp; <i class="fa-solid fa-caret-down"></i>
                     </x-button>
@@ -62,11 +61,31 @@
                 </div>
 
             </div>
+
+
             @endif
         </div>
+
         @if($propertyCollectionsCount)
         <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-        
+
+            <div class="sm:col-span-3">
+                <x-label>Start</x-label>
+               <x-input name="start_date" type="date" wire:model="start_date" />
+
+            </div>
+
+            <div class="sm:col-span-3">
+                <x-label>End</x-label>
+                <x-input name="end_date" type="date" wire:model="end_date" />
+
+            </div>
+
+
+
+        </div>
+        <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+
             <div class="sm:col-span-3">
                 <x-form-select name="bill_type" wire:model="bill_type">
                     <option value="">Filter collection to</option>

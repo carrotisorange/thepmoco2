@@ -1,6 +1,5 @@
 <x-new-layout>
-    @section('title','Bills | '. env('APP_NAME'))
-    {{-- @can('accountreceivable') 
+    {{-- @can('accountreceivable')
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex min-h-full flex-col bg-white lg:relative">
             <div class="flex flex-grow flex-col">
@@ -126,7 +125,7 @@
             'batch_no' => $batch_no])
         </div>
     </div>
-    {{-- @endif --}} 
+    {{-- @endif --}}
     @include('modals.create-particular')
     @include('modals.create-express-bill')
 </x-new-layout>

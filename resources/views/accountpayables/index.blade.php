@@ -1,5 +1,4 @@
 <x-new-layout>
-    @section('title','Account Payables | '. Session::get('property'))
     {{-- @can('accountpayable')
     @include('admin.restrictedpages.accountpayable')
     @else --}}

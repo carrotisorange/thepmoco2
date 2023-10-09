@@ -6,14 +6,14 @@
             <nav class="mt-5 border-b flex col-start-1" aria-label="Breadcrumb">
                 <ol role="list" class="mx-auto flex w-full max-w-screen-xl space-x-4 px-4 sm:px-6">
 
-                    <li class="flex">
+                    {{-- <li class="flex">
                         <div class="flex items-center">
                             <button
                                 onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/tenant'"
                                 class="text-lg font-medium text-gray-500 hover:text-gray-700" aria-current="page">
                                 Tenants</button>
                         </div>
-                    </li>
+                    </li> --}}
 
                     <li class="flex">
                         <div class="flex items-center">
@@ -29,7 +29,7 @@
                         </div>
                     </li>
 
-                    <li class="flex">
+                    {{-- <li class="flex">
                         <div class="flex items-center">
                             <svg class="h-full w-6 flex-shrink-0 text-gray-200" viewBox="0 0 24 44"
                                 preserveAspectRatio="none" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +42,7 @@
                                 Bills</button>
                         </div>
 
-                    </li>
+                    </li> --}}
                 </ol>
             </nav>
 
