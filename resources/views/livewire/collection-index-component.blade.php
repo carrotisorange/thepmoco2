@@ -71,13 +71,13 @@
 
             <div class="sm:col-span-3">
                 <x-label>Start</x-label>
-               <x-input name="start_date" type="date" wire:model="start_date" />
+               <x-form-input name="start_date" type="date" wire:model="start_date" />
 
             </div>
 
             <div class="sm:col-span-3">
                 <x-label>End</x-label>
-                <x-input name="end_date" type="date" wire:model="end_date" />
+                <x-form-input name="end_date" type="date" wire:model="end_date" />
 
             </div>
 
@@ -109,7 +109,7 @@
         </div>
         @endif
         <div class="mt-3">
-                {{ $collections->links() }}
+                {{-- {{ $collections->links() }} --}}
         </div>
 
         <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">

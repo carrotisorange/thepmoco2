@@ -12,7 +12,6 @@
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 @if($search || $status || $particular || $posted_dates || $bill_type)
                 <x-button wire:click="clearFilters()" wire.loading.remove
-
                     type="button">Clear Filters
                 </x-button>
                 @endif
@@ -65,43 +64,43 @@
         <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
 
             <div class="sm:col-span-3">
-                <x-select name="bill_type" wire:model="bill_type">
+                <x-form-select name="bill_type" wire:model="bill_type">
                     <option value="">Filter bill to</option>
                     <option value="guest_uuid">Guest</option>
                     <option value="owner_uuid">Owner</option>
                     <option value="tenant_uuid">Tenant</option>
-                </x-select>
+                </x-form-select>
 
             </div>
 
             <div class="sm:col-span-3">
-                <x-select name="status" wire:model="status">
+                <x-form-select name="status" wire:model="status">
                     <option value="">Filter bill status</option>
                     @foreach ($statuses as $item)
                     <option value="{{ $item->status }}">{{ $item->status }}</option>
                     @endforeach
 
-                </x-select>
+                </x-form-select>
 
             </div>
             <div class="sm:col-span-3">
-                <x-select name="particular" wire:model="particular">
+                <x-form-select name="particular" wire:model="particular">
                     <option value="">Filter bill particulars</option>
                     @foreach ($particulars as $item)
                     <option value="{{ $item->particular_id }}">{{ $item->particular }}</option>
                     @endforeach
 
-                </x-select>
+                </x-form-select>
 
             </div>
             <div class="sm:col-span-3">
-                <x-select name="posted_dates" wire:model="posted_dates">
+                <x-form-select name="posted_dates" wire:model="posted_dates">
                     <option value="">Filter bill dates</option>
                     <option value="monthly">1-30 days</option>
                     <option value="quaterly">1-90 days</option>
                     <option value="alltime">90 days and over</option>
 
-                </x-select>
+                </x-form-select>
 
             </div>
 

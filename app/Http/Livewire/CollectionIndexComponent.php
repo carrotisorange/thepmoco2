@@ -69,6 +69,6 @@ class CollectionIndexComponent extends Component
         ->posted()
         ->groupBy('ar_no')
         ->orderBy('ar_no', 'desc')
-        ->paginate(10);
+        ->get();
     }
 }

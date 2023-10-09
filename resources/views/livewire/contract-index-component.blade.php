@@ -30,12 +30,12 @@
 
 
             <div class="sm:col-span-6">
-                <x-select name="status" wire:model="status">
+                <x-form-select name="status" wire:model="status">
                     <option value="" selected>Filter status</option>
                     @foreach ($statuses as $status)
                     <option value="{{ $status->status }}">{{ $status->status }}</option>
                     @endforeach
-                </x-select>
+                </x-form-select>
 
             </div>
 
