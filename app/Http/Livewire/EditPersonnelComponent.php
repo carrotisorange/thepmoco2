@@ -41,13 +41,17 @@ class EditPersonnelComponent extends Component
     }
 
     public function get_user_restrictions(){
-        return UserRestriction::where('user_id', $this->personnel->user->id)->where('restriction_id',2)->get();
+        return UserRestriction::
+        // join('features', 'user_restrictions.feature_id', 'features.id')
+        where('user_id', $this->personnel->user->id)
+        // ->where('is_active',1)
+        ->where('restriction_id',2)->orderBy('feature_id')->get();
     }
 
     public function updateButton(){
 
         $is_email_exists = User::where('email', $this->email)->count();
-        
+
         $validatedUserData = $this->validate([
             'name' => 'required',
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users','email')->ignore($this->personnel->user_id, 'id')],
@@ -60,11 +64,10 @@ class EditPersonnelComponent extends Component
             'role_id' => ['required', Rule::exists('roles', 'id')],
             'is_approved' => 'required'
         ]);
-    
+
         UserProperty::where('id', $this->personnel->id)
+        ->where('property_uuid', Session::get('property_uuid'))
         ->update($validatedUserPropertyData);
-    
-        app('App\Http\Controllers\UserRestrictionController')->store(Session::get('property_uuid'), $this->personnel->user->id);
 
         $this->validate();
 
@@ -81,8 +84,11 @@ class EditPersonnelComponent extends Component
 
     public function render()
     {
+        $availableFeatures = UserRestriction::where('user_id',auth()->user()->id)->where('property_uuid', Session::get('property_uuid'))->where('restriction_id', 2)->where('is_approved',1)->groupBy('feature_id')->orderBy('feature_id')->get();
+
         return view('livewire.edit-personnel-component',[
             'roles' => app('App\Http\Controllers\RoleController')->get_roles(Session::get('property_uuid')),
+            'availableFeatures' => $availableFeatures
         ]);
     }
 }

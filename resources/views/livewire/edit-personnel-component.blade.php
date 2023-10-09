@@ -58,112 +58,30 @@
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
-
                 <!-- NEW RESTRICTIONS -->
-                <!--
                 <div class="mt-5 sm:mt-6">
                     <label class="text-sm">Restrictions</label>
                     <div class="py-6 grid grid-cols-5">
                         <div class="text-sm font-medium border px-1 text-center">feature
                             <div class="py-2">
-                                <div class="px-1 py-1 border text-sm text-left font-light">remittance</div>
-                                <div class="px-1 py-1 border text-sm text-left font-light">utility</div>
-                                <div class="px-1 py-1 border text-sm text-left font-light">financial</div>
-                                <div class="px-1 py-1 border text-sm text-left font-light">RFP</div>
-                                <div class="px-1 py-1 border text-sm text-left font-light">collection</div>
-                                <div class="px-1 py-1 border text-sm text-left font-light">bill</div>
-                                <div class="px-1 py-1 border text-sm text-left font-light">concern</div>
-                                <div class="px-1 py-1 border text-sm text-left font-light">personnel</div>
-                                <div class="px-1 py-1 border text-sm text-left font-light">owner</div>
-                                <div class="px-1 py-1 border text-sm text-left font-light">guest</div>
-                                <div class="px-1 py-1 border text-sm text-left font-light">contract</div>
-                                <div class="px-1 py-1 border text-sm text-left font-light">tenant</div>
-                                <div class="px-1 py-1 border text-sm text-left font-light">calendar</div>
-                                <div class="px-1 py-1 border text-sm text-left font-light">unit</div>
-                                <div class="px-1 py-1 border text-sm text-left font-light">message</div>
-                                <div class="px-1 py-1 border text-sm text-left font-light">dashboard</div>
+                                @foreach($availableFeatures as $feature)
+                                    {{-- @if($feature->feature->is_active) --}}
+                                        <div class="px-1 py-1 border text-sm text-left font-light">{{ $feature->feature->feature }}</div>
+                                    {{-- @endif --}}
+                                @endforeach
                             </div>
                         </div>
-                        <div class="text-sm font-medium border px-1 text-center">delete
-                            <div class="py-2">
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                            </div>
-                        </div>
-                        <div class="text-sm font-medium border px-1 text-center">update
-                            <div class="py-2">
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                            </div>
-                        </div>
+
                         <div class="text-sm font-medium border px-1 text-center">read
                             <div class="py-2">
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
+                                @foreach($user_restrictions as $index => $user_restriction)
+                                    <div class="px-1 py-1 border text-sm font-light">
+                                          <input wire:model="user_restrictions.{{ $index }}.is_approved" type="checkbox" @if('user_restrictions.{{ $index }}.is_approved') checked @endif/>
+                                    </div>
+                                    @endforeach
                             </div>
                         </div>
-                        <div class="text-sm font-medium border px-1 text-center">create
-                            <div class="py-2">
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                                    <div class="px-1 py-1 border text-sm font-light"><input type="checkbox"></input></div>
-                            </div>
-                        </div>
+
 
 
                     </div>
@@ -171,8 +89,7 @@
 
                 </div>
 
-                -->
-
+{{--
                 <div class="mt-5 sm:mt-6">
 
 
@@ -193,8 +110,7 @@
                             </div>
                             <div class="ml-3 text-sm leading-6">
                                 <label for="comments" class="font-medium text-gray-900"><span class="font-bold">{{ $user_restriction->restriction->restriction }}</span> {{ $user_restriction->feature->feature}}</label>
-                                {{-- <p id="comments-description" class="text-gray-500">Get notified when someones posts a comment on a
-                                    posting.</p> --}}
+
                             </div>
                         </div>
                     </div>
@@ -202,7 +118,7 @@
                     @endforeach
                 </fieldset>
 
-                </div>
+                </div>--}}
 
                 <div class="mt-5 sm:mt-6">
                     @can('accountownerandmanager')
