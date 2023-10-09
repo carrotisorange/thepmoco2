@@ -66,9 +66,8 @@ class EditPersonnelComponent extends Component
         ]);
 
         UserProperty::where('id', $this->personnel->id)
+        ->where('property_uuid', Session::get('property_uuid'))
         ->update($validatedUserPropertyData);
-
-        app('App\Http\Controllers\UserRestrictionController')->store(Session::get('property_uuid'), $this->personnel->user->id);
 
         $this->validate();
 
