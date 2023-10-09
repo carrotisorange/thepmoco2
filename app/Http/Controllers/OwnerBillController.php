@@ -18,24 +18,6 @@ use App\Models\Collection;
 class OwnerBillController extends Controller
 {
 
-    public function index(Property $property, Owner $owner)
-    {
-        $bills = Owner::find($owner->uuid)
-            ->bills()
-            ->orderBy('bill_no','desc')
-            ->get();
-
-        return view('owners.bills.index',[
-            'owner' => $owner,
-            'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
-            'unpaid_bills' => $this->get_owner_balance($owner->uuid),
-            'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($property->uuid),
-            'units' => app('App\Http\Controllers\OwnerDeedOfSalesController')->show_deed_of_sales($owner->uuid),
-            'note_to_bill' => $property->note_to_bill,
-        ]);
-    }
-
-    
     public function get_bill_balance($bill_id)
     {
         return Bill::where('id',$bill_id)->sum('bill') - Bill::where('id',$bill_id)->sum('initial_payment');
@@ -58,9 +40,9 @@ class OwnerBillController extends Controller
 
         try {
              DB::transaction(function () use ($property, $request, $owner, $attributes){
-            
-            $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no($property->uuid);
-            
+
+            $bill_no = app('App\Http\Controllers\BillController')->getLatestBillNo($property->uuid);
+
             $attributes['bill_no']= $bill_no;
 
             if($request->particular_id == 8)
@@ -91,7 +73,7 @@ class OwnerBillController extends Controller
             return back()->with('success','Bill is successfully posted.');
         }
         catch(\Exception $e)
-        {   
+        {
             return back()->with('error',$e);
         }
     }
@@ -101,23 +83,23 @@ class OwnerBillController extends Controller
        app('App\Http\Controllers\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
 
        $data = $this->get_bill_data($owner, $request->due_date, $request->penalty, $request->note_to_bill);
-    
+
        $folder_path = 'owners.bills.export';
 
-       $pdf = app('App\Http\Controllers\FileExportController')->generate_pdf($property, $data, $folder_path);
+       $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
 
        return $pdf->stream(Carbon::now()->format('M d, Y').'-'.$owner->owner.'-soa.pdf');
     }
 
     public function send(Request $request, Property $property, Owner $owner)
-    {    
+    {
         app('App\Http\Controllers\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
 
         $data = $this->get_bill_data($owner, $request->due_date, $request->penalty, $request->note_to_bill);
 
         Mail::to($request->email)->send(new SendBillToOwner($data));
 
-        return back()->with('success', 'Success!');
+        return back()->with('success', 'Changes Saved!');
     }
 
     public function get_bill_data($owner, $due_date, $penalty, $note)
@@ -125,10 +107,10 @@ class OwnerBillController extends Controller
         $unpaid_bills = Bill::where('owner_uuid', $owner->uuid)->posted()->sum('bill');
         $paid_bills = Collection::where('owner_uuid', $owner->uuid)->posted()->sum('collection');
 
-        if($unpaid_bills<=0){ 
-            $balance=0; 
-        }else{ 
-            $balance=$unpaid_bills - $paid_bills; 
+        if($unpaid_bills<=0){
+            $balance=0;
+        }else{
+            $balance=$unpaid_bills - $paid_bills;
         }
 
         return $data = [
@@ -143,5 +125,5 @@ class OwnerBillController extends Controller
             'note_to_bill' => $note,
         ];
     }
- 
+
 }

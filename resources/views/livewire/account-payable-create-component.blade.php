@@ -1,4 +1,5 @@
 <div>
+    @include('layouts.notifications')
     <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
             <h1 class="text-3xl font-bold text-gray-700 mb-5 mt-5 ">Request Account Payable</h1>

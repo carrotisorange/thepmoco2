@@ -12,7 +12,6 @@ use App\Models\Owner;
 
 class UnitUtilityEditComponent extends Component
 {
-    public $property;
     public $unit;
     public $type;
     public $utility;
@@ -40,7 +39,7 @@ class UnitUtilityEditComponent extends Component
         );
 
 
-        Bill::where('property_uuid', $this->property->uuid)
+        Bill::where('property_uuid', Session::get('property_uuid'))
         ->where('unit_uuid', $this->utility->unit->uuid)
         ->where('bill', $this->utility->total_amount_due)
         ->whereDate('start', $this->utility->start_date)
@@ -49,10 +48,10 @@ class UnitUtilityEditComponent extends Component
 
 
 
-        return redirect('/property/'.$this->property->uuid.'/unit/'.$this->utility->unit->uuid)->with('success', 'Success');
+        return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->utility->unit->uuid)->with('success', 'Changes Saved!');
     }
 
-    
+
     public function render()
     {
         // ddd($this->get_particular_id($this->utility->type));

@@ -14,25 +14,22 @@
                     <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Create a new unit
                     </h3>
                     <div class="mt-2">
-                        <p class="text-sm text-gray-500">Please enter the number of units you want to create.</p>
+                        <x-label>Number of units you want to create.</x-label>
                     </div>
                 </div>
             </div>
 
             <div class="mt-2 sm:mt-6">
-                <input type="number" step="1" min="1" wire:model="numberOfUnits" required
-                    class="bg-white block p-4 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <x-input type="text" wire:model="numberOfUnits" name="numberOfUnits" />
             </div>
-            @if(session()->has('error'))
-            <div class="mt-1 bg-red-500 text-white py-1 px-1 rounded-xl bottom-3 right-3 text-sm">
-                <p><i class="fa-solid fa-circle-xmark"></i> {{ session('error') }}</p>
-            </div>
-            @endif
+
             <div class="mt-5 sm:mt-6">
-                <button type="button" wire:click="storeUnits"
-                    class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
-                    Confirm
-                </button>
+                <p class="text-center">
+                  
+                    <x-button class="w-full" type="button" wire:click="storeUnits">
+                        Confirm
+                    </x-button>
+                </p>
 
             </div>
         </div>

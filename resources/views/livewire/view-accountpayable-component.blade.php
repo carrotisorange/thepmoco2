@@ -1,4 +1,5 @@
 <x-modal-component>
+    @include('layouts.notifications')
     <x-slot name="id">
         view-accountpayable-modal-{{$accountpayable->id}}
     </x-slot>
@@ -49,7 +50,7 @@
                 <div class="mt-5 sm:mt-6">
 
                     <button type="button" data-modal-toggle="view-accountpayable-modal-{{$accountpayable->id}}"
-                        class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
+                        class="w-full">
                         Close
                     </button>
 

@@ -1,5 +1,5 @@
 <x-checkout-base-component>
-    @section('title', 'Profile | The Property Manager')
+    @section('title', 'Profile | '. env('APP_NAME'))
 
     <div class="bg-white py-16 px-4 overflow-hidden sm:px-6 lg:px-8 lg:py-24">
         <div class="relative max-w-xl mx-auto">

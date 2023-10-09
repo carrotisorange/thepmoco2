@@ -1,5 +1,4 @@
 <x-new-layout>
-    @section('title', $owner_details->owner. ' | '. Session::get('property'))
     <div class="min-h-screen bg-no-repeat bg-cover" style="">
         <div class="">
             <div class="max-w-full mx-auto sm:px-6">

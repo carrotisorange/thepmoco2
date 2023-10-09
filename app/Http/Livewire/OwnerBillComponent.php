@@ -8,10 +8,13 @@ use App\Models\Bill;
 use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\Collection;
+use App\Models\DeedOfSale;
 use Carbon\Carbon;
 use DB;
 use Session;
 use App\Models\Property;
+use App\Models\Unit;
+use Illuminate\Validation\Rule;
 
 class OwnerBillComponent extends Component
 {
@@ -20,7 +23,7 @@ class OwnerBillComponent extends Component
       public $owner;
 
       public $selectedBills = [];
-      public $selectAll = false;  
+      public $selectAll = false;
       public $status = 'unpaid';
       public $particular;
 
@@ -36,70 +39,145 @@ class OwnerBillComponent extends Component
 
       public $property;
 
+         public $particular_id;
+         public $unit_uuid;
+         public $start;
+         public $end;
+         public $bill;
+
 
       public function mount($owner){
          $this->owner_uuid = $owner->uuid;
          $this->property = Property::find(Session::get('property_uuid'));
       }
 
-     public function removeBills()
-     {
-       
-        if(!Bill::whereIn('id', $this->selectedBills)->where('status', 'unpaid')->delete())
-        {
-            $this->selectedBills = [];
+      protected function rules()
+   {
+      return [
+         'particular_id' => ['required', Rule::exists('particulars', 'id')],
+         'start' => 'required|date',
+         'unit_uuid' => ['required', Rule::exists('units', 'uuid')],
+         'end' => 'nullable|date|after:start',
+         'bill' => 'required|numeric|min:1',
+      ];
+   }
 
-            return back()->with('error', 'Bill cannot be deleted.');
+   public function updated($propertyName)
+   {
+      $this->validateOnly($propertyName);
+   }
+
+    public function storeBill(){
+
+        $this->validate();
+
+        try {
+
+        $bill_no = app('App\Http\Controllers\BillController')->getLatestBillNo(Session::get('property_uuid'));
+        $marketing_fee = Unit::find($this->unit_uuid)->marketing_fee;
+        $management_fee = Unit::find($this->unit_uuid)->management_fee;
+
+        if($this->particular_id === '8'){
+            $this->bill *=-1;
+        }elseif($this->particular_id === '1'){
+            $this->bill = ($this->bill)-($marketing_fee + $management_fee);
+        }else{
+            $this->bill = $this->bill;
         }
 
-        //Bill::destroy($this->selectedBills);
+        $bill_id = Bill::insertGetId([
+            'bill_no' => $bill_no,
+            'unit_uuid' => $this->unit_uuid,
+            'particular_id' => $this->particular_id,
+            'start' => $this->start,
+            'end' => $this->end,
+            'bill' => $this->bill,
+            'reference_no' => $this->owner->reference_no,
+            'due_date' => Carbon::parse($this->start)->addDays(7),
+            'user_id' => auth()->user()->id,
+            'property_uuid' => Session::get('property_uuid'),
+            'owner_uuid' => $this->owner->uuid,
+            'status' => 'unpaid',
+            'created_at' => Carbon::now(),
+            'is_posted' => true
+        ]);
 
-        $this->selectedBills = [];
 
-        return back()->with('success', 'Success!');
-     }
+        if($this->particular_id === '1'){
+            if($marketing_fee>0){
+                Bill::create([
+                'bill_id' => $bill_id,
+                'bill_no' => $bill_no+1,
+                'unit_uuid' => $this->unit_uuid,
+                'particular_id' => 71,
+                'start' => $this->start,
+                'end' => $this->end,
+                'bill' => $marketing_fee,
+                'reference_no' => $this->owner->reference_no,
+                'due_date' => Carbon::parse($this->start)->addDays(7),
+                'user_id' => auth()->user()->id,
+                'property_uuid' => Session::get('property_uuid'),
+                'owner_uuid' => $this->owner->uuid,
+                'is_posted' => true,
+                'created_at' => Carbon::now(),
+            ]);
+        }
 
-     public function postBills()
-     {
-         try{
-            
-            
+        if($management_fee>0){
+            Bill::create([
+            'bill_id' => $bill_id,
+            'bill_no' => $bill_no+2,
+            'unit_uuid' => $this->unit_uuid,
+            'particular_id' => 72,
+            'start' => $this->start,
+            'end' => $this->end,
+            'bill' => $management_fee,
+            'reference_no' => $this->owner->reference_no,
+            'due_date' => Carbon::parse($this->start)->addDays(7),
+            'user_id' => auth()->user()->id,
+            'property_uuid' => Session::get('property_uuid'),
+            'owner_uuid' => $this->owner->uuid,
+            'is_posted' => true,
+            'created_at' => Carbon::now(),
+            ]);
+        }
+        }
 
-            DB::beginTransaction();
-            
-            DB::commit();
+        // app('App\Http\Controllers\BillController')->store(Session::get('property_uuid'), auth()->user()->id, 1, 3);
 
-         }catch(\Exception $e)
-         { 
-            DB::rollback();
+        app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, 1, 3);
 
-            return back()->with('error','Cannot perform your action.');
-         }
-     }
+        return redirect('/property/'.Session::get('property_uuid').'/owner/'.$this->owner->uuid.'/bills')->with('success','Changes Saved!');
+        }
+        catch(\Exception $e)
+        {
+            return back()->with('error',$e);
+        }
+    }
 
      public function payBills()
-   {      
+   {
       //generate collection acknowledgement receipt no
       $collection_ar_no = Property::find($this->property->uuid)->acknowledgementreceipts->max('ar_no')+1;
 
       //generate a collection batch no
       $collection_batch_no = Carbon::now()->timestamp.''.$collection_ar_no;
-      
+
 
       for($i=0; $i<count($this->selectedBills); $i++){
 
-         try 
+         try
          {
             //begin the transaction
             DB::transaction(function () use ($i, $collection_ar_no, $collection_batch_no) {
-            
+
             //get the attributes for collections
             $particular_id = Bill::find($this->selectedBills[$i])->particular_id;
             $owner_uuid = $this->owner->uuid;
             $unit_uuid = Bill::find($this->selectedBills[$i])->unit_uuid;
             $property_uuid = $this->property->uuid;
 
-         
+
             $bill_id = Bill::find($this->selectedBills[$i])->id;
             $bill_reference_no = Owner::find($this->owner->uuid)->bill_reference_no;
             $form = 'cash';
@@ -142,7 +220,7 @@ class OwnerBillComponent extends Component
          }
             catch (\Throwable $e) {
                return back()->with('error',$e);
-         } 
+         }
       }
          return redirect('/property/'.$this->property->uuid.'/owner/'.$this->owner->uuid.'/bills/'.$collection_batch_no.'/pay');
 
@@ -164,7 +242,7 @@ class OwnerBillComponent extends Component
 
           $this->selectedBills = [];
 
-          return redirect('/owner/'.$this->owner->uuid.'/bills')->with('success','Success!');
+          return redirect('/owner/'.$this->owner->uuid.'/bills')->with('success','Changes Saved!');
 
      }
 
@@ -227,7 +305,7 @@ class OwnerBillComponent extends Component
       ->whereIn('status', ['paid', 'partially_paid'])
       ->count();
 
-      $total_bills = Owner::find($this->owner->uuid)->bills->sum('bill');
+        $noteToBill = Property::find(Session::get('property_uuid'))->note_to_bill;
 
       return view('livewire.owner-bill-component',[
          'bills' => $bills,
@@ -237,7 +315,9 @@ class OwnerBillComponent extends Component
          'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
          'total_bills' => $bills,
          'statuses' => $statuses,
-         'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($this->property->uuid)
+         'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($this->property->uuid),
+         'note_to_bill' => $noteToBill,
+        'units' => DeedOfSale::where('owner_uuid', $this->owner->uuid)->get(),
         ]);
     }
 }

@@ -74,7 +74,7 @@
 
                 <div>
                     <p class="text-right">
-                        <x-form-button></x-form-button>
+                        <x-button type="submit"></x-button>
                     </p>
                 </div>
 

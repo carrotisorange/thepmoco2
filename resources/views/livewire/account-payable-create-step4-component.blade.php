@@ -1,4 +1,5 @@
 <div>
+    @include('layouts.notifications')
     <div class="mt-5 px-4 sm:px-6 lg:px-8">
         <div class="flex justify-end">
             {{-- <button type="button"
@@ -190,17 +191,13 @@
                         Export 
                     </a>
 
-                    <button type="submit" wire:loading.remove
-                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                    <x-button type="submit" wire:loading.remove>
                         Confirm
-                    </button>
+                    </x-button>
 
-                    <button type="button" wire:loading disabled
-                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                    
-                    
+                    <x-button type="button" wire:loading disabled>
                         Loading...
-                    </button>
+                    </x-button>
 
                 </div>
 
@@ -208,5 +205,5 @@
         </form>
         {{-- end-step-1-form --}}
     </div>
-    @include('layouts.notifications')
+
 </div>

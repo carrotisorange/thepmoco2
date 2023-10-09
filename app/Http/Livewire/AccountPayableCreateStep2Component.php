@@ -15,7 +15,6 @@ use App\Models\User;
 
 class AccountPayableCreateStep2Component extends Component
 {
-    public $property;
     public $accountpayable;
 
     public $comment;
@@ -46,7 +45,8 @@ class AccountPayableCreateStep2Component extends Component
     {
         $this->validate();
 
-        app('App\Http\Controllers\AccountPayableController')->update_approval($this->accountpayable->id, 'approved by manager', $this->comment, $this->vendor);
+        app('App\Http\Controllers\RequestForPurchaseController')->update_approval($this->accountpayable->id,
+        'approved by manager', $this->comment, $this->vendor);
 
         if($this->accountpayable->approver2_id){
 
@@ -57,14 +57,15 @@ class AccountPayableCreateStep2Component extends Component
             Notification::route('mail', $second_approver)->notify(new SendAccountPayableStep3NotificationToAP($content));
         }
     
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-2')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-2')->with('success', 'Changes Saved!');
     }
 
     public function rejectRequest(){
         
         $this->validate();
 
-        app('App\Http\Controllers\AccountPayableController')->update_approval($this->accountpayable->id, 'rejected by manager', $this->comment, $this->vendor);
+        app('App\Http\Controllers\RequestForPurchaseController')->update_approval($this->accountpayable->id, 'rejected
+        by manager', $this->comment, $this->vendor);
 
         $content = $this->accountpayable;
 
@@ -72,7 +73,7 @@ class AccountPayableCreateStep2Component extends Component
 
         Notification::route('mail', $requester_email)->notify(new SendAccountPayableStep4NotificationToAdmin($content));
 
-        return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-2')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-2')->with('success', 'Changes Saved!');
     }
 
     public function render()

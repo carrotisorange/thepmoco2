@@ -16,8 +16,6 @@ use DB;
 class AccountPayableCreateStep7Component extends Component
 {
     public $accountpayable;
-    public $property;
-
     public $cash_advance;
     public $cv_number;
     public $total;
@@ -39,7 +37,7 @@ class AccountPayableCreateStep7Component extends Component
     public function mount($accountpayable){
         $this->total = AccountPayableLiquidationParticular::where('batch_no', $accountpayable->batch_no)->sum('total');
         $this->cash_advance = AccountPayableLiquidation::where('batch_no',  $accountpayable->batch_no)->pluck('cash_advance')->first();
-        $this->cv_number = sprintf('%08d', AccountPayable::where('property_uuid',$this->property->uuid)->where('status', '!=', 'pending')->count());
+        $this->cv_number = sprintf('%08d', AccountPayable::where('property_uuid',Session::get('property_uuid'))->where('status', '!=', 'pending')->count());
         $this->particulars = $this->get_particulars();
     }
 
@@ -64,7 +62,7 @@ class AccountPayableCreateStep7Component extends Component
 
               $this->particulars = $this->get_particulars();
 
-            session()->flash('success', 'Success!');
+            session()->flash('success', 'Changes Saved!');
 
         }catch(\Exception $e){
         
@@ -90,7 +88,7 @@ class AccountPayableCreateStep7Component extends Component
 
         Notification::route('mail', $requester_email)->notify(new SendAccountPayableStep4NotificationToAdmin($content));
 
-       return redirect('/property/'.$this->property->uuid.'/accountpayable/')->with('success', 'Success!');
+       return redirect('/property/'.Session::get('property_uuid').'/accountpayable/')->with('success', 'Changes Saved!');
     }
 
     public function render()

@@ -20,10 +20,7 @@ class OwnerCollectionController extends Controller
 {
     public function index(Property $property, owner $owner)
     {
-        return view('owners.collections.index',[
-          'owner' => Owner::find($owner->uuid),
-          'collections' => app('App\Http\Controllers\OwnerCollectionController')->get_owner_collections($property->uuid, $owner->uuid),
-        ]);
+
     }
 
     public function get_owner_collections($property_uuid, $owner_uuid){
@@ -62,9 +59,11 @@ class OwnerCollectionController extends Controller
 
      $folder_path = 'owners.collections.export';
 
-     $pdf = app('App\Http\Controllers\FileExportController')->generate_pdf($property, $data, $folder_path);
+     $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
 
-     return $pdf->stream($owner->owner.'-ar.pdf');
+    $pdf_name = str_replace(' ', '_', $property->property).'_AR_'.$collection->ar_no.'.pdf';
+
+     return $pdf->stream($pdf_name);
      }
 
      public function get_collection_data($owner, $collection)
@@ -101,10 +100,10 @@ class OwnerCollectionController extends Controller
     {
         Property::find($property->uuid)->collections()->where('owner_uuid', $owner->uuid)->where('is_posted', 0)->where('batch_no', '!=', $batch_no)->forceDelete();
 
-         $ar_no = app('App\Http\Controllers\AcknowledgementReceiptController')->get_latest_ar($property->uuid);
+         $ar_no = app('App\Http\Controllers\CollectionController')->getLatestAr($property->uuid);
 
          $counter = $this->get_selected_bills_count($batch_no);
-      
+
          for($i=0; $i< $counter; $i++)
          {
             $collection = (double) $request->input("collection_amount_".$i);
@@ -133,8 +132,8 @@ class OwnerCollectionController extends Controller
             }
          }
 
-         app('App\Http\Controllers\AcknowledgementReceiptController')
-         ->store( 
+         app('App\Http\Controllers\CollectionController')
+         ->storeAr(
                  '',
                   $owner->uuid,
                   Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->sum('collection'),
@@ -153,8 +152,8 @@ class OwnerCollectionController extends Controller
 
          app('App\Http\Controllers\PointController')->store($property->uuid, auth()->user()->id,
          Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);
-         
-         return redirect('/property/'.$property->uuid.'/owner/'.$owner->uuid.'/collections')->with('success','Success!');
+
+         return redirect('/property/'.$property->uuid.'/owner/'.$owner->uuid)->with('success','Changes Saved!');
 
     }
 

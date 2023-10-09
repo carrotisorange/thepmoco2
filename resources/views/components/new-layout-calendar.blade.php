@@ -53,7 +53,7 @@
 
                         <div class="shrink-0 flex items-center">
                             <a href="/property">
-                                <img class="h-24 w-15" src="{{ asset('/brands/full-logo.png') }}" />
+                                <img class="h-24 w-15" src="{{ asset('/brands/'.env('APP_LOGO')) }}" />
                             </a>
                         </div>
 

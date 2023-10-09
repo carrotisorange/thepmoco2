@@ -1,6 +1,6 @@
 
-	
-    
+
+
     <link rel="dns-prefetch" href="//unpkg.com" />
 	<link rel="dns-prefetch" href="//cdn.jsdelivr.net" />
 	<link rel="stylesheet" href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css">
@@ -12,11 +12,11 @@
 
 	<div x-data="app()" x-init="[initDate(), getNoOfDays()]" x-cloak>
 		<div class="container mx-auto px-4 py-2 md:py-10">
-			 
+
             <div class="grid grid-cols-3">
                 <div class="col-span-1">
 			        <div class="font-light underline text-gray-800 text-sm mb-4">
-				    < Go back to Unit</div>
+				     Go back to Unit</div>
                 </div>
 
                 <div class="col-span-1">
@@ -32,43 +32,43 @@
 
 
 			<div class="p-5 bg-white rounded-lg shadow overflow-hidden">
-            
+
 				<div class="flex items-center justify-between py-2 px-6">
 					<div>
 						<span x-text="MONTH_NAMES[month]" class="text-lg font-bold text-gray-800"></span>
 						<span x-text="year" class="ml-1 text-lg text-gray-600 font-normal"></span>
 					</div>
 					<div class="border rounded-lg px-1" style="padding-top: 2px;">
-						<button 
+						<button
 							type="button"
-							class="leading-none rounded-lg transition ease-in-out duration-100 inline-flex cursor-pointer hover:bg-gray-200 p-1 items-center" 
+							class="leading-none rounded-lg transition ease-in-out duration-100 inline-flex cursor-pointer hover:bg-gray-200 p-1 items-center"
 							:class="{'cursor-not-allowed opacity-25': month == 0 }"
 							:disabled="month == 0 ? true : false"
 							@click="month--; getNoOfDays()">
 							<svg class="h-6 w-6 text-gray-500 inline-flex leading-none"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-							</svg>  
+							</svg>
 						</button>
-						<div class="border-r inline-flex h-6"></div>		
-						<button 
+						<div class="border-r inline-flex h-6"></div>
+						<button
 							type="button"
-							class="leading-none rounded-lg transition ease-in-out duration-100 inline-flex items-center cursor-pointer hover:bg-gray-200 p-1" 
+							class="leading-none rounded-lg transition ease-in-out duration-100 inline-flex items-center cursor-pointer hover:bg-gray-200 p-1"
 							:class="{'cursor-not-allowed opacity-25': month == 11 }"
 							:disabled="month == 11 ? true : false"
 							@click="month++; getNoOfDays()">
 							<svg class="h-6 w-6 text-gray-500 inline-flex leading-none"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-							</svg>									  
+							</svg>
 						</button>
 					</div>
-				</div>	
+				</div>
 
 				<div class="-mx-1 -mb-1">
 					<div class="flex flex-wrap" style="margin-bottom: -40px;">
-						<template x-for="(day, index) in DAYS" :key="index">	
+						<template x-for="(day, index) in DAYS" :key="index">
 							<div style="width: 14.28%" class="px-2 py-2">
 								<div
-									x-text="day" 
+									x-text="day"
 									class="text-gray-600 text-sm uppercase tracking-wide font-bold text-center"></div>
 							</div>
 						</template>
@@ -76,26 +76,26 @@
 
 					<div class="flex flex-wrap border-t border-l">
 						<template x-for="blankday in blankdays">
-							<div 
+							<div
 								style="width: 14.28%; height: 120px"
-								class="text-center border-r border-b px-4 pt-2"	
+								class="text-center border-r border-b px-4 pt-2"
 							></div>
-						</template>	
-						<template x-for="(date, dateIndex) in no_of_days" :key="dateIndex">	
+						</template>
+						<template x-for="(date, dateIndex) in no_of_days" :key="dateIndex">
 							<div style="width: 14.28%; height: 120px" class="px-4 pt-2 border-r border-b relative">
 								<div
 									@click="showEventModal(date)"
 									x-text="date"
 									class="inline-flex w-6 h-6 items-center justify-center cursor-pointer text-center leading-none rounded-full transition ease-in-out duration-100"
-									:class="{'bg-blue-500 text-white': isToday(date) == true, 'text-gray-700 hover:bg-blue-200': isToday(date) == false }"	
+									:class="{'bg-blue-500 text-white': isToday(date) == true, 'text-gray-700 hover:bg-blue-200': isToday(date) == false }"
 								></div>
 								<div style="height: 80px;" class="overflow-y-auto mt-1">
-									<!-- <div 
+									<!-- <div
 										class="absolute top-0 right-0 mt-2 mr-2 inline-flex items-center justify-center rounded-full text-sm w-6 h-6 bg-gray-700 text-white leading-none"
 										x-show="events.filter(e => e.event_date === new Date(year, month, date).toDateString()).length"
 										x-text="events.filter(e => e.event_date === new Date(year, month, date).toDateString()).length"></div> -->
 
-									<template x-for="event in events.filter(e => new Date(e.event_date).toDateString() ===  new Date(year, month, date).toDateString() )">	
+									<template x-for="event in events.filter(e => new Date(e.event_date).toDateString() ===  new Date(year, month, date).toDateString() )">
 										<div
 											class="px-2 py-1 rounded-lg mt-1 overflow-hidden border"
 											:class="{
@@ -129,9 +129,9 @@
 				</div>
 
 				<div class="shadow w-full rounded-lg bg-white overflow-hidden w-full block p-8">
-					
+
 					<h2 class="font-bold text-2xl mb-6 text-gray-800 border-b pb-2">Unit #</h2>
-				 
+
 					<div class="mb-4">
 						<label class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Name</label>
 						<input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" type="text" x-model="event_title">
@@ -145,7 +145,7 @@
                     <div class="mb-4">
                     <label for="datepicker" class="font-bold mb-1 text-gray-700 block">Select Date</label>
                     <input type="hidden" name="date" x-ref="date">
-                      <input 
+                      <input
                           type="text"
                           readonly
                           x-model="datepickerValue"
@@ -162,21 +162,21 @@
 									<template x-for="(theme, index) in themes">
 										<option :value="theme.value" x-text="theme.label"></option>
 									</template>
-								
+
 							</select>
 							<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
 							<svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
 							</div>
 						</div>
 					</div>
- 
+
 					<div class="mt-8 text-right">
-						<button type="button" class="bg-white hover:bg-gray-100 text-gray-700 font-semibold py-2 px-4 border border-gray-300 rounded-lg shadow-sm mr-2" @click="openEventModal = !openEventModal">
+						<x-button type="button" class="bg-red-600 hover:bg-red-800 focus:ring-red-300 dark:focus:ring-red-800" @click="openEventModal = !openEventModal">
 							Cancel
-						</button>	
-						<button type="button" class="bg-gray-800 hover:bg-gray-700 text-white font-semibold py-2 px-4 border border-gray-700 rounded-lg shadow-sm" @click="addEvent()">
+						</x-button>
+						<x-button type="button"  @click="addEvent()">
 							Book
-						</button>	
+						</x-button>
 					</div>
 				</div>
 			</div>
@@ -301,7 +301,7 @@
 					for ( var i=1; i <= daysInMonth; i++) {
 						daysArray.push(i);
 					}
-					
+
 					this.blankdays = blankdaysArray;
 					this.no_of_days = daysArray;
 				}
@@ -313,7 +313,7 @@
     <div id="calendar-list" class="bg-white rounded-lg shadow-lg p-3 mt-12">
         <h2 class="font-semibold text-gray-900">Upcoming Reservations</h2>
         <ol class="mt-2 divide-y divide-gray-200 text-sm leading-6 text-gray-500">
-            
+
             <li class="py-4 sm:flex">
                 <time datetime="2022-01-19" class="w-28 flex-none">Thu, Jan 13</time>
                 <p class="ml-5 mt-2 flex-auto font-semibold text-gray-900 sm:mt-0">Guest name</p>
@@ -332,4 +332,3 @@
         </ol>
     </div>
 	</div>
- 

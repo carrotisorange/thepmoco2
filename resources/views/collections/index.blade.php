@@ -1,5 +1,4 @@
 <x-new-layout>
-    @section('title','Collections | '. Session::get('property'))
     {{-- @can('accountreceivable')
     @include('admin.restrictedpages.accountreceivable')
     @else --}}

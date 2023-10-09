@@ -14,7 +14,7 @@
                         @if($collectionsCount)
                         <p class="text-sm text-gray-500">You're about to create <b
                                 class="font-bold text-lg text-red-500">{{
-                                $collectionsCount }}</b> remittances 
+                                $collectionsCount }}</b> remittances
                             </b> You may still modify
                             these bills when you click
                             <b>CONFIRM
@@ -31,7 +31,7 @@
             <form wire:submit.prevent="storeRemittance">
             <div class="mt-5 sm:mt-6">
                 <label class="text-sm" for="">Specify the date</label>
-              
+
               <input type="date" wire:model="date"
                     class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="">
@@ -42,26 +42,23 @@
 
             <div class="mt-5 sm:mt-6">
                 @if($collectionsCount)
-                <button type="submit" wire:loading.remove
-                    class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
+                <x-button class="w-full" type="submit" wire:loading.remove>
                     Confirm
-                </button>
+                </x-button>
 
-                <button type="button" disabled wire:loading 
-                    class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
+                <x-button class="w-full" type="button" disabled wire:loading >
                     Loading...
-                </button>
+                </x-button>
                 @else
-                <button type="button" wire:click="redirectToOwnerPage"
-                    class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
+                <x-button class="w-full" type="button" wire:click="redirectToOwnerPage">
                     Add a collection
-                </button>
+                </x-button>
                 @endif
 
             </div>
 
         </form>
         </div>
-        
+
     </div>
 </x-modal-component>

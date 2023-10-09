@@ -1,4 +1,4 @@
 <div>
-    @include('forms.tenants.tenant-create')
     @include('layouts.notifications')
+    @include('forms.tenants.tenant-create')
 </div>

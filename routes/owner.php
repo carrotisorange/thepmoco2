@@ -6,13 +6,13 @@ use App\Http\Controllers\OwnerController;
 
 Route::prefix('{role_id:id}/owner/{user:username}')->group(function(){
     Route::controller(OwnerPortalController::class)->group(function () {
-        Route::get('/', 'index')->name('owner-dashboard');
-        Route::get('/units','show_units')->name('owner-units');
-        Route::get('/bills', 'show_bills')->name('owner-bills');
-        Route::get('/payments', 'show_payments')->name('owner-payments');
-        Route::get('/remittances', 'show_remittances')->name('owner-remittances');
-        Route::get('/concerns', 'show_concerns')->name('owner-concerns');
-        Route::get('/unit/{unit}/guests', 'show_guests')->name('owner-units');
+        Route::get('/', 'index')->name('dashboard');
+        Route::get('/unit','show_units')->name('unit');
+        Route::get('/bill', 'show_bills')->name('bill');
+        Route::get('/collection', 'show_payments')->name('collection');
+        Route::get('/remittance', 'show_remittances')->name('remittance');
+        Route::get('/concern', 'show_concerns')->name('concern');
+        Route::get('/unit/{unit}/guests', 'show_guests')->name('unit');
     });
 });
 

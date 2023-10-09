@@ -72,15 +72,13 @@
                     </div>
                 </div>
                 <p class="text-right">
-                    <button wire:click="submitForm()"
-                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+                    <x-button wire:click="submitForm()"
                         type="button">Confirm
-                    </button>
+                    </x-button>
 
                    
                 </p>
             </div>
         </div>
-        @include('layouts.notifications')
     </div>
 </div>

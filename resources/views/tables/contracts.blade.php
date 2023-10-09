@@ -142,10 +142,7 @@
                                     class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Moveout</a>
                                 @endif
                             </li>
-                            {{-- <li>
-                                <a href="/property/{{ $contract->property_uuid }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}/delete"
-                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Delete</a>
-                            </li> --}}
+                          
                         </ul>
                     </div>
                     @endcannot

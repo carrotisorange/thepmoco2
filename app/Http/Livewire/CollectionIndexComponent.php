@@ -7,57 +7,56 @@ use Session;
 use DB;
 use Carbon\Carbon;
 use App\Models\Collection;
+use App\Models\Property;
 
 class CollectionIndexComponent extends Component
 {
-    public $property;
     public $search = null;
     public $start = [];
     public $end = [];
 
-    public $date;
+    public $start_date;
+    public $end_date;
 
     public $form;
 
     public $bill_type;
 
     public function mount(){
-        $this->date = Carbon::now()->format('Y-m-d');
-    }
-
-    public function resetFilters()
-    {
-        $this->start = [];
-        $this->end = [];
+        $this->start_date = Carbon::now()->format('Y-m-d');
+        $this->end_date = Carbon::now()->format('Y-m-d');
     }
 
     public function render()
     {
         $collections = $this->get_ars();
 
-        $mode_of_payments = Collection::where('property_uuid', $this->property->uuid)
+        $mode_of_payments = Collection::where('property_uuid', Session::get('property_uuid'))
         ->groupBy('form')
         ->get();
 
+        $propertyCollectionsCount = Property::find(Session::get('property_uuid'))->collections->count();
+
         return view('livewire.collection-index-component',[
             'collections' => $collections,
-            'mode_of_payments' => $mode_of_payments
+            'mode_of_payments' => $mode_of_payments,
+            'propertyCollectionsCount' => $propertyCollectionsCount
 
         ]);
     }
 
     public function exportDCR(){
-        return redirect('/property/'.$this->property->uuid .'/dcr/'.$this->date);
+        return redirect('/property/'.Session::get('property_uuid') .'/dcr/'.$this->start_date.'/'.$this->end_date);
     }
 
     public function get_ars()
     {
         return Collection::search($this->search)
         ->select('*', DB::raw("SUM(collection) as collections"),DB::raw("count(collection) as count") )
-        ->where('property_uuid', $this->property->uuid)
-        ->when($this->start, function($query){
-            $query->whereDate('updated_at', $this->start);
-        })
+        ->where('property_uuid', Session::get('property_uuid'))
+        // ->when($this->start, function($query){
+        ->whereBetween('created_at', [$this->start_date, $this->end_date])
+        // })
          ->when($this->form, function($query){
          $query->where('form', $this->form);
          })
@@ -70,6 +69,6 @@ class CollectionIndexComponent extends Component
         ->posted()
         ->groupBy('ar_no')
         ->orderBy('ar_no', 'desc')
-        ->paginate(10);
+        ->get();
     }
 }

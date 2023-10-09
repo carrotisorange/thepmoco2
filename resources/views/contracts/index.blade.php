@@ -1,5 +1,4 @@
 <x-new-layout>
-    @section('title','Contracts | '. Session::get('property'))
     {{-- @can('contract')
     @include('admin.restrictedpages.contract')
     @else --}}

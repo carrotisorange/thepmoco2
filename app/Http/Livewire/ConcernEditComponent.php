@@ -89,7 +89,7 @@ class ConcernEditComponent extends Component
     public function submitForm()
     {
         sleep(2);
-       
+
         $validatedData = $this->validate();
 
        try{
@@ -98,7 +98,7 @@ class ConcernEditComponent extends Component
         {
           $validatedData['action_taken_image'] = $this->action_taken_image->store('concerns');
         }
-    
+
         DB::transaction(function () use ($validatedData){
             $this->concern_details->update($validatedData);
         });
@@ -117,8 +117,8 @@ class ConcernEditComponent extends Component
     //    }
 
         app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'),auth()->user()->id,'updates', 13);
-        
-        session()->flash('success', 'Success!');
+
+        session()->flash('success', 'Changes Saved!');
 
        }catch(\Exception $e){
             return back()->with('error',$e);
@@ -130,9 +130,9 @@ class ConcernEditComponent extends Component
         if(auth()->user()->role_id === 8){
             $users = '';
         }else{
-            $users = app('App\Http\Controllers\UserPropertyController')->get_property_users(Session::get('property_uuid'));
+            $users = app('App\Http\Controllers\UserPropertyController')->getPersonnels(Session::get('property_uuid'));
         }
-        
+
 
         return view('livewire.concern-edit-component',[
             'categories' => ConcernCategory::all(),

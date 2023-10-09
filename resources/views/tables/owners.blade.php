@@ -19,10 +19,12 @@
             <?php $deed_of_sales = App\Models\DeedOfSale::where('owner_uuid', $owner->uuid)->get(); ?>
         
             @if($deed_of_sales->count())
+        
             @foreach ($deed_of_sales->take(1) as $item)
+            <?php $unit = App\Models\Unit::where('uuid', $item->unit_uuid) ;?>
             <a class="text-blue-500 text-decoration-line: underline"
-                href="/property/{{ $item->unit->property_uuid }}/unit/{{ $item->unit->uuid }}">
-                {{ $item->unit->unit }}</a>
+                href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->pluck('uuid')->first() }}">
+                {{$unit->pluck('unit')->first() }}</a>
             @endforeach
             @else
             NA

@@ -1,5 +1,4 @@
 <x-new-layout>
-    @section('title','Bills | '. Session::get('property'))
     {{-- @can('accountreceivable')
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex min-h-full flex-col bg-white lg:relative">

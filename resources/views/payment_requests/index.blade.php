@@ -1,5 +1,4 @@
 <x-new-layout>
-    @section('title','Payment Requests | '. Session::get('property'))
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
             <div>
@@ -9,18 +8,14 @@
                     </div>
                     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
 
-                        <button type="button"
-                            onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/pending'"
-                            class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-                            Show Pending</button>
+                        <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/{{ 'pending' }}'">
+                            Show Pending</x-button>
 
-                            <button type="button" onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/approved'"
-                                class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-                                Show Approved</button>
+                            <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/{{ 'approved' }}'">
+                                Show Approved</x-button>
 
-                                <button type="button" onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/declined'"
-                                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-                                    Show Declined</button>
+                                <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/{{ 'declined' }}'">
+                                    Show Declined</x-button>
 
                     </div>
                 </div>
@@ -41,37 +36,29 @@
                             <table class="min-w-full table-fixed">
                                 <thead class="">
                                     <tr>
-                                        <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
-                                                        #</th>
+                                        <x-th>
+                                                        #</x-th>
 
-                                        <th scope="col"
-                                            class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
-                                            TENANT</th>
-                                        <th scope="col"
-                                            class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
-                                            BILL #</th>
+                                        <x-th>
+                                            TENANT</x-th>
+                                        <x-th>
+                                            BILL #</x-th>
 
-                                        <th scope="col"
-                                            class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
-                                            DATE UPLOADED</th>
-                                        <th scope="col"
-                                            class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
-                                            DATE APPROVED</th>
-                                        <th scope="col"
-                                            class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
-                                            AMOUNT</th>
-                                        <th scope="col"
-                                            class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
-                                            MODE OF PAYMENT</th>
-                                        
-                                        <th scope="col"
-                                            class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
-                                            STATUS</th>
-                                            <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
-                                                REMARKS</th>
-                                        <th scope="col"
-                                            class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
-                                            </th>
+                                        <x-th>
+                                            DATE UPLOADED</x-th>
+                                        <x-th>
+                                            DATE APPROVED</x-th>
+                                        <x-th>
+                                            AMOUNT</x-th>
+                                        <x-th>
+                                            MODE OF PAYMENT</x-th>
+
+                                        <x-th>
+                                            STATUS</x-th>
+                                            <x-th>
+                                                REMARKS</x-th>
+                                        <x-th>
+                                            </x-th>
 
 
                                     </tr>
@@ -82,49 +69,49 @@
                                     <!-- Selected: "bg-gray-50" -->
                                     @forelse($requests as $index => $item )
                                     <tr>
-                                        <td>
+                                        <x-td>
                                            {{ $index+1 }}
-                                        </td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                       </x-td>
+                                       <x-td>
                                             <a title="tenant" target="_blank" class="text-blue-500 text-decoration-line: underline"
                                                 href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}">
-                                                {{ Str::limit($item->tenant,20) }} </a> 
-                                        </td>
+                                                {{ Str::limit($item->tenant,20) }} </a>
+                                       </x-td>
 
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                       <x-td>
                                             {{ $item->bill_nos }}
-                                        </td>
+                                       </x-td>
                                         <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
 
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                       <x-td>
                                             {{ Carbon\Carbon::parse($item->date_uploaded)->format('M d, Y') }}
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                       <x-td>
                                             @if($item->date_approved)
                                             {{ Carbon\Carbon::parse($item->date_approved)->format('M d, Y') }}
                                                 @else
                                             NA
                                             @endif
-                                        </td>
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                       </x-td>
+                                       <x-td>
                                             {{ number_format($item->amount, 2) }}
-                                        </td>
+                                       </x-td>
 
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                       <x-td>
                                             {{ $item->mode_of_payment }}
-                                        </td>
+                                       </x-td>
 
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                       <x-td>
                                             {{ $item->payment_status }}
-                                        </td>
+                                       </x-td>
 
-                                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                       <x-td>
                                             @if($item->reason_for_rejection)
                                                 {{ $item->reason_for_rejection }}
                                             @else
                                                 NA
                                             @endif
-                                           
-                                        </td>
+
+                                       </x-td>
 
                                         <td
                                             class="whitespace-nowrap px-3 py-4 text-sm text-blue-500 text-decoration-line: underline">
@@ -134,17 +121,17 @@
                                                 Review
                                             </a>
                                            @endif
-                                        </td>
+                                       </x-td>
 
 
 
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td class="whitespace-nowrap py-4 pr-4 text-right text-sm font-medium sm:pr-6">
+                                        <x-td >
                                             No
                                             data
-                                            found.</td>
+                                            found.</x-td>
                                     </tr>
                                     @endforelse
 

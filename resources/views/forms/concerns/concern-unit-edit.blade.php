@@ -156,8 +156,8 @@
                             <label for="concern" class="block text-sm font-medium text-gray-700"> Details of the concern
                             </label>
                             <div class="mt-1">
-                                <textarea id="concern" wire:model="concern" rows="3"
-                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-700 rounded-md">
+                                <textarea id="concern" wire:model="concern" rows="20"
+                                    class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block h-96 w-full sm:text-sm border border-gray-700 rounded-md">
                                         {{ $concern_details->concern }}
                                         </textarea>
                                 @error('concern')
@@ -278,16 +278,13 @@
                 </div>
 
                 <div class="flex justify-end">
-                    <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-                        href="/property/{{ Session::get('property_uuid') }}/concern">
+                    <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/concern'">
                         Cancel
-                    </a>
-                    <button type="submit"
-                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-
-
+                    </x-button>
+                    
+                    <x-button type="submit">
                         Update
-                    </button>
+                    </x-button>
                 </div>
             </div>
 

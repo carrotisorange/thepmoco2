@@ -1,5 +1,4 @@
 <x-new-layout>
-    @section('title','Step 1 of 7 | Request for Payables')
     @section('styles')
     <style>
         input::-webkit-outer-spin-button,
@@ -14,7 +13,7 @@
         <div class="lg:border-t lg:border-b lg:border-gray-200">
             <nav class="mx-auto max-w-9xl px-4 sm:px-6 lg:px-8" aria-label="Progress">
                 <ol role="list" class="overflow-hidden rounded-md lg:flex lg:rounded-none lg:border-l lg:border-r lg:border-gray-200">
-                    
+
                     <!-- Step 1 -->
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="border border-gray-200 overflow-hidden border-b-0 rounded-t-md lg:border-0">
@@ -27,7 +26,7 @@
                                             <span class="text-purple-600">01</span>
                                         </span>
                                     </span>
-                                    
+
                                     <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
                                         <span class="text-xs font-medium text-purple-600">Step 1:</span>
                                         <span class="text-xs font-medium text-gray-500">Internal Document</span>
@@ -36,8 +35,8 @@
                             </a>
                         </div>
                     </li>
-                   
-                        
+
+
                     <!-- Step 2 -->
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="border border-gray-200 overflow-hidden border-t-0 rounded-b-md lg:border-0">
@@ -51,14 +50,14 @@
                                         </span>
                                     </span>
 
-              
+
                                     <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
                                         <span class="text-xs font-medium text-gray-500">Step 2:</span>
                                         <span class="text-xs font-medium text-gray-500">Approval (Manager)</span>
                                     </span>
                                 </span>
                             </a>
-                                        
+
                             <!-- Separator -->
                             <div class="absolute inset-0 top-0 left-0 hidden w-3 lg:block" aria-hidden="true">
                                 <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none" preserveAspectRatio="none">
@@ -81,14 +80,14 @@
                                         </span>
                                     </span>
 
-              
+
                                     <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
                                         <span class="text-xs font-medium text-gray-500">Step 3:</span>
                                         <span class="text-xs font-medium text-gray-500">Approval (account payable)</span>
                                     </span>
                                 </span>
                             </a>
-                                        
+
                             <!-- Separator -->
                             <div class="absolute inset-0 top-0 left-0 hidden w-3 lg:block" aria-hidden="true">
                                 <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none" preserveAspectRatio="none">
@@ -111,14 +110,14 @@
                                         </span>
                                     </span>
 
-              
+
                                     <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
                                         <span class="text-xs font-medium text-gray-500">Step 4:</span>
                                         <span class="text-xs font-medium text-gray-500">Payment</span>
                                     </span>
                                 </span>
                             </a>
-                                        
+
                             <!-- Separator -->
                             <div class="absolute inset-0 top-0 left-0 hidden w-3 lg:block" aria-hidden="true">
                                 <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none" preserveAspectRatio="none">
@@ -141,14 +140,14 @@
                                         </span>
                                     </span>
 
-              
+
                                     <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
                                         <span class="text-xs font-medium text-gray-500">Step 5:</span>
                                         <span class="text-xs font-medium text-gray-500">Liquidation</span>
                                     </span>
                                 </span>
                             </a>
-                                        
+
                             <!-- Separator -->
                             <div class="absolute inset-0 top-0 left-0 hidden w-3 lg:block" aria-hidden="true">
                                 <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none" preserveAspectRatio="none">
@@ -171,14 +170,14 @@
                                         </span>
                                     </span>
 
-              
+
                                     <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
                                         <span class="text-xs font-medium text-gray-500">Step 6:</span>
                                         <span class="text-xs font-medium text-gray-500">Approval (manager)</span>
                                     </span>
                                 </span>
                             </a>
-                                        
+
                             <!-- Separator -->
                             <div class="absolute inset-0 top-0 left-0 hidden w-3 lg:block" aria-hidden="true">
                                 <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none" preserveAspectRatio="none">
@@ -201,14 +200,14 @@
                                         </span>
                                     </span>
 
-              
+
                                     <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
                                         <span class="text-xs font-medium text-gray-500">Step 7:</span>
                                         <span class="text-xs font-medium text-gray-500">Chart of Account (account payable)</span>
                                     </span>
                                 </span>
                             </a>
-                                        
+
                             <!-- Separator -->
                             <div class="absolute inset-0 top-0 left-0 hidden w-3 lg:block" aria-hidden="true">
                                 <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none" preserveAspectRatio="none">
@@ -220,7 +219,7 @@
                 </ol>
             </nav>
         </div>
-        
+
         @livewire('account-payable-create-step1-component',['property' => $property, 'accountpayable' => $accountpayable])
     </div>
 </x-new-layout>

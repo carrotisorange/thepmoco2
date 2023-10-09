@@ -38,9 +38,9 @@
         }
 
         p,
-            {
-            margin-right: 50px;
-            margin-left: 50px;
+        {
+        margin-right: 50px;
+        margin-left: 50px;
         }
 
         table,
@@ -76,7 +76,7 @@
             For inquiries reach us at: {{ $property->email }} /
             {{ $property->mobile }}
         </h5>--}}
-        The PMO Co. Copyright &copy;
+      &copy; 2020 {{ env('APP_NAME') }}. All rights reserved.
         <?php echo date("Y");?>
     </footer>
 
@@ -99,7 +99,7 @@
                 <th>
                     Personnels</td>
                 <td> {{
-                    App\Http\Controllers\UserPropertyController::get_property_users($data->uuid,auth()->user()->id)->count()}}
+                    App\Http\Controllers\UserPropertyController::getPersonnels($data->uuid,auth()->user()->id)->count()}}
                 </td>
             </tr>
             <tr>
@@ -193,7 +193,7 @@
                 </th>
 
                 @if($data->bills->count())
-                <?php $collection_efficiency = 
+                <?php $collection_efficiency =
                     $data->collections->sum('collection') / $data->bills->sum('bill'); ?>
                 @else
                 <?php $collection_efficiency = 0;?>
@@ -208,82 +208,82 @@
                 <th>
                     Past Due Accounts
                 </th>
-              
+
                 <td>
                     {{ $data->bills->whereIn('status', ['unpaid',
                     'partially_paid'])->count() -
                     $data->bills->whereIn('status', ['unpaid',
                     'partially_paid'])->count() }}
                 </td>
-            
+
             </tr>
-          <tr>
+            <tr>
                 <th>
                     Contracts
                 </th>
-               
+
                 <td>
                     {{ $data->contracts->count() }}
                 </td>
-              
+
             </tr>
             <tr>
                 <th>
                     Active Contracts
                 </th>
-                
+
                 <td>
                     {{ $data->contracts->where('status','active')->count() }}
                 </td>
-             
+
             </tr>
-            
+
             <tr>
                 <th>
                     Expiring Contracts
                 </th>
-             
+
                 <td>
                     {{ $data->contracts->where('status','inactive')->count() }}
                 </td>
-                
+
             </tr>
             <tr>
                 <th>
                     Expired Contracts
                 </th>
-               
+
                 <td>
                     {{ $data->contracts->where('status','inactive')->count() }} </td>
-              
+
             </tr>
             <tr>
                 <th>
                     Received Concerns
                 </th>
-          
+
                 <td>
                     {{ $data->concerns->count() }}
                 </td>
-             
+
             </tr>
             <tr>
                 <th>
                     Pending Concerns
                 </th>
-            
+
                 <td>
                     {{ $data->concerns->where('status','pending')->count() }} </td>
-              
+
             </tr>
             <tr>
                 <th>
                     Closed Concerns
                 </th>
-     
+
                 <td>
                     {{ $data->concerns->where('status','closed')->count() }} </td>
-             
+
             </tr>
         </table>
 

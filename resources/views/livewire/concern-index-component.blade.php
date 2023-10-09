@@ -1,4 +1,5 @@
 <div>
+    @include('layouts.notifications')
     <style>
         /* since nested groupes are not supported we have to use 
                                  regular css for the nested dropdowns 
@@ -38,12 +39,14 @@
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
-                <h1 class="text-3xl font-bold text-gray-700">Concerns</h1>
+                <h1 class="text-3xl font-bold text-gray-700">
+                      {{ucfirst(Route::current()->getName())}}
+                </h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
 
                 <div class="group inline-block">
-                    <button
+                    <x-button
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                         <span class="pr-1 font-semibold flex-1"> New concern</span>
                         <span>
@@ -53,7 +56,7 @@
                                 <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                             </svg>
                         </span>
-                    </button>
+                    </x-button>
 
                     <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
                                       transition duration-150 ease-in-out origin-top min-w-32">
@@ -80,39 +83,39 @@
                 <div class="mt-3">
                     {{ $concerns->links() }}
                 </div>
+                @if($propertyConcernsCount)
                 <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                    <div class="sm:col-span-4">
-
-                        <label for="default-search"
-                            class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
-                        <div class="relative w-full mb-5">
-                            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none"
-                                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                                </svg>
-                            </div>
-                            <input type="search" id="default-search" wire:model="search"
-                                class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Search for reference no" required>
-
+                   <div class="sm:col-span-6">
+                
+                    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
+                    <div class="relative w-full mb-5">
+                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
+                            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
                         </div>
-
+                        <input type="search" id="search" wire:model="search"
+                            class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Search for reference no..." required>
+                
                     </div>
+                
+                </div>
 
                     <div class="sm:col-span-2">
-                        <select id="small" wire:model="status"
-                            class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                        <x-select id="small" name="status" wire:model="status">
                             <option value="">Filter status</option>
                             @foreach ($statuses as $item)
                             <option value="{{ $item->status }}">{{ $item->status }}</option>
                             @endforeach
-                        </select>
+                        </x-select>
 
                     </div>
 
                 </div>
+                @endif
                 <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
 
 
@@ -132,7 +135,7 @@
                             <p class="mt-1 text-sm text-gray-500">Get started by creating a new concern</p>
                             <div class="mt-6">
                                 <div class="group inline-block">
-                                    <button
+                                    <x-button
                                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                         <span class="pr-1 font-semibold flex-1"> New concern</span>
                                         <span>
@@ -143,7 +146,7 @@
                                                     d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                                             </svg>
                                         </span>
-                                    </button>
+                                    </x-button>
 
                                     <ul
                                         class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 

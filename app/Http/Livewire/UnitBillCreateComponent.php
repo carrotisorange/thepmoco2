@@ -12,7 +12,6 @@ use App\Models\Owner;
 
 class UnitBillCreateComponent extends Component
 {
-    public $property;
     public $unit;
     public $type;
     public $utility;
@@ -79,8 +78,8 @@ class UnitBillCreateComponent extends Component
             ]
         );
 
-         return redirect('/property/'.$this->property->uuid.'/unit/'.$this->unit->uuid.'/bills')->with('success', 'The bill is successfully posted');
-        // return redirect('/property/'.$this->property->uuid.'/unit/'.$this->unit->uuid.'/'.$this->type.'/utility/'.$this->utility->id.'/success')->with('success', 'Success!');
+         return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/bills')->with('success', 'The bill is successfully posted');
+        // return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/'.$this->type.'/utility/'.$this->utility->id.'/success')->with('success', 'Changes Saved!');
 
         // return back()->with('success');
 

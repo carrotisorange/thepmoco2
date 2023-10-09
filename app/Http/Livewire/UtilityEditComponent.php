@@ -28,17 +28,11 @@ class UtilityEditComponent extends Component
 
     public $batch_no;
 
-    public $property_uuid;
-
-
-
     public function mount($batch_no, $option)
     {
         $this->batch_no = $batch_no;
 
         $this->option = $option;
-
-        $this->property_uuid = Session::get('property_uuid');
 
         $this->utilities = $this->get_utilities();
 
@@ -67,11 +61,11 @@ class UtilityEditComponent extends Component
 
     public function returnToUtilitiesPage(){
         
-        Utility::where('property_uuid', $this->property_uuid)
+        Utility::where('property_uuid', Session::get('property_uuid'))
         ->where('batch_no', $this->batch_no)
         ->delete();
 
-        return redirect('/property/'.$this->property_uuid.'/utilities')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/utilities')->with('success', 'Changes Saved!');
     }
     
     public function updateUtilities($id)
@@ -93,7 +87,7 @@ class UtilityEditComponent extends Component
 
                     $this->utilities = $this->get_utilities();
 
-                     session()->flash('success', 'Success!');
+                     session()->flash('success', 'Changes Saved!');
                 }
             // });
 
@@ -106,7 +100,7 @@ class UtilityEditComponent extends Component
 
     public function get_utilities(){
      
-        return Utility::where('utilities.property_uuid', $this->property_uuid)
+        return Utility::where('utilities.property_uuid', Session::get('property_uuid'))
         ->join('units', 'utilities.unit_uuid', 'units.uuid')
         ->where('utilities.batch_no', $this->batch_no)
         ->orderByRaw('LENGTH(unit) ASC')->orderBy('unit', 'asc')
@@ -118,29 +112,31 @@ class UtilityEditComponent extends Component
         
 
        // update utility status
-        Utility::where('property_uuid', $this->property_uuid)
+        Utility::where('property_uuid', Session::get('property_uuid'))
         ->where('batch_no', $this->batch_no)
         ->update([
             'is_posted' => true
         ]);
 
         //store utility parameters
-         app('App\Http\Controllers\UtilityParameterController')->store($this->batch_no, $this->property_uuid, $this->start_date, $this->end_date, $this->option, $this->kwh, $this->min_charge);
+         app('App\Http\Controllers\UtilityParameterController')->store($this->batch_no, Session::get('property_uuid'),
+         $this->start_date, $this->end_date, $this->option, $this->kwh, $this->min_charge);
         
         //store the previous utility reading to unit
          foreach ($this->utilities as $utility) {
             $this->update_unit($this->option, $utility->unit_uuid, $utility->current_reading);
          }
 
-        return redirect('/property/'.$this->property_uuid.'/utilities')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/utilities')->with('success', 'Changes Saved!');
 
     }
 
     public function store_bill($unit_uuid, $option, $start_date, $end_date, $total_amount_due, $batch_no){
         if($option === 'electric'){
-            app('App\Http\Controllers\BillController')->store($this->property_uuid, $unit_uuid, '',6, $start_date, $end_date, $total_amount_due, $batch_no, 0);
+            app('App\Http\Controllers\BillController')->store(Session::get('property_uuid'), $unit_uuid, '',6, $start_date, $end_date, $total_amount_due, $batch_no, 0);
         }else{  
-           app('App\Http\Controllers\BillController')->store($this->property_uuid, $unit_uuid, '' ,5, $start_date, $end_date, $total_amount_due, $batch_no, 0);
+           app('App\Http\Controllers\BillController')->store(Session::get('property_uuid'), $unit_uuid, '' ,5,
+           $start_date, $end_date, $total_amount_due, $batch_no, 0);
         }
     }
 

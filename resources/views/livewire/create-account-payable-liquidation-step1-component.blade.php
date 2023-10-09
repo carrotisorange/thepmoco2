@@ -1,4 +1,5 @@
 <div>
+    @include('layouts.notifications')
     @section('styles')
     <style>
         input::-webkit-outer-spin-button,
@@ -225,8 +226,6 @@
                                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                         Remove
                                     </button>
-                                  
-                                    @include('layouts.notifications')
                                 </x-td>
 
                             </tr>
@@ -325,15 +324,13 @@
 
             <div>
                 <p class="mt-5 px-6 text-right">
-                    <button type="button"
-                        onclick="window.location.href='/property/{{ $property->uuid }}/accountpayable'"
-                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                    <x-button type="button"
+                        onclick="window.location.href='/property/{{ $property->uuid }}/accountpayable'">
                         Cancel
-                    </button>
-                    <button type="button" wire:click="storeAccountPayableLiquidation"
-                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                    </x-button>
+                    <x-button type="button" wire:click="storeAccountPayableLiquidation">
                         Next
-                    </button>
+                    </x-button>
 
                   
                 </p>

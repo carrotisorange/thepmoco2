@@ -1,4 +1,5 @@
 <div>
+    @include('layouts.notifications')
     <div class="bg-white">
         <main class="lg:min-h-screen lg:overflow-hidden lg:flex lg:flex-row-reverse">
             <h1 class="sr-only">Checkout</h1>

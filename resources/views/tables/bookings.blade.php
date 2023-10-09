@@ -17,7 +17,6 @@
 
     <tbody class="bg-white divide-y divide-gray-200">
         @foreach ($bookings as $index => $booking)
-
         <tr>
             <x-td>{{ $index+1 }}</x-td>
             {{-- <x-td>{{ Str::limit($booking->uuid, 10) }}</x-td> --}}
@@ -38,12 +37,11 @@
                 @endif
             </x-td>
             <x-td>
-                <button data-modal-target="edit-booking-modal-{{$booking->uuid}}"
+                <x-button data-modal-target="edit-booking-modal-{{$booking->uuid}}"
                     data-modal-toggle="edit-booking-modal-{{$booking->uuid}}"
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
                     type="button">
                     Edit
-                </button>
+                </x-button>
             </x-td>
         </tr>
         <!-- Main modal -->

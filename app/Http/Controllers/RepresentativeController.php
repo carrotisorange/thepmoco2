@@ -95,6 +95,6 @@ class RepresentativeController extends Controller
         $guardian = Representative::where('id', $id);
         $guardian->delete();
 
-        return back()->with('success', 'Success!');
+        return back()->with('success', 'Changes Saved!');
     }
 }

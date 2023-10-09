@@ -109,7 +109,7 @@ class EditDeedofsaleComponent extends Component
         DeedOfSale::where('uuid', $this->deedofsale->uuid)
         ->update($validated);
 
-        return redirect(url()->previous())->with('success', 'Success!');
+        return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 
 

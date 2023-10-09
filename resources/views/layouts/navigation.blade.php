@@ -54,7 +54,7 @@
 
                 @can('billing')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="/property/{{ Session::get('property_uuid') }}/bill"
+                    <x-nav-link href="/property/{{ Session::get('property_uuid') }}/bill/{{ 'property' }}/{{ Session::get('property_uuid') }}"
                         :active="request()->routeIs('bill')">
                         <i class="fa-solid fa-file-invoice-dollar"></i>&nbspBill
                     </x-nav-link>
@@ -197,7 +197,7 @@
             @endcan
 
             @can('billing')
-            <x-responsive-nav-link href="/property/{{ Session::get('property_uuid') }}/bill"
+            <x-responsive-nav-link href="/property/{{ Session::get('property_uuid') }}/bill/{{ 'property' }}/{{ Session::get('property_uuid') }}"
                 :active="request()->routeIs('bill')">
                 <i class="fa-solid fa-file-invoice-dollar"></i>&nbspBill
             </x-responsive-nav-link>

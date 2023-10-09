@@ -16,7 +16,6 @@ use App\Models\Booking;
 
 class BookingEditComponent extends Component
 {
-    public $property;
     public $guest_details;
     public $booking_details;
 
@@ -65,7 +64,7 @@ class BookingEditComponent extends Component
             DB::transaction(function () use ($validatedData){
                 $this->guest_details->update($validatedData);
 
-                session()->flash('success', 'Success!');
+                session()->flash('success', 'Changes Saved!');
             });
             
         }catch(\Exception $e){
@@ -78,7 +77,7 @@ class BookingEditComponent extends Component
         
 
         if(!$this->additional_guest){
-            return redirect('/property/'.$this->property->uuid.'/guest/'.$this->guest_details->uuid)->with('error', 'Error!');
+            return redirect('/property/'.Session::get('property_uuid').'/guest/'.$this->guest_details->uuid)->with('error', 'Error!');
         }
 
         AdditionalGuest::create([
@@ -89,13 +88,13 @@ class BookingEditComponent extends Component
             'guest_uuid' => $this->guest_details->uuid
         ]);
 
-          return redirect('/property/'.$this->property->uuid.'/guest/'.$this->guest_details->uuid)->with('success', 'Success!');
+          return redirect('/property/'.Session::get('property_uuid').'/guest/'.$this->guest_details->uuid)->with('success', 'Changes Saved!');
     }
 
     public function render()
     {
         return view('livewire.booking-edit-component',[
-            'units' => Property::find($this->property->uuid)->units,
+            'units' => Property::find(Session::get('property_uuid'))->units,
             'bills' => Guest::find($this->guest_details->uuid)->bills,
             'collections' => AcknowledgementReceipt::where('guest_uuid', $this->guest_details->uuid)->orderBy('id','desc')->paginate(5),
             'additional_guests' => AdditionalGuest::where('guest_uuid', $this->guest_details->uuid)->get(),

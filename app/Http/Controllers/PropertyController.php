@@ -27,9 +27,9 @@ use App\Models\City;
 use App\Models\Barangay;
 
 class PropertyController extends Controller
-{   
+{
     public function index()
-    {        
+    {
         $this->destroy_property_session();
 
         $this->is_user_allowed_to_access(auth()->user()->status);
@@ -45,22 +45,22 @@ class PropertyController extends Controller
         $tenant = '8';
 
         $owner = '7';
-        
+
         if($current_user_role_id == $sales)
         {
-            return redirect('/dashboard/sales');
+            return redirect($current_user_role_id.'/sale/'.$current_user_username.'/signup');
         }
         elseif($current_user_role_id == $dev)
-        {   
+        {
            return redirect('/dashboard/dev');
         }
         elseif($current_user_role_id == $tenant)
         {
-            return redirect($current_user_role_id.'/tenant/'.$current_user_username.'/contracts');
+            return redirect($current_user_role_id.'/tenant/'.$current_user_username.'/contract');
         }
         elseif($current_user_role_id == $owner)
         {
-            return redirect($current_user_role_id.'/owner/'.$current_user_username.'/units');
+            return redirect($current_user_role_id.'/owner/'.$current_user_username.'/unit');
         }
         elseif($current_user_role_id != ['12', '10', '8', '7'])
         {
@@ -71,18 +71,17 @@ class PropertyController extends Controller
     public function create($random_str)
     {
         // $this->authorize('is_portfolio_create_allowed');
-        
+
         return view('properties.create', [
             'random_str' => $random_str,
             'types' => Type::all(),
         ]);
     }
 
-   
+
     public function store($validatedData)
     {
          $validatedData['uuid'] = Str::uuid();
-
          $validatedData['mobile'] = auth()->user()->mobile;
          $validatedData['email'] = auth()->user()->email;
 
@@ -126,7 +125,7 @@ class PropertyController extends Controller
              ->whereBetween('created_at', [$start, $end])
              ->orderBy('created_at')
              ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-           
+
              ->pluck('month_year');
         }elseif($value == '90_days')
         {
@@ -140,7 +139,7 @@ class PropertyController extends Controller
              ->whereBetween('created_at', [$start, $end])
              ->orderBy('created_at')
              ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-           
+
              ->pluck('month_year');
         }else{
             $occupancy_dates = UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'),
@@ -155,7 +154,7 @@ class PropertyController extends Controller
         }
 
         return $occupancy_dates;
-       
+
     }
 
     public function get_occupancy_rate_values($value)
@@ -201,7 +200,7 @@ class PropertyController extends Controller
 
     }
 
-    public function get_current_occupancy_rate($property_uuid)
+    public function getOccupancyRate($property_uuid)
     {
         return UnitStats::select(DB::raw('(occupied/total)*100 as occupancy_rate'),
         DB::raw('MAX(occupied)'), DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
@@ -212,22 +211,22 @@ class PropertyController extends Controller
         ->last();
     }
 
-    public function get_collection_rate_dates($value)
+    public function get_collection_rate_dates()
     {
-        return AcknowledgementReceipt::select(DB::raw("(sum(amount)) as total_amount"), DB::raw("(DATE_FORMAT(created_at,
-        '%M %Y')) as month_year"))
+        return Collection::select(DB::raw("(sum(collection)) as total_amount"), DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
         ->where('property_uuid', Session::get('property_uuid'))
+        ->posted()
         ->orderBy('created_at')
         ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
          ->whereYear('created_at', Carbon::now()->format('Y'))
         ->pluck('month_year');
     }
 
-    public function get_collection_rate_values($value)
+    public function get_collection_rate_values()
     {
-        return AcknowledgementReceipt::select(DB::raw("(sum(amount)) as total_amount"),
-        DB::raw("(DATE_FORMAT(created_at,
-        '%M %Y')) as month_year"))
+        return Collection::select(DB::raw("(sum(collection)) as total_amount"),
+        DB::raw("(DATE_FORMAT(created_at,'%M %Y')) as month_year"))
+        ->posted()
         ->where('property_uuid', Session::get('property_uuid'))
         ->orderBy('created_at')
         ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
@@ -235,7 +234,7 @@ class PropertyController extends Controller
         ->pluck('total_amount');
     }
 
-    public function get_expense_rate_values($value)
+    public function get_expense_rate_values()
     {
         return AccountPayable::select(DB::raw("(sum(amount)) as total_amount"),
         DB::raw("(DATE_FORMAT(updated_at,
@@ -265,7 +264,7 @@ class PropertyController extends Controller
 
         if(Bill::where('property_uuid', Session::get('property_uuid'))->posted()->sum('bill') > 0)
         {
-            $current_collection_rate = AcknowledgementReceipt::select(DB::raw("(sum(amount)) as total_amount"),
+            $current_collection_rate = Collection::select(DB::raw("(sum(collection)) as total_amount"),
             DB::raw("(DATE_FORMAT(created_at, '%M')) as month_year"))
             ->where('property_uuid', Session::get('property_uuid'))
             ->orderBy('created_at')
@@ -273,11 +272,12 @@ class PropertyController extends Controller
             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
             ->pluck('total_amount')
             ->last() / Bill::select(DB::raw("(sum(bill)) as total_bill"), DB::raw("(DATE_FORMAT(created_at, '%M')) as month_year"))
+             ->posted()
             ->orderBy('created_at')
             ->where('property_uuid', Session::get('property_uuid'))
             ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
             ->pluck('total_bill')
-            ->posted()
+
             ->last() * 100;
          }else{
             $current_collection_rate = 0;
@@ -302,66 +302,67 @@ class PropertyController extends Controller
         ->pluck('count');
     }
 
-    public function get_delinquents($user_type)
+    public function getDelinquents($user_type, $property_uuid)
     {
         $delinquents = array();
 
         if($user_type == 'tenant'){
-            $tenants = Tenant::where('property_uuid', Session::get('property_uuid'))->get();
+
+            $tenants = Tenant::where('property_uuid',$property_uuid)->get();
 
             foreach($tenants as $tenant){
-            
+
             $balance = Bill::where('tenant_uuid', $tenant->uuid)->posted()->sum('bill') - Collection::where('tenant_uuid', $tenant->uuid)->posted()->sum('collection');
-        
+
             if($balance > 0){
                 $delinquents[] = [
                     'balance' => $balance,
                     'tenant' => $tenant->tenant,
                     'tenant_uuid' => $tenant->uuid,
                 ];
-            } 
+            }
 
-            return $delinquents;
         }
 
         }elseif($user_type == 'owner'){
-            $owners = Owner::where('property_uuid', Session::get('property_uuid'))->get();
+
+            $owners = Owner::where('property_uuid', $property_uuid)->get();
 
             foreach($owners as $owner){
+
             $balance = Bill::where('owner_uuid', $owner->uuid)->posted()->sum('bill') - Collection::where('owner_uuid', $owner->uuid)->posted()->sum('collection');
-        
+
             if($balance > 0){
                 $delinquents[] = [
                     'balance' => $balance,
                     'owner' => $owner->owner,
                     'owner_uuid' => $owner->uuid,
                 ];
-            } 
+            }
 
         }
 
-        return $delinquents;
-
         }else{
 
-            $guests = Guest::where('property_uuid', Session::get('property_uuid'))->get();
+            $guests = Guest::where('property_uuid', $property_uuid)->get();
 
             foreach($guests as $guest){
+
             $balance = Bill::where('guest_uuid', $guest->uuid)->posted()->sum('bill') - Collection::where('guest_uuid', $guest->uuid)->posted()->sum('collection');
-        
+
             if($balance > 0){
                 $delinquents[] = [
                     'balance' => $balance,
                     'guest' => $guest->guest,
                     'guest_uuid' => $guest->uuid,
                 ];
-            } 
+            }
 
         }
 
-            return $delinquents;
-
         }
+
+        return $delinquents;
     }
 
     public function get_tenant_movein_values()
@@ -442,7 +443,7 @@ class PropertyController extends Controller
         ->whereDate('created_at', Carbon::today())
         ->count();
 
-        if($timestamps<=0){ 
+        if($timestamps<=0){
             DB::table('timestamps')
               ->insert([
                 'user_id' => auth()->user()->id,
@@ -473,39 +474,41 @@ class PropertyController extends Controller
         ]);
     }
 
+
     public function show(Property $property)
-    {  
+    {
+
         app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
 
-        // $this->authorize('is_portfolio_read_allowed');
+        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(1, auth()->user()->id)){
+            return abort(403);
+        }
 
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',1);
 
-        $this->isUserApproved(auth()->user()->id, $property->uuid);
+        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
 
-        return view('properties.show',[
-            'property' => $property,
-        ]); 
+        return view('properties.show');
     }
 
-    
+
     public function save_unit_stats($property_uuid)
     {
         UnitStats::firstOrCreate([
-            'total' => app('App\Http\Controllers\UnitController')->get_property_units($property_uuid, '', '', '')->count(),
-            'vacant' => app('App\Http\Controllers\UnitController')->get_property_units($property_uuid, 1,'', '')->count(),
-            'occupied' => app('App\Http\Controllers\UnitController')->get_property_units($property_uuid, 2,'', '')->count(),
-            'dirty' => app('App\Http\Controllers\UnitController')->get_property_units($property_uuid, 3,'', '')->count(),
-            'reserved' => app('App\Http\Controllers\UnitController')->get_property_units($property_uuid, 4,'', '')->count(),
-            'under_maintenance' => app('App\Http\Controllers\UnitController')->get_property_units($property_uuid, 5,'', '')->count(),
-            'pending' => app('App\Http\Controllers\UnitController')->get_property_units($property_uuid, 6,'', '')->count(),
+            'total' => app('App\Http\Controllers\UnitController')->getUnits($property_uuid, '', '', '')->count(),
+            'vacant' => app('App\Http\Controllers\UnitController')->getUnits($property_uuid, 1,'', '')->count(),
+            'occupied' => app('App\Http\Controllers\UnitController')->getUnits($property_uuid, 2,'', '')->count(),
+            'dirty' => app('App\Http\Controllers\UnitController')->getUnits($property_uuid, 3,'', '')->count(),
+            'reserved' => app('App\Http\Controllers\UnitController')->getUnits($property_uuid, 4,'', '')->count(),
+            'under_maintenance' => app('App\Http\Controllers\UnitController')->getUnits($property_uuid, 5,'', '')->count(),
+            'pending' => app('App\Http\Controllers\UnitController')->getUnits($property_uuid, 6,'', '')->count(),
             'property_uuid' => $property_uuid
         ]);
 
     }
 
     public function edit(Property $property)
-    { 
+    {
         // $this->authorize('is_portfolio_update_allowed');
 
         return view('properties.edit',[
@@ -529,10 +532,10 @@ class PropertyController extends Controller
             Contract::where('property_uuid', $uuid)->delete();
             Property::where('uuid', $uuid)->delete();
             UserProperty::where('property_uuid')->delete();
-        
+
              return redirect('/properties')->with('success','Property is successfully deleted.');
         }
-       
+
     }
 
     public function show_tenant_contract($uuid)
@@ -564,22 +567,13 @@ class PropertyController extends Controller
 
     public function store_property_session($property_uuid)
     {
-
         Session::put('property_uuid', Property::find($property_uuid)->uuid);
 
         Session::put('property', Property::find($property_uuid)->property);
 
-        $country = Country::where('id',(Property::where('uuid', $property_uuid)->pluck('country_id')->first()))->pluck('country')->first();
+        Session::put('property_address', $this->get_property_address($property_uuid));
 
-        $province = Province::where('id',(Property::where('uuid', $property_uuid)->pluck('province_id')->first()))->pluck('province')->first();
-
-        $city = City::where('id',(Property::where('uuid', $property_uuid)->pluck('city_id')->first()))->pluck('city')->first();
-
-        $barangay = Property::where('uuid', $property_uuid)->pluck('barangay')->first();
-
-        $address = $country.', '.$province.', '.$city.', '.$barangay;
-         
-        Session::put('property_address', $address);
+        Session::put('property_registered_tin', Property::find($property_uuid)->registered_tin);
 
         Session::put('role', Role::find(UserProperty::where('property_uuid', $property_uuid)->where('user_id', auth()->user()->id)->pluck('role_id')->first())->role);
 
@@ -592,7 +586,7 @@ class PropertyController extends Controller
         Session::put('property_email', Property::find($property_uuid)->email);
 
         Session::put('property_type', Property::find($property_uuid)->type->type);
-        
+
         Session::put('property_mobile', Property::find($property_uuid)->mobile);
 
         Session::put('property_facebook_page', Property::find($property_uuid)->facebook_page);
@@ -600,7 +594,25 @@ class PropertyController extends Controller
         Session::put('property_remarks', Property::find($property_uuid)->remarks);
 
         Session::put('property_thumbnail', Property::find($property_uuid)->thumbnail);
-        
+
+        app('App\Http\Controllers\UserRestrictionController')->store($property_uuid, auth()->user()->id);
+
+    }
+
+    public function get_property_address($property_uuid){
+
+        $country = Country::where('id',(Property::where('uuid', $property_uuid)->pluck('country_id')->first()))->pluck('country')->first();
+
+        $province = Province::where('id',(Property::where('uuid', $property_uuid)->pluck('province_id')->first()))->pluck('province')->first();
+
+        $city = City::where('id',(Property::where('uuid', $property_uuid)->pluck('city_id')->first()))->pluck('city')->first();
+
+        $barangay = Property::where('uuid', $property_uuid)->pluck('barangay')->first();
+
+        $address = $country.', '.$province.', '.$city.', '.$barangay;
+
+
+        return $address;
     }
 
     public function unlock($property_uuid)
@@ -613,10 +625,10 @@ class PropertyController extends Controller
     public function is_property_exist()
     {
         if(!User::find(auth()->user()->id)->user_properties->count()){
-            return true; 
-        }else{ 
-            return false; 
-        } 
+            return true;
+        }else{
+            return false;
+        }
     }
 
     public function generate_uuid()
@@ -629,5 +641,35 @@ class PropertyController extends Controller
         if($status === 'banned'){
             abort(403);
         }
+    }
+
+    public function get_property_types($user_id){
+        return UserProperty::join('users', 'user_id', 'users.id')
+        ->join('properties', 'property_uuid', 'properties.uuid')
+        ->join('types', 'properties.type_id', 'types.id')
+        ->select('*', DB::raw('count(*) as count'))
+        ->where('user_id', $user_id)
+        ->where('properties.status', 'active')
+        ->groupBy('type_id')
+        ->get();
+    }
+
+    public function get_properties($user_id, $search, $sortBy, $filterByPropertyType, $limitDisplayTo)
+    {
+        return UserProperty::join('users', 'user_id', 'users.id')
+        ->join('properties', 'property_uuid', 'properties.uuid')
+        ->join('types', 'type_id', 'types.id')
+        ->select('*')
+        ->where('user_id', $user_id)
+        ->where('user_properties.is_approved',1)
+        ->when($search, function($query, $search){
+        $query->where('property','like', '%'.$search.'%');
+        })
+            ->when($sortBy, function($query, $sortBy){
+        $query->orderBy('properties.'.$sortBy, 'desc');
+        })
+            ->when($filterByPropertyType, function($query, $filterByPropertyType){
+         $query->where('type_id',$filterByPropertyType);
+        })->paginate($limitDisplayTo);
     }
 }

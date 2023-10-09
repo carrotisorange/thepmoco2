@@ -1,10 +1,7 @@
 <x-new-layout>
-    @section('title','Step 2 of 7 | Request for Payables')
     <div class="mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 xl:py-10">
         <div class="flex justify-end">
-            {{-- <button type="button"
-                class="mb-4 bg-white py-2 px-4 underline rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Download
-                Step</button> --}}
+          
         </div>
         {{-- start of stepper --}}
         <div class="lg:border-t lg:border-b lg:border-gray-200">
@@ -58,15 +55,15 @@
                                             <span class="text-purple-600">02</span>
                                         </span>
                                     </span>
-                    
-                    
+
+
                                     <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
                                         <span class="text-xs font-medium text-gray-500">Step 2:</span>
                                         <span class="text-xs font-medium text-gray-500">Approval (manager)</span>
                                     </span>
                                 </span>
                             </a>
-                    
+
                             <!-- Separator -->
                             <div class="absolute inset-0 top-0 left-0 hidden w-3 lg:block" aria-hidden="true">
                                 <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none" preserveAspectRatio="none">
@@ -92,15 +89,15 @@
                                             <span class="text-gray-500">04</span>
                                         </span>
                                     </span>
-                    
-                    
+
+
                                     <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
                                         <span class="text-xs font-medium text-gray-500">Step 3:</span>
                                         <span class="text-xs font-medium text-gray-500">Approval (account payable)</span>
                                     </span>
                                 </span>
                             </a>
-                    
+
                             <!-- Separator -->
                             <div class="absolute inset-0 top-0 left-0 hidden w-3 lg:block" aria-hidden="true">
                                 <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none" preserveAspectRatio="none">
@@ -110,7 +107,7 @@
                         </div>
                     </li>
                     <!-- Step 3 -->
-                   
+
 
                     <!-- Step 4 -->
                     <li class="relative overflow-hidden lg:flex-1">

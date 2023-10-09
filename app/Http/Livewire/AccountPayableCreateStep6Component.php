@@ -16,7 +16,6 @@ use App\Models\UserProperty;
 class AccountPayableCreateStep6Component extends Component
 {
     public $accountpayable;
-    public $property;
 
     public function get_particulars(){
         return AccountPayableLiquidationParticular::where('batch_no', $this->accountpayable->batch_no)->get();
@@ -29,7 +28,7 @@ class AccountPayableCreateStep6Component extends Component
             'status' => 'liquidation approved by manager'
         ]);
 
-         $ap = UserProperty::where('property_uuid', $this->property->uuid)->where('role_id',4)->approved()->pluck('user_id')->first();
+         $ap = UserProperty::where('property_uuid', Session::get('property_uuid'))->where('role_id',4)->approved()->pluck('user_id')->first();
 
 
          $content = $this->accountpayable;
@@ -42,7 +41,7 @@ class AccountPayableCreateStep6Component extends Component
 
          }
 
-       return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-6')->with('success', 'Success!');
+       return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-6')->with('success', 'Changes Saved!');
     }
 
     public function rejectLiquidation(){
@@ -58,7 +57,7 @@ class AccountPayableCreateStep6Component extends Component
 
         Notification::route('mail', $requester_email)->notify(new SendAccountPayableStep4NotificationToAdmin($content));
 
-       return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-6')->with('success', 'Success!');
+       return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-6')->with('success', 'Changes Saved!');
     }
 
     public function render()

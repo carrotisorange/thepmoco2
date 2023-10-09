@@ -68,7 +68,7 @@ class GuardianComponent extends Component
         Guardian::create($validated_data);
 
         return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/reference/'.Str::random(8).'/create')
-        ->with('success', 'Success!');
+        ->with('success', 'Changes Saved!');
 
     }
 

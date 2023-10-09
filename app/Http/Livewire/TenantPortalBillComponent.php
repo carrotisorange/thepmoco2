@@ -48,7 +48,7 @@ class TenantPortalBillComponent extends Component
             ]
         );
 
-        return redirect(auth()->user()->role_id.'/tenant/'. auth()->user()->username.'/payments_request/'.$batch_no)->with('success', 'Success!');
+        return redirect(auth()->user()->role_id.'/tenant/'. auth()->user()->username.'/payments_request/'.$batch_no)->with('success', 'Changes Saved!');
     }
 
 
@@ -113,8 +113,7 @@ class TenantPortalBillComponent extends Component
         $bills = app('App\Http\Controllers\PortalTenantController')->get_bills($this->tenant->uuid);
 
         return view('livewire.tenant-portal-bill-component',[
-        //    'bills' =>   app('App\Http\Controllers\TenantController')->show_tenant_bills($this->tenant->uuid),
-           
+     
            'bills' =>  Bill::where('tenant_uuid', $this->tenant->uuid)
            ->posted()
             ->when($this->status, function($query){

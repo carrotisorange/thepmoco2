@@ -5,19 +5,18 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Property;
 use App\Models\Agent;
+use Session;
 
 class CalendarIndexComponent extends Component
 {
-    public $property;
-
     public function render()
     {
-        $units = Property::find($this->property->uuid)->units->where('rent_duration', 'daily');
+        $units = Property::find(Session::get('property_uuid'))->units->where('rent_duration', 'daily');
 
         return view('livewire.calendar-index-component',[
-            'agents' => Agent::where('property_uuid', $this->property->uuid)->where('is_active',1)->get(),
+            'agents' => Agent::where('property_uuid', Session::get('property_uuid'))->where('is_active',1)->get(),
             'units' => $units,
-            'property' => $this->property
+            'property' => Session::get('property_uuid')
         ]);
     }
 }

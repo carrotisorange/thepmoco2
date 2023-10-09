@@ -1,4 +1,5 @@
 <div>
+    @include('layouts.notifications')
     <form wire:submit.prevent="updatePaymentRequest">
         <div class="shadow sm:rounded-md sm:overflow-hidden">
             <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
@@ -106,13 +107,11 @@
                         @enderror
                     </div>
                  <div class="col-span-6 text-right">
-                    <button type="submit" wire:loading.remove
-                        class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Confirm
-                        Payment</button>
+                    <x-button type="submit" wire:loading.remove>Confirm
+                        Payment</x-button>
 
-                        <button type="button" disabled wire:loading
-                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            Loading...</button>
+                        <x-button type="button" disabled wire:loading>
+                            Loading...</x-button>
                 </div>
             </div>
         </div>

@@ -1,10 +1,12 @@
 <div>
+    @include('layouts.notifications')
     <div class="max-full mx-auto sm:px-6">
         <nav aria-label="Breadcrumb" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <ol role="list" class="flex items-center space-x-4">
                 <li>
                     <div class="flex items-center">
-                        <a href="/property/{{ Session::get('property_uuid') }}/collection/pending"><img class="h-5 w-auto"
+                        <a href="/property/{{ Session::get('property_uuid') }}/collection/{{ 'approved' }}/{{
+                    Session::get('property_uuid') }}"><img class="h-5 w-auto"
                                 src="{{ asset('/brands/back-button.png') }}"></a>
                     </div>
                 </li>

@@ -46,12 +46,12 @@ class ContractMoveoutStep3Component extends Component
             'status' => 'cleared'
         ]);
 
-        return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-4')->with('success', 'Success!');        
+        return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-4')->with('success', 'Changes Saved!');        
     }
 
     public function exitModal(){
 
-        return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-4')->with('success', 'Success!');  
+        return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-4')->with('success', 'Changes Saved!');  
     }
 
     public function render()

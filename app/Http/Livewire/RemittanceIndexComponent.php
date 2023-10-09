@@ -6,16 +6,16 @@ use Livewire\Component;
 use App\Models\Remittance;
 use Carbon\Carbon;
 use App\Models\Collection;
+use Session;
 
 class RemittanceIndexComponent extends Component
 {
-    public $property;
     public $remittances;
     public $created_at;
     public $date;
 
     public function mount(){
-        $this->created_at = Carbon::parse(Remittance::where('property_uuid', $this->property->uuid)->orderBy('id', 'desc')->pluck('created_at')->first());
+        $this->created_at = Carbon::parse(Remittance::where('property_uuid', Session::get('property_uuid'))->orderBy('id', 'desc')->pluck('created_at')->first());
         $this->date = Carbon::now()->format('Y-m-d');
         $this->remittances = $this->get_remittances();
     }
@@ -101,7 +101,7 @@ class RemittanceIndexComponent extends Component
             $this->remittances = $this->get_remittances();
             }
 
-            session()->flash('success', 'Success!');
+            session()->flash('success', 'Changes Saved!');
 
         }catch(\Exception $e){
         
@@ -116,13 +116,13 @@ class RemittanceIndexComponent extends Component
             'date' => 'required|date'
         ]);
 
-        $collections = Collection::where('property_uuid', $this->property->uuid)
+        $collections = Collection::where('property_uuid', Session::get('property_uuid'))
            ->whereMonth('created_at', Carbon::parse($this->date)->month)
            ->get();
 
         foreach($collections as $collection){
              if($collection->bill->particular_id === 1){
-                app('App\Http\Controllers\PropertyRemittanceController')->store(
+                app('App\Http\Controllers\RemittanceController')->store(
                     $collection->property_uuid,
                     $collection->unit->uuid,
                     $collection->ar_no,
@@ -136,16 +136,16 @@ class RemittanceIndexComponent extends Component
             continue;
         }
 
-        return redirect('/property/'.$this->property->uuid.'/remittance')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/remittance')->with('success', 'Changes Saved!');
 
     }
 
     public function redirectToOwnerPage(){
-        return redirect('/property/'.$this->property->uuid.'/collection/');
+        return redirect('/property/'.Session::get('property_uuid').'/collection/');
     }
 
     public function get_remittances(){
-        return Remittance::where('property_uuid', $this->property->uuid)
+        return Remittance::where('property_uuid', Session::get('property_uuid'))
         ->whereMonth('created_at', Carbon::parse($this->created_at)->month)
         ->get();
     }
@@ -159,11 +159,11 @@ class RemittanceIndexComponent extends Component
         
         return view('livewire.remittance-index-component',[
 
-            'dates' => Remittance::where('property_uuid', $this->property->uuid)
+            'dates' => Remittance::where('property_uuid', Session::get('property_uuid'))
             ->groupBy('created_at')    
             ->get(),
 
-            'collectionsCount' => Collection::where('collections.property_uuid', $this->property->uuid)
+            'collectionsCount' => Collection::where('collections.property_uuid', Session::get('property_uuid'))
             ->whereNotNull('collections.tenant_uuid')
             ->join('bills', 'collections.bill_id', 'bills.id')
             ->where('bills.particular_id', 1)

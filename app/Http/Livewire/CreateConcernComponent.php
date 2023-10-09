@@ -59,7 +59,7 @@ class CreateConcernComponent extends Component
 
         $concern = Concern::create($validated);
  
-       return redirect('/property/'.Session::get('property_uuid').'/concern/'.$concern->id.'/edit')->with('success', 'Success!');
+       return redirect('/property/'.Session::get('property_uuid').'/concern/'.$concern->id.'/edit')->with('success', 'Changes Saved!');
     }
 
     public function render()

@@ -4,9 +4,7 @@
 <p>
     Tenant: {{ $tenant }}
 </p>
-<p>
-    {{-- Reference #: {{ $reference_no }} --}}
-</p>
+
 <p>
     AR #: {{ $ar_no }}
 </p>

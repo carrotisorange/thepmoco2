@@ -11,6 +11,7 @@ use DB;
 use Carbon\Carbon;
 use App\Models\Session;
 
+
 class AuthenticatedSessionController extends Controller{
     /**
      * Display the login view.
@@ -19,7 +20,13 @@ class AuthenticatedSessionController extends Controller{
      */
     public function create()
     {
-        return view('auth.login');
+        $quote = new \RandomQuotes\RandomQuotes();
+
+        $randomQuote = $quote->generate();
+
+        return view('auth.login',[
+            'randomQuote' => $randomQuote
+        ]);
     }
 
     /**
@@ -29,7 +36,7 @@ class AuthenticatedSessionController extends Controller{
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(LoginRequest $request)
-    {   
+    {
         $request->authenticate();
 
         $request->session()->regenerate();

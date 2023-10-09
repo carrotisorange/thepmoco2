@@ -1,4 +1,5 @@
 <div>
+    @include('layouts.notifications')
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -117,12 +118,9 @@
                                             href="{{ url()->previous() }}">
                                             Cancel
                                         </a>
-                                        <button type="submit"
-                                            class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-
-                                           
+                                        <x-button type="submit">
                                             Report
-                                        </button>
+                                        </x-button>
                                     </div>
                                 </div>
                         </form>

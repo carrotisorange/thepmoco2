@@ -1,10 +1,7 @@
 <x-new-layout>
-    @section('title','')
     <div class="mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 xl:py-10">
         <div class="flex justify-end">
-            {{-- <button type="button"
-                class="mb-4 bg-white py-2 px-4 underline rounded-md text-sm font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Download
-                Step</button> --}}
+         
         </div>
         {{-- start of stepper --}}
         <div class="lg:border-t lg:border-b lg:border-gray-200">
@@ -115,15 +112,15 @@
                         </div>
                     </li>
 
-                    
 
-        
+
+
                 </ol>
             </nav>
         </div>
         {{-- end of stepper --}}
 
-        
-        
+
+
     </div>
 </x-new-layout>

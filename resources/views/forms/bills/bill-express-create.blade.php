@@ -53,6 +53,6 @@
         </div>
     </div>
     <p class="text-right">
-        <x-form-button>Create</x-form-button>
+        <x-button>Create</x-button>
     </p>
 </form>

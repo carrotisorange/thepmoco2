@@ -1,5 +1,5 @@
 @extends('layouts.export')
-@section('title', 'Bills')
+@section('title', 'Statements of Account')
 @section('content')
 <p>
     Date: {{ Carbon\Carbon::now()->format('M d, Y') }}

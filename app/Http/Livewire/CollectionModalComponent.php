@@ -114,12 +114,12 @@ class CollectionModalComponent extends ModalComponent
         if($this->exportCollection)
         {
             return
-            redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant.'/ar/'.$ar->id.'/export/')->with('success','Success!');
+            redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant.'/ar/'.$ar->id.'/export/')->with('success','Changes Saved!');
         }
          else
         {
             return
-            redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant.'/bills')->with('success','Success!');
+            redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant.'/bills')->with('success','Changes Saved!');
         }
     }
 

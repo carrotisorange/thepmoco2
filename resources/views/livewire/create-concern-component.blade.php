@@ -1,8 +1,9 @@
 <x-modal-component>
+    @include('layouts.notifications')
     <x-slot name="id">
         create-concern-modal
     </x-slot>
-  
+
     <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
         <div
             class="relative transform overflow-hidden rounded-lgpx-4 pt-5 pb-4 text-left transition-all  sm:w-full sm:max-w-sm sm:p-6">
@@ -74,20 +75,18 @@
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
             </div>
-          
+
                 <div class="mt-5 sm:mt-6">
 
-                    <button type="submit" wire:loading.remove wire:click="submitButton"
-                        class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
+                    <x-button class="w-full" type="submit" wire:loading.remove wire:click="submitButton">
                         Confirm
-                    </button>
+                    </x-button>
 
-                    <button type="button" wire:loading disabled
-                        class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
+                    <x-button type="button" wire:loading disabled>
                         Loading...
-                    </button>
+                    </x-button>
                 </div>
-            
+
         </div>
     </div>
 

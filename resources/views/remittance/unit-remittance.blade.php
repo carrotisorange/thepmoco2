@@ -1,14 +1,9 @@
 <x-new-layout>
-    @section('title','Units | '. Session::get('property'))
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
-           
-
-
-
                 <div  class=" p-4 purple" id="remittance-summary" role="tabpanel"
                         aria-labelledby="remittance-summary-tab">
-                       
+
                         <div class="sm:flex sm:items-center justify-between space-x-6 pb-8">
                         <div class="underline text-sm text-purple-500">Go back to Unit</div>
                         <div class="px-8 text-xl font-medium">
@@ -40,48 +35,10 @@
 
                         </div>
 
-                        
+
 
                         <div>
-                            {{-- <div class="items-center justify-center">
-                                <select id="small" wire:model="remittance_date"
-                                    class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-
-                                    <option value="{{ $remittance_date }}">{{
-                                        Carbon\Carbon::parse($remittance_date)->format('M, Y') }}</option>
-                                    @foreach ($dates as $date)
-                                    @if(Carbon\Carbon::parse($date->created_at)->format('M, Y') !=
-                                    Carbon\Carbon::parse($remittance_date)->format('M, Y'))
-                                    <option value="{{ $date->created_at }}">{{
-                                        Carbon\Carbon::parse($date->created_at)->format('M, Y') }}</option>
-                                    @endif
-                                    @endforeach
-                                </select>
-                                <button
-                                    class="text-xs text-white bg-purple-500 hover:bg-gray-400 p-2 rounded-lg ">Send
-                                    Email to Owner</button>
-                            </div> --}}
-
-
-                            {{-- <div class="-mt-10 flex items-center px-8 py-5 border-b">
-                                <div class="w-0 flex-1 pt-0.5">
-                                    <p class="text-sm font-medium text-gray-900">Date
-                                    </p>
-
-                                </div>
-                            </div> --}}
-
-                            {{-- <div class="flex items-center px-8 py-5 border-b">
-                                <div class="w-0 flex-1 pt-0.5">
-                                    <div class="grid grid-cols-2">
-                                        <p class="text-sm font-medium text-gray-900">Date
-                                        </p>
-                                        <p class="mt-1 text-sm font-base text-gray-500">
-                                        {{ Carbon\Carbon::parse($remittance_date)->format('M, Y') }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div> --}}
+                        
 
                             <div class="flex items-center px-8 py-5 border-b">
                                 <div class="w-0 flex-1 pt-0.5">
@@ -124,7 +81,7 @@
                             <div class="flex items-center px-8 py-5 border-b">
                                 <div class="w-0 flex-1 pt-0.5">
                                     <p class="flex-col mt-1 text-sm font-base text-gray-500">
-                                       
+
                                     </p>
                                     <div class="grid grid-cols-3 space-x-5">
 
@@ -328,14 +285,14 @@
 
 
 
-                         
+
                             <div class="flex items-center px-8 py-5">
                                 <div class="w-0 flex-1 pt-0.5">
                                     <div class="grid grid-cols-2">
                                         <p class="text-sm font-medium text-gray-900">Total Remittance
                                         </p>
                                         <p class="mt-1 text-sm font-base text-gray-500">
-                                            
+
                                         </p>
                                     </div>
                                 </div>

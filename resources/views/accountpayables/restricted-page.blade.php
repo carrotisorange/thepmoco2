@@ -1,5 +1,4 @@
 <x-new-layout>
-    @section('title','Restricted | '. Session::get('property'))
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
             <nav class="mx-auto max-w-9xl px-4 sm:px-6 lg:px-8" aria-label="Progress">
@@ -277,10 +276,6 @@
                 <a  href="/property/{{ Session::get('property_uuid') }}/accountpayable" class="px-3 py-2 border border-gray-300 rounded-full text-base">
                     Go Back
                 </a>
-
-                {{-- <button class="px-3 py-2 bg-purple-500 rounded-full text-base text-white">
-                    Send Another Email
-                </button> --}}
 
             </div>
         </div>

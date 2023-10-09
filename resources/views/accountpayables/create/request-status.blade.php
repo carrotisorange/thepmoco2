@@ -1,7 +1,6 @@
 <x-new-layout>
-    @section('title','Request Status - Account Payables')
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 ">
-        
+
   <div class="p-4 mt-2">
     <h1 class="text-2xl text-center font-semibold mb-6">Request #10022 Status</h1>
     <div class="container">
@@ -92,8 +91,8 @@
           </div>
         </div>
 
-        
-            
+
+
             </p>
           </div>
         </div>
@@ -102,6 +101,6 @@
     </div>
   </div>
 
-         
+
     </div>
 </x-new-layout>

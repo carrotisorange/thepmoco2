@@ -1,10 +1,10 @@
 @component('mail::message')
-# Hi, {{ auth()->user()->name }}!
+# Hi, {{ $data['name'] }}!
 
-I am one of the co-founders of The Property Manager Online,
+I am one of the co-founders of {{ env('APP_NAME') }},
 and I am excited you have decided to sign up.
 
-The Property Manager Online Team and I have poured
+{{ env('APP_NAME') }} Team and I have poured
 our heart and soul into making systematized processes reduces which reduces operating expenses
 by 35%.
 
@@ -15,14 +15,14 @@ to this email.
 I hope we can help you to simplify your rental property operations!
 
 <br>
-
-{{-- @component('mail::button', ['url' => '/property/{{ Str::random(8) }}/create'])
+{{--
+@component('mail::button', ['url' => '/property/{{ Str::random(8) }}/create'])
     Start Now
 @endcomponent --}}
 
 Stay in touch!<br>
 
--Pam, Co-Founder
+-Pam, CEO
 <br>
 Thanks for Signing Up
 

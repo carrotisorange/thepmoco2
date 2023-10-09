@@ -99,12 +99,12 @@
         <div class="mt-5">
 
             <p class="text-right">
-                <button type="button"
-                    onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant->uuid }}'"
-                    class="ml-3 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <x-button type="button" class="bg-red-600 hover:bg-red-800 focus:ring-red-300 dark:focus:ring-red-800"
+                    onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant->uuid }}'">
                     Cancel
-                </button>
-                <x-form-button>Create</x-form-button>
+                </x-button>
+
+                <x-button type="submit">Create</x-button>
             </p>
         </div>
 </form>

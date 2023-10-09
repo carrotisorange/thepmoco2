@@ -1,4 +1,5 @@
 <x-modal-component>
+    @include('layouts.notifications')
     <x-slot name="id">
         edit-booking-modal-{{$booking->uuid}}
     </x-slot>
@@ -16,7 +17,7 @@
                 <div class="mt-5 sm:mt-6">
                     <label class="text-sm" for="unit_uuid">Unit</label>
                     <x-form-select wire:model="unit_uuid" class="">
-                        
+
                         @foreach ($units as $unit)
                         <option value="{{ $unit->uuid }}" {{ $unit->uuid === $unit_uuid?
                             'selected': 'Select one' }}> {{ $unit->unit }}
@@ -212,10 +213,9 @@
 
                 <div class="mt-5 sm:mt-6">
 
-                    <button type="button" wire:click="updateBooking"
-                        class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
+                    <x-button class="w-full" type="button" wire:click="updateBooking">
                         Update
-                    </button>
+                    </x-button>
 
                 </div>
             </form>

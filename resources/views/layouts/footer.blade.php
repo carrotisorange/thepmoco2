@@ -1,14 +1,16 @@
 <footer id="footer">
+    @if(Session::get('role'))
     <div class="border-t mt-5 max-w-8xl mx-auto py-3 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
         <div class="flex justify-center space-x-6 md:order-2">
-           @if(Session::get('property_uuid'))
-               <p class="text-center text-base text-gray-400">You're logged in as a <b>{{ Session::get('role') }}</b></p>
-           @endif
+
+            <p class="text-center text-base text-gray-400">You're logged in as a <b>{{ Session::get('role') }}</b></p>
+
         </div>
     </div>
-    <div class="border-t max-w-8xl mx-auto py-10 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
+    @endif
+    <div class="border-t mt-5 max-w-8xl mx-auto py-10 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
         <div class="flex justify-center space-x-6 md:order-2">
-            <a title="Like us on Facebook." target="_blank" href="https://www.facebook.com/onlinepropertymanager/"
+            <a title="Like us on Facebook." target="_blank" href="https://www.{{  env('APP_FACEBOOK_PAGE') }}/"
                 class="text-gray-400 hover:text-gray-500">
                 <span class="sr-only">Facebook</span>
                 <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -28,14 +30,14 @@
                 </svg>
             </a>
 
-            <a title="Get in touch with our customer support" target="_blank"
-                href="https://www.thepropertymanager.online/support/" class="text-gray-400 hover:text-gray-500">
+            <a title="Get in touch with our customer support" target="_blank" href="/support/"
+                class="text-gray-400 hover:text-gray-500">
                 <span class="sr-only">Customer Support</span>
                 <i class="fa-solid fa-comment"></i>
             </a>
         </div>
         <div class="mt-8 md:mt-0 md:order-1">
-            <p class="text-center text-base text-gray-400">&copy; 2020 The PMO Co. All rights reserved.
+            <p class="text-center text-base text-gray-400">&copy; 2020 {{ env('APP_NAME') }}. All rights reserved.
             </p>
         </div>
     </div>

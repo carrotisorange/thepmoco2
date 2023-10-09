@@ -23,7 +23,6 @@ class UserCreateComponent extends Component
 
    use WithPagination;
 
-   public $property;
 
    //personnel fields
    public $role_id;
@@ -67,7 +66,7 @@ class UserCreateComponent extends Component
       try{
 
          $username = Role::find($this->role_id)->role.''.UserProperty::where('property_uuid',
-         $this->property->uuid)->count();
+         Session::get('property_uuid'))->count();
 
          $password = Str::random(8);
 
@@ -96,11 +95,11 @@ class UserCreateComponent extends Component
         //store a new user and user property
          UserProperty::updateOrCreate(
             [
-               'property_uuid' => $this->property->uuid,
+               'property_uuid' => Session::get('property_uuid'),
                'user_id' => $user->id,
             ],
             [
-               'property_uuid' => $this->property->uuid,
+               'property_uuid' => Session::get('property_uuid'),
                'user_id' => $user->id,
                'is_account_owner' => false,
                'is_approved' => true,
@@ -123,7 +122,7 @@ class UserCreateComponent extends Component
             app('App\Http\Controllers\UserController')->send_email($this->role_id, $this->email, $this->email, $password);
         }
 
-      return redirect('/property/'.$this->property->uuid.'/user');
+      return redirect('/property/'.Session::get('property_uuid').'/user');
    
       // if (User::where('email', $this->email)->exists()) {
 
@@ -175,11 +174,11 @@ class UserCreateComponent extends Component
         if($this->createAnotherPersonnel)
         {
         //prompt user withe a sucess page
-        return redirect('/property/'.$this->property->uuid.'/user/'.Str::random(8).'/create')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/user/'.Str::random(8).'/create')->with('success', 'Changes Saved!');
 
         }else{
         //prompt user withe a sucess page
-        return redirect('/property/'.$this->property->uuid.'/user/')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/user/')->with('success', 'Changes Saved!');
         }
        
      }
@@ -195,7 +194,7 @@ class UserCreateComponent extends Component
      public function render()
      {
         return view('livewire.user-create-component',[
-         'roles' =>  app('App\Http\Controllers\RoleController')->get_roles($this->property->uuid), 
+         'roles' =>  app('App\Http\Controllers\RoleController')->get_roles(Session::get('property_uuid')), 
          'features' => Feature::all(),
         ]);
      }
@@ -210,6 +209,6 @@ class UserCreateComponent extends Component
 
          UserProperty::where('user_id', $id)->delete();
 
-         return back()->with('success', 'Success!');
+         return back()->with('success', 'Changes Saved!');
      }
 }

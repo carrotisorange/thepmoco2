@@ -80,7 +80,7 @@ class ParticularController extends Controller
 
                 DB::commit();
 
-             return back()->with('success', 'Success!');
+             return back()->with('success', 'Changes Saved!');
              } catch (\Throwable $e) {
         
                 DB::rollback();
@@ -102,7 +102,7 @@ class ParticularController extends Controller
 
                 DB::commit();
 
-                return back()->with('success', 'Success!');
+                return back()->with('success', 'Changes Saved!');
              } catch (\Throwable $e) {
           
                 DB::rollback();

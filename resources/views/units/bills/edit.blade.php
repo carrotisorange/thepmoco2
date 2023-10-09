@@ -1,6 +1,4 @@
 <x-new-layout>
-    @section('title', $unit->unit.' | '. Session::get('property'))
-
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
             <div class="sm:flex sm:items-center">

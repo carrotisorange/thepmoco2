@@ -16,7 +16,6 @@ class CollectionTenantEditComponent extends Component
 
     public $batch_no;
     public $tenant;
-    public $collections;
     public $attachment;
     public $proof_of_payment;
     public $form;
@@ -28,11 +27,10 @@ class CollectionTenantEditComponent extends Component
     public $sendPayment = false;
 
 
-    public function mount($collections, $tenant, $batch_no)
+    public function mount( $tenant, $batch_no)
     {
         $this->batch_no = $batch_no;
         $this->tenant = $tenant;
-        $this->collections = $collections;
         $this->created_at = Carbon::now()->format('Y-m-d');
         $this->proof_of_payment = PaymentRequest::where('id',Session::get('payment_request_id'))->pluck('proof_of_payment')->first();
         $this->bank = PaymentRequest::where('id',Session::get('payment_request_id'))->pluck('bank_name')->first();
@@ -60,24 +58,19 @@ class CollectionTenantEditComponent extends Component
         $this->$attachment  = '';
     }
 
-    public function get_bills()
-    {
-        return Bill::where('property_uuid', Session::get('property_uuid'))
-        ->where('is_posted', false)
-        ->where('batch_no', $this->batch_no)->get();
-    }
-
     public function get_collections()
     {
-      return Collection::where('property_uuid', Session::get('property_uuid'))
-      ->where('is_posted', false)
-      ->where('batch_no', $this->batch_no)->get();
+      return Bill::where('tenant_uuid', $this->tenant->uuid)
+      ->where('batch_no', $this->batch_no)
+      ->where('status', 'unpaid')
+      ->posted()
+      ->get();
     }
 
     public function render()
     {
         return view('livewire.collection-tenant-edit-component',[
-            'bills' => $this->get_bills()
+            'collections' => $this->get_collections()
         ]);
     }
 }

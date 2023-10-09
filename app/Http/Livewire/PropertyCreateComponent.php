@@ -11,7 +11,6 @@ class PropertyCreateComponent extends Component
      use WithFileUploads;
 
      public $property;
-     
      public $type_id;
      public $thumbnail;
      public $description;
@@ -24,6 +23,7 @@ class PropertyCreateComponent extends Component
      public $email;
      public $mobile;
      public $ownership;
+     public $registered_tin;
 
      public function mount(){
         $this->mobile = auth()->user()->mobile_number;
@@ -46,7 +46,8 @@ class PropertyCreateComponent extends Component
             'barangay' => ['required'],
             'email' => ['nullable'],
             'mobile' => ['nullable'],
-            'ownership' => ['required']
+            'ownership' => ['required'],
+            'registered_tin' => 'nullable'
         ];
      }
 
@@ -57,30 +58,31 @@ class PropertyCreateComponent extends Component
 
      public function create()
      {
-         
-         $validatedData = $this->validate();
-
+           $validatedData = $this->validate();
+           
          try {
 
             DB::transaction(function () use ($validatedData){
-            
+
                $new_property = app('App\Http\Controllers\PropertyController')->store($validatedData);
-               
+
                app('App\Http\Controllers\UserPropertyController')->store($new_property->uuid->toString(), auth()->user()->id, 0, 1, 5);
 
                app('App\Http\Controllers\UserRestrictionController')->store($new_property->uuid->toString(), auth()->user()->id);
-               
+
                app('App\Http\Controllers\PropertyParticularController')->store($new_property->uuid->toString());
 
-               app('App\Http\Controllers\PropertyRoleController')->store($new_property->uuid->toString());
+               app('App\Http\Controllers\RoleController')->store($new_property->uuid->toString());
 
                app('App\Http\Controllers\PointController')->store($new_property->uuid->toString(), auth()->user()->id, 50, 6);
-               
+
                app('App\Http\Controllers\PropertyController')->store_property_session($new_property->uuid->toString());
 
-               return redirect('/property/'.$new_property->uuid->toString().'/success')->with('success', 'Success!');
-            
-            }); 
+               app('App\Http\Controllers\PropertyDocumentController')->store($new_property->uuid->toString());
+
+               return redirect('/property/'.$new_property->uuid->toString().'/success')->with('success', 'Changes Saved!');
+
+            });
 
         }catch (\Throwable $e) {
             return back()->with('error', $e);

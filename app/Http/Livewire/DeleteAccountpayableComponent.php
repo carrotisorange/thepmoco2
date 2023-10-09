@@ -18,7 +18,7 @@ class DeleteAccountpayableComponent extends Component
 
       AccountPayableParticular::where('batch_no', $batch_no)->delete();
 
-       return redirect('/property/'.$this->accountpayable->property->uuid.'/accountpayable/')->with('success', 'Success!');   
+       return redirect('/property/'.$this->accountpayable->property->uuid.'/accountpayable/')->with('success', 'Changes Saved!');   
     }
 
     public function render()

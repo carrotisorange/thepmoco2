@@ -12,13 +12,13 @@
                         @foreach ($roles as $role)
                         <option value="{{ $role->id }}">{{ $role->role }}</option>
                         @endforeach
-                
+
                     </x-form-select>
                     @error('role_id')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
-                
+
                 <div class="mt-5 sm:mt-6">
                     <label class="text-sm" for="email">Email </label>
                     <input type="email" id="email" wire:model="email"
@@ -28,7 +28,7 @@
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
-                
+
                 <div class="mt-5 sm:mt-6">
                     <label class="text-sm" for="mobile_number">Mobile </label>
                     <input type="text" id="mobile_number" wire:model="mobile_number"
@@ -38,22 +38,20 @@
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
-                
+
                 <div class="mt-5 sm:mt-6">
                     @can('accountownerandmanager')
-                    <button type="button" wire:click="submitButton"
-                        class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
+                    <x-button class="w-full" type="button" wire:click="submitButton">
                         Confirm
-                    </button>
+                    </x-button>
                     @else
-                    <button type="button" disabled disabled
-                        class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
-                        <i class="fa-solid fa-lock"></i>&nbsp Confirm
-                    </button>
+                    <x-button class="w-full" type="button" disabled disabled>
+                       Confirm
+                    </x-button>
                     <p class="text-red-500 text-xs mt-2">This feature is locked. Please contact your manager.</p>
-                
+
                     @endcan
-                
+
                 </div>
    </div>
 </x-modal-component>

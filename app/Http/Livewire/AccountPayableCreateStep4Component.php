@@ -16,8 +16,6 @@ class AccountPayableCreateStep4Component extends Component
 {
     use WithFileUploads;
 
-    public $property;
-
     public $accountpayable;
 
     public $attachment;
@@ -62,7 +60,7 @@ class AccountPayableCreateStep4Component extends Component
                 'status' => 'liquidation approved by manager',
             ]);
 
-            return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-7')->with('success', 'Success!');
+            return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-7')->with('success', 'Changes Saved!');
 
          
         }else{
@@ -71,7 +69,7 @@ class AccountPayableCreateStep4Component extends Component
               'status' => 'released',
               ]);
 
-            return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-4')->with('success', 'Success!');
+            return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-4')->with('success', 'Changes Saved!');
             
         }
     
@@ -88,7 +86,7 @@ class AccountPayableCreateStep4Component extends Component
     //         'status' => 'released'
     //     ]);
 
-    //     return redirect('/property/'.$this->property->uuid.'/accountpayable/'.$this->accountpayable->id.'/step-4')->with('success', 'Success!');
+    //     return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-4')->with('success', 'Changes Saved!');
     // }
 
     public function render()

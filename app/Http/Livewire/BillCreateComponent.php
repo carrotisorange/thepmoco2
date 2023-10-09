@@ -12,7 +12,6 @@ use App\Models\Particular;
 
 class BillCreateComponent extends Component
 {
-    public $property;
     public $tenant;
     public $unit;
 
@@ -23,8 +22,6 @@ class BillCreateComponent extends Component
     public $unit_uuid;
 
     public $contract;
-
-    public $property_uuid;
 
     public $view = 'listView';
 
@@ -41,7 +38,6 @@ class BillCreateComponent extends Component
         $this->unit_uuid = $unit->uuid;
         $this->end = Carbon::now()->addYear()->format('Y-m-d');
         $this->start = Carbon::now()->format('Y-m-d');
-        $this->property_uuid = Session::get('property_uuid');
         $this->tenant_uuid = $tenant->uuid;
     }
 
@@ -64,7 +60,7 @@ class BillCreateComponent extends Component
     {
         Bill::where('id', $bill_id)->delete();
 
-        return session()->flash('success', 'Success!');
+        return session()->flash('success', 'Changes Saved!');
     }
 
 
@@ -76,7 +72,7 @@ class BillCreateComponent extends Component
 
        try{
 
-         app('App\Http\Controllers\BillController')->store($this->property_uuid, $this->unit->uuid, $this->tenant->uuid,'', $this->particular_id, $this->start, $this->end, $this->bill, '', 1);
+         app('App\Http\Controllers\BillController')->store(Session::get('property_uuid'), $this->unit->uuid, $this->tenant->uuid,'', $this->particular_id, $this->start, $this->end, $this->bill, '', 1);
 
         if($this->particular_id === '3' || $this->particular_id === '4'){
             app('App\Http\Controllers\WalletController')->store($this->tenant->uuid, '', $this->bill, Particular::find($this->particular_id)->particular);
@@ -84,7 +80,7 @@ class BillCreateComponent extends Component
          
         $this->reset_form();
 
-         return session()->flash('success', 'Success!');
+         return session()->flash('success', 'Changes Saved!');
 
        }catch(\Exception $e)
        {
@@ -102,7 +98,7 @@ class BillCreateComponent extends Component
     public function redirectToContractShowPage(){
         
 
-        return redirect('/property/'.$this->property_uuid.'/unit/'.$this->unit->uuid);
+        return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid);
     }
 
     public function render()
@@ -111,7 +107,7 @@ class BillCreateComponent extends Component
             
             'particulars' => app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid')),
             'units' => app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($this->tenant->uuid),
-            'bills' => app('App\Http\Controllers\TenantBillController')->show_tenant_bills($this->tenant->uuid),
+            'bills' => app('App\Http\Controllers\BillController')->show_tenant_bills($this->tenant->uuid),
         ]);
     }
 }

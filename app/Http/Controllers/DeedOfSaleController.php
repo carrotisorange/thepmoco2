@@ -49,6 +49,6 @@ class DeedOfSaleController extends Controller
 
         DeedOfSale::where('uuid', $deedOfSale->uuid)->delete();
         
-        return back()->with('success', 'Success!');
+        return back()->with('success', 'Changes Saved!');
     }
 }

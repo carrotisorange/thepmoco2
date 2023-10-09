@@ -19,8 +19,8 @@
                 Carbon\Carbon::parse($session->created_at)->timezone('Asia/Manila')->format('M
                 d, Y')}}
             </x-td>
-            <x-td>{{ $session->user->name }}</x-td>
-            <x-td>{{ $session->user->role->role }}</x-td>
+            <x-td>{{ App\Models\User::where('id', $session->user_id)->value('name') }}</x-td>
+            <x-td>{{ App\Models\Role::find(App\Models\User::where('id', $session->user_id)->value('role_id'))->role }}</x-td>
             <x-td>
                 {{Carbon\Carbon::parse($session->created_at)->timezone('Asia/Manila')->format('g:i A')}}
             </x-td>

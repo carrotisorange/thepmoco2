@@ -52,14 +52,14 @@ class AccountPayableCreateComponent extends Component
 
      public function submitForm()
       {
-        
+
 
         //validate inputs
         $validatedData = $this->validate();
 
         try {
 
-            DB::transaction(function () use ($validatedData){ 
+            DB::transaction(function () use ($validatedData){
 
             $validatedData['remarks'] = 'none';
             $validatedData['property_uuid'] = Session::get('property_uuid');
@@ -76,10 +76,10 @@ class AccountPayableCreateComponent extends Component
                 $this->send_mail_to_tenant();
             }
             });
-                  
+
             return
-            redirect('/property/'.Session::get('property_uuid').'/accountpayable/pending')->with('success','Success!');
-            
+            redirect('/property/'.Session::get('property_uuid').'/accountpayable/pending')->with('success','Changes Saved!');
+
         }catch (\Exception $e) {
             session()->flash('error', 'Something went wrong.');
         }
@@ -102,7 +102,7 @@ class AccountPayableCreateComponent extends Component
     {
         return view('livewire.account-payable-create-component',[
             'particulars' => app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid')),
-            'users' => app('App\Http\Controllers\UserPropertyController')->get_property_users(Session::get('property_uuid')),
+            'users' => app('App\Http\Controllers\UserPropertyController')->getPersonnels(Session::get('property_uuid')),
             'billers' => app('App\Http\Controllers\PropertyBillerController')->show(Session::get('property_uuid')),
             'statuses' => $this->get_statuses()
         ]);

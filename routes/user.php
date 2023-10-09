@@ -21,10 +21,9 @@ Route::prefix('user/{user:username}')->group(function(){
 
     Route::get('/export/{portfolio}',[UserController::class, 'export']);
 
-    Route::get('/activity',[SalesPortalController::class, 'show_activity']);
 });
 
- //route for point crud operations 
+ //route for point crud operations
  Route::get('point',[PointController::class, 'index'])->name('point');
 
 Route::get('users',[UserController::class, 'show_all_users'])->name('user');

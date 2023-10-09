@@ -1,5 +1,5 @@
 <x-checkout-base-component>
-    @section('title', 'Thank you | The Property Manager')
+    @section('title', 'Thank you | '. env('APP_NAME'))
 
     <div class="container px-4 -mx-auto">
         <!-- This example requires Tailwind CSS v2.0+ -->
@@ -51,7 +51,7 @@
                 </p>
                 <div class="mt-8">
                     <div class="inline-flex rounded-md shadow">
-                        <a href="https://www.thepropertymanager.online/support" target="_blank"
+                        <a href="/support" target="_blank"
                             class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50">
                             Visit the help center
                             <!-- Heroicon name: solid/external-link -->

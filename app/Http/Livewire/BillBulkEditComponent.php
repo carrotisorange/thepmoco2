@@ -34,45 +34,19 @@ class BillBulkEditComponent extends Component
         $this->validateOnly($propertyName);
     }
 
-     public function updatedSelectAll($value)
-     {
-        if($value)
-        {
-            $this->selectedBills = $this->get_bills()->pluck('id');
-        }else
-        {
-            $this->selectedBills = [];
-        }
-        
-     }
-
-    public function removeBills()
-    {
-        foreach($this->selectedBills as $bill=>$val ){
-            Bill::destroy($bill);
-        }
-        
-        $this->selectedBills = [];
-
-        $this->bills = $this->get_bills();
-
-         session()->flash('success', 'Success!');
-
-    }
-
     public function postBills()
     {
         $validatedData = $this->validate();
 
         try{
 
-            Bill::where('batch_no', $this->batch_no)
+            Bill::where('is_posted', false)
             ->where('property_uuid', Session::get('property_uuid'))
             ->update([
              'is_posted' => true,
             ]);
 
-            return redirect('/property/'.Session::get('property_uuid').'/bill/'.$this->batch_no)->with('success', 'Success!');
+            return redirect('/property/'.Session::get('property_uuid').'/bill/')->with('success', 'Changes Saved!');
 
             // session()->flash('success', count($this->bills). ' bills are successfully saved as draft.');
 
@@ -93,14 +67,14 @@ class BillBulkEditComponent extends Component
                         'start' => $bill->start,
                         'end' =>  $bill->end,
                         'bill' => $bill->bill,
-                     ]);    
+                     ]);
 
                   $this->bills = $this->get_bills();
                 }
 
            session()->flash('success', 'Saved');
 
-        }catch(\Exception $e){  
+        }catch(\Exception $e){
             return back()->with('error','Cannot perform the action. Please try again.');
         }
     }

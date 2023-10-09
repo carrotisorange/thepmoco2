@@ -9,8 +9,7 @@ use App\Models\AccountPayableLiquidation;
 class CreateAccountPayableLiquidationStep2Component extends Component
 {
     public $accountpayable;
-    public $property;
-
+    
     public function get_particulars(){
         return AccountPayableLiquidationParticular::where('batch_no', $this->accountpayable->batch_no)->get();
     }
@@ -22,7 +21,7 @@ class CreateAccountPayableLiquidationStep2Component extends Component
             'approved_by' => auth()->user()->id
         ]);
 
-        return back()->with('success', 'Success!');
+        return back()->with('success', 'Changes Saved!');
     }
 
     public function render()

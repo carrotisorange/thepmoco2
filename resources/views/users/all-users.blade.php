@@ -1,5 +1,4 @@
 <x-main-layout>
-    @section('title', 'The Property Manager | Users')
     <div class="mx-auto px-12 px-4 max-w-7xl sm:px-6 lg:px-8 lg:py-10">
         <!-- This example requires Tailwind CSS v2.0+ -->
         <div class="flex flex-col">

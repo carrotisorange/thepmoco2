@@ -60,7 +60,7 @@ class UnitInventoryComponent extends Component
                 ]);   
             }
 
-            session()->flash('success', 'Success!');
+            session()->flash('success', 'Changes Saved!');
 
             $this->inventories = $this->get_inventories();
             
@@ -85,7 +85,7 @@ class UnitInventoryComponent extends Component
 
         return
         redirect('/property/'.$this->unitDetails->property_uuid.'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-2')->with('success',
-        'Success!');
+        'Changes Saved!');
     }
 
     public function addNewUnitInventory(){
@@ -100,7 +100,7 @@ class UnitInventoryComponent extends Component
             ]
         );
 
-        session()->flash('success', 'Success!');
+        session()->flash('success', 'Changes Saved!');
     }
 
     public function removeUnitInventory($id){
@@ -109,7 +109,7 @@ class UnitInventoryComponent extends Component
 
         UnitInventory::where('id', $id)->delete();
         
-        session()->flash('success', 'Success!');
+        session()->flash('success', 'Changes Saved!');
     }
 
 
@@ -137,7 +137,7 @@ class UnitInventoryComponent extends Component
             )->save();
        }
 
-        return redirect('/property/'.$this->unitDetails->property_uuid.'/unit/'.$this->unitDetails->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$this->contract->uuid.'/bill/'.Str::random(8).'/create')->with('success', 'Success!');
+        return redirect('/property/'.$this->unitDetails->property_uuid.'/unit/'.$this->unitDetails->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$this->contract->uuid.'/bill/'.Str::random(8).'/create')->with('success', 'Changes Saved!');
     }
     
     public function get_inventories(){

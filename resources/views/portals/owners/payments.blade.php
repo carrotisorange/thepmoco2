@@ -1,5 +1,4 @@
 <x-owner-portal-layout>
-    @section('title', 'Payments')
 
     @section('header', 'Payments')
     <div class=" mx-auto px-4 sm:px-6 lg:px-8">
@@ -7,15 +6,12 @@
         <div class="mt-10 px-4 sm:px-6 lg:px-8">
             <div class="sm:flex sm:items-center">
                 <div class="sm:flex-auto">
-                    <h1 class="text-3xl font-bold text-gray-700">Payments</h1>
+                    <h1 class="text-3xl font-bold text-gray-700">
+                        {{ucfirst(Route::current()->getName())}}
+                    </h1>
                 </div>
                 <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                    {{-- <button type="button"
-                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"><a
-                            href="ownerbills_detail">Pay Bills</a></button>
-                    <button type="button"
-                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-gray-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Export
-                        Bills</button> --}}
+
 
                 </div>
             </div>
@@ -36,9 +32,7 @@
                         @include('portals.owners.tables.payments')
 
                     </div>
-                    {{-- <button type="button"
-                        class="mb-5 inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Select
-                        All</button> --}}
+                  
                 </div>
             </div>
         </div>

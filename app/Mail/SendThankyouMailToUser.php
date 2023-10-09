@@ -18,9 +18,9 @@ class SendThankyouMailToUser extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
-        // $this->data = $data;
+        $this->data = $data;
     }
 
     /**
@@ -30,8 +30,8 @@ class SendThankyouMailToUser extends Mailable
      */
     public function build()
     {
-        return $this->subject('Welcome Email')
-            ->from(['pamelatecson@thepmo.co', 'landleybernardo@thepmo.co'])
+        return $this->subject('PropSuite')
+            ->from([env('CEO_EMAIL')])
             ->markdown('emails.sendthankyoumailtouser');
     }
 }

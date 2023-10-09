@@ -30,6 +30,6 @@ class SubscribeController extends Controller
          'status' => 'subscribed'
          ]);
 
-         return redirect('/#Subscribes')->with('success', 'Success!');
+         return redirect('/#Subscribes')->with('success', 'Changes Saved!');
     }
 }

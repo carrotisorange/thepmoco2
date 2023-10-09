@@ -16,7 +16,7 @@
         <tr>
             <x-td>{{ $index+1 }}</x-td>
             <x-td>{{ $concern->reference_no }}</x-td>
-        
+
              <x-td>
                 @if($concern->tenant_uuid)
                             <a href=" /property/{{ $concern->property_uuid }}/tenant/{{ $concern->tenant_uuid }}" class="text-blue-500 text-decoration-line: underline" target="_blank"">{{ $concern->tenant->tenant}}</a>
@@ -26,7 +26,7 @@
             </x-td>
             <x-td>
                 @if($concern->unit_uuid)
-                    <a href=" /property/{{ $concern->property_uuid }}/unit/{{ $concern->unit_uuid }}" class="text-blue-500 text-decoration-line: underline" target="_blank"">{{ $concern->unit->unit}}</a>
+                    <x-buton href=" /property/{{ $concern->property_uuid }}/unit/{{ $concern->unit_uuid }}" class="text-blue-500 text-decoration-line: underline" target="_blank"">{{ $concern->unit->unit}}</a>
                 @else
                 NA
                 @endif
@@ -39,7 +39,7 @@
             @else
             <span title="{{ $concern->status }}" class="px-2 text-sm leading-5 font-semibold rounded-full
                                                                             bg-orange-100 text-orange-800">
-                <i class="fa-solid fa-clock"></i> 
+                <i class="fa-solid fa-clock"></i>
             </span>
             @endif
             </x-td>
@@ -47,16 +47,13 @@
             <x-td>{{ $concern->category->category }}</x-td>
             <x-td>
                 @can('tenant')
-                <a href="/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/concerns/{{ $concern->id }}"
-                    class="text-blue-500 text-decoration-line: underline" target="_blank"">Review</a>
+                <x-button onclick="window.location.href='/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/concerns/{{ $concern->id }}'">Review</x-buton>
 
                 @else
-                
-         
-                <a href="/property/{{ $concern->property_uuid }}/concern/{{ $concern->id }}/edit"
-                    class="text-blue-500 text-decoration-line: underline" target="_blank"">Review</a>
+
+                <x-button onclick="window.location.href='/property/{{ $concern->property_uuid }}/concern/{{ $concern->id }}/edit'">Review</x-button>
                     @endcannot
-              
+
             </x-td>
         </tr>
         @endforeach

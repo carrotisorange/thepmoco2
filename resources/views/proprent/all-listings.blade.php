@@ -1,8 +1,8 @@
 @include('includes.proprent-head')
-      
-    
+
+
       <div class="min-h-screen ">
-    
+
         <div class="py-16">
             <div class="mx-auto max-w-2xl px-4 py-10 sm:px-6 lg:max-w-7xl lg:px-8">
 
@@ -70,7 +70,7 @@
 								</td>
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 									<p class="text-gray-900 whitespace-no-wrap">
-										
+
                                     Location
 									</p>
 								</td>
@@ -91,7 +91,7 @@
 							<tr>
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 									<div class="flex items-center">
-										
+
 											<div class="ml-3">
 												<p class="text-gray-900 whitespace-no-wrap">
                                                 ABC Dorm Unit 1
@@ -104,7 +104,7 @@
 								</td>
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 									<p class="text-gray-900 whitespace-no-wrap">
-										
+
                                     Location
 									</p>
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -124,7 +124,7 @@
 							<tr>
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 									<div class="flex items-center">
-										
+
 											<div class="ml-3">
 												<p class="text-gray-900 whitespace-no-wrap">
 												ABC Dorm Unit 1
@@ -137,7 +137,7 @@
 								</td>
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 									<p class="text-gray-900 whitespace-no-wrap">
-										
+
                                     Location
 									</p>
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -157,7 +157,7 @@
 							<tr>
 								<td class="px-5 py-5 bg-white text-sm">
 									<div class="flex items-center">
-										
+
 											<div class="ml-3">
 												<p class="text-gray-900 whitespace-no-wrap">
 												ABC Dorm Unit 1
@@ -191,15 +191,13 @@
                             Showing 1 to 4 of 50 Entries
                         </span>
 						<div class="inline-flex mt-2 xs:mt-0">
-							<button
-                                class="text-sm text-indigo-50 transition duration-150 hover:bg-indigo-500 bg-purple-900 font-semibold py-2 px-4 rounded-l">
+							<x-button>
                                 Prev
-                            </button>
-							&nbsp; &nbsp;
-							<button
-                                class="text-sm text-indigo-50 transition duration-150 hover:bg-indigo-500 bg-purple-900 font-semibold py-2 px-4 rounded-r">
+                            </x-button>
+
+							<x-button type="submit">
                                 Next
-                            </button>
+                            </x-button>
 						</div>
 					</div>
 				</div>

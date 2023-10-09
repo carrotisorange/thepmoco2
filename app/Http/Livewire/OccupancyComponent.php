@@ -42,7 +42,7 @@ class OccupancyComponent extends Component
              $this->update_deed_of_sales($validatedData);
          });
 
-         return redirect('/property/'.Session::get('property_uuid').'/owner/'.$this->owner->uuid)->with('success', 'Success!');
+         return redirect('/property/'.Session::get('property_uuid').'/owner/'.$this->owner->uuid)->with('success', 'Changes Saved!');
          }
          catch(\Exception $e)
          {

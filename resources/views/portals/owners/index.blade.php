@@ -1,5 +1,4 @@
 <x-owner-portal-layout>
-    @section('title', 'Dashboard')
 
     @section('header', 'Dashboard')
 
@@ -7,9 +6,7 @@
         <div class="mx-auto px-4 sm:px-6 lg:px-8">
             <div class="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
 
-                <!-- FIRST COLUMN -->
 
-                <!-- welcome back -->
                 <div class="grid grid-cols-1 gap-x-4 sm:grid-cols-6">
 
 
@@ -63,13 +60,13 @@
                         },
                         ],
                      };
-    
+
                     const configLineChart = {
                         type: "line",
                         data,
                         options: {},
                      };
-    
+
                     var chartLine = new Chart(
                      document.getElementById("chartLine"),
                         configLineChart
@@ -79,17 +76,6 @@
 
                         </div>
 
-
-
-
-
-
-
-
-
-
-
-                        <!-- number by categories scroll -->
                         <div class="grid grid-cols-1 gap-x-4 sm:grid-cols-6">
                             <div class="sm:col-span-6 ml-2 font-bold text-lg mt-10 mb-2 py-8"></div>
 
@@ -131,9 +117,6 @@
                     </div>
                 </div>
 
-
-
-                <!-- card Announcements -->
                 <div class="bg-white overflow-hidden">
                     <div class="p-5">
                         <div class="flex items-center">
@@ -202,7 +185,7 @@
                             <div class="mt-2 text-xs text-center font-semibold font-body text-gray-500 truncate">
                                 Tenant
                             </div>
-                            
+
 
                         </div>
 
@@ -344,13 +327,6 @@
                             </div>
                         </div>
                     </div>
-
-                    {{-- <div button type="button"
-                        class=" justify-self-end items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm 
-    text-white text-center bg-gray-600 hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">View
-                        More</button>
-                    </div> --}}
-
 
                 </div>
             </div>

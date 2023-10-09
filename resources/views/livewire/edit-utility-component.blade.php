@@ -1,4 +1,5 @@
 <x-modal-component>
+    @include('layouts.notifications')
     <x-slot name="id">
         edit-utility-modal-{{$utility->id}}
     </x-slot>
@@ -7,7 +8,7 @@
             class="relative transform overflow-hidden rounded-lgpx-4 pt-5 pb-4 text-left transition-all  sm:w-full sm:max-w-sm sm:p-6">
             <div class="mt-3 text-center sm:mt-5">
                 <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Edit Utility
-                    
+
                 </h3>
 
             </div>
@@ -114,24 +115,20 @@
                 </div>
                 <div class="mt-5 sm:mt-6">
 
-                    <button type="button" wire:loading.remove wire:click="updateUtility"
-                        class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
+                    <x-button type="button" wire:loading.remove wire:click="updateUtility">
                         Update
-                    </button>
+                    </x-button>
 
-                    <button type="button" wire:loading disabled
-                        class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
+                    <x-button type="button" wire:loading disabled>
                         Loading...
-                    </button>
+                    </x-button>
 
                 </div>
                 @else
                 <div class="mt-5 sm:mt-6">
-                    <button type="button" disabled
-                        class="inline-flex w-full justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:text-sm">
+                    <x-button class="w-full" type="button" disabled>
                        {{$status}}
-                    </button>
-
+                    </x-button>
                 </div>
                 @endif
 

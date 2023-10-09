@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use App\Models\User;
 use Livewire\WithPagination;
-use App\Models\UserRestriction;
+use App\Models\Feature;
 
 class UserEditComponent extends Component
 {
@@ -37,7 +37,7 @@ class UserEditComponent extends Component
         $this->role_id = $user->role_id;
         $this->gender = $user->gender;
     }
-    
+
     protected function rules()
     {
         return [
@@ -48,7 +48,6 @@ class UserEditComponent extends Component
                 'role_id' => ['nullable', Rule::exists('roles', 'id')],
                 'status' => 'nullable',
                 'gender' => ['required'],
-
             ];
     }
 
@@ -60,30 +59,37 @@ class UserEditComponent extends Component
     public function updateUser()
     {
         $validatedData = $this->validate();
-         
-        try{     
+
+        try{
             if($this->password)
             {
                 $validatedData['password'] = Hash::make($this->password);
             }
-            
+
             DB::transaction(function () use ($validatedData){
                 $this->user->update($validatedData);
             });
 
-            session()->flash('success', 'Success!');
-            
+            session()->flash('success', 'Changes Saved!');
+
         }catch(\Exception $e){
             session()->flash('error', 'Something went wrong.');
         }
     }
     public function render()
     {
+        $featureId = 19;
+
+        $userSubfeatures = Feature::where('id', $featureId)->pluck('subfeatures')->first();
+
+        $userSubfeaturesArray = explode(",", $userSubfeatures);
+
         return view('livewire.user-edit-component',[
             'properties' => User::find($this->user->id)->user_properties()->get(),
             'all_properties' => User::find(auth()->user()->id)->user_properties()->get(),
             'roles' => app('App\Http\Controllers\UserPropertyController')->get_personnel_positions(),
-            'sessions' => User::find($this->user->id)->sessions()->orderBy('created_at', 'desc')->get()
+            'sessions' => User::find($this->user->id)->sessions()->orderBy('created_at', 'desc')->get(),
+            'userSubfeaturesArray' => $userSubfeaturesArray
         ]);
     }
 }

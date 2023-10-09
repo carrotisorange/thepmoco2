@@ -1,4 +1,14 @@
+<style>
+   .divtext {
+    border: ridge 2px;
+    padding: 5px;
+    width: 20em;
+    min-height: 5em;
+    overflow: auto;
+}
+</style>
 <div>
+    @include('layouts.notifications')
       <div class="mt-8">
          <div class="max-full mx-auto sm:px-6">
             <form class="space-y-6" wire:submit.prevent="submitForm()" class="w-full">
@@ -186,8 +196,8 @@
                         <label for="concern" class="block text-sm font-medium text-gray-700"> Details of the concern
                         </label>
                         <div class="mt-1">
-                           <textarea id="concern" wire:model="concern" rows="3"
-                              class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-700 rounded-md">
+                           <textarea id="concern" wire:model="concern" row="20"
+                              class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block h-96 w-full sm:text-sm border border-gray-700 rounded-md">
                                            {{ $concern_details->concern }}
                                            </textarea>
                            @error('concern')
@@ -398,29 +408,17 @@
                
                @cannot('tenant')
                <div class="flex justify-end">
-                  <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline" wire:loading.remove
-                     href="/property/{{ Session::get('property_uuid') }}/concern">
-                     Cancel
-                  </a>
-                  <button type="submit" wure:loading.remove
-                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-   
-   
+                <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/concern'">
+                    Cancel
+                </x-button>
+                  <x-button type="submit">
                      Update
-                  </button>
-                  <button type="button" disabled wire:loading
-                     class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                  
-                  
-                     Loading...
-                  </button>
+                  </x-button>
                </div>
                @endcannot
             </div>
    
             </form>
          </div>
-         @include('layouts.notifications')
       </div>
-   
 </div>

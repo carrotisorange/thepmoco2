@@ -27,9 +27,8 @@
                     </div>
                 </div>
                 <div class="mt-5 sm:mt-6">
-                    <button type="button" wire:click="deleteUnit"
-                        class="inline-flex w-full justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:text-sm">
-                        Confirm
+                    <x-button class="bg-red-500" class="w-full" type="button" wire:click="deleteUnit">
+                        Delete
                     </button>
 
                 </div>

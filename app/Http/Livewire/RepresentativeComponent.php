@@ -61,7 +61,7 @@ class RepresentativeComponent extends Component
           });
 
           return
-          redirect('/property/'.Session::get('property_uuid').'/owner/'.$this->owner->uuid)->with('success','Success!');
+          redirect('/property/'.Session::get('property_uuid').'/owner/'.$this->owner->uuid)->with('success','Changes Saved!');
 
        }catch(\Exception $e)
        {

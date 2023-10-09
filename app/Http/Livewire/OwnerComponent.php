@@ -9,7 +9,6 @@ use Livewire\WithFileUploads;
 use Session;
 use DB;
 use App\Models\Spouse;
-use App\Models\Relationship;
 use App\Models\Representative;
 use Livewire\Component;
 
@@ -63,7 +62,7 @@ class OwnerComponent extends Component
                         'mobile_number' => 'nullable',
                         'gender' => 'required',
                         'civil_status' => 'nullable',
-                        'employer' => 'nullable', 
+                        'employer' => 'nullable',
                         'occupation' => 'nullable',
                         'employer_address' => 'nullable',
                         'country_id' => ['nullable', Rule::exists('countries', 'id')],
@@ -92,14 +91,14 @@ class OwnerComponent extends Component
 
         public function submitForm()
         {
-                
+
 
                 $validatedData = $this->validate();
 
                 try{
-                       
+
                         DB::transaction(function () use ($validatedData){
-                                
+
                                 //method to create a new owner
                                 $owner_uuid = $this->store_owner($validatedData);
 
@@ -124,12 +123,12 @@ class OwnerComponent extends Component
                                                 ]);
                                         }
                                 }
-                        
+
                                 if($this->generateCredentials)
                                 {
                                         //method to create a new user
                                         $user_id = $this->store_user();
-                                        
+
                                         app('App\Http\Controllers\UserController')->update_user_owner_uuid($user_id, $owner_uuid);
 
                                 }
@@ -137,13 +136,13 @@ class OwnerComponent extends Component
                                 //method to create a new point
                                 app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id,4, 1);
 
-                        return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/owner/'.$owner_uuid.'/deed_of_sale/create')->with('success', 'Success!');
-        
+                        return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/owner/'.$owner_uuid.'/deed_of_sale/create')->with('success', 'Changes Saved!');
+
                         });
-    
+
                 }
                 catch(\Exception $e)
-                {                        
+                {
                        return back()->with('error',$e);
                 }
         }
@@ -164,7 +163,7 @@ class OwnerComponent extends Component
         );
         }
 
-      
+
 
         public function store_spouse($name, $email, $mobile_number, $owner_uuid)
         {
@@ -212,8 +211,8 @@ class OwnerComponent extends Component
                 }
 
                 //$owner_uuid = Owner::create($validatedData)->uuid;
-                $bill_no = app('App\Http\Controllers\BillController')->get_latest_bill_no(Session::get('property_uuid'));
-                
+                $bill_no = app('App\Http\Controllers\BillController')->getLatestBillNo(Session::get('property_uuid'));
+
                 $owner_uuid = Owner::create([
                         'uuid' => Str::uuid(),
                         'property_uuid' => Session::get('property_uuid'),
@@ -226,7 +225,7 @@ class OwnerComponent extends Component
                         'province_id' => $this->province_id,
                         'city_id' => $this->city_id,
                         'barangay' => $this->barangay,
-                        'employer' => $this->employer, 
+                        'employer' => $this->employer,
                         'occupation' => $this->occupation,
                         'employer_address' => $this->employer_address,
                         'photo_id' => $this->photo_id,

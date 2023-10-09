@@ -1,5 +1,5 @@
 <x-new-layout-base>
-    @section('title', 'Portfolio | The Property Manager')
+    @section('title', 'Portfolio | '. env('APP_NAME'))
 
     @livewire('property-index-component')
 

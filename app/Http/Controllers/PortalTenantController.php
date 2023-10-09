@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\PaymentRequest;
 use Session;
 use Carbon\Carbon;
-use App\Models\Notification;
 use App\Models\Collection;
 use DB;
 
@@ -29,7 +28,7 @@ class PortalTenantController extends Controller
     }
 
     public function show_contracts($role_id, User $user)
-    {     
+    {
         return view('portals.tenants.contracts',[
             'contracts' => Tenant::findOrFail($user->tenant_uuid)->contracts()->orderBy('start', 'desc')->get()
         ]);
@@ -39,7 +38,7 @@ class PortalTenantController extends Controller
     {
         return view('portals.tenants.bills',[
             'tenant' => Tenant::findOrFail($user->tenant_uuid),
-            'unpaid_bills' => app('App\Http\Controllers\TenantBillController')->get_tenant_balance($user->tenant_uuid),
+            'unpaid_bills' => app('App\Http\Controllers\BillController')->get_tenant_balance($user->tenant_uuid),
         ]);
     }
 
@@ -48,7 +47,7 @@ class PortalTenantController extends Controller
     {
           return Bill::where('tenant_uuid', $tenant_uuid)->posted()->orderBy('id','desc')->get();
     }
-  
+
 
     public function export_bills($role_id, User $user)
     {
@@ -56,7 +55,9 @@ class PortalTenantController extends Controller
 
         $data = $this->get_bill_data($tenant);
 
-        $pdf = $this->generate_pdf($data);
+        $folder_path = 'portals.tenants.exports.bills';
+
+        $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
 
         return $pdf->stream($tenant->tenant.'-soa.pdf');
     }
@@ -77,27 +78,6 @@ class PortalTenantController extends Controller
         return Bill::where('tenant_uuid', $tenant_uuid)->whereIn('status', ['unpaid', 'partially_paid'])->where('bill','>', 0)->orderBy('bill_no','desc')->get();
     }
 
-    public function generate_pdf($data)
-    {
-        $pdf = PDF::loadView('portals.tenants.exports.bills', $data);
-
-        $pdf->output();
-
-        $canvas = $pdf->getDomPDF()->getCanvas();
-
-        $height = $canvas->get_height();
-
-        $width = $canvas->get_width();
-
-        $canvas->set_opacity(.2,"Multiply");
-
-        $canvas->set_opacity(.2);
-
-        $canvas->page_text($width/5, $height/2, "", null, 55, array(0,0,0),2,2,-30);
-
-        return $pdf;
-    }
-
     public function show_collections($role_id, User $user)
     {
         return view('portals.tenants.collections',[
@@ -111,7 +91,7 @@ class PortalTenantController extends Controller
     }
 
     public function show_collections_pending($role_id, User $user, $status)
-    {   
+    {
         return view('portals.tenants.payment-requests',[
             'requests' => PaymentRequest::where('tenant_uuid', $user->tenant_uuid)->orderBy('created_at', 'desc')->get()
         ]);
@@ -150,14 +130,14 @@ class PortalTenantController extends Controller
         return view('portals.tenants.edit-payment-request',[
             'payment_request' => PaymentRequest::where('batch_no', $batch_no)->get(),
         ]);
-    }  
-    
+    }
+
     public function payment_request_destroy($role_id, User $user, $batch_no)
     {
        PaymentRequest::where('batch_no', $batch_no)->delete();
 
-      return redirect(auth()->user()->role_id.'/tenant/'. auth()->user()->username.'/bills/')->with('success', 'Success!');
-    }  
+      return redirect(auth()->user()->role_id.'/tenant/'. auth()->user()->username.'/bills/')->with('success', 'Changes Saved!');
+    }
 
     public function payment_request_update(Request $request, $role_id, User $user, $batch_no)
     {
@@ -178,13 +158,13 @@ class PortalTenantController extends Controller
                 //     'details' => 'approved a payment request.',
                 //     'status' => 'approved',
                 //     'role_id' => $role_id,
-                //     'property_uuid' => Session::get('property_uuid') 
+                //     'property_uuid' => Session::get('property_uuid')
                 // ]);
 
-         return redirect('/property/'.Session::get('property_uuid').'/collection/approved')->with('success', 'Success!');
+         return redirect('/property/'.Session::get('property_uuid').'/collection/approved')->with('success', 'Changes Saved!');
         }
          else{
-    
+
       if(!$request->proof_of_payment == null)
       {
         PaymentRequest::where('batch_no', $batch_no)
@@ -203,13 +183,13 @@ class PortalTenantController extends Controller
         //   'property_uuid' => Tenant::find($user->tenant_uuid)->property->uuid
         //   ]);
 
-      } 
+      }
 
       return redirect(auth()->user()->role_id.'/tenant/'.
-      auth()->user()->username.'/payments/declined')->with('success', 'Success!');
+      auth()->user()->username.'/payments/declined')->with('success', 'Changes Saved!');
 
 
-    }  
+    }
 }
 
 
@@ -228,10 +208,10 @@ class PortalTenantController extends Controller
         //         'details' => 'approved a payment request.',
         //         'status' => 'declined',
         //         'role_id' => $role_id,
-        //         'property_uuid' => Session::get('property_uuid') 
+        //         'property_uuid' => Session::get('property_uuid')
         //     ]);
 
-        return redirect('/property/'.Session::get('property_uuid').'/collection/declined')->with('success', 'Success!');
+        return redirect('/property/'.Session::get('property_uuid').'/collection/declined')->with('success', 'Changes Saved!');
     }
 
 
@@ -242,7 +222,7 @@ class PortalTenantController extends Controller
         return Storage::download(($proof_of_payment), 'AR_'.$user->username.'_'.$paymentrequest->batch_no.'.png');
     }
 
-    
+
     public function edit_concern($role_id, User $user, Concern $concern)
     {
         return view('portals.tenants.edit-concern',[

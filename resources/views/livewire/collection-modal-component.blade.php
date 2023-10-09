@@ -1,4 +1,5 @@
 <div>
+    @include('layouts.notifications')
     <form class="p-10" wire:submit.prevent="payBill()">
         <h3 class="text-xl font-medium text-gray-900 dark:text-white">Payment Information</h3>
      
@@ -166,7 +167,7 @@
                     <span class="text-left">
                       <a class="text-red-600" href="{{ url()->previous() }}">Close</a>
                     </span>&nbsp&nbsp
-                    <x-form-button form="create-form" wire:click="payBill()">Pay</x-form-button>
+                    <x-button form="create-form" wire:click="payBill()">Pay</x-button>
                 </p>
             </div>
             @endif

@@ -1,5 +1,4 @@
 <x-new-layout>
-    @section('title','Units | '. Session::get('property_uuid'))
     <div class="mt-8">
         <div class="max-full mx-auto px-4 sm:px-6 lg:px-11">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -61,9 +60,8 @@
                                                 clip-rule="evenodd" />
                                         </svg>
                                     </div>
-                                    <button type="button"
-                                        class="text-center bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white ">Filter
-                                        by Default</button>
+                                    <x-button type="button">Filter
+                                        by Default</x-button>
                                 </div>
                         </div>
                         </form>

@@ -13,16 +13,15 @@ use App\Models\Wallet;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 use App\Models\Collection;
+use App\Models\Feature;
 
 class TenantShowComponent extends Component
 {
     use WithPagination;
 
     use WithFileUploads;
-
-    public $property;
     public $tenant_details;
-    
+
     public $tenant;
     public $email;
     public $mobile_number;
@@ -55,7 +54,7 @@ class TenantShowComponent extends Component
     public $tenant_uuid;
 
     public $user_type = 'tenant';
-    
+
 
     public function mount($tenant_details)
     {
@@ -117,60 +116,54 @@ class TenantShowComponent extends Component
 
     public function submitForm()
     {
-        
-       
+
+
         $validatedData = $this->validate();
-         
+
         try{
             DB::transaction(function () use ($validatedData){
                 $this->tenant_details->update($validatedData);
 
-                app('App\Http\Controllers\ActivityController')->store($this->property->uuid, auth()->user()->id,'updates',3);
+                app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'updates',3);
 
-                session()->flash('success', 'Success!');
+                session()->flash('success', 'Changes Saved!');
             });
-            
+
         }catch(\Exception $e){
             session()->flash('error', $e);
         }
     }
 
     public function redirectToTheCreateGuardianPage(){
-        
 
-        return redirect('/property/'. $this->property->uuid.'/tenant/'.$this->tenant_details->uuid.'/guardian/'.Str::random(8).'/create');
+
+        return redirect('/property/'. Session::get('property_uuid').'/tenant/'.$this->tenant_details->uuid.'/guardian/'.Str::random(8).'/create');
     }
 
     public function redirectToTheCreateReferencePage(){
-        
 
-        return redirect('/property/'. $this->property->uuid.'/tenant/'.$this->tenant_details->uuid.'/reference/'.Str::random(8).'/create');
+
+        return redirect('/property/'. Session::get('property_uuid').'/tenant/'.$this->tenant_details->uuid.'/reference/'.Str::random(8).'/create');
     }
 
     public function redirectToTheCreateConcernPage(){
-        
 
-        return redirect('/property/'. $this->property->uuid.'/tenant/'.$this->tenant_details->uuid.'/concern/create');
-    }
 
-    public function redirectToTheCreateBillPage(){
-        
-
-        return redirect('/property/'. $this->property->uuid.'/tenant/'.$this->tenant_details->uuid.'/bills');
+        return redirect('/property/'. Session::get('property_uuid').'/tenant/'.$this->tenant_details->uuid.'/concern/create');
     }
 
     public function redirectToTheCreateContractPage(){
-        
 
-        return redirect('/property/'. $this->property->uuid.'/tenant/'.$this->tenant_details->uuid.'/units');
+
+        return redirect('/property/'. Session::get('property_uuid').'/tenant/'.$this->tenant_details->uuid.'/units');
     }
 
     public function sendCredentials()
     {
-        
-
-        if(!$this->email){
+        if($this->email == null){
             session()->flash('error', 'The email address is required.');
+
+            return back();
         }
 
         $count_user = User::where('email', $this->tenant_details->email)->count();
@@ -219,56 +212,65 @@ class TenantShowComponent extends Component
             app('App\Http\Controllers\UserController')->send_email($user_id->role_id, $user_id->email, $user_id->username, $temporary_password);
         }
 
-        app('App\Http\Controllers\ActivityController')->store($this->property->uuid, auth()->user()->id,'sends',18);
-       
+        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'sends',18);
 
-       return back()->with('success', 'Success');
+
+       return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant_details->uuid)->with('success', 'Changes Saved!');
     }
 
     public function removeCredentials()
     {
-        
+
 
         User::where('email', $this->tenant_details->email)
         ->delete();
-        
-        app('App\Http\Controllers\ActivityController')->store($this->property->uuid, auth()->user()->id,'removes', 18);
 
-        session()->flash('success', 'Success!');
+        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'removes', 18);
+
+        session()->flash('success', 'Changes Saved!');
     }
 
     public function deleteTenant(){
 
-        app('App\Http\Controllers\PropertyContractController')->destroy(null, $this->tenant_details->uuid);
+        app('App\Http\Controllers\ContractController')->destroy(null, $this->tenant_details->uuid);
         app('App\Http\Controllers\TenantGuardianController')->destroy($this->tenant_details->uuid);
         app('App\Http\Controllers\TenantReferenceController')->destroy($this->tenant_details->uuid);
         app('App\Http\Controllers\TenantConcernController')->destroy($this->tenant_details->uuid);
         app('App\Http\Controllers\TenantConcernController')->destroy($this->tenant_details->uuid);
-        app('App\Http\Controllers\TenantBillController')->destroy($this->tenant_details->uuid);
+        app('App\Http\Controllers\BillController')->delete_bills($this->tenant_details->uuid);
         Collection::where('tenant_uuid', $this->tenant_details->uuid)->delete();
         app('App\Http\Controllers\PropertyTenantController')->destroy($this->tenant_details->uuid);
         User::where('tenant_uuid', $this->tenant_details->uuid)->delete();
 
 
-      return redirect('/property/'.$this->tenant_details->property_uuid.'/tenant/')->with('success', 'Success!');
- 
+      return redirect('/property/'.$this->tenant_details->property_uuid.'/tenant/')->with('success', 'Changes Saved!');
+
     }
 
     public function render()
-    {   
+    {
+        $featureId = 5;
+
+        $tenantSubfeatures = Feature::where('id', $featureId)->pluck('subfeatures')->first();
+
+        $tenantSubfeaturesArray = explode(",", $tenantSubfeatures);
+
             return view('livewire.tenant-show-component',[
             'cities' => app('App\Http\Controllers\CityController')->index($this->province_id),
             'provinces' => app('App\Http\Controllers\ProvinceController')->index($this->country_id),
             'countries' =>  app('App\Http\Controllers\CountryController')->index(),
             'relationships' => app('App\Http\Controllers\RelationshipController')->index(),
-            'references' => app('App\Http\Controllers\TenantController')->get_tenant_references($this->tenant_details->uuid),     
+            'references' => app('App\Http\Controllers\TenantController')->get_tenant_references($this->tenant_details->uuid),
             'guardians' => app('App\Http\Controllers\TenantController')->show_tenant_guardians($this->tenant_details->uuid),
             'contracts' => app('App\Http\Controllers\TenantController')->show_tenant_contracts($this->tenant_details->uuid),
-            'bills' => app('App\Http\Controllers\TenantController')->show_tenant_bills($this->tenant_details->uuid),
+            'bills' => app('App\Http\Controllers\BillController')->show_tenant_bills($this->tenant_details->uuid),
             'concerns' => app('App\Http\Controllers\TenantController')->show_tenant_concerns($this->tenant_details->uuid),
-            'collections' => app('App\Http\Controllers\TenantCollectionController')->get_tenant_collections($this->property->uuid, $this->tenant_details->uuid),
+            'collections' => app('App\Http\Controllers\CollectionController')->get_tenant_collections(Session::get('property_uuid'), $this->tenant_details->uuid),
             'wallets' => Wallet::where('tenant_uuid', $this->tenant_details->uuid)->orderBy('id','desc')->get(),
             'username' => User::where('tenant_uuid', $this->tenant_details->uuid)->value('username'),
+            'email_cred' => User::where('tenant_uuid', $this->tenant_details->uuid)->value('email'),
+            'tenantSubfeaturesArray' => $tenantSubfeaturesArray,
+            'sessions' => DB::table('sessions')->where('user_id', User::where('tenant_uuid', $this->tenant_details->uuid)->value('id'))->orderBy('created_at', 'desc')->limit(5)->get()
          ]);
     }
 }

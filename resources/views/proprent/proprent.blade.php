@@ -1,377 +1,257 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <title>PropRent</title>
-</head>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-body {
-    font-family: 'Quicksand';
+<x-landing-page-template>
 
-}
-
-#purple{
-  background-color: #614A6B;
-}
+    @section('title','Proprent | Home')
+    @section('description', 'Increase transparency, and efficiency in rental property operations with a simple and easy
+    to use system for leasing and property management.')
 
 
-#yellow{
-  background-color: #E5CF56;
-}
+    <style>
+        body {
+            font-family: 'Poppins';
+        }
 
-#brown{
-  background-color: #D18D6B;
-}
-</style>
-  <html class="h-screen w-full bg-cover" style="background-image: url('/brands/proprent/building.gif');">
-  <body>
+        #button1 {
+            background-color: #F79630;
+            border-radius: 30px;
+            transition-duration: 0.1s;
+        }
+
+        #button2 {
+            background-color: #8B5CF6;
+            border-radius: 30px;
+            transition-duration: 0.1s;
+        }
+
+        #button1:hover,
+        #button2:hover {
+            background-color: #fdba74;
+        }
+
+        body {
+            background-color: #4F3F6D;
+            height: 100%;
+        }
+
+        .proprent-bg {
+            background-image: url('/brands/propsuite/proprent-landing-bg.png');
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+        }
+
+        #seamless {
+            color: #F79630;
+        }
+
+        #owner {
+            background-color: #E0DAED;
+        }
+
+        #gradient {
+            background-image: linear-gradient(to right, rgba(79, 25, 100), rgba(79, 63, 109));
+        }
+
+        #features {
+            background-image: url('/brands/landing/feature-bg.webp');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        #guide {
+            background-color: #4F3F6D;
+        }
+
+        #owner-btn {
+            background-color: #4A386C;
+            border-radius: 4px;
+        }
+
+        .proprentOrange {
+            color: #F4B700;
+        }
+
+        .proprentOrangebg {
+            background-color: #F4B700;
+        }
+    </style>
 
 
-  <header id="" class="fixed w-full top-0 z-50">
-    <nav id="nav" class="lg:sticky top-0 z-10 relative px-4 py-5 flex justify-between items-center">
-        <a class="text-3xl font-bold leading-none" href="/login">
-            <img class="ml-5 h-8" src="{{ asset('/brands/proprent/proprent-logo.png') }}" alt="proprent logo">
-        </a>
+    <!-- search section -->
 
 
 
-        <!-- desktop nav -->
-        <!-- <ul
-            class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:items-center lg:w-auto lg:space-x-10">
-            <li><a class="text-base font-bold text-purple-900 hover:text-yellow-200" href="/dashboard">Home</a></li>
-            <li><a class="text-base font-bold text-purple-900 hover:text-yellow-200" href="/lot">About</a></li>
-            <li><a class="text-base font-bold text-purple-900 hover:text-yellow-200" href="/design">Support</a></li>
-        </ul> -->
+    <!-- seamless section -->
 
+    <div class="proprent-bg sm:block lg:flex md:flex min-h-screen py-16">
+        <div class="flex-col items-center justify-center sm:ml-3 lg:ml-5 px-4 sm:px-4 md:px-8 lg:px-20 xl:px-36">
+            <div class="w-full">
+                <div class="text-gray-300 text-4xl font-bold py-24 sm:text-5xl lg:text-5xl">
+                    <img class="w-36" src="{{ asset('/brands/propsuite/proprent.png') }}">
 
-
-        <a class="hidden lg:ml-auto lg:mr-3 py-2 px-8 bg-g-50 border border-yellow-500 text-sm font-bold text-yellow-500 hover:border-blue-500 hover:text-blue-500 transition duration-200"
-            href="/login">Log In</a>
-
-
-        <ul class="hidden space-x-2 lg:inline-flex items-center">
-
-            <li class="rounded-2xl py-1">
-                <a href="/proprent/sign-in" class="text-purple-900 text-base font-bold flex items-center px-2 hover:text-yellow-300">
-                    Sign In
-                </a>
-            </li>
-
-            <li id="yellow" class="rounded-2xl py-1">
-                <a href="/proprent/select-role" class="font-bold text-sm flex items-center px-2 text-white">
-                    Sign Up
-                </a>
-            </li>
-        </ul>
-
-        <!-- burger menu -->
-        <div class="lg:hidden">
-            <button class="navbar-burger flex items-center text-yellow-500 p-3">
-                <svg class="block h-4 w-4 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <title>Mobile menu</title>
-                    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-                </svg>
-            </button>
-        </div>
-    </nav>
-
-
-    <!-- mobile nav -->
-    <div class="navbar-menu relative z-50 hidden">
-        <div class="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
-
-        <nav
-            class="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
-            <div class="flex items-center mb-8">
-                <a class="mr-auto text-3xl font-bold leading-none" href="/login">
-                    <img class="h-20" src="{{ asset('/brands/proprent/proprent-logo.png') }}" alt="proprent logo">
-                </a>
-                <!-- x button -->
-                <button class="navbar-close">
-                    <svg class="h-6 w-6 text-gray-400 cursor-pointer hover:text-gray-500"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                        </path>
-                    </svg>
-                </button>
-            </div>
-
-            <div>
-                <ul>
-                    <li class="mb-1" tabindex="0">
-                        <a class="block p-4 text-sm font-medium text-gray-600 hover:bg-blue-100 hover:text-blue-500"
-                            href="/">Home</a>
-                    </li>
-                    <li class="mb-1" tabindex="0">
-                        <a class="block p-4 text-sm font-medium text-gray-600 hover:bg-blue-100 hover:text-blue-500"
-                            href="">About</a>
-                    </li>
-                    <li class="mb-1" tabindex="0">
-                        <a class="block p-4 text-sm font-medium text-gray-600 hover:bg-blue-100 hover:text-blue-500"
-                            href="">Support</a>
-                    </li>
-            
-                </ul>
-            </div>
-
-            <div class="mt-auto">
-                <div class="pt-6">
-
-                    <a class="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-yellow-500 hover:bg-yellow-400 "
-                        href="/logout">Sign Out</a>
+                    <h2 class="mt-5">Rental Property Listings</h2>
                 </div>
-                <p class="my-4 text-xs text-center text-gray-400">
-                    <span>Copyright © 2023</span>
-                </p>
             </div>
-        </nav>
+        </div>
+
+        <div class="flex-col justify-center sm:-py-2 md:py-20 lg:py-8 lg:px-48 sm-px-0">
+            <div class="lg:block lg:py-20 md:max-w-lg xl:max-w-lg sm:ml-12 sm:py-2 lg:-ml-5 mx-5">
+                <p class="text-base font-light mt-5 text-white text-justify">Leasing platform for rental property owners
+                    to list vacant rooms and units for long term or short term rentals.
+                    Leasing Marketplace for tenants to find available place for long term or short term rentals. Unlike
+                    social media pages, we verify the address and the accuracy of the rental space to increase trust in
+                    the proprent community. </p>
+                <div class="mt-10 flex justify-end space-x-5">
+                    <button class="proprentOrangebg rounded-full"> <a href="proprent-search"
+                            class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Coming
+                            Soon</a></button>
+                </div>
+            </div>
+        </div>
+
     </div>
-</header>
 
-<!-- script for mobile view -->
-<script>
-    // Burger menus
-            document.addEventListener('DOMContentLoaded', function() {
-
-                // open
-                const burger = document.querySelectorAll('.navbar-burger');
-                const menu = document.querySelectorAll('.navbar-menu');
-                if (burger.length && menu.length) {
-                    for (var i = 0; i < burger.length; i++) {
-                        burger[i].addEventListener('click', function() {
-                            for (var j = 0; j < menu.length; j++) {
-                                menu[j].classList.toggle('hidden');
-                            }
-                        });
-                    }
-                }
-
-
-                // close
-                const close = document.querySelectorAll('.navbar-close');
-                const backdrop = document.querySelectorAll('.navbar-backdrop');
-                if (close.length) {
-                    for (var i = 0; i < close.length; i++) {
-                        close[i].addEventListener('click', function() {
-                            for (var j = 0; j < menu.length; j++) {
-                                menu[j].classList.toggle('hidden');
-                            }
-                        });
-                    }
-                }
-                if (backdrop.length) {
-                    for (var i = 0; i < backdrop.length; i++) {
-                        backdrop[i].addEventListener('click', function() {
-                            for (var j = 0; j < menu.length; j++) {
-                                menu[j].classList.toggle('hidden');
-                            }
-                        });
-                    }
-                }
-            });
-</script>
-
-
-  <main class="pt-10">
-
-
- <div class="h-screen">
-  <div class="sm:py-0 lg:py-36 flex-1 flex flex-col justify-center pt-10 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-48">
-    <div class="mx-auto w-full max-w-full lg:w-full">
-      
-    <div class="pt-3 flex justify-center items-center">
-    <h2 class="text-center text-gray-800 text-2xl font-bold">Look for a place to stay without difficulty.</h2>
-    
-</div>
-<div class="pt-3 flex justify-center items-center">
-<p class="text-center font-medium text-base text-gray-500">Find available units effortlessly, for free.</p>
-</div>
-<form>
-    <div class="pt-10 flex">
-        <label for="search-dropdown" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Your Email</label>
-        <button id="purple" id="dropdown-button" data-dropdown-toggle="dropdown" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-white bg-gray-100 border border-gray-300 rounded-l-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600" type="button">All categories <svg aria-hidden="true" class="ml-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg></button>
-        <div id="dropdown" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 910px);">
-            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
-            <li>
-                <button type="button" class="inline-flex py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Apartment</button>
-            </li>
-            <li>
-                <button type="button" class="inline-flex py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dormitory</button>
-            </li>
-            <li>
-                <button type="button" class="inline-flex py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Transient</button>
-            </li>
-            <li>
-                <button type="button" class="inline-flex py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Vacation</button>
-            </li>
-            </ul>
-        </div>
-        <div class="relative w-full">
-            <input type="search" id="search-dropdown" class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-yellow-500 focus:border-yellow-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-yellow-500" placeholder="Search by City...  " required="">
-            <button type="submit" id="purple" onClick="location.href='/proprent/results'" class="absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-red-300 rounded-r-lg border border-red-100 hover:bg-red-200 focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
-                <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                <span class="sr-only">Search</span>
-            </button>
-            
-        </div>
-    </div>
-</form>
-
-         
-
- 
-</div>
-    
-
-</div>
-
-
-</div>
-
-<div class="sm:hidden lg:block">
-          <ul role="list" id="purple" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <li class="col-span-1">
-              <div class="px-20 flex w-full items-center justify-between space-x-6 p-6">
-                <div class="flex-1 truncate">
-                  <div class="flex items-center space-x-3">
-                    <h3 class="truncate text-sm font-medium text-white">No subscription</h3>
-                    
-                  </div>
-
-                </div>
-   
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-8 w-8 text-white">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z" />
-                  </svg>
-
-              </div>
-              
-            </li>
-
-            <li class="col-span-1">
-              <div class="px-20 flex w-full items-center justify-between space-x-6 p-6">
-                <div class="flex-1 truncate">
-                  <div class="flex items-center space-x-3">
-                    <h3 class="truncate text-sm font-medium text-white">No running advertisment cost</h3>
-                    
-                  </div>
-
-                </div>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-white">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                 </svg>
-
-
-              </div>
-             
-            </li>
-
-
-            <li class="col-span-1">
-              <div class="px-20 flex w-full items-center justify-between space-x-6 p-6">
-                <div class="flex-1 truncate">
-                  <div class="flex items-center space-x-3">
-                    <h3 class="truncate text-sm font-medium text-white">Free to successful Rental</h3>
-                    
-                  </div>
-
-                </div>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-white">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819" />
-                </svg>
-
-
-              </div>
-             
-            </li>
-
-  <!-- More people... -->
-</ul>
-
-          </div>
-
-</div>
-    
+    <!-- seamless end -->
 
 
 
 
+    <!-- contact us section -->
+
+    <div>
+        <div class="">
+            <div class="relative bg-white shadow-xl">
+                <h2 class="sr-only">Contact us</h2>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3">
+                    <!-- Contact information -->
+                    <div class="px-5 relative overflow-hidden bg-gray-700 py-10 sm:px-10 xl:p-12">
+                        <div class="pointer-events-none absolute inset-0 sm:hidden" aria-hidden="true">
+                            <svg class="absolute inset-0 h-full w-full" width="343" height="388" viewBox="0 0 343 388"
+                                fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M-99 461.107L608.107-246l707.103 707.107-707.103 707.103L-99 461.107z"
+                                    fill="url(#linear1)" fill-opacity=".1" />
+                                <defs>
+                                    <linearGradient id="linear1" x1="254.553" y1="107.554" x2="961.66" y2="814.66"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#fff"></stop>
+                                        <stop offset="1" stop-color="#fff" stop-opacity="0"></stop>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div class="pointer-events-none absolute top-0 right-0 bottom-0 hidden w-1/2 sm:block lg:hidden"
+                            aria-hidden="true">
+                            <svg class="absolute inset-0 h-full w-full" width="359" height="339" viewBox="0 0 359 339"
+                                fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M-161 382.107L546.107-325l707.103 707.107-707.103 707.103L-161 382.107z"
+                                    fill="url(#linear2)" fill-opacity=".1" />
+                                <defs>
+                                    <linearGradient id="linear2" x1="192.553" y1="28.553" x2="899.66" y2="735.66"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#fff"></stop>
+                                        <stop offset="1" stop-color="#fff" stop-opacity="0"></stop>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div class="pointer-events-none absolute top-0 right-0 bottom-0 hidden w-1/2 lg:block"
+                            aria-hidden="true">
+                            <svg class="absolute inset-0 h-full w-full" width="160" height="678" viewBox="0 0 160 678"
+                                fill="none" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M-161 679.107L546.107-28l707.103 707.107-707.103 707.103L-161 679.107z"
+                                    fill="url(#linear3)" fill-opacity=".1" />
+                                <defs>
+                                    <linearGradient id="linear3" x1="192.553" y1="325.553" x2="899.66" y2="1032.66"
+                                        gradientUnits="userSpaceOnUse">
+                                        <stop stop-color="#fff"></stop>
+                                        <stop offset="1" stop-color="#fff" stop-opacity="0"></stop>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                        </div>
+                        <h3 class="text-3xl font-medium text-white">Contact Us</h3>
+                        <h3 class="mt-2 text-xl font-medium text-white">{{ env('APP_NAME') }}</h3>
+                        <p class="mt-6 max-w-3xl text-sm text-purple-200">Makati Address:
+                        <p class="text-base mt-2 text-white">{{ env('APP_SECOND_ADDRESS') }}</p>
+                        </p>
+                        <p class="mt-6 max-w-3xl text-sm text-purple-200">Baguio Address:
+                        <p class="text-base mt-2 text-white">{{ env('APP_FIRST_ADDRESS') }}</p>
+                        </p>
+                        <dl class="mt-8 space-y-6">
+                            <dt><span class="sr-only">Phone number</span></dt>
+                            <dd class="flex text-base text-indigo-50">
+                                <!-- Heroicon name: outline/phone -->
+                                <svg class="h-6 w-6 flex-shrink-0 text-indigo-200" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                    aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                                </svg>
+                                <p class="ml-3">{{ env('APP_MOBILE') }}</span>
+                            </dd>
+                            <dt><span class="sr-only">Email</span></dt>
+                            <dd class="flex text-base text-indigo-50">
+                                <!-- Heroicon name: outline/envelope -->
+                                <svg class="h-6 w- flex-shrink-0 text-indigo-200" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                    aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                                </svg>
+                                <p class="ml-3">{{ env('APP_EMAIL') }}</span>
+                            </dd>
+                            <ul role="list" class="mt-8 flex space-x-12">
+                                <li>
+                                    <a href="https://www.{{  env('APP_FACEBOOK_PAGE') }}">
+                                        <dt><span class="sr-only">Facebook</span></dt>
+                                        <dd class="flex text-base text-indigo-50">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg" class="text-indigo-200 h-6 w-6"
+                                                aria-hidden="true">
+                                                <path
+                                                    d="M22.258 1H2.242C1.556 1 1 1.556 1 2.242v20.016c0 .686.556 1.242 1.242 1.242h10.776v-8.713h-2.932V11.39h2.932V8.887c0-2.906 1.775-4.489 4.367-4.489 1.242 0 2.31.093 2.62.134v3.037l-1.797.001c-1.41 0-1.683.67-1.683 1.653v2.168h3.362l-.438 3.396h-2.924V23.5h5.733c.686 0 1.242-.556 1.242-1.242V2.242C23.5 1.556 22.944 1 22.258 1"
+                                                    fill="currentColor" />
+                                            </svg>
+                                            <p class="ml-3">{{ env('APP_FACEBOOK_PAGE') }}</span>
+                                        </dd>
+                                    </a>
+                                </li>
+                            </ul>
+                    </div>
+
+                    <x-contactus></x-contactus>
 
 
-  </main>
+                    <!-- partnered with section -->
 
-  <footer class="bg-gray-50" aria-labelledby="footer-heading">
-    <h2 id="footer-heading" class="sr-only">Footer</h2>
-    <div class="content-center mx-auto max-w-xl px-4 pt-16 pb-8 sm:px-6 lg:px-8 lg:pt-24">
-      <div class="xl:grid xl:grid-cols-1 xl:gap-8">
-        <div class="grid grid-cols-3 gap-8 xl:col-span-2">
-          
-          <div class="md:grid md:grid-cols-1 md:gap-8">
-            <div>
-              
-              <ul role="list" class="mt-4 space-y-4">
-                <li>
-                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Home</a>
-                </li>
+                    <div class="bg-gray-100">
+                        <div class="mx-auto max-w-7xl py-16 px-4 sm:px-6 lg:px-8">
+                            <p class="text-center text-xl font-semibold text-gray-500">Partnered with:</p>
 
-              
+                            <div class="mt-6 grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-4">
+                                <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
+                                    <a
+                                        href="https://www.digitalocean.com/trust/certification-reports?fbclid=IwAR3qJ79YUNro9Px4ycCvcuCgGH7MVxbcrvQitnhlh4i51su4PuJsRyKr6T0"><img
+                                            class="w-20 h-20" src="{{ asset('/brands/landing/digital-ocean.png') }}"
+                                            alt="digital ocean logo"></a>
+                                </div>
+                                <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
+                                    <img class="w-30 h-20" src="{{ asset('/brands/landing/aim-logo.png') }}"
+                                        alt="AIM logo">
+                                </div>
+                                <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
+                                    <img class="w-20 h-20" src="{{ asset('/brands/clients/client-3.png') }}"
+                                        alt="martha logo">
+                                </div>
+                                <div class="col-span-1 flex justify-center md:col-span-2 md:col-start-2 lg:col-span-1">
+                                    <img class="w-20 h-20" src="{{ asset('/brands/clients/client-4.png') }}"
+                                        alt="cura logo">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end partnered with section -->
 
-                
-              </ul>
-            </div>
-            </div>
-
-            <div class="md:grid md:grid-cols-1 md:gap-8">
-              
-              <ul role="list" class="mt-4 space-y-4">
-                <li>
-                  <a href="#" class="text-base text-center text-gray-500 hover:text-gray-900">About</a>
-                </li>
-
-               
-
-                
-              </ul>
-            </div>
-          
-          <div class="md:grid md:grid-cols-1 md:gap-8">
-            <div>
-              
-              <ul role="list" class="mt-4 space-y-4">
-                <li>
-                  <a href="#" class="text-base text-gray-500 hover:text-gray-900">Terms and Condiiton</a>
-                </li>
-
-          
-
-               
-
-              
-              </ul>
-            </div>
-            
-          </div>
-        </div>
-        
-      </div>
-      <div class="mt-12 border-t border-gray-200 pt-8 md:flex md:items-center md:justify-center lg:mt-16">
-       
-        <p class="mt-8 text-base text-gray-400 md:order-1 md:mt-0">&copy; 2022 The PMO Co. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
-</div>
-
-
-</body>
-
-
-
-</html>
+</x-landing-page-template>

@@ -1,11 +1,10 @@
 <x-new-layout>
-    @section('title','Step 7 of 7 | Request for Payables')
     <div class="mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 xl:py-10">
     {{-- start of stepper --}}
         <div class="lg:border-t lg:border-b lg:border-gray-200">
             <nav class="mx-auto max-w-9xl px-4 sm:px-6 lg:px-8" aria-label="Progress">
                 <ol role="list" class="overflow-hidden rounded-md lg:flex lg:rounded-none lg:border-l lg:border-r lg:border-gray-200">
-                    
+
                     <!-- Step 1 -->
                     <li class="relative overflow-hidden lg:flex-1">
                         <div class="border border-gray-200 overflow-hidden border-b-0 rounded-t-md lg:border-0">
@@ -13,7 +12,7 @@
                             <a href="/property/{{ $property->uuid }}/accountpayable/{{ $accountpayable->id }}/step-1" class="group">
                                 <span class="absolute top-0 left-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full" aria-hidden="true"></span>
                                     <span class="px-6 py-5 flex items-start text-sm font-medium">
-                            
+
                                         <span class="flex-shrink-0">
                                         <!-- filled circle -->
                                         <span class="flex h-10 w-10 items-center justify-center rounded-full bg-purple-600">
@@ -23,7 +22,7 @@
                                             </svg>
                                         </span>
                                     </span>
-                                    
+
                                     <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
                                         <span class="text-xs font-medium text-purple-600">Step 1:</span>
                                         <span class="text-xs font-medium text-gray-500">Internal Document</span>
@@ -32,8 +31,8 @@
                             </a>
                         </div>
                     </li>
-                    
-                  
+
+
                     <!-- Step 2 -->
                      <li class="relative overflow-hidden lg:flex-1">
                         <div class="border border-gray-200 overflow-hidden border-b-0 rounded-t-md lg:border-0">
@@ -41,7 +40,7 @@
                             <a href="/property/{{ $property->uuid }}/accountpayable/{{ $accountpayable->id }}/step-2" class="group">
                                 <span class="absolute top-0 left-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full" aria-hidden="true"></span>
                                     <span class="px-6 py-5 flex items-start text-sm font-medium">
-                            
+
                                         <span class="flex-shrink-0">
                                         <!-- filled circle -->
                                         <span class="flex h-10 w-10 items-center justify-center rounded-full bg-purple-600">
@@ -51,7 +50,7 @@
                                             </svg>
                                         </span>
                                     </span>
-                                    
+
                                     <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
                                         <span class="text-xs font-medium text-purple-600">Step 2:</span>
                                         <span class="text-xs font-medium text-gray-500">Approval (Manager)</span>
@@ -75,7 +74,7 @@
                                     class="absolute top-0 left-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full"
                                     aria-hidden="true"></span>
                                 <span class="px-6 py-5 flex items-start text-sm font-medium">
-                    
+
                                     <span class="flex-shrink-0">
                                         <!-- filled circle -->
                                         <span class="flex h-10 w-10 items-center justify-center rounded-full bg-purple-600">
@@ -88,7 +87,7 @@
                                             </svg>
                                         </span>
                                     </span>
-                    
+
                                     <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
                                         <span class="text-xs font-medium text-purple-600">Step 3:</span>
                                         <span class="text-xs font-medium text-gray-500">Approval (Account Payable)</span>
@@ -112,7 +111,7 @@
                                     class="absolute top-0 left-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full"
                                     aria-hidden="true"></span>
                                 <span class="px-6 py-5 flex items-start text-sm font-medium">
-                    
+
                                     <span class="flex-shrink-0">
                                         <!-- filled circle -->
                                         <span class="flex h-10 w-10 items-center justify-center rounded-full bg-purple-600">
@@ -125,7 +124,7 @@
                                             </svg>
                                         </span>
                                     </span>
-                    
+
                                     <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
                                         <span class="text-xs font-medium text-purple-600">Step 4:</span>
                                         <span class="text-xs font-medium text-gray-500">Payment</span>
@@ -149,7 +148,7 @@
                                     class="absolute top-0 left-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full"
                                     aria-hidden="true"></span>
                                 <span class="px-6 py-5 flex items-start text-sm font-medium">
-                    
+
                                     <span class="flex-shrink-0">
                                         <!-- filled circle -->
                                         <span class="flex h-10 w-10 items-center justify-center rounded-full bg-purple-600">
@@ -162,7 +161,7 @@
                                             </svg>
                                         </span>
                                     </span>
-                    
+
                                     <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
                                         <span class="text-xs font-medium text-purple-600">Step 5:</span>
                                         <span class="text-xs font-medium text-gray-500">Liquidation</span>
@@ -184,7 +183,7 @@
                             <a href="/property/{{ $property->uuid }}/accountpayable/{{ $accountpayable->id }}/step-6" class="group">
                                 <span class="absolute top-0 left-0 h-full w-1 bg-transparent group-hover:bg-gray-200 lg:bottom-0 lg:top-auto lg:h-1 lg:w-full" aria-hidden="true"></span>
                                     <span class="px-6 py-5 flex items-start text-sm font-medium">
-                            
+
                                         <span class="flex-shrink-0">
                                         <!-- filled circle -->
                                         <span class="flex h-10 w-10 items-center justify-center rounded-full bg-purple-600">
@@ -194,7 +193,7 @@
                                             </svg>
                                         </span>
                                     </span>
-                                    
+
                                     <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
                                         <span class="text-xs font-medium text-purple-600">Step 6:</span>
                                         <span class="text-xs font-medium text-gray-500">Approval (Manager)</span>
@@ -221,16 +220,16 @@
                                             <span class="text-purple-600">06</span>
                                         </span>
                                     </span>
-              
 
-              
+
+
                                     <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
                                         <span class="text-xs font-medium text-gray-500">Step 7:</span>
                                         <span class="text-xs font-medium text-gray-500">Charts of Account (Account Payable)</span>
                                     </span>
                                 </span>
                             </a>
-                                        
+
                             <!-- Separator -->
                             <div class="absolute inset-0 top-0 left-0 hidden w-3 lg:block" aria-hidden="true">
                                 <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none" preserveAspectRatio="none">
@@ -244,8 +243,8 @@
             </nav>
         </div>
         {{-- end of stepper --}}
-        
-        @livewire('account-payable-create-step7-component', ['property' => $property,'accountpayable' => $accountpayable])         
+
+        @livewire('account-payable-create-step7-component', ['property' => $property,'accountpayable' => $accountpayable])
     </div>
 </x-new-layout>
 

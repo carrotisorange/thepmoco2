@@ -16,6 +16,35 @@ use Carbon\Carbon;
 class ContractController extends Controller
 {
 
+    public function index(Property $property){
+
+        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(6, auth()->user()->id)){
+            return abort(403);
+        }
+
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',5);
+
+        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
+
+        return view('properties.contracts.index',[
+            'property' => $property
+        ]);
+    }
+
+    public function destroy($unit_uuid, $tenant_uuid){
+        Contract::where('unit_uuid', $unit_uuid)
+        ->orWhere('tenant_uuid', $tenant_uuid)->delete();
+    }
+
+    public function show(Property $property, Unit $unit, Tenant $tenant, Contract $contract){
+
+        // $this->authorize('is_contract_read_allowed');
+
+        return view('properties.contracts.show',[
+            'contract' => $contract,
+            'tenant' => $tenant
+        ]);
+    }
     public function show_moveout_request($property_uuid, $status=null)
     {
        // $this->authorize('is_contract_read_allowed');
@@ -33,29 +62,28 @@ class ContractController extends Controller
        ]);
     }
 
-    public function index($property)
-    {
-        return Contract::where('property_uuid', $property)->where('status', 'active')->orderBy('start', 'asc')->get();
-    }
+    // public function getContracts($property)
+    // {
+    //     return Contract::where('property_uuid', $property)->where('status', 'active')->orderBy('start', 'asc')->get();
+    // }
 
-    public function get_property_contracts($property_uuid, $status, $dateBeforeExpiration, $movein, $moveout)
+    public function getContracts($property_uuid)
     {
-
-        return Property::find($property_uuid)->contracts()
-        ->when($status, function ($query) use ($status) {
-          $query->where('status', $status);
-        })
-        ->when($dateBeforeExpiration, function ($query) use ($dateBeforeExpiration) {
-          $query->where('end','<=', $dateBeforeExpiration);
-        })
-        ->when($movein, function ($query) use ($movein) {
-          $query->whereMonth('start', $movein);
-        })
-        ->when($moveout, function ($query) use ($moveout) {
-          $query->whereMonth('end', $moveout);
-        })
-        ->orderBy('start', 'desc')
-        ->get();
+        return Property::find($property_uuid)->contracts();
+        // ->when($status, function ($query) use ($status) {
+        //   $query->where('status', $status);
+        // })
+        // ->when($dateBeforeExpiration, function ($query) use ($dateBeforeExpiration) {
+        //   $query->where('end','<=', $dateBeforeExpiration);
+        // })
+        // ->when($movein, function ($query) use ($movein) {
+        //   $query->whereMonth('start', $movein);
+        // })
+        // ->when($moveout, function ($query) use ($moveout) {
+        //   $query->whereMonth('end', $moveout);
+        // })
+        // ->orderBy('start', 'desc')
+        // ->get();
     }
 
     public function get_contracts_trend_count($property_uuid)
@@ -138,7 +166,7 @@ class ContractController extends Controller
           ]);
 
           //update status of the selected unit
-          app('App\Http\Controllers\UnitController')->update_unit_status($unit_uuid, $unit_status);
+          app('App\Http\Controllers\UnitController')->updateUnitStatus($unit_uuid, $unit_status);
 
           //update status of the tenant
           app('App\Http\Controllers\TenantController')->update_tenant_status($tenant_uuid, $tenant_status);
@@ -346,15 +374,6 @@ class ContractController extends Controller
 
     public function export_moveout_form(Property $property, Tenant $tenant, Contract $contract){
         return view('contracts.moveouts.clearance');
-    }
-
-    public function destroy(Property $property, Tenant $tenant, Contract $contract)
-    {
-       // $this->authorize('is_contract_delete_allowed');
-
-        Contract::where('uuid', $contract->uuid)->delete();
-
-        return back()->with('success', 'Success!');
     }
 
     public function force_moveout(Request $request, Property $property, Contract $contract){

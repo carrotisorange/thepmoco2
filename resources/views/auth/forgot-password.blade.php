@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+ 
 
 <head>
     @include('layouts.head')
-    <title>Forgot Password | The Property Manager</title>
+      <title>Forgot Password | {{ env('APP_NAME') }}</title>
+         <!-- Favicon -->
+    <link rel="icon" href="{{ asset('/brands/favicon.ico') }}" type="image/png">
 </head>
 
 <body class="font-sans antialiased" body x-data="{'isModalOpen': false}" x-on:keydown.escape="isModalOpen=false">
     <div class="max-w-12xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
         <div class="rounded-lg shadow-xl overflow-hidden lg:grid lg:grid-cols-2 lg:gap-4">
             <div class="pt-10 pb-12 px-6 sm:pt-16 sm:px-16 lg:py-16 lg:pr-0 xl:py-20 xl:px-20">
-                <img class="object-cover h-40 w-48" src="{{ asset('/brands/pm_logo_3.png') }}" alt="Workflow">
+                <img class="object-cover h-40 w-48" src="{{ asset('/brands/'.env('APP_LOGO')) }}" alt="{{ env('APP_LOGO_DESC ') }}">
                 <div class="lg:self-center">
 
                     <h2 class="text-3xl font-extrabold text-gray-800 sm:text-4xl">
@@ -26,15 +29,14 @@
                     <form class="mt-8 sm:flex" method="POST" action="{{ route('password.email') }}">
                         @csrf
                         <label for="email" class="sr-only">Email address</label>
-                        <input id="email" name="email" type="email" autocomplete="email" required
+                        <x-form-input id="email" name="email" type="email" autocomplete="email" required
                             value="{{ old('email') }}"
-                            class="w-full px-5 py-3 placeholder-gray-500 focus:ring-purple-500 focus:border-purple-500 sm:max-w-xs border-gray-300 rounded-md"
-                            placeholder="Enter your email">
-                        <div class="mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
-                            <button type="submit"
-                                class="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                          
+                            placeholder="Enter your email"/>
+                        <div class="mt-3 sm:mt-0 sm:ml-3 sm:flex-shrink-0">
+                            <x-button type="submit">
                                 Email Password Reset Link
-                            </button>
+                            </x-button>
                         </div>
                     </form>
 

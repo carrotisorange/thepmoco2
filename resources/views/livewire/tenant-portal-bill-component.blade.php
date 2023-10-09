@@ -1,58 +1,26 @@
 <div>
+    @include('layouts.notifications')
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
                 <h1 class="text-3xl font-bold text-gray-700">Bills</h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <button type="submit"
-                    onclick="window.location.href='/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/payments/pending'"
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+                <x-button type="submit"
+                    onclick="window.location.href='/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/payments/pending'">
                     View Pending Payments
-                </button>
+                </x-button>
                 @if($total_unpaid_bills->sum('bill') && $selectedBills)
-                <button type="submit" wire:click="payBills()"
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
+                <x-button type="submit" wire:click="payBills()">
                     Pay Bills
-                </button>
+                </x-button>
                 @endif
-
-                {{-- <button type="button"
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Export
-                    Contract</button> --}}
 
             </div>
         </div>
         <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
             <div class="sm:col-span-4">
 
-                {{-- <label for="default-search"
-                    class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
-                <div class="relative w-full mb-5">
-                    <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                        <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                        </svg>
-                    </div>
-                    <input type="search" id="default-search" wire:model="search"
-                        class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Search..." required>
-
-                </div>
-                @if($total_unpaid_bills->sum('bill') && $selectedBills)
-
-
-                <p class="mt-2 text-sm text-gray-500">
-                    You've selected {{ count($selectedBills) }} {{ Str::plural('bill', count($selectedBills))}}
-                    amounting to {{ number_format($total) }}...
-                </p>
-                @else
-                <p class="mt-2 text-sm text-gray-500">
-                    Please select the bills you want to pay.
-                </p>
-                @endif --}}
                 @if($total_unpaid_bills->sum('bill') && $selectedBills)
 
 
@@ -69,48 +37,16 @@
 
 
             <div class="sm:col-span-2">
-                <select id="small" wire:model="status"
-                    class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                <x-form-select id="small" wire:model="status">
                     <option value="">Select a status</option>
                     @foreach ($statuses as $item)
                     <option value="{{ $item->status }}">{{ $item->status }}</option>
                     @endforeach
-                </select>
+                </x-form-select>
 
             </div>
 
-            {{-- <div class="sm:col-span-2">
-                <select id="small" wire:model="particular"
-                    class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                    <option value="">Select a particular</option>
-                    @foreach ($start_dates as $item)
-                    <option value="{{ $item->period_covered_start }}">{{ $item->period_covered_start }}</option>
-                    @endforeach
-                </select>
 
-            </div> --}}
-
-            {{-- <div class="sm:col-span-1">
-                <select id="small" wire:model="start_date"
-                    class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                    <option value="">Select a start date</option>
-                    @foreach ($start_dates as $item)
-                    <option value="{{ $item->period_covered_start }}">{{ $item->period_covered_start }}</option>
-                    @endforeach
-                </select>
-
-            </div>
-
-            <div class="sm:col-span-1">
-                <select id="small" wire:model="end_date"
-                    class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                    <option value="">Select an end date</option>
-                    @foreach ($end_dates as $item)
-                    <option value="{{ $item->period_covered_end }}">{{ $item->period_covered_end }}</option>
-                    @endforeach
-                </select>
-
-            </div> --}}
         </div>
         <div class="mt-3 flex flex-col">
             <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -162,7 +98,7 @@
                                 <tr>
                                     <td class="relative w-12 px-6 sm:w-16 sm:px-8">
                                         @if(!App\Models\Collection::where('bill_id', $item->id)->posted()->sum('collection'))
-                                        <x-input type="checkbox" wire:model="selectedBills" value="{{ $item->id }}" />
+                                        <x-input name="" type="checkbox" wire:model="selectedBills" value="{{ $item->id }}" />
                                         @endif
                                     </td>
                                     <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
@@ -190,22 +126,22 @@
                                         y').'-'.Carbon\Carbon::parse($item->end)->format('M d, y') }}
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        @if($item->particular_id === 1)
+                                        {{-- @if($item->particular_id === 1)
                                         Due to unit owner
-                                        @else
+                                        @else --}}
                                         {{ $item->particular->particular}}
-                                        @endif
+                                        {{-- @endif --}}
 
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <?php 
-                                            $marketing_fee = App\Models\Bill::where('particular_id', '71')->where('bill_id',$item->id)->posted()->pluck('bill')->last();
+
+                                            {{-- $marketing_fee = App\Models\Bill::where('particular_id', '71')->where('bill_id',$item->id)->posted()->pluck('bill')->last();
                                             $management_fee = App\Models\Bill::where('particular_id', '72')->where('bill_id',$item->id)->posted()->pluck('bill')->last();
-                                            
-                                            $other_fees = $marketing_fee + $management_fee ?>
+
+                                            $other_fees = $marketing_fee + $management_fee --}}
 
 
-                                        {{ number_format($item->bill+$other_fees, 2) }}
+                                        {{ number_format($item->bill, 2) }}
 
 
 
@@ -235,8 +171,7 @@
 
                                     <td class="whitespace-nowrap px-3 py-4 text-sm  text-gray-500">
 
-                                        {{ number_format((($item->bill +
-                                        $other_fees)-App\Models\Collection::where('tenant_uuid',
+                                        {{ number_format((($item->bill)-App\Models\Collection::where('tenant_uuid',
                                         $item->tenant_uuid)->where('bill_id',$item->id)->posted()->sum('collection')),
                                         2) }}
                                     </td>
@@ -275,7 +210,7 @@
                         </table>
                     </div>
 
-                
+
                 </div>
             </div>
         </div>

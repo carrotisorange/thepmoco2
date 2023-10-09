@@ -3,34 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UserProperty;
 
 class SalesPortalController extends Controller
 {
-    public function index()
+    public function signup()
     {
-        return view('dashboard.sales.index',[
-            'users' => User::where('role_id', '5')->orderBy('id', 'desc')->get()
+        return view('portals.sales.signups',[
+            'signups' => User::where('role_id', '5')->orderBy('id', 'desc')->paginate(10)
         ]);
     }
 
-    public function show_all_users()
+    public function user()
     {
-        return view('dashboard.sales.users',[
-            'users' => User::orderBy('id', 'desc')->get()
+        return view('portals.sales.personnels',[
+            'personnels' => UserProperty::whereNotIn('role_id',['5'])->orderBy('id', 'desc')->paginate(10)
         ]);
     }
 
     public function show_property(User $user)
     {
-        return view('dashboard.sales.show-property',[
+        return view('portals.sales.show-property',[
             'properties'=>User::find($user->id)->user_properties,
             'user' => User::find($user->id)
         ]);
     }
 
-    public function show_activity(User $user)
+    public function activity(User $user)
     {
-        return view('dashboard.sales.show-activity',[
+        return view('portals.sales.activities',[
             'activities'=>User::find($user->id)->activities,
             'user' => User::find($user->id)
         ]);
