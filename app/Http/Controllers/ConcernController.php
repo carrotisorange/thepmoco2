@@ -13,11 +13,13 @@ class ConcernController extends Controller
 
     public function index(Property $property)
     {
-        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(10, auth()->user()->id)){
+        $featureId = 10;
+
+        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
             return abort(403);
         }
-         
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',13);
+
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',$featureId);
 
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
 
@@ -32,7 +34,7 @@ class ConcernController extends Controller
 
         Concern::where('unit_uuid', $unit_uuid)->delete();
     }
-    
+
     // public function getConcerns($property_uuid, $status, $duration)
     // {
     //     return Concern::where('property_uuid',$property_uuid)
@@ -64,7 +66,7 @@ class ConcernController extends Controller
         //$this->authorize('is_concern_update_allowed');
 
         app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'opens one',13);
-        
+
         return view('concerns.show',[
             'concern' => $concern
         ]);
@@ -73,7 +75,7 @@ class ConcernController extends Controller
     public function edit(Property $property, Concern $concern)
     {
         app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'opens one',13);
-       
+
         return view('tenants.concerns.edit',[
             'concern' => $concern,
         ]);

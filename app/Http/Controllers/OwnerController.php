@@ -18,11 +18,13 @@ class OwnerController extends Controller
 
     public function index(Property $property){
 
-        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(8, auth()->user()->id)){
+        $featureId = 8;
+
+        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
             return abort(403);
         }
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',4);
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',$featureId);
 
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
 
@@ -45,7 +47,7 @@ class OwnerController extends Controller
             'owner_details' => $owner,
         ]);
     }
-    
+
     public function show_owner_collections($owner_uuid)
     {
        return AcknowledgementReceipt::where('owner_uuid', $owner_uuid)->orderBy('id','desc')->get();

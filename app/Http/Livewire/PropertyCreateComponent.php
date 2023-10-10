@@ -59,7 +59,7 @@ class PropertyCreateComponent extends Component
      public function create()
      {
            $validatedData = $this->validate();
-           
+
          try {
 
             DB::transaction(function () use ($validatedData){
@@ -85,6 +85,7 @@ class PropertyCreateComponent extends Component
             });
 
         }catch (\Throwable $e) {
+            ddd($e);
             return back()->with('error', $e);
         }
      }

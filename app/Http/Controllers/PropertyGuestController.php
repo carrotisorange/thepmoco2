@@ -22,11 +22,13 @@ class PropertyGuestController extends Controller
 {
     public function index(Property $property){
 
-        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(7, auth()->user()->id)){
+        $featureId = 7;
+
+        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
             return abort(403);
          }
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',22);
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',$featureId);
 
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
 
@@ -43,7 +45,7 @@ class PropertyGuestController extends Controller
     }
 
     public function edit(Property $property, Guest $guest, Booking $booking){
-        
+
         return view('properties.guests.edit',[
             'property' => $property,
             'guest_details' => $guest,
@@ -57,7 +59,7 @@ class PropertyGuestController extends Controller
             'guest' => $guest,
         ]);
     }
-    
+
     public function store_collections(Property $property, Guest $guest, $batch_no){
      $collections = Bill::where('guest_uuid', $guest->uuid)
       ->where('batch_no', $batch_no)
@@ -78,7 +80,7 @@ class PropertyGuestController extends Controller
          $ar_no = app('App\Http\Controllers\CollectionController')->getLatestAr($property->uuid);
 
          $counter = $this->get_selected_bills_count($batch_no, $guest->uuid);
-      
+
          for($i=0; $i<$counter; $i++)
          {
             $collection = (double) $request->input("collection_amount_".$i);
@@ -92,7 +94,7 @@ class PropertyGuestController extends Controller
             $total_amount_due = $this->get_bill_balance($bill_id);
 
             $bill = Bill::find($bill_id);
-            
+
             //store the collection
             app('App\Http\Controllers\CollectionController')->update($ar_no, $bill_id, $collection, $form, $created_at);
 
@@ -143,7 +145,7 @@ class PropertyGuestController extends Controller
          app('App\Http\Controllers\PointController')->store($property->uuid, auth()->user()->id, Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);
 
         //  $this->send_payment_to_guest($guest, $ar_no, $request->form, $request->created_at, User::find(auth()->user()->id)->name, User::find(auth()->user()->id)->role->role, Collection::where('guest_uuid',$guest->uuid)->where('batch_no', $batch_no)->get());
-   
+
          return redirect('/property/'.$property->uuid.'/guest/'.$guest->uuid)->with('success', 'Changes Saved!');
 
          // return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$tenant->uuid.'/ar/'.$ar_id.'/view')->with('success', 'Payment is successfully created.');
@@ -189,7 +191,7 @@ class PropertyGuestController extends Controller
       return Storage::download(($attachment), 'AR_'.$ar->ar_no.'_'.$ar->guest->guest.'.png');
    }
 
-      
+
     public function get_bill_balance($bill_id)
     {
         return Bill::where('id',$bill_id)->sum('bill') - Bill::where('id',$bill_id)->sum('initial_payment');
@@ -220,15 +222,15 @@ class PropertyGuestController extends Controller
            $collection->property_uuid)->where('guest_uuid', $guest->uuid)->posted()->where('ar_no',
            $collection->ar_no);
 
-           
+
           $unpaid_bills = $unpaid_bills = Bill::where('tenant_uuid', $guest->uuid)->sum('bill');
           $paid_bills = Collection::where('guest_uuid', $guest->uuid)->posted()->sum('collection');
 
-            if($unpaid_bills<=0){ 
-                $balance=0; 
+            if($unpaid_bills<=0){
+                $balance=0;
             }else
-            { 
-                $balance=$unpaid_bills - $paid_bills; 
+            {
+                $balance=$unpaid_bills - $paid_bills;
             }
 
       return [
@@ -278,7 +280,7 @@ class PropertyGuestController extends Controller
     }
 
     public function moveout(Property $property, Unit $unit, Guest $guest)
-    {      
+    {
         Guest::where('uuid', $guest->uuid)
         ->update([
             'status' => 'inactive',
@@ -323,7 +325,7 @@ class PropertyGuestController extends Controller
         $data = $this->get_bill_data($guest, $request->due_date, $request->penalty, $request->note_to_bill);
 
         $folder_path = 'properties.guests.export-bills';
-    
+
         $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
 
         return $pdf->stream(Carbon::now()->format('M d, Y').'-'.$guest->guest.'-soa.pdf');
@@ -334,11 +336,11 @@ class PropertyGuestController extends Controller
           $unpaid_bills = Bill::where('guest_uuid', $guest->uuid)->sum('bill');
           $paid_bills = Collection::where('guest_uuid', $guest->uuid)->posted()->sum('collection');
 
-        if($unpaid_bills<=0){ 
-            $balance=0; 
+        if($unpaid_bills<=0){
+            $balance=0;
         }else
-        { 
-            $balance=$unpaid_bills - $paid_bills; 
+        {
+            $balance=$unpaid_bills - $paid_bills;
         }
 
         return $data = [
@@ -353,5 +355,5 @@ class PropertyGuestController extends Controller
             'note_to_bill' => $note,
         ];
     }
-    
+
 }

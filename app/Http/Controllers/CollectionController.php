@@ -25,11 +25,13 @@ class CollectionController extends Controller
 
     public function index(Property $property)
     {
-        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(12, auth()->user()->id)){
+        $featureId = 12;
+
+        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
             return abort(403);
         }
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',11);
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',$featureId);
 
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
 

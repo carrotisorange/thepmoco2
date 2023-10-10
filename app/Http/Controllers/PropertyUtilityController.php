@@ -11,11 +11,13 @@ class PropertyUtilityController extends Controller
 {
     public function index(Property $property)
     {
-        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(15, auth()->user()->id)){
+        $featureId = 15;
+
+        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
             return abort(403);
         }
-        
-        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'opens',21);
+
+        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'opens',$featureId);
 
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
 

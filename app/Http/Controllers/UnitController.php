@@ -48,9 +48,11 @@ class UnitController extends Controller
 
     public function index(Property $property, $batch_no=null, $action=null)
     {
+        $featureId = 3;
+
         app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
 
-        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(3, auth()->user()->id)){
+        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
             return abort(403);
          }
 
@@ -58,10 +60,9 @@ class UnitController extends Controller
 
         Session::forget('owner_uuid');
 
-
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',2);
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',$featureId);
 
         return view('properties.units.index',[
             'property' => $property,

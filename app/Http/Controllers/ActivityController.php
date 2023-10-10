@@ -6,12 +6,12 @@ use App\Models\Activity;
 
 class ActivityController extends Controller
 {
-    public function store($property_uuid, $user_id, $description, $activity_type)
+    public function store($property_uuid, $user_id, $description, $feature_id)
     {
         Activity::create([
             'property_uuid' => $property_uuid,
             'user_id' => $user_id,
-            'activity_type_id' => $activity_type,
+            'feature_id' => $feature_id,
             'description' => $description
         ]);
     }

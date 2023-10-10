@@ -107,13 +107,12 @@
                 <div class="pt-4 pb-1 border-t border-gray-200 overflow-y-auto h-screen">
 
                     <?php
-                                    $portal = 'sale';
+                        $portal = 'sale';
 
-                                    $portalFeatures = App\Models\Portal::where('portal', $portal)->pluck('features')->first();
+                        $portalFeatures = App\Models\Portal::where('portal', $portal)->pluck('features')->first();
 
-                                    $availableFeatures = explode(",", $portalFeatures);
-
-                                    ?>
+                        $availableFeatures = explode(",", $portalFeatures);
+                    ?>
                     @foreach($availableFeatures as $feature)
                     <?php
                                     $feature = App\Models\Feature::find($feature);

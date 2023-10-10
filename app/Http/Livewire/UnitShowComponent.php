@@ -20,6 +20,7 @@ use App\Models\DeedOfSale;
 use App\Models\Feature;
 
 
+
 class UnitShowComponent extends Component
 {
 

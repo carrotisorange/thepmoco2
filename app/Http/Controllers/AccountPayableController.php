@@ -17,19 +17,20 @@ class AccountPayableController extends Controller
 
     public function index(Property $property, $status=null)
     {
-        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(13, auth()->user()->id)){
+        $featureId = 13;
+
+        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
             return abort(403);
         }
 
-        app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
+        app('App\Http\Controllers\PropertyController')->store_property_session(Session::get('property_uuid'));
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',17);
+        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'opens',$featureId);
 
-
-        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
+        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, Session::get('property_uuid'));
 
         return view('properties.accountpayables.index',[
-            'accountpayables' => Property::find($property->uuid)->accountpayables()
+            'accountpayables' => Property::find(Session::get('property_uuid'))->accountpayables()
                ->when($status, function ($query) use ($status) {
                $query->where('status', $status);
                })->orderBy('created_at', 'desc')->get(),

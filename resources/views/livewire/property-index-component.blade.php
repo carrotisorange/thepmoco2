@@ -72,9 +72,10 @@
 
     <div class="sm:flex sm:items-center mt-5">
         <div class="sm:flex-auto">
-            <h2 class="text-2xl mt-5 font-bold tracking-tight text-gray-900 font-pop">
-
-                Welcome back, <b>{{ $firstName[0] }}</b>!</h2>
+           <h1 class="text-left text-xl font-bold tracking-tight sm:text-xl lg:text-2xl">
+                <span class="block  font-semibold text-gray-700">Welcome back,
+                     <span class=" text-purple-900 font-bold ">{{ $firstName[0] }}!</span></span>
+            </h1>
         </div>
         <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
 
@@ -128,21 +129,21 @@
         </div>
 
         <div class="sm:col-span-2">
-            <x-form-select name="sortBy" wire:model="sortBy"
-             >      <option value="" selected>Sort property by</option>
+            <x-form-select name="sortBy" wire:model="sortBy">
+                <option value="" selected>Sort property by</option>
                 <option value="property">name</option>
                 <option value="created_at">date created</option>
             </x-form-select>
-
         </div>
 
         <div class="sm:col-span-2">
             <x-form-select name="limitDisplayTo" wire:model="limitDisplayTo">
                 <option value="" selected>Limit display to</option>
-                @for ($i = 1; $i <= $userPropertyCount; $i++) @if($i%4==0 || $i==$userPropertyCount) <option
-                    value="{{ $i }}">{{ $i }}</option>
+                @for ($i = 1; $i <= $userPropertyCount; $i++)
+                    @if($i%4==0 || $i==$userPropertyCount)
+                    <option value="{{ $i }}">{{ $i }}</option>
                     @endif
-                    @endfor
+                @endfor
             </x-select>
         </div>
     </div>
@@ -153,10 +154,10 @@
     @if($propertyView == 'thumbnail')
     <div class="mt-1 mb-5 grid grid-cols-5 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
         @foreach ($properties->where('status', 'active') as $property)
-        <?php $propertyTypeLandingPage = App\Models\Feature::find(App\Models\Type::find( $property->type_id)->landing_page_feature_id)->alias;
-              $propertyTypeIcon = App\Models\Type::find( $property->type_id)->icon;
-              $propertyType = App\Models\Type::find( $property->type_id)->type;
-
+        <?php
+            $propertyTypeLandingPage = App\Models\Feature::find(App\Models\Type::find( $property->type_id)->landing_page_feature_id)->alias;
+            $propertyTypeIcon = App\Models\Type::find( $property->type_id)->icon;
+            $propertyType = App\Models\Type::find( $property->type_id)->type;
         ?>
         <div class="group relative">
             <div class="w-full h-32 bg-white rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
@@ -167,7 +168,7 @@
             </div>
             <h3 class="text-center mt-2">
                 <a title="{{ $propertyType }}" class="text-blue-500 text-decoration-line: underline" href="/property/{{ $property->property_uuid }}/{{ $propertyTypeLandingPage }}">
-                {{ Str::limit($property->property,15) }}
+                    {{ Str::limit($property->property,15) }}
                 </a>
             </h3>
         </div>

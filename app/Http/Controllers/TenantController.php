@@ -24,13 +24,15 @@ class TenantController extends Controller
       //core functions
     public function index(Property $property)
     {
-        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(5, auth()->user()->id)){
+        $featureId = 5;
+
+        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
             return abort(403);
         }
 
         Session::forget('tenant_uuid');
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',3);
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens', $featureId);
 
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
 

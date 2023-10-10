@@ -4,23 +4,30 @@
         <tr>
             <x-th>#</x-th>
             <x-th>Date</x-th>
+
             <x-th>Name</x-th>
+            <x-th>Property</x-th>
             <x-th>Role</x-th>
             <x-th>Time in</x-th>
             <x-th>Time out</x-th>
-
         </tr>
     </thead>
     @foreach ($sessions as $session)
     <tbody class="bg-white divide-y divide-gray-200">
+        <?php
+            $role_id = App\Models\UserProperty::where('user_id', $session->user_id)->value('role_id');
+            $property_uuid = App\Models\UserProperty::where('user_id', $session->user_id)->value('property_uuid');
+        ;?>
         <tr>
             <x-td>{{ $ctr++ }}</x-td>
             <x-td>{{
-                Carbon\Carbon::parse($session->created_at)->timezone('Asia/Manila')->format('M
-                d, Y')}}
+                Carbon\Carbon::parse($session->created_at)->timezone('Asia/Manila')->format('M d, Y')}}
             </x-td>
+
             <x-td>{{ App\Models\User::where('id', $session->user_id)->value('name') }}</x-td>
-            <x-td>{{ App\Models\Role::find(App\Models\User::where('id', $session->user_id)->value('role_id'))->role }}</x-td>
+            <x-td>{{ App\Models\Property::where('uuid', $property_uuid)->value('property')  }}</x-td>
+
+            <x-td>{{ App\Models\Role::where('id', $role_id)->value('role') }}</x-td>
             <x-td>
                 {{Carbon\Carbon::parse($session->created_at)->timezone('Asia/Manila')->format('g:i A')}}
             </x-td>
