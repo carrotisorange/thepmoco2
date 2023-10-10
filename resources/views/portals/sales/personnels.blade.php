@@ -9,14 +9,10 @@
                     </h1>
                 </div>
                 <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-
-
                 </div>
             </div>
 
             <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-
-
 
                 <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                     {{ $personnels->links() }}
@@ -31,7 +27,6 @@
                             <thead class="bg-gray-50">
                                 <tr>
                                     <x-th>#</x-th>
-
                                     <x-th>Created On</x-th>
                                     <x-th>Property</x-th>
                                     <x-th>Name</x-th>
@@ -39,7 +34,6 @@
                                     <x-th>Mobile</x-th>
                                     <x-th>Role</x-th>
                                     <x-th>Is Approved?</x-th>
-
                                 </tr>
                             </thead>
                             @foreach ($personnels as $index => $personnel)
@@ -49,7 +43,7 @@
 
                                     <x-td>{{ Carbon\Carbon::parse($personnel->created_at)->format('M d, Y') }}</x-td>
 
-                                    <x-td>{{ App\Models\Property::where('uuid', $personnel->property_uuid)->value('property') }}</x-td>
+                                    <x-td><span title="{{App\Models\Property::where('uuid', $personnel->property_uuid)->value('property')}}">{{ Str::limit(App\Models\Property::where('uuid', $personnel->property_uuid)->value('property'), 10) }}</span></x-td>
                                     <x-td>{{ App\Models\User::where('id', $personnel->id)->value('name') }}</x-td>
                                     <?php
                                         $email = App\Models\User::where('id', $personnel->id);

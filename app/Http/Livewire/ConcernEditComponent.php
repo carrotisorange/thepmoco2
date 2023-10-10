@@ -103,20 +103,11 @@ class ConcernEditComponent extends Component
             $this->concern_details->update($validatedData);
         });
 
-    //    if($this->concern_details->tenant_uuid){
-    //      Tenant::where('uuid', $this->concern_details->tenant_uuid)
-    //      ->update([
-    //         'mobile_number' => $this->mobile_number,
-    //         'email' => $this->email
-    //      ]);
+        $featureId = 3;
 
-    //     User::where('tenant_uuid', $this->concern_details->tenant_uuid)
-    //      ->update([
-    //        'email' => $this->email
-    //      ]);
-    //    }
+        $restrictionId = 3;
 
-        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'),auth()->user()->id,'updates', 13);
+        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'),auth()->user()->id,$restrictionId, $featureId);
 
         session()->flash('success', 'Changes Saved!');
 

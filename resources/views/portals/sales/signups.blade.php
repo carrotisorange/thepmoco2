@@ -36,7 +36,7 @@
                                 <x-th>Email</x-th>
                                 <x-th>Mobile</x-th>
                                 <x-th>Property</x-th>
-                                <x-th>Plan</x-th>
+                                {{-- <x-th>Plan</x-th> --}}
 
                                 <x-th>Trial ends On</x-th>
                             </tr>
@@ -83,15 +83,15 @@
                                                     ->count();
                                                 ?>
                                     <x-td>
-                                        <a class="text-blue-600" href="user/{{ $signup->username }}/property">
+                                        <a class="text-blue-600" href="#/">
                                             {{ $property_count }} property,
                                             {{ $unit_count }} unit,
                                             {{ $tenant_count }} tenant
                                         </a>
                                     </x-td>
-                                    <x-td>
+                                    {{-- <x-td>
                                         {{ $signup->plan->plan }}
-                                    </x-td>
+                                    </x-td> --}}
 
                                     <x-td>
                                         @if($signup->trial_ends_at)

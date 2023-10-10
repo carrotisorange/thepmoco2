@@ -23,11 +23,15 @@ class BillController extends Controller
 
      public function index(Property $property, $batch_no=null, $drafts=0){
 
-         if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(11, auth()->user()->id)){
+        $featureId = 11;
+
+        $restrictionId = 2;
+
+         if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
             return abort(403);
          }
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',10);
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,$restrictionId,$featureId);
 
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
 

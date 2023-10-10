@@ -32,7 +32,7 @@
 
                 </div>
                 <h2 class="mb-10 mt-2 text-lg tracking-tight text-purple-700">"{{ $randomQuote['quoteText']}}"
-                   <br> <span class="text-sm text-right"> - {{ $randomQuote['quoteAuthor'] }}</span>
+                   <br> <span class="text-sm italic text-right"> - {{ $randomQuote['quoteAuthor'] }}</span>
                 </h2>
 
                 <div class="mt-5">

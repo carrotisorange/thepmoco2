@@ -19,7 +19,7 @@ class TimestampController extends Controller
      */
     public function index(Property $property)
     {
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',12);
+        // app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',12);
 
         return view('timestamps.index',[
             'timestamps' => Timestamp::where('property_uuid',Session::get('property_uuid'))
@@ -27,6 +27,6 @@ class TimestampController extends Controller
             ->paginate(10)
         ]);
 
-      
+
     }
 }

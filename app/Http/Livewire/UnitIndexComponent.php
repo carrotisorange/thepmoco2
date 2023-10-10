@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use App\Models\Plan;
 use Session;
 use App\Models\Feature;
+use App\Models\Type;
 
 use Livewire\Component;
 
@@ -167,6 +168,8 @@ class UnitIndexComponent extends Component
 
         $propertyUnitCount = Property::find(Session::get('property_uuid'))->units()->count();
 
+        // $unitStatuses = Type::where('type', Session::get('property_type'))->pluck('unit_statuses')->first();
+
         return view('livewire.unit-index-component',[
             'units' => $this->get_units(),
             'statuses' => app('App\Http\Controllers\StatusController')->index(Session::get('property_uuid')),
@@ -180,7 +183,8 @@ class UnitIndexComponent extends Component
             'enrollment_statuses' => app('App\Http\Controllers\UnitController')->getUnitEnrollmentStatuses(Session::get('property_uuid')),
             'units_count' => Property::find(Session::get('property_uuid'))->units->count(),
             'propertySubfeaturesArray' => $propertySubfeaturesArray,
-            'propertyUnitCount' => $propertyUnitCount
+            'propertyUnitCount' => $propertyUnitCount,
+            // 'unitStatuses' => $unitStatuses
         ]);
     }
 }

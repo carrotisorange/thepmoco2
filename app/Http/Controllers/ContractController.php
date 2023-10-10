@@ -18,11 +18,15 @@ class ContractController extends Controller
 
     public function index(Property $property){
 
-        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(6, auth()->user()->id)){
+        $featureId = 6;
+
+        $restrictionId = 2;
+
+        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
             return abort(403);
         }
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',5);
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,$restrictionId,$featureId);
 
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
 
@@ -122,7 +126,7 @@ class ContractController extends Controller
          ->when($monthly, function ($query) use ($monthly) {
           $query->whereMonth('start', $monthly);
         })
-        
+
         ->get();
     }
 
@@ -136,7 +140,7 @@ class ContractController extends Controller
          ->when($monthly, function ($query) use ($monthly) {
           $query->whereMonth('end', $monthly);
         })
-        
+
         ->get();
     }
 
@@ -151,7 +155,7 @@ class ContractController extends Controller
     }
 
     public function store($user_id, $contract_uuid, $property_uuid, $start, $end, $interaction_id, $rent, $tenant_uuid, $unit_uuid, $contract_status, $unit_status, $tenant_status, $point, $action_id, $referral, $sendContractToTenant)
-    {      
+    {
           Contract::create([
             'user_id' => $user_id,
             'uuid' => $contract_uuid,
@@ -170,7 +174,7 @@ class ContractController extends Controller
 
           //update status of the tenant
           app('App\Http\Controllers\TenantController')->update_tenant_status($tenant_uuid, $tenant_status);
-          
+
           //store new point
           app('App\Http\Controllers\PointController')->store($property_uuid, $user_id ,$point, $action_id);
 
@@ -202,7 +206,7 @@ class ContractController extends Controller
     public function preview(Contract $contract)
     {
          Session::flash('success', 'Premove-in processed hasbeen completed.');
-         
+
         return view('contracts.edit',[
         'contract' => Contract::findOrFail($contract->uuid),
         'property' => Property::find(Session::get('property_uuid')),
@@ -291,7 +295,7 @@ class ContractController extends Controller
          Session::forget('tenant_uuid');
 
          Session::forget('owner_uuid');
-        
+
          return view('contracts.renew',[
             'contract_details' => $contract
          ]);
@@ -308,7 +312,7 @@ class ContractController extends Controller
         ->get('reference_no');
 
          $property = Property::find(Session::get('property_uuid'));
-        
+
         $bills = Tenant::find($contract->tenant_uuid)->bills;
 
         $data = [

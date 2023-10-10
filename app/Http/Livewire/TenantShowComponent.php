@@ -118,13 +118,18 @@ class TenantShowComponent extends Component
     {
 
 
+
         $validatedData = $this->validate();
 
         try{
             DB::transaction(function () use ($validatedData){
                 $this->tenant_details->update($validatedData);
 
-                app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'updates',3);
+                $featureId = 5;
+
+                $restrictionId = 3;
+
+                app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,$restrictionId,$featureId);
 
                 session()->flash('success', 'Changes Saved!');
             });
@@ -212,7 +217,7 @@ class TenantShowComponent extends Component
             app('App\Http\Controllers\UserController')->send_email($user_id->role_id, $user_id->email, $user_id->username, $temporary_password);
         }
 
-        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'sends',18);
+        // app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'sends',18);
 
 
        return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant_details->uuid)->with('success', 'Changes Saved!');
@@ -225,7 +230,11 @@ class TenantShowComponent extends Component
         User::where('email', $this->tenant_details->email)
         ->delete();
 
-        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'removes', 18);
+        $featureId = 5;
+
+        $restrictionId = 4;
+
+        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,$restrictionId, $featureId);
 
         session()->flash('success', 'Changes Saved!');
     }

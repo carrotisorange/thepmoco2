@@ -477,14 +477,17 @@ class PropertyController extends Controller
 
     public function show(Property $property)
     {
+        $featureId = 1;
+        
+        $restrictionId = 2;
 
         app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
 
-        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(1, auth()->user()->id)){
+        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
             return abort(403);
         }
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',1);
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,$restrictionId,$featureId);
 
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
 

@@ -12,15 +12,18 @@ class FinancialController extends Controller
 {
     public function index($property_uuid){
 
-        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(14, auth()->user()->id)){
+        $featureId = 14;
+
+        $restrictionId = 2;
+
+        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
             return abort(403);
         }
 
-        app('App\Http\Controllers\ActivityController')->store($property_uuid, auth()->user()->id,'opens',20);
+        app('App\Http\Controllers\ActivityController')->store($property_uuid, auth()->user()->id,$restrictionId,$featureId);
 
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property_uuid);
 
-       
 
         $collections = DB::table('acknowledgement_receipts')
         ->select('id',DB::raw('DATE_FORMAT(created_at, "%d-%b-%Y") as date') ,DB::raw('sum(amount) as amount'), DB::raw("'INCOME' as label"))
@@ -36,7 +39,7 @@ class FinancialController extends Controller
         ->groupBy('date')
         ->orderBy('created_at', 'desc')
         ->get();
-      
+
     $cashflows = $collections->merge($accountpayables);
 
         return view('properties.financials.index',[
@@ -76,7 +79,7 @@ class FinancialController extends Controller
             return $this->exportFinancial($property, $type, $filter);
        }
 
-      
+
     }
 
 

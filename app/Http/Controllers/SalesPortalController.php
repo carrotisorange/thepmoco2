@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\UserProperty;
+use DB;
+use Carbon\Carbon;
 
 class SalesPortalController extends Controller
 {
@@ -14,7 +16,7 @@ class SalesPortalController extends Controller
         ]);
     }
 
-    public function user()
+    public function personnel()
     {
         return view('portals.sales.personnels',[
             'personnels' => UserProperty::whereNotIn('role_id',['5'])->orderBy('id', 'desc')->paginate(10)
@@ -29,11 +31,14 @@ class SalesPortalController extends Controller
         ]);
     }
 
-    public function activity(User $user)
+    public function session()
     {
-        return view('portals.sales.activities',[
-            'activities'=>User::find($user->id)->activities,
-            'user' => User::find($user->id)
+        return view('portals.sales.sessions',[
+            'sessions'=>DB::table('sessions')->whereDate('created_at', Carbon::now())->orderBy('created_at', 'desc')->orderBy('updated_at', 'desc')->get()
         ]);
     }
+
+    // public function login(User $user){
+    //     ddd('asdasd');
+    // }
 }
