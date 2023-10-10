@@ -49,10 +49,6 @@ class AccountPayable extends Model
         return $this->hasMany(AccountPayableParticular::class, 'batch_no');
     }
 
-    public function scopeSelectedProperty($query)
-    {
-        return $query->where('property_uuid', Session::get('property_uuid'));
-    }
 
     public function scopeSelectedRequested($query)
     {

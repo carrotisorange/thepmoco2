@@ -10,7 +10,7 @@
                 </div>
 
 
-                <x-button type="button"><a
+                <x-button><a
                         href="/property/{{ Session::get('property_uuid') }}/accountpayable/{{ Str::random(8) }}/step-1">
                         New Request</a></x-button>
             </div>

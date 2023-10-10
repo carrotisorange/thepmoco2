@@ -122,7 +122,10 @@
         }
     </style>
 
+
     <body id="background" class="bgStart">
+
+
         <!-- pop up modal -->
         <dh-component>
             <div class="hidden py-5 rounded-lg shadow  bg-gray-700 bg-opacity-75 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0"
@@ -168,6 +171,7 @@
                 </div>
             </div>
 
+            @include('modals.tech-support')
             <script>
                 let modal = document.getElementById("modal");
                 function modalHandler(val) {

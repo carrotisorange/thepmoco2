@@ -37,7 +37,6 @@ class OwnerBillComponent extends Component
 
       public $user_type = 'owner';
 
-      public $property;
 
          public $particular_id;
          public $unit_uuid;
@@ -48,7 +47,6 @@ class OwnerBillComponent extends Component
 
       public function mount($owner){
          $this->owner_uuid = $owner->uuid;
-         $this->property = Property::find(Session::get('property_uuid'));
       }
 
       protected function rules()
@@ -158,7 +156,7 @@ class OwnerBillComponent extends Component
      public function payBills()
    {
       //generate collection acknowledgement receipt no
-      $collection_ar_no = Property::find($this->property->uuid)->acknowledgementreceipts->max('ar_no')+1;
+      $collection_ar_no = Property::find(Session::get('property_uuid'))->acknowledgementreceipts->max('ar_no')+1;
 
       //generate a collection batch no
       $collection_batch_no = Carbon::now()->timestamp.''.$collection_ar_no;
@@ -175,7 +173,7 @@ class OwnerBillComponent extends Component
             $particular_id = Bill::find($this->selectedBills[$i])->particular_id;
             $owner_uuid = $this->owner->uuid;
             $unit_uuid = Bill::find($this->selectedBills[$i])->unit_uuid;
-            $property_uuid = $this->property->uuid;
+            $property_uuid = Session::get('property_uuid');
 
 
             $bill_id = Bill::find($this->selectedBills[$i])->id;
@@ -222,7 +220,7 @@ class OwnerBillComponent extends Component
                return back()->with('error',$e);
          }
       }
-         return redirect('/property/'.$this->property->uuid.'/owner/'.$this->owner->uuid.'/bills/'.$collection_batch_no.'/pay');
+         return redirect('/property/'.Session::get('property_uuid').'/owner/'.$this->owner->uuid.'/bills/'.$collection_batch_no.'/pay');
 
    }
 
@@ -315,7 +313,7 @@ class OwnerBillComponent extends Component
          'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
          'total_bills' => $bills,
          'statuses' => $statuses,
-         'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($this->property->uuid),
+         'particulars' => app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid')),
          'note_to_bill' => $noteToBill,
         'units' => DeedOfSale::where('owner_uuid', $this->owner->uuid)->get(),
         ]);

@@ -187,8 +187,8 @@
                 {{-- reject, approve button --}}
                 <div class="col-start-6 flex items-center justify-end">
 
-                    <a target="_blank" href="/property/{{ $this->property->uuid }}/accountpayable/{{ $this->accountpayable->id }}/step1/export" wire:loading.remove class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                        Export 
+                    <a target="_blank" href="/property/{{Session::get('property_uuid') }}/accountpayable/{{ $this->accountpayable->id }}/step1/export" wire:loading.remove class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                        Export
                     </a>
 
                     <x-button type="submit" wire:loading.remove>

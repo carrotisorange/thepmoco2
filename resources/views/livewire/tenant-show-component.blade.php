@@ -36,7 +36,7 @@
 
                             @if($username)
                             <li>
-                                <a href="/8/tenant/{{ $username }}/bills"
+                                <a href="/8/tenant/{{ $username }}/bill"
                                     class="{{$addAnchorClass}}">
                                     New payment request
                                 </a>

@@ -11,6 +11,7 @@ use App\Notifications\SendAccountPayableStep4NotificationToAdmin;
 use Illuminate\Support\Facades\Notification;
 use App\Models\User;
 use App\Models\UserProperty;
+use Session;
 use DB;
 
 class AccountPayableCreateStep7Component extends Component
@@ -46,7 +47,7 @@ class AccountPayableCreateStep7Component extends Component
     }
 
      public function updateLiquidation($id){
-       
+
         $this->validate();
 
         try{
@@ -57,7 +58,7 @@ class AccountPayableCreateStep7Component extends Component
                 'expense_type_id' => $particular->expense_type_id,
             ]);
 
-              
+
             }
 
               $this->particulars = $this->get_particulars();
@@ -65,7 +66,7 @@ class AccountPayableCreateStep7Component extends Component
             session()->flash('success', 'Changes Saved!');
 
         }catch(\Exception $e){
-        
+
             $this->particulars = $this->get_particulars();
 
             return back()->with('error','Cannot perform the action. Please try again.');
