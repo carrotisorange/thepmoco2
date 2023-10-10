@@ -131,7 +131,7 @@
                             <div class="mt-6">
                                 <div class="group inline-block">
                                     <x-button
-                                      >  <span class="pr-1 font-semibold flex-1">
+                                      > 
                                             New collection</span>
                                        &nbsp; <i class="fa-solid fa-caret-down"></i>
                                     </x-button>

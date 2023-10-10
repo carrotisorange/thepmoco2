@@ -13,8 +13,7 @@
                 {{-- request for purchase --}}
                 <div class="sm:col-span-6">
                     <label for="request_for" class="block text-sm font-medium text-gray-700">Request for</label>
-                    <input type="text" wire:model="request_for" name="request_for" readonly
-                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-full sm:text-sm border border-gray-700  rounded-md">
+                    <x-form-input type="text" wire:model="request_for" name="request_for" readonly />
 
                     @error('request_for')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -50,7 +49,7 @@
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
-                
+
                 <div class="sm:col-span-2">
                     <label for="first_approver" class="block text-sm font-medium text-gray-700">1st Approver
                         (Manager)</label>
@@ -59,14 +58,14 @@
                         @foreach ($managers as $manager)
                         <option value="{{ $manager->user_id }}">{{ $manager->user->name }}</option>
                         @endforeach
-                
+
                     </x-form-select>
                     @error('first_approver')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
-                
+
                 </div>
-                
+
                 <div class="sm:col-span-2">
                     <label for="requester" class="block text-sm font-medium text-gray-700">2nd Approver (Account
                         Payable)</label>
@@ -75,7 +74,7 @@
                         @foreach ($accountpayables as $accountpayable)
                         <option value="{{ $accountpayable->user_id }}">{{ $accountpayable->user->name }}</option>
                         @endforeach
-                
+
                     </x-form-select>
                    @error('second_approver')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -87,7 +86,7 @@
                 <div class="sm:col-span-6">
                     {{-- <label for="particular" class="block text-sm font-medium text-gray-700"><b>Add all the
                             particulars here</b></label> --}}
-                   
+
 
                     <button type="button" data-modal-toggle="instructions-create-vendor-modal"
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
@@ -103,7 +102,7 @@
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                         Save
                     </button>  --}}
-                  
+
                 </div>
                 @endif
 
@@ -132,7 +131,7 @@
                                         <tr>
                                             <x-td>{{ $index+1 }}</x-td>
                                             <x-td>
-                                                <select wire:model="particulars.{{ $index }}.unit_uuid"  wire:change="updateParticular({{ $particular->id }})" 
+                                                <select wire:model="particulars.{{ $index }}.unit_uuid"  wire:change="updateParticular({{ $particular->id }})"
                                                     class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-36 sm:text-sm border border-gray-700  rounded-md">
                                                     <option value="" selected>Select a unit</option>
                                                     @foreach ($units as $unit)
@@ -192,29 +191,29 @@
                                             </x-td>
                                             {{-- @endif --}}
                                             <x-td>
-                                            
+
                                                 <button type="button"  wire:click="removeParticular({{ $particular->id }})"
                                                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                                     Remove
                                                 </button>
-                                            
-                                    
+
+
                                             </x-td>
-                                         
+
                                             <x-td>
                                                 {{-- <form id="updateParticular" wire.clic wire:submit.prevent="updateParticular({{ $particular->id }})">
                                                  <button form="updateParticular" type="submit"
-                                                
-                                                 
+
+
                                                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                                     Save
                                             </button>
-                                     
+
                                             </form> --}}
                                         </x-td>
-                                    
 
-                                          
+
+
                                         </tr>
                                     </div>
                                     @endforeach
@@ -243,12 +242,11 @@
                                 <h3 class="mt-2 text-sm font-semibold text-gray-900">No particulars</h3>
                                 <p class="mt-1 text-sm text-gray-500">Get started by adding a new particular.</p>
                                 <div class="mt-6">
-                                    <button type="button" wire:click="addNewParticular"
-                                        class="inline-flex items-center rounded-md bg-purple-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600">
-                                 
+                                    <x-button type="button" wire:click="addNewParticular">
+
                                         New particular
-                                    </button>
-                              
+                                    </x-button>
+
                                 </div>
                             </div>
                             @endif
@@ -448,7 +446,7 @@
                     <x-button wire:click="cancelRequest()">
                         Cancel
                     </x-button>
-                   
+
                     <x-button type="submit">
                         Confirm
                     </x-button>
