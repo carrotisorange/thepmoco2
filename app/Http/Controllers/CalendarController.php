@@ -18,7 +18,10 @@ use Illuminate\Validation\Rule;
 class CalendarController extends Controller
 {
     public function index(Property $property){
+
         $featureId = 4;
+
+        $restrictionId = 2;
 
         app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
 
@@ -26,7 +29,7 @@ class CalendarController extends Controller
             return abort(403);
         }
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',$featureId);
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,$restrictionId,$featureId);
 
         app('App\Http\Controllers\PropertyController')->save_unit_stats($property->uuid);
 

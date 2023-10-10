@@ -11,11 +11,13 @@ class PersonnelController extends Controller
     {
         $featureId = 9;
 
+        $restrictionId = 2;
+
         if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
             return abort(403);
         }
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id, 'opens', $featureId);
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id, $restrictionId, $featureId);
 
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
 

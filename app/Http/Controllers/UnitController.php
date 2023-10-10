@@ -50,6 +50,8 @@ class UnitController extends Controller
     {
         $featureId = 3;
 
+        $restrictionId = 2;
+
         app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
 
         if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
@@ -62,7 +64,7 @@ class UnitController extends Controller
 
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',$featureId);
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,$restrictionId,$featureId);
 
         return view('properties.units.index',[
             'property' => $property,

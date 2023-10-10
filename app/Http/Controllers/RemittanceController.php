@@ -14,11 +14,13 @@ class RemittanceController extends Controller
 
         $featureId = 16;
 
+        $restrictionId = 2;
+
         if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
             return abort(403);
         }
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',$featureId);
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,$restrictionId,$featureId);
 
         return view('properties.remittances.index',[
             'property' => $property,
