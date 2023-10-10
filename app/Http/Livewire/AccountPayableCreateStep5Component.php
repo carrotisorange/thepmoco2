@@ -12,6 +12,7 @@ use App\Models\Role;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\SendAccountPayableStep2NotificationToManager;
 use App\Models\User;
+use Session;
 
 class AccountPayableCreateStep5Component extends Component
 {
@@ -97,7 +98,7 @@ class AccountPayableCreateStep5Component extends Component
             ],
 
             [
-                'name' => $this->name, 
+                'name' => $this->name,
                 'department' => $this->department,
                 'created_at' => $this->created_at,
                 'unit_uuid' => $this->unit_uuid,
@@ -131,7 +132,7 @@ class AccountPayableCreateStep5Component extends Component
     }
 
     public function updateParticular($id){
-       
+
         try{
               foreach ($this->particulars->where('id', $id) as $particular) {
                 $particular->update([
@@ -151,20 +152,20 @@ class AccountPayableCreateStep5Component extends Component
 
                 session()->flash('success', 'Changes Saved!');
             }
-             
+
        }catch(\Exception $e){
             session()->flash('error', $e);
        }
     }
 
     public function removeParticular($id){
-        
+
         AccountPayableLiquidationParticular::where('id', $id)->delete();
 
         $this->particulars = $this->get_particulars();
 
         $this->total = AccountPayableLiquidationParticular::where('batch_no', $this->accountpayable->batch_no)->sum('total');
-        
+
         $this->cash_advance = AccountPayableLiquidation::where('batch_no',  $this->accountpayable->batch_no)->pluck('cash_advance')->first();
 
         return back()->with('success', 'Changes Saved!');
@@ -175,7 +176,7 @@ class AccountPayableCreateStep5Component extends Component
     }
 
     public function storeNewItem(){
-        // 
+        //
 
         AccountPayableLiquidationParticular::create(
         [
@@ -191,7 +192,7 @@ class AccountPayableCreateStep5Component extends Component
 
         $this->particulars = $this->get_particulars();
 
-        
+
         $this->total = AccountPayableLiquidationParticular::where('batch_no', $this->accountpayable->batch_no)->sum('total');
         $this->cash_advance = AccountPayableLiquidation::where('batch_no',  $this->accountpayable->batch_no)->pluck('cash_advance')->first();
 

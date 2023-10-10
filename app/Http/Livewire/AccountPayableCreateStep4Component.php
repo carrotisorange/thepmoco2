@@ -21,7 +21,7 @@ class AccountPayableCreateStep4Component extends Component
     public $attachment;
 
     public $skipLiquidation = false;
-    
+
     public function mount($accountpayable)
     {
         $this->attachment = $accountpayable->attachment;
@@ -40,7 +40,7 @@ class AccountPayableCreateStep4Component extends Component
     }
 
     public function submitForm()
-    {   
+    {
         sleep(2);
 
         $this->validate();
@@ -50,7 +50,7 @@ class AccountPayableCreateStep4Component extends Component
             ->update([
                 'attachment' => $this->attachment->store('accountpayables'),
             ]);
-        }    
+        }
 
         if($this->skipLiquidation){
             Session::put('skipLiquidation', true);
@@ -62,7 +62,7 @@ class AccountPayableCreateStep4Component extends Component
 
             return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-7')->with('success', 'Changes Saved!');
 
-         
+
         }else{
               AccountPayable::where('id', $this->accountpayable->id)
               ->update([
@@ -70,9 +70,9 @@ class AccountPayableCreateStep4Component extends Component
               ]);
 
             return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-4')->with('success', 'Changes Saved!');
-            
+
         }
-    
+
 
     }
 

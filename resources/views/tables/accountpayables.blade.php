@@ -1,12 +1,11 @@
 
-<div>
 <table class="">
     <thead class="bg-gray-50">
         <tr class="">
             {{-- <x-th>#</x-th> --}}
             <x-th class="sticky-col first-col">REQUESTED ON</x-th>
             <x-th class="sticky-col first-col">BATCH NO</x-th>
-        
+
             <x-th class="sticky-col first-col">REQUESTER</x-th>
             <x-th class="sticky-col first-col">FIRST APPROVER</x-th>
             <x-th class="sticky-col first-col">SECOND APPROVER</x-th>
@@ -24,7 +23,7 @@
             {{-- <x-td>{{ $index+1 }}</x-td> --}}
             <x-td>{{ Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}</x-td>
             <x-td>{{ $accountpayable->batch_no }} </x-td>
-        
+
                         <?php $firstName= explode(' ', $accountpayable->requester->name); ?>
             <x-td>{{ Str::limit($firstName[0], 10) }}</x-td>
 
@@ -62,20 +61,20 @@
                 @foreach ($particulars->take(1) as $particular)
                 {{ ($particular->item) }}...
                 @endforeach
-            </x-td> 
+            </x-td>
             {{-- <x-td>{{ $accountpayable->status }}</x-td> --}}
-            <?php 
+            <?php
                 $amount = App\Models\AccountPayableParticular::
                 where('batch_no', $accountpayable->batch_no)
                 ->sum('total')
-                
+
             ;?>
-    
-           
+
+
             <x-td>{{ number_format($amount, 2) }}
-      
+
             </x-td>
-          
+
             <x-td>
                 {{-- step 1 --}}
                 @if($accountpayable->requester_id === auth()->user()->id && ($accountpayable->status === 'pending' || $accountpayable->status === 'rejected by manager'))
@@ -84,7 +83,7 @@
                     View
                 </a>
 
-        
+
                 {{-- step 2 --}}
                 @elseif($accountpayable->approver_id === auth()->user()->id && $accountpayable->status  === 'pending')
                  <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-2"
@@ -94,7 +93,7 @@
                  </a>
 
                 {{-- step 3 --}}
-                @elseif(($accountpayable->approver2_id === auth()->user()->id || Session::get('role_id') === 4) && $accountpayable->status === 'approved by manager') 
+                @elseif(($accountpayable->approver2_id === auth()->user()->id || Session::get('role_id') === 4) && $accountpayable->status === 'approved by manager')
                 <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step-3"
                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
                         type="button">
@@ -112,7 +111,7 @@
 
                 {{-- step 5 --}}
                 @elseif(auth()->user()->id === $accountpayable->requester_id && $accountpayable->status === 'released')
-               
+
 
                 <a target="_blank" href="/property/{{ $accountpayable->property->uuid }}/accountpayable/{{ $accountpayable->id }}/step1/export"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
@@ -153,14 +152,14 @@
                   Edit
                 </a>
 
-              
+
 
                 @else
-                
+
                 @endif
-              
+
             </x-td>
-       
+
         </tr>
         @endforeach
         <tr>
@@ -178,5 +177,3 @@
         </tr>
     </tbody>
 </table>
-
-    </div>

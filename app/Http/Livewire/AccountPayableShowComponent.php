@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\AccountPayableParticular;
 use App\Models\AccountPayable;
+use Session;
 
 class AccountPayableShowComponent extends Component
 {
@@ -38,14 +39,14 @@ class AccountPayableShowComponent extends Component
             return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-6')->with('success', 'Changes Saved!');
         }
         else{
-            return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id)->with('success', 'Changes Saved!');        
+            return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id)->with('success', 'Changes Saved!');
         }
-       
+
     }
 
      public function deleteAccountPayable($accountpayableId){
 
-      
+
 
       $batch_no = AccountPayable::find($accountpayableId)->batch_no;
 
@@ -53,7 +54,7 @@ class AccountPayableShowComponent extends Component
 
       AccountPayableParticular::where('batch_no', $batch_no)->delete();
 
-    return redirect('/property/'.Session::get('property_uuid').'/accountpayable/')->with('success', 'Changes Saved!');   
+    return redirect('/property/'.Session::get('property_uuid').'/accountpayable/')->with('success', 'Changes Saved!');
 
     }
 

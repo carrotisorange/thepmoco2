@@ -7,7 +7,7 @@
 <h1 class="ml-10 font-bold text-3xl">Booking Calendar</h1>
 </div>
 <div class="col-start-2 mr-8 mt-5 flex justify-end">
-    <a href="year"><button class="bg-purple-900 text-white text-sm p-3 border border-purple-400 rounded-lg">Year View</button></a>
+    <a href="year"><x-button>Year View</x-button></a>
 </div>
 </div>
 
@@ -15,7 +15,7 @@
 <div class="px-10 py-5">
 <div class="md:grid md:grid-cols-2 md:divide-x md:divide-gray-200">
   <div class="md:pr-14">
-    
+
 <div>
 
 <link rel="dns-prefetch" href="//unpkg.com" />
@@ -25,7 +25,7 @@
 <div class="antialiased sans-serif  h-screen">
 <div x-data="app()" x-init="[initDate(), getNoOfDays()]" x-cloak>
     <div class="container mx-auto px-4 py-2 md:py-24">
-          
+
         <!-- <div class="font-bold text-gray-800 text-xl mb-4">
             Schedule Tasks
         </div> -->
@@ -38,36 +38,36 @@
                     <span x-text="year" class="ml-1 text-lg text-gray-600 font-normal"></span>
                 </div>
                 <div class="border rounded-lg px-1" style="padding-top: 2px;">
-                    <button 
+                    <button
                         type="button"
-                        class="leading-none rounded-lg transition ease-in-out duration-100 inline-flex cursor-pointer hover:bg-gray-200 p-1 items-center" 
+                        class="leading-none rounded-lg transition ease-in-out duration-100 inline-flex cursor-pointer hover:bg-gray-200 p-1 items-center"
                         :class="{'cursor-not-allowed opacity-25': month == 0 }"
                         :disabled="month == 0 ? true : false"
                         @click="month--; getNoOfDays()">
                         <svg class="h-6 w-6 text-gray-500 inline-flex leading-none"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-                        </svg>  
+                        </svg>
                     </button>
-                    <div class="border-r inline-flex h-6"></div>		
-                    <button 
+                    <div class="border-r inline-flex h-6"></div>
+                    <button
                         type="button"
-                        class="leading-none rounded-lg transition ease-in-out duration-100 inline-flex items-center cursor-pointer hover:bg-gray-200 p-1" 
+                        class="leading-none rounded-lg transition ease-in-out duration-100 inline-flex items-center cursor-pointer hover:bg-gray-200 p-1"
                         :class="{'cursor-not-allowed opacity-25': month == 11 }"
                         :disabled="month == 11 ? true : false"
                         @click="month++; getNoOfDays()">
                         <svg class="h-6 w-6 text-gray-500 inline-flex leading-none"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                        </svg>									  
+                        </svg>
                     </button>
                 </div>
-            </div>	
+            </div>
 
             <div class="my-10">
                 <div class="flex flex-wrap" style="margin-bottom: -40px;">
-                    <!-- <template x-for="(day, index) in DAYS" :key="index">	
+                    <!-- <template x-for="(day, index) in DAYS" :key="index">
                         <div style="width: 14.26%" class="px-2 py-2">
                             <div
-                                x-text="day" 
+                                x-text="day"
                                 class="text-gray-600 text-sm uppercase tracking-wide font-bold text-center"></div>
                         </div>
                     </template> -->
@@ -75,20 +75,20 @@
 
                 <div class="flex flex-wrap border-t border-l">
                     <template x-for="blankday in blankdays">
-                        <div 
+                        <div
                             style="width: 10; height: 10"
-                            class="text-center border-b px-9 pt-2"	
+                            class="text-center border-b px-9 pt-2"
                         ></div>
-                    </template>	
-                    <template x-for="(date, dateIndex) in no_of_days" :key="dateIndex">	
+                    </template>
+                    <template x-for="(date, dateIndex) in no_of_days" :key="dateIndex">
                         <div style="width: 10; height: 10" class="px-4 pt-2 border-r border-b relative">
                             <div
                                 @click="showEventModal(date)"
                                 x-text="date"
                                 class="inline-flex w-10 h-10 items-center justify-center cursor-pointer text-center leading-none rounded-full transition ease-in-out duration-100"
-                                :class="{'bg-gray-900 text-white': isToday(date) == true, 'text-gray-700 hover:bg-blue-200': isToday(date) == false }"	
+                                :class="{'bg-gray-900 text-white': isToday(date) == true, 'text-gray-700 hover:bg-blue-200': isToday(date) == false }"
                             ></div>
-                            
+
                         </div>
                     </template>
                 </div>
@@ -108,9 +108,9 @@
             </div>
 
             <div class="shadow w-full rounded-lg bg-white overflow-hidden w-full block p-8">
-                
+
                 <h2 class="font-bold text-2xl mb-6 text-gray-800 border-b pb-2">Book a Unit</h2>
-             
+
                 <div class="mb-4">
                     <label class="text-gray-800 block mb-1 font-bold text-sm tracking-wide">Name</label>
                     <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-lg w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500" type="text" x-model="event_title">
@@ -139,7 +139,7 @@
                                 <template x-for="(theme, index) in themes">
                                     <option :value="theme.value" x-text="theme.label"></option>
                                 </template>
-                            
+
                         </select>
                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -150,10 +150,10 @@
                 <div class="mt-8 text-right">
                     <button type="button" class="bg-white hover:bg-gray-100 text-gray-700 font-semibold py-2 px-4 border border-gray-300 rounded-lg shadow-sm mr-2" @click="openEventModal = !openEventModal">
                         Cancel
-                    </button>	
+                    </button>
                     <button type="button" class="bg-gray-800 hover:bg-gray-700 text-white font-semibold py-2 px-4 border border-gray-700 rounded-lg shadow-sm" @click="addEvent()">
                         Book
-                    </button>	
+                    </button>
                 </div>
             </div>
         </div>
@@ -201,7 +201,7 @@
                     value: "blue",
                     label: "Blue Theme"
                 },
-               
+
             ],
 
             openEventModal: false,
@@ -262,7 +262,7 @@
                 for ( var i=1; i <= daysInMonth; i++) {
                     daysArray.push(i);
                 }
-                
+
                 this.blankdays = blankdaysArray;
                 this.no_of_days = daysArray;
             }
@@ -273,8 +273,8 @@
 
 </div>
 </div>
-    
-   
+
+
   <section class="mt-12 md:mt-0 md:pl-14 rounded-lg border border-purple-900">
     <h2 class="p-3 font-semibold text-gray-900">Upcoming Reservations for <time datetime="2022-01-21">January</time></h2>
     <ol class="mt-4 space-y-1 text-sm leading-6 text-gray-500">
@@ -321,7 +321,7 @@
 </div>
 
 
-	
+
 </div>
 
 

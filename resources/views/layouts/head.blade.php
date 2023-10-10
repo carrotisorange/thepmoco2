@@ -39,6 +39,7 @@
     * {
         margin: 0px;
         padding: 0;
+        font-family: 'Poppins';
 
     }
 
@@ -169,7 +170,7 @@
         max-width: 100px;
         left: 600px;
     }
-    
+
     .eight-col {
         width: 100px;
         min-width: 100px;
