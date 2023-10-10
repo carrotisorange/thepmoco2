@@ -156,7 +156,11 @@ class UnitShowComponent extends Component
 
             $this->unit_details->update($validatedData);
 
-            app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'updates',2);
+            $featureId = 3;
+
+            $restrictionId = 3;
+
+            app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,$restrictionId,$featureId);
 
             session()->flash('success', 'Changes Saved!');
 

@@ -175,7 +175,11 @@ class OwnerShowComponent extends Component
             app('App\Http\Controllers\UserController')->send_email($user_id->role_id, $user_id->email, $user_id->username, $temporary_password);
         }
 
-        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'sends',17);
+        $featureId = 8;
+
+        $restrictionId = 3;
+
+        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,$restrictionId ,$featureId);
 
 
         return redirect('/property/'.Session::get('property_uuid').'/owner/'.$this->owner_details->uuid)->with('success', 'Changes Saved!');
@@ -188,7 +192,11 @@ class OwnerShowComponent extends Component
         User::where('email', $this->owner_details->email)
         ->delete();
 
-        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'removes', 19);
+        $featureId = 8;
+
+        $restrictionId = 4;
+
+        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,$restrictionId, $featureId);
 
         session()->flash('success', 'Changes Saved!');
     }

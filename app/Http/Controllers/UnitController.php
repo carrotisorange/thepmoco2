@@ -18,7 +18,10 @@ class UnitController extends Controller
 
       public function show(Property $property, Unit $unit, $action=null)
     {
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens one',2);
+        $featureId = 3;
+        $restrictionId = 2;
+
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,$featureId,$restrictionId);
 
         return view('units.show',[
             'property' => $property,

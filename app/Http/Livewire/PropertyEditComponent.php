@@ -90,16 +90,20 @@ class PropertyEditComponent extends Component
     }
 
     public function submitForm(Request $request)
-    {   
+    {
 
         $validated = $this->validate();
-        
+
         try{
             DB::transaction(function () use ($validated, $request){
               $this->update_property($validated, $request);
             });
 
-            app('App\Http\Controllers\ActivityController')->store($this->property_details->uuid, auth()->user()->id,'updates',1);
+            $featureId = 20;
+
+            $restrictionId = 3;
+
+            app('App\Http\Controllers\ActivityController')->store($this->property_details->uuid, auth()->user()->id,$restrictionId,$featureId);
 
             return session()->flash('success', 'Changes Saved!');
 
