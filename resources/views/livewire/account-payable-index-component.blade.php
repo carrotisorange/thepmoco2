@@ -14,15 +14,17 @@
                 <x-button type="button" wire:click="clearFilters" >   Clear Filters
                 </x-button>
                 @endif
-                <a href="/property/{{Session::get('property_uuid')}}/accountpayable/export/{{ $status }}/{{ $created_at }}/{{ $request_for }}/{{ $limitDisplayTo }}"
-                    target="_blank"
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+
+                {{-- <x-button onclick="window.location.href='/property/{{Session::get('property_uuid')}}/accountpayable/export/{{ $status }}/{{ $created_at }}/{{ $request_for }}/{{$limitDisplayTo }}'"
+                    target="_blank">
                     Export All
-                </a>
-                <a href="/property/{{ Session::get('property_uuid') }}/accountpayable/{{ 'purchase' }}/{{ Str::random(3) }}/store"
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                </x-button> --}}
+
+
+
+                <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/accountpayable/{{ 'purchase' }}/{{ Str::random(3) }}/store'">
                     New Request
-                </a>
+                </x-button>
 
             </div>
             @endif
