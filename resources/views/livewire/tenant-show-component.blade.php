@@ -118,7 +118,7 @@
                 </div>
                 <div id="myTabContent" wire:ignore>
                     @foreach($tenantSubfeaturesArray as $subfeature)
-                    @if($subfeature === 'tenant')
+                    @if($subfeature == 'tenant')
                     <div class="p-4 purple rounded-lg dark:bg-gray-800" id="{{ $subfeature }}" role="tabpanel"
                         aria-labelledby="{{ $subfeature }}-tab">
                         <div>
@@ -130,7 +130,7 @@
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                                 <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                              @if($subfeature === 'credentials')
+                              @if($subfeature == 'credentials')
                             @if($email_cred)
                             <div class="sm:col-span-4">
                                 <div class="">
@@ -158,7 +158,7 @@
                                 </div>
                             </div>
                             @endif
-                                @elseif($subfeature === 'session')
+                                @elseif($subfeature == 'session')
                                   @if($sessions->count())
                                 @include('tables.sessions')
                                 @else
@@ -174,7 +174,7 @@
                                 </div>
                                 @endif
 
-                               @elseif($subfeature === 'contract')
+                               @elseif($subfeature == 'contract')
                                   @if($contracts->count())
                                 @include('tables.contracts')
                                 @else
@@ -189,7 +189,7 @@
                                     </div>
                                 </div>
                                 @endif
-                                @elseif($subfeature === 'guardian')
+                                @elseif($subfeature == 'guardian')
                                  @if($guardians->count())
                                 @include('tables.guardians')
                                 @else
@@ -206,7 +206,7 @@
                                     </div>
                                 </div>
                                 @endif
-                                @elseif($subfeature === 'reference')
+                                @elseif($subfeature == 'reference')
                                   @if($references->count())
                                 @include('tables.references')
                                 @else
@@ -223,7 +223,7 @@
                                     </div>
                                 </div>
                                 @endif
-                                @elseif($subfeature === 'concern')
+                                @elseif($subfeature == 'concern')
                                  @if($concerns->count())
                                 @include('tables.concerns')
                                 @else
@@ -241,7 +241,7 @@
                                     </div>
                                 </div>
                                 @endif
-                                @elseif($subfeature === 'bill')
+                                @elseif($subfeature == 'bill')
                                    @if($bills->count())
                                     <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant_details->uuid }}/bills'">
                                         Pay Bills
@@ -261,7 +261,7 @@
                                 </div>
                                 @endif
 
-                                @elseif($subfeature === 'deposit')
+                                @elseif($subfeature == 'deposit')
                                  @if($wallets->count())
                                 @include('tenants.tables.deposits')
                                 @else
@@ -274,7 +274,7 @@
                                     </div>
                                 </div>
                                 @endif
-                                @elseif($subfeature === 'collection')
+                                @elseif($subfeature == 'collection')
                                  @if($collections->count())
                                 @include('tables.collections')
                                 @else

@@ -94,7 +94,7 @@
 
                 <div id="myTabContent" wire:ignore>
                     @foreach($unitSubfeaturesArray as $subfeature)
-                    @if($subfeature === 'unit')
+                    @if($subfeature == 'unit')
                     <div class="p-4 purple rounded-lg dark:bg-gray-800" id="{{ $subfeature }}" role="tabpanel"
                         aria-labelledby="{{ $subfeature }}-tab">
                         <div>
@@ -106,7 +106,7 @@
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                                 <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                                @if($subfeature === 'inventory')
+                                @if($subfeature == 'inventory')
                                     @if($inventories->count())
                                         @include('units.tables.inventories')
                                     @else
@@ -120,7 +120,7 @@
                                         </div>
                                     </div>
                                     @endif
-                                @elseif($subfeature === 'owner')
+                                @elseif($subfeature == 'owner')
                                     @if($deed_of_sales->count())
                                         @include('tables.deedofsales')
                                     @else
@@ -134,7 +134,7 @@
                                         </div>
                                     </div>
                                     @endif
-                                @elseif($subfeature === 'tenant')
+                                @elseif($subfeature == 'tenant')
                                     @if($contracts->count())
                                     @include('tables.contracts')
                                     @else
@@ -149,7 +149,7 @@
                                         </div>
                                     </div>
                                     @endif
-                                @elseif($subfeature === 'guest')
+                                @elseif($subfeature == 'guest')
                                     @if($bookings->count())
                                         @include('tables.bookings')
                                     @else
@@ -164,7 +164,7 @@
                                         </div>
                                     </div>
                                     @endif
-                                @elseif($subfeature === 'concern')
+                                @elseif($subfeature == 'concern')
                                     @if($concerns->count())
                                         @include('tables.concerns')
                                     @else
@@ -181,7 +181,7 @@
                                         </div>
                                     </div>
                                     @endif
-                                @elseif($subfeature === 'utility')
+                                @elseif($subfeature == 'utility')
                                     @if($utilities->count())
                                         @include('tables.utilities')
                                     @else
@@ -196,7 +196,7 @@
                                         </div>
                                     </div>
                                     @endif
-                                @elseif($subfeature === 'collection')
+                                @elseif($subfeature == 'collection')
                                     @if($collections->count())
                                         @include('tables.collections')
                                     @else
@@ -205,9 +205,9 @@
                                             <h3 class="mt-2 text-sm font-medium text-gray-900">No collections</h3>
                                         </div>
                                     @endif
-                                @elseif($subfeature === 'financial')
+                                @elseif($subfeature == 'financial')
                                     @include('units.tables.financials')
-                                @elseif($subfeature === 'remittance')
+                                @elseif($subfeature == 'remittance')
                                 <div class="flex justify-end items-center ">
                                     <x-button onclick="window.location.href='/property/{{ $unit_details->property_uuid }}/unit/{{ $unit_details->uuid }}/remittances'">See More Remittance</x-button>
                                     </div>
