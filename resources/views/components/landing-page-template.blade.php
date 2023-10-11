@@ -8,7 +8,7 @@
     <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel="canonical" href="https://thepropertymanager.online" />
+    <link rel="canonical" href="https://propsuite.net" />
     <title>@yield('title')</title>
 
     <meta name="description" content="@yield('description')">
@@ -46,33 +46,33 @@
     association management system software">
 
     <!-- facebook -->
-    <meta property="og:url" content="https://thepropertymanager.online">
+    <meta property="og:url" content="https://propsuite.net">
     <meta property="og:type" content="website">
     <meta property="og:title"
         content="Increase transparency, and efficiency in rental property operations with a simple and easy to use system for leasing and property management.">
-    <meta property="og:description" content="Visit us now: thepropertymanager.online">
-    <meta property="og:image" content="https://thepropertymanager.online/brands/propsuite/propsuite.png">
+    <meta property="og:description" content="Visit us now: propsuite.net">
+    <meta property="og:image" content="https://propsuite.net/brands/propsuite/propsuite.png">
 
     <script type="application/ld+json">
-        {
-  "@context": "https://schema.org",
-  "@type": "Saas Business",
-  "name": "The PMO Co",
-  "image": "https://thepropertymanager.online/brands/propsuite/propsuite.png",
-  "@id": "https://thepropertymanager.online/",
-  "url": "https://thepropertymanager.online/",
-  "telephone": "(+63) 916 779 9750",
-   "email": "sales@thepmo.co",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "39 Engineers Hill",
-    "addressLocality": "Baguio City",
-    "postalCode": "2600",
-    "addressCountry": "Philippines"
-  }
-  "sameAs" : [
-    "https://www.linkedin.com/company/the-pmo-co/",
-  ]
+     
+        "@context": "https://schema.org",
+        "@type": "Saas Business",
+        "name": "Propsuite",
+        "image": "https://propsuite.net/brands/propsuite/propsuite.png",
+        "@id": "https://propsuite.net/",
+        "url": "https://propsuite.net/",
+        "telephone": "(+63) 916 779 9750",
+        "email": "admin@propsuite.net",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "39 Engineers Hill",
+            "addressLocality": "Baguio City",
+            "postalCode": "2600",
+            "addressCountry": "Philippines"
+        }
+        "sameAs" : [
+            "https://www.linkedin.com/company/propsuite",
+        ]
 
 
     </script>
@@ -80,10 +80,10 @@
     <!-- Google Tag Manager -->
     <script>
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-P3GZPSF');
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-P3GZPSF');
     </script>
     <!-- End Google Tag Manager -->
 
@@ -91,10 +91,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XFVDKSHJQL"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-  gtag('config', 'G-XFVDKSHJQL');
+        gtag('config', 'G-XFVDKSHJQL');
     </script>
 
     <script type="text/javascript">
@@ -377,6 +377,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 href="blog-1">Articles</a>
                         </li>
 
+                        <li class="mt-5 mb-1" tabindex="0">
+                            <a class="block p-4 text-sm text-center font-medium text-white bg-purple-500 hover:bg-purple-100 hover:text-purple-500 rounded"
+                            href="/login">Sign In</a>
+                        </li>
+
+                        <li class="mb-1" tabindex="0">
+                            <a class="block p-4 text-sm text-center font-medium text-white bg-yellow-300 hover:bg-purple-100 hover:text-purple-500 rounded"
+                            href="/select-a-plan">Sign Up</a>
+                        </li>
+
                     </ul>
                 </div>
                 <div class="mt-auto">
@@ -391,45 +401,45 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <script>
         // Burger menus
-document.addEventListener('DOMContentLoaded', function() {
-    // open
-    const burger = document.querySelectorAll('.navbar-burger');
-    const menu = document.querySelectorAll('.navbar-menu');
+        document.addEventListener('DOMContentLoaded', function() {
+            // open
+            const burger = document.querySelectorAll('.navbar-burger');
+            const menu = document.querySelectorAll('.navbar-menu');
 
-    if (burger.length && menu.length) {
-        for (var i = 0; i < burger.length; i++) {
-            burger[i].addEventListener('click', function() {
-                for (var j = 0; j < menu.length; j++) {
-                    menu[j].classList.toggle('hidden');
+            if (burger.length && menu.length) {
+                for (var i = 0; i < burger.length; i++) {
+                    burger[i].addEventListener('click', function() {
+                        for (var j = 0; j < menu.length; j++) {
+                            menu[j].classList.toggle('hidden');
+                        }
+                    });
                 }
-            });
-        }
-    }
+            }
 
-    // close
-    const close = document.querySelectorAll('.navbar-close');
-    const backdrop = document.querySelectorAll('.navbar-backdrop');
+            // close
+            const close = document.querySelectorAll('.navbar-close');
+            const backdrop = document.querySelectorAll('.navbar-backdrop');
 
-    if (close.length) {
-        for (var i = 0; i < close.length; i++) {
-            close[i].addEventListener('click', function() {
-                for (var j = 0; j < menu.length; j++) {
-                    menu[j].classList.toggle('hidden');
+            if (close.length) {
+                for (var i = 0; i < close.length; i++) {
+                    close[i].addEventListener('click', function() {
+                        for (var j = 0; j < menu.length; j++) {
+                            menu[j].classList.toggle('hidden');
+                        }
+                    });
                 }
-            });
-        }
-    }
+            }
 
-    if (backdrop.length) {
-        for (var i = 0; i < backdrop.length; i++) {
-            backdrop[i].addEventListener('click', function() {
-                for (var j = 0; j < menu.length; j++) {
-                    menu[j].classList.toggle('hidden');
+            if (backdrop.length) {
+                for (var i = 0; i < backdrop.length; i++) {
+                    backdrop[i].addEventListener('click', function() {
+                        for (var j = 0; j < menu.length; j++) {
+                            menu[j].classList.toggle('hidden');
+                        }
+                    });
                 }
-            });
-        }
-    }
-});
+            }
+        });
     </script>
 
     <main>
@@ -449,7 +459,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </a>
 
             <!-- LinkedIn -->
-            <a href="https://www.linkedin.com/company/the-pmo-co/" title="Share on LinkedIn">
+            <a href="https://www.linkedin.com/company/propsuite" title="Share on LinkedIn">
                 <?xml version="1.0" ?>
                 <!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg
                     height="100%" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"

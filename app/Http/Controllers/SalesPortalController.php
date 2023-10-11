@@ -23,11 +23,15 @@ class SalesPortalController extends Controller
         ]);
     }
 
-    public function show_property(User $user)
+    public function property($role_id, $username, $user_id)
     {
-        return view('portals.sales.show-property',[
-            'properties'=>User::find($user->id)->user_properties,
-            'user' => User::find($user->id)
+        $properties = User::findOrFail($user_id)->user_properties()->whereNotNull('user_id')->orWhereNotNull('property_uuid')->get();
+
+        // ddd($properties);
+
+        return view('portals.sales.properties',[
+            'properties'=> $properties,
+            'user' => User::find($user_id)
         ]);
     }
 
@@ -38,7 +42,14 @@ class SalesPortalController extends Controller
         ]);
     }
 
-    // public function login(User $user){
-    //     ddd('asdasd');
-    // }
+//    return view('portals.sales.sessions',[
+//    'sessions'=>DB::table('sessions')
+//    ->join('users', 'sessions.user_id', 'users.id')
+//    ->join('user_properties', 'users.id', 'user_properties.user_id')
+//    ->join('roles', 'user_properties.role_id', 'roles.id')
+//    ->whereDate('sessions.created_at', Carbon::now())
+//    ->where('category','end-user')
+//    ->groupBy('sessions.user_id')
+//    ->orderBy('sessions.created_at', 'desc')->orderBy('sessions.updated_at', 'desc')->get()
+//    ]);
 }
