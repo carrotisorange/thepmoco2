@@ -64,7 +64,8 @@ class PropertyCreateComponent extends Component
 
             DB::transaction(function () use ($validatedData){
 
-               $new_property = app('App\Http\Controllers\PropertyController')->store($validatedData);
+
+               $new_property = app('App\Http\Controllers\PropertyController')->store($validatedData, $this->type_id);
 
                app('App\Http\Controllers\UserPropertyController')->store($new_property->uuid->toString(), auth()->user()->id, 0, 1, 5);
 

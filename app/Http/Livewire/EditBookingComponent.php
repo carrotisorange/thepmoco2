@@ -54,17 +54,17 @@ class EditBookingComponent extends Component
         $this->no_of_companions = $booking->no_of_companions;
         $this->remarks = $booking->remarks;
     }
-    
+
     public function updatedUnitUuid(){
         if($this->unit_uuid){
             $this->price = Unit::find($this->unit_uuid)->transient_rent;
         }
-        
+
     }
 
     public function updateBooking(){
-
-        $validated = $this->validate([
+        ddd('asda');
+        $validatedData = $this->validate([
             'unit_uuid' => ['required', Rule::exists('units', 'uuid')],
             'movein_at' => 'required|date',
             'moveout_at' => 'required|date|after:movein_at',
@@ -84,9 +84,22 @@ class EditBookingComponent extends Component
             'remarks'=> 'nullable',
         ]);
 
-        Booking::where('uuid', $this->booking->uuid)->update($validated);
+        try {
 
-       return redirect(url()->previous())->with('success', 'Changes Saved!');
+            DB::transaction(function () use ($validatedData){
+
+            Booking::where('uuid', $this->booking->uuid)->update($validatedData);
+
+            return redirect(url()->previous())->with('success', 'Changes Saved!');
+
+            });
+
+        }catch (\Throwable $e) {
+            ddd($e);
+            return back()->with('error', $e);
+        }
+
+
 
     }
 

@@ -478,7 +478,7 @@ class PropertyController extends Controller
     public function show(Property $property)
     {
         $featureId = 1;
-        
+
         $restrictionId = 2;
 
         app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
@@ -589,6 +589,10 @@ class PropertyController extends Controller
         Session::put('property_email', Property::find($property_uuid)->email);
 
         Session::put('property_type', Property::find($property_uuid)->type->type);
+
+        $property_type_id = Property::find($property_uuid)->type->id;
+
+        Session::put('property_unit_type_id', Type::find($property_type_id)->unit_type_id);
 
         Session::put('property_mobile', Property::find($property_uuid)->mobile);
 

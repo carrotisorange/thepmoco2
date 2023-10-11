@@ -48,6 +48,7 @@ use App\Http\Controllers\LiquidationController;
 use App\Http\Controllers\RemittanceController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\ElectionController;
+use App\Http\Controllers\HouseController;
 use App\Http\Controllers\PersonnelController;
 use App\Http\Controllers\TenantController;
 
@@ -143,6 +144,10 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for calendar
     Route::get('calendar', [CalendarController::class, 'index'])->name('calendar');
 
+
+    Route::prefix('house')->group(function(){
+        Route::get('/', [HouseController::class, 'index'])->name('house');
+    });
 
 
     //Routes for Unitf

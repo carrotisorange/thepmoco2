@@ -13,15 +13,7 @@
         </div>
 
         <div class=" mt-10 flex items-center justify-center">
-            <x-button type="button" wire:click="redirectToUnitPage">
-                @if(Session::get('property_type') == 'HOA')
-                    Add your first house
-                @else
-                    Add your first unit
-                @endif
-
-            </x-button>
-
+            <x-button wire:click='continueButton'>Continue</x-button>
         </div>
     </div>
 </div>

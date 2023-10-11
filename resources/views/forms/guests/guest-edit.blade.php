@@ -2,7 +2,7 @@
     $formDivClasses = '';
 ;?>
 
-<form method="POST" wire:submit.prevent="updateGuest()" class="w-full" enctype="multipart/form-data">
+<form wire:submit.prevent="updateGuest()" class="w-full" enctype="multipart/form-data">
     <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-8">
 
         <div class="sm:col-span-8">
@@ -39,8 +39,11 @@
 
     </div>
     <div class="mt-5 flex justify-end">
-      
-        <x-button type="submit" wire:target="updateGuest">
+        {{-- <x-button class="bg-red-500" wire:click="deleteGuest">
+            Delete
+        </x-button> --}}
+
+        <x-button wire:target="updateGuest">
             Update
         </x-button>
 

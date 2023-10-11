@@ -7,8 +7,8 @@ use Session;
 
 class PropertyCreateSuccessComponent extends Component
 {
-    public function redirectToUnitPage(){
-        return redirect('/property/'.Session::get('property_uuid').'/unit');
+    public function continueButton(){
+        return redirect('/property/'.Session::get('property_uuid').'/house');
     }
 
     public function render()

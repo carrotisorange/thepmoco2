@@ -105,7 +105,6 @@ class GuestShowComponent extends Component
 
     public function deleteGuest(){
 
-
         AdditionalGuest::where('guest_uuid', $this->guest_details->uuid)->delete();
         Bill::where('guest_uuid', $this->guest_details->uuid)->delete();
         Collection::where('guest_uuid', $this->guest_details->uuid)->delete();

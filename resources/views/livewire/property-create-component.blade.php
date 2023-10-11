@@ -83,7 +83,7 @@
                Cancel
             </a>
 
-            <x-button type="submit" wire:click="create">
+            <x-button wire:click="create">
                Create
             </x-button>
 
