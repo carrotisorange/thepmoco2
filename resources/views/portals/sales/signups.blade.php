@@ -33,6 +33,7 @@
                                <x-th>#</x-th>
                                 <x-th>Created On</x-th>
                                 <x-th>Name</x-th>
+                                <x-th>Gender</x-th>
                                 <x-th>Email</x-th>
                                 <x-th>Mobile</x-th>
                                 <x-th>Property</x-th>
@@ -54,6 +55,7 @@
 
                                             <a>
                                     </x-td>
+                                    <x-td>{{ $signup->gender }}</x-td>
                                     <x-td>{{ $signup->email }}
                                     @if($signup->email_verified_at)
                                     <span title="verified" class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-sm text-green-800">
@@ -83,7 +85,7 @@
                                                     ->count();
                                                 ?>
                                     <x-td>
-                                        <a class="text-blue-600" href="#/">
+                                        <a class="text-blue-600" href="/{{auth()->user()->role_id}}/sale/{{ auth()->user()->username }}/{{ auth()->user()->id }}/properties">
                                             {{ $property_count }} property,
                                             {{ $unit_count }} unit,
                                             {{ $tenant_count }} tenant
