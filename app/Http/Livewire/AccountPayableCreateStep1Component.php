@@ -92,7 +92,6 @@ class AccountPayableCreateStep1Component extends Component
 
     public function submitForm()
     {
-        sleep(2);
 
         $this->validate([
             'first_approver' => 'required',
