@@ -8,7 +8,7 @@
     <link href="https://unpkg.com/tailwindcss@^2.2.7/dist/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel="canonical" href="https://propsuite.net" />
+    <link rel="canonical" href="http://propsuite.net" />
     <title>@yield('title')</title>
 
     <meta name="description" content="@yield('description')">
@@ -46,21 +46,21 @@
     association management system software">
 
     <!-- facebook -->
-    <meta property="og:url" content="https://propsuite.net">
+    <meta property="og:url" content="http://propsuite.net">
     <meta property="og:type" content="website">
     <meta property="og:title"
         content="Increase transparency, and efficiency in rental property operations with a simple and easy to use system for leasing and property management.">
     <meta property="og:description" content="Visit us now: propsuite.net">
-    <meta property="og:image" content="https://propsuite.net/brands/propsuite/propsuite.png">
+    <meta property="og:image" content="http://propsuite.net/brands/propsuite/propsuite.png">
 
     <script type="application/ld+json">
      
         "@context": "https://schema.org",
         "@type": "Saas Business",
         "name": "Propsuite",
-        "image": "https://propsuite.net/brands/propsuite/propsuite.png",
-        "@id": "https://propsuite.net/",
-        "url": "https://propsuite.net/",
+        "image": "http://propsuite.net/brands/propsuite/propsuite.png",
+        "@id": "http://propsuite.net/",
+        "url": "http://propsuite.net/",
         "telephone": "(+63) 916 779 9750",
         "email": "admin@propsuite.net",
         "address": {
