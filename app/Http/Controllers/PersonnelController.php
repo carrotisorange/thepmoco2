@@ -25,11 +25,11 @@ class PersonnelController extends Controller
 
         $propertyVerifiedPersonnelsCount = UserProperty::where('property_uuid',Session::get('property_uuid'))
         ->join('users','user_properties.user_id', 'users.id')
-        ->where('users.email_verified_at', true)
+        ->where('users.email_verified_at', false)
         ->where('user_properties.role_id','!=', 5)
         ->count();
 
-        if($propertyVerifiedPersonnelsCount != 0){
+        if($propertyVerifiedPersonnelsCount == 0){
             return redirect('/property/'.Session::get('property_uuid').'/congratulations');
         }else{
                 return view('properties.personnels.index',[
