@@ -31,7 +31,7 @@ class SendThankyouMailToUser extends Mailable
     public function build()
     {
         return $this->subject('PropSuite')
-            ->from([env('CEO_EMAIL')])
+            ->from(env('CEO_EMAIL'))
             ->markdown('emails.sendthankyoumailtouser');
     }
 }

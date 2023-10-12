@@ -7,7 +7,7 @@
 
         <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete
             this request ({{ $accountpayable->batch_no }})?</h3>
-        <x-button wire:click="submitButton({{ $accountpayable->id }})">
+        <x-button class="bg-red-500" wire:click="submitButton({{ $accountpayable->id }})">
             Yes, I'm sure
         </x-button>
 

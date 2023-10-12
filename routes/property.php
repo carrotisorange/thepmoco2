@@ -147,6 +147,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
     Route::prefix('house')->group(function(){
         Route::get('/', [HouseController::class, 'index'])->name('house');
+        Route::get('{batch_no?}/edit', [HouseController::class, 'edit'])->name('house');
+        Route::get('{house}', [HouseController::class, 'show'])->name('house');
     });
 
 

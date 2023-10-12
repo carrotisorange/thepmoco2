@@ -63,7 +63,7 @@ class EditBookingComponent extends Component
     }
 
     public function updateBooking(){
-        ddd('asda');
+
         $validatedData = $this->validate([
             'unit_uuid' => ['required', Rule::exists('units', 'uuid')],
             'movein_at' => 'required|date',

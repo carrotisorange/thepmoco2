@@ -10,7 +10,7 @@
 
 
         <x-button type="button" wire:click="deleteUnitInventory({{ $inventory->id }})"
-          class="w-full">
+          class="w-full bg-red-500">
             Yes, I'm sure
         </x-button>
 

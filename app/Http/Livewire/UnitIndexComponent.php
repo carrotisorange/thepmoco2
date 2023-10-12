@@ -76,11 +76,16 @@ class UnitIndexComponent extends Component
 
         app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, $this->numberOfUnits, 5);
 
-        if(Session::get('property_type') == 'HOA'){
-             return redirect('/property/'.Session::get('property_uuid').'/unit/')->with('success', 'Changes Saved!');
-        }else{
+
+        $propertyTenantsCount = Property::find(Session::get('property_uuid'))->tenants->count();
+
+        if($propertyTenantsCount == 0){
             return redirect('/property/'.Session::get('property_uuid').'/tenant/')->with('success', 'Changes Saved!');
+        }else{
+            return redirect('/property/'.Session::get('property_uuid').'/unit/')->with('success', 'Changes Saved!');
         }
+
+
     }
 
     public function changeView($value)
@@ -152,23 +157,16 @@ class UnitIndexComponent extends Component
     }
 
     public function editUnits(){
-
-
-
       return redirect('/property/'.Session::get('property_uuid').'/unit/all/edit');
     }
 
    public function render()
     {
-        $featureId = 20;
+        $stepper = Type::where('id', Session::get('property_type_id'))->pluck('stepper')->first();
 
-        $propertySubFeatures = Feature::where('id', $featureId)->pluck('subfeatures')->first();
-
-        $propertySubfeaturesArray = explode(",", $propertySubFeatures);
+        $steps = explode(",", $stepper);
 
         $propertyUnitCount = Property::find(Session::get('property_uuid'))->units()->count();
-
-        // $unitStatuses = Type::where('type', Session::get('property_type'))->pluck('unit_statuses')->first();
 
         return view('livewire.unit-index-component',[
             'units' => $this->get_units(),
@@ -182,9 +180,8 @@ class UnitIndexComponent extends Component
             'occupancies' => app('App\Http\Controllers\UnitController')->getUnitOccupancies(Session::get('property_uuid')),
             'enrollment_statuses' => app('App\Http\Controllers\UnitController')->getUnitEnrollmentStatuses(Session::get('property_uuid')),
             'units_count' => Property::find(Session::get('property_uuid'))->units->count(),
-            'propertySubfeaturesArray' => $propertySubfeaturesArray,
+            'steps' => $steps,
             'propertyUnitCount' => $propertyUnitCount,
-            // 'unitStatuses' => $unitStatuses
         ]);
     }
 }

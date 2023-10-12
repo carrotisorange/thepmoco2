@@ -1,4 +1,3 @@
-
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -22,6 +21,13 @@ class CreateHousesTable extends Migration
             $table->foreignId('status_id')->constrained();
             $table->foreignId('category_ud')->constrained();
             $table->string('batch_no');
+            $table->string('doc1')->nullable();
+            $table->string('doc2')->nullable();
+            $table->string('doc3')->nullable();
+            $table->string('doc4')->nullable();
+            $table->string('doc5')->nullable();
+            $table->string('doc6')->nullable();
+            $table->string('doc7')->nullable();
             $table->timestamps();
         });
     }

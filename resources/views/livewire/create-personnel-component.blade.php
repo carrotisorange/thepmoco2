@@ -27,6 +27,9 @@
                     @error('email')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
+                    <small class="text-indigo-600">
+                       * The personnel will receive an email containing the credentials for accessing your property.
+                    </small>
                 </div>
 
                 <div class="mt-5 sm:mt-6">

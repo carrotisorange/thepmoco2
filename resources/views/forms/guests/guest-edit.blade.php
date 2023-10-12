@@ -1,8 +1,9 @@
-<?php
-    $formDivClasses = '';
-;?>
 
-<form wire:submit.prevent="updateGuest()" class="w-full" enctype="multipart/form-data">
+
+<form wire:submit.prevent="updateGuest()" class="w-full">
+    <?php
+        $formDivClasses = '';
+    ;?>
     <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-8">
 
         <div class="sm:col-span-8">
@@ -43,7 +44,7 @@
             Delete
         </x-button> --}}
 
-        <x-button wire:target="updateGuest">
+        <x-button type="submit">
             Update
         </x-button>
 

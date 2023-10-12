@@ -474,6 +474,13 @@ class PropertyController extends Controller
         ]);
     }
 
+    public function congratulations(Property $property)
+    {
+        return view('properties.congratulations', [
+            'property' => $property
+        ]);
+    }
+
 
     public function show(Property $property)
     {
@@ -589,6 +596,8 @@ class PropertyController extends Controller
         Session::put('property_email', Property::find($property_uuid)->email);
 
         Session::put('property_type', Property::find($property_uuid)->type->type);
+
+        Session::put('property_type_id', Property::find($property_uuid)->type->id);
 
         $property_type_id = Property::find($property_uuid)->type->id;
 

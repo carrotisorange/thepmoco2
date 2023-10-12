@@ -75,7 +75,7 @@ class GuestShowComponent extends Component
                 'email' => 'required|email',
                 'guest' => 'required',
                 'mobile_number' => 'required'
-            ],
+            ]
         );
 
         try{
@@ -86,6 +86,7 @@ class GuestShowComponent extends Component
             });
 
         }catch(\Exception $e){
+            ddd($e);
             session()->flash('error', $e);
         }
     }

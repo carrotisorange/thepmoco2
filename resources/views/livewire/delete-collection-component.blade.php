@@ -18,7 +18,7 @@
             @enderror
         </div>
 
-        <x-button type="button" wire:click="deleteCollection({{ $collection->id }})" class="w-full">
+        <x-button type="button" wire:click="deleteCollection({{ $collection->id }})" class="w-full bg-red-500">
             Yes, I'm sure
         </x-button>
 

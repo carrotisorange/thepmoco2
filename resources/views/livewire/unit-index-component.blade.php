@@ -135,8 +135,11 @@
                     <nav aria-label="Progress">
                         <ol role="list"
                             class="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">
-                            @foreach($propertySubfeaturesArray as $index => $subfeature)
-                                @if($subfeature === 'property')
+                            @foreach($steps as $index => $step)
+                                <?php
+                                    $stepValue = App\Models\PropertyStepper::find($step)->step;
+                                ;?>
+                                @if($step == 1)
                                 <li class="relative md:flex md:flex-1">
                                     <!-- Completed Step -->
                                     <a href="#" class="group flex w-full items-center">
@@ -151,7 +154,7 @@
                                                         clip-rule="evenodd" />
                                                 </svg>
                                             </span>
-                                            <span class="ml-4 text-sm font-medium text-gray-900">Create a property</span>
+                                            <span class="ml-4 text-sm font-medium text-gray-900">Create a {{ $stepValue }}</span>
                                         </span>
                                     </a>
 
@@ -163,14 +166,14 @@
                                         </svg>
                                     </div>
                                 </li>
-                                @elseif($subfeature === 'unit')
+                                @elseif($step == 6)
                                 <li class="relative md:flex md:flex-1">
                                     <!-- Current Step -->
-                                    <a href="#" class="flex items-center px-6 py-4 text-sm font-medium" aria-current="{{ $subfeature }}">
+                                    <a href="#" class="flex items-center px-6 py-4 text-sm font-medium" aria-current="{{ $stepValue }}">
                                         <span class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-purple-600">
                                             <span class="text-purple-600">02</span>
                                         </span>
-                                        <span class="ml-4 text-sm font-medium text-purple-600">Add a {{ $subfeature }}</span>
+                                        <span class="ml-4 text-sm font-medium text-purple-600">Add a {{ $stepValue }}</span>
                                     </a>
 
                                     <!-- Arrow separator for lg screens and up -->
@@ -190,7 +193,7 @@
                                                 class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
                                                 <span class="text-gray-500 group-hover:text-gray-900">0{{ $index+1 }}</span>
                                             </span>
-                                            <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add a {{ $subfeature }}</span>
+                                            <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add a {{ $stepValue }}</span>
                                         </span>
                                     </a>
 
@@ -215,81 +218,43 @@
                                 stroke-width="2"
                                 d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
                         </svg>
-                        <h3 class="mt-2 text-sm font-medium text-gray-900">No units</h3>
+                        <h3 class="mt-2 text-sm font-medium text-gray-900">No {{ucfirst(Route::current()->getName())}}</h3>
                         <p class="mt-1 text-sm text-gray-500">1 down, 3 more to go...</p>
                         <div class="mt-6">
                             <x-button data-modal-toggle="instructions-create-unit-modal">
-                                New unit
+                                New {{ucfirst(Route::current()->getName())}}
                             </x-button>
                         </div>
                     </div>
                     @else
-                    @if($view === 'thumbnail')
-                        @if(Session::get('property_type') === 'HOA')
-                        <div class="max-w-2xl mx-auto py-8 px-4 sm:px-6 lg:max-w-7xl lg:px-8 mb-24">
-                            <div class="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-6">
-                                @foreach ($units as $unit)
-                                <?php $statusIcon = App\Models\Status::find($unit->status_id)->icon;  ?>
-                                @if(Session::get('tenant_uuid'))
-                                <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}/tenant/{{ Session::get('tenant_uuid') }}/contract/{{ Str::random(8) }}/create">
-                                    <div class="hover:bg-purple-200">
-                                    <img src="{{ asset('/brands/'.$statusIcon) }}"
-                                            class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
-                                        <h3 class="text-center mt-2">{{ $unit->unit }}</h3>
-                                    </div>
-                                </a>
-
-                                @elseif(Session::get('owner_uuid'))
-                                <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}/owner/{{ Session::get('owner_uuid') }}/deed_of_sale/create">
-                                    <div class="hover:bg-purple-200">
-                                    <img src="{{ asset('/brands/'.$statusIcon) }}"
-                                            class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
-                                        <h3 class="text-center mt-2">{{ $unit->unit }}</h3>
-                                    </div>
-                                </a>
-                                @else
-                                <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}">
-                                    <div class="hover:bg-purple-200">
-                                    <img src="{{ asset('/brands/'.$statusIcon) }}"
-                                            class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
-                                        <h3 class="text-center mt-2">{{ $unit->unit }}</h3>
-                                    </div>
-                                </a>
-                                @endif
-                                @endforeach
+                        @if($view === 'thumbnail')
+                            <div class="max-w-2xl mx-auto py-8 px-4 sm:px-6 lg:max-w-7xl lg:px-8 mb-24">
+                                <div class="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-6">
+                                    @foreach ($units as $unit)
+                                        <?php $statusIcon = App\Models\Status::find($unit->status_id)->icon; ?>
+                                        @if(Session::get('owner_uuid'))
+                                        <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}/owner/{{ Session::get('owner_uuid') }}/deed_of_sale/create">
+                                            <div class="hover:bg-purple-200">
+                                                <img src="{{ asset('/brands/'.$statusIcon) }}"
+                                                    class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
+                                                <h3 class="text-center mt-2">{{ $unit->unit }}</h3>
+                                            </div>
+                                        </a>
+                                        @else
+                                        <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}">
+                                            <div class="hover:bg-purple-200">
+                                                <img src="{{ asset('/brands/'.$statusIcon) }}"
+                                                    class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
+                                                <h3 class="text-center mt-2">{{ $unit->unit }}</h3>
+                                            </div>
+                                        </a>
+                                        @endif
+                                    @endforeach
+                                </div>
                             </div>
-                        </div>
                         @else
-                        <div class="max-w-2xl mx-auto py-8 px-4 sm:px-6 lg:max-w-7xl lg:px-8 mb-24">
-                            <div class="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-6">
-                                @foreach ($units as $unit)
-                                <?php $statusIcon = App\Models\Status::find($unit->status_id)->icon; ?>
-                                @if(Session::get('owner_uuid'))
-                                <a
-                                    href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}/owner/{{ Session::get('owner_uuid') }}/deed_of_sale/create">
-                                    <div class="hover:bg-purple-200">
-                                        <img src="{{ asset('/brands/'.$statusIcon) }}"
-                                            class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
-                                        <h3 class="text-center mt-2">{{ $unit->unit }}</h3>
-                                    </div>
-                                </a>
-                                @else
-                                <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}">
-                                    <div class="hover:bg-purple-200">
-                                        <img src="{{ asset('/brands/'.$statusIcon) }}"
-                                            class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
-                                        <h3 class="text-center mt-2">{{ $unit->unit }}</h3>
-                                    </div>
-                                </a>
-                                @endif
-                                @endforeach
-                            </div>
-                        </div>
-
+                            @include('tables.units')
                         @endif
-                    @else
-                        @include('tables.units')
-                    @endif
                     @endif
                 </div>
             </div>
