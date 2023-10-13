@@ -15,7 +15,6 @@ class ActivityController extends Controller
                 'user_id' => $user_id,
                 'feature_id' => $feature_id,
                 'restriction_id' => $restriction_id,
-                'created_at' => Carbon::now()->format('Y-d-m ').'00:00:00'
             ],
             [
                 'property_uuid' => $property_uuid,
