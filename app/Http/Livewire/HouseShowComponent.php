@@ -54,10 +54,15 @@ class HouseShowComponent extends Component
             session()->flash('success', 'Changes Saved!');
 
         }catch(\Exception $e){
-
             session()->flash('error', 'Something went wrong.');
         }
     }
+
+    public function houseDelete(){
+        ddd('asda');
+    }
+
+    
 
     public function render()
     {

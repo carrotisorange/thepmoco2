@@ -19,7 +19,7 @@ class HouseIndexComponent extends Component
     public $occupancy = [];
     public $sortBy;
     public $orderBy;
-    public $limitDisplayTo = 54;
+    public $limitDisplayTo = 20;
     public $status_id;
     public $totalHousesCount;
 

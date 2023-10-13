@@ -91,7 +91,7 @@
         <div class="flex min-h-0 flex-1 overflow-hidden">
             <!-- Narrow sidebar-->
             @include('includes.navbar')
-          
+
             <main class="flex-1 pb-16 h-screen y-screen overflow-y-scroll">
                 <div class="mt-1">
                     @include('layouts.notifications')

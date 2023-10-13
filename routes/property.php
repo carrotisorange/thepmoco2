@@ -77,6 +77,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for Property
     Route::controller(PropertyController::class)->group(function () {
         Route::get('edit', 'edit');
+        Route::get('edit-documents', 'edit_documents');
         Route::patch('update','update');
         Route::get('delete', 'destroy');
     });
@@ -149,6 +150,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::get('/', [HouseController::class, 'index'])->name('house');
         Route::get('{batch_no?}/edit', [HouseController::class, 'edit'])->name('house');
         Route::get('{house}', [HouseController::class, 'show'])->name('house');
+
+        Route::get('{house:id}/owner', [HouseController::class, 'create_house_owner'])->name('house');
     });
 
 

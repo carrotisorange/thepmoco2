@@ -11,7 +11,7 @@ use App\Models\Property;
 use App\Models\User;
 use Session;
 use App\Models\AcknowledgementReceipt;
-use App\Models\Guest;
+use App\Models\House;
 
 class OwnerController extends Controller
 {
@@ -129,4 +129,6 @@ class OwnerController extends Controller
         return redirect('/property/'.$property->uuid.'/unit/'.$unit->uuid.'/owner/'.Str::random(8).'/create');
 
     }
+
+
 }

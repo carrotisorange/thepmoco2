@@ -47,8 +47,8 @@
 
     </div>
     <div class="mt-10 flex justify-end">
-
-        <x-button type="button" wire:click="submitForm()">
+      
+        <x-button type="submit">
             Update
         </x-button>
 

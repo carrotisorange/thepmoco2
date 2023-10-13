@@ -688,4 +688,10 @@ class PropertyController extends Controller
          $query->where('type_id',$filterByPropertyType);
         })->paginate($limitDisplayTo);
     }
+
+    public function edit_documents(Property $property){
+        return view('properties.edit-document',[
+            'property_details' => $property
+        ]);
+    }
 }

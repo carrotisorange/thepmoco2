@@ -1,10 +1,7 @@
 <?php
     $statusIcon = App\Models\Status::find($house_details->status_id)->alt_icon;
-    $addAnchorClass = 'block py-2 px-4 text-sm
-                                                    text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
-                                                    dark:text-gray-200 dark:hover:text-white';
+    $addAnchorClass = 'block py-2 px-4 text-sm dark:text-gray-200 dark:hover:text-white';
 ?>
-
 <div>
     @include('layouts.notifications')
     @include('modals.popup-error')
@@ -22,25 +19,9 @@
                     <div id="unitCreateDropdown"
                         class="text-left hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
                         <ul class="py-1" aria-labelledby="dropdownButton">
-                            @if($house_details->is_the_unit_for_rent_to_tenant)
-                            <li>
-                                @if($house_details->occupancy >
-                                $house_details->contracts()->where('status','active')->count())
-                                <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $house_details->uuid }}/tenant/{{ Str::random(8) }}/create"
-                                    class="{{ $addAnchorClass }}">
-                                    New tenant
-                                </a>
-                                @else
-                                <a href="#/" data-modal-toggle="warning-create-tenant-modal"
-                                    class="{{ $addAnchorClass }}">
-                                    New tenant
-                                </a>
-                                @endif
-                            </li>
-                            @endif
 
                             <li>
-                                <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $house_details->uuid }}/owner/{{ Str::random(8) }}/create"
+                                <a href="/property/{{ Session::get('property_uuid') }}/house/{{ $house_details->id }}/owner/"
                                     class="{{ $addAnchorClass }}">
                                     New owner
                                 </a>
@@ -71,10 +52,7 @@
                         class="lg:col-span-2 md:row-span-2 rounded-md" />
 
                     <div class="flex items-center justify-center ml-5">
-                        {{-- <a href="#"
-                            class="relative inline-flex items-center px-4 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:purple">Upload
 
-                        </a> --}}
                     </div>
                 </div>
             </div>
@@ -132,7 +110,6 @@
                     @endif
                     @endforeach
                 </div>
-
             </div>
         </div>
     </div>

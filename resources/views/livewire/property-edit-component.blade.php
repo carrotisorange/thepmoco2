@@ -3,7 +3,7 @@
 ;?>
 
 <div>
-    @include('layouts.notifications')
+
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -381,58 +381,7 @@
                     </div>
                 </div>
 
-                <div class="sm:col-span-12">
-                    <div class="{{ $formDivClasses }}">
-                        <x-label for="status">
-                            Documents
-                        </x-label>
 
-                    </div>
-                </div>
-
-
-             @foreach($propertyDocuments as $document)
-            <div class="sm:col-span-6">
-                <div class="{{ $formDivClasses }}">
-                    <x-label for="{{ $document->id }}">
-                        {{ $document->name }}
-                    </x-label>
-                    <div class="mt-2 flex justify-center rounded-md border-2 border-gray-300">
-                        <div class="space-y-1 text-center">
-
-                            <div class="flex text-sm text-gray-600">
-
-                                <x-label for="{{ $document->id }}"
-                                    class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
-                                    <span>Upload a file</span>
-                                    <input id="{{ $document->id }}" name="{{ $document->id }}" type="file"
-                                        wire:model="{{ $document->id }}" class="sr-only">
-                                </x-label>
-
-
-                                @if($document->file)
-                                &nbsp; or &nbsp;
-                                <a target="_blank"
-                                    class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
-                                    href="{{ asset('/storage/'.$document->file) }}">View attachment</a>
-                                @endif
-
-                            </div>
-                            <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
-                            <p class="text-center">
-                                @error($document->file)
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @else
-                            @if( $document->file)
-                            <p class="text-green-500 text-xs mt-2">File has been uploaded!</p>
-                            @endif
-                            @enderror
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endforeach
 
             </div>
 
@@ -440,12 +389,19 @@
                <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline" href="/property/">
                     Cancel
                 </a>
+{{--
+                <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/edit-documents'">
+                    Upload Documents
+                </x-button> --}}
 
               <x-button type="submit">
                 Update
                 </x-button>
 
+
+
             </div>
+            @include('layouts.notifications')
         </form>
         </div>
     </div>
