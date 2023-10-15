@@ -2,8 +2,10 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\DeedOfSale;
 use Livewire\Component;
 use App\Models\Feature;
+use App\Models\HouseOwnership;
 use Illuminate\Validation\Rule;
 use Session;
 
@@ -62,7 +64,7 @@ class HouseShowComponent extends Component
         ddd('asda');
     }
 
-    
+
 
     public function render()
     {
@@ -72,9 +74,12 @@ class HouseShowComponent extends Component
 
         $unitSubfeaturesArray = explode(",", $unitSubfeatures);
 
+        $houseOwners = HouseOwnership::where('house_id', $this->house_details->id)->get();
+
         return view('livewire.house-show-component',[
             'unitSubfeaturesArray' => $unitSubfeaturesArray,
             'statuses' => app('App\Http\Controllers\StatusController')->index(null),
+            'houseOwners' => $houseOwners
         ]);
     }
 }

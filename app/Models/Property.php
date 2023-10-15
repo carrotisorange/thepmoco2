@@ -110,6 +110,10 @@ class Property extends Model
         return $this->hasMany(Owner::class);
     }
 
+    public function houseowners(){
+        return $this->hasMany(HouseOwner::class);
+    }
+
     public function notifications()
     {
         return $this->hasMany(Notification::class);

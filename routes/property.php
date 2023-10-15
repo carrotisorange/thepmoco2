@@ -51,6 +51,7 @@ use App\Http\Controllers\ElectionController;
 use App\Http\Controllers\HouseController;
 use App\Http\Controllers\PersonnelController;
 use App\Http\Controllers\TenantController;
+use App\Http\Controllers\HouseOwnerController;
 
 Route::group(['middleware'=>['auth', 'verified']], function(){
 
@@ -145,13 +146,17 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for calendar
     Route::get('calendar', [CalendarController::class, 'index'])->name('calendar');
 
+    Route::prefix('house-owner')->group(function(){
+        Route::get('/', [HouseOwnerController::class, 'index'])->name('house-owner');
+        Route::get('{house_owner}', [HouseOwnerController::class, 'show'])->name('house-owner');
+    });
 
     Route::prefix('house')->group(function(){
         Route::get('/', [HouseController::class, 'index'])->name('house');
         Route::get('{batch_no?}/edit', [HouseController::class, 'edit'])->name('house');
         Route::get('{house}', [HouseController::class, 'show'])->name('house');
 
-        Route::get('{house:id}/owner', [HouseController::class, 'create_house_owner'])->name('house');
+        Route::get('/{house}/house-owner/create', [HouseOwnerController::class, 'create'])->name('house');
     });
 
 

@@ -42,13 +42,8 @@ class HouseController extends Controller
         return view('houses.show',[
             'property' => $property,
             'house_details' => $house,
-            // 'deed_of_sales' => app('App\Http\Controllers\DeedOfSaleController')->show_unit_deed_of_sales($house->id),
         ]);
     }
 
-    public function create_house_owner(Property $property, House $house){
-        return view('houses.create-owner',[
-            'house' => $house
-        ]);
-    }
+
 }

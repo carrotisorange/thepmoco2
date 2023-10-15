@@ -1,5 +1,4 @@
 <?php
-    $statusIcon = App\Models\Status::find($house_details->status_id)->alt_icon;
     $addAnchorClass = 'block py-2 px-4 text-sm dark:text-gray-200 dark:hover:text-white';
 ?>
 <div>
@@ -8,7 +7,7 @@
     <div class="mt-8 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
         <div class="lg:grid lg:grid-cols-12 lg:auto-rows-min lg:gap-x-8">
             <div class="lg:col-start-4 lg:col-span-9">
-                <h1 class="text-3xl font-bold text-gray-900">{{ $house_details->unit }}</h1>
+                <h1 class="text-3xl font-bold text-gray-900">{{ $house_owner_details->house_owner }}</h1>
             </div>
             <div class="lg:col-start-5 lg:col-span-9">
                 <div class="flex justify-end">
@@ -21,19 +20,19 @@
                         <ul class="py-1" aria-labelledby="dropdownButton">
 
                             <li>
-                                <a href="/property/{{ Session::get('property_uuid') }}/house/{{ $house_details->id }}/house-owner/create"
+                                <a href="/property/{{ Session::get('property_uuid') }}/house/{{ $house_owner_details->id }}/house-owner/create"
                                     class="{{ $addAnchorClass }}">
                                     New house owner
                                 </a>
                             </li>
                             <li>
-                                <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $house_details->uuid }}/guest/{{ Str::random(8) }}/create"
+                                <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $house_owner_details->uuid }}/guest/{{ Str::random(8) }}/create"
                                     class="{{ $addAnchorClass }}">
                                     New guest
                                 </a>
                             </li>
                             <li>
-                                <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $house_details->uuid }}/concern/{{ Str::random(8) }}/create"
+                                <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $house_owner_details->uuid }}/concern/{{ Str::random(8) }}/create"
                                     class="{{ $addAnchorClass }}">
                                     New concern
                                 </a>
@@ -48,7 +47,7 @@
             <div class="mt-8 lg:mt-0 lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:row-span-3">
                 <h2 class="sr-only">Images</h2>
                 <div class="grid grid-cols-2 lg:gap-6">
-                    <img src="{{ asset('/brands/'.$statusIcon) }}" alt="door"
+                    <img src="{{ asset('/brands/avatar.png') }}" alt="door"
                         class="lg:col-span-2 md:row-span-2 rounded-md" />
 
                     <div class="flex items-center justify-center ml-5">
@@ -61,7 +60,7 @@
                 <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
                     <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab"
                         data-tabs-toggle="#myTabContent" role="tablist">
-                        @foreach($unitSubfeaturesArray as $subfeature)
+                        @foreach($houseOwnerSubfeaturesArray as $subfeature)
                         <li class="mr-2" role="presentation">
                             <button class="inline-block p-4 rounded-t-lg border-b-2" id="{{ $subfeature }}-tab"
                                 data-tabs-target="#{{ $subfeature }}" type="button" role="tab"
@@ -74,12 +73,12 @@
                 </div>
 
                 <div id="myTabContent" wire:ignore>
-                    @foreach($unitSubfeaturesArray as $subfeature)
-                    @if($subfeature == 'house')
+                    @foreach($houseOwnerSubfeaturesArray as $subfeature)
+                    @if($subfeature == 'houseowner')
                     <div class="p-4 purple rounded-lg dark:bg-gray-800" id="{{ $subfeature }}" role="tabpanel"
                         aria-labelledby="{{ $subfeature }}-tab">
                         <div>
-                            @include('forms.houses.house-edit')
+                            @include('house-owners.edit')
                         </div>
                     </div>
                     @else
@@ -90,21 +89,8 @@
                                 <div
                                     class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
 
-                                    @if($subfeature == 'houseowner')
-                                        @if($houseOwners->count())
-                                        @include('tables.houseowners')
-                                        @else
-                                        <div class="mt-10 text-center mb-10">
-                                            <i class="fa-solid fa-circle-plus"></i>
-                                            <h3 class="mt-2 text-sm font-medium text-gray-900">No house owners</h3>
-                                            <div class="mt-6">
-                                                <x-button
-                                                    onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/house/{{ $house_details->id }}/house-owner/create'">
-                                                    New house owner
-                                                </x-button>
-                                            </div>
-                                        </div>
-                                        @endif
+                                    @if($subfeature == 'house')
+
                                     @elseif($subfeature == 'guest')
 
                                     @elseif($subfeature == 'concern')

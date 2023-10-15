@@ -77,7 +77,7 @@
                             <?php
                                     $stepValue = App\Models\PropertyStepper::find($step)->step;
                                 ;?>
-                            @if($step == 1 || $step == 6 || $step == 2 || $step == 7 || $step == 4)
+                            @if($step == 1 || $step == 6 || $step == 2 || $step == 8 || $step == 4)
                             <li class="relative md:flex md:flex-1">
                                 <!-- Completed Step -->
                                 <a href="#" class="group flex w-full items-center">

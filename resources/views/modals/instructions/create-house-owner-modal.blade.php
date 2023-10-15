@@ -18,7 +18,7 @@
             </div>
             <div class="mt-5 sm:mt-6">
                 <x-button class="w-full" type="button" onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/house'">
-                    Select a unit
+                    Select a house
                 </x-button>
 
             </div>

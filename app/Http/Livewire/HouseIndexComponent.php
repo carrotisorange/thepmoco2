@@ -53,14 +53,13 @@ class HouseIndexComponent extends Component
 
         app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, $this->numberOfUnits, 5);
 
-        $propertyOwnersCount = Property::find(Session::get('property_uuid'))->owners->count();
+        $propertyHouseOwnersCount = Property::find(Session::get('property_uuid'))->houseowners->count();
 
-        if($propertyOwnersCount == 0){
-            return redirect('/property/'.Session::get('property_uuid').'/owner/')->with('success', 'Changes Saved!');
+        if($propertyHouseOwnersCount == 0){
+            return redirect('/property/'.Session::get('property_uuid').'/house-owner/')->with('success', 'Changes Saved!');
         }else{
             return redirect('/property/'.Session::get('property_uuid').'/house/')->with('success', 'Changes Saved!');
         }
-
 
     }
 

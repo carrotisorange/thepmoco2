@@ -17,7 +17,6 @@ class OwnerIndexComponent extends Component
 
     public function redirectToUnitSelectionPage(){
 
-
         return redirect('/property/'.Session::get('property_uuid').'/unit');
     }
 

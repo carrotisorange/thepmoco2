@@ -1,0 +1,6 @@
+<div class="mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="pt-6 sm:pb-5">
+            @livewire('house-owner-edit-component', ['house_owner_details' => $house_owner_details])
+        </div>
+</div>
+

@@ -19,9 +19,8 @@ class DeedOfSaleController extends Controller
 
     public function create(Property $property, Unit $unit, Owner $owner)
     {
-        //$this->authorize('is_owner_portal_create_allowed');
-
-        return view('deed_of_sale.create',[
+            ddd('asd');
+       return view('deed_of_sale.create',[
             'property' => $property,
             'unit' => $unit,
             'owner' => $owner
@@ -44,11 +43,11 @@ class DeedOfSaleController extends Controller
     }
 
     public function destroy(Property $property, Unit $unit, OWner $owner, DeedOfSale $deedOfSale){
-        
+
        // $this->authorize('is_owner_portal_delete_allowed');
 
         DeedOfSale::where('uuid', $deedOfSale->uuid)->delete();
-        
+
         return back()->with('success', 'Changes Saved!');
     }
 }
