@@ -14,7 +14,7 @@ class CreateHouseOwnersTable extends Migration
     public function up()
     {
         Schema::create('house_owners', function (Blueprint $table) {
-          $table->id('id');
+    $table->id('id');
           $table->string('house_owner');
           $table->string('email')->unique()->nullable();
           $table->string('mobile_number')->nullable();
@@ -32,7 +32,6 @@ class CreateHouseOwnersTable extends Migration
           $table->foreignId('city_id')->constrained()->nullable();
           $table->foreignId('province_id')->constrained()->nullable();
           $table->longText('address')->nullable();
-          $table->timestamps();
         });
     }
 
