@@ -1,5 +1,5 @@
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <div class="flex h-full flex-col">
 
         <div class="bg-white">
@@ -51,7 +51,7 @@
                         </dl>
                     </div>
                 </section>
-               
+
                 {{-- @endif --}}
 
                 <section aria-labelledby="payment-and-shipping-heading"

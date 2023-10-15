@@ -1,5 +1,5 @@
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -9,8 +9,8 @@
             </div>
 
           <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-        
-            <x-button type="button" data-modal-toggle="instructions-create-remittance-modal" type="button">Create
+
+            <x-button data-modal-toggle="instructions-create-remittance-modal" type="button">Create
                 remittance
             </x-button>
 
@@ -51,7 +51,7 @@
                             <p class="mt-1 text-sm text-gray-500">Get started by creating a new remittance</p>
                             <div class="mt-6">
                                 <div class="group inline-block">
-                                    <x-button type="button" data-modal-toggle="instructions-create-remittance-modal"
+                                    <x-button data-modal-toggle="instructions-create-remittance-modal"
                                         type="button">Create remittance
                                     </x-button>
 

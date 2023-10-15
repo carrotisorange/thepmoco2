@@ -6,7 +6,7 @@
                     <h1 class="text-3xl font-bold text-gray-700 mb-5 mt-5 ">{{ $tenant->tenant }} /
                         Collections</h1>
                 </div>
-                <x-button type="button"
+                <x-button
                     onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/bill/{{ 'tenant' }}/{{ $tenant->uuid }}'">
                     Go back to bills
                     </a></x-button>

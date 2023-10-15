@@ -5,7 +5,9 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Tenant;
 use Session;
+use App\Models\Property;
 use Livewire\WithPagination;
+use App\Models\Type;
 
 class TenantIndexComponent extends Component
 {
@@ -18,7 +20,7 @@ class TenantIndexComponent extends Component
     public $action = 'addNewTenant';
 
     public function redirectToUnitSelectionPage(){
-        
+
 
         return redirect('/property/'.Session::get('property_uuid').'/unit/');
     }
@@ -53,11 +55,19 @@ class TenantIndexComponent extends Component
          })
         ->orderBy('created_at', 'desc')
         ->paginate(10);
-        
+
+        $propertyTenantsCount =Property::find(Session::get('property_uuid'))->tenants()->count();
+
+        $stepper = Type::where('id', Session::get('property_type_id'))->pluck('stepper')->first();
+
+        $steps = explode(",", $stepper);
+
         return view('livewire.tenant-index-component', [
             'tenants' => $tenants,
             'statuses' => $statuses,
-            'categories' => $categories
+            'categories' => $categories,
+            'propertyTenantsCount' => $propertyTenantsCount,
+            'steps' => $steps
         ]);
     }
 }

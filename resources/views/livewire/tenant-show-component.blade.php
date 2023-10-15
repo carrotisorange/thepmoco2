@@ -5,7 +5,7 @@
 ?>
 
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <div class="min-h-screen mt-8 max-w-2xl mx-auto pb-56 sm:px-20 lg:max-w-7xl lg:px-8">
         <div class="lg:grid lg:grid-cols-12 lg:gap-x-8">
             <div class="lg:col-start-4 lg:col-span-9">
@@ -90,7 +90,7 @@
                     <div class="mt-5 flex items-center justify-center">
                         <p class="mt-5 text-lg text-center text-gray-700">
                             @if(!$email_cred)
-                            <x-button type="button" wire:click="sendCredentials">
+                            <x-button wire:click="sendCredentials">
                                 Send access to tenant
                             </x-button>
                             @endif

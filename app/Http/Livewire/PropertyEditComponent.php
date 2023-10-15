@@ -10,6 +10,7 @@ use App\Models\Province;
 use App\Models\City;
 use App\Models\Type;
 use App\Models\PropertyDocument;
+use Session;
 
 use Livewire\Component;
 
@@ -41,6 +42,9 @@ class PropertyEditComponent extends Component
     public $business_permit;
     public $registered_tin;
 
+
+
+
     public function mount($property_details)
     {
         $this->property = $property_details->property;
@@ -58,6 +62,7 @@ class PropertyEditComponent extends Component
         $this->note_to_bill = $property_details->note_to_bill;
         $this->note_to_transient = $property_details->note_to_transient;
         $this->registered_tin = $property_details->registered_tin;
+
     }
 
     protected function rules()
@@ -72,15 +77,16 @@ class PropertyEditComponent extends Component
             'city_id' => ['required', Rule::exists('cities', 'id')],
             'barangay' => ['required'],
             'status' => ['required'],
-            'email' => ['required'],
-            'mobile' => ['required'],
+            'email' => ['nullable'],
+            'mobile' => ['nullable'],
             'ownership' => ['required'],
             'status' => ['required'],
-            'facebook_page' => 'required',
-            'telephone' => 'required',
+            'facebook_page' => 'nullable',
+            'telephone' => 'nullable',
             'note_to_bill' => 'nullable',
             'note_to_transient' => 'nullable',
             'registered_tin' => 'nullable',
+
         ];
     }
 
@@ -108,6 +114,7 @@ class PropertyEditComponent extends Component
             return session()->flash('success', 'Changes Saved!');
 
         }catch(\Exception $e){
+            ddd($e);
             return session()->flash('error', 'Something went wrong.');
         }
     }

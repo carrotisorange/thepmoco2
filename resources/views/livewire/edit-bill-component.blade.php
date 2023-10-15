@@ -1,5 +1,5 @@
 <x-modal-component>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <x-slot name="id">
        edit-bill-modal-{{$bill_details->id}}
     </x-slot>
@@ -91,12 +91,8 @@
 
 
                     <div class="mt-5 sm:mt-6">
-
                         <x-button class="w-full" type="submit" wire:loading.remove>   Update
                         </x-button>
-                        <x-button class="w-full" type="button" wire:loading>   Loading...
-                        </x-button>
-
 
                     </div>
                 </form>

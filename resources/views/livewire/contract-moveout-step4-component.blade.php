@@ -1,5 +1,5 @@
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <div class="mt-10 mb-10">
         <legend class="text-base font-semibold leading-6 text-gray-900">Please click on the checklist to export</legend>
         <br>

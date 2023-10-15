@@ -189,15 +189,15 @@
                 <div>
                     <p class="mt-5 px-6 text-right">
                         @if($accountpayableliquidation->approved_by)
-                        <x-button type="button" disabled>
+                        <x-button disabled>
                             Liquidation has been approved.
                         </x-button>
                         @else
-                        <x-button type="button" wire:target="approveLiquidation"
+                        <x-button wire:target="approveLiquidation"
                             onclick="window.location.href='/property/{{ $property->uuid }}/accountpayable'">
                             Cancel
                         </x-button>
-                        <x-button type="button" wire:click="approveLiquidation">
+                        <x-button wire:click="approveLiquidation">
                             Approve
                         </x-button>
                         @endif

@@ -12,6 +12,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::get('/','index')->name('property');
     Route::get('{random_str}/unlock/', 'unlock')->name('property');
     Route::get('/{property}/success','success');
+    Route::get('/{property}/congratulations','congratulations');
     Route::get('{random_str}/create', 'create')->name('property');
     Route::post('{random_str}/store', 'store');
     });

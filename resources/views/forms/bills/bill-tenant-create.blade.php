@@ -99,7 +99,7 @@
         <div class="mt-5">
 
             <p class="text-right">
-                <x-button type="button" class="bg-red-600 hover:bg-red-800 focus:ring-red-300 dark:focus:ring-red-800"
+                <x-button class="bg-red-600 hover:bg-red-800 focus:ring-red-300 dark:focus:ring-red-800"
                     onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant->uuid }}'">
                     Cancel
                 </x-button>

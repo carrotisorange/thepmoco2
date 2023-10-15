@@ -1,5 +1,5 @@
 <x-modal-component>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <x-slot name="id">
         create-unit-inventory-modal
     </x-slot>
@@ -21,9 +21,7 @@
 
             <div class="mt-2 sm:mt-6">
                 <label class="text-sm" for="">Item</label>
-                <input type="text" id="item" wire:model="item"
-                    class="bg-white block p-4 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required>
+                <x-form-input type="text" id="item" wire:model="item"/>
                 @error('item')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
@@ -31,9 +29,7 @@
 
             <div class="mt-5 sm:mt-6">
                 <label class="text-sm" for="">Quantity</label>
-                <input type="number" id="quantity" wire:model="quantity"
-                    class="bg-white block p-4 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required>
+                <x-form-input type="number" id="quantity" wire:model="quantity"/>
                 @error('quantity')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
@@ -41,24 +37,11 @@
 
             <div class="mt-5 sm:mt-6">
                 <label class="text-sm" for="kwh">Remarks</label>
-                <input type="text" id="remarks" wire:model="remarks"
-                    class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="" required>
+                <x-form-input type="text" id="remarks" wire:model="remarks"/>
                 @error('remarks')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
             </div>
-
-            {{-- <div class="mt-5 sm:mt-6">
-                <label class="text-sm" for="image">Image</label>
-                <input
-                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                    aria-describedby="file_input_help" id="image" type="file">
-                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PNG or JPG</p>
-                @error('image')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
-            </div> --}}
 
             <div class="mt-5 sm:mt-6">
                 <x-button class="w-full" type="button" wire:click="submitButton">

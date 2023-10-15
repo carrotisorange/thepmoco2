@@ -1,5 +1,5 @@
 <x-modal-component>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <x-slot name="id">
         delete-unit-inventory-modal-{{$inventory->id}}
     </x-slot>
@@ -9,8 +9,8 @@
             this unit inventory ({{ $inventory->item }})?</h3>
 
 
-        <x-button type="button" wire:click="deleteUnitInventory({{ $inventory->id }})"
-          class="w-full">
+        <x-button wire:click="deleteUnitInventory({{ $inventory->id }})"
+          class="w-full bg-red-500">
             Yes, I'm sure
         </x-button>
 

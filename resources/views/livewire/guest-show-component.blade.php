@@ -4,7 +4,7 @@
                                                     dark:text-gray-200 dark:hover:text-white';
 ?>
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <div class="mt-8 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
         <div class="lg:grid lg:grid-cols-12 lg:auto-rows-min lg:gap-x-8">
             <div class="lg:col-start-4 lg:col-span-9">
@@ -109,9 +109,8 @@
                                     @endif
                                 @elseif($subfeature == 'bill')
                                     @if($bills->count())
-                                    <x-button type="button"
-                                        onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/guest/{{ $guest_details->uuid }}/bills'"
-                                        class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+                                    <x-button
+                                        onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/guest/{{ $guest_details->uuid }}/bills'">
 
                                         Pay Bills
                                     </x-button>

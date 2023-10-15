@@ -1,5 +1,5 @@
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <form class="p-10" wire:submit.prevent="payBill()">
         <h3 class="text-xl font-medium text-gray-900 dark:text-white">Payment Information</h3>
      

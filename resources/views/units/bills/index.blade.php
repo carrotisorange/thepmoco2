@@ -7,7 +7,7 @@
                         Bills</h1>
                 </div>
 
-                <x-button type="button" onclick="window.location.href='{{ url()->previous() }}'">
+                <x-button onclick="window.location.href='{{ url()->previous() }}'">
                     Go back</a></button>
 
             </div>

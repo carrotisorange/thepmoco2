@@ -7,6 +7,7 @@ use App\Models\UserProperty;
 use Livewire\WithPagination;
 use Illuminate\Support\Str;
 use Session;
+use App\Models\Type;
 
 class PersonnelIndexComponent extends Component
 {
@@ -15,7 +16,7 @@ class PersonnelIndexComponent extends Component
     public $search;
     public $status;
 
-   public function submitForm(){      
+   public function submitForm(){
       return redirect('/property/'.Session::get('property_uuid').'/user/'.Str::random(8).'/create');
    }
 
@@ -24,12 +25,19 @@ class PersonnelIndexComponent extends Component
       $personnels = UserProperty::where('property_uuid', Session::get('property_uuid'))
       ->whereNotIn('user_id', [auth()->user()->id, '97'])
       ->endUser()
-      // ->approved()
       ->get();
+
+    $propertyPersonnelsCount = UserProperty::where('property_uuid', Session::get('property_uuid'))->where('role_id','!=', 5)->count();
+
+    $stepper = Type::where('id', Session::get('property_type_id'))->pluck('stepper')->first();
+
+    $steps = explode(",", $stepper);
 
      return view('livewire.personnel-index-component', [
         'personnels' => $personnels,
+        'propertyPersonnelsCount' => $propertyPersonnelsCount,
         'statuses' => app('App\Http\Controllers\UserPropertyController')->get_user_statuses(Session::get('property_uuid')),
+        'steps' => $steps
       ]);
    }
 }

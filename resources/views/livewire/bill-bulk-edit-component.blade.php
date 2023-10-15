@@ -1,5 +1,5 @@
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -14,7 +14,7 @@
                 <div wire:loading wire:target="saveBills">
                     Processing...
                 </div> --}}
-                <x-button type="button" wire:click="postBills()" wire:target="updateBill">
+                <x-button wire:click="postBills()" wire:target="updateBill">
                     Post Bills
                 </x-button>
 

@@ -8,7 +8,7 @@
 }
 </style>
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
       <div class="mt-8">
          <div class="max-full mx-auto sm:px-6">
             <form class="space-y-6" wire:submit.prevent="submitForm()" class="w-full">

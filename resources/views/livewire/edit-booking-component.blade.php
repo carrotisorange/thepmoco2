@@ -1,5 +1,5 @@
 <x-modal-component>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <x-slot name="id">
         edit-booking-modal-{{$booking->uuid}}
     </x-slot>
@@ -213,7 +213,7 @@
 
                 <div class="mt-5 sm:mt-6">
 
-                    <x-button class="w-full" type="button" wire:click="updateBooking">
+                    <x-button class="w-full" type="submit">
                         Update
                     </x-button>
 

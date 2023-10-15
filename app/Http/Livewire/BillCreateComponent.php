@@ -9,6 +9,7 @@ use Illuminate\Validation\Rule;
 use Carbon\Carbon;
 use DB;
 use App\Models\Particular;
+use App\Models\UserProperty;
 
 class BillCreateComponent extends Component
 {
@@ -66,9 +67,9 @@ class BillCreateComponent extends Component
 
     public function submitForm()
     {
-        
 
-         $validated_data = $this->validate();    
+
+         $validated_data = $this->validate();
 
        try{
 
@@ -77,7 +78,7 @@ class BillCreateComponent extends Component
         if($this->particular_id === '3' || $this->particular_id === '4'){
             app('App\Http\Controllers\WalletController')->store($this->tenant->uuid, '', $this->bill, Particular::find($this->particular_id)->particular);
         }
-         
+
         $this->reset_form();
 
          return session()->flash('success', 'Changes Saved!');
@@ -96,15 +97,22 @@ class BillCreateComponent extends Component
     }
 
     public function redirectToContractShowPage(){
-        
 
-        return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid);
+        $propertyPersonnelsCount = UserProperty::where('property_uuid', Session::get('property_uuid'))->where('role_id','!=', 5)->count();
+
+        if($propertyPersonnelsCount == 0){
+             return redirect('/property/'.Session::get('property_uuid').'/personnel');
+        }else{
+             return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid);
+        }
+
+
     }
 
     public function render()
     {
         return view('livewire.bill-create-component',[
-            
+
             'particulars' => app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid')),
             'units' => app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($this->tenant->uuid),
             'bills' => app('App\Http\Controllers\BillController')->show_tenant_bills($this->tenant->uuid),

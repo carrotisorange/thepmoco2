@@ -11,6 +11,8 @@
     <link rel="canonical" href="http://propsuite.net" />
     <title>@yield('title')</title>
 
+    <link rel="icon" href="{{ asset('/brands/favicon.ico') }}" type="image/png">
+
     <meta name="description" content="@yield('description')">
     <meta name="keywords" content="Property,
     Property Management,
@@ -54,7 +56,7 @@
     <meta property="og:image" content="http://propsuite.net/brands/propsuite/propsuite.png">
 
     <script type="application/ld+json">
-     
+
         "@context": "https://schema.org",
         "@type": "Saas Business",
         "name": "Propsuite",
@@ -555,13 +557,8 @@
     </footer>
     </div>
 
-
-
     <script src="https://cdn.popupsmart.com/bundle.js" data-id="79845" async defer></script>
 
-
 </body>
-
-
 
 </html>

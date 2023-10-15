@@ -11,7 +11,7 @@ use Carbon\Carbon;
 use Session;
 use Illuminate\Support\Str;
 use App\Models\Bill;
-use Facade\FlareClient\Truncation\TruncationStrategy;
+use App\Models\UserProperty;
 
 class ContractCreateComponent extends Component
 {
@@ -94,12 +94,8 @@ class ContractCreateComponent extends Component
           );
         }
 
-        if(auth()->user()->role_id === 1)
-        {
-          return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant->uuid.'/contracts/')->with('success','Changes Saved!');
-        }else{
-          return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$contract_uuid.'/inventory/create')->with('success', 'Changes Saved!');
-        }
+        return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$contract_uuid.'/inventory/create')->with('success', 'Changes Saved!');
+
       }
 
       public function store_bill(){

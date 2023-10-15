@@ -143,7 +143,7 @@
 
             </div>
 
-            @livewire('owner-component', ['unit' => $unit])
+            @livewire('owner-create-component', ['unit' => $unit])
 
         </div>
     </div>

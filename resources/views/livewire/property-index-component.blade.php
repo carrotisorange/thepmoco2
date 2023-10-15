@@ -2,7 +2,7 @@
     $firstName = explode(" ",$name);
 ?>
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     @if(!$userPropertyCount)
     <div class="mt-10">
         <nav aria-label="Progress">
@@ -80,19 +80,19 @@
         <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
 
             @if($propertyView === 'list')
-            <x-button type="button" wire:click="changePropertyView('thumbnail')">
+            <x-button wire:click="changePropertyView('thumbnail')">
                 View as Thumbnail
 
             </x-button>
             @else
-            <x-button type="button" wire:click="changePropertyView('list')">
+            <x-button wire:click="changePropertyView('list')">
                 View as List
             </x-button>
             @endif
 
-            <x-button type="button" onclick="window.location.href='/user/{{ auth()->user()->id }}/export/portfolio'">Export Portfolio</x-button>
+            <x-button onclick="window.location.href='/user/{{ auth()->user()->id }}/export/portfolio'">Export Portfolio</x-button>
 
-            <x-button type="button" onclick="window.location.href='/property/{{Str::random(8)}}/create'">New Property</x-button>
+            <x-button onclick="window.location.href='/property/{{Str::random(8)}}/create'">New Property</x-button>
 
 
         </div>

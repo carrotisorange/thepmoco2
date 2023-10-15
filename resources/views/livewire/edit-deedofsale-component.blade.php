@@ -1,5 +1,5 @@
 <x-modal-component>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <x-slot name="id">
         edit-deedofsale-modal-{{$deedofsale->uuid}}
     </x-slot>

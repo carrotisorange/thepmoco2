@@ -474,11 +474,18 @@ class PropertyController extends Controller
         ]);
     }
 
+    public function congratulations(Property $property)
+    {
+        return view('properties.congratulations', [
+            'property' => $property
+        ]);
+    }
+
 
     public function show(Property $property)
     {
         $featureId = 1;
-        
+
         $restrictionId = 2;
 
         app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
@@ -590,6 +597,12 @@ class PropertyController extends Controller
 
         Session::put('property_type', Property::find($property_uuid)->type->type);
 
+        Session::put('property_type_id', Property::find($property_uuid)->type->id);
+
+        $property_type_id = Property::find($property_uuid)->type->id;
+
+        Session::put('property_unit_type_id', Type::find($property_type_id)->unit_type_id);
+
         Session::put('property_mobile', Property::find($property_uuid)->mobile);
 
         Session::put('property_facebook_page', Property::find($property_uuid)->facebook_page);
@@ -674,5 +687,11 @@ class PropertyController extends Controller
             ->when($filterByPropertyType, function($query, $filterByPropertyType){
          $query->where('type_id',$filterByPropertyType);
         })->paginate($limitDisplayTo);
+    }
+
+    public function edit_documents(Property $property){
+        return view('properties.edit-document',[
+            'property_details' => $property
+        ]);
     }
 }

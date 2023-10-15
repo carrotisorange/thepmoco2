@@ -8,7 +8,7 @@
                 </div>
 
                 <div class=" mt-10 flex items-center justify-center">
-                    <x-button type="button"
+                    <x-button
                         onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/utilities'"
                    >
                         Go back.</x-button>

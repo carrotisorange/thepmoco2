@@ -1,5 +1,5 @@
 <x-modal-component>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <x-slot name="id">
         create-bill-modal
     </x-slot>
@@ -88,7 +88,7 @@
                 @enderror
             </div>
             <div class="mt-5 sm:mt-6">
-                <x-button type="button" class="w-full" wire:click="submitButton">
+                <x-button class="w-full" wire:click="submitButton">
                     Confirm
                 </x-button>
             </div>

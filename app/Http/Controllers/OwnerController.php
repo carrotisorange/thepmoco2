@@ -11,7 +11,7 @@ use App\Models\Property;
 use App\Models\User;
 use Session;
 use App\Models\AcknowledgementReceipt;
-use App\Models\Guest;
+use App\Models\House;
 
 class OwnerController extends Controller
 {
@@ -55,44 +55,11 @@ class OwnerController extends Controller
        return AcknowledgementReceipt::where('owner_uuid', $owner_uuid)->orderBy('id','desc')->get();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create(Property $property, Unit $unit)
     {
         return view('owners.create', [
             'unit' => $unit,
         ]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, Property $property, $unit_uuid)
-    {
-         $owner_attributes = request()->validate([
-            'owner' => 'required',
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:owners'],
-            'mobile_number' => 'required',
-            'gender' => 'required',
-            'civil_status' => 'required',
-            'birthdate' => 'required',
-            'country_id' => ['required', Rule::exists('countries', 'id')],
-            'province_id' => ['required', Rule::exists('provinces', 'id')],
-            'city_id' => ['required', Rule::exists('cities', 'id')],
-         ]);
-
-         $owner_attributes['uuid'] = Str::uuid();
-
-         $owner = Owner::create($owner_attributes)->uuid;
-
-         return redirect('/unit/'.$unit_uuid.'/owner/'.$owner.'/enrollee/'.Str::random(8).'/create')->with('success',
-         'Owner has been created.');
     }
 
     public function show_owner_representatives($owner_uuid)
@@ -129,4 +96,6 @@ class OwnerController extends Controller
         return redirect('/property/'.$property->uuid.'/unit/'.$unit->uuid.'/owner/'.Str::random(8).'/create');
 
     }
+
+
 }

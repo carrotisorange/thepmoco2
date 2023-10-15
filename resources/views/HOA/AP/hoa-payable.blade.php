@@ -8,15 +8,14 @@
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 <!-- view summary will show if view receipts is clicked -->
-                <button type="button" wire:click="clearFilters"
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                    View Receipts
-                </button>
+                <x-button wire:click="clearFilters"
+                  >  View Receipts
+                </x-button>
                 <button type="button" wire:click="clearFilters"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                     Clear Filters
                 </button>
-        
+
                 <a href=""target="_blank"
                     class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                     Export All
@@ -30,7 +29,7 @@
 
             </div>
 
-            
+
 
 
         </div>
@@ -57,7 +56,7 @@
                 </select>
             </div>
 
-            
+
         </div>
 
         <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -79,9 +78,9 @@
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
-                            
+
                                     <tr>
-                                        
+
                                         <x-td>1</x-td>
                                         <x-td>September 21, 2023</x-td>
                                         <x-td>432356</x-td>
@@ -91,17 +90,17 @@
                                         <x-td>Electrical</x-td>
                                         <x-td>15,000</x-td>
                                         <x-td>
-                                        <button type="button" 
+                                        <button type="button"
                                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                         Export
                                         </button>
                                         </x-td>
-                                        
-                                    
+
+
                                     </tr>
 
                                     <tr>
-                                        
+
                                         <x-td>2</x-td>
                                         <x-td>September 21, 2023</x-td>
                                         <x-td>432356</x-td>
@@ -111,17 +110,17 @@
                                         <x-td>Electrical</x-td>
                                         <x-td>15,000</x-td>
                                         <x-td>
-                                        <button type="button" 
+                                        <button type="button"
                                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                         Export
                                         </button>
                                         </x-td>
-                                        
-                                    
+
+
                                     </tr>
 
                                     <tr>
-                                        
+
                                         <x-td>3</x-td>
                                         <x-td>September 21, 2023</x-td>
                                         <x-td>432356</x-td>
@@ -131,17 +130,17 @@
                                         <x-td>Electrical</x-td>
                                         <x-td>15,000</x-td>
                                         <x-td>
-                                        <button type="button" 
+                                        <button type="button"
                                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                         Export
                                         </button>
                                         </x-td>
-                                        
-                                    
+
+
                                     </tr>
 
                                     <tr>
-                                        
+
                                         <x-td>4</x-td>
                                         <x-td>September 21, 2023</x-td>
                                         <x-td>432356</x-td>
@@ -151,15 +150,15 @@
                                         <x-td>Electrical</x-td>
                                         <x-td>15,000</x-td>
                                         <x-td>
-                                        <button type="button" 
+                                        <button type="button"
                                         class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                         Export
                                         </button>
                                         </x-td>
-                                        
-                                    
+
+
                                     </tr>
-                                
+
                                 </tbody>
                             </table>
                         </div>

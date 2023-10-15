@@ -1,5 +1,5 @@
 <x-modal-component>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <x-slot name="id">
         view-accountpayable-modal-{{$accountpayable->id}}
     </x-slot>

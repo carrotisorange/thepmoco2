@@ -1,5 +1,5 @@
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <style>
         /* since nested groupes are not supported we have to use 
                                  regular css for the nested dropdowns 

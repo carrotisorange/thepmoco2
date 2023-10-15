@@ -1,5 +1,5 @@
 <x-modal-component>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <x-slot name="id">
         create-concern-modal
     </x-slot>
@@ -82,9 +82,6 @@
                         Confirm
                     </x-button>
 
-                    <x-button type="button" wire:loading disabled>
-                        Loading...
-                    </x-button>
                 </div>
 
         </div>

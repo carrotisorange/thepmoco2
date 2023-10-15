@@ -65,7 +65,6 @@ class Kernel extends HttpKernel
         'auth' => \App\Http\Middleware\Authenticate::class,
         'accountowner' => MustBeAccountOwner::class,
         'accountpayable' => MustBeAccountPayable::class,
-        'admin' => MustBeAdmin::class,
         'billing' => MustBeBilling::class,
         'manager' => MustBeManager::class,
         'tenant' => MustBeTenant::class,
@@ -80,6 +79,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'checksessionhasaproperty' => CheckSessionHasAProperty::class,
-        
+
     ];
 }

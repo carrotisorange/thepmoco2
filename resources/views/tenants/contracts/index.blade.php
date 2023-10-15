@@ -7,7 +7,7 @@
                         Contracts</h1>
                 </div>
 
-                <x-button type="button"
+                <x-button
                     onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant->uuid }}'">
                     Go back to tenant
                     </a></x-button>

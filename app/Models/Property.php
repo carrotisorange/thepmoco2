@@ -79,7 +79,7 @@ class Property extends Model
     public function utilities(){
         return $this->hasMany(Utility::class);
     }
-    
+
     public function accountpayables()
     {
         return $this->hasMany(AccountPayable::class);
@@ -89,6 +89,10 @@ class Property extends Model
     public function collections()
     {
         return $this->hasMany(Collection::class);
+    }
+
+    public function houses(){
+        return $this->hasMany(House::class);
     }
 
     public function acknowledgementreceipts()
@@ -105,7 +109,11 @@ class Property extends Model
     {
         return $this->hasMany(Owner::class);
     }
-    
+
+    public function houseowners(){
+        return $this->hasMany(HouseOwner::class);
+    }
+
     public function notifications()
     {
         return $this->hasMany(Notification::class);
@@ -120,7 +128,7 @@ class Property extends Model
     {
         return $this->hasMany(Role::class);
     }
-    
+
     public function concerns()
     {
         return $this->hasMany(Concern::class);
@@ -143,7 +151,7 @@ class Property extends Model
         {
         return $this->hasMany(Referral::class);
         }
-        
+
     public function timestamps()
     {
         return $this->hasMany(Timestamp::class);

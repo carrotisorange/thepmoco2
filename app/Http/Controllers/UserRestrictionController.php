@@ -26,7 +26,7 @@ class UserRestrictionController extends Controller
                  'user_id' => $userId,
                  'property_uuid' => $propertyUuid,
                  'restriction_id' => $restrictionId
-                ],
+            ],
                 [
                  'feature_id' => (int) $feature,
                  'user_id' => $userId,

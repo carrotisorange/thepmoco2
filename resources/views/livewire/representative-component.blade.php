@@ -1,5 +1,5 @@
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
             <div class="mx-5 sm:flex sm:items-center">

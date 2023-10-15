@@ -1,5 +1,5 @@
 <x-modal-component>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <x-slot name="id">
         delete-collection-modal-{{$collection->id}}
     </x-slot>
@@ -18,7 +18,7 @@
             @enderror
         </div>
 
-        <x-button type="button" wire:click="deleteCollection({{ $collection->id }})" class="w-full">
+        <x-button wire:click="deleteCollection({{ $collection->id }})" class="w-full bg-red-500">
             Yes, I'm sure
         </x-button>
 

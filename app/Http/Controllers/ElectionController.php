@@ -12,67 +12,50 @@ use Carbon\Carbon;
 class ElectionController extends Controller
 {
     public function index(Property $property){
-        // $featureId = 21;
-
-        // $electionSubfeatures = Feature::where('id', $featureId)->pluck('subfeatures')->first();
-
-        // $electionSubfeaturesArray = explode(",", $electionSubfeatures);
-
-        // $propertyElection = Election::where('property_uuid', Session::get('property_uuid'))->whereYear('date_of_election', Carbon::now()->year);
-
-        //  if($propertyElection->count() == 0){
-        //      return view('HOA.election.management.election-new');
-        // }else{
-
-        //      $electionId = $propertyElection->pluck('id')->first();
-
-        //     $electionYear = Carbon::parse(Election::find($electionId)->date_of_election)->year;
-
-        //     return redirect('/property/'.$property->uuid.'/election/'.$electionYear.'/step-1')->with('success', 'Changes saved!');
-        // }
 
         $elections = Property::find(Session::get('property_uuid'))->elections;
 
-        return view('HOA.election.management.list-of-elections',[
+        return view('elections.index',[
             'elections' => $elections
         ]);
-
     }
 
-    public function createStep1(Property $property, $year){
-        $featureId = 21;
+    public function create(Property $property){
+        return view('elections.create');
+    }
 
-        $electionSubfeatures = Feature::where('id', $featureId)->pluck('subfeatures')->first();
-
-        $electionSubfeaturesArray = explode(",", $electionSubfeatures);
-
-        $propertyElection = Election::where('property_uuid', Session::get('property_uuid'))->whereYear('date_of_election', Carbon::now()->year);
-
-                // ddd(Carbon::now()->year);
-
-        if($propertyElection->count() == 0){
-            $election = Election::create(
-            [
-                'time_limit' => 1, //hour
-                'number_of_months_behind_dues' => 2,
-                'property_uuid' => Session::get('property_uuid'),
-                'user_id' => auth()->user()->id,
-                'date_of_election' => Carbon::now(),
-            ]);
-        }else{
-            $electionId = $propertyElection->pluck('id')->first();
-
-            $election = Election::find($electionId);
-        }
-
-
-
-         return view('HOA.election.management.policy-form',[
-            'year' => $year,
-            'electionSubfeaturesArray' => $electionSubfeaturesArray,
+    public function edit_step_1(Property $property, Election $election){
+        return view('elections.edit-step-1',[
             'election' => $election
-         ]);
+        ]);
     }
+
+    public function create_step_2(Property $property, Election $election){
+        return view('elections.create-step-2',[
+            'election' => $election
+        ]);
+    }
+
+    public function create_step_3(Property $property, Election $election){
+        return view('elections.create-step-3',[
+            'election' => $election
+        ]);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function storeStep1(Request $request, Property $property, $electionId){
 
@@ -90,7 +73,7 @@ class ElectionController extends Controller
         return redirect('/property/'.$property->uuid.'/election/'.$electionYear.'/step-2')->with('success', 'Changes saved!');
     }
 
-    public function createStep2(Property $property, $year){
+    public function createStep2(Property $property, Election $election){
         $featureId = 21;
 
         $electionSubfeatures = Feature::where('id', $featureId)->pluck('subfeatures')->first();

@@ -48,8 +48,11 @@ use App\Http\Controllers\LiquidationController;
 use App\Http\Controllers\RemittanceController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\ElectionController;
+use App\Http\Controllers\HouseController;
 use App\Http\Controllers\PersonnelController;
 use App\Http\Controllers\TenantController;
+use App\Http\Controllers\HouseOwnerController;
+use App\Http\Controllers\ElectionPolicyFormController;
 
 Route::group(['middleware'=>['auth', 'verified']], function(){
 
@@ -76,6 +79,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for Property
     Route::controller(PropertyController::class)->group(function () {
         Route::get('edit', 'edit');
+        Route::get('edit-documents', 'edit_documents');
         Route::patch('update','update');
         Route::get('delete', 'destroy');
     });
@@ -99,13 +103,17 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for Bulletin
     Route::prefix('election')->group(function(){
         Route::get('/',[ElectionController::class, 'index'])->name('election');
-        Route::get('/{year}/step-1',[ElectionController::class, 'createStep1'])->name('election');
-        Route::post('/{id}/step-1',[ElectionController::class, 'storeStep1']);
-        Route::get('/{year}/step-2',[ElectionController::class, 'createStep2'])->name('election');
-        Route::get('/{year}/step-3',[ElectionController::class, 'createStep3'])->name('election');
-        Route::get('/{year}/step-4',[ElectionController::class, 'createStep4'])->name('election');
-        Route::get('/{year}/step-5',[ElectionController::class, 'createStep5'])->name('election');
-        Route::get('/{year}/step-6',[ElectionController::class, 'createStep6'])->name('election');
+        Route::get('/create', [ElectionController::class, 'create'])->name('election');
+        Route::get('/{election}/create/step-1', [ElectionController::class, 'edit_step_1'])->name('election');
+        Route::get('/{election}/create/step-2', [ElectionController::class, 'create_step_2'])->name('election');
+        Route::get('/{election}/create/step-3', [ElectionController::class, 'create_step_3'])->name('election');
+        // Route::get('/{year}/step-1',[ElectionController::class, 'createStep1'])->name('election');
+        // Route::post('/{id}/step-1',[ElectionController::class, 'storeStep1']);
+        // Route::get('/{year}/step-2',[ElectionController::class, 'createStep2'])->name('election');
+        // Route::get('/{year}/step-3',[ElectionController::class, 'createStep3'])->name('election');
+        // Route::get('/{year}/step-4',[ElectionController::class, 'createStep4'])->name('election');
+        // Route::get('/{year}/step-5',[ElectionController::class, 'createStep5'])->name('election');
+        // Route::get('/{year}/step-6',[ElectionController::class, 'createStep6'])->name('election');
     });
 
     //Route for utilities
@@ -143,6 +151,18 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for calendar
     Route::get('calendar', [CalendarController::class, 'index'])->name('calendar');
 
+    Route::prefix('house-owner')->group(function(){
+        Route::get('/', [HouseOwnerController::class, 'index'])->name('house-owner');
+        Route::get('{house_owner}', [HouseOwnerController::class, 'show'])->name('house-owner');
+    });
+
+    Route::prefix('house')->group(function(){
+        Route::get('/', [HouseController::class, 'index'])->name('house');
+        Route::get('{batch_no?}/edit', [HouseController::class, 'edit'])->name('house');
+        Route::get('{house}', [HouseController::class, 'show'])->name('house');
+
+        Route::get('/{house}/house-owner/create', [HouseOwnerController::class, 'create'])->name('house');
+    });
 
 
     //Routes for Unitf

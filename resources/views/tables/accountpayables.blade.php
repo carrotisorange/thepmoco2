@@ -1,6 +1,6 @@
 
 <table class="">
-    <thead class="bg-gray-50">
+   <thead class="">
         <tr class="">
             {{-- <x-th>#</x-th> --}}
             <x-th class="sticky-col first-col">REQUESTED ON</x-th>

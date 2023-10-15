@@ -1,5 +1,5 @@
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -36,7 +36,7 @@
                             </div>
 
 
-                <x-button type="button"
+                <x-button
                     onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/pending'"> Verify Payments
                 </x-button>
                 <div class="group inline-block">
@@ -130,9 +130,7 @@
                             <p class="mt-1 text-sm text-gray-500">Get started by creating a new collection</p>
                             <div class="mt-6">
                                 <div class="group inline-block">
-                                    <x-button
-                                      > 
-                                            New collection</span>
+                                    <x-button> New collection</span>
                                        &nbsp; <i class="fa-solid fa-caret-down"></i>
                                     </x-button>
 

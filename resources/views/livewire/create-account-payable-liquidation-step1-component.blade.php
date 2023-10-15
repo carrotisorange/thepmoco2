@@ -1,5 +1,5 @@
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     @section('styles')
     <style>
         input::-webkit-outer-spin-button,
@@ -219,7 +219,7 @@
                                     {{ number_format((double)$particular->quantity * (double)$particular->price, 2) }}
                                 </x-td>
 
-                              
+
                                 <x-td>
                                     <button type="button" wire:click="removeParticular({{ $particular->id }})"
                                         wire:target="removeParticular"
@@ -324,15 +324,15 @@
 
             <div>
                 <p class="mt-5 px-6 text-right">
-                    <x-button type="button"
+                    <x-button
                         onclick="window.location.href='/property/{{ $property->uuid }}/accountpayable'">
                         Cancel
                     </x-button>
-                    <x-button type="button" wire:click="storeAccountPayableLiquidation">
+                    <x-button wire:click="storeAccountPayableLiquidation">
                         Next
                     </x-button>
 
-                  
+
                 </p>
             </div>
 

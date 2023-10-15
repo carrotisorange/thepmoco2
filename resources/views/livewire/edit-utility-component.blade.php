@@ -1,5 +1,5 @@
 <x-modal-component>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <x-slot name="id">
         edit-utility-modal-{{$utility->id}}
     </x-slot>
@@ -115,12 +115,8 @@
                 </div>
                 <div class="mt-5 sm:mt-6">
 
-                    <x-button type="button" wire:loading.remove wire:click="updateUtility">
+                    <x-button wire:loading.remove wire:click="updateUtility">
                         Update
-                    </x-button>
-
-                    <x-button type="button" wire:loading disabled>
-                        Loading...
                     </x-button>
 
                 </div>

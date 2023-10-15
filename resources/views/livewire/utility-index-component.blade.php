@@ -1,5 +1,5 @@
  <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <style>
         li>ul {
             transform: translatex(100%) scale(0)
@@ -42,7 +42,7 @@
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 @if($date_created || $search || $type || $status)
-                <x-button type="button" wire:click="clearFilters"
+                <x-button wire:click="clearFilters"
                   >
                     Clear Filters
                 </x-button>

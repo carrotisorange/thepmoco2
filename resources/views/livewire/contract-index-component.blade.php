@@ -1,5 +1,5 @@
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -10,14 +10,14 @@
 
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 @if($status)
-                <x-button type="button" wire:click="clearFilters"
+                <x-button wire:click="clearFilters"
                  >    Clear Filters</x-button>
                 @endif
 
                 <x-button onclick="window.location.href='{{ asset('/brands/docs/Contract of Lease TEMPLATE.docx') }}'">
                   Sample Lease Contract</x-button>
 
-                <x-button type="button" data-modal-toggle="instructions-create-contract-modal"
+                <x-button data-modal-toggle="instructions-create-contract-modal"
                  >     New Contract</x-button>
 
             </div>
@@ -61,7 +61,7 @@
                             <h3 class="mt-2 text-sm font-medium text-gray-900">No contracts</h3>
                             <p class="mt-1 text-sm text-gray-500">Get started by creating a new contract</p>
                             <div class="mt-6">
-                                <x-button type="button" data-modal-toggle="instructions-create-contract-modal" >
+                                <x-button data-modal-toggle="instructions-create-contract-modal" >
 
                                     New Contract
                                 </x-button>

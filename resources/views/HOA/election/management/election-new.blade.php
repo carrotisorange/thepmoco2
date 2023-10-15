@@ -15,11 +15,10 @@
                                     the button below to start.</h3>
 
                                 <div class="mt-6">
-                                    <button type="button" onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/election/{{ Carbon\Carbon::now()->format('Y') }}/step-1'"
-                                        class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+                                    <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/election/{{ Carbon\Carbon::now()->format('Y') }}/step-1'">
 
                                         Plan a new Election
-                                    </button>
+                                    </x-button>
                                 </div>
                             </div>
             </div>
