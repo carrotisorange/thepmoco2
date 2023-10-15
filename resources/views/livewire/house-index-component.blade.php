@@ -15,7 +15,7 @@
                 </x-button>
 
                 @if($houses->count())
-                <x-button type="button" wire:click="editHouses"> Edit
+                <x-button wire:click="editHouses"> Edit
                     Houses</x-button>
                 @endif
 

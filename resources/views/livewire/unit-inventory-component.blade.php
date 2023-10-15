@@ -1,5 +1,5 @@
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
             <h1 class="text-3xl font-bold text-gray-500">{{ $unitDetails->unit }} / Inventory</h1>
@@ -7,11 +7,11 @@
         <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
 
             @if(!$ismovein)
-            <x-button type="button" wire:click="redirectToTheUnitPage"> Go back to Unit
+            <x-button wire:click="redirectToTheUnitPage"> Go back to Unit
             </x-button>
             @endif
 
-            <x-button type="button" data-modal-target="create-unit-inventory-modal"
+            <x-button data-modal-target="create-unit-inventory-modal"
                 data-modal-toggle="create-unit-inventory-modal"> New Item
             </x-button>
 
@@ -73,7 +73,7 @@
                                 </x-td>
 
                                 <x-td>
-                                    <x-button type="button" class="bg-red-500"
+                                    <x-button class="bg-red-500"
                                         data-modal-target="delete-unit-inventory-modal-{{ $inventory->id }}"
                                         data-modal-toggle="delete-unit-inventory-modal-{{ $inventory->id }}"> Remove
                                     </x-button>
@@ -93,21 +93,21 @@
     @if(!$ismovein)
     <p class="text-right">
         @if($inventories->count())
-        <x-button type="button" wire:click="redirectToTheUnitPage"> Save
+        <x-button wire:click="redirectToTheUnitPage"> Save
         </x-button>
         @endif
 
     </p>
     @elseif($ismovein==='moveout')
     <div class="flex justify-end mt-5">
-        <x-button type="button" wire:click="skipUnitInventoryProcess">
+        <x-button wire:click="skipUnitInventoryProcess">
             Next
         </x-button>
     </div>
     @else
     <div class="flex justify-end mt-5">
 
-        <x-button type="button" wire:click="submitForm">
+        <x-button wire:click="submitForm">
             Next
         </x-button>
     </div>

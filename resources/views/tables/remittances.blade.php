@@ -83,7 +83,7 @@
         <th class="bg-yellow-300">CAUSE OF MAGNET</th>
         <th>TOTAL DEDUCTIONS</th>
         <th>REMITTANCE</th>
-        <th>CV NO.</th>
+        {{-- <th>CV NO.</th> --}}
         <th>Check No</th>
     </thead>
     <tbody>
@@ -100,7 +100,7 @@
             <td class="sticky-col second-col">{{ Carbon\Carbon::parse($remittance->created_at)->format('M d, Y') }}</td>
             <td class="sticky-col third-col">{{ $remittance->ar_no }}</td>
             <td class="sticky-col fourth-col">{{ $remittance->particular->particular }}</td>
-        
+
             <td class="sticky-col fifth-col">
                 @if($remittance->owner_uuid)
                    <a target="_blank" title="owner" class="text-blue-500 text-decoration-line: underline"

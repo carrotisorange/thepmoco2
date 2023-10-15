@@ -1,7 +1,7 @@
 
 
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -10,7 +10,7 @@
                 </h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <x-button type="button" data-modal-toggle="instructions-create-owner-modal">
+                <x-button data-modal-toggle="instructions-create-owner-modal">
                     New owner
                 </x-button>
 

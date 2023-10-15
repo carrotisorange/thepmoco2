@@ -1,6 +1,6 @@
 @if($banks->count())
 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-    <thead class="bg-gray-50">
+  <thead class="">
         <tr>
             <x-th>#</x-th>
             <x-th>Account Name</x-th>
@@ -25,7 +25,7 @@
     <h3 class="mt-2 text-sm font-medium text-gray-900">No banks</h3>
     <p class="mt-1 text-sm text-gray-500">You're almost there!</p>
     <div class="mt-6">
-        <x-button type="button" onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/bank/create'">
+        <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/bank/create'">
             New bank
         </x-button>
     </div>

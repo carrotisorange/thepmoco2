@@ -61,10 +61,6 @@
 
             <div class="mt-5 sm:mt-6">
 
-                <x-button class="w-full" type="button" wire:loading disabled wire:target="storeUtilities('electric')">
-                    Loading...
-                </x-button>
-
                 <x-button class="w-full" type="button" wire:click="storeUtilities('electric')" wire:loading.remove>
                     Confirm
                 </x-button>

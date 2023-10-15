@@ -1,11 +1,11 @@
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     @livewire('create-bill-component', [ 'bill_to' => $tenant])
 
     <div class="mt-5 mb-10">
 
         <p class="text-right">
-            <x-button type="button" data-modal-toggle="create-bill-modal">
+            <x-button data-modal-toggle="create-bill-modal">
                   New Bill
                 </x-button>
 
@@ -20,7 +20,7 @@
     </div>
     <div class="flex justify-end mt-5">
 
-        <x-button type="button" wire:click="redirectToContractShowPage">
+        <x-button wire:click="redirectToContractShowPage">
             Finish
         </x-button>
     </div>

@@ -1,5 +1,5 @@
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <div class=" mt-5 px-4 sm:px-6 lg:px-8">
         {{-- start-step-1-form --}}
         <form class="space-y-6" wire:submit.prevent="submitForm()">
@@ -82,19 +82,12 @@
 
                 @if($particulars->count())
                 <div class="sm:col-span-6">
-
-
-
-                    <x-button type="button" data-modal-toggle="instructions-create-vendor-modal">
+                    <x-button data-modal-toggle="instructions-create-vendor-modal">
                         New vendor
                     </x-button>
-
-                    <x-button type="button" wire:click="addNewParticular">
+                    <x-button wire:click="addNewParticular">
                         New particular
                     </x-button>
-
-
-
                 </div>
                 @endif
 
@@ -103,7 +96,7 @@
 
                         <form class="mt-5 sm:pb-6 xl:pb-8">
                             @if($particulars->count())
-                            <table wire:stop class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                                 <thead class="bg-gray-50">
                                     <tr>
                                         <x-th>#</x-th>
@@ -114,7 +107,6 @@
                                         <x-th>PRICE</x-th>
                                         <x-th>TOTAL</x-th>
                                         <x-th></x-th>
-                                        {{-- <x-th></x-th> --}}
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
@@ -202,7 +194,7 @@
                                 <h3 class="mt-2 text-sm font-semibold text-gray-900">No particulars</h3>
                                 <p class="mt-1 text-sm text-gray-500">Get started by adding a new particular.</p>
                                 <div class="mt-6">
-                                    <x-button type="button" wire:click="addNewParticular">
+                                    <x-button wire:click="addNewParticular">
 
                                         New particular
                                     </x-button>
@@ -354,14 +346,13 @@
                 </div>
 
                 <div class="sm:col-span-7">
-                    <label for="" class="block text-sm font-medium text-gray-700">Selected Vendor Details:</label>
+                    <x-label>Selected Vendor Details:</x-label>
 
                 </div>
 
                 <div class="sm:col-span-6">
-                    <label for="vendor" class="block text-sm font-medium text-gray-700">Select a quotation:</label>
-                    <select id="selected_quotation" wire:model="selected_quotation"
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
+                    <x-label for="vendor" >Select a quotation:</x-label>
+                    <x-form-select id="selected_quotation" wire:model="selected_quotation">
                         @if($quotation1 && !$quotation2 && !$quotation3)
                         <option value="quotation1">Quotation 1</option>
                         @elseif($quotation1 && $quotation2 && !$quotation3)
@@ -375,32 +366,30 @@
                         <option value="">Please select one</option>
                         @endif
 
-                    </select>
+                    </x-form-select>
                     @error('selected_quotation')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div class="sm:col-span-3">
-                    <label for="vendor" class="block text-sm font-medium text-gray-700">Name of the vendor</label>
-                    <input type="text" wire:model="vendor" rows="3"
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
+                    <x-label for="vendor" >Name of the vendor</x-label>
+                    <x-form-input type="text" wire:model="vendor" />
                     @error('vendor')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div class="sm:col-span-3">
-                    <label for="delivery-date" class="block text-sm font-medium text-gray-700">Delivery Date</label>
-                    <input type="date" wire:model="delivery_at"
-                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-full sm:text-sm border border-gray-700  rounded-md">
+                    <x-label for="delivery-date">Delivery Date</x-label>
+                    <x-form-input type="date" wire:model="delivery_at" />
                     @error('delivery_at')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div class="col-start-6 flex items-center justify-end">
-                    <x-button wire:click="cancelRequest()">
+                    <x-button class="bg-red-500" wire:click="cancelRequest()">
                         Cancel
                     </x-button>
 

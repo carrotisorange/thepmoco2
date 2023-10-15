@@ -1,5 +1,5 @@
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     @section('styles')
     <style>
         input::-webkit-outer-spin-button,
@@ -223,7 +223,7 @@
                                         Remove
                                     </button>
 
-                              
+
                                 </x-td>
 
                             </tr>
@@ -320,25 +320,14 @@
 
             <div>
                 <p class="mt-5 px-6 text-right">
-                  
-                    <x-button type="button" wire:loading.remove wire:click="skipLiquidation">
+                    <x-button wire:click="skipLiquidation">
                         Skip
                     </x-button>
-                   
-
-                    <x-button type="submit" wire:loading.remove>
+                    <x-button type="submit">
                         Confirm
                     </x-button>
-
-                    <x-button type="button" wire:loading disabled>
-                        Loading...
-                    </x-button>
-
-
                 </p>
             </div>
-
-            <!-- /approval section -->
 
         </div>
 

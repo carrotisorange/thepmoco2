@@ -1,5 +1,5 @@
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -141,7 +141,7 @@
 
 
                                         <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
-                                            <x-button type="button" data-modal-toggle="instructions-create-bill-modal">
+                                            <x-button data-modal-toggle="instructions-create-bill-modal">
                                                 Tenant
                                             </x-button>
 

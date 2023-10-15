@@ -3,7 +3,7 @@
     $addAnchorClass = 'block py-2 px-4 text-sm dark:text-gray-200 dark:hover:text-white';
 ?>
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     @include('modals.popup-error')
     <div class="mt-8 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
         <div class="lg:grid lg:grid-cols-12 lg:auto-rows-min lg:gap-x-8">

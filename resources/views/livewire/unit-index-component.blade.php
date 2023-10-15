@@ -1,5 +1,5 @@
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -19,19 +19,19 @@
                 </x-button>
 
                 @if($view === 'list')
-                <x-button type="button" wire:click="changeView('thumbnail')" >
+                <x-button wire:click="changeView('thumbnail')" >
                     View as Thumbnail
 
                 </x-button>
                 @else
-                <x-button type="button" wire:click="changeView('list')" >
+                <x-button wire:click="changeView('list')" >
                     View as List
                 </x-button>
                 @endif
 
 
                 @if($units->count())
-                <x-button type="button" wire:click="editUnits"> Edit
+                <x-button wire:click="editUnits"> Edit
                     Units</x-button>
                 @endif
 

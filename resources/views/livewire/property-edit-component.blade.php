@@ -401,7 +401,7 @@
 
 
             </div>
-            @include('layouts.notifications')
+            {{-- @include('layouts.notifications') --}}
         </form>
         </div>
     </div>

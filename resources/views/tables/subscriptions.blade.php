@@ -1,5 +1,5 @@
 <table class="min-w-full table-fixed">
-    <thead class="">
+  <thead class="">
         <tr>
             <th scope="col" class="relative w-12 px-6 sm:w-16 sm:px-8">
                 #

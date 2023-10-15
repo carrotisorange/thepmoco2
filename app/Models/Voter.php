@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Voter extends Model
 {
     use HasFactory;
+
+    protected $attributes = [
+        'position_id' => 1,
+    ];
 }

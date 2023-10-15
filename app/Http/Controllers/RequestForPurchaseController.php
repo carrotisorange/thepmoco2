@@ -13,7 +13,7 @@ use App\Models\AccountPayableLiquidation;
 
 class RequestForPurchaseController extends Controller
 {
-  
+
     public function get_property_expenses($property_uuid, $daily, $monthly)
     {
         return Property::find($property_uuid)->accountpayables()
@@ -29,7 +29,7 @@ class RequestForPurchaseController extends Controller
 
     public function store(Property $property, $request_for, $batch_no){
 
-        // $this->authorize('create_rfp'); 
+        // $this->authorize('create_rfp');
 
         $generated_batch_no = auth()->user()->id.'-'.sprintf('%08d', AccountPayable::where('property_uuid',$property->uuid)->where('status', '!=', 'pending')->count()).'-'.$batch_no;
 
@@ -58,7 +58,7 @@ class RequestForPurchaseController extends Controller
     public function download_step_1(Property $property, AccountPayable $accountpayable){
 
         $particulars = AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get();
-         
+
         $data = [
             'accountpayable' => $accountpayable,
             'particulars' => $particulars
@@ -111,7 +111,7 @@ class RequestForPurchaseController extends Controller
                         'property' => $property,
                         'accountpayable' => $accountpayable
                      ]);
-                   
+
                 }else{
                      return view('accountpayables.pending-approval-manager',[
                         'accountpayable' => $accountpayable
@@ -122,7 +122,7 @@ class RequestForPurchaseController extends Controller
                     'accountpayable' => $accountpayable
                 ]);
             }
-            
+
             else{
                 return view('accountpayables.restricted-page',[
                     'accountpayable' => $accountpayable
@@ -131,7 +131,7 @@ class RequestForPurchaseController extends Controller
         // }else{
 
         // }
-      
+
     }
 
     public function create_step_3(Property $property, AccountPayable $accountpayable){
@@ -162,7 +162,7 @@ class RequestForPurchaseController extends Controller
                         'property' => $property,
                         'accountpayable' => $accountpayable
                     ]);
-                   
+
                 }else{
                     return view('accountpayables.pending-approval-ap',[
                     'accountpayable' => $accountpayable
@@ -199,7 +199,7 @@ class RequestForPurchaseController extends Controller
                         'property' => $property,
                         'accountpayable' => $accountpayable
                     ]);
-                   
+
                 }else{
                     return view('accountpayables.pending-approval-manager',[
                     'accountpayable' => $accountpayable
@@ -214,13 +214,13 @@ class RequestForPurchaseController extends Controller
 
     public function create_step_6(Property $property, AccountPayable $accountpayable){
         //accessible only to the first approver
-       if($accountpayable->approver_id === auth()->user()->id){ 
+       if($accountpayable->approver_id === auth()->user()->id){
                 if($accountpayable->status === 'liquidated'){
                      return view('accountpayables.create.step-6', [
                      'property' => $property,
                      'accountpayable' => $accountpayable
                      ]);
-                   
+
                 }else{
                      return view('accountpayables.approved-page',[
                      'accountpayable' => $accountpayable
@@ -247,8 +247,8 @@ class RequestForPurchaseController extends Controller
                       ],
                       [
                       'name' => auth()->user()->name,
-  
-        
+
+
                       'cv_number' => sprintf('%08d',AccountPayable::where('property_uuid',$accountpayable->property->uuid)->where('status','!=', 'pending')->count())
                       ]);
 
@@ -276,7 +276,7 @@ class RequestForPurchaseController extends Controller
             //     return view('accountpayables.approved-page',[
             //         'accountpayable' => $accountpayable
             //     ]);
-            // }   
+            // }
         }else{
             return view('accountpayables.restricted-page',[
                 'accountpayable' => $accountpayable
@@ -284,7 +284,7 @@ class RequestForPurchaseController extends Controller
         }
     }
 
-    
+
 
     public function create_request_status($property_uuid){
         return view('accountpayables.create.request-status');
@@ -298,7 +298,7 @@ class RequestForPurchaseController extends Controller
 
     public function create_step1(Property $property, AccountPayable $accountPayable){
         $html = view('accountpayables.pdf.step1',[
-            'property' => $property, 
+            'property' => $property,
             'accountPayable' => $accountPayable
         ])->render();
 
@@ -361,7 +361,7 @@ class RequestForPurchaseController extends Controller
     public function store_step_1($property_uuid, $request_for, $created_at, $due_date, $requester_id, $batch_no, $amount){
 
     // $this->authorize('is_account_payable_create_allowed');
-           
+
     return AccountPayable::updateOrCreate(
         [
             'batch_no' => $batch_no,
@@ -376,7 +376,7 @@ class RequestForPurchaseController extends Controller
             'requester_id' => $requester_id,
             'batch_no' => $batch_no,
             'amount' => $amount,
-         ])->id; 
+         ])->id;
     }
 
     public function update_approval($accountpayable_id, $status, $comment, $vendor){
@@ -399,7 +399,7 @@ class RequestForPurchaseController extends Controller
     }
 
      public function show(Property $property, AccountPayable $accountPayable){
-        return view('properties.accountpayables.show',[
+        return view('accountpayables.show',[
             'property' => $property,
             'accountpayable' => $accountPayable,
         ]);

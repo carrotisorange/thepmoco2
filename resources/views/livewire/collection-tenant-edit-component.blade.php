@@ -1,5 +1,5 @@
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <div class="md:grid md:grid-cols-1 px-10 md:gap-6">
         <nav class="mt-5 border-b flex col-start-1" aria-label="Breadcrumb">
             <ol role="list" class="mx-auto flex w-full max-w-screen-xl space-x-4 px-4 sm:px-6">
@@ -269,7 +269,7 @@
         @if($collections->sum('bill') == 0)
 
         @else
-            <x-button type="button" form="edit-form" onclick="this.form.submit(); this.disabled = true; this.value = 'Submitting the form';">
+            <x-button form="edit-form" onclick="this.form.submit(); this.disabled = true; this.value = 'Submitting the form';">
                 Confirm Payment
         </x-button>
         @endif

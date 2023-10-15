@@ -52,6 +52,7 @@ use App\Http\Controllers\HouseController;
 use App\Http\Controllers\PersonnelController;
 use App\Http\Controllers\TenantController;
 use App\Http\Controllers\HouseOwnerController;
+use App\Http\Controllers\ElectionPolicyFormController;
 
 Route::group(['middleware'=>['auth', 'verified']], function(){
 
@@ -102,13 +103,17 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for Bulletin
     Route::prefix('election')->group(function(){
         Route::get('/',[ElectionController::class, 'index'])->name('election');
-        Route::get('/{year}/step-1',[ElectionController::class, 'createStep1'])->name('election');
-        Route::post('/{id}/step-1',[ElectionController::class, 'storeStep1']);
-        Route::get('/{year}/step-2',[ElectionController::class, 'createStep2'])->name('election');
-        Route::get('/{year}/step-3',[ElectionController::class, 'createStep3'])->name('election');
-        Route::get('/{year}/step-4',[ElectionController::class, 'createStep4'])->name('election');
-        Route::get('/{year}/step-5',[ElectionController::class, 'createStep5'])->name('election');
-        Route::get('/{year}/step-6',[ElectionController::class, 'createStep6'])->name('election');
+        Route::get('/create', [ElectionController::class, 'create'])->name('election');
+        Route::get('/{election}/create/step-1', [ElectionController::class, 'edit_step_1'])->name('election');
+        Route::get('/{election}/create/step-2', [ElectionController::class, 'create_step_2'])->name('election');
+        Route::get('/{election}/create/step-3', [ElectionController::class, 'create_step_3'])->name('election');
+        // Route::get('/{year}/step-1',[ElectionController::class, 'createStep1'])->name('election');
+        // Route::post('/{id}/step-1',[ElectionController::class, 'storeStep1']);
+        // Route::get('/{year}/step-2',[ElectionController::class, 'createStep2'])->name('election');
+        // Route::get('/{year}/step-3',[ElectionController::class, 'createStep3'])->name('election');
+        // Route::get('/{year}/step-4',[ElectionController::class, 'createStep4'])->name('election');
+        // Route::get('/{year}/step-5',[ElectionController::class, 'createStep5'])->name('election');
+        // Route::get('/{year}/step-6',[ElectionController::class, 'createStep6'])->name('election');
     });
 
     //Route for utilities

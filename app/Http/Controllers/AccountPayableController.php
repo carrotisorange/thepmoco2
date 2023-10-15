@@ -31,7 +31,7 @@ class AccountPayableController extends Controller
 
         app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, Session::get('property_uuid'));
 
-        return view('properties.accountpayables.index',[
+        return view('accountpayables.index',[
             'accountpayables' => Property::find(Session::get('property_uuid'))->accountpayables()
                ->when($status, function ($query) use ($status) {
                $query->where('status', $status);
@@ -64,7 +64,7 @@ class AccountPayableController extends Controller
           'accountpayables' => Property::find($property_uuid)->accountpayables
         ];
 
-          $pdf = \PDF::loadView('properties.accountpayables.export', $data);
+          $pdf = \PDF::loadView('accountpayables.export', $data);
 
         $pdf->output();
 
@@ -106,7 +106,7 @@ class AccountPayableController extends Controller
     }
 
     public function show(Property $property, AccountPayable $accountPayable){
-        return view('properties.accountpayables.show',[
+        return view('accountpayables.show',[
             'accountpayable' => $accountPayable,
             'particulars' => AccountPayableParticular::where('batch_no', $accountPayable->batch_no)->get()
         ]);
@@ -118,7 +118,7 @@ class AccountPayableController extends Controller
         'particulars' => AccountPayableParticular::where('batch_no', $accountPayable->batch_no)->get()
        ];
 
-       $pdf = \PDF::loadView('properties.accountpayables.download', $data);
+       $pdf = \PDF::loadView('accountpayables.download', $data);
 
        $pdf->output();
 

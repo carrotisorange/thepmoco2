@@ -1,5 +1,5 @@
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
    <form class="space-y-1" wire:submit.prevent="create()">
       <div class="pt-10">
          <div>

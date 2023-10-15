@@ -1,6 +1,6 @@
 {{-- @include('layouts.messenger-chatbot') --}}
 
-@include('layouts.notifications')
+{{-- @include('layouts.notifications') --}}
 
 {{-- <script>
   function confirmMessage() {

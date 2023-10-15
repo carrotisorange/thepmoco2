@@ -1,9 +1,9 @@
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <div class="mx-10">
         <form wire:submit.prevent="approveLiquidation">
         <div class="px-4 sm:px-6 lg:px-8">
-           
+
             <div class="mt-8 flow-root">
                 <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
@@ -185,23 +185,14 @@
                 <div>
                     <p class="mt-5 px-6 text-right">
 
-                        <button type="button" wire:loading.remove wire:click="rejectLiquidation"
-                            class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                        <x-button class="bg-red-500" wire:click="rejectLiquidation">
                             Reject
-                        </button>
-                       
-                        <button type="submit" wire:loading.remove 
-                            class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
+                        </x-button>
+
+                        <x-button type="submit">
                             Approve
-                        </button>
+                        </x-button>
 
-                        <button type="button" wire:loading disabled
-                            class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                            Loading...
-                        </button>
-
-
-                       
                     </p>
                 </div>
             </div>

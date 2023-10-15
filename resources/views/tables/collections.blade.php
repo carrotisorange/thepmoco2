@@ -20,7 +20,7 @@
 
         </tr>
     </tbody>
-    <thead class="bg-gray-50">
+<thead class="">
         <tr>
             <x-th>#</x-th>
             <x-th>AR #</x-th>

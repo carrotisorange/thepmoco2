@@ -6,12 +6,9 @@
                     <h1 class="text-3xl font-bold text-gray-700 mb-5 mt-5 ">{{ $unit->unit }} /
                         Concerns</h1>
                 </div>
-                <x-button type="button"
-                    onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}'"
-                >
+                <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}'">
                     Go back
                     </a></x-button>
-
 
             </div>
             @include('tables.concerns')

@@ -25,7 +25,7 @@
                         href="{{ url()->previous() }}">
                         Cancel
                     </a>
-                    <x-button type="button"
+                    <x-button
                         onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/unit'">
                         Confirm</x-button>
                 </p>

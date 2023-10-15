@@ -85,13 +85,6 @@
                     Confirm
                 </x-button>
 
-                <x-button class="w-full" type="button" wire:loading>
-                    Loading...
-                </x-button>
-
-
-
-
             </div>
         </div>
         </form>

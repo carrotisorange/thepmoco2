@@ -1,5 +1,5 @@
 <x-modal-component>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <x-slot name="id">
         delete-bill-modal-{{$bill->id}}
     </x-slot>
@@ -18,7 +18,7 @@
             @enderror
         </div>
 
-        <x-button type="button" wire:click="deleteBill({{ $bill->id }})" class="w-full bg-red-500">
+        <x-button wire:click="deleteBill({{ $bill->id }})" class="w-full bg-red-500">
             Yes, I'm sure
         </x-button>
 

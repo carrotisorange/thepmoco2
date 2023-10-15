@@ -46,9 +46,6 @@
                     Confirm
                 </x-button>
 
-                <x-button class="w-full" type="button" disabled wire:loading >
-                    Loading...
-                </x-button>
                 @else
                 <x-button class="w-full" type="button" wire:click="redirectToOwnerPage">
                     Add a collection

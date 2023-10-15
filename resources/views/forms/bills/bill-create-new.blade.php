@@ -63,18 +63,15 @@
 
     <div class="flex justify-end mt-2">
 
-        <button type="button"
-            onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant->uuid }}'"
-            class="ml-3 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+        <x-button
+            onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant->uuid }}'">
             Skip
-        </button>
+        </x-button>
         @if($particular_id)
-        <button type="submit"
-            class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-
+        <x-button type="submit">
 
             Create
-        </button>
+        </x-button>
         @endif
     </div>
 </form>

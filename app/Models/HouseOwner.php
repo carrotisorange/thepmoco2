@@ -19,4 +19,9 @@ class HouseOwner extends Model
         return empty($search)? static::query()
       : static::where('house-owner','like', '%'.$search.'%');
     }
+
+    public function houseowner()
+    {
+        return $this->belongsTo(HouseOwner::class, 'house_owner_id');
+    }
 }

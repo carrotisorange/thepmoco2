@@ -8,7 +8,7 @@
                 </h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <x-button type="button" data-modal-toggle="instructions-create-house-owner-modal">
+                <x-button data-modal-toggle="instructions-create-house-owner-modal">
                     New owner
                 </x-button>
 

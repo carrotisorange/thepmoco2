@@ -143,7 +143,7 @@
         </div>
 
         <div class="flex justify-end mt-5">
-            <x-button type="button" wire:click="makeReservation()" wire:loading.remove>
+            <x-button wire:click="makeReservation()">
                 Mark as RESERVED
             </x-button>
 

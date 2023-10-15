@@ -1,38 +1,29 @@
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
                 <h1 class="text-3xl font-bold text-gray-700">Utilities / {{ $option }}</h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <button wire:click="returnToUtilitiesPage"
-                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    type="button">Go back and delete utilities
-                </button>
-
-                <button type="submit" wire:click="postUtilities"
-                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Post Utilities
-                </button>
-
+                <x-button class="bg-red-500" wire:click="returnToUtilitiesPage">Cancel
+                </x-button>
+                <x-button wire:click="postUtilities">Confirm
+                </x-button>
             </div>
         </div>
-       
 
         <div class="mt-3 -my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
 
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                 <div>
-                    <p class="mt-3 text-sm text-center text-gray-500">
+                    {{-- <p class="mt-3 text-sm text-center text-gray-500">
                         Showing
                         <span class="font-medium">{{ $utilities->count() }}</span>
 
                         {{Str::plural('utility', $utilities->count())}}
 
-                    </p>
-
-                    <form class="mt-5 sm:pb-6 xl:pb-8">
+                    </p> --}}
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead class="bg-gray-50">
                                 <tr>
@@ -140,18 +131,12 @@
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                             @enderror
                                         </x-td>
-
                                     </tr>
-
                                 </div>
                                 @endforeach
-
                             </tbody>
                         </table>
-                    </form>
-
                 </div>
-
             </div>
         </div>
     </div>

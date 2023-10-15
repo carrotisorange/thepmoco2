@@ -1,5 +1,5 @@
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
         <div class="flex justify-center items-center">
             <h2 class="max-w-xl p-8 text-center text-xl font-medium tracking-tight text-gray-900 font-pop">You've

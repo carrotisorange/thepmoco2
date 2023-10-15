@@ -1,5 +1,5 @@
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <div class="p-6 bg-white border-b border-gray-200">
     <form class="space-y-6" wire:submit.prevent="submitForm()">
             <div class="mt-5 md:mt-0 md:col-span-3">
@@ -118,7 +118,7 @@
                         <x-form-input type="text" wire:model="address" autocomplete="address" value="{{ old('address') }}" />
                     </div>
 
-                    <div class="col-span-6">
+                    {{-- <div class="col-span-6">
 
                         <label class="block text-sm font-medium text-gray-700"> Attach a valid ID of the owner
                             (i.e., Driver's license, UMID/SSS, Passport)
@@ -153,7 +153,7 @@
                         @endif
                         @enderror
 
-                    </div>
+                    </div> --}}
 
                     <div class="col-span-6 sm:col-span-6">
                         <x-label for="house_owner">

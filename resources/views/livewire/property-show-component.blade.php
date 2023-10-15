@@ -2,7 +2,7 @@
     $firstName = explode(" ",$name);
 ?>
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
 <div class="h-full pb-36">
     <div class=" fixed w-1/2 bg-gray-50" aria-hidden="true"></div>
     <div class=" fixed min-h-screen right-1 w-1/3 lg:bg-gradient-to-r from-purple-400 to-gray-400  sm:bg-gray-50" aria-hidden="true"></div>

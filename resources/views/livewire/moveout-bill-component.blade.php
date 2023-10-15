@@ -1,5 +1,5 @@
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <form method="POST" wire:submit.prevent="submitForm" action="/contract/{{ $contract->uuid }}/moveout" class="w-full"
         id="create-form">
         @csrf
@@ -64,7 +64,7 @@
         </div>
         <div class="mt-5">
             <p class="text-right">
-        
+
                 <x-button type="submit"></x-button>
             </p>
         </div>

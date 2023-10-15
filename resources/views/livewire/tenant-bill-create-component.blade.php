@@ -1,5 +1,5 @@
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <div class="my-5 px-4 sm:px-6 lg:px-8">
         <div class="sm:grid grid-cols-1 lg:grid-cols-4 sm:items-center">
 
@@ -50,21 +50,21 @@
                 <div class="sm:my-10 md:my-5 lg:my-0">
 
                     @if($total_unpaid_bills->count())
-                    <x-button type="button" data-modal-toggle="export-tenant-bill">Export
+                    <x-button data-modal-toggle="export-tenant-bill">Export
                         Bill ({{
                         App\Models\Tenant::find($tenant->uuid)->bills()->where('status', '!=','paid')->count()
                         }})</a></x-button>
 
-                    <x-button type="button" data-modal-toggle="send-tenant-bill">Send
+                    <x-button data-modal-toggle="send-tenant-bill">Send
                         Bill ({{ App\Models\Tenant::find($tenant->uuid)->bills()->where('status',
                         '!=', 'paid')->count() }})</a></x-button>
                     @endif
 
 
-                    <x-button type="button" data-modal-toggle="instructions-create-tenant-bill-modal">
+                    <x-button data-modal-toggle="instructions-create-tenant-bill-modal">
                         Create Bill</a></x-button>
 
-                    <x-button type="button" data-modal-toggle="create-particular-modal">
+                    <x-button data-modal-toggle="create-particular-modal">
                         Create Particular</a></x-button>
                 </div>
             </div>
@@ -128,7 +128,7 @@
 
             <div class="sm:col-span-3 text-right">
                 @if($selectedBills)
-                <x-button type="button" wire:click="payBills">
+                <x-button wire:click="payBills">
                     Pay Bills
                 </x-button>
                 @endif

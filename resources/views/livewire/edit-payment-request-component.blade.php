@@ -1,5 +1,5 @@
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <form wire:submit.prevent="updatePaymentRequest">
         <div class="shadow sm:rounded-md sm:overflow-hidden">
             <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
@@ -52,16 +52,16 @@
                 </div>
                 @endif
 
-                    
-    
+
+
                    <div class="col-span-6">
-                    
+
                         <label class="block text-sm font-medium text-gray-700"> You may upload the proof of payment
                             here.
                         </label>
                         <div class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
                             <div class="space-y-1 text-center">
-                    
+
                                 <div class="text-sm text-gray-600">
                                     <label for="proof_of_payment"
                                         class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
@@ -86,23 +86,23 @@
                                         <a href="#/" wire:click="removeAttachment()">Remove the
                                             attachment</a></span>
                                     or
-                                
+
                                     <span class="text-blue-500 text-xs mt-2">
                                             <a target="_blank" href="{{ asset('/storage/'.$proof_of_payment) }}">View the
                                                 attachment.</a></span>
-                                      
+
                                     @endif
                                 @enderror
                             </div>
-                    
-                    
+
+
                         </div>
                         @error('proof_of_payment')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @else
                             @if ($proof_of_payment)
                             <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i></p>
-                        
+
                             @endif
                         @enderror
                     </div>
@@ -110,8 +110,6 @@
                     <x-button type="submit" wire:loading.remove>Confirm
                         Payment</x-button>
 
-                        <x-button type="button" disabled wire:loading>
-                            Loading...</x-button>
                 </div>
             </div>
         </div>

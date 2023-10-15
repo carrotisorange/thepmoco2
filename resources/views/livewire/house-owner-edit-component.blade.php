@@ -1,5 +1,5 @@
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
    <form class="space-y-6" wire:submit.prevent="submitForm()">
         <div class="mt-5 md:mt-0 md:col-span-3">
             <div class="grid grid-cols-6 gap-6">

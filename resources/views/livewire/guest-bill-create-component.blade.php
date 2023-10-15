@@ -48,7 +48,7 @@
                 <div class="sm:my-10 md:my-5 lg:my-0">
 
                     @if($total_unpaid_bills->count())
-                    <x-button type="button" data-modal-toggle="export-guest-bill">  Export Bills ({{
+                    <x-button data-modal-toggle="export-guest-bill">  Export Bills ({{
                         App\Models\Guest::find($guest->uuid)->bills()->where('status', '!=','paid')->count()
                         }})</a></x-button>
 
@@ -105,7 +105,7 @@
 
         <div class="sm:col-span-3 text-right">
             @if($selectedBills)
-            <x-button type="button" wire:click="payBills">
+            <x-button wire:click="payBills">
                 Pay Bills
             </x-button>
             @endif

@@ -1,5 +1,5 @@
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -9,18 +9,6 @@
             </div>
             @if($propertyRfpCount)
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-
-                @if($created_at || $status || $request_for || $limitDisplayTo)
-                <x-button type="button" wire:click="clearFilters" >   Clear Filters
-                </x-button>
-                @endif
-
-                {{-- <x-button onclick="window.location.href='/property/{{Session::get('property_uuid')}}/accountpayable/export/{{ $status }}/{{ $created_at }}/{{ $request_for }}/{{$limitDisplayTo }}'"
-                    target="_blank">
-                    Export All
-                </x-button> --}}
-
-
 
                 <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/accountpayable/{{ 'purchase' }}/{{ Str::random(3) }}/store'">
                     New Request

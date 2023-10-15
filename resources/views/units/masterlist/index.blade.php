@@ -60,7 +60,7 @@
                                                 clip-rule="evenodd" />
                                         </svg>
                                     </div>
-                                    <x-button type="button">Filter
+                                    <x-button >Filter
                                         by Default</x-button>
                                 </div>
                         </div>

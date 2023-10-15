@@ -6,7 +6,7 @@
 ?>
 
 <div>
-    @include('layouts.notifications')
+    {{-- @include('layouts.notifications') --}}
     @include('modals.popup-error')
     <div class="mt-8 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
         <div class="lg:grid lg:grid-cols-12 lg:auto-rows-min lg:gap-x-8">
@@ -190,7 +190,7 @@
                                         <h3 class="mt-2 text-sm font-medium text-gray-900">No utilities</h3>
 
                                         <div class="mt-6">
-                                            <x-button  wire:click="redirectToTheCreateUtilitiesPage">
+                                            <x-button wire:click="redirectToTheCreateUtilitiesPage">
                                                 New utility reading
                                             </x-button>
                                         </div>
