@@ -19,7 +19,6 @@ class DeedOfSaleController extends Controller
 
     public function create(Property $property, Unit $unit, Owner $owner)
     {
-            ddd('asd');
        return view('deed_of_sale.create',[
             'property' => $property,
             'unit' => $unit,

@@ -77,13 +77,13 @@
                                             New Request</span>
 
                                     </x-button>
-                                    or
+                                    {{-- or
                                     <x-button wire:click="clearFilters">
                                         <span class="pr-1 font-semibold flex-1"> &nbsp
                                             Show All Requests</span>
 
                                         </span>
-                                    </x-button>
+                                    </x-button> --}}
 
 
                                 </div>

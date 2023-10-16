@@ -19,11 +19,10 @@
                 </div>
 
                 @if($is_the_property_on_loan)
-                <div class="mt-3 col-span-6">
+                <div class="mt-5 col-span-6">
                     <label for="financing_company" class="block text-sm font-medium text-gray-700">Financing
                         Company</label>
-                    <input type="text" wire:model="financing_company" placeholder="Please enter your bank name."
-                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                    <x-form-input type="text" wire:model="financing_company" placeholder="Please enter your bank name."/>
                     @error('financing_company')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
@@ -32,8 +31,7 @@
 
                 <div class="mt-3 col-span-6">
                     <label for="turnover_at" class="block text-sm font-medium text-gray-700">Date of Purchase</label>
-                    <input type="date" wire:model="turnover_at" placeholder="" step="0.001"
-                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                    <x-form-input type="date" wire:model="turnover_at" placeholder="" step="0.001"/>
                     @error('turnover_at')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
@@ -41,8 +39,7 @@
 
                 <div class="mt-3 col-span-6">
                     <label for="price" class="block text-sm font-medium text-gray-700">Puchasing Price</label>
-                    <input type="number" step="0.001" wire:model="price" placeholder=""
-                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                    <x-form-input type="number" step="0.001" wire:model="price" placeholder=""/>
                     @error('price')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
@@ -53,8 +50,7 @@
                 <div class="grid grid-cols-2 gap-6">
                     <div class="mt-3 col-span-6">
                         <label for="bank_name" class="block text-sm font-medium text-gray-700">Name of the Bank</label>
-                        <input type="text" wire:model="bank_name" placeholder="Please enter your bank name."
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        <x-form-input type="text" wire:model="bank_name" placeholder="Please enter your bank name."/>
                         @error('bank_name')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -63,8 +59,7 @@
 
                     <div class="col-span-1">
                         <label for="account_name" class="block text-sm font-medium text-gray-700">Account Name</label>
-                        <input type="text" wire:model="account_name"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        <x-form-input type="text" wire:model="account_name"/>
                         @error('account_name')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -73,8 +68,7 @@
                     <div class="col-span-1">
                         <label for="account_number" class="block text-sm font-medium text-gray-700">Account
                             Number</label>
-                        <input type="text" wire:model="account_number"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        <x-form-input type="text" wire:model="account_number"/>
                         @error('account_number')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror

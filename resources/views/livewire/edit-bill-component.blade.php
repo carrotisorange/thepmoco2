@@ -1,100 +1,84 @@
 <x-modal-component>
     {{-- @include('layouts.notifications') --}}
     <x-slot name="id">
-       edit-bill-modal-{{$bill_details->id}}
+        edit-bill-modal-{{$bill_details->id}}
     </x-slot>
     <h1 class="text-center font-medium">Edit Bill</h1>
+    <div class="p-5">
     <form wire:submit.prevent="updateBill">
-    <div class="p-4">
+            <div class="mt-5 sm:mt-6">
+                <x-label class="text-sm" for="reference_no">Reference No</x-label>
+                <x-form-input type="text" readonly
+                    value="{{ App\Models\Unit::where('uuid',$bill_details->unit_uuid)->value('unit').'-'.$bill_details->bill_no}}" />
+            </div>
 
-         <div class="mt-5 sm:mt-6">
-                        <label class="text-sm" for="reference_no">Reference No</label>
-                        <input type="text" readonly value="{{ App\Models\Unit::find($bill_details->unit_uuid)->unit.'-'.$bill_details->bill_no}}"
-                            class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="" required>
-                    </div>
+            <div class="mt-5 sm:mt-6">
+                <x-label class="text-sm" for="tenant">Bill to</x-label>
+                @if($bill_details->tenant_uuid)
+                <x-form-input type="text" readonly
+                    value="{{ App\Models\Tenant::where('uuid',$bill_details->tenant_uuid)->value('tenant') }} (T)" />
+                @elseif($bill_details->owner_uuid)
+                <x-form-input type="text" readonly
+                    value="{{ App\Models\Owner::where('uuid',$bill_details->owner_uuid)->value('owner') }} (O)" />
+                @elseif($bill_details->guest_uuid)
+                <x-form-input type="text" readonly
+                    value="{{ App\Models\Guest::where('uuid',$bill_details->guest_uuid)->value('guest') }} (G)" />
+                @else
+                <x-form-input type="text" readonly value="NA" />
+                @endif
+            </div>
 
-                    <div class="mt-5 sm:mt-6">
-                        <label class="text-sm" for="tenant">Bill to</label>
-                        @if($bill_details->tenant_uuid)
-                        <input type="text" readonly value="{{ App\Models\Tenant::find($bill_details->tenant_uuid)->tenant }} (T)"
-                            class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="" required>
-                        @elseif($bill_details->owner_uuid)
-                        <input type="text" readonly value="{{ App\Models\Owner::find($bill_details->owner_uuid)->owner }} (O)"
-                            class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="" required>
-                        @elseif($bill_details->guest_uuid)
-                        <input type="text" readonly value="{{ App\Models\Guest::find($bill_details->guest_uuid)->guest }} (G)"
-                            class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="" required>
-                        @else
-                        <input type="text" readonly value="NA"
-                            class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="" required>
-                        @endif
-                    </div>
+            <div class="mt-5 sm:mt-6">
+                <x-label class="text-sm" for="status">Status</x-label>
+                <x-form-input type="text" readonly value="{{ $bill_details->status}}"/>
+            </div>
 
-                    <div class="mt-5 sm:mt-6">
-                        <label class="text-sm" for="status">Status</label>
-                        <input type="text" readonly value="{{ $bill_details->status}}"
-                            class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="" required>
-                    </div>
+            <div class="mt-5 sm:mt-6">
+                <x-label class="text-sm" for="particular_id">Particular</x-label>
+                <x-form-select id="particular_id" name="particular_id" wire:model="particular_id" class="">
+                    @foreach ($particulars as $particular)
+                    <option value="{{ $particular->particular_id }}" {{ old('particular_id')==$particular->
+                        particular_id?
+                        'selected': 'Select one'
+                        }}>{{ $particular->particular }}</option>
+                    @endforeach
+                </x-form-select>
 
-                    <div class="mt-5 sm:mt-6">
-                        <label class="text-sm" for="particular_id">Particular</label>
-                        <x-form-select id="particular_id" name="particular_id" wire:model="particular_id" class="">
-                          @foreach ($particulars as $particular)
-                        <option value="{{ $particular->particular_id }}" {{ old('particular_id')==$particular->
-                            particular_id?
-                            'selected': 'Select one'
-                            }}>{{ $particular->particular }}</option>
-                        @endforeach
-                        </x-form-select>
+                @error('particular_id')
+                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                @enderror
+            </div>
 
-                        @error('particular_id')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
-                    </div>
+            <div class="mt-5 sm:mt-6">
+                <label class="text-sm" for="bill">Start</label>
+                <x-form-input type="date" id="start" wire:model="start"/>
+                @error('start')
+                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                @enderror
+            </div>
 
-                    <div class="mt-5 sm:mt-6">
-                        <label class="text-sm" for="bill">Start</label>
-                        <input type="date" id="start" wire:model="start"
-                            class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="" required>
-                        @error('start')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mt-5 sm:mt-6">
-                        <label class="text-sm" for="bill">End</label>
-                        <input type="date" id="end" wire:model="end"
-                            class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="" required>
-                        @error('end')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
-                    </div>
+            <div class="mt-5 sm:mt-6">
+                <x-label class="text-sm" for="bill">End</x-label>
+                <x-form-input type="date" id="end" wire:model="end"/>
+                @error('end')
+                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                @enderror
+            </div>
 
 
-                    <div class="mt-5 sm:mt-6">
-                        <label class="text-sm" for="bill">Amount</label>
-                        <input type="number" step="0.001" id="bill" wire:model="bill"
-                            class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="" required>
-                        @error('bill')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
-                    </div>
+            <div class="mt-5 sm:mt-6">
+                <x-label class="text-sm" for="bill">Amount</x-label>
+                <x-form-input type="number" step="0.001" id="bill" wire:model="bill"/>
+                @error('bill')
+                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                @enderror
+            </div>
 
 
-                    <div class="mt-5 sm:mt-6">
-                        <x-button class="w-full" type="submit" wire:loading.remove>   Update
-                        </x-button>
-
-                    </div>
-                </form>
+            <div class="mt-5 sm:mt-6">
+                <x-button class="w-full" type="submit"> Update
+                </x-button>
+            </div>
+    </form>
     </div>
 </x-modal-component>

@@ -7,7 +7,7 @@
                     <div class="mt-5 md:mt-0 md:col-span-2">
                         <div class="grid grid-cols-2 gap-6">
                             <div class="col-span-6">
-                                <label class="block text-sm font-medium text-gray-700"> Please attach the leasing
+                                <label class="block text-sm font-medium text-gray-700"> Please attach the  leasing
                                     contract
                                 </label>
                                 <div
@@ -237,12 +237,9 @@
                     </div>
                 </div>
                 <div class="flex justify-end mt-10">
-                    <button type="submit"
-                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-
-
+                    <x-button type="submit">
                         Next
-                    </button>
+                    </x-button>
                 </div>
             </div>
         </form>

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\UserProperty;
-use Illuminate\Http\Request;
 use App\Models\Property;
 use App\Models\User;
 use App\Models\Role;

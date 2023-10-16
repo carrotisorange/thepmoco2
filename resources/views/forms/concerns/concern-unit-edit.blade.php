@@ -278,7 +278,7 @@
                 </div>
 
                 <div class="flex justify-end">
-                    <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/concern'">
+                    <x-button class="bg-red-500" onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/concern'">
                         Cancel
                     </x-button>
                     

@@ -1,14 +1,11 @@
-<form class="space-y-6" wire:submit.prevent="submitForm()" method="POST">
-    <div class="mt-1 px-4 py-5 sm:rounded-lg sm:p-6">
-        <div class="md:grid md:grid-cols-1 md:gap-6">
+<form class="space-y-6" wire:submit.prevent="submitForm()">
             <div class="mt-5 md:mt-0 md:col-span-3">
                 <div class="grid grid-cols-6 gap-6">
 
                     <div class="col-span-6 sm:col-span-2">
                         <label for="owner" class="block text-sm font-medium text-gray-700">
                             Full Name</label>
-                        <input type="text" wire:model.lazy="owner" autocomplete="owner"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        <x-form-input type="text" wire:model="owner" />
                         @error('owner')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -16,8 +13,7 @@
 
                     <div class="col-span-6 sm:col-span-2">
                         <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                        <input type="email" wire:model.lazy="email" autocomplete="email"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        <x-form-input type="email" wire:model="email"/>
                         @error('email')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -25,9 +21,8 @@
 
                     <div class="col-span-6 sm:col-span-2">
                         <label for="email-address" class="block text-sm font-medium text-gray-700">Mobile</label>
-                        <input type="text" wire:model.lazy="mobile_number" autocomplete="mobile_number"
-                            value="{{ old('mobile_number') }}"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        <x-form-input type="text" wire:model="mobile_number"
+                            value="{{ old('mobile_number') }}" />
                         @error('mobile_number')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -36,15 +31,14 @@
 
                     <div class="col-span-3">
                         <label for="country_id" class="block text-sm font-medium text-gray-700">Country</label>
-                        <select wire:model.lazy="country_id" autocomplete="country_id"
-                            class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <x-form-select wire:model="country_id">
                             <option value="">Select one</option>
                             @foreach ($countries as $country)
                             <option value="{{ $country->id }}" {{ old('country_id')==$country->id?
                                 'selected': 'Select one'
                                 }}>{{ $country->country }}</option>
                             @endforeach
-                        </select>
+                        </x-form-select>
                         @error('country_id')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -52,15 +46,14 @@
 
                     <div class="col-span-3">
                         <label for="province_id" class="block text-sm font-medium text-gray-700">Province</label>
-                        <select wire:model.lazy="province_id" autocomplete="province_id"
-                            class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <x-form-select wire:model="province_id" >
                             <option value="">Select one</option>
                             @foreach ($provinces as $province)
                             <option value="{{ $province->id }}" {{ old('province_id')==$province->id?
                                 'selected': 'Select one'
                                 }}>{{ $province->province }}</option>
                             @endforeach
-                        </select>
+                        </x-form-select>
                         @error('province_id')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -68,7 +61,7 @@
 
                     {{-- <div class="col-span-2">
                         <label for="city_id" class="block text-sm font-medium text-gray-700">City</label>
-                        <select wire:model.lazy="city_id" autocomplete="city_id"
+                        <select wire:model="city_id" autocomplete="city_id"
                             class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             <option value="">Select one</option>
                             @foreach ($cities as $city)
@@ -85,9 +78,8 @@
                     <div class="col-span-6">
                         <label for="barangay" class="block text-sm font-medium text-gray-700">
                             Address</label>
-                        <input type="text" wire:model.lazy="barangay" autocomplete="barangay"
-                            value="{{ old('barangay') }}"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        <x-form-input type="text" wire:model="barangay"
+                            value="{{ old('barangay') }}"/>
                     </div>
 
                     <div class="col-span-6">
@@ -129,18 +121,16 @@
 
                     <div class="col-span-2">
                         <label for="occupation" class="block text-sm font-medium text-gray-700">Occupation</label>
-                        <input type="text" wire:model.lazy="occupation" autocomplete="occupation"
-                            value="{{ old('occupation') }}"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        <x-form-input type="text" wire:model="occupation"
+                            value="{{ old('occupation') }}"/>
                         @error('occupation')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="col-span-2">
                         <label for="employer" class="block text-sm font-medium text-gray-700">Employer</label>
-                        <input type="text" wire:model.lazy="employer" autocomplete="employer"
-                            value="{{ old('employer') }}"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        <x-form-input type="text" wire:model="employer"
+                            value="{{ old('employer') }}"/>
                         @error('employer')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -148,9 +138,8 @@
                     <div class="col-span-2">
                         <label for="employer_address" class="block text-sm font-medium text-gray-700">Employer
                             Address</label>
-                        <input type="text" wire:model.lazy="employer_address" autocomplete="employer_address"
-                            value="{{ old('employer_address') }}"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        <x-form-input type="text" wire:model="employer_address"
+                            value="{{ old('employer_address') }}"/>
                         @error('employer_address')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -159,8 +148,7 @@
 
                     <div class="col-span-2">
                         <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
-                        <select wire:model.lazy="gender" autocomplete="gender"
-                            class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <x-form-select wire:model="gender">
                             <option value="">Select one</option>
                             <option value="female" {{ old('gender')=='female' ? 'selected' : 'Select one' }}>
                                 {{
@@ -169,7 +157,7 @@
                                 'male' }}</option>
                             <option value="LGBTQ" {{ old('gender')=='LGBTQ' ? 'selected' : 'Select one' }}>{{
                                 'LGBTQ' }}</option>
-                        </select>
+                        </x-form-select>
                         @error('gender')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -177,9 +165,8 @@
 
                     <div class="col-span-2">
                         <label for="birthdate" class="block text-sm font-medium text-gray-700">Birthdate</label>
-                        <input type="date" wire:model.lazy="birthdate" autocomplete="birthdate"
-                            value="{{ old('birthdate') }}"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        <x-form-input type="date" wire:model="birthdate"
+                            value="{{ old('birthdate') }}"/>
                         @error('birthdate')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -189,8 +176,7 @@
                     <div class="col-span-2">
                         <label for="civil_status" class="block text-sm font-medium text-gray-700">Civil
                             Status</label>
-                        <select wire:model.lazy="civil_status" autocomplete="civil_status"
-                            class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <x-form-select wire:model="civil_status">
                             <option value="">Select one</option>
                             <option value="single" {{ old('civil_status')=='single' ? 'selected' : 'Select one' }}>
                                 {{
@@ -203,7 +189,7 @@
                             <option value="divorced" {{ old('civil_status')=='divorced' ? 'selected' : 'Select one' }}>
                                 {{
                                 'divorced' }}</option>
-                        </select>
+                        </x-form-select>
                         @error('civil_status')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -216,16 +202,14 @@
                     </div>
                     <div class="col-span-2">
                         <label for="spouse_name" class="block text-sm font-medium text-gray-700">Spouse's name</label>
-                        <input type="text" wire:model.lazy="spouse_name" autocomplete="spouse_name"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        <x-form-input type="text" wire:model="spouse_name" />
                         @error('spouse_name')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="col-span-2">
                         <label for="spouse_email" class="block text-sm font-medium text-gray-700">Spouse's Email</label>
-                        <input type="email" wire:model.lazy="spouse_email" autocomplete="spouse_email"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        <x-form-input type="email" wire:model="spouse_email" />
                         @error('spouse_email')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -233,8 +217,7 @@
                     <div class="col-span-2">
                         <label for="spouse_mobile_number" class="block text-sm font-medium text-gray-700">Spouse's
                             Mobile Number</label>
-                        <input type="text" wire:model.lazy="spouse_mobile_number" autocomplete="spouse_mobile_number"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        <x-form-input type="text" wire:model="spouse_mobile_number" />
                         @error('spouse_mobile_number')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -264,8 +247,7 @@
                     <div class="col-span-6">
                         <label for="last-name" class="block text-sm font-medium text-gray-700">How is the representative
                             related to the unit owner</label>
-                        <select wire:model.lazy="representative_relationship_id" autocomplete="relationship_id"
-                            class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <x-form-select wire:model="representative_relationship_id" >
                             <option value="">Select one</option>
                             @foreach ($relationships as $relationship)
                             <option value="{{ $relationship->id }}" {{
@@ -273,7 +255,7 @@
                                 'selected': 'Select one'
                                 }}>{{ $relationship->relationship }}</option>
                             @endforeach
-                        </select>
+                        </x-form-select>
                         @error('representative_relationship_id')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -288,8 +270,7 @@
                     <div class="col-span-2">
                         <label for="representative_name"
                             class="block text-sm font-medium text-gray-700">Representative's name</label>
-                        <input type="text" wire:model.lazy="representative_name" autocomplete="representative_name"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        <x-form-input type="text" wire:model="representative_name" />
                         @error('representative_name')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -297,8 +278,7 @@
                     <div class="col-span-2">
                         <label for="representative_email"
                             class="block text-sm font-medium text-gray-700">Representative's Email</label>
-                        <input type="email" wire:model.lazy="representative_email" autocomplete="representative_email"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        <x-form-input type="email" wire:model="representative_email"/>
                         @error('representative_email')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -306,9 +286,8 @@
                     <div class="col-span-2">
                         <label for="representative_mobile_number"
                             class="block text-sm font-medium text-gray-700">Representative's Mobile Number</label>
-                        <input type="text" wire:model.lazy="representative_mobile_number"
-                            autocomplete="representative_mobile_number"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        <x-form-input type="text" wire:model="representative_mobile_number"
+                            autocomplete="representative_mobile_number"/>
                         @error('representative_mobile_number')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -353,7 +332,7 @@
                 </div>
             </div>
             <div class="flex justify-end">
-                <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}'">
+                <x-button class="bg-red-500" onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}'">
                     Cancel
                 </x-button>
 
@@ -361,6 +340,4 @@
                     Next
                 </x-button>
             </div>
-        </div>
-    </div>
 </form>
