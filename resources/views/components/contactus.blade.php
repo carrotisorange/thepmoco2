@@ -1,7 +1,7 @@
 <!-- Contact form -->
 <div class="py-10 px-6 sm:px-10 col-span-1  lg:col-span-2 xl:p-12">
                     
-                    <form action="https://formsubmit.co/pamelatecson@thepmo.co" method="POST" class="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+                    <form action="https://formsubmit.co/admin@propsuite.net" method="POST" class="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                       
                         <div class="col-span-2 lg:col-span-1">
                           <label for="first-name" class="block text-sm font-medium text-gray-900">First name</label>
