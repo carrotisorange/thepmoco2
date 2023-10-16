@@ -19,7 +19,7 @@
             </div>
 
             <p class="mt-5 text-gray-700">This privacy policy describes how the personally identifiable information you
-              may provide on the thepropertymanager.online website and any of its related products and services is
+              may provide on the propsuite website and any of its related products and services is
               collected, protected, and used. It also describes the choices available to you regarding our use of your
               Personal Information and how you can access and update this information. This Policy is a legally binding
               agreement between you and {{ env('APP_NAME') }} By accessing and using the Website and Services, you
