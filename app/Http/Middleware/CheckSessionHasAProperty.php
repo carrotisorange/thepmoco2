@@ -18,11 +18,10 @@ class CheckSessionHasAProperty
     public function handle(Request $request, Closure $next)
     {
         if(Session::has('property')) {
-            ddd('asdasd');
             return $next($request);
         }else{
             return response()->view('layouts.not-found');
         }
-        
+
     }
 }

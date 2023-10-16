@@ -12,11 +12,11 @@
             </div>
             <div class="ml-3 text-sm leading-6">
                 <label for="comments" class="font-medium text-gray-900"><a target="_blank"
-                    href="/property/{{ $property->uuid }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}/moveout/step-3/export">Moveout Clearance Form</a></label>
+                    href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->uuid }}/moveout/step-3/export">Moveout Clearance Form</a></label>
             </div>
         </div>
 
-      
+
         <div class="relative flex items-start">
             <div class="flex h-6 items-center">
                 <input id="comments" aria-describedby="comments-description" name="comments" type="checkbox" checked disabled
@@ -24,7 +24,7 @@
             </div>
             <div class="ml-3 text-sm leading-6">
                 <label for="comments" class="font-medium text-gray-900"><a target="_blank"
-                        href="/property/{{ $property->uuid }}/unit/{{ $contract->unit_uuid }}/inventory/{{ Str::random(8) }}/export">Unit Inventory
+                        href="/property/{{ Session::get('property_uuid') }}/unit/{{ $contract->unit_uuid }}/inventory/{{ Str::random(8) }}/export">Unit Inventory
                     </a></label>
             </div>
         </div>
@@ -53,18 +53,16 @@
                         <label for="comments" class="font-medium text-gray-900"><a
                                         href="#/">No signed contract was uploaded</a></label>
                     @endif
-          
+
                 </div>
             </div>
-       
+
     </div>
 </fieldset>
     </div>
   <div class="mt-10 text-center mb-10">
-    <button type="button" onclick="window.location.href='/property/{{ $property->uuid}}/tenant/{{ $contract->tenant_uuid }}'"
-        class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-
+    <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid')}}/tenant/{{ $contract->tenant_uuid }}'">
         Finish
-    </button>
+    </x-button>
 </div>
 </div>

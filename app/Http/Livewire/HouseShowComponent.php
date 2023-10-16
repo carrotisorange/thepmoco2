@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\DeedOfSale;
 use Livewire\Component;
 use App\Models\Feature;
 use App\Models\HouseOwnership;

@@ -4,35 +4,31 @@
       <div class="shadow sm:rounded-md sm:overflow-hidden">
          <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
             <div class="grid grid-cols-2 gap-6">
-   
+
                <div class="col-span-2">
-                  <label for="tenant" class="block text-sm font-medium text-gray-700">
-                     Tenant</label>
-                  <input type="text" wire:model="tenant" readonly
-                     class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                  <x-label for="tenant" >
+                     Tenant</x-label>
+                  <x-form-input type="text" wire:model="tenant" readonly />
                </div>
-   
+
                <div class="">
-                  <label for="moveout_at" class="block text-sm font-medium text-gray-700">Date of Moveout</label>
-                  <input type="date" wire:model="moveout_at"
-                     class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                  <z-label for="moveout_at" >Date of Moveout</z-label>
+                  <x-form-input type="date" wire:model="moveout_at" />
                </div>
-   
-   
-   
+
+
+
                <div class="">
-                  <label for="unit" class="block text-sm font-medium text-gray-700">Unit</label>
-                  <input type="text" wire:model="unit" readonly
-                     class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                  <x-label for="unit" >Unit</x-label>
+                  <x-form-input type="text" wire:model="unit" readonly />
                </div>
-   
-   
+
+
                <div class="col-span-2">
-                  <label for="moveout_reason" class="block text-sm font-medium text-gray-700">Reason for
-                     moveout:</label>
+                  <x-label for="moveout_reason" >Reason for
+                     moveout:</x-label>
                   <div class="mt-1">
-                     <select
-                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md"
+                     <x-form-select
                         wire:model="moveout_reason" name="moveout_reason" id="moveout_reason" required>
                         <option value="">Select one</option>
                         <option value="Cancellation" {{ old('moveout_reason')=='Cancellation' ? 'selected' : 'Select one'
@@ -68,37 +64,33 @@
                            old('moveout_reason')=='Unsatisfied with the service' ? 'selected' : 'Select one' }}>
                            {{ 'Unsatisfied with the service' }}
                         </option>
-                     </select>
-   
+                     </x-form-select>
+
                      @error('moveout_reason')
                      <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                      @enderror
                   </div>
-   
+
                </div>
 
                <div class="">
-                  <label for="bank_name" class="block text-sm font-medium text-gray-700">Bank Name</label>
-                  <input type="text" wire:model="bank_name"
-                     class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                  <x-label for="bank_name" >Bank Name</x-label>
+                  <x-form-input type="text" wire:model="bank_name"/>
                </div>
 
                <div class="">
-                  <label for="account_name" class="block text-sm font-medium text-gray-700">Account Name</label>
-                  <input type="text" wire:model="account_name"
-                     class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                  <x-label for="account_name" >Account Name</x-label>
+                  <x-form-input type="text" wire:model="account_name"/>
                </div>
 
                <div class="">
-                  <label for="account_number" class="block text-sm font-medium text-gray-700">Account Number</label>
-                  <input type="text" wire:model="account_number"
-                     class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                  <x-label for="account_number" >Account Number</x-label>
+                  <x-form-input type="text" wire:model="account_number"/>
                </div>
 
                <div class="">
-                  <label for="contact_number" class="block text-sm font-medium text-gray-700">Contact Number</label>
-                  <input type="text" wire:model="contact_number"
-                     class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                  <x-label for="contact_number" >Contact Number</x-label>
+                  <x-form-input type="text" wire:model="contact_number"/>
                </div>
             </div>
             <div class="px-4 py-3 text-right sm:px-6">

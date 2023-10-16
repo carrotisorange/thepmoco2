@@ -18,12 +18,12 @@
             </div>
 
             <div class="flex justify-end mt-5">
-                <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline" href="#/"
+                {{-- <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline" href="#/"
                     wire:click="exitModal()">
                    Cancel
-                </a>
+                </a> --}}
                 <x-button class="w-full" type="submit">
-                    Force Moveout
+                    Confirm
                 </x-button>
             </div>
         </form>

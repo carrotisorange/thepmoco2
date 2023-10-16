@@ -1,7 +1,5 @@
 <?php
-    $addAnchorClass = 'block py-2 px-4 text-sm
-                                                    text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
-                                                    dark:text-gray-200 dark:hover:text-white';
+    $addAnchorClass = 'block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white';
 ?>
 
 <div>
@@ -84,9 +82,7 @@
                         <img src="{{ asset('/brands/avatar.png') }}" alt="door"
                             class="lg:col-span-2 md:row-span-2 rounded-md w-56 lg:w-full">
                         @endif
-
                     </div>
-
                     <div class="mt-5 flex items-center justify-center">
                         <p class="mt-5 text-lg text-center text-gray-700">
                             @if(!$email_cred)
@@ -96,8 +92,6 @@
                             @endif
                         </p>
                     </div>
-
-
                 </div>
             </div>
 
@@ -142,8 +136,6 @@
                                 <div class="">
                                     <x-label for="tenant">Username</x-label>
                                     <x-form-input type="text" value="{{ $username }}" disabled />
-
-
                                 </div>
                             </div>
                             @else
