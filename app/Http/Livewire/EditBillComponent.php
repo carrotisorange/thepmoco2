@@ -10,7 +10,7 @@ use Http\Livewire\URL;
 
 class EditBillComponent extends Component
 {
-    public Bill $bill_details;
+    public $bill_details;
 
     //input variables
     public $bill;
@@ -26,7 +26,6 @@ class EditBillComponent extends Component
     }
 
     public function updateBill(){
-        sleep(2);
 
         $this->validate([
             'bill' => 'required | gt:0'
@@ -40,7 +39,7 @@ class EditBillComponent extends Component
             'particular_id' => $this->particular_id
         ]);
 
-    return redirect(url()->previous())->with('success', 'Changes Saved!');
+        return redirect(url()->previous())->with('success', 'Changes Saved!');
 
         // return back()->with('success', 'Changes Saved!');
     }

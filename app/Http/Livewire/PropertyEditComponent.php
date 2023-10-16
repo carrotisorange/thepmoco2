@@ -42,7 +42,13 @@ class PropertyEditComponent extends Component
     public $business_permit;
     public $registered_tin;
 
-
+    public $doc1;
+    public $doc2;
+    public $doc3;
+    public $doc4;
+    public $doc5;
+    public $doc6;
+    public $doc7;
 
 
     public function mount($property_details)
@@ -71,6 +77,13 @@ class PropertyEditComponent extends Component
             'property' => 'required',
             'type_id' => ['required', Rule::exists('types', 'id')],
             'thumbnail' => 'nullable | mimes:jpg,png, max:102400',
+            'doc1' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            'doc2' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            'doc3' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            'doc4' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            'doc5' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            'doc6' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            'doc7' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
             'description' => 'nullable',
             'country_id' => ['required', Rule::exists('countries', 'id')],
             'province_id' => ['required', Rule::exists('provinces', 'id')],
@@ -127,7 +140,58 @@ class PropertyEditComponent extends Component
             $thumbnail = $this->thumbnail->store('thumbnails');
         }
 
+        if ($this->doc1 === null) {
+            $doc1 = $this->property_details->doc1;
+        }else{
+            $doc1 = $this->doc1->store('doc1');
+        }
+
+        if ($this->doc2 === null) {
+            $doc2 = $this->property_details->doc2;
+        }else{
+            $doc2 = $this->doc2->store('doc2');
+        }
+
+        if ($this->doc3 === null) {
+            $doc3 = $this->property_details->doc3;
+        }else{
+            $doc3 = $this->doc3->store('doc3');
+        }
+
+        if ($this->doc4 === null) {
+            $doc4 = $this->property_details->doc4;
+        }else{
+            $doc4 = $this->doc4->store('doc4');
+        }
+
+        if ($this->doc5 === null) {
+            $doc5 = $this->property_details->doc5;
+        }else{
+            $doc5 = $this->doc4->store('doc5');
+        }
+
+
+        if ($this->doc6 === null) {
+            $doc6 = $this->property_details->doc6;
+        }else{
+            $doc6 = $this->doc6->store('doc6');
+        }
+
+        if ($this->doc7 === null) {
+            $doc7 = $this->property_details->doc7;
+        }else{
+            $doc7 = $this->doc7->store('doc7');
+        }
+
+
         $validated['thumbnail'] = $thumbnail;
+        $validated['doc1'] = $doc1;
+        $validated['doc2'] = $doc2;
+        $validated['doc3'] = $doc3;
+        $validated['doc4'] = $doc4;
+        $validated['doc5'] = $doc5;
+        $validated['doc6'] = $doc6;
+        $validated['doc7'] = $doc7;
 
         $this->property_details->update($validated);
     }

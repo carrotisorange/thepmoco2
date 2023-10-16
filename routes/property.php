@@ -40,6 +40,7 @@ use App\Http\Controllers\TenantWalletController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\AccountPayableController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\BulletinController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\FinancialController;
 use App\Http\Controllers\PropertyUtilityController;
@@ -155,6 +156,8 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
         Route::get('/', [HouseOwnerController::class, 'index'])->name('house-owner');
         Route::get('{house_owner}', [HouseOwnerController::class, 'show'])->name('house-owner');
     });
+
+    Route::get('/bulletin', [BulletinController::class, 'index'])->name('bulletin');
 
     Route::prefix('house')->group(function(){
         Route::get('/', [HouseController::class, 'index'])->name('house');

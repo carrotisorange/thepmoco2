@@ -34,7 +34,6 @@ class UnitController extends Controller
 
         public function update_unit_occupancy_info(Property $property, Unit $unit, Owner $owner)
         {
-            ddd('asad');
             return view('occupancy.create',[
             'unit' => $unit,
             'owner' => $owner,

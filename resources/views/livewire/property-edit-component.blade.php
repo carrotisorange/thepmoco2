@@ -381,6 +381,130 @@
                     </div>
                 </div>
 
+                @if(Session::get('property_type_id' == 8))
+                <div class="sm:col-span-12">
+                    <div class="{{ $formDivClasses }}">
+                       <x-label for="doc1">
+                            DSUD Registration
+                        </x-label>
+                        <div class="mt-2 flex justify-center rounded-md border-2 border-gray-300">
+                            <div class="space-y-1 text-center">
+
+                                <div class="flex text-sm text-gray-600">
+
+                                    <label for="doc1"
+                                        class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
+                                        <span>Upload a file</span>
+                                        <input id="doc1" name="doc1" type="file" wire:model="doc1" class="sr-only">
+                                    </label>
+
+
+                                    @if($property_details->doc1)
+                                    &nbsp; or &nbsp;
+                                    <a target="_blank"
+                                        class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
+                                        href="{{ asset('/storage/'.$property_details->doc1) }}">View attachment</a>
+
+                                    @endif
+
+                                </div>
+                                <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                                <p class="text-center">
+                                    @error('doc1')
+                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                @else
+                                @if($doc1)
+                                    <p class="text-green-500 text-xs mt-2">File has been uploaded!</p>
+                                @endif
+                                @enderror
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sm:col-span-12">
+                    <div class="{{ $formDivClasses }}">
+                        <x-label for="doc2">
+                            GIS
+                        </x-label>
+                        <div class="mt-2 flex justify-center rounded-md border-2 border-gray-300">
+                            <div class="space-y-1 text-center">
+
+                                <div class="flex text-sm text-gray-600">
+
+                                    <label for="doc2"
+                                        class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
+                                        <span>Upload a file</span>
+                                        <input id="doc2" name="doc2" type="file" wire:model="doc2" class="sr-only">
+                                    </label>
+
+
+                                    @if($property_details->doc2)
+                                    &nbsp; or &nbsp;
+                                    <a target="_blank"
+                                        class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
+                                        href="{{ asset('/storage/'.$property_details->doc2) }}">View attachment</a>
+
+                                    @endif
+
+                                </div>
+                                <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                                <p class="text-center">
+                                    @error('doc2')
+                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                @else
+                                @if($doc2)
+                                <p class="text-green-500 text-xs mt-2">File has been uploaded!</p>
+                                @endif
+                                @enderror
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sm:col-span-12">
+                    <div class="{{ $formDivClasses }}">
+                        <x-label for="doc3">
+                            By Laws
+                        </x-label>
+                        <div class="mt-2 flex justify-center rounded-md border-2 border-gray-300">
+                            <div class="space-y-1 text-center">
+
+                                <div class="flex text-sm text-gray-600">
+
+                                    <label for="doc3"
+                                        class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500">
+                                        <span>Upload a file</span>
+                                        <input id="doc3" name="doc3" type="file" wire:model="doc3" class="sr-only">
+                                    </label>
+
+
+                                    @if($property_details->doc3)
+                                    &nbsp; or &nbsp;
+                                    <a target="_blank"
+                                        class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:text-indigo-500"
+                                        href="{{ asset('/storage/'.$property_details->doc3) }}">View attachment</a>
+
+                                    @endif
+
+                                </div>
+                                <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                                <p class="text-center">
+                                    @error('doc3')
+                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                                @else
+                                @if($doc3)
+                                <p class="text-green-500 text-xs mt-2">File has been uploaded!</p>
+                                @endif
+                                @enderror
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endif
 
 
             </div>

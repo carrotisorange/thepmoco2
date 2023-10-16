@@ -25,72 +25,63 @@
    
    
                      <div class="col-span-3 sm:col-span-2">
-                        <label for="created_at" class="block text-sm font-medium text-gray-700">Date reported
-                           </label>
-                        <input type="date" wire:model="created_at" autocomplete="created_at"
-                           value="{{ Carbon\Carbon::parse($concern_details->created_at)->format('M d, Y') }}" readonly
-                           class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        <x-label for="created_at">Date reported
+                           </x-label>
+                        <x-form-input type="date" wire:model="created_at" autocomplete="created_at"
+                           value="{{ Carbon\Carbon::parse($concern_details->created_at)->format('M d, Y') }}" readonly />
                         @error('created_at')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                      </div>
    
                      <div class="col-span-3 sm:col-span-2">
-                        <label for="tenant" class="block text-sm font-medium text-gray-700">Tenant</label>
-                        <input type="text" wire:model="tenant" autocomplete="tenant"
-                           value="{{ $tenant }}" readonly
-                           class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('tenant')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                        <x-label for="tenant" >Tenant</x-label>
+                        <x-form-input type="text" wire:model="tenant" autocomplete="tenant"
+                           value="{{ $tenant }}" readonly/>
+                     
                      </div>
                      
    
                      <div class="col-span-3 sm:col-span-2">
-                        <label for="unit" class="block text-sm font-medium text-gray-700">Unit
-                           No.</label>
-                        @error('unit')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
-                        <input type="text" wire:model="unit" autocomplete="unit"
-                           value="{{$unit }}" readonly
-                           class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        <x-label for="unit" >Unit
+                           No.</x-label>
+                     
+                        <x-form-input type="text" wire:model="unit" autocomplete="unit"
+                           value="{{$unit }}" readonly />
                      </div>
 
                      <div class="col-span-3 sm:col-span-3">
-                        <label for="mobile_number" class="block text-sm font-medium text-gray-700">Mobile</label>
-                        <input type="text" wire:model="mobile_number" autocomplete="mobile_number" 
-                           class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        <x-label for="mobile_number" >Mobile</x-label>
+                        <x-form-input type="text" wire:model="mobile_number" autocomplete="mobile_number" />
                         @error('mobile_number')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                      </div>
 
                      <div class="col-span-3 sm:col-span-3">
-                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                        <input type="email" wire:model="email" autocomplete="email" 
-                           class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        <x-label for="email" >Email</x-label>
+                        <x-form-input type="email" wire:model="email" autocomplete="email" />
                         @error('email')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                      </div>
    
                      <div class="col-span-4 sm:col-span-6">
-                        <label for="subject" class="block text-sm font-medium text-gray-700">
-                           Subject</label>
-                        @error('subject')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
-                        <input type="text" autocomplete="subject" wire:model="subject" readonly
-                           class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        <x-label for="subject" >
+                           Subject</x-label>
+                     
+                        <x-form-input type="text" autocomplete="subject" wire:model="subject" readonly />
+                           @error('subject')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @enderror
                      </div>
    
                      <div class="col-span-3 sm:col-span-6">
                         <fieldset>
                            <div>
-                              <label for="image" class="block text-sm font-medium text-gray-700">Tenant
+                              <x-label for="image">Tenant
                                  Attachment
-                              </label>
+                              </x-label>
                               <div
                                  class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
                                  <div class="space-y-1 text-center">
@@ -130,11 +121,10 @@
                      </div>
    
                      <div class="sm:col-span-2">
-                        <label for="category_id" class="block text-sm font-medium text-gray-700">Category:
-                        </label>
+                        <x-label for="category_id">Category:
+                        </x-label>
    
-                        <select id="category_id" wire:model="category_id"
-                           class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+                        <x-form-select id="category_id" wire:model="category_id">
                            @foreach ($categories as $item)
                            <option value="{{ $item->id }}" {{ old('type_id', $concern_details->category_id)
                               ==$item->id
@@ -142,7 +132,7 @@
                               {{ $item->category }}
                            </option>
                            @endforeach
-                        </select>
+                        </x-form-select>
                         @error('category_id')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -150,11 +140,10 @@
                      </div>
    
                      <div class="sm:col-span-2">
-                        <label for="status" class="block text-sm font-medium text-gray-700">Status:
-                        </label>
+                        <x-label for="status">Status:
+                        </x-label>
    
-                        <select wire:model="status"
-                           class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+                        <x-form-select wire:model="status">
                            <option value="active" {{ old('status', $status)=='active' ?'selected' : '' }}>
                               active
                            </option>
@@ -164,7 +153,7 @@
                            <option value="pending" {{ old('status', $status)=='pending' ?'selected' : '' }}>
                               pending
                            </option>
-                        </select>
+                        </x-form-select>
                         @error('status')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -172,11 +161,10 @@
                      </div>
    
                      <div class="sm:col-span-2">
-                        <label for="urgency" class="block text-sm font-medium text-gray-700">Is Urgent?
-                        </label>
+                        <x-label for="urgency">Is Urgent?
+                        </x-label>
    
-                        <select wire:model="urgency"
-                           class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+                        <x-form-select wire:model="urgency">
                            <option value="no" {{ $urgency=='no' ?'selected' : 'Select one' }}>
                               no
                            </option>
@@ -184,7 +172,7 @@
                               yes
                            </option>
    
-                        </select>
+                        </x-form-select>
                         @error('urgency')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -193,13 +181,12 @@
    
    
                      <div class="sm:col-span-6">
-                        <label for="concern" class="block text-sm font-medium text-gray-700"> Details of the concern
-                        </label>
+                        <x-label for="concern" > Details of the concern
+                        </x-label>
                         <div class="mt-1">
-                           <textarea id="concern" wire:model="concern" row="20"
-                              class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block h-96 w-full sm:text-sm border border-gray-700 rounded-md">
+                           <x-form-textarea id="concern" wire:model="concern" row="20">
                                            {{ $concern_details->concern }}
-                                           </textarea>
+                                           </x-form-textarea>
                            @error('concern')
                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                            @enderror
@@ -208,31 +195,28 @@
                      </div>
    
                      <div class="col-span-3 sm:col-span-3">
-                        <label for="availability_date" class="block text-sm font-medium text-gray-700">Available
+                        <x-label for="availability_date" class="block text-sm font-medium text-gray-700">Available
                            Date
-                        </label>
-                        <input type="date" wire:model="availability_date" autocomplete="availability_date"
-                           class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        </x-label>
+                        <x-form-input type="date" wire:model="availability_date" autocomplete="availability_date"/>
                         @error('availability_date')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                      </div>
    
                      <div class="col-span-3 sm:col-span-3">
-                        <label for="availability_time" class="block text-sm font-medium text-gray-700">Available
+                        <x-label for="availability_time" >Available
                            Time
-                        </label>
-                        <input type="time" wire:model="availability_time" autocomplete="availability_time"
-                           class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        </x-label>
+                        <x-form-input type="time" wire:model="availability_time" autocomplete="availability_time"/>
                         @error('availability_time')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                      </div>
    
                      <div class="col-span-3 sm:col-span-2">
-                        <label for="assessed_at" class="block text-sm font-medium text-gray-700">Date Assessed</label>
-                        <input type="date" wire:model="assessed_at" autocomplete="assessed_at"
-                           class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        <x-label for="assessed_at" >Date Assessed</x-label>
+                        <x-form-input type="date" wire:model="assessed_at" autocomplete="assessed_at"/>
                         @error('assessed_at')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -241,12 +225,11 @@
                    
                      <div class="col-span-6 sm:col-span-2">
                         <div>
-                           <label for="assessed_by_id" class="block text-sm font-medium text-gray-700">Assessed by
-                           </label>
+                           <x-label for="assessed_by_id" >Assessed by
+                           </x-label>
                            <div class="mt-1">
                               @cannot('tenant')
-                              <select id="assessed_by_id" wire:model="assessed_by_id"
-                                 class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+                              <x-formselect id="assessed_by_id" wire:model="assessed_by_id">
                                  <option value="">Select one</option>
                                  @foreach ($users as $item)
                                  <option value="{{ $item->user_id }}" {{ old('assessed_by_id', $assessed_by_id)==$item->
@@ -255,7 +238,7 @@
                                     {{ $item->user->name.'-'.$item->user->role->role }}
                                  </option>
                                  @endforeach
-                              </select>
+                              </x-formselect>
                               @error('assessed_by_id')
                               <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                               @enderror
@@ -279,12 +262,11 @@
                     
                      <div class="col-span-6 sm:col-span-2">
                         <div>
-                           <label for="assigned_to_id" class="block text-sm font-medium text-gray-700">Assign to
-                           </label>
+                           <x-label for="assigned_to_id" >Assign to
+                           </x-label>
                            <div class="mt-1">
                               @cannot('tenant')
-                              <select id="assigned_to_id" wire:model="assigned_to_id"
-                                 class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-full sm:text-sm border border-gray-700  rounded-md">
+                              <x-form-select id="assigned_to_id" wire:model="assigned_to_id">
                                  <option value="">Select one</option>
                                  @foreach ($users as $item)
                                  <option value="{{ $item->user_id }}" {{ old('assigned_to_id', $assigned_to_id)==$item->
@@ -293,7 +275,7 @@
                                     {{ $item->user->name.'-'.$item->user->role->role }}
                                  </option>
                                  @endforeach
-                              </select>
+                              </x-form-select>
                               @error('assigned_to_id')
                               <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                               @enderror
@@ -315,14 +297,12 @@
                      <div class="col-span-3 sm:col-span-6">
                         <fieldset>
                            <div>
-                              <label for="initial_assessment" class="block text-sm font-medium text-gray-700">Results of
+                              <x-label for="initial_assessment" >Results of
                                  the assessment
    
-                              </label>
+                              </x-label>
                               <div class="mt-1">
-                                 <textarea wire:model="initial_assessment" rows="3"
-                                    class="h-16 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700 rounded-md"
-                                    placeholder="">{{ $subject }}</textarea>
+                                 <x-form-textarea wire:model="initial_assessment" rows="3">{{ $subject }}</x-form-textarea>
                                  @error('initial_assessment')
                                  <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                  @enderror
@@ -336,13 +316,11 @@
                      <div class="col-span-3 sm:col-span-6">
                         <fieldset>
                            <div>
-                              <label for="about" class="block text-sm font-medium text-gray-700">Course of action
+                              <x-label for="about" >Course of action
                                  taken:
-                              </label>
+                              </x-label>
                               <div class="mt-1">
-                                 <textarea wire:model="action_taken" rows="3"
-                                    class="h-16 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700 rounded-md"
-                                    placeholder="">{{ $action_taken }}</textarea>
+                                 <x-form-textarea wire:model="action_taken" rows="3">{{ $action_taken }}</x-form-textarea>
                                  @error('action_taken')
                                  <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                  @enderror
@@ -400,15 +378,12 @@
                            </div>
                         </fieldset>
                      </div>
-   
-   
-   
                   </div>
                </div>
                
                @cannot('tenant')
                <div class="flex justify-end">
-                <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/concern'">
+                <x-button class="bg-red-500" onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/concern'">
                     Cancel
                 </x-button>
                   <x-button type="submit">

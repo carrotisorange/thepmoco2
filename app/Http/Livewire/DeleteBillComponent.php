@@ -9,7 +9,7 @@ use App\Models\Collection;
 
 class DeleteBillComponent extends Component
 {
-    public Bill $bill;
+    public $bill;
 
     //input variables
     public $description;
@@ -39,7 +39,6 @@ class DeleteBillComponent extends Component
         ->delete();
 
         Collection::where('bill_id', $this->bill->id)->delete();
-
 
         return redirect(url()->previous())->with('success', 'Changes Saved!');
 

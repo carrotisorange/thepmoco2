@@ -12,7 +12,7 @@ use Session;
 
 class EditBookingComponent extends Component
 {
-    public Booking $booking;
+    public $booking;
 
     //input variables
     public $unit_uuid;
@@ -35,7 +35,7 @@ class EditBookingComponent extends Component
     public $no_of_companions;
     public $remarks;
 
-    public function mount(Booking $booking){
+    public function mount($booking){
         $this->unit_uuid = $booking->unit_uuid;
         $this->movein_at = Carbon::parse($booking->movein_at)->format('Y-m-d');
         $this->moveout_at = Carbon::parse($booking->moveout_at)->format('Y-m-d');
@@ -55,16 +55,9 @@ class EditBookingComponent extends Component
         $this->remarks = $booking->remarks;
     }
 
-    public function updatedUnitUuid(){
-        if($this->unit_uuid){
-            $this->price = Unit::find($this->unit_uuid)->transient_rent;
-        }
-
-    }
-
-    public function updateBooking(){
-
-        $validatedData = $this->validate([
+    protected function rules()
+    {
+        return [
             'unit_uuid' => ['required', Rule::exists('units', 'uuid')],
             'movein_at' => 'required|date',
             'moveout_at' => 'required|date|after:movein_at',
@@ -82,9 +75,24 @@ class EditBookingComponent extends Component
             'no_of_pwd' => 'nullable',
             'no_of_companions'=> 'nullable',
             'remarks'=> 'nullable',
-        ]);
+        ];
+    }
 
-        try {
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
+
+    public function updatedUnitUuid(){
+        if($this->unit_uuid){
+            $this->price = Unit::find($this->unit_uuid)->transient_rent;
+        }
+    }
+
+    public function updateBooking(){
+        $validatedData = $this->validate();
+
+        try {      
 
             DB::transaction(function () use ($validatedData){
 
@@ -95,12 +103,9 @@ class EditBookingComponent extends Component
             });
 
         }catch (\Throwable $e) {
-            ddd($e);
+         
             return back()->with('error', $e);
         }
-
-
-
     }
 
     public function render()
