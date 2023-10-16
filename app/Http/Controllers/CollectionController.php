@@ -99,12 +99,15 @@ class CollectionController extends Controller
 
     public function paymentVerificationIndex($property_uuid, $status)
     {
+
         $paymentRequests = PaymentRequest::join('tenants', 'payment_requests.tenant_uuid', 'tenants.uuid')
-        ->select('*', 'payment_requests.status as payment_status', 'payment_requests.created_at as date_uploaded',
-        'payment_requests.updated_at as date_approved')
-        ->where('tenants.property_uuid', $property_uuid)
+        ->select('*', 'payment_requests.status as payment_status', 'payment_requests.created_at as date_uploaded','payment_requests.updated_at as date_approved')
+        ->where('tenants.property_uuid', Session::get('property_uuid'))
         ->where('payment_requests.status', $status)
-        ->orderBy('payment_requests.created_at', 'desc');
+        ->orderBy('payment_requests.created_at', 'desc')
+        ->get();
+
+        // $paymentRequests = PaymentRequest::where('property_uuid', Session::get('property_uuid'))->get();
 
         return view('payment_requests.index',[
         'requests' => $paymentRequests
@@ -206,6 +209,13 @@ class CollectionController extends Controller
         })
         ->posted()
         ->get();
+    }
+
+    public function show_payment_request($property_uuid, Tenant $tenant, PaymentRequest $paymentRequest)
+    {
+        return view('payment_requests.show',[
+            'paymentRequest' => $paymentRequest,
+        ]);
     }
 
      public function update_collections(Request $request, Property $property, Tenant $tenant, $batch_no)

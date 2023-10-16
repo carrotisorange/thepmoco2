@@ -1,8 +1,8 @@
 <div>
     {{-- @include('layouts.notifications') --}}
     <style>
-        /* since nested groupes are not supported we have to use 
-                                 regular css for the nested dropdowns 
+        /* since nested groupes are not supported we have to use
+                                 regular css for the nested dropdowns
                               */
         li>ul {
             transform: translatex(100%) scale(0)
@@ -58,7 +58,7 @@
                         </span>
                     </x-button>
 
-                    <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
+                    <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
                                       transition duration-150 ease-in-out origin-top min-w-32">
 
                         <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
@@ -86,7 +86,7 @@
                 @if($propertyConcernsCount)
                 <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                    <div class="sm:col-span-6">
-                
+
                     <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
                     <div class="relative w-full mb-5">
                         <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
@@ -99,18 +99,18 @@
                         <input type="search" id="search" wire:model="search"
                             class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Search for reference no..." required>
-                
+
                     </div>
-                
+
                 </div>
 
-                    <div class="sm:col-span-2">
-                        <x-select id="small" name="status" wire:model="status">
+                    <div class="sm:col-span-6">
+                        <x-form-select id="small" name="status" wire:model="status">
                             <option value="">Filter status</option>
                             @foreach ($statuses as $item)
                             <option value="{{ $item->status }}">{{ $item->status }}</option>
                             @endforeach
-                        </x-select>
+                        </x-form-select>
 
                     </div>
 
@@ -149,7 +149,7 @@
                                     </x-button>
 
                                     <ul
-                                        class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute 
+                                        class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
                                                                       transition duration-150 ease-in-out origin-top min-w-32">
 
                                         <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a

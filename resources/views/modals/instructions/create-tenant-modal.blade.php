@@ -18,8 +18,7 @@
             </div>
 
             <div class="mt-5 sm:mt-6">
-                <x-button class="w-full" type="button" wire:click="redirectToUnitSelectionPage"
-                  >
+                <x-button class="w-full" wire:click="redirectToUnitSelectionPage">
                     Select a unit
                 </x-button>
 

@@ -1,7 +1,7 @@
 <x-new-layout>
     <div class="mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 xl:py-10">
         <div class="flex justify-end">
-         
+
         </div>
         {{-- start of stepper --}}
         <div class="lg:border-t lg:border-b lg:border-gray-200">
@@ -187,7 +187,7 @@
 
         <div class="mt-5 px-4 sm:px-6 lg:px-8">
             {{-- start-step-3-form --}}
-            @livewire('contract-moveout-step4-component', ['property'=> $property, 'tenant' => $tenant ,'contract' =>
+            @livewire('contract-moveout-step4-component', ['tenant' => $tenant ,'contract' =>
             $contract])
             {{-- end-step-3-form --}}
         </div>

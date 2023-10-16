@@ -5,11 +5,9 @@
     <p class="text-center mb-5 text-red-800"><i class="fa-solid fa-triangle-exclamation"></i> Unpaid bills have to be
         settled to proceed.</p>
     <div class="mt-10 text-center mb-10">
-        <button type="button" data-modal-toggle="create-particular-modal"
-            class="inline-flex items-center rounded-md border border-transparent bg-purple-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
-
+        <x-button data-modal-toggle="create-particular-modal">
             Force Moveout
-        </button>
+        </x-button>
     </div>
 
     <div class="mb-5 mt-2 relative overflow-x-auto ring-opacity-5 md:rounded-lg">

@@ -20,7 +20,7 @@
         <div class="mt-3">
             @if($propertyTenantsCount)
 
-            <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+            <div class="mt-5 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                <div class="sm:col-span-6">
 
                 <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
@@ -41,22 +41,22 @@
             </div>
 
                 <div class="sm:col-span-3">
-                    <x-select name="category" wire:model="category">
+                    <x-form-select name="category" wire:model="category">
                          <option value="" selected>Filter category</option>
                         @foreach ($categories as $category)
                         <option value="{{ $category->category }}">{{ $category->category }}</option>
                         @endforeach
-                    </x-select>
+                    </x-form-select>
 
                 </div>
 
                 <div class="sm:col-span-3">
-                    <x-select name="status" wire:model="status">
+                    <x-form-select name="status" wire:model="status">
                         <option value="" selected>Filter status</option>
                         @foreach ($statuses as $status)
                         <option value="{{ $status->status }}">{{ $status->status }}</option>
                         @endforeach
-                    </x-select>
+                    </x-form-select>
 
                 </div>
 
