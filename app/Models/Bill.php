@@ -30,7 +30,7 @@ class Bill extends Model
         return $this->belongsTo(Collection::class, 'bill_id');
      }
 
-     
+
 
     public function tenant()
     {
@@ -42,10 +42,14 @@ class Bill extends Model
         return $this->belongsTo(Owner::class, 'owner_uuid');
     }
 
+    public function houseOwner(){
+        return $this->belongsTo(HouseOwner::class,'house_owner_id');
+    }
+
     public function guest(){
         return $this->belongsTo(Guest::class, 'guest_uuid');
     }
-    
+
 
     public function particular()
     {

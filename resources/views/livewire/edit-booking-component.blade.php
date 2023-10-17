@@ -1,11 +1,10 @@
 <x-modal-component>
     <x-slot name="id">
-    edit-booking-modal-{{$booking->uuid}}
+            edit-booking-modal-{{$booking->uuid}}
     </x-slot>
     <h1 class="text-center font-medium">Edit Booking</h1>
+    <form wire:submmit.prevent="updateBooking()">
     <div class="p-5">
-<form wire:submmit.prevent="updateBooking">
-  
     <div class="mt-5 sm:mt-6">
         <x-label class="text-sm" for="birthdate">Guest</x-label>
         <x-form-input type="text" readonly value="{{ $booking->guest->guest }}" />
@@ -15,7 +14,6 @@
     <div class="mt-5 sm:mt-6">
         <x-label class="text-sm" for="unit_uuid">Unit</x-label>
         <x-form-select wire:model="unit_uuid" class="">
-
             @foreach ($units as $unit)
             <option value="{{ $unit->uuid }}" {{ $unit->uuid === $unit_uuid?
                 'selected': 'Select one' }}> {{ $unit->unit }}
@@ -88,7 +86,6 @@
             <option value="reserved" {{ "reserved"===$status? 'selected' : 'Select one' }}>
                 reserved
             </option>
-
 
         </x-form-select>
 
@@ -183,8 +180,9 @@
         </x-button>
 
     </div>
+    </form>
     </div>
-</form>
+
 
 </x-modal-component>
 

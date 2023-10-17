@@ -5,6 +5,10 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Election;
 use Session;
+use App\Models\Bill;
+use DB;
+use App\Models\Voter;
+use Carbon\Carbon;
 
 class ElectionEditStep1Component extends Component
 {
@@ -43,10 +47,32 @@ class ElectionEditStep1Component extends Component
     public function submitForm(){
         $validatedInputs = $this->validate();
 
+        $houseOwners = Bill::select('*',DB::raw('datediff(CURRENT_DATE,start)/30 as delayed_dues_in_months'))
+        ->where('property_uuid', Session::get('property_uuid'))->where('status','unpaid')
+        ->get();
+
         Election::where('id', $this->election->id)->update($validatedInputs);
+
+           foreach($houseOwners as $houseOwner){
+                    Voter::updateOrCreate(
+                        [
+                            'house_owner_id' => $houseOwner->house_owner_id,
+                            'election_id' => $this->election->id,
+                        ],
+                        [
+                            'house_owner_id' => $houseOwner->house_owner_id,
+                            'election_id' => $this->election->id,
+                            'number_of_years_as_hoa_member' => ($houseOwner->houseOwner->created_at)->diffInYears(Carbon::now()),
+                            'number_of_past_due_account' => $houseOwner->delayed_dues_in_months,
+
+                        ]
+                    );
+                }
 
         return redirect('/property/'.Session::get('property_uuid').'/election/'.$this->election->id.'/create/step-2')->with('success', 'Success!');
     }
+
+
 
 
     public function render()

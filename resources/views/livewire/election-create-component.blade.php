@@ -29,10 +29,11 @@
         <div class="lg:col-span-1 mt-2 ml-5">
             <x-label for="is_proxy_voting_allowed">Is Proxy Voting Allowed?</x-label>
             <x-form-select wire:model='is_proxy_voting_allowed' >
-                <option value="1" {{ "1"===$status? 'selected' : 'Select one' }}>
+                <option value="">Select one</option>
+                <option value="1" {{ 1==$is_proxy_voting_allowed? 'selected' : 'Select one' }}>
                     Yes
                 </option>
-                <option value="0" {{ "0"===$status? 'selected' : 'Select one' }}>
+                <option value="0" {{ 0==$is_proxy_voting_allowed? 'selected' : 'Select one' }}>
                     No
                 </option>
             </x-form-select>

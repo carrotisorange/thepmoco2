@@ -92,7 +92,7 @@ class EditBookingComponent extends Component
     public function updateBooking(){
         $validatedData = $this->validate();
 
-        try {      
+        try {
 
             DB::transaction(function () use ($validatedData){
 
@@ -103,7 +103,7 @@ class EditBookingComponent extends Component
             });
 
         }catch (\Throwable $e) {
-         
+
             return back()->with('error', $e);
         }
     }

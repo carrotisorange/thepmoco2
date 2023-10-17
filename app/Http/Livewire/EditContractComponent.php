@@ -40,11 +40,11 @@ class EditContractComponent extends Component
     public function updatedUnitUuid(){
         $this->rent = Unit::find($this->unit_uuid)->rent;
     }
-    
+
     protected function rules()
     {
         return [
-            // 'tenant_contract' => 'nullable|mimes:jpg,bmp,png,pdf,docx|max:10240',
+            'tenant_contract' => 'nullable|mimes:jpg,bmp,png,pdf,docx|max:10240',
             'unit_uuid' => 'required',
             'start' => 'required|date',
             'rent' => 'required',
@@ -60,27 +60,40 @@ class EditContractComponent extends Component
     }
 
     public function updateContract(){
-        
-        $validated = $this->validate();
 
+        try {
 
-        if($this->updateTenantStatus){
-           Tenant::where('uuid', $this->contract->tenant_uuid)
-           ->update(['status'=> $this->status]);
+        $validatedData = $this->validate();
+
+          DB::transaction(function () use ($validatedData){
+
+            if($this->updateTenantStatus){
+                
+            Tenant::where('uuid', $this->contract->tenant_uuid)
+                ->update(['status'=> $this->status]);
+            }
+
+            if ($this->tenant_contract === null) {
+                $tenant_contract = $this->contract->contract;
+            }else{
+                $tenant_contract = $this->tenant_contract->store('contracts');
+            }
+
+            $validated['contract'] = $tenant_contract;
+
+            Contract::where('uuid', $this->contract->uuid)
+            ->update($validated);
+
+            return back()->with('success', 'Changes Saved!');
+
+          });
+
+          }catch (\Throwable $e) {
+
+            return back()->with('error', $e);
         }
 
-         if ($this->tenant_contract === null) {
-            $tenant_contract = $this->contract->contract;
-         }else{
-            $tenant_contract = $this->tenant_contract->store('contracts');
-         }
 
-         $validated['contract'] = $tenant_contract;
-   
-        Contract::where('uuid', $this->contract->uuid)
-        ->update($validated);
-
-         return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 
     public function render()

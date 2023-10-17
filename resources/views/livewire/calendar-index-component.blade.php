@@ -26,8 +26,7 @@
 
                     <div class="mt-10 px-4 sm:px-6 lg:px-8">
                         <!-- Modal -->
-                        <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
+                        <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 {{-- <form action="" method="POST">
                                     @csrf --}}
@@ -100,10 +99,8 @@
                                             <span id="remarkError" class="text-danger text-sm"></span>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Close</button>
-                                            <button type="button" id="saveBtn" class="btn btn-primary">Book</button>
-
+                                            <x-button class="bg-red-500" data-bs-dismiss="modal">Close</x-button>
+                                            <x-button id="saveBtn">Book</x-button>
                                         </div>
                                     </div>
                                     {{--

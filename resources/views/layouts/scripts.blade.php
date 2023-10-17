@@ -16,12 +16,12 @@
 })
 </script> --}}
 
-@livewire('livewire-ui-modal')
+{{-- @livewire('livewire-ui-modal') --}}
 
 <script src="https://unpkg.com/flowbite@1.5.4/dist/flowbite.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"
-  integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"
+  integrity="sha256-XF29CBwU1MWLaGEnsELogU6Y6rcc5nCkhhx89nFMIDQ=" crossorigin="anonymous"></script> --}}
 
 @yield('scripts')
 
