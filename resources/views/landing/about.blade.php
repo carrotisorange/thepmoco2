@@ -276,6 +276,7 @@
             </div>
         </div>
 
+        <x-partner></x-partner>
 
         <div>
             <div id="contactus">

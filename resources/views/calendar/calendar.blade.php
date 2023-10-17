@@ -148,9 +148,9 @@
                 </div>
 
                 <div class="mt-8 text-right">
-                    <button type="button" class="bg-white hover:bg-gray-100 text-gray-700 font-semibold py-2 px-4 border border-gray-300 rounded-lg shadow-sm mr-2" @click="openEventModal = !openEventModal">
+                    <x-button class="bg-red-500" @click="openEventModal = !openEventModal">
                         Cancel
-                    </button>
+                    </x-button>
                     <button type="button" class="bg-gray-800 hover:bg-gray-700 text-white font-semibold py-2 px-4 border border-gray-700 rounded-lg shadow-sm" @click="addEvent()">
                         Book
                     </button>

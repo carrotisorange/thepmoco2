@@ -8,6 +8,7 @@ use App\Models\Feature;
 use App\Models\Election;
 use Session;
 use Carbon\Carbon;
+use App\Models\Voter;
 
 class ElectionController extends Controller
 {
@@ -36,13 +37,64 @@ class ElectionController extends Controller
         ]);
     }
 
+    public function export_step_2(Property $property, Election $election){
+        $folder_path = 'elections.export-step-2';
+
+        $voters = Voter::where('election_id', $election->id)
+        ->where('number_of_past_due_account','<',$election->number_of_months_behind_dues)
+        ->get();
+
+        $data = [
+            'election' => $election,
+            'voters' => $voters,
+        ];
+
+
+        $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
+
+        $pdf_name = str_replace(' ', '_', $property->property).'_'.Carbon::parse($election->date_of_election)->format('Y').'_Election_Voters.pdf';
+
+        return $pdf->stream($pdf_name);
+    }
+
     public function create_step_3(Property $property, Election $election){
         return view('elections.create-step-3',[
             'election' => $election
         ]);
     }
 
+    public function export_step_3(Property $property, Election $election){
+        $folder_path = 'elections.export-step-3';
 
+        $candidates = Voter::where('election_id', $election->id)
+        ->where('is_candidate',1)
+        ->get();
+
+        $data = [
+            'election' => $election,
+            'candidates' => $candidates,
+        ];
+
+
+        $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
+
+        $pdf_name = str_replace(' ', '_', $property->property).'_'.Carbon::parse($election->date_of_election)->format('Y').'_Election_Candidates_.pdf';
+
+        return $pdf->stream($pdf_name);
+    }
+
+    public function create_step_4(Property $property, Election $election){
+        return view('elections.create-step-4',[
+            'election' => $election
+        ]);
+    }
+
+
+    public function create_step_5(Property $property, Election $election){
+        return view('elections.create-step-5',[
+            'election' => $election
+        ]);
+    }
 
 
 

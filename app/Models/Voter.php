@@ -11,5 +11,18 @@ class Voter extends Model
 
     protected $attributes = [
         'position_id' => 1,
+        'is_voter' => true,
     ];
+
+    public function houseOwner()
+    {
+        return $this->belongsTo(HouseOwner::class, 'house_owner_id');
+    }
+
+    public function house()
+    {
+        return $this->belongsTo(House::class, 'house_id');
+    }
+
+
 }

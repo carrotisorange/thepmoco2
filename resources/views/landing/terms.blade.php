@@ -304,7 +304,7 @@
 
             <p class="mt-5 text-gray-700">If you would like to contact us to understand more about this Policy or wish
               to contact us concerning any matter relating to individual rights and your Personal Information, you may
-              send an email to support@thepmo.co</p>
+              send an email to admin@propsuite.net</p>
 
             <p class="mt-5 font-thin text-gray-700">This document was last updated on August 12, 2022</p>
 

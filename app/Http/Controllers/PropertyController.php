@@ -24,7 +24,6 @@ use App\Models\Guest;
 use App\Models\Country;
 use App\Models\Province;
 use App\Models\City;
-use App\Models\Barangay;
 
 class PropertyController extends Controller
 {
@@ -34,44 +33,31 @@ class PropertyController extends Controller
 
         $this->is_user_allowed_to_access(auth()->user()->status);
 
-        $current_user_role_id = auth()->user()->role_id;
-
-        $current_user_username = auth()->user()->username;
-
-        $sales = '12';
-
-        $dev = '10';
-
-        $tenant = '8';
-
-        $owner = '7';
-
-        if($current_user_role_id == $sales)
-        {
-            return redirect($current_user_role_id.'/sale/'.$current_user_username.'/signup');
-        }
-        elseif($current_user_role_id == $dev)
-        {
-           return redirect('/dashboard/dev');
-        }
-        elseif($current_user_role_id == $tenant)
-        {
-            return redirect($current_user_role_id.'/tenant/'.$current_user_username.'/contract');
-        }
-        elseif($current_user_role_id == $owner)
-        {
-            return redirect($current_user_role_id.'/owner/'.$current_user_username.'/unit');
-        }
-        elseif($current_user_role_id != ['12', '10', '8', '7'])
-        {
-            return view('properties.index');
-        }
+        return $this->redirectPageTo();
     }
+
+    public function show(Property $property)
+    {
+        $featureId = 1;
+
+        $restrictionId = 2;
+
+        app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
+
+        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
+            return abort(403);
+        }
+
+        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,$restrictionId,$featureId);
+
+        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
+
+        return view('properties.show');
+    }
+
 
     public function create($random_str)
     {
-        // $this->authorize('is_portfolio_create_allowed');
-
         return view('properties.create', [
             'random_str' => $random_str,
             'types' => Type::all(),
@@ -107,6 +93,46 @@ class PropertyController extends Controller
          }
 
         return Property::create($validatedData);
+    }
+
+
+
+    
+
+       public function redirectPageTo(){
+
+        $current_user_role_id = auth()->user()->role_id;
+
+        $current_user_username = auth()->user()->username;
+
+        $sales = '12';
+
+        $dev = '10';
+
+        $tenant = '8';
+
+        $owner = '7';
+
+        if($current_user_role_id == $sales)
+        {
+            return redirect($current_user_role_id.'/sale/'.$current_user_username.'/signup');
+        }
+        elseif($current_user_role_id == $dev)
+        {
+            return redirect('/dashboard/dev');
+        }
+        elseif($current_user_role_id == $tenant)
+        {
+            return redirect($current_user_role_id.'/tenant/'.$current_user_username.'/contract');
+        }
+        elseif($current_user_role_id == $owner)
+        {
+            return redirect($current_user_role_id.'/owner/'.$current_user_username.'/unit');
+        }
+        elseif($current_user_role_id != ['12', '10', '8', '7'])
+        {
+            return view('properties.index');
+        }
     }
 
     public function get_occupancy_rate_dates($value)
@@ -453,12 +479,6 @@ class PropertyController extends Controller
             ]);
         }
     }
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Property  $property
-     * @return \Illuminate\Http\Response
-     */
 
     public function update_property_note_to_bill($property_uuid, $note)
     {
@@ -482,24 +502,7 @@ class PropertyController extends Controller
     }
 
 
-    public function show(Property $property)
-    {
-        $featureId = 1;
 
-        $restrictionId = 2;
-
-        app('App\Http\Controllers\PropertyController')->store_property_session($property->uuid);
-
-        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
-            return abort(403);
-        }
-
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,$restrictionId,$featureId);
-
-        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
-
-        return view('properties.show');
-    }
 
 
     public function save_unit_stats($property_uuid)
