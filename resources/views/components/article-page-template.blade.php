@@ -263,17 +263,9 @@
 
         </nav>
 
-        <script>
-            const nav = document.querySelector('.navbar');
-
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 100) nav.style.background = '#4F3F6D';
-        else nav.style.background = 'transparent';
-    });
-        </script>
 
         <div class="navbar-menu relative z-50 hidden">
-            <div class="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
+            <div class="navbar-backdrop fixed inset-0 bg-gray-800 "></div>
             <nav
                 class="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
                 <div class="flex items-center mb-8">
@@ -332,7 +324,7 @@
 
         </nav>
         <div class="navbar-menu relative z-50 hidden">
-            <div class="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
+            <div class="navbar-backdrop fixed inset-0 bg-gray-800 "></div>
             <nav id="nav"
                 class="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
                 <div class="flex items-center mb-8">
