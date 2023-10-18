@@ -14,11 +14,15 @@ class CreateFeaturesTable extends Migration
     public function up()
     {
         Schema::create('features', function (Blueprint $table) {
-            $table->id();
-            $table->string('feature');
-            $table->longText('description')->nullable();
-            $table->double('price');
-            $table->timestamps();
+          $table->id();
+          $table->string('feature');
+          $table->longText('description')->nullable();
+        $table->double('price');
+        $table->string('icon')->nullable();
+        $table->boolean('is_active')->nullable();
+        $table->longText('subfeatures')->nullable();
+        $table->string('alias')->nullable();
+          $table->timestamps();
         });
     }
 
