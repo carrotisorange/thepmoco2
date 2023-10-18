@@ -211,139 +211,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	</div>
 </body>
 
-    <body>
-        <nav id="nav" class="lg:sticky top-0 z-10 relative px-4 py-6 flex justify-between items-center">
-            <a class="text-3xl font-bold leading-none" href="/">
-                <img class="h-10" src="{{ asset('/brands/landing/pmo-logo.webp') }}" alt="{{ env('APP_LOGO_DESC ') }}">
-            </a>
-            <div class="lg:hidden">
-                <button class="navbar-burger flex items-center text-white p-3">
-                    <svg class="block h-4 w-4 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <title>Mobile menu</title>
-                        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-                    </svg>
-                </button>
-            </div>
-            <ul
-                class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-10">
-                <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="/">Home</a></li>
+    
 
-                <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="about">About Us</a></li>
 
-                <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="faq">FAQs</a></li>
-
-                <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="blog-1">Articles</a></li>
-
-                <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="owner-corner">Property
-                        Owners
-                        Corner</a></li>
-
-            </ul>
-            <a id="button1"
-                class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm font-bold text-white hover:bg-gray-300  rounded-xl transition duration-200"
-                href="/select-a-plan">Sign Up</a>
-            <a class="hidden lg:inline-block py-2 px-6  text-sm text-white hover:bg-gray-400 rounded-2xl transition duration-200"
-                href="/login">Sign In</a>
-        </nav>
-        <div class="navbar-menu relative z-50 hidden">
-            <div class="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
-            <nav
-                class="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
-                <div class="flex items-center mb-8">
-                    <a class="mr-auto text-3xl font-bold leading-none" href="#">
-                        <img class="h-20" src="{{ asset('/brands/'.env('APP_LOGO')) }}"
-                            alt="{{ env('APP_LOGO_DESC ') }}">
-                    </a>
-                    <button class="navbar-close">
-                        <svg class="h-6 w-6 text-gray-400 cursor-pointer hover:text-gray-500"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                </div>
-                <div>
-                    <ul>
-                        <li class="mb-1" tabindex="0">
-                            <a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded"
-                                href="/">Home</a>
-                        </li>
-                        <li class="mb-1" tabindex="0">
-                            <a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded"
-                                href="about">About Us</a>
-                        </li>
-                        <li class="mb-1" tabindex="0">
-                            <a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded"
-                                href="faq">FAQs</a>
-                        </li>
-                        <li class="mb-1" tabindex="0">
-                            <a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded"
-                                href="blog-1">Articles</a>
-                        </li>
-                        <li class="mb-1" tabindex="0">
-                            <a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded"
-                                href="owner-corner">Property Owners Corner</a>
-                        </li>
-
-                    </ul>
-                </div>
-                <div class="mt-auto">
-                    <div class="pt-6">
-                        <a class="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold leading-none bg-gray-50 hover:bg-gray-100 rounded-xl"
-                            href="/login">Sign in</a>
-                        <a class="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-purple-600 hover:bg-purple-700  rounded-xl"
-                            href="/select-a-plan">Sign Up</a>
-                    </div>
-                    <p class="my-4 text-xs text-center text-gray-400">
-                        <span>Copyright © 2022</span>
-                    </p>
-                </div>
-            </nav>
-        </div>
-    </body>
-
-    <script>
-        // Burger menus
-document.addEventListener('DOMContentLoaded', function() {
-    // open
-    const burger = document.querySelectorAll('.navbar-burger');
-    const menu = document.querySelectorAll('.navbar-menu');
-
-    if (burger.length && menu.length) {
-        for (var i = 0; i < burger.length; i++) {
-            burger[i].addEventListener('click', function() {
-                for (var j = 0; j < menu.length; j++) {
-                    menu[j].classList.toggle('hidden');
-                }
-            });
-        }
-    }
-
-    // close
-    const close = document.querySelectorAll('.navbar-close');
-    const backdrop = document.querySelectorAll('.navbar-backdrop');
-
-    if (close.length) {
-        for (var i = 0; i < close.length; i++) {
-            close[i].addEventListener('click', function() {
-                for (var j = 0; j < menu.length; j++) {
-                    menu[j].classList.toggle('hidden');
-                }
-            });
-        }
-    }
-
-    if (backdrop.length) {
-        for (var i = 0; i < backdrop.length; i++) {
-            backdrop[i].addEventListener('click', function() {
-                for (var j = 0; j < menu.length; j++) {
-                    menu[j].classList.toggle('hidden');
-                }
-            });
-        }
-    }
-});
-    </script>
 
     <main>
         <!-- Social Sharing Bar -->
@@ -373,6 +243,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
                 </svg>
             </a>
+        </div>
+
+        <div class="mt-1">  
+            {{ $slot }}
         </div>
 
       <div class="mt-12 border-t border-gray-200 pt-8 flex items-center justify-center lg:mt-16">
