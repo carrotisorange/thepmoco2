@@ -17,6 +17,11 @@ class CreateTypesTable extends Migration
             $table->id();
             $table->string('type');
             $table->longText('description');
+            $table->string('stepper')->nullable();
+            $table->foreignId('unit_type_id')->constrained();
+            $table->longText('features')->nullable();
+            $table->foreignId('landing_page_feature_id')->nullable()->constrained();
+            $table->string('icon')->nullable();
             $table->timestamps();
         });
     }
