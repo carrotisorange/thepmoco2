@@ -8,7 +8,7 @@
 
     <dh-component>
 
-        <form action="https://formsubmit.co/cheskaoraleelacio@thepmo.co" method="POST">
+        <form action="https://formsubmit.co/admin@propsuite.net" method="POST">
 
             <div class="py-12  transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0"
                 id="modal">
@@ -52,7 +52,7 @@
                                 class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-purple-600 bg-purple-500 rounded-2xl text-white px-8 py-2 text-sm">Submit</button>
                             <a href="/"
                                 class=" focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded-2xl px-8 py-2 text-sm">Cancel</a>
-                            <input type="hidden" name="_next" value="https://thepropertymanager.online/demo">
+                            <input type="hidden" name="_next" value="https://propsuite.net/demo">
                         </div>
 
                     </div>
