@@ -32,7 +32,7 @@ class PropertyIndexComponent extends Component
         $propertyTypes = app('App\Http\Controllers\PropertyController')->get_property_types(auth()->user()->id);
         $userPropertyCount = UserProperty::where('user_id', $userId)->count();
 
-        $featureId = 20;
+        $featureId = 19;
 
         $propertySubFeatures = Feature::where('id', $featureId)->pluck('subfeatures')->first();
 

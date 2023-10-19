@@ -15,7 +15,7 @@
         </div>
 
         <div class=" mt-10 flex items-center justify-center">
-            <x-button onclick="window.location.href='/property/'" >Get started</x-button>
+            <x-button onclick="window.location.href='/property/'" >Let's Go</x-button>
         </div>
     </div>
 </div>
