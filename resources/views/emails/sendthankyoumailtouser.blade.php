@@ -1,5 +1,5 @@
 @component('mail::message')
-# Hi, {{ $data['name'] }}!
+# Hi there!
 
 I am one of the co-founders of {{ env('APP_NAME') }},
 and I am excited you have decided to sign up.

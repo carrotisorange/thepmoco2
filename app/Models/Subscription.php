@@ -9,6 +9,10 @@ class Subscription extends Model
 {
     use HasFactory;
 
+    protected $attributes = [
+        'status' => 'active'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

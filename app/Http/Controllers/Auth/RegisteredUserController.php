@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Restriction;
 use App\Models\User;
-use App\Models\UserRestriction;
+use App\Models\Subscription;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -45,9 +45,18 @@ class RegisteredUserController extends Controller
         $attributes['discount_code'] = 'none';
         $attributes['username'] = $request->email;
 
+
         $user = User::create($attributes);
 
-        Mail::to($user->email)->send(new SendThankyouMailToUser($user));
+        Subscription::create([
+        'user_id' => $user->id,
+        'plan_id' => 1,
+        'quantity' => 1,
+        'price' => 0,
+        'trial_ends_at' => Carbon::now()->addMonths(2),
+        ]);
+
+        Mail::to($user->email)->send(new SendThankyouMailToUser());
 
       event(new Registered($user));
 

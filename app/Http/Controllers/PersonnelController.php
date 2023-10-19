@@ -29,7 +29,7 @@ class PersonnelController extends Controller
         ->where('user_properties.role_id','!=', 5)
         ->count();
 
-        if($propertyVerifiedPersonnelsCount != 0){
+        if($propertyVerifiedPersonnelsCount == 0){
             return redirect('/property/'.Session::get('property_uuid').'/congratulations');
         }else{
                 return view('properties.personnels.index',[
