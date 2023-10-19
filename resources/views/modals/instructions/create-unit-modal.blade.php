@@ -21,12 +21,12 @@
 
             <div class="mt-2 sm:mt-6">
                 <x-input type="text" wire:model="numberOfUnits" name="numberOfUnits" />
+                <small>Your plan is limited to {{ $unitLimits }} units only.</small>
             </div>
 
             <div class="mt-5 sm:mt-6">
                 <p class="text-center">
-                  
-                    <x-button class="w-full" type="button" wire:click="storeUnits">
+                    <x-button class="w-full" wire:click="storeUnits">
                         Confirm
                     </x-button>
                 </p>

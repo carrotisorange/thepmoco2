@@ -1,9 +1,10 @@
 <div>
-   {{-- @include('layouts.notifications') --}}
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:units-center">
             <div class="sm:flex-auto">
-                <h1 class="text-3xl font-bold text-gray-700">Units / Edit</h1>
+                <h1 class="text-3xl font-bold text-gray-500">
+                    {{ucfirst(Route::current()->getName())}}
+                </h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/unit'">Back

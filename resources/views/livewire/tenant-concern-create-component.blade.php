@@ -1,5 +1,5 @@
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -100,7 +100,8 @@
 
 
                                         <div class="col-span-6">
-                                            <label class="block text-sm font-medium text-gray-700"> Please attach an image of the concern
+                                            <label class="block text-sm font-medium text-gray-700"> Please attach an
+                                                image of the concern
                                             </label>
                                             <div
                                                 class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">

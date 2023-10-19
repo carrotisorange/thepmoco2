@@ -1,5 +1,5 @@
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
             <h1 class="text-3xl font-bold text-gray-500">Account Payables</h1>
@@ -15,8 +15,8 @@
             </x-button>
 
             {{-- @endcan --}}
-            <x-button onclick="window.location.href='/property/{{ $accountpayable->property_uuid }}/accountpayable'"
-                >Back
+            <x-button onclick="window.location.href='/property/{{ $accountpayable->property_uuid }}/accountpayable'">
+                Back
             </x-button>
 
         </div>

@@ -1,5 +1,5 @@
 <x-modal-component>
-    {{-- @include('layouts.notifications') --}}
+
     <x-slot name="id">
         delete-collection-modal-{{$collection->id}}
     </x-slot>

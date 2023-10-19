@@ -1,48 +1,51 @@
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
                 <h1 class="text-3xl font-bold text-gray-700">
-                      {{ucfirst(Route::current()->getName())}}
+                    {{ucfirst(Route::current()->getName())}}
                 </h1>
             </div>
             @if($propertyCollectionsCount)
             <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-        </div>
+            </div>
 
             <div class="sm:col-span-6">
 
-                            <div class="group inline-block">
-                                <x-button>Export
+                <div class="group inline-block">
+                    <x-button>Export
 
-                                    &nbsp; <i class="fa-solid fa-caret-down"></i>
-                                </x-button>
+                        &nbsp; <i class="fa-solid fa-caret-down"></i>
+                    </x-button>
 
-                                <ul
-                                    class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
+                    <ul
+                        class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
                                                                                                               transition duration-150 ease-in-out origin-top min-w-32">
 
-                                    <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
-                                            href="/property/{{ Session::get('property_uuid') }}/dcr/{{ $start_date }}/{{ $end_date }}/excel" target="_blank">as
-                                            Excel</a>
-                                    </li>
-                                    <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
-                                            href="/property/{{ Session::get('property_uuid') }}/dcr/{{ $start_date }}/{{ $end_date }}/pdf" target="_blank">as PDF</a>
-                                    </li>
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
+                                href="/property/{{ Session::get('property_uuid') }}/dcr/{{ $start_date }}/{{ $end_date }}/excel"
+                                target="_blank">as
+                                Excel</a>
+                        </li>
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
+                                href="/property/{{ Session::get('property_uuid') }}/dcr/{{ $start_date }}/{{ $end_date }}/pdf"
+                                target="_blank">as PDF</a>
+                        </li>
 
-                                </ul>
+                    </ul>
 
-                            </div>
+                </div>
 
 
                 <x-button
-                    onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/pending'"> Verify Payments
+                    onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/pending'">
+                    Verify Payments
                 </x-button>
                 <div class="group inline-block">
                     <x-button> New
-                            collection</span>
-                     &nbsp; <i class="fa-solid fa-caret-down"></i>
+                        collection</span>
+                        &nbsp; <i class="fa-solid fa-caret-down"></i>
                     </x-button>
 
                     <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
@@ -71,7 +74,7 @@
 
             <div class="sm:col-span-3">
                 <x-label>Start</x-label>
-               <x-form-input name="start_date" type="date" wire:model="start_date" />
+                <x-form-input name="start_date" type="date" wire:model="start_date" />
 
             </div>
 
@@ -109,7 +112,7 @@
         </div>
         @endif
         <div class="mt-3">
-                {{-- {{ $collections->links() }} --}}
+            {{-- {{ $collections->links() }} --}}
         </div>
 
         <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -131,7 +134,7 @@
                             <div class="mt-6">
                                 <div class="group inline-block">
                                     <x-button> New collection</span>
-                                       &nbsp; <i class="fa-solid fa-caret-down"></i>
+                                        &nbsp; <i class="fa-solid fa-caret-down"></i>
                                     </x-button>
 
                                     <ul

@@ -1,5 +1,5 @@
 <x-modal-component>
-    {{-- @include('layouts.notifications') --}}
+
     <x-slot name="id">
         delete-accountpayable-modal-{{$accountpayable->id}}
     </x-slot>
@@ -11,10 +11,8 @@
             Yes, I'm sure
         </x-button>
 
-        <x-button class="w-full" data-modal-toggle="delete-accountpayable-modal-{{$accountpayable->id}}" >No,
+        <x-button class="w-full" data-modal-toggle="delete-accountpayable-modal-{{$accountpayable->id}}">No,
             Cancel</x-button>
     </div>
 
 </x-modal-component>
-
-

@@ -1,5 +1,5 @@
 <x-modal-component>
-    {{-- @include('layouts.notifications') --}}
+
     <x-slot name="id">
         create-concern-modal
     </x-slot>
@@ -76,13 +76,13 @@
                 @enderror
             </div>
 
-                <div class="mt-5 sm:mt-6">
+            <div class="mt-5 sm:mt-6">
 
-                    <x-button class="w-full" type="submit" wire:loading.remove wire:click="submitButton">
-                        Confirm
-                    </x-button>
+                <x-button class="w-full" type="submit" wire:loading.remove wire:click="submitButton">
+                    Confirm
+                </x-button>
 
-                </div>
+            </div>
 
         </div>
     </div>

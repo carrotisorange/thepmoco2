@@ -1,18 +1,20 @@
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
-        <div class="sm:flex sm:items-center">
+                <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
                 <h1 class="text-3xl font-bold text-gray-500">
-                      {{ucfirst(Route::current()->getName())}}
+                    {{ucfirst(Route::current()->getName())}}
                 </h1>
             </div>
+
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/guest'"
-                   > View Guests in List
+              <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/guest'"> View
+                    Guests in List
                 </x-button>
 
             </div>
+           
         </div>
         <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
 
@@ -26,7 +28,8 @@
 
                     <div class="mt-10 px-4 sm:px-6 lg:px-8">
                         <!-- Modal -->
-                        <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
                             <div class="modal-dialog">
                                 {{-- <form action="" method="POST">
                                     @csrf --}}
@@ -38,7 +41,8 @@
                                         </div>
                                         <div class="modal-body">
                                             <input type="hidden" name="property_uuid" id="property_uuid"
-                                                value="{{ Session::get('property_uuid') }}" class="form-control" required>
+                                                value="{{ Session::get('property_uuid') }}" class="form-control"
+                                                required>
 
 
                                             <label for="">Agent</label>
@@ -79,24 +83,28 @@
                                             <span id="unitUuidError" class="text-danger text-sm"></span>
                                             <br>
                                             <label for="">Number of guest</label>
-                                            <input type="text" name="no_of_guests" id="no_of_guests" value="1" class="form-control">
+                                            <input type="text" name="no_of_guests" id="no_of_guests" value="1"
+                                                class="form-control">
                                             <span id="noOfGuestsError" class="text-danger text-sm"></span>
                                             <br>
                                             <label for="">Number of senior citizen</label>
-                                            <input type="text" name="no_of_senior_citizens" id="no_of_senior_citizens" value="0" class="form-control">
+                                            <input type="text" name="no_of_senior_citizens" id="no_of_senior_citizens"
+                                                value="0" class="form-control">
                                             <span id="noOfCitizenError" class="text-danger text-sm"></span>
                                             <br>
                                             <label for="">Number of pwd</label>
-                                            <input type="text" name="no_of_pwd" id="no_of_pwd" value="0" class="form-control">
+                                            <input type="text" name="no_of_pwd" id="no_of_pwd" value="0"
+                                                class="form-control">
                                             <span id="noOfPwdError" class="text-danger text-sm"></span>
                                             <br>
                                             <label for="">Number of < 7 years old</label>
-                                            <input type="text" name="no_of_children" id="no_of_children" value="0" class="form-control">
-                                            <span id="noOfChildrenError" class="text-danger text-sm"></span>
-                                            <br>
-                                              <label for="">Remarks</label>
-                                            <input type="text" name="remarks" id="remarks" class="form-control">
-                                            <span id="remarkError" class="text-danger text-sm"></span>
+                                                    <input type="text" name="no_of_children" id="no_of_children"
+                                                        value="0" class="form-control">
+                                                    <span id="noOfChildrenError" class="text-danger text-sm"></span>
+                                                    <br>
+                                                    <label for="">Remarks</label>
+                                                    <input type="text" name="remarks" id="remarks" class="form-control">
+                                                    <span id="remarkError" class="text-danger text-sm"></span>
                                         </div>
                                         <div class="modal-footer">
                                             <x-button class="bg-red-500" data-bs-dismiss="modal">Close</x-button>

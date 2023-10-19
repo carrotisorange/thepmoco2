@@ -1,5 +1,5 @@
- <div>
-    {{-- @include('layouts.notifications') --}}
+<div>
+
     <style>
         li>ul {
             transform: translatex(100%) scale(0)
@@ -37,13 +37,12 @@
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
                 <h1 class="text-3xl font-bold text-gray-700">
-                      {{ucfirst(Route::current()->getName())}}
+                    {{ucfirst(Route::current()->getName())}}
                 </h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 @if($date_created || $search || $type || $status)
-                <x-button wire:click="clearFilters"
-                  >
+                <x-button wire:click="clearFilters">
                     Clear Filters
                 </x-button>
                 @endif
@@ -51,7 +50,7 @@
                 <div class="group inline-block">
                     <span>
                         <x-button data-modal-toggle="instructions-create-utility-modal">
-                          New utilities
+                            New utilities
                             <span>
 
 
@@ -99,8 +98,7 @@
             </div>
 
             <div class="sm:col-span-2">
-                <x-form-select id="type" wire:model="type"
-                  >
+                <x-form-select id="type" wire:model="type">
                     <option value="">Filter utility</option>
                     @foreach ($types as $item)
                     <option value="{{ $item->type }}">{{ $item->type }}</option>
@@ -110,8 +108,7 @@
             </div>
 
             <div class="sm:col-span-2">
-                <x-form-select id="small" wire:model="status"
-               >
+                <x-form-select id="small" wire:model="status">
                     <option value="">Filter status</option>
                     @foreach ($statuses as $item)
                     <option value="{{ $item->status }}">{{ $item->status }}</option>

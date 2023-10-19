@@ -1,5 +1,5 @@
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     <div class="p-8 bg-white border-b border-gray-200">
         <form class="space-y-6" wire:submit.prevent="submitForm()" method="POST">
             <div class="mt-1 px-4 py-5 sm:rounded-lg sm:p-6">
@@ -44,17 +44,18 @@
                                     bill among the active tenants.)</label>
                                 <select wire:model="isBillSplit"
                                     class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                                    <option value="yes" {{ old('isBillSplit',
-                                        $isBillSplit)=="yes" ? 'selected' : 'selected' }}>
+                                    <option value="yes" {{ old('isBillSplit', $isBillSplit)=="yes" ? 'selected'
+                                        : 'selected' }}>
                                         yes
                                     </option>
-                                    <option value="no" {{ old('isBillSplit',
-                                        $isBillSplit)=="no" ? 'selected' : 'selected' }}>
+                                    <option value="no" {{ old('isBillSplit', $isBillSplit)=="no" ? 'selected'
+                                        : 'selected' }}>
                                         no
                                     </option>
                                 </select>
                                 {{-- <input type="text" value="Yes"
-                                    class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md"> --}}
+                                    class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                                --}}
 
                             </div>
                             @endif

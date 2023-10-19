@@ -4,7 +4,7 @@
             <x-button wire:click="exportCandidates">Export List of Candidates</x-button>
         </p>
     </div>
-    {{-- @include('layouts.notifications') --}}
+
     <div class="mt-5 px-4 sm:px-6 lg:px-8">
 
         <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">

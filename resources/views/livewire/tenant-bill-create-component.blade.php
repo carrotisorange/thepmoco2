@@ -1,5 +1,5 @@
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     <div class="my-5 px-4 sm:px-6 lg:px-8">
         <div class="sm:grid grid-cols-1 lg:grid-cols-4 sm:items-center">
 
@@ -94,7 +94,7 @@
 
         <div class="sm:col-span-3">
             @if($bills)
-            <x-label for="particular" >Filter particulars</x-label>
+            <x-label for="particular">Filter particulars</x-label>
             <x-form-select wire:model.lazy="particular" autocomplete="particular">
 
                 <option value="">Filter bill particulars</option>
@@ -110,31 +110,31 @@
     </div>
 
     <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-            <div class="sm:col-span-3">
-                @if($selectedBills)
+        <div class="sm:col-span-3">
+            @if($selectedBills)
 
-                <div class="mt-5">
-                    <span>You've selected <b>{{ count($selectedBills) }}</b> {{ Str::plural('bill',
-                        count($selectedBills))}}
-                        amounting to <b>{{ number_format($total, 2) }}</b></span>
-                </div>
-                @else
-                <div class="mt-1">
-                    <b>Please check the bill you want to pay</b>
-                </div>
-                @endif
-
+            <div class="mt-5">
+                <span>You've selected <b>{{ count($selectedBills) }}</b> {{ Str::plural('bill',
+                    count($selectedBills))}}
+                    amounting to <b>{{ number_format($total, 2) }}</b></span>
             </div>
-
-            <div class="sm:col-span-3 text-right">
-                @if($selectedBills)
-                <x-button wire:click="payBills">
-                    Pay Bills
-                </x-button>
-                @endif
+            @else
+            <div class="mt-1">
+                <b>Please check the bill you want to pay</b>
             </div>
+            @endif
 
         </div>
+
+        <div class="sm:col-span-3 text-right">
+            @if($selectedBills)
+            <x-button wire:click="payBills">
+                Pay Bills
+            </x-button>
+            @endif
+        </div>
+
+    </div>
 
     <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="bg-white border-b border-gray-200">

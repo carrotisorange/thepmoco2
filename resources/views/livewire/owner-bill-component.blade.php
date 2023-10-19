@@ -1,5 +1,5 @@
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     <div class="my-5 px-4 sm:px-6 lg:px-8">
         <div class="sm:grid grid-cols-1 lg:grid-cols-4 sm:items-center">
 
@@ -46,16 +46,16 @@
             </nav>
 
 
-              <div class="col-span-3 flex sm:justify-center lg:justify-end items-end">
+            <div class="col-span-3 flex sm:justify-center lg:justify-end items-end">
                 <div class="sm:my-10 md:my-5 lg:my-0">
 
                     @if($total_unpaid_bills->count())
-                    <x-button data-modal-toggle="export-owner-bill">  Bills ({{
+                    <x-button data-modal-toggle="export-owner-bill"> Bills ({{
                         App\Models\Owner::find($owner->uuid)->bills()->where('status', '!=','paid')->count()
                         }})</a></x-button>
 
                     <x-button data-modal-toggle="send-owner-bill">
-                           Bills ({{ App\Models\Owner::find($owner->uuid)->bills()->where('status',
+                        Bills ({{ App\Models\Owner::find($owner->uuid)->bills()->where('status',
                         '!=', 'paid')->count() }})</a></x-button>
                     @endif
 
@@ -105,31 +105,31 @@
 
     </div>
     <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-            <div class="sm:col-span-3">
-                @if($selectedBills)
+        <div class="sm:col-span-3">
+            @if($selectedBills)
 
-                <div class="mt-5">
-                    <span>You've selected <b>{{ count($selectedBills) }}</b> {{ Str::plural('bill',
-                        count($selectedBills))}}
-                        amounting to <b>{{ number_format($total, 2) }}</b></span>
-                </div>
-                @else
-                <div class="mt-1">
-                    <b>Please check the bill you want to pay</b>
-                </div>
-                @endif
-
+            <div class="mt-5">
+                <span>You've selected <b>{{ count($selectedBills) }}</b> {{ Str::plural('bill',
+                    count($selectedBills))}}
+                    amounting to <b>{{ number_format($total, 2) }}</b></span>
             </div>
-
-            <div class="sm:col-span-3 text-right">
-                @if($selectedBills)
-                <x-button wire:click="payBills">
-                    Pay Bills
-                </x-button>
-                @endif
+            @else
+            <div class="mt-1">
+                <b>Please check the bill you want to pay</b>
             </div>
+            @endif
 
         </div>
+
+        <div class="sm:col-span-3 text-right">
+            @if($selectedBills)
+            <x-button wire:click="payBills">
+                Pay Bills
+            </x-button>
+            @endif
+        </div>
+
+    </div>
 
     {{-- <div class="mt-5">
         <div class="flex flex-row">

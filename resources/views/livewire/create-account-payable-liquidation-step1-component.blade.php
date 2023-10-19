@@ -1,5 +1,5 @@
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     @section('styles')
     <style>
         input::-webkit-outer-spin-button,
@@ -95,7 +95,8 @@
                                             class="ml-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6">
                                             <option value="" selected>Select a unit</option>
                                             @foreach ($units as $unit)
-                                            <option value="{{ $unit->uuid }}" {{ 'particulars' .$unit_uuid===$unit->uuid?  'selected' : '' }}>
+                                            <option value="{{ $unit->uuid }}" {{ 'particulars' .$unit_uuid===$unit->
+                                                uuid? 'selected' : '' }}>
                                                 {{ $unit->building->building .'-'.$unit->unit }}
                                             </option>
                                             @endforeach
@@ -158,7 +159,8 @@
                                         class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-36 sm:text-sm border border-gray-700  rounded-md">
                                         <option value="" selected>Select a unit</option>
                                         @foreach ($units as $unit)
-                                        <option value="{{ $unit->uuid }}" {{ 'particulars' .$index.'unit_uuid'===$unit->uuid? 'selected' : '' }}>
+                                        <option value="{{ $unit->uuid }}" {{ 'particulars' .$index.'unit_uuid'===$unit->
+                                            uuid? 'selected' : '' }}>
                                             {{ $unit->building->building .'-'.$unit->unit }}
                                         </option>
                                         @endforeach
@@ -324,8 +326,7 @@
 
             <div>
                 <p class="mt-5 px-6 text-right">
-                    <x-button
-                        onclick="window.location.href='/property/{{ $property->uuid }}/accountpayable'">
+                    <x-button onclick="window.location.href='/property/{{ $property->uuid }}/accountpayable'">
                         Cancel
                     </x-button>
                     <x-button wire:click="storeAccountPayableLiquidation">

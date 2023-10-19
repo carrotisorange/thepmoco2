@@ -135,7 +135,7 @@ class CalendarController extends Controller
 
     public function update_unit($unit_uuid){
         Unit::where('uuid', $unit_uuid)->update([
-            'status_id' => 4
+            'status_id' => 2
         ]);
     }
 

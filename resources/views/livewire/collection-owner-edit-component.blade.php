@@ -1,5 +1,5 @@
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     <div class="md:grid md:grid-cols-1 px-10 md:gap-6">
         <nav class="mt-5 border-b flex col-start-1" aria-label="Breadcrumb">
             <ol role="list" class="mx-auto flex w-full max-w-screen-xl space-x-4 px-4 sm:px-6">
@@ -74,7 +74,7 @@
                 @if($form === 'bank')
                 <div class="col-span-1">
                     <label for="bank" class="">Name of the bank</label>
-                    <x-form-input type="text" form="edit-form" name="bank" wire:model="bank"/>
+                    <x-form-input type="text" form="edit-form" name="bank" wire:model="bank" />
                     @error('bank')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
@@ -262,7 +262,7 @@
         </div>
     </div>
 
-   <div class="flex justify-end p-10 mt-5">
+    <div class="flex justify-end p-10 mt-5">
         <x-button
             onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/owner/{{ $owner->uuid }}/bills'">
             Cancel

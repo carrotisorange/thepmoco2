@@ -1,5 +1,5 @@
 <x-modal-component>
-    {{-- @include('layouts.notifications') --}}
+
     <x-slot name="id">
         view-collection-modal-{{ $collection->id }}
     </x-slot>
@@ -135,7 +135,8 @@
 
                 <div class="mt-5 sm:mt-6">
                     <label class="text-sm" for="interaction_id">Interaction</label>
-                    {{ App\Models\Collection::where('property_uuid', $collection->property_uuid)->where('ar_no',$collection->ar_no)->get() }}
+                    {{ App\Models\Collection::where('property_uuid',
+                    $collection->property_uuid)->where('ar_no',$collection->ar_no)->get() }}
                     {{-- <x-form-select id="interaction_id" name="interaction_id" wire:model="interaction_id" class="">
                         <option value="">Select one</option>
                         @foreach($interactions as $interaction)
@@ -155,8 +156,7 @@
 
                 <div class="mt-5 sm:mt-6">
 
-                    <button type="button" wire:click="closeView"
-                       class="w-full">
+                    <button type="button" wire:click="closeView" class="w-full">
                         Close
                     </button>
 

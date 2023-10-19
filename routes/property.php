@@ -115,9 +115,9 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     });
 
     //Route for utilities
-    Route::prefix('utilities')->group(function(){
-        Route::get('/',[PropertyUtilityController::class, 'index'])->name('utilities');
-        Route::get('/{batch_no}/{option}',[UtilityController::class, 'edit'])->name('utilities');
+    Route::prefix('utility')->group(function(){
+        Route::get('/',[PropertyUtilityController::class, 'index'])->name('utility');
+        Route::get('/{batch_no}/{option}',[UtilityController::class, 'edit'])->name('utility');
 
     });
 

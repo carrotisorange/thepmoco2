@@ -1,5 +1,5 @@
 <x-modal-component>
-    {{-- @include('layouts.notifications') --}}
+
     <x-slot name="id">
         edit-utility-modal-{{$utility->id}}
     </x-slot>
@@ -17,7 +17,7 @@
                     <label class="text-sm" for="unit_uuid">Unit</label>
                     <input type="text" readonly value="{{ App\Models\Unit::find($utility->unit_uuid)->unit }}"
                         class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="" >
+                        placeholder="">
 
                 </div>
 
@@ -25,7 +25,7 @@
                     <label class="text-sm" for="type">Particular</label>
                     <input type="text" readonly value="{{ $utility->type }}"
                         class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="" >
+                        placeholder="">
 
                 </div>
 
@@ -33,7 +33,7 @@
                     <label class="text-sm" for="previous_reading">Previous Reading</label>
                     <input type="number" id="previous_reading" wire:model="previous_reading" step="0.001"
                         class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="" >
+                        placeholder="">
                     @error('previous_reading')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
@@ -123,7 +123,7 @@
                 @else
                 <div class="mt-5 sm:mt-6">
                     <x-button class="w-full" type="button" disabled>
-                       {{$status}}
+                        {{$status}}
                     </x-button>
                 </div>
                 @endif

@@ -4,7 +4,7 @@
                                                     dark:text-gray-200 dark:hover:text-white';
 ?>
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     <div class="mt-8 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
         <div class="lg:grid lg:grid-cols-12 lg:auto-rows-min lg:gap-x-8">
             <div class="lg:col-start-4 lg:col-span-9">
@@ -13,22 +13,20 @@
             <div class="lg:col-start-5 lg:col-span-9">
                 <div class="flex justify-end">
                     <x-button id="dropdownButton" data-dropdown-toggle="guestCreateDropdown">Add
-                    &nbsp; <i class="fa-solid fa-caret-down"></i>
+                        &nbsp; <i class="fa-solid fa-caret-down"></i>
                     </x-button>
 
                     <div id="guestCreateDropdown"
                         class="text-left hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
                         <ul class="py-1" aria-labelledby="dropdownButton">
                             <li>
-                                <a href="#/" data-modal-toggle="create-bill-modal"
-                                    class="{{ $addAnchorClass }}">
+                                <a href="#/" data-modal-toggle="create-bill-modal" class="{{ $addAnchorClass }}">
                                     New bill
                                 </a>
                             </li>
 
                             <li>
-                                <a href="#/" data-modal-toggle="create-booking-modal"
-                                    class="{{ $addAnchorClass }}">
+                                <a href="#/" data-modal-toggle="create-booking-modal" class="{{ $addAnchorClass }}">
                                     New booking
                                 </a>
                             </li>
@@ -63,11 +61,11 @@
                 <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
                     <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab"
                         data-tabs-toggle="#myTabContent" role="tablist">
-                       @foreach($guestSubfeaturesArray as $subfeature)
+                        @foreach($guestSubfeaturesArray as $subfeature)
                         <li class="mr-2" role="presentation">
                             <button class="inline-block p-4 rounded-t-lg border-b-2" id="{{ $subfeature }}-tab"
-                                data-tabs-target="#{{ $subfeature }}" type="button" role="tab" aria-controls="{{ $subfeature }}"
-                                aria-selected="false">
+                                data-tabs-target="#{{ $subfeature }}" type="button" role="tab"
+                                aria-controls="{{ $subfeature }}" aria-selected="false">
                                 {{ $subfeature }}
                             </button>
                         </li>
@@ -80,16 +78,18 @@
                     <div class="p-4 purple rounded-lg dark:bg-gray-800" id="{{ $subfeature }}" role="tabpanel"
                         aria-labelledby="{{ $subfeature }}-tab">
                         <div>
-                           @include('forms.guests.guest-edit')
+                            @include('forms.guests.guest-edit')
                         </div>
                     </div>
                     @else
-                    <div class="p-4 purple rounded-lg dark:bg-gray-800" id="{{ $subfeature }}" role="tabpanel" aria-labelledby="{{ $subfeature }}-tab">
+                    <div class="p-4 purple rounded-lg dark:bg-gray-800" id="{{ $subfeature }}" role="tabpanel"
+                        aria-labelledby="{{ $subfeature }}-tab">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                                <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                                @if($subfeature == 'booking')
-                                   @if($bookings->count())
+                                <div
+                                    class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                    @if($subfeature == 'booking')
+                                    @if($bookings->count())
                                     @include('tables.bookings')
                                     @else
                                     <div class="mt-10 text-center mb-10">
@@ -107,7 +107,7 @@
                                         </div>
                                     </div>
                                     @endif
-                                @elseif($subfeature == 'bill')
+                                    @elseif($subfeature == 'bill')
                                     @if($bills->count())
                                     <x-button
                                         onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/guest/{{ $guest_details->uuid }}/bills'">
@@ -137,9 +137,9 @@
                                         </div>
                                     </div>
                                     @endif
-                                @elseif($subfeature == 'collection')
+                                    @elseif($subfeature == 'collection')
                                     @include('tables.collections')
-                                @endif
+                                    @endif
                                 </div>
                             </div>
                         </div>

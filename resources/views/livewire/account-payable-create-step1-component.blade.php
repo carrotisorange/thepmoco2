@@ -1,5 +1,5 @@
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     <div class=" mt-5 px-4 sm:px-6 lg:px-8">
         {{-- start-step-1-form --}}
         <form class="space-y-6" wire:submit.prevent="submitForm()">
@@ -23,7 +23,7 @@
                 {{-- creation date --}}
                 <div class="sm:col-span-3">
                     <label for="created_at" class="block text-sm font-medium text-gray-700">Request Date</label>
-                    <x-form-input type="date" wire:model="created_at" name="created_at"/>
+                    <x-form-input type="date" wire:model="created_at" name="created_at" />
                     @error('created_at')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
@@ -31,7 +31,7 @@
 
                 <div class="sm:col-span-3">
                     <label for="due_date" class="block text-sm font-medium text-gray-700">Due Date</label>
-                    <x-form-input type="date" wire:model="due_date" name="due_date"/>
+                    <x-form-input type="date" wire:model="due_date" name="due_date" />
                     @error('due_date')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
@@ -74,7 +74,7 @@
                         @endforeach
 
                     </x-form-select>
-                   @error('second_approver')
+                    @error('second_approver')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
@@ -115,7 +115,8 @@
                                         <tr>
                                             <x-td>{{ $index+1 }}</x-td>
                                             <x-td>
-                                                <x-form-select wire:model="particulars.{{ $index }}.unit_uuid"  wire:change="updateParticular({{ $particular->id }})">
+                                                <x-form-select wire:model="particulars.{{ $index }}.unit_uuid"
+                                                    wire:change="updateParticular({{ $particular->id }})">
                                                     <option value="" selected>Select a unit</option>
                                                     @foreach ($units as $unit)
                                                     <option value="{{ $unit->uuid }}" {{ 'particulars'
@@ -127,7 +128,8 @@
 
                                             </x-td>
                                             <x-td>
-                                                <x-form-select wire:model="particulars.{{ $index }}.vendor_id"  wire:change="updateParticular({{ $particular->id }})">
+                                                <x-form-select wire:model="particulars.{{ $index }}.vendor_id"
+                                                    wire:change="updateParticular({{ $particular->id }})">
                                                     <option value="" selected>Select a unit</option>
                                                     @foreach ($vendors as $vendor)
                                                     <option value="{{ $vendor->id }}" {{ 'particulars'
@@ -140,17 +142,22 @@
 
                                             </x-td>
                                             <x-td>
-                                                <x-form-input name="item" type="text" wire:model="particulars.{{ $index }}.item"  wire:change="updateParticular({{ $particular->id }})" />
+                                                <x-form-input name="item" type="text"
+                                                    wire:model="particulars.{{ $index }}.item"
+                                                    wire:change="updateParticular({{ $particular->id }})" />
 
                                             </x-td>
                                             <x-td>
-                                                <x-form-input type="number" wire:model="particulars.{{ $index }}.quantity"  wire:change="updateParticular({{ $particular->id }})"/>
+                                                <x-form-input type="number"
+                                                    wire:model="particulars.{{ $index }}.quantity"
+                                                    wire:change="updateParticular({{ $particular->id }})" />
 
                                             </x-td>
                                             {{-- @if($request_for === 'payment') --}}
                                             <x-td>
                                                 <x-form-input type="number" step="0.001"
-                                                    wire:model="particulars.{{ $index }}.price"   wire:change="updateParticular({{ $particular->id }})" />
+                                                    wire:model="particulars.{{ $index }}.price"
+                                                    wire:change="updateParticular({{ $particular->id }})" />
 
                                             </x-td>
                                             <x-td>
@@ -160,7 +167,8 @@
                                             {{-- @endif --}}
                                             <x-td>
 
-                                                <x-button class="bg-red-500" type="button"  wire:click="removeParticular({{ $particular->id }})">
+                                                <x-button class="bg-red-500" type="button"
+                                                    wire:click="removeParticular({{ $particular->id }})">
                                                     Delete
                                                 </x-button>
 
@@ -214,7 +222,7 @@
 
                 <div class="sm:col-span-2">
                     <label for="bank" class="block text-sm font-medium text-gray-700">Bank</label>
-                    <x-form-input type="text" wire:model="bank"/>
+                    <x-form-input type="text" wire:model="bank" />
                     @error('bank')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
@@ -222,7 +230,7 @@
 
                 <div class="sm:col-span-2">
                     <label for="bank_name" class="block text-sm font-medium text-gray-700">Bank Name</label>
-                    <x-form-input type="text" wire:model="bank_name"/>
+                    <x-form-input type="text" wire:model="bank_name" />
                     @error('bank_name')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
@@ -230,7 +238,7 @@
 
                 <div class="sm:col-span-2">
                     <label for="bank_account" class="block text-sm font-medium text-gray-700">Bank Account</label>
-                    <x-form-input type="text" wire:model="bank_account"/>
+                    <x-form-input type="text" wire:model="bank_account" />
                     @error('bank_account')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
@@ -351,7 +359,7 @@
                 </div>
 
                 <div class="sm:col-span-6">
-                    <x-label for="vendor" >Select a quotation:</x-label>
+                    <x-label for="vendor">Select a quotation:</x-label>
                     <x-form-select id="selected_quotation" wire:model="selected_quotation">
                         @if($quotation1 && !$quotation2 && !$quotation3)
                         <option value="quotation1">Quotation 1</option>
@@ -373,7 +381,7 @@
                 </div>
 
                 <div class="sm:col-span-3">
-                    <x-label for="vendor" >Name of the vendor</x-label>
+                    <x-label for="vendor">Name of the vendor</x-label>
                     <x-form-input type="text" wire:model="vendor" />
                     @error('vendor')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>

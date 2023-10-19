@@ -1,5 +1,5 @@
 <x-modal-component>
-    {{-- @include('layouts.notifications') --}}
+
     <x-slot name="id">
         edit-guardian-modal-{{$guardian_details->id}}
     </x-slot>

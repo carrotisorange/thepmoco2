@@ -1,5 +1,5 @@
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -8,23 +8,23 @@
                 </h1>
             </div>
 
-          <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+            <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
 
-            <x-button data-modal-toggle="instructions-create-remittance-modal" type="button">Create
-                remittance
-            </x-button>
+                <x-button data-modal-toggle="instructions-create-remittance-modal" type="button">Create
+                    remittance
+                </x-button>
 
 
-                    <x-form-select id="small" wire:model="created_at">
-                        <option value="{{ $created_at }}">{{ Carbon\Carbon::parse($created_at)->format('M, Y') }}</option>
-                        @foreach ($dates as $date)
-                        @if(Carbon\Carbon::parse($date->created_at)->format('M, Y') !=
-                        Carbon\Carbon::parse($created_at)->format('M, Y'))
-                        <option value="{{ $date->created_at }}">{{ Carbon\Carbon::parse($date->created_at)->format('M, Y')
-                            }}</option>
-                        @endif
-                        @endforeach
-                    </x-form-select>
+                <x-form-select id="small" wire:model="created_at">
+                    <option value="{{ $created_at }}">{{ Carbon\Carbon::parse($created_at)->format('M, Y') }}</option>
+                    @foreach ($dates as $date)
+                    @if(Carbon\Carbon::parse($date->created_at)->format('M, Y') !=
+                    Carbon\Carbon::parse($created_at)->format('M, Y'))
+                    <option value="{{ $date->created_at }}">{{ Carbon\Carbon::parse($date->created_at)->format('M, Y')
+                        }}</option>
+                    @endif
+                    @endforeach
+                </x-form-select>
 
             </div>
 
@@ -51,8 +51,8 @@
                             <p class="mt-1 text-sm text-gray-500">Get started by creating a new remittance</p>
                             <div class="mt-6">
                                 <div class="group inline-block">
-                                    <x-button data-modal-toggle="instructions-create-remittance-modal"
-                                        type="button">Create remittance
+                                    <x-button data-modal-toggle="instructions-create-remittance-modal" type="button">
+                                        Create remittance
                                     </x-button>
 
                                 </div>

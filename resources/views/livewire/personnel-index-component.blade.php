@@ -1,5 +1,5 @@
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -10,8 +10,8 @@
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 @if($propertyPersonnelsCount)
                 <x-button data-modal-target="create-personnel-modal" data-modal-toggle="create-personnel-modal"> New
-                Personnel
-            </x-button>
+                    Personnel
+                </x-button>
                 @endif
 
             </div>
@@ -168,9 +168,10 @@
                         </h3>
                         <p class="mt-1 text-sm text-gray-500">Almost completely done!</p>
                         <div class="mt-6">
-                         <x-button data-modal-target="create-personnel-modal" data-modal-toggle="create-personnel-modal"> New
-                                    Personnel
-                                </x-button>
+                            <x-button data-modal-target="create-personnel-modal"
+                                data-modal-toggle="create-personnel-modal"> New
+                                Personnel
+                            </x-button>
                         </div>
                     </div>
 

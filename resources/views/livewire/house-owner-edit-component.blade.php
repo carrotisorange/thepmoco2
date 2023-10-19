@@ -1,6 +1,6 @@
 <div>
-    {{-- @include('layouts.notifications') --}}
-   <form class="space-y-6" wire:submit.prevent="submitForm()">
+
+    <form class="space-y-6" wire:submit.prevent="submitForm()">
         <div class="mt-5 md:mt-0 md:col-span-3">
             <div class="grid grid-cols-6 gap-6">
                 <div class="col-span-6 sm:col-span-6">
@@ -117,7 +117,8 @@
 
                 <div class="col-span-6">
                     <x-label for="address">Address</x-label>
-                    <x-form-input type="text" wire:model="address" autocomplete="address" value="{{ old('address') }}" />
+                    <x-form-input type="text" wire:model="address" autocomplete="address"
+                        value="{{ old('address') }}" />
                 </div>
 
                 <div class="col-span-6">
@@ -133,7 +134,8 @@
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                                     <span>Upload a file</span>
                                     <span wire:loading>Loading...</span>
-                                    <input id="photo_id" name="photo_id" type="file" class="sr-only" wire:model="photo_id">
+                                    <input id="photo_id" name="photo_id" type="file" class="sr-only"
+                                        wire:model="photo_id">
                                 </label>
                             </div>
                             <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
@@ -149,7 +151,8 @@
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @else
                     @if ($photo_id)
-                    <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i>
+                    <p class="text-green-500 text-xs mt-2">File has been attached. <i
+                            class="fa-solid fa-circle-check"></i>
                     </p>
                     @endif
                     @enderror
@@ -172,7 +175,8 @@
                 </div>
                 <div class="col-span-2">
                     <x-label for="employer">Employer</x-label>
-                    <x-form-input type="text" wire:model="employer" autocomplete="employer" value="{{ old('employer') }}" />
+                    <x-form-input type="text" wire:model="employer" autocomplete="employer"
+                        value="{{ old('employer') }}" />
                     @error('employer')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror

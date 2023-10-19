@@ -34,7 +34,7 @@ class UnitIndexComponent extends Component
     public $occupancy = [];
     public $sortBy;
     public $orderBy;
-    public $limitDisplayTo = 20;
+    public $limitDisplayTo = 54;
 
     public $totalUnitsCount;
 
@@ -44,11 +44,9 @@ class UnitIndexComponent extends Component
 
     public function storeUnits(){
 
-      if($this->numberOfUnits <= 0 || !$this->numberOfUnits){
-         session()->flash('error', 'Cannot accept value less than 0 or null.');
-
-         return back();
-      }
+      if(($this->numberOfUnits <= 0 || !$this->numberOfUnits)){
+        return redirect(url()->previous())->with('error', 'Cannot accept value less than 0 or null.');
+     }
 
       $batch_no = Str::random(8);
 
@@ -56,9 +54,9 @@ class UnitIndexComponent extends Component
 
       $total_unit_created = Property::find(Session::get('property_uuid'))->units()->count() + 1;
 
-        // if($plan_unit_limit <= $total_unit_created){
-        //     return back()->with('error', 'Sorry. You have reached your plan unit limit');
-        // }
+        if($plan_unit_limit <= $total_unit_created){
+           return redirect(url()->previous())->with('error', 'You have reached your plan unit limit.');
+        }
 
        for($i=$this->numberOfUnits; $i>=1; $i--){
             Unit::create([
@@ -182,6 +180,7 @@ class UnitIndexComponent extends Component
             'units_count' => Property::find(Session::get('property_uuid'))->units->count(),
             'steps' => $steps,
             'propertyUnitCount' => $propertyUnitCount,
+            'unitLimits' => Plan::find(auth()->user()->plan_id)->description
         ]);
     }
 }
