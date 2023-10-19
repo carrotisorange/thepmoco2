@@ -11,7 +11,7 @@ class PropertyIndexComponent extends Component
     public $search;
     public $sortBy;
     public $filterByPropertyType;
-    public $limitDisplayTo = 8;
+    public $limitDisplayTo = 16;
     public $propertyView = 'thumbnail';
 
     public function clearFilters(){

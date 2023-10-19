@@ -24,18 +24,18 @@
 
                         <!-- <div class="hidden space-x-3 sm:-my-px sm:ml-10 sm:flex">
                             <h1 class="text-xl pt-2 tracking-tight font-medium leading-tight text-gray-700">
-                            
+
                                 {{ env('APP_NAME') }}
-                        
+
                             </h1>
-                        
+
                         </div> -->
                     </div>
 
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
 
                     <!-- help icon -->
-                        <a href="/help"><x-button title="help">
+                        <a href="/support"><x-button title="help">
                               Need help?
                             </x-button>
                             </a>
