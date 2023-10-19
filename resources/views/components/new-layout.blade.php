@@ -53,9 +53,9 @@
 
                         <!-- help icon -->
                         @if(Session::has('property'))
-                        <a href="/help">
+                        <a href="/support">
                             <x-button title="help">
-                                Need help?
+                                Need Support?
                             </x-button>
                         </a>
                         @endif
