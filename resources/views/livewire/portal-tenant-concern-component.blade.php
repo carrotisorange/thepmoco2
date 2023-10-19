@@ -1,5 +1,5 @@
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -7,8 +7,7 @@
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 <x-button
-                    onclick="window.location.href='/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/concern'"
-                  >
+                    onclick="window.location.href='/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/concern'">
                     View reported concerns
                 </x-button>
 
@@ -35,7 +34,9 @@
                                             <x-label for="subject">
                                                 Subject </x-label>
                                             <div class="mt-1 flex rounded-md shadow-sm">
-                                                <x-form-input wire:model="subject" type="text" value="{{ old('subject') }}" placeholder="Statements of Account is not updated."/>
+                                                <x-form-input wire:model="subject" type="text"
+                                                    value="{{ old('subject') }}"
+                                                    placeholder="Statements of Account is not updated." />
                                             </div>
                                             @error('subject')
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -44,10 +45,10 @@
 
                                         <div class="sm:col-span-2">
                                             <label for="category_id"
-                                                class="block text-sm font-medium text-gray-700">Select a category </label>
+                                                class="block text-sm font-medium text-gray-700">Select a category
+                                            </label>
 
-                                            <x-form-select wire:model="category_id"
-                                              >
+                                            <x-form-select wire:model="category_id">
                                                 <option value="">Select one</option>
                                                 @foreach ($categories as $item)
                                                 <option value="{{ $item->id }}" {{ old('category_id')==$item->id?
@@ -82,11 +83,11 @@
 
 
                                         <div class="sm:col-span-6">
-                                            <x-label for="concern" >
+                                            <x-label for="concern">
                                                 Details of the concern</x-label>
                                             <div class="mt-1">
-                                                <x-form-textarea wire:model="concern" rows="20"
-                                                placeholder=""></x-form-textarea>
+                                                <x-form-textarea wire:model="concern" rows="20" placeholder="">
+                                                </x-form-textarea>
                                             </div>
 
                                             @error('concern')
@@ -95,10 +96,11 @@
                                         </div>
 
                                         <div class="sm:col-span-3">
-                                            <x-label for="availability_date" >
+                                            <x-label for="availability_date">
                                                 Date Available </x-label>
                                             <div class="mt-1 flex rounded-md shadow-sm">
-                                                <x-form-input wire:model="availability_date" type="date" value="{{ old('availability_date') }}" />
+                                                <x-form-input wire:model="availability_date" type="date"
+                                                    value="{{ old('availability_date') }}" />
                                             </div>
                                             @error('availability_date')
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -109,7 +111,8 @@
                                             <x-label for="availability_time">
                                                 Time Available </x-label>
                                             <div class="mt-1 flex rounded-md shadow-sm">
-                                                <x-form-input wire:model="availability_time" type="time" value="{{ old('availability_time') }}"/>
+                                                <x-form-input wire:model="availability_time" type="time"
+                                                    value="{{ old('availability_time') }}" />
                                             </div>
                                             @error('availability_time')
                                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -117,7 +120,8 @@
                                         </div>
 
                                         <div class="col-span-6">
-                                            <label class="block text-sm font-medium text-gray-700"> Please attach an image of your concern
+                                            <label class="block text-sm font-medium text-gray-700"> Please attach an
+                                                image of your concern
 
                                             </label>
                                             <div
@@ -128,8 +132,8 @@
                                                         <label for="image"
                                                             class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                                                             <span>Attach a file</span>
-                                                            <input id="image" type="file"
-                                                                class="sr-only" wire:model="image">
+                                                            <input id="image" type="file" class="sr-only"
+                                                                wire:model="image">
                                                         </label>
 
                                                     </div>

@@ -146,8 +146,8 @@
                 <div class="relative flex w-20 flex-col space-y-3 p-3">
                     @foreach($availableFeatures as $feature)
                     <?php
-                                    $feature = App\Models\Feature::find($feature);
-                                ?>
+                        $feature = App\Models\Feature::find($feature);
+                    ?>
 
                     <x-nav-link href="/{{auth()->user()->role_id}}/{{$portal}}/{{ auth()->user()->username }}/{{ $feature->alias }}"
                         :active="request()->routeIs($feature->alias)">

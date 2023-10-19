@@ -1,5 +1,5 @@
 <x-modal-component>
-    {{-- @include('layouts.notifications') --}}
+
     <x-slot name="id">
         delete-bill-modal-{{$bill->id}}
     </x-slot>

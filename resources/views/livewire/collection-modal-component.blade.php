@@ -1,8 +1,8 @@
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     <form class="p-10" wire:submit.prevent="payBill()">
         <h3 class="text-xl font-medium text-gray-900 dark:text-white">Payment Information</h3>
-     
+
         <div>
             <div class="mt-5 flex flex-wrap -mx-3 mb-6">
 
@@ -38,7 +38,7 @@
                                 Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }}</x-td>
                             <x-td>
                                 <x-table-input form="create-form" wire:model.lazy="amount.{{ $index }}" type="number"
-                                    step="0.001" required readonly/>
+                                    step="0.001" required readonly />
                             </x-td>
                             <x-td>
                                 <x-table-input form="create-form" wire:model.lazy="bill.{{ $index }}" type="number"
@@ -165,7 +165,7 @@
 
                 <p class="text-right">
                     <span class="text-left">
-                      <a class="text-red-600" href="{{ url()->previous() }}">Close</a>
+                        <a class="text-red-600" href="{{ url()->previous() }}">Close</a>
                     </span>&nbsp&nbsp
                     <x-button form="create-form" wire:click="payBill()">Pay</x-button>
                 </p>

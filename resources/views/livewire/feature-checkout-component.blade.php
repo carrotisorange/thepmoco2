@@ -1,5 +1,5 @@
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     <div class="flex h-full flex-col">
 
         <div class="bg-white">
@@ -18,7 +18,8 @@
 
                         <dl>
                             <dt class="text-sm font-medium">Total</dt>
-                            <dd class="mt-1 text-3xl font-bold tracking-tight text-white">Php {{ number_format($total) }}
+                            <dd class="mt-1 text-3xl font-bold tracking-tight text-white">Php {{ number_format($total)
+                                }}
                             </dd>
                         </dl>
 
@@ -28,7 +29,8 @@
                                 <div class="flex-auto space-y-1">
                                     <h3 class="text-white">{{ $feature->feature }}</h3>
                                 </div>
-                                <p class="flex-none text-base font-medium text-white">Php {{ number_format($feature->price)
+                                <p class="flex-none text-base font-medium text-white">Php {{
+                                    number_format($feature->price)
                                     }}</p>
                             </li>
                             @endforeach

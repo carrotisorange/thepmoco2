@@ -29,15 +29,15 @@ class PersonnelController extends Controller
         ->where('user_properties.role_id','!=', 5)
         ->count();
 
-        if($propertyVerifiedPersonnelsCount == 0){
-            return redirect('/property/'.Session::get('property_uuid').'/congratulations');
-        }else{
+        // if($propertyVerifiedPersonnelsCount == 0){
+        //     return redirect('/property/'.Session::get('property_uuid').'/congratulations');
+        // }else{
                 return view('properties.personnels.index',[
                 'users' => app('App\Http\Controllers\UserPropertyController')->getPersonnels($property->uuid,auth()->user()->id),
                 'properties' => app('App\Http\Controllers\UserPropertyController')->get_user_properties($property->uuid,auth()->user()->id),
                 'property' => $property
             ]);
-        }
+        // }
 
 
     }

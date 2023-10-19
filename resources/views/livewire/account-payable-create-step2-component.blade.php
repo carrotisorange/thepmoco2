@@ -1,5 +1,5 @@
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     <div class="mt-5 px-4 sm:px-6 lg:px-8">
         <div class="flex justify-end">
 
@@ -252,13 +252,13 @@
 
                 </div>
 
-               
+
                 <div class="sm:col-span-6">
                     <textarea placeholder="Add your comment..." wire:model="comment"
                         class="p-2 font-base border-[0.1px] resize-none h-[120px] border-[#9EA5B1] rounded-md w-full"></textarea>
 
                 </div>
-            
+
 
                 {{-- reject, approve button --}}
                 <div class="col-start-6 flex items-center justify-end">

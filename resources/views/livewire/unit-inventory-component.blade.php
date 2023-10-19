@@ -1,5 +1,5 @@
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
             <h1 class="text-3xl font-bold text-gray-500">{{ $unitDetails->unit }} / Inventory</h1>
@@ -11,8 +11,8 @@
             </x-button>
             @endif
 
-            <x-button data-modal-target="create-unit-inventory-modal"
-                data-modal-toggle="create-unit-inventory-modal"> New Item
+            <x-button data-modal-target="create-unit-inventory-modal" data-modal-toggle="create-unit-inventory-modal">
+                New Item
             </x-button>
 
         </div>

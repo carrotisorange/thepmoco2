@@ -1,5 +1,5 @@
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     <p>Security Deposit: <b>{{ number_format($deposits,2) }}</b></p>
     @if($bills->count())
     <p class="text-center mb-5 text-red-800"><i class="fa-solid fa-triangle-exclamation"></i> Unpaid bills have to be

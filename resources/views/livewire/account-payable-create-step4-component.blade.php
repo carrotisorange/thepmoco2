@@ -1,5 +1,5 @@
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     <div class="mt-5 px-4 sm:px-6 lg:px-8">
         <div class="flex justify-end">
             {{-- <button type="button"
@@ -173,9 +173,11 @@
                     <div class="form-check">
                         <input wire:model="skipLiquidation"
                             class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                            type="checkbox" value="{{ old('skipLiquidation'), $skipLiquidation }}" id="flexCheckChecked">
+                            type="checkbox" value="{{ old('skipLiquidation'), $skipLiquidation }}"
+                            id="flexCheckChecked">
                         <label class="form-check-label inline-block text-gray-800" for="flexCheckChecked">
-                            Would you like to skip the liquidation process? If checked, will proceed directly to chart of account (Step 7)
+                            Would you like to skip the liquidation process? If checked, will proceed directly to chart
+                            of account (Step 7)
                         </label>
                     </div>
                 </div>
@@ -187,7 +189,10 @@
                 {{-- reject, approve button --}}
                 <div class="col-start-6 flex items-center justify-end">
 
-                    <a target="_blank" href="/property/{{Session::get('property_uuid') }}/accountpayable/{{ $this->accountpayable->id }}/step1/export" wire:loading.remove class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                    <a target="_blank"
+                        href="/property/{{Session::get('property_uuid') }}/accountpayable/{{ $this->accountpayable->id }}/step1/export"
+                        wire:loading.remove
+                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
                         Export
                     </a>
 

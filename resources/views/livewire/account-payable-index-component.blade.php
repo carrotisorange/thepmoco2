@@ -1,16 +1,17 @@
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
                 <h1 class="text-3xl font-bold text-gray-700">
-                      {{ucfirst(Route::current()->getName())}}
+                    {{ucfirst(Route::current()->getName())}}
                 </h1>
             </div>
             @if($propertyRfpCount)
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
 
-                <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/accountpayable/{{ 'purchase' }}/{{ Str::random(3) }}/store'">
+                <x-button
+                    onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/accountpayable/{{ 'purchase' }}/{{ Str::random(3) }}/store'">
                     New Request
                 </x-button>
 
@@ -22,25 +23,27 @@
 
             <div class="sm:col-span-3">
                 <x-label for="">Filter status</x-label>
-              <x-form-select id="status" name="status" wire:model="status" class="">
-                <option value="">Show all</option>
-                 @foreach ($statuses as $status)
-                     <option value="{{ $status->status }}" {{ $status->status===$status? 'selected' : 'Select one' }}>
+                <x-form-select id="status" name="status" wire:model="status" class="">
+                    <option value="">Show all</option>
+                    @foreach ($statuses as $status)
+                    <option value="{{ $status->status }}" {{ $status->status===$status? 'selected' : 'Select one' }}>
                         {{ $status->status }}
                     </option>
-                 @endforeach
+                    @endforeach
 
-               </x-form-select>
+                </x-form-select>
             </div>
 
             <div class="sm:col-span-3">
                 <x-label for="">Filter date requested</x-label>
-             <x-form-select id="created_at" name="created_at" wire:model="created_at" class="">
-                <option value="">Select date</option>
-                <option value="{{ $created_at }}">{{ Carbon\Carbon::parse($created_at)->format('M, Y') }}</option>
+                <x-form-select id="created_at" name="created_at" wire:model="created_at" class="">
+                    <option value="">Select date</option>
+                    <option value="{{ $created_at }}">{{ Carbon\Carbon::parse($created_at)->format('M, Y') }}</option>
                     @foreach ($dates as $date)
-                    @if(Carbon\Carbon::parse($date->created_at)->format('M, Y') != Carbon\Carbon::parse($created_at)->format('M, Y'))
-                    <option value="{{ $date->created_at }}">{{ Carbon\Carbon::parse($date->created_at)->format('M, Y') }}</option>
+                    @if(Carbon\Carbon::parse($date->created_at)->format('M, Y') !=
+                    Carbon\Carbon::parse($created_at)->format('M, Y'))
+                    <option value="{{ $date->created_at }}">{{ Carbon\Carbon::parse($date->created_at)->format('M, Y')
+                        }}</option>
                     @endif
                     @endforeach
                 </x-form-select>
@@ -72,7 +75,8 @@
                             <p class="mt-1 text-sm text-gray-500">Get started by creating a new request</p>
                             <div class="mt-6">
                                 <div class="group inline-block">
-                                    <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/accountpayable/{{ 'purchase' }}/{{ Str::random(3) }}/store'">
+                                    <x-button
+                                        onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/accountpayable/{{ 'purchase' }}/{{ Str::random(3) }}/store'">
                                         <span class="pr-1 font-semibold flex-1">
                                             New Request</span>
 

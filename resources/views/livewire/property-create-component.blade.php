@@ -1,5 +1,5 @@
 <div>
-    {{-- @include('layouts.notifications') --}}
+
    <form class="space-y-1" wire:submit.prevent="create()">
       <div class="pt-10">
          <div>
@@ -41,16 +41,17 @@
             <div class="lg:col-span-1">
                <div class="mt-2">
                   <x-label>Registered Business Name of the Property</x-label>
-                  <x-input type="text" wire:model="property" name="property" placeholder="The New Property Condominium"/>
-            </div>
+                  <x-input type="text" wire:model="property" name="property"
+                     placeholder="The New Property Condominium" />
+               </div>
             </div>
 
             <div class="lg:col-span-1">
-                  <div class="mt-2">
-                     <x-label>Registered TIN of the Property</x-label>
-                     <x-input type="text" wire:model="registered_tin" name="registered_tin" />
-                  </div>
+               <div class="mt-2">
+                  <x-label>Registered TIN of the Property</x-label>
+                  <x-input type="text" wire:model="registered_tin" name="registered_tin" />
                </div>
+            </div>
 
             <div class="lg:col-span-1">
 
@@ -72,7 +73,7 @@
             <div class="lg:col-span-1">
                <div class="mt-2">
                   <x-label>Address</x-label>
-                  <x-input type="text" wire:model="barangay" name="barangay"/>
+                  <x-input type="text" wire:model="barangay" name="barangay" />
                </div>
             </div>
          </div>

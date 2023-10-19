@@ -3,7 +3,7 @@
     $addAnchorClass = 'block py-2 px-4 text-sm dark:text-gray-200 dark:hover:text-white';
 ?>
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     @include('modals.popup-error')
     <div class="mt-8 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
         <div class="lg:grid lg:grid-cols-12 lg:auto-rows-min lg:gap-x-8">
@@ -91,20 +91,20 @@
                                     class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
 
                                     @if($subfeature == 'houseowner')
-                                        @if($houseOwners->count())
-                                        @include('tables.houseowners')
-                                        @else
-                                        <div class="mt-10 text-center mb-10">
-                                            <i class="fa-solid fa-circle-plus"></i>
-                                            <h3 class="mt-2 text-sm font-medium text-gray-900">No house owners</h3>
-                                            <div class="mt-6">
-                                                <x-button
-                                                    onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/house/{{ $house_details->id }}/house-owner/create'">
-                                                    New house owner
-                                                </x-button>
-                                            </div>
+                                    @if($houseOwners->count())
+                                    @include('tables.houseowners')
+                                    @else
+                                    <div class="mt-10 text-center mb-10">
+                                        <i class="fa-solid fa-circle-plus"></i>
+                                        <h3 class="mt-2 text-sm font-medium text-gray-900">No house owners</h3>
+                                        <div class="mt-6">
+                                            <x-button
+                                                onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/house/{{ $house_details->id }}/house-owner/create'">
+                                                New house owner
+                                            </x-button>
                                         </div>
-                                        @endif
+                                    </div>
+                                    @endif
                                     @elseif($subfeature == 'guest')
 
                                     @elseif($subfeature == 'concern')

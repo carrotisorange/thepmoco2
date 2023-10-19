@@ -1,25 +1,24 @@
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
                 <h1 class="text-3xl font-bold text-gray-700">
-                      {{ucfirst(Route::current()->getName())}}
+                    {{ucfirst(Route::current()->getName())}}
                 </h1>
             </div>
             @if($propertyBillsCount)
 
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 @if($search || $status || $particular || $posted_dates || $bill_type)
-                <x-button wire:click="clearFilters()" wire.loading.remove
-                    type="button">Clear Filters
+                <x-button wire:click="clearFilters()" wire.loading.remove type="button">Clear Filters
                 </x-button>
                 @endif
 
                 <div class="group inline-block">
-                    <x-button wire.loading.remove >
-                       New bill
-                      &nbsp; <i class="fa-solid fa-caret-down"></i>
+                    <x-button wire.loading.remove>
+                        New bill
+                        &nbsp; <i class="fa-solid fa-caret-down"></i>
                     </x-button>
 
                     <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
@@ -34,9 +33,7 @@
 
                 </div>
 
-                <x-button wire:click="viewDelinquents" wire.loading.remove
-
-                    type="button">
+                <x-button wire:click="viewDelinquents" wire.loading.remove type="button">
                     @if($filter_bill_to === 'delinquent')
                     View All
                     @else
@@ -45,13 +42,11 @@
                 </x-button>
 
                 @if($view === 'listView')
-                <x-button wire:click="changeView('agingSummaryView')" wire.loading.remove
-                    type="button"> View Aging Summary
+                <x-button wire:click="changeView('agingSummaryView')" wire.loading.remove type="button"> View Aging
+                    Summary
                 </x-button>
                 @else
-                <x-button wire:click="changeView('listView')" wire.loading.remove
-
-                    type="button"> View List
+                <x-button wire:click="changeView('listView')" wire.loading.remove type="button"> View List
                 </x-button>
                 @endif
 
@@ -108,7 +103,7 @@
         @endif
 
         <div class="mt-3">
-          {{ $bills->links() }}
+            {{ $bills->links() }}
         </div>
 
         <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -131,7 +126,7 @@
                             <p class="mt-1 text-sm text-gray-500">Get started by creating a new bill</p>
                             <div class="mt-6">
                                 <div class="group inline-block">
-                                    <x-button  id="dropdownButton" data-dropdown-toggle="unitCreateDropdown">Add
+                                    <x-button id="dropdownButton" data-dropdown-toggle="unitCreateDropdown">Add
                                         &nbsp; <i class="fa-solid fa-caret-down"></i>
                                     </x-button>
 

@@ -1,5 +1,5 @@
 <x-modal-component>
-    {{-- @include('layouts.notifications') --}}
+
     <x-slot name="id">
         create-unit-inventory-modal
     </x-slot>
@@ -21,7 +21,7 @@
 
             <div class="mt-2 sm:mt-6">
                 <label class="text-sm" for="">Item</label>
-                <x-form-input type="text" id="item" wire:model="item"/>
+                <x-form-input type="text" id="item" wire:model="item" />
                 @error('item')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
@@ -29,7 +29,7 @@
 
             <div class="mt-5 sm:mt-6">
                 <label class="text-sm" for="">Quantity</label>
-                <x-form-input type="number" id="quantity" wire:model="quantity"/>
+                <x-form-input type="number" id="quantity" wire:model="quantity" />
                 @error('quantity')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
@@ -37,7 +37,7 @@
 
             <div class="mt-5 sm:mt-6">
                 <label class="text-sm" for="kwh">Remarks</label>
-                <x-form-input type="text" id="remarks" wire:model="remarks"/>
+                <x-form-input type="text" id="remarks" wire:model="remarks" />
                 @error('remarks')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror

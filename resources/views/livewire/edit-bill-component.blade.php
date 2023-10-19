@@ -1,11 +1,11 @@
 <x-modal-component>
-    {{-- @include('layouts.notifications') --}}
+
     <x-slot name="id">
         edit-bill-modal-{{$bill_details->id}}
     </x-slot>
     <h1 class="text-center font-medium">Edit Bill</h1>
     <div class="p-5">
-    <form wire:submit.prevent="updateBill">
+        <form wire:submit.prevent="updateBill">
             <div class="mt-5 sm:mt-6">
                 <x-label class="text-sm" for="reference_no">Reference No</x-label>
                 <x-form-input type="text" readonly
@@ -30,7 +30,7 @@
 
             <div class="mt-5 sm:mt-6">
                 <x-label class="text-sm" for="status">Status</x-label>
-                <x-form-input type="text" readonly value="{{ $bill_details->status}}"/>
+                <x-form-input type="text" readonly value="{{ $bill_details->status}}" />
             </div>
 
             <div class="mt-5 sm:mt-6">
@@ -51,7 +51,7 @@
 
             <div class="mt-5 sm:mt-6">
                 <label class="text-sm" for="bill">Start</label>
-                <x-form-input type="date" id="start" wire:model="start"/>
+                <x-form-input type="date" id="start" wire:model="start" />
                 @error('start')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
@@ -59,7 +59,7 @@
 
             <div class="mt-5 sm:mt-6">
                 <x-label class="text-sm" for="bill">End</x-label>
-                <x-form-input type="date" id="end" wire:model="end"/>
+                <x-form-input type="date" id="end" wire:model="end" />
                 @error('end')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
@@ -68,7 +68,7 @@
 
             <div class="mt-5 sm:mt-6">
                 <x-label class="text-sm" for="bill">Amount</x-label>
-                <x-form-input type="number" step="0.001" id="bill" wire:model="bill"/>
+                <x-form-input type="number" step="0.001" id="bill" wire:model="bill" />
                 @error('bill')
                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                 @enderror
@@ -79,6 +79,6 @@
                 <x-button class="w-full" type="submit"> Update
                 </x-button>
             </div>
-    </form>
+        </form>
     </div>
 </x-modal-component>

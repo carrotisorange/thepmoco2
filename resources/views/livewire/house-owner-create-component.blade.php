@@ -1,7 +1,7 @@
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     <div class="p-6 bg-white border-b border-gray-200">
-    <form class="space-y-6" wire:submit.prevent="submitForm()">
+        <form class="space-y-6" wire:submit.prevent="submitForm()">
             <div class="mt-5 md:mt-0 md:col-span-3">
                 <div class="grid grid-cols-6 gap-6">
                     <div class="col-span-6 sm:col-span-6">
@@ -12,23 +12,25 @@
                     <div class="col-span-6 sm:col-span-2">
                         <x-label for="house_owner">
                             Full Name</x-label>
-                        <x-form-input name="house_owner" type="text" wire:model="house_owner" autocomplete="house_owner"/>
+                        <x-form-input name="house_owner" type="text" wire:model="house_owner"
+                            autocomplete="house_owner" />
                         @error('house_owner')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <div class="col-span-6 sm:col-span-2">
-                        <x-label for="email" >Email Address</x-label>
-                        <x-form-input type="email" wire:model="email" autocomplete="email"/>
+                        <x-label for="email">Email Address</x-label>
+                        <x-form-input type="email" wire:model="email" autocomplete="email" />
                         @error('email')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <div class="col-span-6 sm:col-span-2">
-                        <x-label for="mobile_number" >Mobile Number</x-label>
-                        <x-form-input type="text" wire:model="mobile_number" autocomplete="mobile_number" value="{{ old('mobile_number') }}"/>
+                        <x-label for="mobile_number">Mobile Number</x-label>
+                        <x-form-input type="text" wire:model="mobile_number" autocomplete="mobile_number"
+                            value="{{ old('mobile_number') }}" />
                         @error('mobile_number')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -53,7 +55,8 @@
 
                     <div class="col-span-2">
                         <x-label for="birthdate">Birthdate</x-label>
-                        <x-form-input type="date" wire:model="birthdate" autocomplete="birthdate" value="{{ old('birthdate') }}"/>
+                        <x-form-input type="date" wire:model="birthdate" autocomplete="birthdate"
+                            value="{{ old('birthdate') }}" />
                         @error('birthdate')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -61,7 +64,7 @@
 
 
                     <div class="col-span-2">
-                        <x-label for="civil_status" >Civil
+                        <x-label for="civil_status">Civil
                             Status</x-label>
                         <x-form-select wire:model="civil_status" autocomplete="civil_status">
                             <option value="">Select one</option>
@@ -94,7 +97,7 @@
                             @endforeach
                         </x-form-select>
                         @error('country_id')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </div>
 
@@ -103,7 +106,8 @@
                         <x-form-select wire:model="province_id" autocomplete="province_id">
                             <option value="">Select one</option>
                             @foreach ($provinces as $province)
-                            <option value="{{ $province->id }}" {{ old('province_id')==$province->id? 'selected': 'Select one'}}>
+                            <option value="{{ $province->id }}" {{ old('province_id')==$province->id? 'selected':
+                                'Select one'}}>
                                 {{ $province->province }}
                             </option>
                             @endforeach
@@ -115,7 +119,8 @@
 
                     <div class="col-span-6">
                         <x-label for="address">Address</x-label>
-                        <x-form-input type="text" wire:model="address" autocomplete="address" value="{{ old('address') }}" />
+                        <x-form-input type="text" wire:model="address" autocomplete="address"
+                            value="{{ old('address') }}" />
                     </div>
 
                     {{-- <div class="col-span-6">
@@ -170,15 +175,17 @@
                         @enderror
                     </div>
                     <div class="col-span-2">
-                        <x-label for="employer" >Employer</x-label>
-                        <x-form-input type="text" wire:model="employer" autocomplete="employer" value="{{ old('employer') }}" />
+                        <x-label for="employer">Employer</x-label>
+                        <x-form-input type="text" wire:model="employer" autocomplete="employer"
+                            value="{{ old('employer') }}" />
                         @error('employer')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="col-span-2">
                         <x-label for="employer_address">Address</x-label>
-                        <x-form-input type="text" wire:model="employer_address" autocomplete="employer_address" value="{{ old('employer_address') }}" />
+                        <x-form-input type="text" wire:model="employer_address" autocomplete="employer_address"
+                            value="{{ old('employer_address') }}" />
                         @error('employer_address')
                         <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
@@ -189,7 +196,8 @@
                 </div>
             </div>
             <div class="flex justify-end">
-                <x-button class="bg-red-500" onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/house/{{ $house->id }}'">
+                <x-button class="bg-red-500"
+                    onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/house/{{ $house->id }}'">
                     Cancel
                 </x-button>
 
@@ -197,6 +205,6 @@
                     Next
                 </x-button>
             </div>
-</form>
+        </form>
     </div>
 </div>

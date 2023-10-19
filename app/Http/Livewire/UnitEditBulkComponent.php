@@ -6,6 +6,7 @@ use App\Models\Tenant;
 use Illuminate\Validation\Rule;
 use Livewire\WithPagination;
 use Session;
+use App\Models\Property;
 
 use Livewire\Component;
 
@@ -49,19 +50,6 @@ class UnitEditBulkComponent extends Component
         $this->validateOnly($propertyName);
     }
 
-    // public function updatedSelectAllUnits($selectedAllUnits)
-    // {
-    //     if($selectedAllUnits)
-    //     {
-    //         $this->selectedUnits = $this->get_units()->pluck('uuid');
-
-    //     }else
-    //     {
-    //         $this->selectedUnits = [];
-    //     }
-    // }
-
-
     public function updateUnit()
     {
         $validatedData = $this->validate();
@@ -90,26 +78,6 @@ class UnitEditBulkComponent extends Component
 
     }
 
-    // public function removeUnits()
-    // {
-    //     foreach($this->selectedUnits as $unit => $val){
-    //         if(Contract::where('property_uuid', Session::get('property_uuid'))->where('unit_uuid', $unit)->count() || DeedOfSale::where('property_uuid', Session::get('property_uuid'))->where('unit_uuid', $unit)->count())
-    //         {
-    //            session()->flash('error', 'Unit cannot be removed.');
-    //         }
-    //         else{
-    //             Unit::destroy($unit);
-
-    //             app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, -1, 5);
-
-    //             $this->units = $this->get_units();
-
-    //             session()->flash('success', 'Changes Saved!');
-    //         }
-    //     }
-    //      $this->selectedUnits = [];
-    // }
-
     public function get_units()
     {
         $units = Unit::search($this->search)
@@ -131,6 +99,7 @@ class UnitEditBulkComponent extends Component
             'floors' => app('App\Http\Controllers\FloorController')->index(null),
             'categories' => app('App\Http\Controllers\CategoryController')->index(null),
             'statuses' => app('App\Http\Controllers\StatusController')->index(null),
+            'propertyUnitsCount' => Property::find(Session::get('property_uuid'))->units->count()
         ]);
     }
 }

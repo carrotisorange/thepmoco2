@@ -1,5 +1,5 @@
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     <div class="md:grid md:grid-cols-1 px-10 md:gap-6">
         <nav class="mt-5 border-b flex col-start-1" aria-label="Breadcrumb">
             <ol role="list" class="mx-auto flex w-full max-w-screen-xl space-x-4 px-4 sm:px-6">
@@ -44,7 +44,7 @@
             <div class="grid grid-cols-2 gap-6">
                 <div class="col-span-1">
                     <label for="created_at" class="">Payment Date</label>
-                    <x-form-input type="date" form="edit-form" name="created_at" wire:model="created_at"/>
+                    <x-form-input type="date" form="edit-form" name="created_at" wire:model="created_at" />
                     @error('created_at')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
@@ -52,8 +52,7 @@
 
                 <div class="col-span-1">
                     <label for="form" class="">Mode of Payment</label>
-                    <x-form-select wire:model="form" form="edit-form" name="form"
-            >
+                    <x-form-select wire:model="form" form="edit-form" name="form">
 
                         <option value="bank" {{ old('form')=='bank' ? 'selected' : 'Select one' }}>bank</option>
                         <option value="cash" {{ old('form')=='cash' ? 'selected' : 'Select one' }} selected>cash
@@ -119,7 +118,7 @@
                                 </label>
                             </div>
                             <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
-                           @if($attachment)
+                            @if($attachment)
                             <span class="text-red-500 text-xs mt-2">
                                 <a href="#/" wire:click="removeAttachment('attachment')">Remove the
                                     attachment</a></span>
@@ -152,8 +151,8 @@
                             <div class="text-sm text-gray-600">
                                 <label for="proof_of_payment"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                  <span wire:loading.remove>Upload a file</span>
-                                <span disabled wire:loading>Loading...</span>
+                                    <span wire:loading.remove>Upload a file</span>
+                                    <span disabled wire:loading>Loading...</span>
                                     <input form="edit-form" name="proof_of_payment" id="proof_of_payment" type="file"
                                         class="sr-only" wire:model="proof_of_payment">
                                 </label>
@@ -262,15 +261,17 @@
     </div>
 
     <div class="flex justify-end p-10 mt-5">
-        <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant->uuid }}/bills'">
-                    Cancel
-                </x-button>
+        <x-button
+            onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant->uuid }}/bills'">
+            Cancel
+        </x-button>
 
         @if($collections->sum('bill') == 0)
 
         @else
-            <x-button form="edit-form" onclick="this.form.submit(); this.disabled = true; this.value = 'Submitting the form';">
-                Confirm Payment
+        <x-button form="edit-form"
+            onclick="this.form.submit(); this.disabled = true; this.value = 'Submitting the form';">
+            Confirm Payment
         </x-button>
         @endif
 

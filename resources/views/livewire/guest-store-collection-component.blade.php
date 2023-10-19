@@ -1,5 +1,5 @@
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     <div class="md:grid md:grid-cols-1 px-10 md:gap-6">
         <nav class="mt-5 border-b flex col-start-1" aria-label="Breadcrumb">
             <ol role="list" class="mx-auto flex w-full max-w-screen-xl space-x-4 px-4 sm:px-6">
@@ -45,7 +45,7 @@
             <div class="grid grid-cols-2 gap-6">
                 <div class="col-span-1">
                     <label for="created_at" class="">Payment Date</label>
-                    <x-form-input type="date" form="edit-form" name="created_at" wire:model="created_at"/>
+                    <x-form-input type="date" form="edit-form" name="created_at" wire:model="created_at" />
                     @error('created_at')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
@@ -74,7 +74,7 @@
                 @if($form === 'bank')
                 <div class="col-span-1">
                     <label for="bank" class="">Name of the bank</label>
-                    <x-form-input type="text" form="edit-form" name="bank" wire:model="bank" autocomplete="bank"/>
+                    <x-form-input type="text" form="edit-form" name="bank" wire:model="bank" autocomplete="bank" />
                     @error('bank')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
@@ -83,7 +83,7 @@
                 <div class="col-span-1">
                     <label for="date_deposited" class="">Date Deposited
                     </label>
-                    <x-form-input type="date" form="edit-form" name="date_deposited" wire:model="date_deposited"/>
+                    <x-form-input type="date" form="edit-form" name="date_deposited" wire:model="date_deposited" />
                     @error('date_deposited')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
@@ -94,7 +94,7 @@
                 <div class="col-span-2">
                     <label for="check_no" class="">Check No
                     </label>
-                    <x-form-input type="text" form="edit-form" name="check_no" wire:model="check_no"/>
+                    <x-form-input type="text" form="edit-form" name="check_no" wire:model="check_no" />
                     @error('check_no')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror

@@ -1,28 +1,25 @@
 <table class="min-w-full table-fixed">
   <thead class="">
         <tr>
-            <th scope="col" class="relative w-12 px-6 sm:w-16 sm:px-8">
-                #
-            </th>
-            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+            <x-th>#</x-th>
+            <x-th>
                 SUBSCRIBED ON
-            </th>
-            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                FEATURE
-            </th>
+            </x-th>
+          <x-th>
+            FEATURE
+          </x-th>
 
-            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                PRICE
-            </th>
-            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                STATUS
-            </th>
+         <x-th>
+            PRICE
+         </x-th>
+          <x-th>
+            STATUS
+          </x-th>
 
-            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                EXTERNAL ID</th>
 
-            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-            </th>
+
+         <x-th>Description</x-th>
+         <x-th>Expires on</x-th>
 
 
         </tr>
@@ -34,32 +31,35 @@
         @foreach($subscriptions as $index => $subscription )
         <tr>
             <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                {{ $index+1 }}
-            </td>
+          <x-td>
+            {{ $index+1 }}
+          </x-td>
 
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                {{ Carbon\Carbon::parse($subscription->created_at)->format('M d, Y') }}
-            </td>
+      <x-td>
+        {{ Carbon\Carbon::parse($subscription->created_at)->format('M d, Y') }}
+      </x-td>
 
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                {{ App\Models\Feature::find($subscription->plan_id)->feature }}
-            </td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                {{ number_format($subscription->price, 2) }}
-            </td>
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                {{ $subscription->status }}
-            </td>
+           <x-td>
+            {{ App\Models\Plan::find($subscription->plan_id)->plan }}
+           </x-td>
+         <x-td>
+            {{ number_format($subscription->price, 2) }}
+         </x-td>
+         <x-td>
+            {{ $subscription->status }}
+         </x-td>
+         <x-td>{{ $subscription->description }}</x-td>
+         <x-td>
+            {{ Carbon\Carbon::parse($subscription->created_at)->addDays($subscription->plan_expires_after)->format('M d, Y') }}
+         </x-td>
+
             {{-- <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 {{ Carbon\Carbon::parse($subscription->trial_ends_at)->format('M d, Y') }}
             </td> --}}
 
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                {{ $subscription->external_id }}
-            </td>
 
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+
+            {{-- <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                 @if($subscription->plan_id == '1')
                 <a class="text-blue-500 text-decoration-line: underline"
                     href="/property/{{ Session::get('property_uuid') }}">Try this feature</a>
@@ -82,7 +82,7 @@
                 <a class="text-blue-500 text-decoration-line: underline"
                     href="/property/{{ Session::get('property_uuid') }}">Try this feature</a>
                 @endif
-            </td>
+            </td> --}}
 
         </tr>
         @endforeach

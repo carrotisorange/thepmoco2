@@ -1,5 +1,5 @@
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     <div>
         <div class="mt-10 px-4 sm:px-6 lg:px-8">
             <div class="sm:flex sm:items-center">
@@ -38,13 +38,13 @@
                 {{-- @if($bill_to === 'tenant')
                 <div class="sm:col-span-3">
                     <label for="isBillSplit">Do you want to split the bills?</label>
-                  <select id="isBillSplit" wire:model="isBillSplit"
-                    class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                    <option value="">Please select one</option>
-                    <option value="yes">yes</option>
-                    <option value="no">no</option>
+                    <select id="isBillSplit" wire:model="isBillSplit"
+                        class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                        <option value="">Please select one</option>
+                        <option value="yes">yes</option>
+                        <option value="no">no</option>
 
-                </select>
+                    </select>
 
                 </div>
                 @endif --}}
@@ -143,9 +143,9 @@
                                                 @enderror
                                             </x-td>
                                             @if($isBillSplit === 'yes')
-                                           <x-td>
+                                            <x-td>
 
-                                            <?php
+                                                <?php
                                                 $active_contracts = $item->unit->contracts->where('status', 'active')->count();
 
                                                 if($active_contracts <= 0 ){
@@ -153,11 +153,12 @@
                                                 }
 
                                             ?>
-                                            <x-table-input form="edit-form" type="text" value="{{ $item->bill/$active_contracts }}" readonly />
+                                                <x-table-input form="edit-form" type="text"
+                                                    value="{{ $item->bill/$active_contracts }}" readonly />
 
 
-                                           </x-td>
-                                           @endif
+                                            </x-td>
+                                            @endif
                                         </tr>
                                     </div>
                                     @endforeach

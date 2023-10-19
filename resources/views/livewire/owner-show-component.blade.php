@@ -4,7 +4,7 @@
                                                     dark:text-gray-200 dark:hover:text-white';
 ?>
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     <div class="mt-8 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
         <div class="lg:grid lg:grid-cols-12 lg:auto-rows-min lg:gap-x-8">
             <div class="lg:col-start-4 lg:col-span-9">
@@ -85,11 +85,11 @@
                 <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
                     <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab"
                         data-tabs-toggle="#myTabContent" role="tablist">
-                       @foreach($ownerSubfeaturesArray as $subfeature)
+                        @foreach($ownerSubfeaturesArray as $subfeature)
                         <li class="mr-2" role="presentation">
                             <button class="inline-block p-4 rounded-t-lg border-b-2" id="{{ $subfeature }}-tab"
-                                data-tabs-target="#{{ $subfeature }}" type="button" role="tab" aria-controls="{{ $subfeature }}"
-                                aria-selected="false">
+                                data-tabs-target="#{{ $subfeature }}" type="button" role="tab"
+                                aria-controls="{{ $subfeature }}" aria-selected="false">
                                 {{ $subfeature }}
                             </button>
                         </li>
@@ -106,16 +106,18 @@
                         </div>
                     </div>
                     @else
-                    <div class="p-4 purple rounded-lg dark:bg-gray-800" id="{{ $subfeature }}" role="tabpanel" aria-labelledby="{{ $subfeature }}-tab">
+                    <div class="p-4 purple rounded-lg dark:bg-gray-800" id="{{ $subfeature }}" role="tabpanel"
+                        aria-labelledby="{{ $subfeature }}-tab">
                         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                                <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                                @if($subfeature == 'credentials')
+                                <div
+                                    class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                    @if($subfeature == 'credentials')
                                     @if($email_cred)
-                                  <div class="sm:col-span-4">
+                                    <div class="sm:col-span-4">
                                         <div class="">
                                             <x-label for="tenant">Email</x-label>
-                                            <x-form-input type="text" value="{{ $email_cred }}"  disabled />
+                                            <x-form-input type="text" value="{{ $email_cred }}" disabled />
                                         </div>
                                     </div>
                                     <div class="sm:col-span-4 mt-8">
@@ -125,50 +127,51 @@
 
 
                                         </div>
-                                </div>
-                                @else
-                                <div class="mt-10 text-center mb-10">
-                                    {{-- <i class="fa-solid fa-circle-plus"></i> --}}
-                                    <h3 class="mt-2 text-sm font-medium text-gray-900">No credentials.</h3>
-
-                                    <div class="mt-6">
-                                        {{-- <x-button disabled>
-                                            New session
-                                        </x-button> --}}
                                     </div>
-                                </div>
-                                @endif
-                                @elseif($subfeature == 'session')
-                                @if($sessions->count())
+                                    @else
+                                    <div class="mt-10 text-center mb-10">
+                                        {{-- <i class="fa-solid fa-circle-plus"></i> --}}
+                                        <h3 class="mt-2 text-sm font-medium text-gray-900">No credentials.</h3>
+
+                                        <div class="mt-6">
+                                            {{-- <x-button disabled>
+                                                New session
+                                            </x-button> --}}
+                                        </div>
+                                    </div>
+                                    @endif
+                                    @elseif($subfeature == 'session')
+                                    @if($sessions->count())
                                     @include('tables.sessions')
-                                @else
-                                <div class="mt-10 text-center mb-10">
-                                    {{-- <i class="fa-solid fa-circle-plus"></i> --}}
-                                    <h3 class="mt-2 text-sm font-medium text-gray-900">No sessions.</h3>
+                                    @else
+                                    <div class="mt-10 text-center mb-10">
+                                        {{-- <i class="fa-solid fa-circle-plus"></i> --}}
+                                        <h3 class="mt-2 text-sm font-medium text-gray-900">No sessions.</h3>
 
-                                    <div class="mt-6">
-                                        {{-- <x-button disabled>
-                                            New session
-                                        </x-button> --}}
+                                        <div class="mt-6">
+                                            {{-- <x-button disabled>
+                                                New session
+                                            </x-button> --}}
+                                        </div>
                                     </div>
-                                </div>
-                                @endif
-                                @elseif($subfeature == 'unit')
+                                    @endif
+                                    @elseif($subfeature == 'unit')
                                     @include('tables.deedofsales')
-                                @elseif($subfeature == 'spouse')
+                                    @elseif($subfeature == 'spouse')
                                     @include('tables.spouses')
-                                @elseif($subfeature == 'representative')
+                                    @elseif($subfeature == 'representative')
                                     @include('tables.representatives')
-                                @elseif($subfeature == 'bill')
-                                <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/bills'">
-                                    Pay Bills
-                                </x-button>
+                                    @elseif($subfeature == 'bill')
+                                    <x-button
+                                        onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/bills'">
+                                        Pay Bills
+                                    </x-button>
                                     @include('tables.bills')
-                                @elseif($subfeature == 'collection')
+                                    @elseif($subfeature == 'collection')
                                     @include('tables.collections')
-                                @elseif($subfeature == 'bank')
+                                    @elseif($subfeature == 'bank')
                                     @include('tables.banks')
-                                @endif
+                                    @endif
                                 </div>
                             </div>
                         </div>

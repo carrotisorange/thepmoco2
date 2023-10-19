@@ -1,19 +1,19 @@
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     @livewire('create-bill-component', [ 'bill_to' => $tenant])
 
     <div class="mt-5 mb-10">
 
         <p class="text-right">
             <x-button data-modal-toggle="create-bill-modal">
-                  New Bill
-                </x-button>
+                New Bill
+            </x-button>
 
         </p>
         <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
             @if($bills->count())
             <div class="mb-5 mt-2 relative overflow-x-auto ring-opacity-5 md:rounded-lg">
-            @include('tables.bills')
+                @include('tables.bills')
             </div>
             @endif
         </div>

@@ -1,5 +1,5 @@
 <div>
-    {{-- @include('layouts.notifications') --}}
+
     <div class="p-8 bg-white border-b border-gray-200">
         <form class="space-y-6" wire:submit.prevent="submitForm()" method="POST">
             <div class=" mt-5 px-4 py-5 sm:rounded-lg sm:p-6">
