@@ -239,7 +239,7 @@ class AccountPayableCreateStep1Component extends Component
                     'quantity' => $particular->quantity,
                     'price' => $particular->price,
                     'batch_no' => $this->batch_no,
-                    'total' => $particular->quantity * $particular->price,
+                    'total' => (int) $particular->quantity * (int) $particular->price,
                 ]);
 
             $this->amount = AccountPayableParticular::where('batch_no', $this->accountpayable->batch_no)->sum('total');

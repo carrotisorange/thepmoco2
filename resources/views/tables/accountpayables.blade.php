@@ -1,5 +1,5 @@
 
-<table class="">
+<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
    <thead class="">
         <tr class="">
             {{-- <x-th>#</x-th> --}}
@@ -165,15 +165,15 @@
         <tr>
             <x-td><b>Total</b></x-td>
             {{-- <x-th></x-th> --}}
-            <x-th></x-th>
-            <x-th></x-th>
-            <x-th></x-th>
-            <x-th></x-th>
-            <x-th></x-th>
-            <x-th></x-th>
-            <x-th></x-th>
+            <x-td></x-td>
+            <x-td></x-td>
+            <x-td></x-td>
+            <x-td></x-td>
+            <x-td></x-td>
+            <x-td></x-td>
+            <x-td></x-td>
             <x-td><b>{{ number_format($accountpayables->sum('amount'), 2) }}</b></x-td>
-            <x-th></x-th>
+            <x-td></x-td>
         </tr>
     </tbody>
 </table>
