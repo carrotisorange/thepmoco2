@@ -86,7 +86,6 @@ class PropertyCreateComponent extends Component
             });
 
         }catch (\Throwable $e) {
-            ddd($e);
             return back()->with('error', $e);
         }
      }
