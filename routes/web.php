@@ -57,7 +57,11 @@ Route::get('/landing-propsuite', function(){
             return view('landing.landinglanding');});
 
 
-
+ //Routes for Property
+Route::controller(ArticleController::class)->group(function () {
+    Route::get('articles', 'index')->name('articles');
+    Route::get('article/{id}', 'show')->name('articles');
+});
 
 
 Route::get('/about', function(){

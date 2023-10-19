@@ -240,7 +240,7 @@
 
                     <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="faq">FAQs</a></li>
 
-                    <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="blog-1">Articles</a>
+                    <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="/articles">Articles</a>
                     </li>
 
 
@@ -297,7 +297,7 @@
                         </li>
                         <li class="mb-1" tabindex="0">
                             <a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded"
-                                href="blog-1">Articles</a>
+                                href="/articles">Articles</a>
                         </li>
                         <li class="mb-1" tabindex="0">
                             <a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded"
@@ -368,7 +368,7 @@
                         </li>
                         <li class="mb-1" tabindex="0">
                             <a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded"
-                                href="blog-1">Articles</a>
+                                href="/articles">Articles</a>
                         </li>
 
                         <li class="mt-5 mb-1" tabindex="0">

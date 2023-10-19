@@ -186,7 +186,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
                 <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="faq">FAQs</a></li>
 
-                <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="blog-1">Articles</a></li>
+                <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="/articles">Articles</a></li>
 
                 <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="owner-corner">Property
                         Owners Corner</a></li>
