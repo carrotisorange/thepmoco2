@@ -74,19 +74,19 @@ class UtilityIndexComponent extends Component
     }
 
     public function storeUtilities()
-    {   
+    {
         $this->validate();
 
         set_time_limit(1000);
 
         $units = Unit::where('property_uuid', Session::get('property_uuid'))->get();
-        
+
         $batch_no = auth()->user()->id.Str::random(8);
 
         foreach($units as $unit){
             app('App\Http\Controllers\UtilityController')->store(
                 Session::get('property_uuid'),
-                $unit->uuid, 
+                $unit->uuid,
                 $unit->previous_water_utility_reading,
                 $unit->previous_electric_utility_reading,
                 auth()->user()->id,
@@ -96,10 +96,10 @@ class UtilityIndexComponent extends Component
                 $this->utility_type,
                 $this->kwh,
                 $this->min_charge,
-            );    
+            );
         }
-        
-        return redirect('/property/'.Session::get('property_uuid').'/utilities/'.$batch_no.'/'.$this->utility_type);
+
+        return redirect('/property/'.Session::get('property_uuid').'/utility/'.$batch_no.'/'.$this->utility_type);
 
     }
 

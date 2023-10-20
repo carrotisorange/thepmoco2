@@ -3,7 +3,7 @@
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
                 <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
-                <h1 class="text-3xl font-bold text-gray-500">
+                <h1 class="text-3xl font-bold text-gray-500" wire:ignore>
                     {{ucfirst(Route::current()->getName())}}
                 </h1>
             </div>
@@ -14,7 +14,7 @@
                 </x-button>
 
             </div>
-           
+
         </div>
         <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
 

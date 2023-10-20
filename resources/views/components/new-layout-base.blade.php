@@ -35,7 +35,8 @@
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
 
                     <!-- help icon -->
-                        <a href="/support"><x-button title="help">
+                        <a href="/support" target="_blank">
+                            <x-button title="help">
                               Need help?
                             </x-button>
                             </a>

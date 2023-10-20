@@ -1,4 +1,3 @@
-
 <table style="overflow: scroll;">
     <tbody>
         <tr>
@@ -34,7 +33,7 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
+
             <td></td>
             <td></td>
 
@@ -159,7 +158,7 @@
             <td><x-table-input wire:model="remittances.{{ $index }}.cause_of_magnet" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></td>
             <td>{{ number_format($remittance->total_deductions, 2) }}</td>
             <td>{{ number_format($remittance->remittance, 2) }}</td>
-            <td><x-table-input wire:model="remittances.{{ $index }}.cv_no" wire:change="updateRemittance({{ $remittance->id }})" type="text"/></td>
+            {{-- <td><x-table-input wire:model="remittances.{{ $index }}.cv_no" wire:change="updateRemittance({{ $remittance->id }})" type="text"/></td> --}}
             <td><x-table-input wire:model="remittances.{{ $index }}.check_no" wire:change="updateRemittance({{ $remittance->id }})" type="text"/></td>
         </tr>
         </div>

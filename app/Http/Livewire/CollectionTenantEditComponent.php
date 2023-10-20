@@ -22,7 +22,7 @@ class CollectionTenantEditComponent extends Component
     public $bank;
     public $check_no;
     public $created_at;
-    public $date_deposited; 
+    public $date_deposited;
     public $description;
     public $sendPayment = false;
 

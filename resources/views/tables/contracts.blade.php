@@ -15,7 +15,7 @@
     </thead>
     <tbody class=" bg-white divide-y divide-gray-200">
         @foreach ($contracts as $index => $contract)
-        <div wire:key="contract-field-{{ $contract->uuid }}" wire:ignore>
+        <div wire:key="contract-field-{{ $contract->uuid }}" wire:ignore.self>
             <tr>
                 <div style="width: 10px">
                     <x-td>{{ $index+1 }} </x-td>

@@ -3,17 +3,14 @@
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
-                <h1 class="text-3xl font-bold text-gray-700">
+                <h1 class="text-3xl font-bold text-gray-700" wire:ignore>
                     {{ucfirst(Route::current()->getName())}}
                 </h1>
             </div>
             @if($propertyBillsCount)
 
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                @if($search || $status || $particular || $posted_dates || $bill_type)
-                <x-button wire:click="clearFilters()" wire.loading.remove type="button">Clear Filters
-                </x-button>
-                @endif
+              
 
                 <div class="group inline-block">
                     <x-button wire.loading.remove>
