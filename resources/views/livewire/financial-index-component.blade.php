@@ -8,23 +8,22 @@
                 </h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                {{-- <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/calendar'">
+                <x-button wire:click="export">
                    Export
-                </x-button> --}}
+                </x-button>
             </div>
         </div>
         <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
 
             <div class="sm:col-span-3">
                 <x-label>Start</x-label>
-                <x-form-input name="start_date" type="date" wire:model="start_date" />
+                <x-form-input name="startDate" type="date" wire:model="startDate" />
 
             </div>
 
             <div class="sm:col-span-3">
                 <x-label>End</x-label>
-                <x-form-input name="end_date" type="date" wire:model="end_date" />
-
+                <x-form-input name="endDate" type="date" wire:model="endDate" />
             </div>
         </div>
 
