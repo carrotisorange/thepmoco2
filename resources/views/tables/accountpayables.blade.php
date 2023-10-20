@@ -2,10 +2,8 @@
 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
    <thead class="">
         <tr class="">
-            {{-- <x-th>#</x-th> --}}
             <x-th class="sticky-col first-col">REQUESTED ON</x-th>
             <x-th class="sticky-col first-col">BATCH NO</x-th>
-
             <x-th class="sticky-col first-col">REQUESTER</x-th>
             <x-th class="sticky-col first-col">FIRST APPROVER</x-th>
             <x-th class="sticky-col first-col">SECOND APPROVER</x-th>

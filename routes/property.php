@@ -393,7 +393,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     //Routes for Cashflow
     Route::prefix('financial')->group(function(){
         Route::get('/', [FinancialController::class, 'index'])->name('financial');
-        Route::get('{type}/export/{filter}', [FinancialController::class, 'export']);
+        Route::get('export/{startDate}/{endDate}', [FinancialController::class, 'export']);
     });
 
 

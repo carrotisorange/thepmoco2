@@ -72,13 +72,47 @@ class FinancialController extends Controller
         ->get();
     }
 
-    public function export(Property $property, $type, $filter){
-       if($type === 'cashflow'){
-            return $this->exportCashflow($property, $type, $filter);
-       }else{
-            return $this->exportFinancial($property, $type, $filter);
-       }
+    public function export(Property $property, $startDate, $endDate){
 
+          $revenues = DB::table('collections')
+          ->select(DB::raw("SUM(collections.collection) as amount"), 'particulars.particular as particular')
+          ->join('bills','collections.bill_id', 'bills.id')
+          ->join('particulars', 'bills.particular_id', 'particulars.id')
+          ->where('collections.property_uuid', Session::get('property_uuid'))
+          ->whereBetween('collections.created_at', [$startDate,$endDate])
+          ->where('collections.is_posted',1)
+          ->groupBy('bills.particular_id')
+          ->orderBy('amount', 'desc')
+          ->get();
+
+          $expenses = DB::table('account_payable_liquidations')
+          ->select(DB::raw("SUM(account_payable_liquidation_particulars.total) as expense"),
+          'account_payable_liquidation_particulars.item as particular')
+          ->join('account_payable_liquidation_particulars','account_payable_liquidations.batch_no',
+          'account_payable_liquidation_particulars.batch_no')
+          ->join('account_payables','account_payable_liquidations.batch_no', 'account_payables.batch_no')
+          ->where('account_payables.property_uuid', Session::get('property_uuid'))
+          ->whereBetween('account_payables.created_at', [$startDate,$endDate])
+          // ->whereNotNull('account_payable_liquidations.approved_by')
+          ->groupBy('account_payable_liquidation_particulars.item')
+          ->orderBy('amount', 'desc')
+          ->where('account_payables.status', 'completed')
+          ->get();
+
+        $data = [
+            'startDate' => $startDate,
+            'endDate' => $endDate,
+            'revenues' => $revenues,
+            'expenses' => $expenses,
+        ];
+
+        $folder_path = 'financials.export';
+
+        $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
+
+        $pdf_name = str_replace(' ', '_', $property->property).'_financials_'.str_replace(' ', '_', $startDate.'_'.$endDate).'.pdf';
+
+        return $pdf->stream($pdf_name);
 
     }
 

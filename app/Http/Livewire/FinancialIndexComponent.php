@@ -8,8 +8,24 @@ use Carbon\Carbon;
 use Session;
 
 class FinancialIndexComponent extends Component
-{  
+{
     public $filter='daily';
+
+    public $startDate;
+    public $endDate;
+
+    // public function filterFinancials(){
+
+    // }
+
+    public function mount(){
+        $this->startDate = Carbon::now()->startOfYear()->format('Y-m-d');
+        $this->endDate = Carbon::now()->format('Y-m-d');
+    }
+
+    public function export(){
+        return redirect('/property/'.Session::get('property_uuid').'/financial/export/'.$this->startDate.'/'.$this->endDate);
+    }
 
     public function render()
     {
@@ -29,7 +45,7 @@ class FinancialIndexComponent extends Component
 
             $accountpayables = app('App\Http\Controllers\FinancialController')->getExpenses('DATE_FORMAT(created_at, "%d-%b-%Y") as date');
         }
-        
+
         $cashflows = $collections->merge($accountpayables);
 
         $total_occupancy_rent = app('App\Http\Controllers\FinancialController')->get_total_occupancy_rent(Session::get('property_uuid'));
@@ -55,7 +71,7 @@ class FinancialIndexComponent extends Component
         ->join('bills','collections.bill_id', 'bills.id')
         ->join('particulars', 'bills.particular_id', 'particulars.id')
         ->where('collections.property_uuid', Session::get('property_uuid'))
-        ->whereYear('collections.created_at', Carbon::now()->format('Y'))
+        ->whereBetween('collections.created_at', [$this->startDate,$this->endDate])
         ->where('collections.is_posted',1)
         ->groupBy('bills.particular_id')
         ->orderBy('amount', 'desc')
@@ -66,7 +82,7 @@ class FinancialIndexComponent extends Component
           ->join('account_payable_liquidation_particulars','account_payable_liquidations.batch_no', 'account_payable_liquidation_particulars.batch_no')
           ->join('account_payables','account_payable_liquidations.batch_no', 'account_payables.batch_no')
           ->where('account_payables.property_uuid', Session::get('property_uuid'))
-            ->whereYear('account_payables.created_at', Carbon::now()->format('Y'))
+          ->whereBetween('account_payables.created_at', [$this->startDate,$this->endDate])
         //   ->whereNotNull('account_payable_liquidations.approved_by')
           ->groupBy('account_payable_liquidation_particulars.item')
           ->orderBy('amount', 'desc')
@@ -80,7 +96,7 @@ class FinancialIndexComponent extends Component
               'potential_gross_rent' => $potential_gross_rent,
               'less_vacancy' => $less_vacancy,
               'effective_gross_rent' => $effective_gross_rent,
-              'collected_rent' => $collected_rent, 
+              'collected_rent' => $collected_rent,
               'billed_rent' => $billed_rent,
               'actual_revenue_collected' => $actual_revenue_collected,
               'revenues' => $revenues,
