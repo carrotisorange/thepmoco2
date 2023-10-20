@@ -1,5 +1,4 @@
 <x-modal-component>
-
     <x-slot name="id">
         edit-contract-modal-{{$contract->uuid}}
     </x-slot>

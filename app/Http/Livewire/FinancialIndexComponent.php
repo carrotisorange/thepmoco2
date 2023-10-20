@@ -6,6 +6,7 @@ use Livewire\Component;
 use DB;
 use Carbon\Carbon;
 use Session;
+use App\Models\Collection;
 
 class FinancialIndexComponent extends Component
 {
@@ -14,9 +15,6 @@ class FinancialIndexComponent extends Component
     public $startDate;
     public $endDate;
 
-    // public function filterFinancials(){
-
-    // }
 
     public function mount(){
         $this->startDate = Carbon::now()->startOfYear()->format('Y-m-d');
@@ -89,6 +87,7 @@ class FinancialIndexComponent extends Component
           ->where('account_payables.status', 'completed')
           ->get();
 
+          $propertyCollectionsCount = Collection::where('property_uuid', Session::get('property_uuid'))->posted()->count();
         return view('livewire.financial-index-component',[
               'cashflows' => $cashflows,
               'collections' => $collections,
@@ -100,7 +99,8 @@ class FinancialIndexComponent extends Component
               'billed_rent' => $billed_rent,
               'actual_revenue_collected' => $actual_revenue_collected,
               'revenues' => $revenues,
-              'expenses' => $expenses
+              'expenses' => $expenses,
+              'propertyCollectionsCount' => $propertyCollectionsCount
 
         ]);
     }

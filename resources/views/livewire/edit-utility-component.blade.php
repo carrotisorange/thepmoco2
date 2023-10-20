@@ -14,76 +14,60 @@
             </div>
             <form wire:submmit.prevent="updateUtility">
                 <div class="mt-5 sm:mt-6">
-                    <label class="text-sm" for="unit_uuid">Unit</label>
-                    <input type="text" readonly value="{{ App\Models\Unit::find($utility->unit_uuid)->unit }}"
-                        class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="">
+                    <x-label  for="unit_uuid">Unit</x-label>
+                    <x-form-input type="text" readonly value="{{ App\Models\Unit::find($utility->unit_uuid)->unit }}" />
 
                 </div>
 
                 <div class="mt-5 sm:mt-6">
-                    <label class="text-sm" for="type">Particular</label>
-                    <input type="text" readonly value="{{ $utility->type }}"
-                        class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="">
+                    <x-label  for="type">Particular</x-label>
+                    <x-form-input type="text" readonly value="{{ $utility->type }}" />
 
                 </div>
 
                 <div class="mt-5 sm:mt-6">
-                    <label class="text-sm" for="previous_reading">Previous Reading</label>
-                    <input type="number" id="previous_reading" wire:model="previous_reading" step="0.001"
-                        class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="">
+                    <x-label  for="previous_reading">Previous Reading</x-label>
+                    <x-form-input type="number" id="previous_reading" wire:model="previous_reading" step="0.001" />
                     @error('previous_reading')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div class="mt-5 sm:mt-6">
-                    <label class="text-sm" for="current_reading">Current Reading</label>
-                    <input type="number" id="current_reading" wire:model="current_reading" step="0.001"
-                        class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="" required>
+                    <x-label  for="current_reading">Current Reading</x-label>
+                    <x-form-input type="number" id="current_reading" wire:model="current_reading" step="0.001" />
                     @error('current_reading')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div class="mt-5 sm:mt-6">
-                    <label class="text-sm" for="kwh">Rate</label>
-                    <input type="number" id="kwh" wire:model="kwh" step="0.001"
-                        class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="" required>
+                    <x-label  for="kwh">Rate</x-label>
+                    <x-form-input type="number" id="kwh" wire:model="kwh" step="0.001" />
                     @error('kwh')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div class="mt-5 sm:mt-6">
-                    <label class="text-sm" for="current_consumption">Current Consumption</label>
-                    <input type="number" id="current_consumption" wire:model="current_consumption" readonly step="0.001"
-                        class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="" required>
+                    <x-label  for="current_consumption">Current Consumption</x-label>
+                    <x-form-input type="number" id="current_consumption" wire:model="current_consumption" readonly step="0.001" />
                     @error('current_consumption')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div class="mt-5 sm:mt-6">
-                    <label class="text-sm" for="min_charge">Min Charge</label>
-                    <input type="number" id="min_charge" wire:model="min_charge" step="0.001"
-                        class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="" required>
+                    <x-label  for="min_charge">Min Charge</x-label>
+                    <x-form-input type="number" id="min_charge" wire:model="min_charge" step="0.001" />
                     @error('min_charge')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div class="mt-5 sm:mt-6">
-                    <label class="text-sm" for="total_amount_due">Total Amount Due</label>
-                    <input type="number" id="total_amount_due" wire:model="total_amount_due" readonly step="0.001"
-                        class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="" required>
+                    <x-label  for="total_amount_due">Total Amount Due</x-label>
+                    <x-form-input type="number" id="total_amount_due" wire:model="total_amount_due" readonly step="0.001" />
                     @error('total_amount_due')
                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
@@ -91,7 +75,7 @@
 
                 @if($status=='unbilled')
                 <div class="mt-5 sm:mt-6">
-                    <label class="text-sm" for="bill_to">Bill to</label>
+                    <x-label  for="bill_to">Bill to</x-label>
                     <x-form-select id="bill_to" name="bill_to" wire:model="bill_to" class="">
                         <option value="">Select one</option>
                         @foreach($tenants as $tenant)
@@ -114,9 +98,8 @@
                     @enderror
                 </div>
                 <div class="mt-5 sm:mt-6">
-
-                    <x-button wire:loading.remove wire:click="updateUtility">
-                        Update
+                    <x-button class="w-full" wire:click="updateUtility">
+                        Confirm
                     </x-button>
 
                 </div>

@@ -3,16 +3,13 @@
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
-                <h1 class="text-3xl font-bold text-gray-500">
+                <h1 class="text-3xl font-bold text-gray-500" wire:ignore>
                     {{ucfirst(Route::current()->getName())}}
                 </h1>
             </div>
 
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                @if($status)
-                <x-button wire:click="clearFilters"> Clear Filters</x-button>
-                @endif
-
+              
                 <x-button onclick="window.location.href='{{ asset('/brands/docs/Contract of Lease TEMPLATE.docx') }}'">
                     Sample Lease Contract</x-button>
 

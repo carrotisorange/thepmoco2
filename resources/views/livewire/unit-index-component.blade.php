@@ -3,17 +3,13 @@
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
-                <h1 class="text-3xl font-bold text-gray-500">
+                <h1 class="text-3xl font-bold text-gray-500" wire:ignore>
                     {{ucfirst(Route::current()->getName())}}
                 </h1>
             </div>
             @if($propertyUnitCount)
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                {{-- @if($sortBy || $orderBy || $search || $status_id || $category_id || $building_id)
-                <x-button name="clearFilters" type="button" wire:click="clearFilters()">
-                    Clear Filters
-                </x-button>
-                @endif --}}
+            
 
                 <x-button name="newUnitModal" type="button" data-modal-toggle="instructions-create-unit-modal">New unit
                 </x-button>

@@ -138,7 +138,7 @@ class UnitShowComponent extends Component
 
 
 
-        return redirect('/property/'.Session::get('property_uuid').'/utilities/');
+        return redirect('/property/'.Session::get('property_uuid').'/utility/');
     }
 
     public function redirectToTheCreateConcernPage(){

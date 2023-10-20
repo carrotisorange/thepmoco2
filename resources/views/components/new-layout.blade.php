@@ -53,7 +53,7 @@
 
                         <!-- help icon -->
                         @if(Session::has('property'))
-                        <a href="/support">
+                        <a href="/support" target="_blank">
                             <x-button title="help">
                                 Need Support?
                             </x-button>

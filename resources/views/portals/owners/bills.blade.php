@@ -6,7 +6,7 @@
         <div class="mt-10 px-4 sm:px-6 lg:px-8">
             <div class="sm:flex sm:items-center">
                 <div class="sm:flex-auto">
-                    <h1 class="text-3xl font-bold text-gray-700">
+                    <h1 class="text-3xl font-bold text-gray-700" wire:ignore>
                         {{ucfirst(Route::current()->getName())}}
                     </h1>
                 </div>
@@ -35,7 +35,7 @@
                         @include('tables.bills')
 
                     </div>
-                 
+
                 </div>
             </div>
         </div>

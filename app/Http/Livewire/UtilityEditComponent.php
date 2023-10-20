@@ -65,7 +65,7 @@ class UtilityEditComponent extends Component
         ->where('batch_no', $this->batch_no)
         ->delete();
 
-        return redirect('/property/'.Session::get('property_uuid').'/utilities')->with('success', 'Changes Saved!');
+        return redirect('/property/'.Session::get('property_uuid').'/utility')->with('success', 'Changes Saved!');
     }
     
     public function updateUtilities($id)
@@ -127,7 +127,7 @@ class UtilityEditComponent extends Component
             $this->update_unit($this->option, $utility->unit_uuid, $utility->current_reading);
          }
 
-        return redirect('/property/'.Session::get('property_uuid').'/utilities')->with('success', 'Changes Saved!');
+        return redirect('/property/'.Session::get('property_uuid').'/utility')->with('success', 'Changes Saved!');
 
     }
 

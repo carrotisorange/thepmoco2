@@ -9,7 +9,7 @@
 
                 <div class=" mt-10 flex items-center justify-center">
                     <x-button
-                        onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/utilities'"
+                        onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/utility'"
                    >
                         Go back.</x-button>
 

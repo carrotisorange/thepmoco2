@@ -3,16 +3,19 @@
 
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
-                <h1 class="text-3xl font-bold text-gray-500">
+                <h1 class="text-3xl font-bold text-gray-500" wire:ignore>
                     {{ucfirst(Route::current()->getName())}}
                 </h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+                @if($propertyCollectionsCount)
                 <x-button wire:click="export">
                    Export
                 </x-button>
+                @endif
             </div>
         </div>
+        @if($propertyCollectionsCount)
         <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
 
             <div class="sm:col-span-3">
@@ -140,6 +143,114 @@
                 </div>
             </div>
         </div>
+        @else
+        <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8 mt-10 mb-10">
+            <div class="mx-auto max-w-lg">
+                <h2 class="text-md font-medium text-gray-900">Financials will be generated
+                    automatically when you do the following:</h2>
 
+                <ul role="list" class="mt-6 divide-y divide-gray-200 border-t border-b border-gray-200">
+                    <li>
+                        <div class="group relative flex items-start space-x-3 py-4">
+                            <div class="flex-shrink-0">
+                                <span class="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-pink-500">
+                                    <!-- Heroicon name: outline/megaphone -->
+                                    <i class="fa-solid fa-receipt"></i>
+                                </span>
+                            </div>
+                            <div class="min-w-0 flex-1">
+                                <div class="text-sm font-medium text-gray-900">
+                                    <a href="/property/{{ Session::get('property_uuid') }}/bill">
+                                        <span class="absolute inset-0" aria-hidden="true"></span>
+                                        Bills
+                                    </a>
+                                </div>
+                                <p class="text-sm text-gray-500">Add bills to tenants and owners.
+                                </p>
+                            </div>
+                            <div class="flex-shrink-0 self-center">
+                                <!-- Heroicon name: mini/chevron-right -->
+                                <svg class="h-5 w-5 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="group relative flex items-start space-x-3 py-4">
+                            <div class="flex-shrink-0">
+                                <span class="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-purple-500">
+                                    <!-- Heroicon name: outline/command-line -->
+                                    <i class="fa-solid fa-coins"></i>
+                                </span>
+                            </div>
+                            <div class="min-w-0 flex-1">
+                                <div class="text-sm font-medium text-gray-900">
+                                    <a href="/property/{{ Session::get('property_uuid') }}/collection">
+                                        <span class="absolute inset-0" aria-hidden="true"></span>
+                                        Collections
+                                    </a>
+                                </div>
+                                <p class="text-sm text-gray-500">Add the payments to the respective
+                                    tenants
+                                    and owners.</p>
+                            </div>
+                            <div class="flex-shrink-0 self-center">
+                                <!-- Heroicon name: mini/chevron-right -->
+                                <svg class="h-5 w-5 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="group relative flex items-start space-x-3 py-4">
+                            <div class="flex-shrink-0">
+                                <span class="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-yellow-500">
+                                    <!-- Heroicon name: outline/calendar -->
+                                    <i class="fa-solid fa-file-invoice"></i>
+                                </span>
+                            </div>
+                            <div class="min-w-0 flex-1">
+                                <div class="text-sm font-medium text-gray-900">
+                                    <a href="/property/{{ Session::get('property_uuid') }}/accountpayable">
+                                        <span class="absolute inset-0" aria-hidden="true"></span>
+                                        Account Payables
+                                    </a>
+                                </div>
+                                <p class="text-sm text-gray-500">Make a request for purchase, payment,
+                                    and
+                                    refund.</p>
+                            </div>
+                            <div class="flex-shrink-0 self-center">
+                                <!-- Heroicon name: mini/chevron-right -->
+                                <svg class="h-5 w-5 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                        d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="mt-6 flex">
+                    <a href="/property"
+                        class="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                        Or start from an empty property
+                        <span aria-hidden="true"> &rarr;</span>
+                    </a>
+                </div>
+        </div>
+        </div>
+        @endif
     </div>
 </div>
