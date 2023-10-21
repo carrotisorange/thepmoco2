@@ -4,7 +4,6 @@ namespace App\Http\Livewire;
 use App\Models\UserProperty;
 use Livewire\Component;
 use App\Models\Feature;
-use App\Models\Plan;
 
 class PropertyIndexComponent extends Component
 {
@@ -38,7 +37,6 @@ class PropertyIndexComponent extends Component
         $propertySubFeatures = Feature::where('id', $featureId)->pluck('subfeatures')->first();
 
         $propertySubfeaturesArray = explode(",", $propertySubFeatures);
-
 
         return view('livewire.property-index-component',[
             'properties' => $properties,

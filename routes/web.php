@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\ExpensesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -168,6 +169,8 @@ Route::get('/demo', function(){
 Route::get('/survey', function(){
     return view('landing.survey');
 });
+
+Route::get('/expenses', [ExpensesController::class, 'index'])->name('expenses.index');
 
 // Route::post('/register', function(Request $request){
 
