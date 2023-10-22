@@ -12,7 +12,7 @@
         </p>
         <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
             @if($bills->count())
-            <div class="mb-5 mt-2 relative overflow-x-auto ring-opacity-5 md:rounded-lg">
+            <div class="mb-5 mt-2 relative overflow-auto ring-opacity-5 md:rounded-lg">
                 @include('tables.bills')
             </div>
             @endif

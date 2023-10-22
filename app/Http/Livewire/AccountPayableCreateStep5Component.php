@@ -154,7 +154,7 @@ class AccountPayableCreateStep5Component extends Component
             }
 
        }catch(\Exception $e){
-            session()->flash('error', $e);
+            return redirect(url()->previous())->with('error', $e);
        }
     }
 
@@ -168,7 +168,7 @@ class AccountPayableCreateStep5Component extends Component
 
         $this->cash_advance = AccountPayableLiquidation::where('batch_no',  $this->accountpayable->batch_no)->pluck('cash_advance')->first();
 
-        return back()->with('success', 'Changes Saved!');
+        return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 
     public function get_particulars(){
@@ -196,7 +196,7 @@ class AccountPayableCreateStep5Component extends Component
         $this->total = AccountPayableLiquidationParticular::where('batch_no', $this->accountpayable->batch_no)->sum('total');
         $this->cash_advance = AccountPayableLiquidation::where('batch_no',  $this->accountpayable->batch_no)->pluck('cash_advance')->first();
 
-        return back()->with('success', 'Changes Saved!');
+       return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 
     public function skipLiquidation(){

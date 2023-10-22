@@ -62,12 +62,12 @@ class ReferenceController extends Controller
 
            DB::commit();
 
-           return back()->with('success', 'Changes Saved!');
+           return redirect(url()->previous())->with('success', 'Changes Saved!');
 
            }catch(\Exception $e)
            {
            DB::rollback();
-          session()->flash('error', 'Something went wrong.');
+          return redirect(url()->previous())->with('error', $e);
            }
     }
 
@@ -115,6 +115,6 @@ class ReferenceController extends Controller
      {
         Reference::destroy($reference_id);
 
-        return back()->with('success', 'Changes Saved!');
+        return redirect(url()->previous())->with('success', 'Changes Saved!');
      }
 }

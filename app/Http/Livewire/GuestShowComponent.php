@@ -86,8 +86,7 @@ class GuestShowComponent extends Component
             });
 
         }catch(\Exception $e){
-            ddd($e);
-            session()->flash('error', $e);
+           return redirect(url()->previous())->with('error', $e);
         }
     }
 

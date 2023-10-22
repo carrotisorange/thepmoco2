@@ -9,7 +9,7 @@
             </div>
 
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-              
+
                 <x-button onclick="window.location.href='{{ asset('/brands/docs/Contract of Lease TEMPLATE.docx') }}'">
                     Sample Lease Contract</x-button>
 
@@ -35,7 +35,7 @@
             </div>
 
         </div>
-        <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
                 <div class="mb-5 mt-2 relative overflow-hidden ">
@@ -45,7 +45,7 @@
                     @if($statuses->count())
                     @include('tables.contracts')
                     @else
-                    <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8 mt-10 mb-10">
+                    <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8 mt-10 mb-10">
                         <div class="text-center mb-10">
                             <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor" aria-hidden="true">

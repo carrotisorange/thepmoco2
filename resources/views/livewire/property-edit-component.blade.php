@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <div class="-my-2 mt-5 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="-my-2 mt-5 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
             <form id="updateTenant" wire:submit.prevent="submitForm()" class="w-full" enctype="multipart/form-data">
 
                 <div class="h-full grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-8">

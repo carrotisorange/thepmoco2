@@ -5,8 +5,7 @@
             <ol role="list" class="flex items-center space-x-4">
                 <li>
                     <div class="flex items-center">
-                        <a
-                            href="/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}/payments/pending">
+                        <a href="/{{auth()->user()->role_id}}/tenant/{{ auth()->user()->username }}/payments/pending">
                             <img class="h-5 w-auto" src="{{ asset('/brands/back-button.png') }}">
                         </a>
                     </div>
@@ -66,7 +65,7 @@
         </div>
 
 
-        <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
 
 
 

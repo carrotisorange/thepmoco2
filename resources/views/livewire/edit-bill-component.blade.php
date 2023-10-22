@@ -1,5 +1,4 @@
 <x-modal-component>
-
     <x-slot name="id">
         edit-bill-modal-{{$bill_details->id}}
     </x-slot>

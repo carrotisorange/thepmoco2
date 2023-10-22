@@ -78,7 +78,7 @@
 
             <div class="mt-5 sm:mt-6">
 
-                <x-button class="w-full" type="submit" wire:loading.remove wire:click="submitButton">
+                <x-button class="w-full" type="submit" wire:click="submitButton">
                     Confirm
                 </x-button>
 

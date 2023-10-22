@@ -70,7 +70,7 @@ class HouseOwnerEditComponent extends Component
 
         $houseOwner = HouseOwner::where('id', $this->house_owner_details->id)->update($validatedInputs);
 
-        return back()->with('success', 'Success!');
+       return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 
     public function render()

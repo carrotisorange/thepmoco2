@@ -14,7 +14,7 @@
                 </div>
             </div>
 
-            <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
 
 
 
@@ -27,46 +27,47 @@
 
                         </div>
 
-                       <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead class="bg-gray-50">
-                            <tr>
-                                <x-th>#</x-th>
-                                <x-th>Property</x-th>
-                                <x-th># of Personnels</x-th>
-                                <x-th># of Units</x-th>
-                                <x-th># of Tenants</x-th>
-                                <x-th>Address</x-th>
-                                <x-th>Created</x-th>
+                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <x-th>#</x-th>
+                                    <x-th>Property</x-th>
+                                    <x-th># of Personnels</x-th>
+                                    <x-th># of Units</x-th>
+                                    <x-th># of Tenants</x-th>
+                                    <x-th>Address</x-th>
+                                    <x-th>Created</x-th>
 
-                            </tr>
-                        </thead>
-                        @foreach ($properties as $property)
-                        <tbody class="bg-white divide-y divide-gray-200">
-                            <tr>
-                                <x-td>{{ $property->id }}</x-td>
-                                <x-td>
-                                    <div class="text-sm font-medium text-gray-900">
-                                        <b>{{
-                                            $property->property->property }}</b>
-                                    </div>
-                                    <div class="text-sm text-gray-500">{{
-                                        $property->property->type->type
-                                        }}
-                                    </div>
-                                </x-td>
-                                <?php $users = App\Models\UserProperty::where('property_uuid', $property->property->uuid)->count();?>
-                                <x-td>{{ $users }}</x-td>
-                                <x-td>{{ $property->property->units->count()}}</x-td>
-                                <x-td>{{ $property->property->tenants->count() }}</x-td>
-                                <x-td>{{
-                                    $property->property->country->country.','.$property->property->province->province.','.$property->property->city->city.','.$property->property->barangay
-                                    }}</x-td>
-                                <x-td>{{Carbon\Carbon::parse($property->property->created_at)->diffForHumans()}}</x-td>
+                                </tr>
+                            </thead>
+                            @foreach ($properties as $property)
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <x-td>{{ $property->id }}</x-td>
+                                    <x-td>
+                                        <div class="text-sm font-medium text-gray-900">
+                                            <b>{{
+                                                $property->property->property }}</b>
+                                        </div>
+                                        <div class="text-sm text-gray-500">{{
+                                            $property->property->type->type
+                                            }}
+                                        </div>
+                                    </x-td>
+                                    <?php $users = App\Models\UserProperty::where('property_uuid', $property->property->uuid)->count();?>
+                                    <x-td>{{ $users }}</x-td>
+                                    <x-td>{{ $property->property->units->count()}}</x-td>
+                                    <x-td>{{ $property->property->tenants->count() }}</x-td>
+                                    <x-td>{{
+                                        $property->property->country->country.','.$property->property->province->province.','.$property->property->city->city.','.$property->property->barangay
+                                        }}</x-td>
+                                    <x-td>{{Carbon\Carbon::parse($property->property->created_at)->diffForHumans()}}
+                                    </x-td>
 
-                            </tr>
-                        </tbody>
-                        @endforeach
-                    </table>
+                                </tr>
+                            </tbody>
+                            @endforeach
+                        </table>
 
                     </div>
 

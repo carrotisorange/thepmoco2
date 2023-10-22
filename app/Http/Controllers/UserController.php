@@ -66,12 +66,12 @@ class UserController extends Controller
     public function isTrialExpired($date)
     {
         if($date <= Carbon::now() && $date!=null){
-            return true; 
-        }else{ 
-            return false; 
-        } 
+            return true;
+        }else{
+            return false;
+        }
     }
-    
+
     public function store($name, $temporary_username, $password, $external_id, $email, $role_id, $mobile_number, $discount_code, $checkout_option, $plan_id)
     {
         session(['temporary_username' => $temporary_username]);
@@ -112,7 +112,7 @@ class UserController extends Controller
     {
         return Str::random(8);
     }
-    
+
     public function update_user_tenant_uuid($user_id, $tenant_uuid)
     {
         User::where('id', $user_id)
@@ -121,7 +121,7 @@ class UserController extends Controller
         ]);
     }
 
-        
+
     public function update_user_owner_uuid($user_id, $owner_uuid)
     {
         User::where('id', $user_id)
@@ -147,7 +147,7 @@ class UserController extends Controller
     {
         app('App\Http\Controllers\UserPropertyController')->store($property_uuid,$user_id,false,false);
 
-        return back()->with('success', 'Changes Saved!');
+        return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 
     /**
@@ -169,7 +169,7 @@ class UserController extends Controller
     }
 
     public function edit(User $user)
-    {     
+    {
        if($user->id === auth()->user()->id || auth()->user()->role_id == '5' || auth()->user()->role_id == '9'){
 
            return view('users.edit', [

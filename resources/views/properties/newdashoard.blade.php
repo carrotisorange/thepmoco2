@@ -682,7 +682,7 @@ text-white text-center bg-gray-900 hover:bg-purple-700 focus:outline-none focus:
                                             </div>
                                         </div>
                                         <div class="mt-8 flex flex-col">
-                                            <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                            <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
                                                 <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                                                     <div
                                                         class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
@@ -867,8 +867,9 @@ text-white text-center bg-gray-900 hover:bg-purple-700 focus:outline-none focus:
                             </a>
                         </div>
                         <div class="mt-8 md:mt-0 md:order-1">
-                         <p class="text-center text-base text-gray-400">&copy; 2020 {{ env('APP_NAME') }}. All rights reserved.
-                        </p>
+                            <p class="text-center text-base text-gray-400">&copy; 2020 {{ env('APP_NAME') }}. All rights
+                                reserved.
+                            </p>
                         </div>
                     </div>
                 </footer>

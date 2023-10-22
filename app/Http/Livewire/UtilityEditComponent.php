@@ -60,19 +60,19 @@ class UtilityEditComponent extends Component
     }
 
     public function returnToUtilitiesPage(){
-        
+
         Utility::where('property_uuid', Session::get('property_uuid'))
         ->where('batch_no', $this->batch_no)
         ->delete();
 
         return redirect('/property/'.Session::get('property_uuid').'/utility')->with('success', 'Changes Saved!');
     }
-    
+
     public function updateUtilities($id)
-    {        
+    {
         $this->validate();
         try{
- 
+
             // DB::transaction(function () {
                 foreach ($this->utilities->where('id', $id) as $utility) {
                      Utility::where('id', $id)
@@ -83,23 +83,23 @@ class UtilityEditComponent extends Component
                         'min_charge' => $utility->min_charge,
                         'current_consumption' => ($utility->current_reading - $utility->previous_reading),
                         'total_amount_due' => (($utility->current_reading - $utility->previous_reading) * $utility->kwh) + $utility->min_charge,
-                     ]);    
+                     ]);
 
                     $this->utilities = $this->get_utilities();
 
-                     session()->flash('success', 'Changes Saved!');
+                    return redirect(url()->previous())->with('success', 'Changes Saved!');
                 }
             // });
 
         }catch(\Exception $e){
-       
-            session()->flash('error', 'Something went wrong.');
+
+            return redirect(url()->previous())->with('error', $e);
         }
 
     }
 
     public function get_utilities(){
-     
+
         return Utility::where('utilities.property_uuid', Session::get('property_uuid'))
         ->join('units', 'utilities.unit_uuid', 'units.uuid')
         ->where('utilities.batch_no', $this->batch_no)
@@ -109,7 +109,7 @@ class UtilityEditComponent extends Component
 
     public function postUtilities()
     {
-        
+
 
        // update utility status
         Utility::where('property_uuid', Session::get('property_uuid'))
@@ -121,7 +121,7 @@ class UtilityEditComponent extends Component
         //store utility parameters
          app('App\Http\Controllers\UtilityParameterController')->store($this->batch_no, Session::get('property_uuid'),
          $this->start_date, $this->end_date, $this->option, $this->kwh, $this->min_charge);
-        
+
         //store the previous utility reading to unit
          foreach ($this->utilities as $utility) {
             $this->update_unit($this->option, $utility->unit_uuid, $utility->current_reading);
@@ -134,7 +134,7 @@ class UtilityEditComponent extends Component
     public function store_bill($unit_uuid, $option, $start_date, $end_date, $total_amount_due, $batch_no){
         if($option === 'electric'){
             app('App\Http\Controllers\BillController')->store(Session::get('property_uuid'), $unit_uuid, '',6, $start_date, $end_date, $total_amount_due, $batch_no, 0);
-        }else{  
+        }else{
            app('App\Http\Controllers\BillController')->store(Session::get('property_uuid'), $unit_uuid, '' ,5,
            $start_date, $end_date, $total_amount_due, $batch_no, 0);
         }
@@ -156,7 +156,7 @@ class UtilityEditComponent extends Component
     }
 
     public function render()
-    {   
+    {
         return view('livewire.utility-edit-component');
     }
 }

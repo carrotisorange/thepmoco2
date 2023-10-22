@@ -48,7 +48,7 @@
                 <div class="sm:my-10 md:my-5 lg:my-0">
 
                     @if($total_unpaid_bills->count())
-                    <x-button data-modal-toggle="export-guest-bill">  Export Bills ({{
+                    <x-button data-modal-toggle="export-guest-bill"> Export Bills ({{
                         App\Models\Guest::find($guest->uuid)->bills()->where('status', '!=','paid')->count()
                         }})</a></x-button>
 
@@ -66,9 +66,10 @@
             @if($bills)
             <label for="status" class="block text-sm font-medium text-gray-700">Filter status</label>
             <x-form-select wire:model.lazy="status" autocomplete="status">
-                  <option value="all" {{ $status=='' ? 'selected' : 'selected' }}> all </option>
+                <option value="all" {{ $status=='' ? 'selected' : 'selected' }}> all </option>
                 <option value="paid" {{ $status=='paid' ? 'selected' : 'selected' }}> paid </option>
-                <option value="partially_paid" {{ $status=='partially_paid' ? 'selected' : 'selected' }}> partially paid </option>
+                <option value="partially_paid" {{ $status=='partially_paid' ? 'selected' : 'selected' }}> partially paid
+                </option>
                 <option value="unpaid" {{ $status=='unpaid' ? 'selected' : 'selected' }}> unpaid </option>
             </x-form-select>
             @endif
@@ -87,7 +88,7 @@
         </div>
     </div>
 
-  <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+    <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
         <div class="sm:col-span-3">
             @if($selectedBills)
 
@@ -116,7 +117,7 @@
     <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="bg-white border-b border-gray-200">
             <div class="flex flex-col">
-                <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="-my-2 overflow-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                             @include('tables.bills')

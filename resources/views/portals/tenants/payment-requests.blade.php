@@ -8,12 +8,12 @@
                 </h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-           
+
 
             </div>
         </div>
         <div class="mt-8 flex flex-col">
-            <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
                     <div class="mb-10 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
@@ -56,8 +56,9 @@
                                         class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
                                         REMARKS</th>
 
-                                  <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
-                                        </th>
+                                    <th scope="col"
+                                        class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">
+                                    </th>
 
 
 
@@ -92,7 +93,7 @@
                                         {{ number_format($item->amount, 2) }}
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                      {{ $item->mode_of_payment }}
+                                        {{ $item->mode_of_payment }}
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         {{ $item->batch_no }}
@@ -110,10 +111,13 @@
                                     </td>
 
 
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-blue-500 text-decoration-line: underline">
+                                    <td
+                                        class="whitespace-nowrap px-3 py-4 text-sm text-blue-500 text-decoration-line: underline">
 
 
-                                        <x-button  onclick="window.location.href='/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/payments_request/{{ $item->batch_no }}'">Edit</x-button>
+                                        <x-button
+                                            onclick="window.location.href='/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/payments_request/{{ $item->batch_no }}'">
+                                            Edit</x-button>
 
                                     </td>
 

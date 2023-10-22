@@ -70,7 +70,7 @@ class OwnerBillController extends Controller
 
         });
 
-            return back()->with('success','Bill is successfully posted.');
+            return redirect(url()->previous())->with('success', 'Changes Saved!');
         }
         catch(\Exception $e)
         {
@@ -99,7 +99,7 @@ class OwnerBillController extends Controller
 
         Mail::to($request->email)->send(new SendBillToOwner($data));
 
-        return back()->with('success', 'Changes Saved!');
+       return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 
     public function get_bill_data($owner, $due_date, $penalty, $note)

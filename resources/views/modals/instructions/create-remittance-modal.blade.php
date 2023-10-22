@@ -42,7 +42,7 @@
 
             <div class="mt-5 sm:mt-6">
                 @if($collectionsCount)
-                <x-button class="w-full" type="submit" wire:loading.remove>
+                <x-button class="w-full" type="submit">
                     Confirm
                 </x-button>
 

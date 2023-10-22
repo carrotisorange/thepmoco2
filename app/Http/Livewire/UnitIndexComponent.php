@@ -70,10 +70,7 @@ class UnitIndexComponent extends Component
             ]);
        }
 
-        $units = Unit::where('batch_no', $batch_no)->count();
-
         app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, $this->numberOfUnits, 5);
-
 
         $propertyTenantsCount = Property::find(Session::get('property_uuid'))->tenants->count();
 

@@ -26,9 +26,7 @@ class HouseIndexComponent extends Component
     public function storeHouses(){
 
       if($this->numberOfUnits <= 0 || !$this->numberOfUnits){
-         session()->flash('error', 'Cannot accept value less than 0 or null.');
-
-         return back();
+        return redirect(url()->previous())->with('error', 'Cannot accept 0 or empty value.');
       }
 
       $batch_no = Str::random(8);

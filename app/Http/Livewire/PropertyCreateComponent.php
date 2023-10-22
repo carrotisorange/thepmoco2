@@ -85,8 +85,8 @@ class PropertyCreateComponent extends Component
 
             });
 
-        }catch (\Throwable $e) {
-            return back()->with('error', $e);
+        }catch (\Exception $e) {
+            return redirect(url()->previous())->with('error', $e);
         }
      }
 

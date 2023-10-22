@@ -13,7 +13,7 @@ class DeedOfSaleEditComponent extends Component
     use WithFileUploads;
 
     public $deedOfSalesDetails;
-    
+
     public $title;
     public $tax_declaration;
     public $deed_of_sales;
@@ -53,7 +53,7 @@ class DeedOfSaleEditComponent extends Component
 
     public function submitForm()
     {
-        
+
 
          $validatedData = $this->validate();
 
@@ -65,7 +65,7 @@ class DeedOfSaleEditComponent extends Component
                     'title' => $this->title->store('deed_of_sales'),
                 ]);
            }
-            
+
            if($this->tax_declaration){
                 DeedOfSale::where('uuid', $this->deedOfSalesDetails->uuid)
                 ->update([
@@ -94,11 +94,11 @@ class DeedOfSaleEditComponent extends Component
                 ]);
            }
 
-            session()->flash('success', 'Changes Saved!');
+          return redirect(url()->previous())->with('success', 'Changes Saved!');
 
         }catch(\Exception $e)
         {
-           session()->flash('error', 'Something went wrong.');
+          return redirect(url()->previous())->with('error', $e);
         }
     }
 

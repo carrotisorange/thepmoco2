@@ -67,8 +67,8 @@ class EditBookingComponent extends Component
             'vehicle_details' => 'nullable',
             'special_request' => 'nullable',
             'flight_itinerary' => 'nullable',
-            'arrival_time' => 'required',
-            'departure_time' => 'required',
+            'arrival_time' => 'nullable',
+            'departure_time' => 'nullable',
             'plate_number' => 'nullable',
             'no_of_children' => 'nullable',
             'no_of_senior_citizens' => 'nullable',
@@ -90,28 +90,26 @@ class EditBookingComponent extends Component
     }
 
     public function updateBooking(){
-        $validatedData = $this->validate();
+
 
         try {
-
-            DB::transaction(function () use ($validatedData){
+            $validatedData = $this->validate();
 
             Booking::where('uuid', $this->booking->uuid)->update($validatedData);
 
             return redirect(url()->previous())->with('success', 'Changes Saved!');
 
-            });
+        }catch (\Exception $e) {
+       ;
+            return redirect(url()->previous())->with('error', $e);
 
-        }catch (\Throwable $e) {
-
-            return back()->with('error', $e);
         }
     }
 
     public function render()
     {
         return view('livewire.edit-booking-component',[
-            'units' => Unit::where('property_uuid',Session::get('property_uuid'))->get(),
+            'units' => Unit::where('property_uuid',Session::get('property_uuid'))->where('rent_duration', 'daily')->get(),
         ]);
     }
 }

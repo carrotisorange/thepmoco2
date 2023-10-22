@@ -10,7 +10,7 @@
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 @if($propertyCollectionsCount)
                 <x-button wire:click="export">
-                   Export
+                    Export
                 </x-button>
                 @endif
             </div>
@@ -30,7 +30,7 @@
             </div>
         </div>
 
-        <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
                 <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
@@ -42,7 +42,7 @@
                             </tr>
                         </thead>
 
-                     <thead class="">
+                        <thead class="">
                             @foreach ($revenues as $index => $revenue)
                             <tr>
                                 <x-td>{{ $revenue->particular }}</x-td>
@@ -50,7 +50,7 @@
                             </tr>
                             @endforeach
                         </thead>
-                      <thead class="">
+                        <thead class="">
                             <tr>
                                 <x-td><b>Gross Collections</b></x-td>
                                 <x-td><b>{{ number_format($revenues->sum('amount'), 2) }}</b></x-td>
@@ -62,7 +62,7 @@
                                 <x-td></x-td>
                             </tr>
                         </thead>
-                      <thead class="">
+                        <thead class="">
                             @foreach ($expenses as $index => $expense)
                             <tr>
                                 <x-td>{{ $expense->particular }}</x-td>
@@ -70,7 +70,7 @@
                             </tr>
                             @endforeach
                         </thead>
-                     <thead class="">
+                        <thead class="">
                             <tr>
                                 <x-td><b>Total Expenses</b></x-td>
 
@@ -81,7 +81,8 @@
                             <tr>
                                 <x-td><b>Net Collection</b></x-td>
 
-                                <x-td><b>{{ number_format($revenues->sum('amount') - $expenses->sum('expense'), 2) }}</b></x-td>
+                                <x-td><b>{{ number_format($revenues->sum('amount') - $expenses->sum('expense'), 2)
+                                        }}</b></x-td>
                             </tr>
                         </thead>
 
@@ -105,7 +106,8 @@
                                     <x-td>{{ number_format($potential_gross_rent*12, 2) }}</x-td>
                                 </tr>
                                 <tr>
-                                    <x-td> Less Vacancy <span title="total rent amount of vacant units"><i class="fa-solid fa-circle-info"></i>
+                                    <x-td> Less Vacancy <span title="total rent amount of vacant units"><i
+                                                class="fa-solid fa-circle-info"></i>
                                         </span></x-td>
                                     <x-td>{{ number_format($less_vacancy, 2) }}</x-td>
                                     <x-td>{{ number_format($less_vacancy*12, 2) }}</x-td>
@@ -118,21 +120,24 @@
                                     <x-td>{{ number_format($effective_gross_rent*12, 2) }}</x-td>
                                 </tr>
                                 <tr>
-                                    <x-td>Billed Rent <span title="all posted rent"><i class="fa-solid fa-circle-info"></i>
+                                    <x-td>Billed Rent <span title="all posted rent"><i
+                                                class="fa-solid fa-circle-info"></i>
                                         </span> </x-td>
                                     <x-td>{{ number_format($billed_rent, 2) }}</x-td>
                                     <x-td>{{ number_format($billed_rent*12, 2) }}</x-td>
 
                                 </tr>
                                 <tr>
-                                    <x-td>Collected Rent <span title="all paid rent"><i class="fa-solid fa-circle-info"></i>
+                                    <x-td>Collected Rent <span title="all paid rent"><i
+                                                class="fa-solid fa-circle-info"></i>
                                         </span> </x-td>
                                     <x-td>{{ number_format($collected_rent, 2) }}</x-td>
                                     <x-td>{{ number_format($collected_rent*12, 2) }}</x-td>
 
                                 </tr>
                                 <tr>
-                                    <x-td>Actual Revenue <span title="all collected payments"><i class="fa-solid fa-circle-info"></i> </span>
+                                    <x-td>Actual Revenue <span title="all collected payments"><i
+                                                class="fa-solid fa-circle-info"></i> </span>
                                     </x-td>
                                     <x-td>{{ number_format($actual_revenue_collected, 2) }}</x-td>
                                     <x-td>{{ number_format($actual_revenue_collected*12, 2) }}</x-td>
@@ -144,7 +149,7 @@
             </div>
         </div>
         @else
-        <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8 mt-10 mb-10">
+        <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8 mt-10 mb-10">
             <div class="mx-auto max-w-lg">
                 <h2 class="text-md font-medium text-gray-900">Financials will be generated
                     automatically when you do the following:</h2>
@@ -170,8 +175,9 @@
                             </div>
                             <div class="flex-shrink-0 self-center">
                                 <!-- Heroicon name: mini/chevron-right -->
-                                <svg class="h-5 w-5 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <svg class="h-5 w-5 text-gray-400 group-hover:text-gray-500"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                    aria-hidden="true">
                                     <path fill-rule="evenodd"
                                         d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
                                         clip-rule="evenodd" />
@@ -183,7 +189,8 @@
                     <li>
                         <div class="group relative flex items-start space-x-3 py-4">
                             <div class="flex-shrink-0">
-                                <span class="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-purple-500">
+                                <span
+                                    class="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-purple-500">
                                     <!-- Heroicon name: outline/command-line -->
                                     <i class="fa-solid fa-coins"></i>
                                 </span>
@@ -201,8 +208,9 @@
                             </div>
                             <div class="flex-shrink-0 self-center">
                                 <!-- Heroicon name: mini/chevron-right -->
-                                <svg class="h-5 w-5 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <svg class="h-5 w-5 text-gray-400 group-hover:text-gray-500"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                    aria-hidden="true">
                                     <path fill-rule="evenodd"
                                         d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
                                         clip-rule="evenodd" />
@@ -214,7 +222,8 @@
                     <li>
                         <div class="group relative flex items-start space-x-3 py-4">
                             <div class="flex-shrink-0">
-                                <span class="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-yellow-500">
+                                <span
+                                    class="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-yellow-500">
                                     <!-- Heroicon name: outline/calendar -->
                                     <i class="fa-solid fa-file-invoice"></i>
                                 </span>
@@ -232,8 +241,9 @@
                             </div>
                             <div class="flex-shrink-0 self-center">
                                 <!-- Heroicon name: mini/chevron-right -->
-                                <svg class="h-5 w-5 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <svg class="h-5 w-5 text-gray-400 group-hover:text-gray-500"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                    aria-hidden="true">
                                     <path fill-rule="evenodd"
                                         d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
                                         clip-rule="evenodd" />
@@ -243,13 +253,12 @@
                     </li>
                 </ul>
                 <div class="mt-6 flex">
-                    <a href="/property"
-                        class="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                    <a href="/property" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">
                         Or start from an empty property
                         <span aria-hidden="true"> &rarr;</span>
                     </a>
                 </div>
-        </div>
+            </div>
         </div>
         @endif
     </div>

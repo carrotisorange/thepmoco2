@@ -41,9 +41,8 @@ class EditBillComponent extends Component
 
         return redirect(url()->previous())->with('success', 'Changes Saved!');
 
-        // return back()->with('success', 'Changes Saved!');
     }
-    
+
     public function render()
     {
         return view('livewire.edit-bill-component',[

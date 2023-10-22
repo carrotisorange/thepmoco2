@@ -15,7 +15,7 @@ class ReferenceComponent extends Component
     //list of passed parameters
     public $unit;
     public $tenant;
-    
+
     //list of input fields
     public $reference;
     public $relationship_id;
@@ -45,24 +45,24 @@ class ReferenceComponent extends Component
 
     public function submitForm()
     {
-        
+
 
         $validatedData = $this->validate();
 
         try
         {
             DB::transaction(function () use ($validatedData){
-               
+
                  $this->store_reference($validatedData);
             });
-       
+
             return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.Str::random(8).'/create')->with('success', 'Changes Saved!');
         }
         catch(\Exception $e)
         {
            return back()->with('error');
         }
-     
+
     }
 
     public function store_reference($validatedData)
@@ -73,12 +73,12 @@ class ReferenceComponent extends Component
 
         Reference::create($validatedData);
     }
-   
+
     public function removeReference($reference_id)
     {
         app('App\Http\Controllers\ReferenceController')->destroy($reference_id);
 
-        return back()->with('success', 'Changes Saved!');
+        return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 
     public function render()

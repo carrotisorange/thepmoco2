@@ -7,7 +7,7 @@
                     <h1 class="text-3xl font-bold text-gray-700">Tenant Concern Form</h1>
                 </div>
                 <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                    <x-button 
+                    <x-button
                         onclick="window.location.href='/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/concerns'">
                         View reported concerns
                     </x-button>
@@ -15,10 +15,11 @@
                 </div>
             </div>
             <div class="mt-8 flex flex-col">
-                <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
                     <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
-                        <div class="mb-10 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                        <div
+                            class="mb-10 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                             <!-- Selected row actions, only show when rows are selected. -->
                             <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
 
@@ -64,7 +65,8 @@
 
 
                                             <div class="sm:col-span-3">
-                                                <label for="unit_uuid" class="block text-sm font-medium text-gray-700">Unit:
+                                                <label for="unit_uuid"
+                                                    class="block text-sm font-medium text-gray-700">Unit:
                                                 </label>
 
                                                 <select wire:model="unit_uuid"
@@ -100,7 +102,8 @@
 
 
                                             <div class="col-span-6">
-                                                <label class="block text-sm font-medium text-gray-700"> Please attach the
+                                                <label class="block text-sm font-medium text-gray-700"> Please attach
+                                                    the
                                                     certificate of
                                                     membership
                                                 </label>
@@ -117,7 +120,8 @@
                                                             </label>
 
                                                         </div>
-                                                        <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
+                                                        <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB
+                                                        </p>
 
                                                     </div>
 
@@ -137,7 +141,8 @@
                                         </div>
                                         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
 
-                                            <x-button onclick="window.location.href='/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/concerns/'">
+                                            <x-button
+                                                onclick="window.location.href='/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/concerns/'">
                                                 Cancel
                                             </x-button>
 

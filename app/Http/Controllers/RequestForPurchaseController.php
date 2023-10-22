@@ -346,7 +346,7 @@ class RequestForPurchaseController extends Controller
             'status' => 'approved'
         ]);
 
-        return back()->with('success', 'Changes Saved!');
+        return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 
     /**

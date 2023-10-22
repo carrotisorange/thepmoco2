@@ -123,8 +123,9 @@
 
 
                             <div class="lg:col-span-2">
-                                <x-button type="submit" class="mt-5 w-full">Sign
-                                    up</x-button>
+                                <button type="submit" class="w-64 items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white text-center
+bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mt-5 w-full">Sign
+                                    up</button>
                             </div>
 
                             <div class="mt-5 text-sm text-center lg:col-span-2">

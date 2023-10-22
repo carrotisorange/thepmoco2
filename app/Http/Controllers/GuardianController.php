@@ -29,13 +29,13 @@ class GuardianController extends Controller
      */
     public function create(Property $property, Unit $unit, Tenant $tenant)
     {
-     
+
         return view('guardians.create',[
             'unit' => Unit::find($unit->uuid),
             'tenant' => $tenant,
         ]);
     }
-    
+
 
     /**
      * Store a newly created resource in storage.
@@ -61,12 +61,12 @@ class GuardianController extends Controller
 
             DB::commit();
 
-            return back()->with('success','Changes Saved!');
+           return redirect(url()->previous())->with('success', 'Changes Saved!');
 
          }catch(\Exception $e)
          {
             DB::rollback();
-           session()->flash('error', 'Something went wrong.');
+           return redirect(url()->previous())->with('error', $e);
          }
 
     }
@@ -113,9 +113,9 @@ class GuardianController extends Controller
      */
     public function destroy(Property $property, Tenant $tenant, $guardian_id)
     {
-    
+
        Guardian::destroy($guardian_id);
 
-       return back()->with('success', 'Changes Saved!');
+      return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 }

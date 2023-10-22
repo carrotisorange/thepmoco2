@@ -216,7 +216,7 @@ class OwnerBillComponent extends Component
             }
          );
          }
-            catch (\Throwable $e) {
+            catch (\Exception $e) {
                return back()->with('error',$e);
          }
       }

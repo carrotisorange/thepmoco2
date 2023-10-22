@@ -18,7 +18,7 @@
             @csrf
             <x-button hre>Logout</x-button>
         </form>
-      
+
     </x-slot>
 
     <div class="max-w-12xl mx-auto sm:px-6">
@@ -62,7 +62,8 @@
                                             </div>
                                         </div>
                                         <div class="flex-1 text-right md:text-center">
-                                            <h5 class="font-bold uppercase text-gray-500"><a class="text-blue-600" href="/properties">Total Properties/Units</a></h5>
+                                            <h5 class="font-bold uppercase text-gray-500"><a class="text-blue-600"
+                                                    href="/properties">Total Properties/Units</a></h5>
                                             <h3 class="font-bold text-3xl"> <span class="text-pink-500"><i
                                                         class="fas fa-exchange-alt"></i>{{ $properties->count()
                                                     }}/{{ $units->count()
@@ -82,16 +83,18 @@
                                                     class="fas fa-solid fa-house fa-2x fa-fw fa-inverse"></i></div>
                                         </div>
                                         <div class="flex-1 text-right md:text-center">
-                                            <h5 class="font-bold uppercase text-gray-500"><a class="text-blue-600" href="/dashboard/sales">Account Owners/Total Users</a></h5>
+                                            <h5 class="font-bold uppercase text-gray-500"><a class="text-blue-600"
+                                                    href="/dashboard/sales">Account Owners/Total Users</a></h5>
                                             <h3 class="font-bold text-3xl"> <span class="text-yellow-600"><i
-                                                        class="fas fa-caret-up"></i>{{ $users->where('role_id', 5)->count() }}/{{ $users->count() }}</span>
+                                                        class="fas fa-caret-up"></i>{{ $users->where('role_id',
+                                                    5)->count() }}/{{ $users->count() }}</span>
                                             </h3>
                                         </div>
                                     </div>
                                 </div>
                                 <!--/Metric Card-->
                             </div>
-                           
+
                             <div class="w-full md:w-1/2 xl:w-1/2 p-3">
                                 <!--Metric Card-->
                                 <div class="bg-white border rounded shadow p-2">
@@ -103,7 +106,8 @@
                                         </div>
                                         <div class="flex-1 text-right md:text-center">
                                             <h5 class="font-bold uppercase text-gray-500">Tenants/Owners</h5>
-                                            <h3 class="font-bold text-3xl">{{ $tenants->count() }}/{{ $owners->count() }}</h3>
+                                            <h3 class="font-bold text-3xl">{{ $tenants->count() }}/{{ $owners->count()
+                                                }}</h3>
                                         </div>
                                     </div>
                                 </div>
@@ -119,9 +123,12 @@
                                             </div>
                                         </div>
                                         <div class="flex-1 text-right md:text-center">
-                                            <h5 class="font-bold uppercase text-gray-500">Contracts/Active Contracts</h5>
+                                            <h5 class="font-bold uppercase text-gray-500">Contracts/Active Contracts
+                                            </h5>
                                             <h3 class="font-bold text-3xl"><span class="text-red-500"><i
-                                                        class="fas fa-caret-up"></i></span>{{ $contracts->where('status', 'active')->count() }}/{{ $contracts->count()}}
+                                                        class="fas fa-caret-up"></i></span>{{
+                                                $contracts->where('status', 'active')->count() }}/{{
+                                                $contracts->count()}}
                                             </h3>
                                         </div>
                                     </div>
@@ -310,7 +317,7 @@
                                 <div class="mt-2 mb-2">
                                     Points Leader
                                 </div>
-                                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                                <div class="relative overflow-auto shadow-md sm:rounded-lg">
                                     <table class="min-w-full divide-y divide-gray-200">
                                         <thead class="bg-gray-50">
                                             <tr>
@@ -335,9 +342,10 @@
                             <div class="w-full md:w-1/2 xl:w-1/2 p-3">
 
                                 <div class="mt-2 mb-2">
-                                    Sessions (As of {{ Carbon\Carbon::now()->timezone('Asia/Manila')->format('M d, Y @ g:i A')}})
+                                    Sessions (As of {{ Carbon\Carbon::now()->timezone('Asia/Manila')->format('M d, Y @
+                                    g:i A')}})
                                 </div>
-                                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                                <div class="relative overflow-auto shadow-md sm:rounded-lg">
                                     <table class="min-w-full divide-y divide-gray-200">
                                         <thead class="bg-gray-50">
                                             <tr>
@@ -356,7 +364,9 @@
                                                     $user = App\Models\User::find($session->user_id)->name
                                                 ?>
                                                 <x-td>{{ $user}}</x-td>
-                                                <x-td>{{ Carbon\Carbon::parse($session->created_at)->timezone('Asia/Manila')->format('g:i A')}}</x-td>
+                                                <x-td>{{
+                                                    Carbon\Carbon::parse($session->created_at)->timezone('Asia/Manila')->format('g:i
+                                                    A')}}</x-td>
                                                 <x-td>{{ $session->ip_address }}</x-td>
                                             </tr>
                                         </tbody>
@@ -365,7 +375,7 @@
                                 </div>
                             </div>
 
-                         
+
                         </div>
                     </div>
                 </div>
@@ -376,18 +386,18 @@
     <script>
         /*Toggle dropdown list*/
             /*https://gist.github.com/slavapas/593e8e50cf4cc16ac972afcbad4f70c8*/
-        
+
             var userMenuDiv = document.getElementById("userMenu");
             var userMenu = document.getElementById("userButton");
-        
+
             var navMenuDiv = document.getElementById("nav-content");
             var navMenu = document.getElementById("nav-toggle");
-        
+
             document.onclick = check;
-        
+
             function check(e) {
                 var target = (e && e.target) || (event && event.srcElement);
-        
+
                 //User Menu
                 if (!checkParent(target, userMenuDiv)) {
                     // click NOT on the menu
@@ -401,7 +411,7 @@
                         userMenuDiv.classList.add("invisible");
                     }
                 }
-        
+
                 //Nav Menu
                 if (!checkParent(target, navMenuDiv)) {
                     // click NOT on the menu
@@ -415,9 +425,9 @@
                         navMenuDiv.classList.add("hidden");
                     }
                 }
-        
+
             }
-        
+
             function checkParent(t, elm) {
                 while (t.parentNode) {
                     if (t == elm) { return true; }

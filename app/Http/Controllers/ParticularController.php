@@ -47,13 +47,13 @@ class ParticularController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         $particular_attributes = request()->validate([
           'particular_id'=> 'required',
-          'minimum_charge' => 'nullable', 
+          'minimum_charge' => 'nullable',
         ]);
 
-      
+
         $particular = Particular::
         where('particular', strtolower($request->particular_id))
         ->pluck('id')
@@ -80,11 +80,11 @@ class ParticularController extends Controller
 
                 DB::commit();
 
-             return back()->with('success', 'Changes Saved!');
-             } catch (\Throwable $e) {
-        
+            return redirect(url()->previous())->with('success', 'Changes Saved!');
+             } catch (\Exception $e) {
+
                 DB::rollback();
-               session()->flash('error', 'Something went wrong.');
+              return redirect(url()->previous())->with('error', $e);
              }
         }
         else{
@@ -102,11 +102,11 @@ class ParticularController extends Controller
 
                 DB::commit();
 
-                return back()->with('success', 'Changes Saved!');
-             } catch (\Throwable $e) {
-          
+                return redirect(url()->previous())->with('success', 'Changes Saved!');
+             } catch (\Exception $e) {
+
                 DB::rollback();
-               session()->flash('error', 'Something went wrong.');
+               return redirect(url()->previous())->with('error', $e);
              }
         }
     }

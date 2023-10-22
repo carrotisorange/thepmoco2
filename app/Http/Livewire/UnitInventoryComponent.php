@@ -65,7 +65,7 @@ class UnitInventoryComponent extends Component
             $this->inventories = $this->get_inventories();
             
        }catch(\Exception $e){
-            session()->flash('error', $e);
+            return redirect(url()->previous())->with('error', $e);
        }
 
 

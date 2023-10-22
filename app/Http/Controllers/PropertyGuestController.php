@@ -262,7 +262,7 @@ class PropertyGuestController extends Controller
             'movein_at' => Carbon::now()
         ]);
 
-        return back()->with('success', 'Changes Saved!');
+        return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 
     public function update(Request $request ,$uuid)
@@ -289,7 +289,7 @@ class PropertyGuestController extends Controller
             'moveout_at' => Carbon::now()
         ]);
 
-        return back()->with('success', 'Changes Saved!');
+        return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 
     public function destroy($unit_uuid){

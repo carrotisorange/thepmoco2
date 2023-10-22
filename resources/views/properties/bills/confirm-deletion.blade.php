@@ -8,7 +8,7 @@
         </div>
 
 
-        <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                 <div class="mt-3">
                     {{-- {{ $bills->links() }} --}}
@@ -25,8 +25,7 @@
                         href="{{ url()->previous() }}">
                         Cancel
                     </a>
-                    <x-button
-                        onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/unit'">
+                    <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/unit'">
                         Confirm</x-button>
                 </p>
             </div>

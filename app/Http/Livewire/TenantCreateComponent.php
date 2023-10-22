@@ -107,7 +107,7 @@ class TenantCreateComponent extends Component
 
        }catch(\Exception $e)
        {
-            return back()->with('error', $e);
+            return redirect(url()->previous())->with('error', $e);
        }
 
     }

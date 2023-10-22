@@ -61,7 +61,7 @@ class EnrolleeComponent extends Component
 
     public function submitForm()
     {
-        
+
 
         try {
             DB::beginTransaction();
@@ -75,17 +75,17 @@ class EnrolleeComponent extends Component
             app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, 5, 2);
 
             DB::commit();
-        
+
             return
             redirect('property/'.Session::get('property_uuid').'/owner/'.$this->owner->uuid)->with('success','Changes Saved!');
 
-        }catch (\Throwable $e) 
+        }catch (\Exception $e)
         {
             DB::rollback();
-           session()->flash('error', 'Something went wrong.');
-        }   
+          return redirect(url()->previous())->with('error', $e);
+        }
     }
-    
+
     public function store_enrollee($validated_data)
     {
         $validated_data['uuid'] = Str::uuid();

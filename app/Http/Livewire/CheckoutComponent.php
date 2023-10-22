@@ -52,7 +52,7 @@ class CheckoutComponent extends Component
 
     public function processPayment()
     {
-        
+
 
         $validatedData = $this->validate();
 
@@ -66,13 +66,13 @@ class CheckoutComponent extends Component
                 $this->plan_id,
                 $external_id,
                 Plan::find($this->plan_id)->description,
-                $this->email, 
-                $this->mobile_number, 
-                $this->name, 
-                Plan::find($this->plan_id)->price-(Plan::find($this->plan_id)->price*CheckoutOption::find($this->checkout_option)->discount), 
+                $this->email,
+                $this->mobile_number,
+                $this->name,
+                Plan::find($this->plan_id)->price-(Plan::find($this->plan_id)->price*CheckoutOption::find($this->checkout_option)->discount),
                 1,
             );
-                
+
             }elseif($this->checkout_option == '2'){
                 $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')->charge_user_account(
                 $this->plan_id,
@@ -127,10 +127,10 @@ class CheckoutComponent extends Component
             return redirect($last_created_invoice_url);
         }
         catch(\Exception $e)
-        {   
+        {
             DB::rollback();
 
-           session()->flash('error', 'Something went wrong.');
+           return redirect(url()->previous())->with('error', $e);
         }
     }
 

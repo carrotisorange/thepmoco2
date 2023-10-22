@@ -13,9 +13,9 @@ use Session;
 class RepresentativeComponent extends Component
 {
       use WithFileUploads;
-      
+
       public $tenant;
-        
+
       public function mount($owner)
       {
         $this->owner = $owner;
@@ -51,7 +51,7 @@ class RepresentativeComponent extends Component
 
       public function submitForm()
       {
-        
+
 
         $validatedData = $this->validate();
 
@@ -65,8 +65,8 @@ class RepresentativeComponent extends Component
 
        }catch(\Exception $e)
        {
-          session()->flash('error', 'Something went wrong.');
-       } 
+          return redirect(url()->previous())->with('error', $e);
+       }
       }
 
     public function removeAttachment()
