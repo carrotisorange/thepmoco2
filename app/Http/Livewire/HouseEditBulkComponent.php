@@ -63,12 +63,12 @@ class HouseEditBulkComponent extends Component
             }
 
         }catch(\Exception $e){
-            session()->flash('error', 'Something went wrong.');
+            return redirect(url()->previous())->with('error', $e);
         }
 
 
     }
-    
+
 
     public function get_houses()
     {

@@ -87,7 +87,7 @@
                 @endif
 
                 <div class="mt-5 sm:mt-6">
-                    <x-button class="w-full" type="submit" wire:loading.remove>
+                    <x-button class="w-full" type="submit">
                         Confirm
                     </x-button>
                 </div>

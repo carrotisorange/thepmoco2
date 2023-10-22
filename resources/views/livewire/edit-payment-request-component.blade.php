@@ -114,7 +114,7 @@
                         @enderror
                     </div>
                     <div class="col-span-6 text-right">
-                        <x-button type="submit" wire:loading.remove>Confirm
+                        <x-button type="submit">Confirm
                             Payment</x-button>
 
                     </div>

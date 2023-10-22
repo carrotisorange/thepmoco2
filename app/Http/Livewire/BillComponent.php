@@ -68,7 +68,7 @@ class BillComponent extends Component
 
         return redirect('/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$this->contract->uuid.'/bill/'.Str::random(8).'/create')->with('success', 'Changes Saved!');
       }
-      catch (\Throwable $e) {
+      catch (\Exception $e) {
         DB::rollback();
         return redirect('/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$this->contract->uuid.'/bill/'.Str::random(8).'/create')->with('error', 'Cannot perform the action. Please try again.');
       }

@@ -84,7 +84,7 @@ class CreateAccountPayableLiquidationStep1Component extends Component
     }
 
     public function storeAccountPayableLiquidation(){
-        
+
 
         $this->validate();
 
@@ -128,19 +128,19 @@ class CreateAccountPayableLiquidationStep1Component extends Component
                 ]);
                 session()->flash('success', 'Changes Saved!');
             }
-             
+
        }catch(\Exception $e){
-            session()->flash('error', $e);
+           return redirect(url()->previous())->with('error', $e);
        }
     }
 
     public function removeParticular($id){
-        
+
         AccountPayableLiquidationParticular::where('id', $id)->delete();
 
         $this->particulars = $this->get_particulars();
 
-        return back()->with('success', 'Changes Saved!');
+        return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 
     public function get_particulars(){
@@ -148,7 +148,7 @@ class CreateAccountPayableLiquidationStep1Component extends Component
     }
 
     public function storeNewItem(){
-        // 
+        //
 
         AccountPayableLiquidationParticular::create(
         [
@@ -164,7 +164,7 @@ class CreateAccountPayableLiquidationStep1Component extends Component
 
         $this->particulars = $this->get_particulars();
 
-        return back()->with('success', 'Changes Saved!');
+        return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 
     public function render()

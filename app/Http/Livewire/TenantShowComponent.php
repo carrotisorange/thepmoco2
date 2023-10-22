@@ -131,11 +131,11 @@ class TenantShowComponent extends Component
 
                 app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,$restrictionId,$featureId);
 
-                session()->flash('success', 'Changes Saved!');
+                return redirect(url()->previous())->with('success', 'Changes Saved!');
             });
 
         }catch(\Exception $e){
-            session()->flash('error', $e);
+            return redirect(url()->previous())->with('error', $e);
         }
     }
 
@@ -166,16 +166,14 @@ class TenantShowComponent extends Component
     public function sendCredentials()
     {
         if($this->email == null){
-            session()->flash('error', 'The email address is required.');
-
-            return back();
+                return redirect(url()->previous())->with('error', 'Email is missing.');
         }
 
         $count_user = User::where('email', $this->tenant_details->email)->count();
 
         if($count_user > 0)
         {
-             session()->flash('error', 'Credentials for this tenant has already been generated.');
+            return redirect(url()->previous())->with('error', 'Access already exists!');
         }
 
         $temporary_password =  app('App\Http\Controllers\UserController')->generate_temporary_username();

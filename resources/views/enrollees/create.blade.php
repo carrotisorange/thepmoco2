@@ -5,7 +5,7 @@
     </x-slot>
 
     <x-slot name="options">
-        
+
     </x-slot>
 
     @livewire('enrollee-component', ['unit' => $unit, 'owner' => $owner])

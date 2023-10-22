@@ -52,10 +52,10 @@ class HouseShowComponent extends Component
 
             app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,$restrictionId,$featureId);
 
-            session()->flash('success', 'Changes Saved!');
+           return redirect(url()->previous())->with('success', 'Changes Saved!');
 
         }catch(\Exception $e){
-            session()->flash('error', 'Something went wrong.');
+            return redirect(url()->previous())->with('error', $e);
         }
     }
 

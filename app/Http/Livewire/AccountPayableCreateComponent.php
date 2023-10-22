@@ -81,7 +81,7 @@ class AccountPayableCreateComponent extends Component
             redirect('/property/'.Session::get('property_uuid').'/accountpayable/pending')->with('success','Changes Saved!');
 
         }catch (\Exception $e) {
-            session()->flash('error', 'Something went wrong.');
+           return redirect(url()->previous())->with('error', $e);
         }
       }
 

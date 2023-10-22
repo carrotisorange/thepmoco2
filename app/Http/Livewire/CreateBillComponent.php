@@ -44,7 +44,6 @@ class CreateBillComponent extends Component
 
     public function submitButton(){
 
-
         $validated = $this->validate();
 
         if($this->particular_id === '8'){
@@ -70,7 +69,7 @@ class CreateBillComponent extends Component
 
         Bill::create($validated);
 
-       return redirect(url()->previous())->with('success', 'Changes Saved!');
+        return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 
     public function render()

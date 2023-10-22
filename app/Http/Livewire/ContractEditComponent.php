@@ -32,9 +32,9 @@ class ContractEditComponent extends Component
         $this->status = $contract_details->status;
         $this->interaction_id = $contract_details->interaction_id;
     }
-    
+
     protected function rules()
-    {
+        {
         return [
             'contract' => 'nullable|mimes:jpg,bmp,png,pdf,docx|max:10240',
             'start' => 'required|date',
@@ -52,12 +52,10 @@ class ContractEditComponent extends Component
 
     public function submitForm()
     {
-        
-
          $validatedData = $this->validate();
 
-        try{
-            
+                try{
+
             DB::transaction(function () use ($validatedData){
                 $this->contract_details->update($validatedData);
             });
@@ -73,7 +71,7 @@ class ContractEditComponent extends Component
 
         }catch(\Exception $e)
         {
-           session()->flash('error', 'Something went wrong.');
+           return redirect(url()->previous())->with('error', $e);
         }
     }
 

@@ -81,11 +81,11 @@ class BillCreateComponent extends Component
 
         $this->reset_form();
 
-         return session()->flash('success', 'Changes Saved!');
+        return redirect(url()->previous())->with('success', 'Changes Saved!');
 
        }catch(\Exception $e)
        {
-         return session()->flash('error', 'Something went wrong.');
+         return redirect(url()->previous())->with('error', $e);
        }
 
     }

@@ -14,12 +14,12 @@
                 </div>
             </div>
 
-            <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
 
 
 
                 <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-            {{ $signups->links() }}
+                    {{ $signups->links() }}
                     <div
                         class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                         <!-- Selected row actions, only show when rows are selected. -->
@@ -27,24 +27,24 @@
 
                         </div>
 
-                      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead class="bg-gray-50">
-                            <tr>
-                               <x-th>#</x-th>
-                                <x-th>Created On</x-th>
-                                <x-th>Name</x-th>
-                                <x-th>Gender</x-th>
-                                <x-th>Email</x-th>
-                                <x-th>Mobile</x-th>
-                                <x-th>Property</x-th>
-                                {{-- <x-th>Plan</x-th> --}}
+                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <x-th>#</x-th>
+                                    <x-th>Created On</x-th>
+                                    <x-th>Name</x-th>
+                                    <x-th>Gender</x-th>
+                                    <x-th>Email</x-th>
+                                    <x-th>Mobile</x-th>
+                                    <x-th>Property</x-th>
+                                    {{-- <x-th>Plan</x-th> --}}
 
-                                <x-th>Trial ends On</x-th>
-                            </tr>
-                        </thead>
+                                    <x-th>Trial ends On</x-th>
+                                </tr>
+                            </thead>
 
-                        <tbody class="bg-white divide-y divide-gray-200">
-                            @foreach ($signups as $index => $signup)
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                @foreach ($signups as $index => $signup)
                             <tbody class="bg-white divide-y divide-gray-200">
                                 <tr>
                                     <x-td>{{ $index+1 }}</x-td>
@@ -57,15 +57,17 @@
                                     </x-td>
                                     <x-td>{{ $signup->gender }}</x-td>
                                     <x-td>{{ $signup->email }}
-                                    @if($signup->email_verified_at)
-                                    <span title="verified" class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-sm text-green-800">
-                                        <i class="fa-solid fa-circle-check"></i>
-                                    </span>
-                                    @else
-                                    <span title="unverified" class="px-2 text-sm leading-5 font-semibold rounded-full bg-red-100 text-sm text-red-800">
-                                        <i class="fa-solid fa-circle-xmark"></i>
-                                        @endif
-                                    </span>
+                                        @if($signup->email_verified_at)
+                                        <span title="verified"
+                                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-sm text-green-800">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                        </span>
+                                        @else
+                                        <span title="unverified"
+                                            class="px-2 text-sm leading-5 font-semibold rounded-full bg-red-100 text-sm text-red-800">
+                                            <i class="fa-solid fa-circle-xmark"></i>
+                                            @endif
+                                        </span>
                                     </x-td>
                                     <x-td>{{ $signup->mobile_number }}</x-td>
 
@@ -85,7 +87,8 @@
                                                     ->count();
                                                 ?>
                                     <x-td>
-                                        <a class="text-blue-600" href="/{{auth()->user()->role_id}}/sale/{{ auth()->user()->username }}/{{ auth()->user()->id }}/properties">
+                                        <a class="text-blue-600"
+                                            href="/{{auth()->user()->role_id}}/sale/{{ auth()->user()->username }}/{{ auth()->user()->id }}/properties">
                                             {{ $property_count }} property,
                                             {{ $unit_count }} unit,
                                             {{ $tenant_count }} tenant
@@ -105,8 +108,8 @@
                                 </tr>
                             </tbody>
                             @endforeach
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
 
                     </div>
 

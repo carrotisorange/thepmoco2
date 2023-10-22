@@ -5,7 +5,7 @@
             <div class="px-4 sm:px-6 lg:px-8">
 
                 <div class="mt-8 flow-root">
-                    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="-mx-4 -my-2 overflow-auto sm:-mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                             <table class="min-w-full divide-y divide-gray-300">
                                 <thead>
@@ -96,7 +96,7 @@
                     </div>
                 </div>
                 <div class="mt-8 flow-root">
-                    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="-mx-4 -my-2 overflow-auto sm:-mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                             <table class="min-w-full divide-y divide-gray-300">
                                 <thead>
@@ -266,12 +266,11 @@
 
                             <a target="_blank"
                                 href="/property/{{ Session::get('property_uuid')}}/accountpayable/{{ $accountpayable->id }}/export/complete"
-                                wire:loading.remove
                                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
                                 Export
                             </a>
 
-                            <x-button type="submit" wire:loading.remove>
+                            <x-button type="submit">
                                 Finish
                             </x-button>
 

@@ -55,7 +55,7 @@ class ContractMoveinComponent extends Component
 
     public function submitForm()
     {
-        
+
 
         //validate inputs
         $validatedData = $this->validate();
@@ -64,7 +64,7 @@ class ContractMoveinComponent extends Component
            DB::transaction(function () use ($validatedData){
 
             $validatedData['status'] = 'pendingmovein';
-             
+
             $this->contract_details->update($validatedData);
 
             //store new referral
@@ -78,7 +78,7 @@ class ContractMoveinComponent extends Component
 
             //store new point
             app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id,4, 1);
-                  
+
             if($this->sendContractToTenant)
             {
                 app('App\Http\Controllers\TenantController')->send_mail_to_tenant($this->contract_details->tenant->email, $this->contract_details->tenant->tenant,Carbon::parse($this->start)->format('M d, Y'),Carbon::parse($this->end)->format('M d, Y'), $this->rent, $this->contract_details->unit->unit);
@@ -94,9 +94,9 @@ class ContractMoveinComponent extends Component
                   ->with('success', 'Changes Saved!');
             }
           });
-            
+
         }catch (\Exception $e) {
-          session()->flash('error', 'Something went wrong.');
+         return redirect(url()->previous())->with('error', $e);
         }
     }
 

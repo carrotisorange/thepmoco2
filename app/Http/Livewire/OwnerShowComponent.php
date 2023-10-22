@@ -111,11 +111,11 @@ class OwnerShowComponent extends Component
         {
             $this->update_owner($validatedData);
 
-            session()->flash('success','Changes Saved!');
+            return redirect(url()->previous())->with('success', 'Changes Saved!');
 
         }catch(\Exception $e)
         {
-            session()->flash('error', 'Something went wrong.');
+           return redirect(url()->previous())->with('error', $e);
         }
 
     }
@@ -124,16 +124,14 @@ class OwnerShowComponent extends Component
     {
 
         if($this->email == null){
-            session()->flash('error', 'The email address is required.');
-
-            return back();
+            return redirect(url()->previous())->with('error', 'Email address is missing.');
         }
 
         $count_user = User::where('email', $this->owner_details->email)->count();
 
         if($count_user > 0)
         {
-             session()->flash('error', 'Credentials for this owner has already been generated.');
+            return redirect(url()->previous())->with('error', 'Access already exists!');
         }
 
         $temporary_password =  app('App\Http\Controllers\UserController')->generate_temporary_username();
@@ -245,7 +243,7 @@ class OwnerShowComponent extends Component
         {
                 Representative::destroy($id);
 
-                return back()->with('success', 'Changes Saved!');
+               return redirect(url()->previous())->with('success', 'Changes Saved!');
         }
 
     public function deleteOwner(){

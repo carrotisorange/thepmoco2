@@ -85,7 +85,7 @@ class RenewContractComponent extends Component
             redirect('/property/'.$this->contract_details->property_uuid.'/tenant/'.$this->contract_details->tenant_uuid.'/contracts')->with('success','Changes Saved!');
          // }
 
-         } catch (\Throwable $e) {
+         } catch (\Exception $e) {
             return back()->with('error',$e);
          }
    }

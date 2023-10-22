@@ -92,7 +92,7 @@
                 @endif
 
                 <div class="sm:col-span-6">
-                    <div class="mb-5 mt-2 relative overflow-x-auto ring-opacity-5 md:rounded-lg">
+                    <div class="mb-5 mt-2 relative overflow-auto ring-opacity-5 md:rounded-lg">
 
                         <form class="mt-5 sm:pb-6 xl:pb-8">
                             @if($particulars->count())

@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Property;
 use Illuminate\Validation\Rule;
-use DB; 
+use DB;
 use Carbon\Carbon;
 use App\Models\Guest;
 use App\Models\AcknowledgementReceipt;
@@ -20,7 +20,7 @@ class BookingEditComponent extends Component
     public $booking_details;
 
     //guest input fields
-   
+
     public $status;
     public $unit_uuid;
     public $movein_at;
@@ -29,7 +29,7 @@ class BookingEditComponent extends Component
     public $view = 'listView';
 
     public $isPaymentAllowed = false;
-    
+
     public function mount($booking_details){
         $this->status = $booking_details->uuid;
         $this->unit_uuid = $booking_details->unit_uuid;
@@ -40,7 +40,7 @@ class BookingEditComponent extends Component
     protected function rules()
     {
         return [
-           
+
             'status' => 'required',
             'unit_uuid' => ['required', Rule::exists('units', 'uuid')],
             'movein_at' => 'required|date',
@@ -56,32 +56,30 @@ class BookingEditComponent extends Component
 
     public function updateBooking()
     {
-        
-       
         $validatedData = $this->validate();
-         
+
         try{
             DB::transaction(function () use ($validatedData){
                 $this->guest_details->update($validatedData);
 
-                session()->flash('success', 'Changes Saved!');
+                return redirect(url()->previous())->with('success', 'Changes Saved!');
             });
-            
+
         }catch(\Exception $e){
-            session()->flash('error', $e);
+           return redirect(url()->previous())->with('error', $e);
         }
     }
 
     public function store_additional_guest(){
 
-        
+
 
         if(!$this->additional_guest){
             return redirect('/property/'.Session::get('property_uuid').'/guest/'.$this->guest_details->uuid)->with('error', 'Error!');
         }
 
         AdditionalGuest::create([
-            'additional_guest' => $this->additional_guest, 
+            'additional_guest' => $this->additional_guest,
             // 'birthdate' => $this->birthdate,
             // 'has_disability' => $this->has_disability,
             // 'disability' => $this->disability,

@@ -189,7 +189,7 @@
 
 
         <div class="mt-5 bg-white-500">
-            <div class="relative overflow-x-auto sm:rounded-lg">
+            <div class="relative overflow-auto sm:rounded-lg">
                 <form method="POST" id="edit-form" enctype="multipart/form-data"
                     action="/property/{{ Session::get('property_uuid') }}/owner/{{ $owner->uuid }}/bills/{{ $batch_no }}/pay/update">
                     @method('patch')

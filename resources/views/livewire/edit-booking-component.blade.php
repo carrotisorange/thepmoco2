@@ -3,8 +3,8 @@
             edit-booking-modal-{{$booking->uuid}}
     </x-slot>
     <h1 class="text-center font-medium">Edit Booking</h1>
-    <form wire:submmit.prevent="updateBooking()">
     <div class="p-5">
+<form wire:submmit.prevent="updateBooking">
     <div class="mt-5 sm:mt-6">
         <x-label class="text-sm" for="birthdate">Guest</x-label>
         <x-form-input type="text" readonly value="{{ $booking->guest->guest }}" />
@@ -175,14 +175,12 @@
     </div>
 
     <div class="mt-5 sm:mt-6">
-        <x-button class="w-full" type="submit">
+        <x-button class="w-full" type="button" wire:click="updateBooking">
             Update
         </x-button>
 
     </div>
-    </form>
+</form>
     </div>
-
-
 </x-modal-component>
 

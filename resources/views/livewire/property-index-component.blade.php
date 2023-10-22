@@ -2,7 +2,6 @@
     $firstName = explode(" ",$name);
 ?>
 <div>
-
     @if(!$userPropertyCount)
     <div class="mt-10">
         <nav aria-label="Progress">
@@ -91,7 +90,7 @@
             </x-button>
             @else
             <x-button wire:click="changePropertyView('list')">
-                View as List
+                View Portfolio
             </x-button>
             @endif
 
@@ -185,7 +184,16 @@
     </div>
     @else
     <div class="mt-8 flex flex-col">
-        <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-9">
+        <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-9">
+            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mt-8 flex flex-col">
+        <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-9">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                 <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                     @include('tables.portfolio')

@@ -140,7 +140,7 @@ class TenantController extends Controller
             DB::beginTransaction();
             $tenant->update($attributes);
             DB::commit();
-            return back()->with('success', 'Changes Saved!');
+           return redirect(url()->previous())->with('success', 'Changes Saved!');
         }catch(\Exception $e){
             DB::rollback();
 

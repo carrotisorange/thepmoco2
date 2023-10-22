@@ -312,7 +312,7 @@ class BillIndexComponent extends Component
 
             }catch(\Exception $e)
             {
-                session()->flash('error', $e);
+                return redirect(url()->previous())->with('error', $e);
             }
    }
 

@@ -56,7 +56,7 @@ class UserCreateComponent extends Component
 
    public function storeUser()
    {
-   
+
       $this->validate();
 
        if($this->isUserExists()>0){
@@ -108,7 +108,7 @@ class UserCreateComponent extends Component
          );
 
        }catch(\Exception $e){
-         return back()->with('error', $e);
+          return redirect(url()->previous())->with('error', $e);
        }
 
       if($user->role_id == '5')
@@ -123,7 +123,7 @@ class UserCreateComponent extends Component
         }
 
       return redirect('/property/'.Session::get('property_uuid').'/user');
-   
+
       // if (User::where('email', $this->email)->exists()) {
 
       //     $user = User::where('email', $this->email);
@@ -141,13 +141,13 @@ class UserCreateComponent extends Component
       //       DB::transaction(function (){
       //          //store a new user
       //          $user_id =  app('App\Http\Controllers\UserController')->store(
-      //          'unnamed', 
+      //          'unnamed',
       //          $this->email,
       //          Str::random(8),
-      //          auth()->user()->id, 
-      //          $this->email, 
+      //          auth()->user()->id,
+      //          $this->email,
       //          $this->role_id,
-      //          $this->mobile_number, 
+      //          $this->mobile_number,
       //          auth()->user()->discount_code,
       //          auth()->user()->checkout_option,
       //          auth()->user()->plan_id
@@ -162,9 +162,9 @@ class UserCreateComponent extends Component
       //          false,
       //          true
       //       );
-            
+
       //    });
-         
+
       //    }catch(\Exception $e)
       //    {
       //       session()->flash('error', $e);
@@ -180,7 +180,7 @@ class UserCreateComponent extends Component
         //prompt user withe a sucess page
         return redirect('/property/'.Session::get('property_uuid').'/user/')->with('success', 'Changes Saved!');
         }
-       
+
      }
 
      public function isUserExists(){
@@ -194,21 +194,21 @@ class UserCreateComponent extends Component
      public function render()
      {
         return view('livewire.user-create-component',[
-         'roles' =>  app('App\Http\Controllers\RoleController')->get_roles(Session::get('property_uuid')), 
+         'roles' =>  app('App\Http\Controllers\RoleController')->get_roles(Session::get('property_uuid')),
          'features' => Feature::all(),
         ]);
      }
 
-   
+
 
      public function removeUser($id)
-     {   
-         
+     {
+
 
          User::destroy($id);
 
          UserProperty::where('user_id', $id)->delete();
 
-         return back()->with('success', 'Changes Saved!');
+         return redirect(url()->previous())->with('success', 'Changes Saved!');
      }
 }

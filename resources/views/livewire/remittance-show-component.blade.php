@@ -31,7 +31,7 @@
                     </div>
 
                     <form wire:submit.prevent="sendRemittanceToOwner">
-                        <x-button type="submit" wire:loading.remove>Send to
+                        <x-button type="submit">Send to
                             Email</x-button>
 
                 </div>

@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <div class="mt-3 -my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="mt-3 -my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
             {{-- <form wire:submit.prevent="updateForm()"> --}}
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="bg-gray-50">

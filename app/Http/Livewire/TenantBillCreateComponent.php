@@ -74,7 +74,7 @@ class TenantBillCreateComponent extends Component
 
       $this->selectedBills = [];
 
-      return back()->with('success', 'Changes Saved!');
+      return redirect(url()->previous())->with('success', 'Changes Saved!');
    }
 
    public function mount($tenant){
@@ -283,7 +283,7 @@ class TenantBillCreateComponent extends Component
             }
          );
          }
-            catch (\Throwable $e) {
+            catch (\Exception $e) {
             return back()->with('error',$e);
          }
       }

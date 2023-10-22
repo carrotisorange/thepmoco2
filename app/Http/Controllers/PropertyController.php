@@ -97,7 +97,7 @@ class PropertyController extends Controller
 
 
 
-    
+
 
        public function redirectPageTo(){
 

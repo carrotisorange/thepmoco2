@@ -8,14 +8,17 @@
                     </div>
                     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
 
-                        <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/{{ 'pending' }}'">
+                        <x-button
+                            onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/{{ 'pending' }}'">
                             Show Pending</x-button>
 
-                            <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/{{ 'approved' }}'">
-                                Show Approved</x-button>
+                        <x-button
+                            onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/{{ 'approved' }}'">
+                            Show Approved</x-button>
 
-                                <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/{{ 'declined' }}'">
-                                    Show Declined</x-button>
+                        <x-button
+                            onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/{{ 'declined' }}'">
+                            Show Declined</x-button>
 
                     </div>
                 </div>
@@ -24,7 +27,7 @@
 
 
                 </div>
-                <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
                     <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
                         <div
@@ -37,7 +40,7 @@
                                 <thead class="">
                                     <tr>
                                         <x-th>
-                                                        #</x-th>
+                                            #</x-th>
 
                                         <x-th>
                                             TENANT</x-th>
@@ -55,10 +58,10 @@
 
                                         <x-th>
                                             STATUS</x-th>
-                                            <x-th>
-                                                REMARKS</x-th>
                                         <x-th>
-                                            </x-th>
+                                            REMARKS</x-th>
+                                        <x-th>
+                                        </x-th>
 
 
                                     </tr>
@@ -70,65 +73,66 @@
                                     @forelse($requests as $index => $item )
                                     <tr>
                                         <x-td>
-                                           {{ $index+1 }}
-                                       </x-td>
-                                       <x-td>
-                                            <a title="tenant" target="_blank" class="text-blue-500 text-decoration-line: underline"
+                                            {{ $index+1 }}
+                                        </x-td>
+                                        <x-td>
+                                            <a title="tenant" target="_blank"
+                                                class="text-blue-500 text-decoration-line: underline"
                                                 href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}">
                                                 {{ Str::limit($item->tenant,20) }} </a>
-                                       </x-td>
+                                        </x-td>
 
-                                       <x-td>
+                                        <x-td>
                                             {{ $item->bill_nos }}
-                                       </x-td>
+                                        </x-td>
                                         <!-- Selected: "text-indigo-600", Not Selected: "text-gray-900" -->
 
-                                       <x-td>
+                                        <x-td>
                                             {{ Carbon\Carbon::parse($item->date_uploaded)->format('M d, Y') }}
-                                       <x-td>
-                                            @if($item->date_approved)
-                                            {{ Carbon\Carbon::parse($item->date_approved)->format('M d, Y') }}
+                                            <x-td>
+                                                @if($item->date_approved)
+                                                {{ Carbon\Carbon::parse($item->date_approved)->format('M d, Y') }}
                                                 @else
-                                            NA
-                                            @endif
-                                       </x-td>
-                                       <x-td>
-                                            {{ number_format($item->amount, 2) }}
-                                       </x-td>
-
-                                       <x-td>
-                                            {{ $item->mode_of_payment }}
-                                       </x-td>
-
-                                       <x-td>
-                                            {{ $item->payment_status }}
-                                       </x-td>
-
-                                       <x-td>
-                                            @if($item->reason_for_rejection)
-                                                {{ $item->reason_for_rejection }}
-                                            @else
                                                 NA
-                                            @endif
+                                                @endif
+                                            </x-td>
+                                            <x-td>
+                                                {{ number_format($item->amount, 2) }}
+                                            </x-td>
 
-                                       </x-td>
+                                            <x-td>
+                                                {{ $item->mode_of_payment }}
+                                            </x-td>
 
-                                        <td
-                                            class="whitespace-nowrap px-3 py-4 text-sm text-blue-500 text-decoration-line: underline">
-                                           @if($item->payment_status != 'approved')
-                                            <a target="_blank"
-                                                href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $item->tenant_uuid }}/payment_requests/{{ $item->id }}">
-                                                Review
-                                            </a>
-                                           @endif
-                                       </x-td>
+                                            <x-td>
+                                                {{ $item->payment_status }}
+                                            </x-td>
+
+                                            <x-td>
+                                                @if($item->reason_for_rejection)
+                                                {{ $item->reason_for_rejection }}
+                                                @else
+                                                NA
+                                                @endif
+
+                                            </x-td>
+
+                                            <td
+                                                class="whitespace-nowrap px-3 py-4 text-sm text-blue-500 text-decoration-line: underline">
+                                                @if($item->payment_status != 'approved')
+                                                <a target="_blank"
+                                                    href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $item->tenant_uuid }}/payment_requests/{{ $item->id }}">
+                                                    Review
+                                                </a>
+                                                @endif
+                                        </x-td>
 
 
 
                                     </tr>
                                     @empty
                                     <tr>
-                                        <x-td >
+                                        <x-td>
                                             No
                                             data
                                             found.</x-td>

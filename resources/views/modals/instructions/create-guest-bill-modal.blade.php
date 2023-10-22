@@ -2,23 +2,9 @@
     <x-slot name="id">
         instructions-create-guest-bill-modal
     </x-slot>
-    <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-        <div
-            class="relative transform overflow-hidden rounded-lgpx-4 pt-5 pb-4 text-left transition-all  sm:w-full sm:max-w-sm sm:p-6">
-            <div>
-
-                <div class="mt-3 text-center sm:mt-5">
-                    <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Create a new bill
-                    </h3>
-                    {{-- <div class="mt-2">
-                        <p class="text-sm text-gray-500">Before you can create a new tenant, first you need to
-                            select a unit.</p>
-                    </div> --}}
-                </div>
-            </div>
-
-
-            <div class="mt-5 sm:mt-6">
+<h1 class="text-center font-medium">Create A Bill</h1>
+ <div class="p-5">
+    <div class="mt-5 sm:mt-6">
                 <label class="text-sm" for="">Select a particular</label>
                 <select wire:model="particular_id"
                     class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -73,6 +59,5 @@
                 </x-button>
 
             </div>
-        </div>
-    </div>
+ </div>
 </x-modal-component>

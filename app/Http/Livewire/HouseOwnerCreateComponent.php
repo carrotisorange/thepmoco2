@@ -71,8 +71,8 @@ class HouseOwnerCreateComponent extends Component
                 ]);
             });
 
-        }catch (\Throwable $e) {
-            return back()->with('error', $e);
+        }catch (\Exception $e) {
+             return redirect(url()->previous())->with('error', $e);
         }
 
         return redirect('/property/'.Session::get('property_uuid').'/house/'.$this->house->id)->with('success', 'Success!');

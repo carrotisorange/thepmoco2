@@ -9,9 +9,10 @@
         "ajaz/random-quotes-generator-php": "^1.0",
         "algolia/algoliasearch-client-php": "^3.3",
         "algolia/scout-extended": "2.0",
+        "arielmejiadev/larapex-charts": "^6.0",
         "barryvdh/laravel-dompdf": "^1.0",
         "coduo/php-humanizer": "^4.0",
-        "fruitcake/laravel-cors": "^2.0",
+
         "guzzlehttp/guzzle": "^7.0.1",
         "h4cc/wkhtmltoimage-amd64": "0.12.x",
         "h4cc/wkhtmltopdf-amd64": "0.12.x",
@@ -88,5 +89,5 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true
-    
+
 }

@@ -12,7 +12,7 @@
                 </div>
             </div>
 
-            <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
 
                 <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                     {{ $personnels->links() }}
@@ -23,7 +23,7 @@
 
                         </div>
 
-                       <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead class="bg-gray-50">
                                 <tr>
                                     <x-th>#</x-th>
@@ -43,7 +43,10 @@
 
                                     <x-td>{{ Carbon\Carbon::parse($personnel->created_at)->format('M d, Y') }}</x-td>
 
-                                    <x-td><span title="{{App\Models\Property::where('uuid', $personnel->property_uuid)->value('property')}}">{{ Str::limit(App\Models\Property::where('uuid', $personnel->property_uuid)->value('property'), 10) }}</span></x-td>
+                                    <x-td><span
+                                            title="{{App\Models\Property::where('uuid', $personnel->property_uuid)->value('property')}}">{{
+                                            Str::limit(App\Models\Property::where('uuid',
+                                            $personnel->property_uuid)->value('property'), 10) }}</span></x-td>
                                     <x-td>{{ App\Models\User::where('id', $personnel->id)->value('name') }}</x-td>
                                     <?php
                                         $email = App\Models\User::where('id', $personnel->id);
@@ -64,11 +67,12 @@
                                             <a>
                                     </x-td>
 
-                                    <x-td>{{ App\Models\User::where('id', $personnel->id)->value('mobile_number') }}</x-td>
+                                    <x-td>{{ App\Models\User::where('id', $personnel->id)->value('mobile_number') }}
+                                    </x-td>
                                     <x-td>{{ App\Models\Role::where('id', $personnel->role_id)->value('role') }}</x-td>
                                     <x-td>
                                         @if($personnel->is_approved)
-                                       Yes
+                                        Yes
                                         @else
                                         No
                                         @endif

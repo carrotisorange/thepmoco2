@@ -124,11 +124,10 @@ class PropertyEditComponent extends Component
 
             app('App\Http\Controllers\ActivityController')->store($this->property_details->uuid, auth()->user()->id,$restrictionId,$featureId);
 
-            return session()->flash('success', 'Changes Saved!');
+         return redirect(url()->previous())->with('success', 'Changes Saved!');
 
         }catch(\Exception $e){
-            ddd($e);
-            return session()->flash('error', 'Something went wrong.');
+           return redirect(url()->previous())->with('error', $e);
         }
     }
 

@@ -26,7 +26,7 @@
                     @foreach($electionSubfeaturesArray as $subfeature)
                     <div class="p-4 purple rounded-lg dark:bg-gray-800" id="{{ $subfeature }}" role="tabpanel"
                         aria-labelledby="{{ $subfeature }}-tab">
-                        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div class="-my-2 overflow-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                                 <div class="">
                                     @if($subfeature === 'policy-form')
@@ -89,11 +89,13 @@
                                         </div>
                                     </div>
                                     @elseif($subfeature === 'candidates')
-                                    <div class="space-x-5 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
+                                    <div
+                                        class="space-x-5 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
                                         <div class="lg:col-span-1 mt-2 ml-5">
                                             <div
                                                 class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                                <label for="" class="block text-base font-medium text-gray-900">Number of Candidates</label>
+                                                <label for="" class="block text-base font-medium text-gray-900">Number
+                                                    of Candidates</label>
                                                 <x-form-input name="no_of_candidates">
                                                 </x-form-input>
                                             </div>
@@ -102,7 +104,9 @@
                                         <div class="lg:col-span-1 mt-2 ml-5">
                                             <div
                                                 class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                                <label for="floor_id" class="block text-base font-medium text-gray-900">Number of Winning Candidates</label>
+                                                <label for="floor_id"
+                                                    class="block text-base font-medium text-gray-900">Number of Winning
+                                                    Candidates</label>
                                                 <x-form-input name="number_of_winning_candidates">
                                                 </x-form-input>
                                             </div>
@@ -119,19 +123,22 @@
 
 
                                         <div class="lg:col-span-2 mt-2">
-                                            <div class="space-x-5 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-4">
+                                            <div
+                                                class="space-x-5 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-4">
                                                 <div class="lg:col-span-1 mt-2">
                                                     <div
                                                         class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                                        <label for="floor_id" class="block text-base font-medium text-gray-900">Name</label>
-                                                        <x-form-input name="name" >
+                                                        <label for="floor_id"
+                                                            class="block text-base font-medium text-gray-900">Name</label>
+                                                        <x-form-input name="name">
                                                         </x-form-input>
                                                     </div>
                                                 </div>
                                                 <div class="lg:col-span-1 mt-2">
                                                     <div
                                                         class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                                        <label for="floor_id" class="block text-base font-medium text-gray-900">Position</label>
+                                                        <label for="floor_id"
+                                                            class="block text-base font-medium text-gray-900">Position</label>
                                                         <x-form-input name="position">
                                                         </x-form-input>
                                                     </div>
@@ -139,7 +146,9 @@
                                                 <div class="lg:col-span-1 mt-2">
                                                     <div
                                                         class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                                        <label for="floor_id" class="block text-base font-medium text-gray-900"># of Years as HOA
+                                                        <label for="floor_id"
+                                                            class="block text-base font-medium text-gray-900"># of Years
+                                                            as HOA
                                                             member</label>
                                                         <x-form-input name="number_of_years_of_hoa">
                                                         </x-form-input>
@@ -148,12 +157,14 @@
                                                 <div class="lg:col-span-1 mt-2">
                                                     <div
                                                         class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                                        <label for="floor_id" class="block text-base font-medium text-gray-900">Resume</label>
+                                                        <label for="floor_id"
+                                                            class="block text-base font-medium text-gray-900">Resume</label>
                                                         <div class="flex text-base text-gray-600">
                                                             <label for="file-upload"
                                                                 class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                                                                 <span>Upload a file</span>
-                                                                <x-form-input id="file-upload" type="file" wire:model="contract" class="sr-only" />
+                                                                <x-form-input id="file-upload" type="file"
+                                                                    wire:model="contract" class="sr-only" />
                                                             </label>
                                                         </div>
                                                     </div>
@@ -162,202 +173,245 @@
                                         </div>
                                     </div>
                                     @elseif($subfeature === 'ballot-form')
-                                   <div class="space-x-5 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
-                                    <div class="lg:col-span-2 mt-2 ml-5">
-                                        <div
-                                            class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                            <label for="floor_id" class="block text-base font-medium text-gray-900">Heading/Greetings <span
-                                                    class="font-light text-gray-500">optional</span></label>
-                                            <x-form-input name="headings">
-                                            </x-form-input>
+                                    <div
+                                        class="space-x-5 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2">
+                                        <div class="lg:col-span-2 mt-2 ml-5">
+                                            <div
+                                                class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                                                <label for="floor_id"
+                                                    class="block text-base font-medium text-gray-900">Heading/Greetings
+                                                    <span class="font-light text-gray-500">optional</span></label>
+                                                <x-form-input name="headings">
+                                                </x-form-input>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="lg:col-span-2 mt-2 ml-5">
-                                        <div
-                                            class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                            <label for="floor_id" class="block text-base font-medium text-gray-900">Elecom Rules</label>
-                                            <x-form-input name="elecon_rules">
-                                            </x-form-input>
+                                        <div class="lg:col-span-2 mt-2 ml-5">
+                                            <div
+                                                class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                                                <label for="floor_id"
+                                                    class="block text-base font-medium text-gray-900">Elecom
+                                                    Rules</label>
+                                                <x-form-input name="elecon_rules">
+                                                </x-form-input>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="lg:col-span-2 mt-2 ml-5">
-                                        <div
-                                            class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
-                                            <label for="floor_id" class="block text-base font-medium text-gray-900">General Instructions</label>
-                                            <x-form-input name="general_instructions">
-                                            </x-form-input>
+                                        <div class="lg:col-span-2 mt-2 ml-5">
+                                            <div
+                                                class="relative border bg-white border-gray-300 rounded-md rounded-t-none px-3 py-2 focus-within:z-10 focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                                                <label for="floor_id"
+                                                    class="block text-base font-medium text-gray-900">General
+                                                    Instructions</label>
+                                                <x-form-input name="general_instructions">
+                                                </x-form-input>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <div class="lg:col-span-2 mt-2 ml-5">
-                                        <div class="flex justify-between py-6">
-                                            <p class="">List of Running Candidates</p>
-                                            <button class="px-2 py-2 bg-purple-500 rounded-lg text-white text-base">Edit Candidates</button>
+                                        <div class="lg:col-span-2 mt-2 ml-5">
+                                            <div class="flex justify-between py-6">
+                                                <p class="">List of Running Candidates</p>
+                                                <button
+                                                    class="px-2 py-2 bg-purple-500 rounded-lg text-white text-base">Edit
+                                                    Candidates</button>
+                                            </div>
                                         </div>
-                                    </div>
 
 
-                                    <div class="lg:col-span-2 ">
+                                        <div class="lg:col-span-2 ">
 
 
-                                        <h2 class="sr-only">Candidates</h2>
+                                            <h2 class="sr-only">Candidates</h2>
 
-                                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 space-x-0 lg:space-x-5">
+                                            <div
+                                                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 space-x-0 lg:space-x-5">
 
-                                            <div class="lg:col-span-1 mt-2">
-                                                <div class="bg-white">
+                                                <div class="lg:col-span-1 mt-2">
+                                                    <div class="bg-white">
 
-                                                    <form class="">
+                                                        <form class="">
 
-                                                        <ul role="list" class="divide-y divide-gray-200 border-b border-t border-gray-200">
+                                                            <ul role="list"
+                                                                class="divide-y divide-gray-200 border-b border-t border-gray-200">
 
-                                                            <li class="flex py-6">
-                                                                <div class="flex-shrink-0">
-                                                                    <img src="{{ asset('/brands/user.png') }}" alt=""
-                                                                        class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32">
-                                                                </div>
-
-                                                                <div class="ml-4 flex flex-1 flex-col sm:ml-6">
-                                                                    <div>
-
-                                                                        <h4 class="text-sm">
-                                                                            <a href="#" class="font-medium text-gray-700 hover:text-gray-800">Name</a>
-                                                                        </h4>
-                                                                        <div class="flex justify-between">
-                                                                            <p class="text-sm font-medium text-gray-900">Position</p>
-                                                                            <div class="flex items-center mb-4">
-                                                                                <input id="default-checkbox" type="checkbox" value=""
-                                                                                    class="w-8 h-8 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                                                                <label for="default-checkbox"
-                                                                                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"></label>
-                                                                            </div>
-                                                                        </div>
-                                                                        <p class="mt-1 text-sm text-gray-500"># of Years as HOA Member</p>
-
-                                                                        <p class="mt-1 text-sm text-blue-500 underline">Resume</p>
+                                                                <li class="flex py-6">
+                                                                    <div class="flex-shrink-0">
+                                                                        <img src="{{ asset('/brands/user.png') }}"
+                                                                            alt=""
+                                                                            class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32">
                                                                     </div>
 
+                                                                    <div class="ml-4 flex flex-1 flex-col sm:ml-6">
+                                                                        <div>
 
-                                                            </li>
-                                                            <li class="flex py-6">
-                                                                <div class="flex-shrink-0">
-                                                                    <img src="{{ asset('/brands/user.png') }}" alt=""
-                                                                        class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32">
-                                                                </div>
-
-                                                                <div class="ml-4 flex flex-1 flex-col sm:ml-6">
-                                                                    <div>
-
-                                                                        <h4 class="text-sm">
-                                                                            <a href="#" class="font-medium text-gray-700 hover:text-gray-800">Name</a>
-                                                                        </h4>
-                                                                        <div class="flex justify-between">
-                                                                            <p class="text-sm font-medium text-gray-900">Position</p>
-                                                                            <div class="flex items-center mb-4">
-                                                                                <input id="default-checkbox" type="checkbox" value=""
-                                                                                    class="w-8 h-8 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                                                                <label for="default-checkbox"
-                                                                                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"></label>
+                                                                            <h4 class="text-sm">
+                                                                                <a href="#"
+                                                                                    class="font-medium text-gray-700 hover:text-gray-800">Name</a>
+                                                                            </h4>
+                                                                            <div class="flex justify-between">
+                                                                                <p
+                                                                                    class="text-sm font-medium text-gray-900">
+                                                                                    Position</p>
+                                                                                <div class="flex items-center mb-4">
+                                                                                    <input id="default-checkbox"
+                                                                                        type="checkbox" value=""
+                                                                                        class="w-8 h-8 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                                                    <label for="default-checkbox"
+                                                                                        class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"></label>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                        <p class="mt-1 text-sm text-gray-500"># of Years as HOA Member</p>
+                                                                            <p class="mt-1 text-sm text-gray-500"># of
+                                                                                Years as HOA Member</p>
 
-                                                                        <p class="mt-1 text-sm text-blue-500 underline">Resume</p>
+                                                                            <p
+                                                                                class="mt-1 text-sm text-blue-500 underline">
+                                                                                Resume</p>
+                                                                        </div>
+
+
+                                                                </li>
+                                                                <li class="flex py-6">
+                                                                    <div class="flex-shrink-0">
+                                                                        <img src="{{ asset('/brands/user.png') }}"
+                                                                            alt=""
+                                                                            class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32">
                                                                     </div>
 
+                                                                    <div class="ml-4 flex flex-1 flex-col sm:ml-6">
+                                                                        <div>
 
-                                                            </li>
-                                                        </ul>
+                                                                            <h4 class="text-sm">
+                                                                                <a href="#"
+                                                                                    class="font-medium text-gray-700 hover:text-gray-800">Name</a>
+                                                                            </h4>
+                                                                            <div class="flex justify-between">
+                                                                                <p
+                                                                                    class="text-sm font-medium text-gray-900">
+                                                                                    Position</p>
+                                                                                <div class="flex items-center mb-4">
+                                                                                    <input id="default-checkbox"
+                                                                                        type="checkbox" value=""
+                                                                                        class="w-8 h-8 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                                                    <label for="default-checkbox"
+                                                                                        class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"></label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <p class="mt-1 text-sm text-gray-500"># of
+                                                                                Years as HOA Member</p>
+
+                                                                            <p
+                                                                                class="mt-1 text-sm text-blue-500 underline">
+                                                                                Resume</p>
+                                                                        </div>
+
+
+                                                                </li>
+                                                            </ul>
 
 
 
-                                                    </form>
+                                                        </form>
+
+                                                    </div>
 
                                                 </div>
 
-                                            </div>
+                                                <div class="lg:col-span-1 mt-2">
+                                                    <div class="bg-white">
 
-                                            <div class="lg:col-span-1 mt-2">
-                                                <div class="bg-white">
+                                                        <form class="">
 
-                                                    <form class="">
-
-                                                        <ul role="list" class="divide-y divide-gray-200 border-b border-t border-gray-200">
-                                                            <li class="flex py-6">
-                                                                <div class="flex-shrink-0">
-                                                                    <img src="{{ asset('/brands/user.png') }}" alt=""
-                                                                        class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32">
-                                                                </div>
-
-                                                                <div class="ml-4 flex flex-1 flex-col sm:ml-6">
-                                                                    <div>
-
-                                                                        <h4 class="text-sm">
-                                                                            <a href="#" class="font-medium text-gray-700 hover:text-gray-800">Name</a>
-                                                                        </h4>
-                                                                        <div class="flex justify-between">
-                                                                            <p class="text-sm font-medium text-gray-900">Position</p>
-                                                                            <div class="flex items-center mb-4">
-                                                                                <input id="default-checkbox" type="checkbox" value=""
-                                                                                    class="w-8 h-8 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                                                                <label for="default-checkbox"
-                                                                                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"></label>
-                                                                            </div>
-                                                                        </div>
-                                                                        <p class="mt-1 text-sm text-gray-500"># of Years as HOA Member</p>
-
-                                                                        <p class="mt-1 text-sm text-blue-500 underline">Resume</p>
+                                                            <ul role="list"
+                                                                class="divide-y divide-gray-200 border-b border-t border-gray-200">
+                                                                <li class="flex py-6">
+                                                                    <div class="flex-shrink-0">
+                                                                        <img src="{{ asset('/brands/user.png') }}"
+                                                                            alt=""
+                                                                            class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32">
                                                                     </div>
 
+                                                                    <div class="ml-4 flex flex-1 flex-col sm:ml-6">
+                                                                        <div>
 
-                                                            </li>
-                                                            <li class="flex py-6">
-                                                                <div class="flex-shrink-0">
-                                                                    <img src="{{ asset('/brands/user.png') }}" alt=""
-                                                                        class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32">
-                                                                </div>
-
-                                                                <div class="ml-4 flex flex-1 flex-col sm:ml-6">
-                                                                    <div>
-
-                                                                        <h4 class="text-sm">
-                                                                            <a href="#" class="font-medium text-gray-700 hover:text-gray-800">Name</a>
-                                                                        </h4>
-                                                                        <div class="flex justify-between">
-                                                                            <p class="text-sm font-medium text-gray-900">Position</p>
-                                                                            <div class="flex items-center mb-4">
-                                                                                <input id="default-checkbox" type="checkbox" value=""
-                                                                                    class="w-8 h-8 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                                                                <label for="default-checkbox"
-                                                                                    class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"></label>
+                                                                            <h4 class="text-sm">
+                                                                                <a href="#"
+                                                                                    class="font-medium text-gray-700 hover:text-gray-800">Name</a>
+                                                                            </h4>
+                                                                            <div class="flex justify-between">
+                                                                                <p
+                                                                                    class="text-sm font-medium text-gray-900">
+                                                                                    Position</p>
+                                                                                <div class="flex items-center mb-4">
+                                                                                    <input id="default-checkbox"
+                                                                                        type="checkbox" value=""
+                                                                                        class="w-8 h-8 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                                                    <label for="default-checkbox"
+                                                                                        class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"></label>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                        <p class="mt-1 text-sm text-gray-500"># of Years as HOA Member</p>
+                                                                            <p class="mt-1 text-sm text-gray-500"># of
+                                                                                Years as HOA Member</p>
 
-                                                                        <p class="mt-1 text-sm text-blue-500 underline">Resume</p>
+                                                                            <p
+                                                                                class="mt-1 text-sm text-blue-500 underline">
+                                                                                Resume</p>
+                                                                        </div>
+
+
+                                                                </li>
+                                                                <li class="flex py-6">
+                                                                    <div class="flex-shrink-0">
+                                                                        <img src="{{ asset('/brands/user.png') }}"
+                                                                            alt=""
+                                                                            class="h-24 w-24 rounded-md object-cover object-center sm:h-32 sm:w-32">
                                                                     </div>
 
+                                                                    <div class="ml-4 flex flex-1 flex-col sm:ml-6">
+                                                                        <div>
 
-                                                            </li>
+                                                                            <h4 class="text-sm">
+                                                                                <a href="#"
+                                                                                    class="font-medium text-gray-700 hover:text-gray-800">Name</a>
+                                                                            </h4>
+                                                                            <div class="flex justify-between">
+                                                                                <p
+                                                                                    class="text-sm font-medium text-gray-900">
+                                                                                    Position</p>
+                                                                                <div class="flex items-center mb-4">
+                                                                                    <input id="default-checkbox"
+                                                                                        type="checkbox" value=""
+                                                                                        class="w-8 h-8 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                                                    <label for="default-checkbox"
+                                                                                        class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"></label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <p class="mt-1 text-sm text-gray-500"># of
+                                                                                Years as HOA Member</p>
 
-                                                            <!-- More products... -->
-                                                        </ul>
+                                                                            <p
+                                                                                class="mt-1 text-sm text-blue-500 underline">
+                                                                                Resume</p>
+                                                                        </div>
+
+
+                                                                </li>
+
+                                                                <!-- More products... -->
+                                                            </ul>
 
 
 
-                                                    </form>
+                                                        </form>
+
+                                                    </div>
 
                                                 </div>
 
+
+
                                             </div>
 
-
-
                                         </div>
-
                                     </div>
-                                </div>
 
                                     @elseif($subfeature === 'voters')
                                     <div class="flex justify-between">
@@ -375,7 +429,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                    <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
                                         <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                                             <div class="mb-5 mt-2 relative overflow-hidden">
                                                 <table

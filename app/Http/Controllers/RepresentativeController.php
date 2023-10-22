@@ -39,15 +39,15 @@ class RepresentativeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store($representative, $email, $mobile_number, $relationship_id, $owner_uuid)
-    {  
+    {
         return Representative::create([
             'representative' => $representative,
-            'email' => $email, 
+            'email' => $email,
             'mobile_number' => $mobile_number,
             'relationship_id' => $relationship_id,
             'owner_uuid' => $owner_uuid,
         ])->id;
-        
+
     }
 
     /**
@@ -95,6 +95,6 @@ class RepresentativeController extends Controller
         $guardian = Representative::where('id', $id);
         $guardian->delete();
 
-        return back()->with('success', 'Changes Saved!');
+        return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 }

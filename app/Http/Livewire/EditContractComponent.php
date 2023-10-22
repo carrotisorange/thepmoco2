@@ -60,7 +60,6 @@ class EditContractComponent extends Component
     }
 
     public function updateContract(){
-
         try {
 
         $validatedData = $this->validate();
@@ -68,7 +67,7 @@ class EditContractComponent extends Component
           DB::transaction(function () use ($validatedData){
 
             if($this->updateTenantStatus){
-                
+
             Tenant::where('uuid', $this->contract->tenant_uuid)
                 ->update(['status'=> $this->status]);
             }
@@ -84,13 +83,12 @@ class EditContractComponent extends Component
             Contract::where('uuid', $this->contract->uuid)
             ->update($validated);
 
-            return back()->with('success', 'Changes Saved!');
+            return redirect(url()->previous())->with('success', 'Changes Saved!');
 
           });
 
-          }catch (\Throwable $e) {
-
-            return back()->with('error', $e);
+          }catch (\Exception $e) {
+            return redirect(url()->previous())->with('error', $e);
         }
 
 

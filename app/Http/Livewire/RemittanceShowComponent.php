@@ -62,7 +62,7 @@ class RemittanceShowComponent extends Component
         $this->bladderTankDescription = Remittance::find($this->getRemittanceId())->bladder_tank_description;
         $this->causeOfMagnetDescription = Remittance::find($this->getRemittanceId())->cause_of_magnet_description;
     }
-    
+
     public function updateRemittance($id){
 
         Remittance::where('id', $id)
@@ -132,7 +132,7 @@ class RemittanceShowComponent extends Component
         $owner = Owner::find($owner_uuid);
 
         if(!$owner_uuid || !$owner->email){
-            session()->flash('error', 'No owner/email was found!');
+            return redirect(url()->previous())->with('error','Email is missing');
         }else{
 
             $data = [
@@ -140,14 +140,14 @@ class RemittanceShowComponent extends Component
                 'unit' => $this->unit->unit,
                 'date' => Remittance::find( $this->getRemittanceId())->created_at,
                 'amountCollected' => Remittance::find($this->getRemittanceId())->monthly_rent +
-                Remittance::find($this->getRemittanceId())->marketing_fee + 
+                Remittance::find($this->getRemittanceId())->marketing_fee +
                 Remittance::find($this->getRemittanceId())->management_fee ,
                 'rent' => Remittance::find($this->getRemittanceId())->monthly_rent,
                 'deductions' => Remittance::find($this->getRemittanceId())->total_deductions,
                 'bankTransferFee' => Remittance::find($this->getRemittanceId())->bank_transfer_fee,
                 'managementFee' => Remittance::find($this->getRemittanceId())->management_fee,
                 'marketingFee' => Remittance::find($this->getRemittanceId())->marketing_fee,
-                
+
                 'miscellaneousFee' => Remittance::find($this->getRemittanceId())->miscellaneous_fee,
                 'miscellaneousFeeDescription' => Remittance::find($this->getRemittanceId())->miscellaneous_fee_description,
                 'membershipFee' => Remittance::find($this->getRemittanceId())->membership_fee,
@@ -202,7 +202,7 @@ class RemittanceShowComponent extends Component
     }
 
     public function render()
-    {        
+    {
         return view('livewire.remittance-show-component',[
             'remittance' => Remittance::find($this->getRemittanceId()),
 

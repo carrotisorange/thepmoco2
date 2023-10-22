@@ -9,7 +9,7 @@
                     </h1>
                 </div>
                 <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                   Name : <b> {{ $user->name }}</b>,
+                    Name : <b> {{ $user->name }}</b>,
                     Email : <b> {{ $user->email }}</b>,
                     Phone: <b> {{
                         $user->mobile_number }}</b>
@@ -17,7 +17,7 @@
                 </div>
             </div>
 
-            <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
 
 
 
@@ -83,7 +83,7 @@
     </div>
 
     <div class="mt-5">
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <div class="relative overflow-auto shadow-md sm:rounded-lg">
 
         </div>
     </div>

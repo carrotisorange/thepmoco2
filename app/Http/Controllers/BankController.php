@@ -24,7 +24,7 @@ class BankController extends Controller
     {
         Bank::create([
          'bank_name' => $bank_name,
-         'account_name' => $account_name, 
+         'account_name' => $account_name,
          'account_number' => $account_number,
          'owner_uuid' => $owner_uuid
       ]);
@@ -34,7 +34,6 @@ class BankController extends Controller
     {
         $bank = Bank::where('id', $id);
         $bank->delete();
-
-        return back()->with('success', 'Changes Saved!');
+        return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 }
