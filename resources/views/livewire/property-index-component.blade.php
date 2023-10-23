@@ -91,7 +91,7 @@
             @endif
 
 
-            <x-button onclick="window.location.href='portfolio/'">
+            <x-button onclick="window.location.href='portfolio'">
                 View Portfolio
             </x-button>
 
