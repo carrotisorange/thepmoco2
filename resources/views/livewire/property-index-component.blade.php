@@ -54,8 +54,6 @@
                 </li>
                 @endif
                 @endforeach
-
-
             </ol>
         </nav>
     </div>
@@ -65,14 +63,12 @@
         <h3 class="mt-2 text-sm font-medium text-gray-900">No properties</h3>
         <p class="mt-1 text-sm text-gray-500">Get started by creating a new property.</p>
         <div class="mt-6">
-
             <x-button onclick="window.location.href='/property/{{Str::random(8)}}/create'">
                 New Property
             </x-button>
         </div>
     </div>
     @else
-
 
     <div class="sm:flex sm:items-center mt-5">
         <div class="sm:flex-auto">
@@ -90,9 +86,14 @@
             </x-button>
             @else
             <x-button wire:click="changePropertyView('list')">
-                View Portfolio
+                View as List
             </x-button>
             @endif
+
+
+            <x-button onclick="window.location.href='portfolio/'">
+                View Portfolio
+            </x-button>
 
             {{-- <x-button onclick="window.location.href='/user/{{ auth()->user()->id }}/export/portfolio'">Export
                 Portfolio</x-button> --}}
@@ -107,7 +108,6 @@
 
     <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
         <div class="sm:col-span-6">
-
             <label for="default-search"
                 class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
             <div class="relative w-full mb-5">
@@ -121,9 +121,7 @@
                 <input type="search" id="search" wire:model="search"
                     class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Search for property..." required>
-
             </div>
-
         </div>
 
         <div class="sm:col-span-2">
@@ -133,7 +131,6 @@
                 <option value="{{ $item->type_id }}">{{ $item->type }}</option>
                 @endforeach
             </x-form-select>
-
         </div>
 
         <div class="sm:col-span-2">
@@ -147,60 +144,62 @@
         <div class="sm:col-span-2">
             <x-form-select name="limitDisplayTo" wire:model="limitDisplayTo">
                 <option value="" selected>Limit display to</option>
-                @for ($i = 1; $i <= $userPropertyCount; $i++) @if($i%4==0 || $i==$userPropertyCount) <option
-                    value="{{ $i }}">{{ $i }}</option>
-                    @endif
-                    @endfor
-                    </x-select>
+                @for ($i = 1; $i <= $userPropertyCount; $i++)
+                @if($i%4==0 || $i==$userPropertyCount)
+                    <option value="{{ $i }}">{{ $i }}</option>
+                @endif
+                @endfor
+            </x-form-select>
         </div>
     </div>
 
     <div class="mt-5 mb-5">
         {{ $properties->links() }}
     </div>
-    @if($propertyView == 'thumbnail')
-    <div class="mt-1 mb-5 grid grid-cols-5 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-        @foreach ($properties->where('status', 'active') as $property)
-        <?php
-            $propertyTypeLandingPage = App\Models\Feature::find(App\Models\Type::find( $property->type_id)->landing_page_feature_id)->alias;
-            $propertyTypeIcon = App\Models\Type::find( $property->type_id)->icon;
-            $propertyType = App\Models\Type::find( $property->type_id)->type;
-        ?>
-        <div class="group relative">
-            <div class="w-full h-32 bg-white rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                <a href="/property/{{ $property->property_uuid }}/{{ $propertyTypeLandingPage }}">
-                    <img src="{{ asset('/brands/'.$propertyTypeIcon) }}" title="{{ $propertyType }}" alt="building"
-                        class="w-40 object-center object-cover lg:w-full lg:h-full">
-                </a>
-            </div>
-            <h3 class="text-center mt-2">
-                <a title="{{ $propertyType }}" class="text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ $property->property_uuid }}/{{ $propertyTypeLandingPage }}">
-                    {{ Str::limit($property->property,15) }}
-                </a>
-            </h3>
-        </div>
-        @endforeach
-    </div>
-    @else
-    <div class="mt-8 flex flex-col">
-        <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-9">
-            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
 
+        @if($propertyView == 'thumbnail')
+        <div class="mt-1 mb-5 grid grid-cols-5 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+            @foreach ($properties->where('status', 'active') as $property)
+            <?php
+                $propertyTypeLandingPage = App\Models\Feature::find(App\Models\Type::find( $property->type_id)->landing_page_feature_id)->alias;
+                $propertyTypeIcon = App\Models\Type::find( $property->type_id)->icon;
+                $propertyType = App\Models\Type::find( $property->type_id)->type;
+            ?>
+            <div class="group relative">
+                <div class="w-full h-32 bg-white rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+                    <a href="/property/{{ $property->property_uuid }}/{{ $propertyTypeLandingPage }}">
+                        <img src="{{ asset('/brands/'.$propertyTypeIcon) }}" title="{{ $property->property }}" alt="property icon"
+                            class="w-40 object-center object-cover lg:w-full lg:h-full">
+                    </a>
+                </div>
+                <p class="hidden sm:flex">
+                    <a title="{{ $property->property }}" class="text-blue-500 text-right mt-2"
+                        href="/property/{{ $property->property_uuid }}/{{ $propertyTypeLandingPage }}">
+                        {{ Str::limit($property->property,25) }}
+                    </a>
+                </p>
+            </div>
+            @endforeach
+        </div>
+        @else
+        <div class="mt-8 flex flex-col">
+            <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-9">
+                <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                    <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="mt-8 flex flex-col">
-        <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-9">
-            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                    @include('tables.portfolio')
+        <div class="mt-8 flex flex-col">
+            <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-9">
+                <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                    <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                        @include('tables.portfolio')
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    @endif
+        @endif
     @endif
 </div>
