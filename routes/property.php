@@ -53,7 +53,6 @@ use App\Http\Controllers\HouseController;
 use App\Http\Controllers\PersonnelController;
 use App\Http\Controllers\TenantController;
 use App\Http\Controllers\HouseOwnerController;
-use App\Http\Controllers\ElectionPolicyFormController;
 
 Route::group(['middleware'=>['auth', 'verified']], function(){
 

@@ -34,9 +34,8 @@ Route::middleware('guest')->group(function () {
 
     // Route::get('/', [AuthenticatedSessionController::class, 'create']);
 
-    Route::get('/', function(){
-        return view('landingpage.index');
-    });
+    Route::get('/', [AuthenticatedSessionController::class, 'create'])
+    ->name('login');
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
