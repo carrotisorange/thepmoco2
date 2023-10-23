@@ -29,6 +29,8 @@ class PropertyCreateComponent extends Component
         $this->mobile = auth()->user()->mobile_number;
         $this->email = auth()->user()->email;
         $this->country_id = 173;
+        $this->type_id = 8;
+        $this->ownership = 'Multiple owned';
      }
 
      protected function rules()

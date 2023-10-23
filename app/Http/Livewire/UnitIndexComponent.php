@@ -75,7 +75,7 @@ class UnitIndexComponent extends Component
         $propertyTenantsCount = Property::find(Session::get('property_uuid'))->tenants->count();
 
         if($propertyTenantsCount == 0){
-            return redirect('/property/'.Session::get('property_uuid').'/tenant/')->with('success', 'Changes Saved!');
+            return redirect('/property/'.Session::get('property_uuid').'/owner/')->with('success', 'Changes Saved!');
         }else{
             return redirect('/property/'.Session::get('property_uuid').'/unit/')->with('success', 'Changes Saved!');
         }
