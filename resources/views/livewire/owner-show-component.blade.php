@@ -26,19 +26,6 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/representative/create"
-                                    class="{{ $addAnchorClass }}">
-                                    New representative
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/bank/create"
-                                    class="{{ $addAnchorClass }}">
-                                    New bank
-                                </a>
-                            </li>
-
-                            <li>
                                 <a href="/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/bills"
                                     class="{{ $addAnchorClass }}">
                                     New bill
@@ -157,10 +144,7 @@
                                     @endif
                                     @elseif($subfeature == 'house')
                                     @include('tables.deedofsales')
-                                    @elseif($subfeature == 'spouse')
-                                    @include('tables.spouses')
-                                    @elseif($subfeature == 'representative')
-                                    @include('tables.representatives')
+
                                     @elseif($subfeature == 'bill')
                                     <x-button
                                         onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/bills'">
@@ -169,8 +153,7 @@
                                     @include('tables.bills')
                                     @elseif($subfeature == 'collection')
                                     @include('tables.collections')
-                                    @elseif($subfeature == 'bank')
-                                    @include('tables.banks')
+                                 
                                     @endif
                                 </div>
                             </div>
