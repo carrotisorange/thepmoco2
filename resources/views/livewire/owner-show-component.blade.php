@@ -155,7 +155,7 @@
                                         </div>
                                     </div>
                                     @endif
-                                    @elseif($subfeature == 'unit')
+                                    @elseif($subfeature == 'house')
                                     @include('tables.deedofsales')
                                     @elseif($subfeature == 'spouse')
                                     @include('tables.spouses')

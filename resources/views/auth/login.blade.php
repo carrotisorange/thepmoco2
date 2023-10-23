@@ -28,7 +28,7 @@
             <div class="mx-auto w-full max-w-sm lg:w-96">
 
                 <div class="flex justify-center items-center">
-                    <img class="mt-10 mb-5 h-32 w-auto" src="{{ asset('/brands/'.env('APP_LOGO_V2')) }}" alt="propsuite logo">
+                    <img class="mt-10 mb-5 h-32 w-auto" src="{{ asset('/brands/'.env('APP_LOGO_V2')) }}" alt="propsuite logo"> HOA
 
                 </div>
                 <h2 class="mb-10 mt-2 text-lg tracking-tight text-purple-700">"{{ $randomQuote['quoteText']}}"

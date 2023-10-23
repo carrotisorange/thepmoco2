@@ -28,7 +28,7 @@
     <body class="h-min">
 
         <div class="hidden lg:block relative flex-1 items-center justify-center">
-            <img class="absolute inset-0 w-auto pt-32 ml-10" src="{{ asset('/brands/signup_vector.png') }}" alt="">
+            <img class="absolute inset-0 w-auto pt-32 ml-10" src="{{ asset('/brands/signup_vector.png') }}" alt=""> 
             <img class="absolute inset-0 w-32 py-12 ml-10" src="{{ asset('/brands/'.env('APP_LOGO')) }}" alt="">
         </div>
         <div class="">

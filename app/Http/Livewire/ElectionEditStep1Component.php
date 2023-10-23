@@ -47,23 +47,23 @@ class ElectionEditStep1Component extends Component
     public function submitForm(){
         $validatedInputs = $this->validate();
 
-        $houseOwners = Bill::select('*',DB::raw('datediff(CURRENT_DATE,start)/30 as delayed_dues_in_months'))
+        $owners = Bill::select('*',DB::raw('datediff(CURRENT_DATE,start)/30 as delayed_dues_in_months'))
         ->where('property_uuid', Session::get('property_uuid'))->where('status','unpaid')
         ->get();
 
         Election::where('id', $this->election->id)->update($validatedInputs);
 
-           foreach($houseOwners as $houseOwner){
+           foreach($owners as $owner){
                     Voter::updateOrCreate(
                         [
-                            'house_owner_id' => $houseOwner->house_owner_id,
+                            'owner_id' => $owner->owner_uuid,
                             'election_id' => $this->election->id,
                         ],
                         [
-                            'house_owner_id' => $houseOwner->house_owner_id,
+                            'owner_id' => $owner->owner_uuid,
                             'election_id' => $this->election->id,
-                            'number_of_years_as_hoa_member' => ($houseOwner->houseOwner->created_at)->diffInYears(Carbon::now()),
-                            'number_of_past_due_account' => $houseOwner->delayed_dues_in_months,
+                            'number_of_years_as_hoa_member' => ($owner->owner->created_at)->diffInYears(Carbon::now()),
+                            'number_of_past_due_account' => $owner->delayed_dues_in_months,
 
                         ]
                     );
