@@ -87,7 +87,7 @@ class UtilityEditComponent extends Component
 
                     $this->utilities = $this->get_utilities();
 
-                    return redirect(url()->previous())->with('success', 'Changes Saved!');
+                    session()->flash('success', 'Changes Saved!');
                 }
             // });
 

@@ -2,7 +2,7 @@
 
     <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
-            <h1 class="text-3xl font-bold text-gray-500">Account Payables</h1>
+            <h1 class="text-3xl font-bold text-gray-500">{{ucfirst(Route::current()->getName())}}</h1>
         </div>
         <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
             <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step1/export"

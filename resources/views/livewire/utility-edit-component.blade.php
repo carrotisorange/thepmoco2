@@ -1,9 +1,8 @@
 <div>
-
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
-            <div class="sm:flex-auto">
-                <h1 class="text-3xl font-bold text-gray-700">Utilities / {{ $option }}</h1>
+            <div class="sm:flex-auto" wire:ignore>
+              <h1 class="text-3xl font-bold text-gray-500">{{ucfirst(Route::current()->getName())}}</h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 <x-button class="bg-red-500" wire:click="returnToUtilitiesPage">Cancel
@@ -17,15 +16,9 @@
 
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                 <div>
-                    {{-- <p class="mt-3 text-sm text-center text-gray-500">
-                        Showing
-                        <span class="font-medium">{{ $utilities->count() }}</span>
 
-                        {{Str::plural('utility', $utilities->count())}}
-
-                    </p> --}}
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead class="bg-gray-50">
+                        <thead class="">
                             <tr>
                                 <x-th>UNIT </x-th>
                                 <x-th>PREVIOUS READING</x-th>

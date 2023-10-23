@@ -2,7 +2,7 @@
 
     <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
-            <h1 class="text-3xl font-bold text-gray-500">Guest / {{ $bill->guest->guest }} / Bill # {{ $bill->bill_no }}
+            <h1 class="text-3xl font-bold text-gray-500"{{ucfirst(Route::current()->getName())}}>
             </h1>
         </div>
         <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
@@ -29,7 +29,7 @@
                                 <tr>
                                     <th scope="col"
                                         class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
-                                        BIll
+                                        Bill
                                         No
                                     </th>
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">

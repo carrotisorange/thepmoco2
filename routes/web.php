@@ -64,6 +64,7 @@ Route::controller(ArticleController::class)->group(function () {
     Route::get('article/{id}', 'show')->name('articles');
 });
 
+Route::get('/portfolio', [PortfolioController::class, 'index'])->name('charts.portfolio');
 
 Route::get('/about', function(){
     return view('landing.about');
@@ -170,7 +171,7 @@ Route::get('/survey', function(){
     return view('landing.survey');
 });
 
-Route::get('/portfolio', [PortfolioController::class, 'index'])->name('charts.portfolio');
+
 
 // Route::post('/register', function(Request $request){
 

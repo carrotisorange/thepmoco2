@@ -23,15 +23,38 @@ class ContractMoveoutStep3Component extends Component
     public $view = 'listView';
 
     public $isPaymentAllowed = false;
-       
+
     public $isIndividualView = true;
 
     public $user_type = 'tenant';
+
+    public $remarks;
 
     public function mount($contract)
     {
         $this->bills = Bill::where('tenant_uuid',$this->contract->tenant->uuid)->whereIn('status', ['unpaid', 'partially_paid'])->get();
         $this->tenant_uuid = $contract->tenant_uuid;
+        $this->remarks = $contract->remarks;
+    }
+
+    public function forcedMoveout(){
+
+        $this->validate([
+          'remarks' => 'required',
+        ]);
+
+        Contract::where('uuid', $this->contract->uuid)
+        ->update([
+            'status' => 'forcedmoveout',
+            'remarks' => $this->remarks
+        ]);
+
+        Tenant::where('uuid', $this->contract->tenant_uuid)
+        ->update([
+            'status' => 'forcedmoveout'
+        ]);
+
+        return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-4')->with('success','Changes Saved!');
     }
 
     public function submitForm()
@@ -46,12 +69,7 @@ class ContractMoveoutStep3Component extends Component
             'status' => 'cleared'
         ]);
 
-        return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-4')->with('success', 'Changes Saved!');        
-    }
-
-    public function exitModal(){
-
-        return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-4')->with('success', 'Changes Saved!');  
+        return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-4')->with('success', 'Changes Saved!');
     }
 
     public function render()
