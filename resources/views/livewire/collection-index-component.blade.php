@@ -1,5 +1,4 @@
 <div>
-
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -8,9 +7,7 @@
                 </h1>
             </div>
             @if($propertyCollectionsCount)
-            <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-            </div>
-
+      
             <div class="sm:col-span-6">
 
                 <div class="group inline-block">
@@ -75,16 +72,12 @@
             <div class="sm:col-span-3">
                 <x-label>Start</x-label>
                 <x-form-input name="start_date" type="date" wire:model="start_date" />
-
             </div>
-
             <div class="sm:col-span-3">
                 <x-label>End</x-label>
                 <x-form-input name="end_date" type="date" wire:model="end_date" />
 
             </div>
-
-
 
         </div>
         <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
@@ -146,7 +139,7 @@
                                                 data-modal-toggle="create-particular-modal">to tenant</a>
                                         </li>
                                         <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
-                                                href="/property/{{ Session::get(" property") }}/owner"
+                                                href="/property/{{ Session::get('property_uuid') }}/owner"
                                                 data-modal-toggle="create-particular-modal">to owner</a>
                                         </li>
 
@@ -157,9 +150,7 @@
                         </div>
                     </div>
                     @endif
-
                 </div>
-
             </div>
         </div>
     </div>

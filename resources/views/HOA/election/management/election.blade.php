@@ -2,7 +2,7 @@
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
             <div class="sm:flex-auto">
-                <h1 class="text-3xl font-bold text-gray-500">Election</h1>
+                <h1 class="text-3xl font-bold text-gray-500">  {{ucfirst(Route::current()->getName())}}</h1>
             </div>
 
 

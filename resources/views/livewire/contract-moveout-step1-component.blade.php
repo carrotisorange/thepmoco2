@@ -1,6 +1,5 @@
 <div>
-
-   <form action="#" method="POST" wire:submit.prevent="submitForm">
+   <form wire:submit.prevent="submitForm">
       <div class="shadow sm:rounded-md sm:overflow-hidden">
          <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
             <div class="grid grid-cols-2 gap-6">
@@ -94,10 +93,11 @@
                </div>
             </div>
             <div class="px-4 py-3 text-right sm:px-6">
-               <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-                  href="{{ url()->previous() }}">
-                  Cancel
-               </a>
+                <x-button class="bg-red-500"
+                    onclick="window.location.href='{{ url()->previous() }}'">
+                    Cancel
+                </x-button>
+
                <x-button type="submit">
                   Next
                </x-button>

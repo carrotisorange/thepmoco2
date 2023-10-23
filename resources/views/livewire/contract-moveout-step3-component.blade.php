@@ -1,15 +1,18 @@
 <div>
+    <div class="sm:flex sm:items-center">
+            <div class="sm:flex-auto">
+                {{-- <h1 class="text-3xl font-bold text-gray-500">{{ $unitDetails->unit }} / Inventory</h1> --}}
+                <p>Security Deposit: <b>{{ number_format($deposits,2) }}</b></p>
+            </div>
+            <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
 
-    <p>Security Deposit: <b>{{ number_format($deposits,2) }}</b></p>
-    @if($bills->count())
-    <p class="text-center mb-5 text-red-800"><i class="fa-solid fa-triangle-exclamation"></i> Unpaid bills have to be
-        settled to proceed.</p>
-    <div class="mt-10 text-center mb-10">
-        <x-button data-modal-toggle="create-particular-modal">
-            Force Moveout
-        </x-button>
-    </div>
+                <x-button data-modal-toggle="create-particular-modal">
+                    Force Moveout
+                </x-button>
 
+            </div>
+        </div>
+        @if($bills->count())
     <div class="mb-5 mt-2 relative overflow-auto ring-opacity-5 md:rounded-lg">
         @include('tables.bills')
     </div>

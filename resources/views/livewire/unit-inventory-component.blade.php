@@ -2,7 +2,7 @@
 
     <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
-            <h1 class="text-3xl font-bold text-gray-500">{{ $unitDetails->unit }} / Inventory</h1>
+            {{-- <h1 class="text-3xl font-bold text-gray-500">{{ $unitDetails->unit }} / Inventory</h1> --}}
         </div>
         <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
 
@@ -47,26 +47,23 @@
                                     @endif
                                 </x-td> --}}
                                 <x-td>
-                                    <input type="text" wire:model="inventories.{{ $index }}.item"
-                                        wire:change="updateUnitInventory({{ $inventory->id }})"
-                                        class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                                    <x-form-input type="text" wire:model="inventories.{{ $index }}.item"
+                                        wire:change="updateUnitInventory({{ $inventory->id }})"/>
                                     @error('inventories.{{ $index }}.item')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                     @enderror
                                 </x-td>
                                 <x-td>
-                                    <input type="number" step="0.001" min="1"
+                                    <x-form-input type="number" step="0.001" min="1"
                                         wire:model="inventories.{{ $index }}.quantity"
-                                        wire:change="updateUnitInventory({{ $inventory->id }})"
-                                        class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                                        wire:change="updateUnitInventory({{ $inventory->id }})"/>
                                     @error('inventories.{{ $index }}.quantity')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                     @enderror
                                 </x-td>
                                 <x-td>
-                                    <input type="text" wire:model="inventories.{{ $index }}.remarks"
-                                        wire:change="updateUnitInventory({{ $inventory->id }})"
-                                        class="mt-4 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
+                                    <x-form-input type="text" wire:model="inventories.{{ $index }}.remarks"
+                                        wire:change="updateUnitInventory({{ $inventory->id }})"/>
                                     @error('inventories.{{ $index }}.remarks')
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                     @enderror
@@ -74,7 +71,6 @@
 
                                 <x-td>
                                     <x-button class="bg-red-500"
-                                        data-modal-target="delete-unit-inventory-modal-{{ $inventory->id }}"
                                         data-modal-toggle="delete-unit-inventory-modal-{{ $inventory->id }}"> Remove
                                     </x-button>
                                 </x-td>
@@ -100,6 +96,10 @@
     </p>
     @elseif($ismovein==='moveout')
     <div class="flex justify-end mt-5">
+        <x-button class="bg-red-500" onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/unit/{{ $unitDetails->uuid }}'">
+            Cancel
+        </x-button>
+        &nbsp;
         <x-button wire:click="skipUnitInventoryProcess">
             Next
         </x-button>

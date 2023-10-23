@@ -65,6 +65,7 @@ class BillIndexComponent extends Component
    {
       $this->batch_no = $batch_no;
       $this->bill = 0;
+      $this->start = Carbon::now()->format('Y-m-d');
    }
 
    public function redirectToUnitsPage(){
@@ -229,27 +230,10 @@ class BillIndexComponent extends Component
 
             $reference_no = Tenant::find($tenant_uuid[$i]);
 
-            $rent = Contract::where('property_uuid', Session::get('property_uuid'))
-                ->where('contracts.status','active')
-                ->where('tenant_uuid', $tenant_uuid[$i])
-                ->pluck('rent');
-
             $unit_uuid = $unit_uuid[0];
 
             $attributes['unit_uuid']= $unit_uuid;
             $attributes['tenant_uuid'] = $tenant_uuid[$i];
-
-            //    if($this->particular_id === '1')
-            //    {
-
-            //       $marketing_fee = Unit::find($unit_uuid)->marketing_fee;
-            //       $management_fee = Unit::find($unit_uuid)->management_fee;
-
-            //       $bill = $rent[0];
-
-            //       $attributes['bill'] = ($bill)-($marketing_fee + $management_fee);
-
-            //    }
 
                if($this->particular_id === '8'){
                   $attributes['bill'] = -($this->bill);
@@ -264,47 +248,7 @@ class BillIndexComponent extends Component
                 $attributes['status'] = 'unpaid';
                 $attributes['created_at'] = Carbon::now();
 
-               $bill_id = Bill::insertGetId($attributes);
-
-            //     if($this->particular_id === '1'){
-            //        if($marketing_fee>0){
-            //       Bill::create([
-            //          'bill_id' => $bill_id,
-            //        'bill_no' => $bill_no++,
-            //        'unit_uuid' => $unit_uuid,
-            //        'particular_id' => 71,
-            //        'start' => $this->start,
-            //        'end' => $this->end,
-            //        'bill' => $marketing_fee,
-            //        'reference_no' => $reference_no->bill_reference_no,
-            //        'due_date' => Carbon::parse($this->start)->addDays(7),
-            //        'user_id' => auth()->user()->id,
-            //        'property_uuid' => Session::get('property_uuid'),
-            //        'tenant_uuid' => $tenant_uuid[$i],
-            //        'batch_no' => $batch_no,
-            //        'status' => 'unpaid',
-            //          'created_at' => Carbon::now(),
-            //       ]);
-            //    }
-            //     if($management_fee>0){
-            //       Bill::create([
-            //        'bill_id' => $bill_id,
-            //        'bill_no' => $bill_no++,
-            //        'unit_uuid' => $unit_uuid,
-            //        'particular_id' => 72,
-            //        'start' => $this->start,
-            //        'end' => $this->end,
-            //        'bill' => $management_fee,
-            //        'reference_no' => $reference_no->bill_reference_no,
-            //        'due_date' => Carbon::parse($this->start)->addDays(7),
-            //        'user_id' => auth()->user()->id,
-            //        'property_uuid' => Session::get('property_uuid'),
-            //        'tenant_uuid' => $tenant_uuid[$i],
-            //        'batch_no' => $batch_no,
-            //         'created_at' => Carbon::now(),
-            //       ]);
-            //    }
-            //     }
+                Bill::create($attributes);
 
                 }
 
