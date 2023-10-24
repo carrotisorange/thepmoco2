@@ -1,6 +1,5 @@
 <div>
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
-
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
                 <h1 class="text-3xl font-bold text-gray-500" wire:ignore>
@@ -37,14 +36,14 @@
                 </div>
 
                 <div class="sm:col-span-6">
-                    <x-select name="status" wire:model="status">
+                    <x-form-select name="status" wire:model="status">
                         <option value="">Filter status</option>
                         <option value="checked-in">Checked-in</option>
                         <option value="checked-out">Checked-out</option>
                         <option value="cancelled">Cancelled</option>
                         <option value="reserved">Reserved</option>
 
-                    </x-select>
+                    </x-form-select>
 
                 </div>
 
@@ -77,11 +76,8 @@
                         </div>
                     </div>
                     @else
-
                     @include('tables.bookings')
-
                     @endif
-
                 </div>
             </div>
         </div>

@@ -144,58 +144,63 @@
         {{-- <div class="sm:col-span-2">
             <x-form-select name="limitDisplayTo" wire:model="limitDisplayTo">
                 <option value="" selected>Limit display to</option>
-                @for ($i = 1; $i <= $userPropertyCount; $i++)
-                @if($i%4==0 || $i==$userPropertyCount)
-                    <option value="{{ $i }}">{{ $i }}</option>
-                @endif
-                @endfor
+                @for ($i = 1; $i <= $userPropertyCount; $i++) @if($i%4==0 || $i==$userPropertyCount) <option
+                    value="{{ $i }}">{{ $i }}</option>
+                    @endif
+                    @endfor
             </x-form-select>
         </div> --}}
     </div>
 
-    {{-- <div class="mt-5 mb-5">
-        {{ $properties->links() }}
-    </div> --}}
+    <div class="mt-5 mb-5">
+        <p class="text-sm text-gray-700">
+            Showing
+            <span class="font-medium">{{ $properties->count() }}</span>
+            of
+            <span class="font-medium">{{ $userPropertyCount }}</span>
+            properties
+        </p>
+    </div>
 
-        @if($propertyView == 'thumbnail')
-        <div class="max-w-2xl mx-auto py-8 px-4 sm:px-6 lg:max-w-7xl lg:px-8 mb-24">
-            <div class="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-6">
-                @foreach ($properties->where('status', 'active') as $property)
-                <?php
+    @if($propertyView == 'thumbnail')
+    <div class="max-w-2xl mx-auto py-8 px-4 sm:px-6 lg:max-w-7xl lg:px-8 mb-24">
+        <div class="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-6">
+            @foreach ($properties->where('status', 'active') as $property)
+            <?php
                     $propertyTypeLandingPage = App\Models\Feature::find(App\Models\Type::find( $property->type_id)->landing_page_feature_id)->alias;
                     $propertyTypeIcon = App\Models\Type::find( $property->type_id)->icon;
                     $propertyType = App\Models\Type::find( $property->type_id)->type;
                 ?>
-                <a href="/property/{{ $property->property_uuid }}/{{ $propertyTypeLandingPage }}">
-                    <div class="hover:bg-purple-200">
-                        <img src="{{ asset('/brands/'.$propertyTypeIcon) }}" title="{{ $property->property }}"
-                            class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
-                        <h3 class="text-center mt-2">{{ Str::limit($property->property,25) }}</h3>
-                    </div>
-                </a>
-                @endforeach
-            </div>
+            <a href="/property/{{ $property->property_uuid }}/{{ $propertyTypeLandingPage }}">
+                <div class="hover:bg-purple-200">
+                    <img src="{{ asset('/brands/'.$propertyTypeIcon) }}" title="{{ $property->property }}"
+                        class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
+                    <h3 class="text-center mt-2">{{ Str::limit($property->property,25) }}</h3>
+                </div>
+            </a>
+            @endforeach
         </div>
+    </div>
 
-        @else
-        <div class="mt-8 flex flex-col">
-            <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-9">
-                <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                    <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+    @else
+    <div class="mt-8 flex flex-col">
+        <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-9">
+            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
 
-                    </div>
                 </div>
             </div>
         </div>
-        <div class="mt-8 flex flex-col">
-            <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-9">
-                <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                    <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                        @include('tables.portfolio')
-                    </div>
+    </div>
+    <div class="mt-8 flex flex-col">
+        <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-9">
+            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                    @include('tables.portfolio')
                 </div>
             </div>
         </div>
-        @endif
+    </div>
+    @endif
     @endif
 </div>

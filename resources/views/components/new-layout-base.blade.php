@@ -144,6 +144,9 @@
         </nav>
         <!-- Main area -->
         <main class="flex-1 pb-8 h-screen y-screen">
+            @if(env('APP_SANDBOX'))
+            @include('layouts.banner')
+            @endif
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {{ $slot }}
             </div>

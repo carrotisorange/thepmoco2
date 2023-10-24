@@ -21,9 +21,9 @@
                     <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
                               transition duration-150 ease-in-out origin-top min-w-32">
                         <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
-                            <button type="button" data-modal-toggle="instructions-create-bill-modal">
+                            <a href="#/" type="button" data-modal-toggle="instructions-create-bill-modal">
                                 Tenant
-                            </button>
+                            </a>
                         </li>
 
                     </ul>
@@ -123,19 +123,17 @@
                             <p class="mt-1 text-sm text-gray-500">Get started by creating a new bill</p>
                             <div class="mt-6">
                                 <div class="group inline-block">
-                                    <x-button id="dropdownButton" data-dropdown-toggle="unitCreateDropdown">Add
+                                    <x-button id="dropdownButton" data-dropdown-toggle="unitCreateDropdown">New Bill
                                         &nbsp; <i class="fa-solid fa-caret-down"></i>
                                     </x-button>
 
                                     <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
                                               transition duration-150 ease-in-out origin-top min-w-32">
 
-
-
                                         <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
-                                            <x-button data-modal-toggle="instructions-create-bill-modal">
+                                            <a href="#/" data-modal-toggle="instructions-create-bill-modal">
                                                 Tenant
-                                            </x-button>
+                                            </a>
 
 
                                         </li>
