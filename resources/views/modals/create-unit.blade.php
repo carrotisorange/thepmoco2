@@ -13,12 +13,12 @@
                         <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-purple-100">
                             <!-- Heroicon name: outline/check -->
                             <i class="fa-solid fa-house"></i>
-                        </div> 
+                        </div>
                         <div class="mt-3 text-center sm:mt-5">
-                            <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Create a new unit
+                            <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Create a new house
                             </h3>
                             <div class="mt-2">
-                                <p class="text-sm text-gray-500">How many units you want to add to your property?</p>
+                                <p class="text-sm text-gray-500">How many houses you want to add to your property?</p>
                             </div>
 
                             <input type="number" min="1" name="number_of_units" value="1"

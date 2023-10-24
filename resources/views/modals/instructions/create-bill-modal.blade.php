@@ -18,7 +18,7 @@
                             </p>
                             @else
                             <p class="text-sm text-gray-500">
-                                There are no active contracts found. To continue adding bills, please add a tenant using
+                                There are no active contracts found. To continue adding bills, please add an owner using
                                 the
                                 button below.
                             </p>
@@ -89,7 +89,7 @@
                 @else
                 <div class="mt-5 sm:mt-6">
                     <x-button class="w-full" type="button" wire:click="redirectToUnitsPage">
-                        Add Tenant
+                        Add Owner
                     </x-button>
 
                 </div>

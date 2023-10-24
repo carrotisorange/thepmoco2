@@ -55,15 +55,6 @@
         @if($propertyBillsCount)
         <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
 
-            <div class="sm:col-span-3">
-                <x-form-select name="bill_type" wire:model="bill_type">
-                    <option value="">Filter bill to</option>
-                    <option value="guest_uuid">Guest</option>
-                    <option value="owner_uuid">Owner</option>
-                    <option value="tenant_uuid">Tenant</option>
-                </x-form-select>
-
-            </div>
 
             <div class="sm:col-span-3">
                 <x-form-select name="status" wire:model="status">
@@ -133,9 +124,9 @@
 
 
                                         <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
-                                            <x-button data-modal-toggle="instructions-create-bill-modal">
-                                                Tenant
-                                            </x-button>
+                                            <a href="#/" data-modal-toggle="instructions-create-bill-modal">
+                                                Owner
+                                            </a>
 
 
                                         </li>

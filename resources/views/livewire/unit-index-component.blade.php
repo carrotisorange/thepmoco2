@@ -4,14 +4,15 @@
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
                 <h1 class="text-3xl font-bold text-gray-500" wire:ignore>
-                    {{ucfirst(Route::current()->getName())}}
+                    {{-- {{ucfirst(Route::current()->getName())}} --}}
+                    House
                 </h1>
             </div>
             @if($propertyUnitCount)
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
 
 
-                <x-button name="newUnitModal" type="button" data-modal-toggle="instructions-create-unit-modal">New unit
+                <x-button name="newUnitModal" type="button" data-modal-toggle="instructions-create-unit-modal">New house
                 </x-button>
 
                 @if($view === 'list')
@@ -54,32 +55,32 @@
                             </div>
                             <input type="search" id="search" wire:model="search"
                                 class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Search for unit..." required>
+                                placeholder="Search for house..." required>
 
                         </div>
 
                     </div>
 
-                    <div class="sm:col-span-1">
+                   {{-- <div class="sm:col-span-2">
                         <x-form-select name="building_id" id="building_id" wire:model="building_id">
                             <option value="">Filter building</option>
                             @foreach ($buildings as $item)
                             <option value="{{ $item->building_id }}">{{ $item->building }}</option>
                             @endforeach
                         </x-form-select>
-                    </div>
+                    </div> --}}
 
-                    <div class="sm:col-span-1">
+                    {{-- <div class="sm:col-span-2">
                         <x-form-select name="category_id" id="category_id" wire:model="category_id">
                             <option value="">Filter category</option>
                             @foreach ($categories as $item)
                             <option value="{{ $item->id }}">{{ $item->category }}</option>
                             @endforeach
                         </x-form-select>
-                    </div>
+                    </div> --}}
 
 
-                    <div class="sm:col-span-1">
+                    <div class="sm:col-span-2">
                         <x-form-select name="status_id" id="status_id" wire:model="status_id"> \
                             <option value="">Filter status</option>
                             @foreach ($statuses as $item)
@@ -88,25 +89,23 @@
                         </x-form-select>
                     </div>
 
-                    <div class="sm:col-span-1">
+                    <div class="sm:col-span-2">
                         <x-form-select name="sortBy" id="small" wire:model="sortBy">
                             <option value="unit" selected>Sort by</option>
                             <option value="created_at">date created</option>
                             <option value="floor_id">floor</option>
-                            <option value="occupancy">occupancy</option>
-                            <option value="rent">rent</option>
-                            <option value="unit">unit</option>
+                            <option value="unit">house</option>
                         </x-form-select>
                     </div>
 
-                    <div class="sm:col-span-1">
+                    <div class="sm:col-span-2">
                         <x-form-select name="orderBy" id="small" wire:model="orderBy">
                             <option value="" selected>Sorting order</option>
                             <option value="asc">ascending</option>
                             <option value="desc">descending</option>
                         </x-form-select>
                     </div>
-                    <div class="sm:col-span-1">
+                    {{--<div class="sm:col-span-1">
                         <x-form-select name="limitDisplayTo" id="small" wire:model="limitDisplayTo">
                             <option value="" selected>Limit display to</option>
                             @for ($i = 1; $i <= $totalUnitsCount; $i++) @if($i%10==0 || $i==$totalUnitsCount) <option
@@ -114,11 +113,17 @@
                                 @endif
                                 @endfor
                         </x-form-select>
-                    </div>
+                    </div> --}}
                 </div>
-                <div class="mt-5">
-                    {{ $units->links() }}
-                </div>
+               <div class="mt-5 mb-5">
+                <p class="text-sm text-gray-700">
+                    Showing
+                    <span class="font-medium">{{ $units->count() }}</span>
+                    of
+                    <span class="font-medium">{{ $propertyUnitCount }}</span>
+                    houses
+                </p>
+            </div>
 
             </div>
             @endif
@@ -222,12 +227,12 @@
                                 stroke-width="2"
                                 d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
                         </svg>
-                        <h3 class="mt-2 text-sm font-medium text-gray-900">No {{ucfirst(Route::current()->getName())}}
+                        <h3 class="mt-2 text-sm font-medium text-gray-900">No house
                         </h3>
                         <p class="mt-1 text-sm text-gray-500">1 down, 3 more to go...</p>
                         <div class="mt-6">
                             <x-button data-modal-toggle="instructions-create-unit-modal">
-                                New {{ucfirst(Route::current()->getName())}}
+                                New house
                             </x-button>
                         </div>
                     </div>

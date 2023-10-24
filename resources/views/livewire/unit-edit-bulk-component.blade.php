@@ -3,7 +3,8 @@
         <div class="sm:flex sm:units-center">
             <div class="sm:flex-auto">
                 <h1 class="text-3xl font-bold text-gray-500" wire:ignore>
-                    {{ucfirst(Route::current()->getName())}}
+                    {{-- {{ucfirst(Route::current()->getName())}} --}}
+                    House
                 </h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
@@ -27,14 +28,14 @@
 
                             </x-th> --}}
                             <x-th>
-                                Unit
+                                House
                             </x-th>
 
                             <x-th>
                                 Floor
                             </x-th>
 
-                            <x-th>
+                            {{-- <x-th>
                                 Status
                             </x-th>
                             <x-th>
@@ -54,7 +55,7 @@
                             </x-th>
                             <x-th>
                                 Discount
-                            </x-th>
+                            </x-th> --}}
                             {{-- <x-th>
                                 Rent/Day
                             </x-th>
@@ -97,7 +98,7 @@
                                     @enderror
                                 </x-td>
 
-                                <x-td>
+                                {{-- <x-td>
                                     <x-table-select wire:model="units.{{ $index }}.status_id">
                                         <option value="">Select one</option>
                                         @foreach ($statuses as $status)
@@ -200,7 +201,7 @@
                                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                     @enderror
                                 </x-td>
-                                @endif
+                                @endif --}}
                                 <x-td>
                                     <x-table-input type="number" min="1" wire:model="units.{{ $index }}.occupancy" />
 

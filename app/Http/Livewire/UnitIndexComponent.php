@@ -148,7 +148,7 @@ class UnitIndexComponent extends Component
     ->when($this->batch_no, function($query){
       $query->where('batch_no', $this->batch_no);
       })
-      ->paginate($this->limitDisplayTo);
+      ->get();
     }
 
     public function editUnits(){

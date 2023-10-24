@@ -7,7 +7,7 @@
                 </h1>
             </div>
             @if($propertyCollectionsCount)
-      
+
             <div class="sm:col-span-6">
 
                 <div class="group inline-block">
@@ -48,10 +48,7 @@
                     <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
                                                       transition duration-150 ease-in-out origin-top min-w-32">
 
-                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
-                                href="/property/{{ Session::get('property_uuid') }}/tenant"
-                                data-modal-toggle="create-particular-modal">from tenant</a>
-                        </li>
+
                         <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="/property/{{ Session::get("
                                 property") }}/owner" data-modal-toggle="create-particular-modal">from owner</a>
                         </li>
@@ -134,10 +131,7 @@
                                         class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
                                                                                                   transition duration-150 ease-in-out origin-top min-w-32">
 
-                                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
-                                                href="/property/{{ Session::get('property_uuid') }}/tenant"
-                                                data-modal-toggle="create-particular-modal">to tenant</a>
-                                        </li>
+                                      
                                         <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
                                                 href="/property/{{ Session::get('property_uuid') }}/owner"
                                                 data-modal-toggle="create-particular-modal">to owner</a>

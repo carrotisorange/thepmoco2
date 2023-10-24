@@ -97,7 +97,7 @@
 
                 <div id="myTabContent" wire:ignore>
                     @foreach($unitSubfeaturesArray as $subfeature)
-                    @if($subfeature == 'house')
+                    @if($subfeature == 'unit')
                     <div class="p-4 purple rounded-lg dark:bg-gray-800" id="{{ $subfeature }}" role="tabpanel"
                         aria-labelledby="{{ $subfeature }}-tab">
                         <div>

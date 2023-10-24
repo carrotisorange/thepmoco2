@@ -12,7 +12,7 @@
                     </h3>
                     <div class="mt-2">
                         <p class="text-sm text-gray-500">Before you can create a new owner, first you need to
-                            select a unit.</p>
+                            select a house.</p>
                     </div>
                 </div>
             </div>

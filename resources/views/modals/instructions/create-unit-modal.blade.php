@@ -11,17 +11,17 @@
                     <i class="fa-solid fa-house"></i>
                 </div>
                 <div class="mt-3 text-center sm:mt-5">
-                    <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Create a new unit
+                    <h3 class="text-lg font-medium leading-6 text-gray-900" id="modal-title">Create a new house
                     </h3>
                     <div class="mt-2">
-                        <x-label>Number of units you want to create.</x-label>
+                        <x-label>Number of houses you want to create.</x-label>
                     </div>
                 </div>
             </div>
 
             <div class="mt-2 sm:mt-6">
                 <x-input type="text" wire:model="numberOfUnits" name="numberOfUnits" />
-                <small>Your plan is limited to {{ $unitLimits }} units only.</small>
+                <small>Your plan is limited to {{ $unitLimits }} houses only.</small>
             </div>
 
             <div class="mt-5 sm:mt-6">

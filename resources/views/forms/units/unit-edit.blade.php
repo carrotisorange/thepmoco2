@@ -30,7 +30,7 @@
             @enderror
         </div>
 
-        <div class="sm:col-span-1">
+        <div class="sm:col-span-2">
             <div class="{{ $formDivClasses }}">
                 <x-label for="building_id" >Building</x-label>
                 <x-form-select wire:model="building_id">
@@ -46,7 +46,7 @@
             @enderror
         </div>
 
-        <div class="sm:col-span-1">
+        <div class="sm:col-span-2">
             <div
                 class="{{ $formDivClasses }}">
                 <x-label for="floor_id" >Floor</x-label>
@@ -64,7 +64,7 @@
             @enderror
         </div>
 
-        <div class="sm:col-span-1">
+        <div class="sm:col-span-2">
             <div
                 class="{{ $formDivClasses }}">
                 <x-label for="category_id" >Category</x-label>
@@ -82,7 +82,7 @@
             @enderror
         </div>
 
-        <div class="sm:col-span-1">
+        <div class="sm:col-span-2">
             <div
                 class="{{ $formDivClasses }}">
                 <x-label for="status_id">Status</x-label>
@@ -100,7 +100,7 @@
             @enderror
         </div>
 
-        <div class="sm:col-span-1">
+        <div class="sm:col-span-2">
             <div
                 class="{{ $formDivClasses }}">
                 <x-label for="job-title">Area
@@ -112,7 +112,7 @@
             @enderror
         </div>
 
-        <div class="sm:col-span-1">
+        <div class="sm:col-span-2">
             <div
                 class="{{ $formDivClasses }}">
                 <x-label for="job-title" >Occupancy</x-label>
@@ -123,7 +123,7 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-
+{{--
         <div class="sm:col-span-2">
             <div
                 class="{{ $formDivClasses }}">
@@ -143,9 +143,9 @@
             @error('is_the_unit_for_rent_to_tenant')
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
-        </div>
+        </div> --}}
 
-        @if ($is_the_unit_for_rent_to_tenant == 1)
+      {{--  @if ($is_the_unit_for_rent_to_tenant == 1)
         <div class="sm:col-span-2">
             <div
                 class="{{ $formDivClasses }}">
@@ -191,7 +191,7 @@
             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
             @enderror
         </div>
-        @if($rent_duration === 'long_term')
+      @if($rent_duration === 'long_term')
         <div class="sm:col-span-3">
             <div
                 class="{{ $formDivClasses }}">
@@ -255,8 +255,8 @@
         </div>
         @endif
 
-        @endif
-
+        @endif--}}
+{{--
         <div class="sm:col-span-3">
             <div
                 class="{{ $formDivClasses }}">
@@ -275,7 +275,7 @@
                 </x-label>
                 <x-form-input type="number" wire:model="marketing_fee" step="0.001"/>
             </div>
-        </div>
+        </div> --}}
 
     </div>
     <div class="mt-10 flex justify-end">
