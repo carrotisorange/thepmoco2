@@ -1,38 +1,4 @@
 <div>
-
-    <style>
-        li>ul {
-            transform: translatex(100%) scale(0)
-        }
-
-        li:hover>ul {
-            transform: translatex(50%) scale(1)
-        }
-
-        li>button svg {
-            transform: rotate(-90deg)
-        }
-
-        li:hover>button svg {
-            transform: rotate(-270deg)
-        }
-
-        .group:hover .group-hover\:scale-100 {
-            transform: scale(1)
-        }
-
-        .group:hover .group-hover\:-rotate-180 {
-            transform: rotate(180deg)
-        }
-
-        .scale-0 {
-            transform: scale(0)
-        }
-
-        .min-w-32 {
-            min-width: 8rem
-        }
-    </style>
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -111,17 +77,19 @@
 
         </div>
 
+        <div class="mt-3">
+            {{ $utilities->links() }}
+        </div>
+
         <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-
-
                 <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
 
 
                     @if($utilities->count())
 
                     @include('tables.utilities')
-                    <br><br><br>
+          
                     @else
                     <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8 mt-10 mb-10">
                         <div class="text-center mb-10">

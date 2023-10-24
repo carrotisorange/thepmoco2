@@ -10,10 +10,11 @@ use Carbon\Carbon;
 use App\Models\Unit;
 use Livewire\WithFileUploads;
 use App\Models\Tenant;
+use DB;
 
 class EditContractComponent extends Component
 {
-    public Contract $contract;
+    public $contract;
 
     use WithFileUploads;
 
@@ -44,7 +45,7 @@ class EditContractComponent extends Component
     protected function rules()
     {
         return [
-            'tenant_contract' => 'nullable|mimes:jpg,bmp,png,pdf,docx|max:10240',
+            // 'contract' => 'nullable|mimes:jpg,bmp,png,pdf,docx|max:10240',
             'unit_uuid' => 'required',
             'start' => 'required|date',
             'rent' => 'required',
@@ -60,11 +61,10 @@ class EditContractComponent extends Component
     }
 
     public function updateContract(){
+
         try {
 
         $validatedData = $this->validate();
-
-          DB::transaction(function () use ($validatedData){
 
             if($this->updateTenantStatus){
 
@@ -78,16 +78,15 @@ class EditContractComponent extends Component
                 $tenant_contract = $this->tenant_contract->store('contracts');
             }
 
-            $validated['contract'] = $tenant_contract;
+            $validatedData['contract'] = $tenant_contract;
 
             Contract::where('uuid', $this->contract->uuid)
-            ->update($validated);
+            ->update($validatedData);
 
             return redirect(url()->previous())->with('success', 'Changes Saved!');
 
-          });
-
           }catch (\Exception $e) {
+            ddd($e);
             return redirect(url()->previous())->with('error', $e);
         }
 
