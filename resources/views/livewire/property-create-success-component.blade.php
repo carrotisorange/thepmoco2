@@ -9,7 +9,7 @@
         </div>
 
         <div class=" flex items-center justify-center">
-            <img class="h-49 w-auto" src="{{ asset('/brands/success_property.png') }}">
+            <img class="h-25 w-auto" src="{{ asset('/brands/success_property.png') }}">
         </div>
 
         <div class=" mt-10 flex items-center justify-center">
