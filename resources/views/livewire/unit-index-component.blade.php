@@ -236,7 +236,7 @@
                     <div class="max-w-2xl mx-auto py-8 px-4 sm:px-6 lg:max-w-7xl lg:px-8 mb-24">
                         <div class="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-6">
                             @foreach ($units as $unit)
-                            <?php $statusIcon = App\Models\Status::find($unit->status_id)->icon; ?>
+                            <?php $statusIcon = App\Models\Status::find($unit->status_id)->alt_icon; ?>
                             @if(Session::get('owner_uuid'))
                             <a
                                 href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}/owner/{{ Session::get('owner_uuid') }}/deed_of_sale/create">
