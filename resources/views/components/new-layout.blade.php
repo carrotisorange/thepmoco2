@@ -89,9 +89,11 @@
         </nav>
         <!-- Bottom section -->
         <div class="flex min-h-0 flex-1 overflow-hidden">
-            <!-- Narrow sidebar-->
             @include('includes.navbar')
             <main class="flex-1 pb-16 h-screen y-screen overflow-y-scroll">
+                @if(env('APP_SANDBOX'))
+                @include('layouts.banner')
+                @endif
                 <div class="mt-1">
                     @include('layouts.notifications')
                     {{ $slot }}

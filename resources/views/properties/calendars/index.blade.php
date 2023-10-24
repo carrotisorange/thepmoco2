@@ -44,9 +44,7 @@
             /* default BACKGROUND color */
         }
 
-        .fc-unthemed td.fc-today {
-            background: #EDE3FF;
-        }
+
     </style>
 
     @endsection
@@ -81,11 +79,11 @@
                 selectHelper: true,
                 select: function(start, end, allDays){
                     $('#bookingModal').modal('toggle');
-                  
+
                     $('#saveBtn').click(function(){
                         document.getElementById("saveBtn").innerHTML = "Loading...";
                         // document.getElementById("saveBtn").setAttribute("disabled", true);
-                        
+
                         var guest = $('#guest').val();
                         var email = $('#email').val();
                         var mobile_number = $('#mobile_number').val();
@@ -99,14 +97,14 @@
                         var no_of_senior_citizens = $('#no_of_senior_citizens').val();
                         var no_of_pwd = $('#no_of_pwd').val();
                         var remarks = $('#remarks').val();
-                        
+
                         $.ajax({
                             url:"{{ route('calendar.store') }}",
                             type:"POST",
                             dataType: 'json',
                             data:{
                                 guest, email, mobile_number, movein_at, moveout_at, unit_uuid, property_uuid,agent_id,
-                                no_of_guests, no_of_children, no_of_senior_citizens, no_of_pwd,remarks 
+                                no_of_guests, no_of_children, no_of_senior_citizens, no_of_pwd,remarks
                             },
                             success:function(response){
                                 $('#bookingModal').modal('hide')
@@ -130,13 +128,13 @@
                                 document.getElementById("no_of_senior_citizens").value = "";
                                 document.getElementById("no_of_pwd").value = "";
                                 document.getElementById("remarks").value = "";
-               
+
                             },
-                            error:function(error){     
+                            error:function(error){
                                 if(error.responseJSON.errors) {
                                     // document.getElementById("saveBtn").setAttribute("disabled", true);
                                     document.getElementById("saveBtn").innerHTML = "Book";
-                                    
+
                                     $('#guestError').html(error.responseJSON.errors.guest);
                                     $('#emailError').html(error.responseJSON.errors.email);
                                     $('#mobileNumberError').html(error.responseJSON.errors.mobile_number);
