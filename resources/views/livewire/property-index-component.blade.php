@@ -124,82 +124,84 @@
             </div>
         </div>
 
-        <div class="sm:col-span-2">
+        <div class="sm:col-span-3">
             <x-form-select name="filterByPropertyType" wire:model="filterByPropertyType">
-                <option value="" selected>Filter by property type</option>
+                <option value="" selected>Filter property</option>
                 @foreach ($propertyTypes as $item)
                 <option value="{{ $item->type_id }}">{{ $item->type }}</option>
                 @endforeach
             </x-form-select>
         </div>
 
-        <div class="sm:col-span-2">
+        <div class="sm:col-span-3">
             <x-form-select name="sortBy" wire:model="sortBy">
-                <option value="" selected>Sort property by</option>
+                <option value="" selected>Sort property</option>
                 <option value="property">name</option>
                 <option value="created_at">date created</option>
             </x-form-select>
         </div>
 
-        <div class="sm:col-span-2">
+        {{-- <div class="sm:col-span-2">
             <x-form-select name="limitDisplayTo" wire:model="limitDisplayTo">
                 <option value="" selected>Limit display to</option>
-                @for ($i = 1; $i <= $userPropertyCount; $i++)
-                @if($i%4==0 || $i==$userPropertyCount)
-                    <option value="{{ $i }}">{{ $i }}</option>
-                @endif
-                @endfor
+                @for ($i = 1; $i <= $userPropertyCount; $i++) @if($i%4==0 || $i==$userPropertyCount) <option
+                    value="{{ $i }}">{{ $i }}</option>
+                    @endif
+                    @endfor
             </x-form-select>
-        </div>
+        </div> --}}
     </div>
 
     <div class="mt-5 mb-5">
-        {{ $properties->links() }}
+       <p class="text-sm text-gray-700">
+            Showing
+            <span class="font-medium">{{ $properties->count() }}</span>
+            of
+            <span class="font-medium">{{ $userPropertyCount }}</span>
+            properties
+        </p>
     </div>
 
-        @if($propertyView == 'thumbnail')
-        <div class="mt-1 mb-5 grid grid-cols-5 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+    @if($propertyView == 'thumbnail')
+    <div class="max-w-2xl mx-auto py-8 px-4 sm:px-6 lg:max-w-7xl lg:px-8 mb-24">
+        <div class="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-6">
             @foreach ($properties->where('status', 'active') as $property)
             <?php
-                $propertyTypeLandingPage = App\Models\Feature::find(App\Models\Type::find( $property->type_id)->landing_page_feature_id)->alias;
-                $propertyTypeIcon = App\Models\Type::find( $property->type_id)->icon;
-                $propertyType = App\Models\Type::find( $property->type_id)->type;
-            ?>
-            <div class="group relative">
-                <div class="w-full h-32 bg-white rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-                    <a href="/property/{{ $property->property_uuid }}/{{ $propertyTypeLandingPage }}">
-                        <img src="{{ asset('/brands/'.$propertyTypeIcon) }}" title="{{ $property->property }}" alt="property icon"
-                            class="w-40 object-center object-cover lg:w-full lg:h-full">
-                    </a>
+                    $propertyTypeLandingPage = App\Models\Feature::find(App\Models\Type::find( $property->type_id)->landing_page_feature_id)->alias;
+                    $propertyTypeIcon = App\Models\Type::find( $property->type_id)->icon;
+                    $propertyType = App\Models\Type::find( $property->type_id)->type;
+                ?>
+            <a href="/property/{{ $property->property_uuid }}/{{ $propertyTypeLandingPage }}">
+                <div class="hover:bg-purple-200">
+                    <img src="{{ asset('/brands/'.$propertyTypeIcon) }}" title="{{ $property->property }}"
+                        class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
+                    <h3 class="text-center mt-2">{{ Str::limit($property->property,25) }}</h3>
                 </div>
-                <p class="hidden sm:flex">
-                    <a title="{{ $property->property }}" class="text-blue-500 text-right mt-2"
-                        href="/property/{{ $property->property_uuid }}/{{ $propertyTypeLandingPage }}">
-                        {{ Str::limit($property->property,25) }}
-                    </a>
-                </p>
-            </div>
+            </a>
             @endforeach
         </div>
-        @else
-        <div class="mt-8 flex flex-col">
-            <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-9">
-                <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                    <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+    </div>
 
-                    </div>
+    @else
+    <div class="mt-8 flex flex-col">
+        <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-9">
+            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+
                 </div>
             </div>
         </div>
-        <div class="mt-8 flex flex-col">
-            <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-9">
-                <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                    <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                        @include('tables.portfolio')
-                    </div>
+    </div>
+    <div class="mt-8 flex flex-col">
+        <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-9">
+            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                    @include('tables.portfolio')
                 </div>
             </div>
         </div>
-        @endif
+    </div>
+    @endif
     @endif
 </div>
+

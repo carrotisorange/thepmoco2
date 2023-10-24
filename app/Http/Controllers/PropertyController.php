@@ -689,7 +689,7 @@ class PropertyController extends Controller
         })
             ->when($filterByPropertyType, function($query, $filterByPropertyType){
          $query->where('type_id',$filterByPropertyType);
-        })->paginate($limitDisplayTo);
+        })->get();
     }
 
     public function edit_documents(Property $property){
