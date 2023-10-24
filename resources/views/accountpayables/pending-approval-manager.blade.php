@@ -218,7 +218,9 @@
             </div>
 
             <div class="mx-auto py-12 flex justify-center space-x-7 items-center">
-                <a  href="/property/{{ Session::get('property_uuid') }}/accountpayable" class="px-3 py-2 border border-gray-300 rounded-full text-base">
+                <a  href="/property/{{ Session::get('property_uuid') }}/accountpayable"
+                class="items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white text-center
+                    bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Go Back
                 </a>
 

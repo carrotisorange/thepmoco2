@@ -148,7 +148,7 @@ class UtilityIndexComponent extends Component
 
           ->orderBy('start_date', 'desc')
           ->orderByRaw('LENGTH(unit_name) ASC')->orderBy('unit_name', 'asc')
-          ->get();
+          ->paginate(10);
 
         return view('livewire.utility-index-component',[
             'utilities' => $utilities,

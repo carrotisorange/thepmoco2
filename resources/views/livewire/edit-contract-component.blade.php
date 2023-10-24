@@ -4,7 +4,7 @@
     </x-slot>
     <h1 class="text-center font-medium">Edit Contract</h1>
     <div class="p-5">
-        <form wire:submmit.prevent="updateContract()">
+        <form wire:submmit.prevent="updateContract">
             <div class="mt-5 sm:mt-6">
                 <label class="text-sm" for="tenant">Tenant</label>
                 <x-form-input type="text" readonly
@@ -159,7 +159,7 @@
 
             <div class="mt-5 sm:mt-6">
 
-                <x-button type="submit" class="w-full">
+                <x-button wire:click="updateContract" class="w-full">
                     Update
                 </x-button>
 
