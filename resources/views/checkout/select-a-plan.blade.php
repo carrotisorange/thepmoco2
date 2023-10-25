@@ -62,20 +62,22 @@
                                 <div class="mt-1">
                                     <x-select id="gender" name="gender">
                                         <option value="">Select one</option>
-                                        <option value="female" {{ 'female'==old('gender') ? 'Select one' : 'selected' }}>female
+                                        <option value="female" {{ 'female'==old('gender') ? 'Select one' : 'selected'
+                                            }}>female
                                         </option>
-                                        <option value="male" {{ 'male'==old('gender') ? 'Select one' : 'selected' }}>male
+                                        <option value="male" {{ 'male'==old('gender') ? 'Select one' : 'selected' }}>
+                                            male
                                         </option>
                                     </x-select>
                                 </div>
                             </div>
 
-                            {{-- <div class="lg:col-span-2">
+                            <div class="lg:col-span-2 mt-5">
                                 <x-label for="username"> Username</x-label>
                                 <div class="mt-1">
                                     <x-input id="username" name="username" type="text" value="{{ old('username') }}" />
                                 </div>
-                            </div> --}}
+                            </div>
 
                             <div class="lg:col-span-2 mt-5">
                                 <x-label for="email"> Email </x-label>
@@ -114,16 +116,17 @@
 
 
                             <div class="mt-5 text-sm text-center lg:col-span-2">
-                                By clicking the sign up below, you agree to the <a href="https://propsuite.net/terms"
-                                    target="_blank" class="font-medium text-indigo-600 hover:text-indigo-500">Terms &
-                                    Conditions</a> and <a href="https://propsuite.net/privacy" target="_blank"
+                                By clicking the sign up below, you agree to the <a href="/terms" target="_blank"
+                                    class="font-medium text-indigo-600 hover:text-indigo-500">Terms &
+                                    Conditions</a> and <a href="/privacy" target="_blank"
                                     class="font-medium text-indigo-600 hover:text-indigo-500">Privacy
                                     Policy</a>
                             </div>
 
 
                             <div class="lg:col-span-2">
-                                <button type="submit" class="w-64 items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white text-center
+                                <button type="submit"
+                                    class="w-64 items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white text-center
 bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mt-5 w-full">Sign
                                     up</button>
                             </div>
