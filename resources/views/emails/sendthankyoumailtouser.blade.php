@@ -12,7 +12,7 @@
 </p>
 
 <p>
-    The {{ env('APP_NAME') }} team is here to help you every step of your digitalization journety.
+    The {{ env('APP_NAME') }} team is here to help you every step of your digitalization journey.
     Reach us from Mondays to Fridays at 9am to 5pm thru:
 </p>
 
