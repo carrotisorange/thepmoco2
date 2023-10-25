@@ -61,7 +61,7 @@ class UnitIndexComponent extends Component
        for($i=$this->numberOfUnits; $i>=1; $i--){
             Unit::create([
                 'uuid' => Str::uuid(),
-                'unit' => 'Unit '.$total_unit_created++,
+                'unit' => 'House '.$total_unit_created++,
                 'building_id' => '1',
                 'floor_id' => '1',
                 'property_uuid' => Session::get('property_uuid'),
@@ -79,14 +79,11 @@ class UnitIndexComponent extends Component
         }else{
             return redirect('/property/'.Session::get('property_uuid').'/unit/')->with('success', 'Changes Saved!');
         }
-
-
     }
 
     public function changeView($value)
     {
         $this->view = $value;
-
     }
 
     public function clearFilters()
