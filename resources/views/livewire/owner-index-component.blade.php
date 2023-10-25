@@ -62,6 +62,19 @@
 
             </div>
             @endif
+
+
+        </div>
+        <div class="mt-5 mb-5">
+
+            <p class="text-sm text-gray-700">
+                Showing
+                <span class="font-medium">{{ $owners->count() }}</span>
+                of
+                <span class="font-medium">{{ $propertyOwnersCount }}</span>
+                owners
+            </p>
+            <br>
             {{ $owners->links() }}
         </div>
         <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">

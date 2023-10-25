@@ -4,7 +4,7 @@
             <x-th>#</x-th>
             <x-th>REFERENCE #</x-th>
             <x-th>TENANT</x-th>
-            <x-th>UNIT</x-th>
+            <x-th>HOUSE</x-th>
             <x-th>SUBJECT</x-th>
             <x-th>DATE REPORTED</x-th>
             <x-th>CATEGORY</x-th>

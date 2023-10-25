@@ -1,41 +1,4 @@
 <div>
-
-    <style>
-        /* since nested groupes are not supported we have to use
-                                 regular css for the nested dropdowns
-                              */
-        li>ul {
-            transform: translatex(100%) scale(0)
-        }
-
-        li:hover>ul {
-            transform: translatex(50%) scale(1)
-        }
-
-        li>button svg {
-            transform: rotate(-90deg)
-        }
-
-        li:hover>button svg {
-            transform: rotate(-270deg)
-        }
-
-        .group:hover .group-hover\:scale-100 {
-            transform: scale(1)
-        }
-
-        .group:hover .group-hover\:-rotate-180 {
-            transform: rotate(180deg)
-        }
-
-        .scale-0 {
-            transform: scale(0)
-        }
-
-        .min-w-32 {
-            min-width: 8rem
-        }
-    </style>
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -60,13 +23,12 @@
 
                     <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
                                       transition duration-150 ease-in-out origin-top min-w-32">
-
+{{--
                         <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
                                 href="/property/{{ Session::get('property_uuid') }}/tenant"
                                 data-modal-toggle="create-particular-modal">to tenant</a>
-                        </li>
-                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="/property/{{ Session::get("
-                                property") }}/unit" data-modal-toggle="create-particular-modal">to unit</a>
+                        </li> --}}
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="/property/{{ Session::get("property_uuid") }}/unit" data-modal-toggle="create-particular-modal">to unit</a>
                         </li>
 
                     </ul>
@@ -153,12 +115,12 @@
                                         class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
                                                                       transition duration-150 ease-in-out origin-top min-w-32">
 
-                                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
+                                        {{-- <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
                                                 href="/property/{{ Session::get('property_uuid') }}/tenant"
                                                 data-modal-toggle="create-particular-modal">to tenant</a>
-                                        </li>
+                                        </li> --}}
                                         <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
-                                                href="/property/{{ Session::get(" property") }}/unit"
+                                                href="/property/{{ Session::get("property_uuid") }}/unit"
                                                 data-modal-toggle="create-particular-modal">to unit</a>
                                         </li>
 

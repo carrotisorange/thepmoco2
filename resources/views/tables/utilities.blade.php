@@ -3,7 +3,7 @@
         <tr>
             <x-th>#</x-th>
             <x-th>ID</x-th>
-            <x-th>UNIT </x-th>
+            <x-th>HOUSE </x-th>
             <x-th>PERIOD COVERED</x-th>
             <x-th>PREVIOUS/CURRENT/CONSUMPTION</x-th>
             <x-th>RATE</x-th>
@@ -72,7 +72,7 @@
             <x-td>
                 <x-button data-modal-target="edit-utility-modal-{{$utility->id}}"
                     data-modal-toggle="edit-utility-modal-{{$utility->id}}"
-                  
+
                     type="button">
                     Edit
                 </x-button>

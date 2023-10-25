@@ -9,9 +9,9 @@
             </div>
 
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/guest'"> View
+                {{-- <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/guest'"> View
                     Guests in List
-                </x-button>
+                </x-button> --}}
 
             </div>
 

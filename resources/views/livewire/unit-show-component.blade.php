@@ -141,19 +141,19 @@
                                         </div>
                                     </div>
                                     @endif
-                                    @elseif($subfeature == 'tenant')
-                                    @if($contracts->count())
-                                    @include('tables.contracts')
+                                    @elseif($subfeature == 'bill')
+                                    @if($bills->count())
+                                    @include('tables.bills')
                                     @else
                                     <div class="mt-10 text-center mb-10">
                                         <i class="fa-solid fa-circle-plus"></i>
-                                        <h3 class="mt-2 text-sm font-medium text-gray-900">No tenants</h3>
+                                        <h3 class="mt-2 text-sm font-medium text-gray-900">No bills</h3>
 
                                         <div class="mt-6">
-                                            <x-button
+                                            {{-- <x-button
                                                 onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/unit/{{ $unit_details->uuid }}/tenant/{{ Str::random(8) }}/create'">
-                                                New tenant
-                                            </x-button>
+                                                New bill
+                                            </x-button> --}}
                                         </div>
                                     </div>
                                     @endif

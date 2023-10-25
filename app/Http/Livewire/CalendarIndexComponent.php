@@ -11,7 +11,7 @@ class CalendarIndexComponent extends Component
 {
     public function render()
     {
-        $units = Property::find(Session::get('property_uuid'))->units->where('rent_duration', 'daily');
+        $units = Property::find(Session::get('property_uuid'))->units;
 
         return view('livewire.calendar-index-component',[
             'agents' => Agent::where('property_uuid', Session::get('property_uuid'))->where('is_active',1)->get(),

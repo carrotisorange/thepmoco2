@@ -65,6 +65,20 @@
             @endif
 
         </div> --}}
+        @if($propertyPersonnelsCount)
+      <div class="mt-5 mb-5">
+
+            <p class="text-sm text-gray-700">
+                Showing
+                <span class="font-medium">{{ $personnels->count() }}</span>
+                of
+                <span class="font-medium">{{ $propertyPersonnelsCount }}</span>
+                owners
+            </p>
+            <br>
+            {{-- {{ $personnels->links() }} --}}
+        </div>
+        @endif
         <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
@@ -77,7 +91,7 @@
                             <?php
                                     $stepValue = App\Models\PropertyStepper::find($step)->step;
                                 ;?>
-                            @if($step == 1 || $step == 4)
+                            @if($step == 1 || $step == 4 || $step == 7)
                             <li class="relative md:flex md:flex-1">
                                 <!-- Completed Step -->
                                 <a href="#" class="group flex w-full items-center">
@@ -106,7 +120,7 @@
                                     </svg>
                                 </div>
                             </li>
-                            @elseif($step == 7)
+                            @elseif($step == 5)
                             <li class="relative md:flex md:flex-1">
                                 <!-- Current Step -->
                                 <a href="#" class="flex items-center px-6 py-4 text-sm font-medium"

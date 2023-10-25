@@ -20,7 +20,7 @@
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="">
                             <tr>
-                                <x-th>UNIT </x-th>
+                                <x-th>HOUSE </x-th>
                                 <x-th>PREVIOUS READING</x-th>
                                 <x-th>CURRENT READING </x-th>
                                 <x-th>CONSUMPTION</x-th>
