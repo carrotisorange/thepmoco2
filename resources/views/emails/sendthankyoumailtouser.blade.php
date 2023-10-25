@@ -1,29 +1,40 @@
 @component('mail::message')
-# Hi there!
+# Hi!
 
-I am one of the co-founders of {{ env('APP_NAME') }},
-and I am excited you have decided to sign up.
+<p>
+    Welcome to {{ env('APP_NAME') }} for Home Owners Association. You have come to the right place to digitalize
+    your community association management. Managing a commnunity is a complex task so we have made it your mission
+    to simplify the administrative tasks for managing a community.</p>
+<p>
+    As a database storage, your data is encrypted and information is made scure with COMODO SSL, a global security authority, giving you
+    that peace of mind. Start migrating your HOA data in {{ env('APP_NAME') }}. Should you need help in migrating your data faster, our
+    team can provide migration support.
+</p>
 
-{{ env('APP_NAME') }} Team and I have poured
-our heart and soul into making systematized processes reduces which reduces operating expenses
-by 35%.
+<p>
+    The {{ env('APP_NAME') }} team is here to help you every step of your digitalization journety.
+    Reach us from Mondays to Fridays at 9am to 5pm thru:
+</p>
 
-My top priority is to make sure that you are able
-to automate the tedious and reptitive processes of managing a property, so if you have any
-questions about our product, the website, feel free to reply directly
-to this email.
-I hope we can help you to simplify your rental property operations!
+<p>
+    Email:
+    {{ env('HELP_EMAIL') }}
+    {{ env('TECH_EMAIL') }}
+</p>
 
-<br>
-{{--
-@component('mail::button', ['url' => '/property/{{ Str::random(8) }}/create'])
-    Start Now
-@endcomponent --}}
+<P>
+    Facebook Messenger:
+    {{ env('APP_MESSENGER') }}
+</P>
 
-Stay in touch!<br>
+<p>
+    Thank you for signing up. We look forward to hearing from you soon.
+</p>
 
--Pam, CEO
-<br>
-Thanks for Signing Up
+<p>
+   {{ env('APP_CEO') }}
+   CEO
+   Propsuite Team
+</p>
 
 @endcomponent

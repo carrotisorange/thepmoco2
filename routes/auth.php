@@ -32,11 +32,11 @@ Route::middleware('guest')->group(function () {
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
                 ->name('login');
 
-    // Route::get('/', [AuthenticatedSessionController::class, 'create']);
+Route::get('/', [AuthenticatedSessionController::class, 'create']);
 
-    Route::get('/', function(){
-        return view('landingpage.index');
-    });
+    // Route::get('/', function(){
+    //     return view('landingpage.index');
+    // });
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
 

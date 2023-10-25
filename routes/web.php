@@ -42,8 +42,8 @@ Route::fallback(function () {
     return view('layouts.not-found');
 });
 
-Route::get('/', function(){
-     return view('landing.landingpage');});
+// Route::get('/', function(){
+//      return view('landing.landingpage');});
 
 Route::get('/landing-propsuite', function(){
      return view('landing.landingpage-propsuite');});
