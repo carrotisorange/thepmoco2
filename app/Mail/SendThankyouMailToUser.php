@@ -29,7 +29,7 @@ class SendThankyouMailToUser extends Mailable
     public function build()
     {
         return $this->subject(env('APP_NAME'))
-            ->from(env('ADMIN_EMAIL'))
+            ->from(env('ADMIN_EMAIL'), env('APP_NAME'))
             ->markdown('emails.sendthankyoumailtouser');
     }
 }

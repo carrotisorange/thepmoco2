@@ -18,12 +18,15 @@
 
 <p>
     Email:
+    <br>
     {{ env('HELP_EMAIL') }}
+    <br>
     {{ env('TECH_EMAIL') }}
 </p>
 
 <P>
     Facebook Messenger:
+    <br>
     {{ env('APP_MESSENGER') }}
 </P>
 
@@ -33,7 +36,9 @@
 
 <p>
    {{ env('APP_CEO') }}
+   <br>
    CEO
+   <br>
    Propsuite Team
 </p>
 
