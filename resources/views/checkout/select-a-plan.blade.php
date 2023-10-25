@@ -70,12 +70,12 @@
                                 </div>
                             </div>
 
-                            {{-- <div class="lg:col-span-2">
+                            <div class="lg:col-span-2 mt-5">
                                 <x-label for="username"> Username</x-label>
                                 <div class="mt-1">
                                     <x-input id="username" name="username" type="text" value="{{ old('username') }}" />
                                 </div>
-                            </div> --}}
+                            </div>
 
                             <div class="lg:col-span-2 mt-5">
                                 <x-label for="email"> Email </x-label>
