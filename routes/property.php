@@ -233,7 +233,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
             });
 
-            Route::get('deed_of_sales', [UnitDeedOfSalesController::class, 'index']);
+            Route::get('deed_of_sales', [UnitDeedOfSalesController::class, 'index'])->name('owner');
 
 
             Route::get('bills', [UnitBillController::class, 'index'])->name('unit');
@@ -350,7 +350,7 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
 
             Route::get('unit', [OwnerDeedOfSalesController::class, 'create']);
 
-            Route::get('deed_of_sales', [OwnerDeedOfSalesController::class, 'index']);
+            Route::get('deed_of_sales', [OwnerDeedOfSalesController::class, 'index'])->name('owner');
             Route::get('enrollees', [OwnerEnrolleeController::class, 'index']);
             Route::get('collection/{batch_no?}', [OwnerCollectionController::class,'destroy']);
             Route::post('bill/store', [OwnerBillController::class, 'store']);

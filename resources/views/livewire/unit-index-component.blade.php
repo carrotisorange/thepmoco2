@@ -155,7 +155,7 @@
                                                     clip-rule="evenodd" />
                                             </svg>
                                         </span>
-                                        <span class="ml-4 text-sm font-medium text-gray-900">Create a {{ $stepValue
+                                        <span class="ml-4 text-sm font-medium text-gray-900">Add a {{ $stepValue
                                             }}</span>
                                     </span>
                                 </a>

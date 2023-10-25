@@ -89,7 +89,7 @@
                     <div class="p-4 purple rounded-lg dark:bg-gray-800" id="{{ $subfeature }}" role="tabpanel"
                         aria-labelledby="{{ $subfeature }}-tab">
                         <div>
-                            @include('forms.owners.owner-edit')
+                        @include('forms.owners.owner-edit')
                         </div>
                     </div>
                     @else
@@ -153,7 +153,7 @@
                                     @include('tables.bills')
                                     @elseif($subfeature == 'collection')
                                     @include('tables.collections')
-                                 
+
                                     @endif
                                 </div>
                             </div>

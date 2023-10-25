@@ -71,7 +71,7 @@ class BillIndexComponent extends Component
    public function redirectToUnitsPage(){
 
 
-      return redirect('/property/'.Session::get('property_uuid').'/unit/');
+      return redirect('/property/'.Session::get('property_uuid').'/owner/');
    }
 
    public function updatedSelectAllBills($value)

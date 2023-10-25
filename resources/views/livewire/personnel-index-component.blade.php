@@ -77,7 +77,7 @@
                             <?php
                                     $stepValue = App\Models\PropertyStepper::find($step)->step;
                                 ;?>
-                            @if($step == 1 || $step == 6 || $step == 2 || $step == 8 || $step == 4)
+                            @if($step == 1 || $step == 4)
                             <li class="relative md:flex md:flex-1">
                                 <!-- Completed Step -->
                                 <a href="#" class="group flex w-full items-center">
@@ -92,7 +92,7 @@
                                                     clip-rule="evenodd" />
                                             </svg>
                                         </span>
-                                        <span class="ml-4 text-sm font-medium text-gray-900">Create a {{ $stepValue
+                                        <span class="ml-4 text-sm font-medium text-gray-900">Add a {{ $stepValue
                                             }}</span>
                                     </span>
                                 </a>
@@ -106,7 +106,7 @@
                                     </svg>
                                 </div>
                             </li>
-                            @elseif($step == 5)
+                            @elseif($step == 7)
                             <li class="relative md:flex md:flex-1">
                                 <!-- Current Step -->
                                 <a href="#" class="flex items-center px-6 py-4 text-sm font-medium"

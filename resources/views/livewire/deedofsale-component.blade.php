@@ -7,9 +7,9 @@
                     <div class="mt-5 md:mt-0 md:col-span-2">
                         <div class="grid grid-cols-2 gap-6">
                             <div class="col-span-6">
-                                <label class="block text-sm font-medium text-gray-700"> Please attach the leasing
+                                <x-label > Please attach the leasing
                                     contract
-                                </label>
+                                </x-label>
                                 <div
                                     class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
                                     <div class="space-y-1 text-center">
@@ -43,8 +43,8 @@
                             </div>
 
                             <div class="col-span-6">
-                                <label class="block text-sm font-medium text-gray-700"> Please attach the title
-                                </label>
+                                <x-label > Please attach the title
+                                </x-label>
                                 <div
                                     class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
                                     <div class="space-y-1 text-center">
@@ -78,9 +78,9 @@
                             </div>
 
                             <div class="col-span-6">
-                                <label class="block text-sm font-medium text-gray-700"> Please attach the tax
+                                <x-label > Please attach the tax
                                     declaration
-                                </label>
+                                </x-label>
                                 <div
                                     class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
                                     <div class="space-y-1 text-center">
@@ -118,8 +118,8 @@
                             </div>
 
                             <div class="col-span-6">
-                                <label class="block text-sm font-medium text-gray-700"> Please attach the deed of sale
-                                </label>
+                                <x-label > Please attach the deed of sale
+                                </x-label>
                                 <div
                                     class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
                                     <div class="space-y-1 text-center">
@@ -156,9 +156,9 @@
                             </div>
 
                             <div class="col-span-6">
-                                <label class="block text-sm font-medium text-gray-700"> Please attach the contract to
+                                <x-label > Please attach the contract to
                                     sell
-                                </label>
+                                </x-label>
                                 <div
                                     class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
                                     <div class="space-y-1 text-center">
@@ -195,9 +195,9 @@
                             </div>
 
                             <div class="col-span-6">
-                                <label class="block text-sm font-medium text-gray-700"> Please attach the certificate of
+                                <x-label > Please attach the certificate of
                                     membership
-                                </label>
+                                </x-label>
                                 <div
                                     class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
                                     <div class="space-y-1 text-center">

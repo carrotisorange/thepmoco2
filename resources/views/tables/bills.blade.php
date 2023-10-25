@@ -93,7 +93,7 @@
             <x-th>BILL #</x-th>
             <x-th>DATE POSTED</x-th>
             <x-th>BILL TO</x-th>
-            <x-th>UNIT</x-th>
+            <x-th>HOUSE</x-th>
             <x-th>PERIOD COVERED</x-th>
             <x-th>PARTICULAR</x-th>
             <x-th>AMOUNT DUE/AMOUNT PAID/BALANCE</x-th>

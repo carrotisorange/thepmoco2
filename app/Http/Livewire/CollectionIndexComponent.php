@@ -35,7 +35,7 @@ class CollectionIndexComponent extends Component
         ->groupBy('form')
         ->get();
 
-        $propertyCollectionsCount = Property::find(Session::get('property_uuid'))->collections->count();
+        $propertyCollectionsCount = Property::find(Session::get('property_uuid'))->collections()->posted()->count();
 
         return view('livewire.collection-index-component',[
             'collections' => $collections,
