@@ -9,5 +9,6 @@ Route::prefix('{role_id:id}/sale/{user:username}')->group(function(){
         Route::get('{id}/properties', 'property')->name('signup');
         Route::get('personnel', 'personnel')->name('personnel');
         Route::get('session','session')->name('session');
+        Route::get('statistics','statistics')->name('statistics');
     });
 });

@@ -6,6 +6,10 @@ use App\Models\User;
 use App\Models\UserProperty;
 use DB;
 use Carbon\Carbon;
+use App\Models\Tenant;
+use App\Models\Owner;
+use App\Models\Property;
+use App\Models\Unit;
 
 class SalesPortalController extends Controller
 {
@@ -39,6 +43,25 @@ class SalesPortalController extends Controller
     {
         return view('portals.sales.sessions',[
             'sessions'=>DB::table('sessions')->whereDate('created_at', Carbon::now())->orderBy('created_at', 'desc')->orderBy('updated_at', 'desc')->get()
+        ]);
+    }
+
+    public function statistics()
+    {
+        $buildings = Property::count();
+        $units = Unit::count();
+        $users = User::whereNotNull('email_verified_at')->count();
+        $owners = Owner::count();
+        $tenants = Tenant::count();
+        $personnels = UserProperty::count();
+
+        return view('portals.sales.statistics',[
+            'buildings' => $buildings,
+            'units' => $units,
+            'users' => $users,
+            'owners' => $owners,
+            'tenants'=> $tenants,
+            'personnels' => $personnels
         ]);
     }
 
