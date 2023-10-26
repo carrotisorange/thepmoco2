@@ -23,15 +23,13 @@ class SalesPortalController extends Controller
     public function personnel()
     {
         return view('portals.sales.personnels',[
-            'personnels' => UserProperty::whereNotIn('role_id',['5'])->orderBy('id', 'desc')->paginate(10)
+            'personnels' => UserProperty::whereNotIn('role_id',['5', '7','8','10'])->orderBy('id', 'desc')->paginate(10)
         ]);
     }
 
     public function property($role_id, $username, $user_id)
     {
         $properties = User::findOrFail($user_id)->user_properties()->whereNotNull('user_id')->orWhereNotNull('property_uuid')->get();
-
-        // ddd($properties);
 
         return view('portals.sales.properties',[
             'properties'=> $properties,
@@ -50,10 +48,10 @@ class SalesPortalController extends Controller
     {
         $buildings = Property::count();
         $units = Unit::count();
-        $users = User::whereNotNull('email_verified_at')->count();
+        $users = User::whereNotNull('email_verified_at')->where('role_id', 5)->count();
         $owners = Owner::count();
         $tenants = Tenant::count();
-        $personnels = UserProperty::count();
+        $personnels = UserProperty::distinct('user_id')->where('role_id','!=', 5)->count();
 
         return view('portals.sales.statistics',[
             'buildings' => $buildings,
@@ -64,15 +62,4 @@ class SalesPortalController extends Controller
             'personnels' => $personnels
         ]);
     }
-
-//    return view('portals.sales.sessions',[
-//    'sessions'=>DB::table('sessions')
-//    ->join('users', 'sessions.user_id', 'users.id')
-//    ->join('user_properties', 'users.id', 'user_properties.user_id')
-//    ->join('roles', 'user_properties.role_id', 'roles.id')
-//    ->whereDate('sessions.created_at', Carbon::now())
-//    ->where('category','end-user')
-//    ->groupBy('sessions.user_id')
-//    ->orderBy('sessions.created_at', 'desc')->orderBy('sessions.updated_at', 'desc')->get()
-//    ]);
 }
