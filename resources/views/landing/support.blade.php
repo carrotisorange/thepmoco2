@@ -173,10 +173,10 @@
                             </div>
                         </div>
 
-                        <a href="#" class="text-base font-medium text-gray-500 hover:text-gray-900">About</a>
-                        <a href="#" class="text-base font-medium text-gray-500 hover:text-gray-900">FAQ</a>
-                        <a href="#" class="text-base font-medium text-gray-500 hover:text-gray-900">Support</a>
-                        <a href="#" class="text-base font-medium text-gray-500 hover:text-gray-900">Blog</a>
+                        <a href="/about" class="text-base font-medium text-gray-500 hover:text-gray-900">About</a>
+                        <a href="/faq" class="text-base font-medium text-gray-500 hover:text-gray-900">FAQ</a>
+                        <a href="/support" class="text-base font-medium text-gray-500 hover:text-gray-900">Support</a>
+                        <a href="/articles" class="text-base font-medium text-gray-500 hover:text-gray-900">Articles</a>
 
                     </nav>
                     <div class="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
@@ -316,6 +316,17 @@
                             Us.</span>
                     </h2>
 
+                    <span class="block text-gray-200">Your Privacy is a top priority for us, no matter what. It is important to us that you have
+                        a secure and private way connect with your loved ones and keep the lines of communication open.
+
+                        <br><br>
+                        With end-to-end encryption on by default, no cloud storage of your chats, and multiple privacy settings, you
+                        have
+                        full control over who sees your messages.
+                        <br><br>
+                        {{ env('APP_NAME') }} cannot and will not read to or share your personal and property data, ever.
+                    </span>
+
                 </div>
             </div>
 
@@ -449,15 +460,7 @@
 
                     </div>
                 </div>
-
-
-
-
-
             </div>
-
-
-
         </main>
 
         <footer class="bg-gray-50" aria-labelledby="footer-heading">
@@ -484,8 +487,6 @@
                                         <a href="#" class="text-base text-gray-500 hover:text-gray-900">About The
                                             PMO</a>
                                     </li>
-
-
                                 </ul>
                             </div>
                         </div>
