@@ -16,11 +16,11 @@
                         <div class="py-4 flex justify-between">
                             <h2 class=" text-lg">Board Resolution</h2>
 
-                       
+
                             <button class="text-white bg-purple-500 hover:bg-gray-700  font-medium rounded-full text-sm px-3 py-2.5 text-center" type="button" data-modal-toggle="default-modal">
-                            View 
+                            View
                             </button>
-                      
+
 
                         </div>
 
@@ -34,11 +34,11 @@
                         <div class="py-4 flex justify-between">
                             <h2 class=" text-lg">Minutes of General Assembly</h2>
 
-                       
+
                             <button class="text-white bg-purple-500 hover:bg-gray-700  font-medium rounded-full text-sm px-3 py-2.5 text-center" type="button" data-modal-toggle="default-modal">
-                            View 
+                            View
                             </button>
-                      
+
 
                         </div>
 
@@ -52,11 +52,11 @@
                         <div class="py-4 flex justify-between">
                             <h2 class=" text-lg">DHSUD Registration</h2>
 
-                       
+
                             <button class="text-white bg-purple-500 hover:bg-gray-700  font-medium rounded-full text-sm px-3 py-2.5 text-center" type="button" data-modal-toggle="default-modal">
-                            View 
+                            View
                             </button>
-                      
+
 
                         </div>
 
@@ -70,11 +70,11 @@
                         <div class="py-4 flex justify-between">
                             <h2 class=" text-lg">General Information Sheet</h2>
 
-                       
+
                             <button class="text-white bg-purple-500 hover:bg-gray-700  font-medium rounded-full text-sm px-3 py-2.5 text-center" type="button" data-modal-toggle="default-modal">
-                            View 
+                            View
                             </button>
-                      
+
 
                         </div>
 
@@ -88,11 +88,11 @@
                         <div class="py-4 flex justify-between">
                             <h2 class=" text-lg">BYLAWS</h2>
 
-                       
+
                             <button class="text-white bg-purple-500 hover:bg-gray-700  font-medium rounded-full text-sm px-3 py-2.5 text-center" type="button" data-modal-toggle="default-modal">
-                            View 
+                            View
                             </button>
-                      
+
 
                         </div>
 
@@ -106,11 +106,11 @@
                         <div class="py-4 flex justify-between">
                             <h2 class=" text-lg">House Rules and Regulation</h2>
 
-                       
+
                             <button class="text-white bg-purple-500 hover:bg-gray-700  font-medium rounded-full text-sm px-3 py-2.5 text-center" type="button" data-modal-toggle="default-modal">
-                            View 
+                            View
                             </button>
-                      
+
 
                         </div>
 
@@ -124,11 +124,11 @@
                         <div class="py-4 flex justify-between">
                             <h2 class=" text-lg">2023 Audited Financial Statement</h2>
 
-                       
+
                             <button class="text-white bg-purple-500 hover:bg-gray-700  font-medium rounded-full text-sm px-3 py-2.5 text-center" type="button" data-modal-toggle="default-modal">
-                            View 
+                            View
                             </button>
-                      
+
 
                         </div>
 
@@ -138,7 +138,7 @@
 
                     </div>
 
-                    
+
 
                 </div>
 
