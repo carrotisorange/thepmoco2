@@ -3,7 +3,7 @@
         create-bulletin-modal
     </x-slot>
     <h1 class="text-center font-medium">Add Bulletin </h1>
-    {{-- <form wire:submit.prevent="submitForm"> --}}
+    <form wire:submit.prevent="submitForm">
     <div class="p-5">
         <div class="mt-5 sm:mt-6">
             <x-label  for="title">Title </x-label>
@@ -55,11 +55,11 @@
 
         <div class="mt-5 sm:mt-6">
 
-            <x-button class="w-full" wire:click="submitForm">
+            <x-button class="w-full" type="submit">
                 Confirm
             </x-button>
 
         </div>
     </div>
-    {{-- </form> --}}
+    </form>
 </x-modal-component>

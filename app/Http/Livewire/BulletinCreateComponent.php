@@ -46,6 +46,12 @@ class BulletinCreateComponent extends Component
          return redirect(url()->previous())->with('error', $e);
        }
 
+        $featureId = 17;
+
+        $restrictionId = 1;
+
+        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'),auth()->user()->id,$restrictionId,$featureId);
+
         return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 
