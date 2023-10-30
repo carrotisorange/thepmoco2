@@ -117,8 +117,9 @@
 
 
                 <a target="_blank" href="/property/{{ $accountpayable->property->uuid }}/accountpayable/{{ $accountpayable->id }}/step1/export"
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto"
-                    type="button">
+                      class="items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white text-center
+                        bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        type="button">
                     Export
                 </a>
 
@@ -159,8 +160,6 @@
                     type="button">
                   Edit
                 </a>
-
-
 
                 @else
 

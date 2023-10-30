@@ -80,7 +80,7 @@
 
 
                 @if($particulars->count())
-              
+
                 <div class="sm:col-span-6">
                     <p class="text-right">
                         <x-button data-modal-toggle="instructions-create-vendor-modal">
@@ -245,24 +245,27 @@
                 </div>
 
                 <div class="sm:col-span-2">
-                    <x-label > Quotation/Bill 1</x-label>
+                    <x-label> Quotation/Bill 1</x-label>
                     <div
                         class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
                             <div class="flex text-sm text-gray-600">
-                                <label for="quotation1"
-                                    class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
-                                    <span wire:loading.remove>Upload a file</span>
-                                    <span wire:loading>Loading...</span>
-                                    <input id="quotation1" wire:model="quotation1" type="file" class="sr-only">
-                                    <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
-                                    @if($quotation1)
-                                    <span class="text-red-500 text-xs mt-2">
-                                        <a href="#/" wire:click="removeQuotation('quotation1')">Remove the attachment
-                                            .</a></span>
-                                    @endif
-
-                                </label>
+                              <label for="quotation1"
+                                class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
+                                @if(!$quotation1)
+                                <span wire:loading.remove>Upload a file</span>
+                                @else
+                                <span wire:loading.remove><a target="_blank" href="{{ asset('/storage/'.$accountpayable->quotation1) }}">View
+                                        Quotation/Bill 1</a></span>
+                                @endif
+                                <span wire:loading>Loading...</span>
+                                <input id="quotation1" wire:model="quotation1" type="file" class="sr-only">
+                                <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
+                                @if($quotation1)
+                                <span class="text-red-500 text-xs mt-2">
+                                    <a href="#/" wire:click="removeQuotation('quotation1')">Remove the attachment</a></span>
+                                @endif
+                            </label>
 
                             </div>
 
@@ -278,24 +281,27 @@
                     </div>
                 </div>
 
-                <div class="sm:col-span-2">
-                    <x-label > Quotation/Bill 2 </x-label>
-                    <div
-                        class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+               <div class="sm:col-span-2">
+                    <x-label> Quotation/Bill 2</x-label>
+                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
                             <div class="flex text-sm text-gray-600">
                                 <label for="quotation2"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
+                                    @if(!$quotation2)
                                     <span wire:loading.remove>Upload a file</span>
+                                    @else
+                                    <span wire:loading.remove><a target="_blank"
+                                            href="{{ asset('/storage/'.$accountpayable->quotation2) }}">View
+                                            Quotation/Bill 2</a></span>
+                                    @endif
                                     <span wire:loading>Loading...</span>
                                     <input id="quotation2" wire:model="quotation2" type="file" class="sr-only">
                                     <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
                                     @if($quotation2)
                                     <span class="text-red-500 text-xs mt-2">
-                                        <a href="#/" wire:click="removeQuotation('quotation2')">Remove the attachment
-                                            .</a></span>
+                                        <a href="#/" wire:click="removeQuotation('quotation2')">Remove the attachment</a></span>
                                     @endif
-
                                 </label>
 
                             </div>
@@ -304,32 +310,34 @@
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
                             @if ($quotation2)
-                            <p class="text-green-500 text-xs mt-2">File has been attached. <i
-                                    class="fa-solid fa-circle-check"></i>
+                            <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i>
                             </p>
                             @endif
                         </div>
                     </div>
                 </div>
 
-                <div class="sm:col-span-2">
-                    <x-label > Quotation/Bill 3</x-label>
-                    <div
-                        class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+               <div class="sm:col-span-2">
+                    <x-label> Quotation/Bill 3</x-label>
+                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
                             <div class="flex text-sm text-gray-600">
                                 <label for="quotation3"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
+                                    @if(!$quotation3)
                                     <span wire:loading.remove>Upload a file</span>
+                                    @else
+                                    <span wire:loading.remove><a target="_blank"
+                                            href="{{ asset('/storage/'.$accountpayable->quotation3) }}">View
+                                            Quotation/Bill 2</a></span>
+                                    @endif
                                     <span wire:loading>Loading...</span>
                                     <input id="quotation3" wire:model="quotation3" type="file" class="sr-only">
                                     <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
                                     @if($quotation3)
                                     <span class="text-red-500 text-xs mt-2">
-                                        <a href="#/" wire:click="removeQuotation('quotation3')">Remove the attachment
-                                            .</a></span>
+                                        <a href="#/" wire:click="removeQuotation('quotation3')">Remove the attachment</a></span>
                                     @endif
-
                                 </label>
 
                             </div>
@@ -338,14 +346,12 @@
                             <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
                             @if ($quotation3)
-                            <p class="text-green-500 text-xs mt-2">File has been attached. <i
-                                    class="fa-solid fa-circle-check"></i>
+                            <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i>
                             </p>
                             @endif
                         </div>
                     </div>
                 </div>
-
                 <div class="sm:col-span-7">
                     <x-label>Selected Vendor Details</x-label>
 

@@ -55,7 +55,7 @@ class RemittanceIndexComponent extends Component
     }
 
     public function updateRemittance($id){
-       
+
         $this->validate();
 
         try{
@@ -85,14 +85,14 @@ class RemittanceIndexComponent extends Component
                 'bladder_tank' => $remittance->bladder_tank,
                 'cause_of_magnet' => $remittance->cause_of_magnet,
                 'total_deductions' => $remittance->management_fee + $remittance->marketing_fee + $remittance->bank_transfer_fee + $remittance->miscellaneous_fee + $remittance->membership_fee + $remittance->condo_dues
-                + $remittance->parking_dues + $remittance->water + $remittance->electricity + $remittance->surcharges + $remittance->building_insurance 
+                + $remittance->parking_dues + $remittance->water + $remittance->electricity + $remittance->surcharges + $remittance->building_insurance
                 + $remittance->real_property_tax + $remittance->housekeeping_fee + $remittance->laundry_fee + $remittance->complimentary + $remittance->internet
-                + $remittance->special_assessment + $remittance->materials_recovery_facility + $remittance->recharge_of_fire_extinguisher + $remittance->recharge_of_fire_extinguisher 
+                + $remittance->special_assessment + $remittance->materials_recovery_facility + $remittance->recharge_of_fire_extinguisher + $remittance->recharge_of_fire_extinguisher
                 + $remittance->environmental_fee + $remittance->bladder_tank + $remittance->cause_of_magnet,
                 'remittance' => $remittance->net_rent - ($remittance->bank_transfer_fee + $remittance->miscellaneous_fee + $remittance->membership_fee + $remittance->condo_dues
-                + $remittance->parking_dues + $remittance->water + $remittance->electricity + $remittance->surcharges + $remittance->building_insurance 
+                + $remittance->parking_dues + $remittance->water + $remittance->electricity + $remittance->surcharges + $remittance->building_insurance
                 + $remittance->real_property_tax + $remittance->housekeeping_fee + $remittance->laundry_fee + $remittance->complimentary + $remittance->internet
-                + $remittance->special_assessment + $remittance->materials_recovery_facility + $remittance->recharge_of_fire_extinguisher + $remittance->recharge_of_fire_extinguisher 
+                + $remittance->special_assessment + $remittance->materials_recovery_facility + $remittance->recharge_of_fire_extinguisher + $remittance->recharge_of_fire_extinguisher
                 + $remittance->environmental_fee + $remittance->bladder_tank + $remittance->cause_of_magnet),
                 'cv_no' => $remittance->cv_no,
                 'check_no' => $remittance->check_no
@@ -104,7 +104,7 @@ class RemittanceIndexComponent extends Component
             session()->flash('success', 'Changes Saved!');
 
         }catch(\Exception $e){
-        
+
             return back()->with('error','Cannot perform the action. Please try again.');
        }
     }
@@ -156,11 +156,10 @@ class RemittanceIndexComponent extends Component
 
     public function render()
     {
-        
         return view('livewire.remittance-index-component',[
 
             'dates' => Remittance::where('property_uuid', Session::get('property_uuid'))
-            ->groupBy('created_at')    
+            ->groupBy('created_at')
             ->get(),
 
             'collectionsCount' => Collection::where('collections.property_uuid', Session::get('property_uuid'))
@@ -169,7 +168,7 @@ class RemittanceIndexComponent extends Component
             ->where('bills.particular_id', 1)
             ->whereMonth('collections.created_at', Carbon::parse($this->date)->month)
             ->count(),
-            
+
         ]);
     }
 }

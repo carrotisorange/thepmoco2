@@ -1,10 +1,7 @@
 <?php
-    $addAnchorClass = 'block py-2 px-4 text-sm
-                                                    text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
-                                                    dark:text-gray-200 dark:hover:text-white';
+    $addAnchorClass = 'block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white';
 ?>
 <div>
-
     <div class="mt-8 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
         <div class="lg:grid lg:grid-cols-12 lg:auto-rows-min lg:gap-x-8">
             <div class="lg:col-start-4 lg:col-span-9">
@@ -32,7 +29,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/bank/create"
+                                <a href="#/" data-modal-toggle="bank-create-modal"
                                     class="{{ $addAnchorClass }}">
                                     New bank
                                 </a>
@@ -180,7 +177,7 @@
                     @endforeach
                 </div>
             </div>
-
         </div>
     </div>
+   @livewire('bank-create-component',['owner'=> $owner_details])
 </div>

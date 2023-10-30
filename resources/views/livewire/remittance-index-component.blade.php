@@ -15,20 +15,23 @@
                 </x-button>
 
 
-                <x-form-select id="small" wire:model="created_at">
-                    <option value="{{ $created_at }}">{{ Carbon\Carbon::parse($created_at)->format('M, Y') }}</option>
-                    @foreach ($dates as $date)
-                    @if(Carbon\Carbon::parse($date->created_at)->format('M, Y') !=
-                    Carbon\Carbon::parse($created_at)->format('M, Y'))
-                    <option value="{{ $date->created_at }}">{{ Carbon\Carbon::parse($date->created_at)->format('M, Y')
-                        }}</option>
-                    @endif
-                    @endforeach
-                </x-form-select>
 
             </div>
 
 
+        </div>
+
+        <div class="mt-5">
+            <x-form-select id="small" wire:model="created_at">
+                <option value="{{ $created_at }}">{{ Carbon\Carbon::parse($created_at)->format('M, Y') }}</option>
+                @foreach ($dates as $date)
+                @if(Carbon\Carbon::parse($date->created_at)->format('M, Y') !=
+                Carbon\Carbon::parse($created_at)->format('M, Y'))
+                <option value="{{ $date->created_at }}">{{ Carbon\Carbon::parse($date->created_at)->format('M, Y')
+                    }}</option>
+                @endif
+                @endforeach
+            </x-form-select>
         </div>
 
         <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
