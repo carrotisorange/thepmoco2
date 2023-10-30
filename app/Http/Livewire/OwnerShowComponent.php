@@ -281,8 +281,8 @@ class OwnerShowComponent extends Component
             'credentials' => User::where('owner_uuid', $this->owner_details->uuid)->get(),
             'bills' => Bill::where('owner_uuid', $this->owner_details->uuid)->posted()->get(),
             'collections' => app('App\Http\Controllers\OwnerCollectionController')->get_owner_collections(Session::get('property_uuid'), $this->owner_details->uuid),
-            'username' => User::where('owner_uuid', $this->owner_details->uuid)->value('username'),
-            'email_cred' => User::where('owner_uuid', $this->owner_details->uuid)->value('email'),
+            'username' => User::where('email', $this->owner_details->email)->value('username'),
+            'email_cred' => User::where('email', $this->owner_details->email)->value('email'),
             'spouse' => Spouse::where('owner_uuid', $this->owner_details->uuid)->get(),
             'ownerSubfeaturesArray' => $ownerSubfeaturesArray,
             'sessions' => DB::table('sessions')->where('user_id', User::where('owner_uuid', $this->owner_details->uuid)->value('id'))->orderBy('created_at', 'desc')->limit(5)->get()

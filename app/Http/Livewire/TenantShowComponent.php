@@ -171,6 +171,8 @@ class TenantShowComponent extends Component
 
         $count_user = User::where('email', $this->tenant_details->email)->count();
 
+        ddd($count_user);
+
         if($count_user > 0)
         {
             return redirect(url()->previous())->with('error', 'Access already exists!');
@@ -274,8 +276,8 @@ class TenantShowComponent extends Component
             'concerns' => app('App\Http\Controllers\TenantController')->show_tenant_concerns($this->tenant_details->uuid),
             'collections' => app('App\Http\Controllers\CollectionController')->get_tenant_collections(Session::get('property_uuid'), $this->tenant_details->uuid),
             'wallets' => Wallet::where('tenant_uuid', $this->tenant_details->uuid)->orderBy('id','desc')->get(),
-            'username' => User::where('tenant_uuid', $this->tenant_details->uuid)->value('username'),
-            'email_cred' => User::where('tenant_uuid', $this->tenant_details->uuid)->value('email'),
+            'username' => User::where('email', $this->tenant_details->email)->value('username'),
+            'email_cred' => User::where('email', $this->tenant_details->email)->value('email'),
             'tenantSubfeaturesArray' => $tenantSubfeaturesArray,
             'sessions' => DB::table('sessions')->where('user_id', User::where('tenant_uuid', $this->tenant_details->uuid)->value('id'))->orderBy('created_at', 'desc')->limit(5)->get()
          ]);
