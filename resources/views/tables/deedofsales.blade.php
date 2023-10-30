@@ -7,8 +7,6 @@
             <x-th>Turnover On</x-th>
             <x-th>Purchasing Price</x-th>
             <x-th></x-th>
-            {{-- <x-th></x-th> --}}
-            <x-th></x-th>
         </tr>
     </thead>
     @foreach ($deed_of_sales as $index => $deedofsale)
@@ -30,29 +28,10 @@
             <x-td>{{ number_format($deedofsale->price, 2) }}</x-td>
 
             <x-td>
-                <x-button data-modal-target="edit-deedofsale-modal-{{$deedofsale->uuid}}"
-                    data-modal-toggle="edit-deedofsale-modal-{{$deedofsale->uuid}}"
-                  
-                    type="button">
-                    View
+                <x-button
+                    data-modal-toggle="edit-deedofsale-modal-{{$deedofsale->uuid}}">
+                    Edit
                 </x-button>
-            </x-td>
-            {{-- <x-td>
-                @if($deedofsale->status == 'active')
-                <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $deedofsale->unit_uuid }}/owner/{{ $deedofsale->owner_uuid }}/deed_of_sale/{{ $deedofsale->uuid }}/backout"
-                    class="text-blue-500 text-decoration-line: underline">
-                    Back out</a>
-                @endif
-
-
-            </x-td> --}}
-            <x-td>
-
-                {{-- <a
-                    href="/property/{{ Session::get('property_uuid') }}/unit/{{ $deedofsale->unit_uuid }}/owner/{{ $deedofsale->owner_uuid }}/deed_of_sale/{{ $deedofsale->uuid }}/delete"
-                    class="text-red-500 text-decoration-line: underline">
-                    Remove</a> --}}
-
             </x-td>
 
         </tr>

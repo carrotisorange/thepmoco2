@@ -29,10 +29,10 @@ class RemittanceController extends Controller
 
     public function store($property_uuid, $unit_uuid, $ar_no, $particular_id, $tenant_uuid, $guest_uuid, $date, $rent){
         $unit = Unit::find($unit_uuid);
-        $owner_uuid = DeedOfSale::where('unit_uuid', $unit_uuid)->pluck('owner_uuid')->last();
-        $bank_name = Bank::where('owner_uuid', $owner_uuid)->pluck('bank_name')->last();
-        $account_number = Bank::where('owner_uuid', $owner_uuid)->pluck('account_number')->last();
-        $account_name = Bank::where('owner_uuid', $owner_uuid)->pluck('account_name')->last();
+        $owner_uuid = DeedOfSale::where('unit_uuid', $unit_uuid)->value('owner_uuid');
+        $bank_name = Bank::where('owner_uuid', $owner_uuid)->value('bank_name');
+        $account_number = Bank::where('owner_uuid', $owner_uuid)->value('account_number');
+        $account_name = Bank::where('owner_uuid', $owner_uuid)->value('account_name');
 
         Remittance::updateOrCreate(
             [
