@@ -48,7 +48,7 @@
                         <form action="{{ route('login') }}" method="POST" class="space-y-6">
                             @csrf
                             <div>
-                                <x-label for="username" > Username/Email </x-label>
+                                <x-label for="username" > Username </x-label>
                                 <div class="mt-1">
                                     <x-input id="username" name="username" type="username" autocomplete="username"
                                         value="{{ old('username') }}" required/>
