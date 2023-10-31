@@ -7,8 +7,8 @@
                         Bills</h1>
                 </div>
 
-                <x-button onclick="window.location.href='{{ url()->previous() }}'">
-                    Go back</a></button>
+                <x-form-button onclick="window.location.href='{{ url()->previous() }}'">
+                    Go back</a></x-form-button>
 
             </div>
             @include('tables.bills')

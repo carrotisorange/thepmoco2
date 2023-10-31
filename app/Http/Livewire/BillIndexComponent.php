@@ -231,12 +231,15 @@ class BillIndexComponent extends Component
             $reference_no = Tenant::find($tenant_uuid[$i]);
 
             $unit_uuid = $unit_uuid[0];
+            $rent = Unit::find($unit_uuid)->rent;
 
             $attributes['unit_uuid']= $unit_uuid;
             $attributes['tenant_uuid'] = $tenant_uuid[$i];
 
                if($this->particular_id === '8'){
                   $attributes['bill'] = -($this->bill);
+               }else{
+                $attributes['bill'] = $rent;
                }
 
                 $attributes['bill_no'] = $bill_no++;
