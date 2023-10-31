@@ -22,7 +22,7 @@ class ExportCollection implements FromCollection, WithHeadings {
 
         "Date",
 
-        "AR #",
+        // "AR #",
 
         "Bill #",
 
@@ -30,7 +30,7 @@ class ExportCollection implements FromCollection, WithHeadings {
 
         "Tenant",
 
-        "Owner",
+        // "Owner",
 
         "Guest",
 
@@ -49,11 +49,11 @@ class ExportCollection implements FromCollection, WithHeadings {
       $collections = Collection::
       select(
         DB::raw('CAST(collections.created_at AS DATE)'),
-        'ar_no',
+        // 'ar_no',
         'bill_no',
         'unit',
          'tenant',
-        'owner',
+        // 'owner',
         'guest',
         'particular',
         DB::raw('concat(start," - ",end)'),

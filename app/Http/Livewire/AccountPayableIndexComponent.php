@@ -87,8 +87,8 @@ class AccountPayableIndexComponent extends Component
           ->when($this->status, function($query){
           $query->where('status', $this->status);
           })
+        ->orderBy('created_at', 'desc')
         ->get();
-
 
 
        return view('livewire.account-payable-index-component',[
