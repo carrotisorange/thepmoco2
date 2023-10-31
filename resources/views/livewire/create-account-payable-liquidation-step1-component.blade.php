@@ -326,7 +326,7 @@
 
             <div>
                 <p class="mt-5 px-6 text-right">
-                    <x-button onclick="window.location.href='/property/{{ $property->uuid }}/accountpayable'">
+                    <x-button onclick="window.location.href='/property/{{ $property->uuid }}/rfp'">
                         Cancel
                     </x-button>
                     <x-button wire:click="storeAccountPayableLiquidation">

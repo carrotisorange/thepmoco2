@@ -11,14 +11,14 @@ class DeleteAccountpayableComponent extends Component
     public AccountPayable $accountpayable;
 
     public function submitButton(){
-    
+
       $batch_no = AccountPayable::find($this->accountpayable->id)->batch_no;
 
       AccountPayable::where('batch_no', $batch_no)->delete();
 
       AccountPayableParticular::where('batch_no', $batch_no)->delete();
 
-       return redirect('/property/'.$this->accountpayable->property->uuid.'/accountpayable/')->with('success', 'Changes Saved!');   
+       return redirect('/property/'.$this->accountpayable->property->uuid.'/rfp/')->with('success', 'Changes Saved!');
     }
 
     public function render()

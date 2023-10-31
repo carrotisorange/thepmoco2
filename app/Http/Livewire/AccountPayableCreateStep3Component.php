@@ -20,11 +20,11 @@ class AccountPayableCreateStep3Component extends Component
     public $comment;
     public $vendor;
     public $delivery_at;
-    
+
     public function mount()
     {
         $this->comment = AccountPayable::find($this->accountpayable->id)->comment;
-        $this->vendor = AccountPayable::find($this->accountpayable->id)->vendor; 
+        $this->vendor = AccountPayable::find($this->accountpayable->id)->vendor;
         $this->delivery_at = AccountPayable::find($this->accountpayable->id)->delivery_at;
      }
 
@@ -41,10 +41,10 @@ class AccountPayableCreateStep3Component extends Component
     }
 
     public function downloadInternalDocument(){
-        
+
 
         return
-        redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step1/export');
+        redirect('/property/'.Session::get('property_uuid').'/rfp/'.$this->accountpayable->id.'/step1/export');
 
     }
 
@@ -62,12 +62,14 @@ class AccountPayableCreateStep3Component extends Component
         if($ap){
 
             $email_ap = User::find($ap)->email;
-            
+
             Notification::route('mail', $email_ap)->notify(new SendAccountPayableStep3NotificationToAP($content));
 
         }
 
-        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-4')->with('success', 'Changes Saved!');
+        return
+        redirect('/property/'.Session::get('property_uuid').'/rfp/'.$this->accountpayable->id.'/step-4')->with('success',
+        'Changes Saved!');
     }
 
     public function rejectRequest(){
@@ -83,10 +85,10 @@ class AccountPayableCreateStep3Component extends Component
 
         Notification::route('mail', $requester_email)->notify(new SendAccountPayableStep4NotificationToAdmin($content));
 
-        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-3')->with('success', 'Changes Saved!');
+        return redirect('/property/'.Session::get('property_uuid').'/rfp/'.$this->accountpayable->id.'/step-3')->with('success', 'Changes Saved!');
     }
 
-    
+
 
     public function render()
     {

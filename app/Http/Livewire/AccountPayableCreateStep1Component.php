@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Notification;
 use App\Models\UserProperty;
 use App\Models\User;
 use Session;
+use App\Models\Feature;
 
 class AccountPayableCreateStep1Component extends Component
 {
@@ -102,11 +103,11 @@ class AccountPayableCreateStep1Component extends Component
 
         $this->send_email_to_approvers();
 
-        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-2')->with('success', 'Changes Saved!');
+        return redirect('/property/'.Session::get('property_uuid').'/rfp/'.$this->accountpayable->id.'/step-2')->with('success', 'Changes Saved!');
     }
 
     public function updateAccountPayable(){
-        app('App\Http\Controllers\AccountPayableController')->update(
+        app('App\Http\Controllers\RFPController')->update(
             $this->accountpayable->id,
             $this->request_for,
             $this->created_at,
@@ -179,7 +180,9 @@ class AccountPayableCreateStep1Component extends Component
 
         $this->particulars = $this->get_particulars();
 
-        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-1')->with('success', 'Changes Saved!');
+        return
+        redirect('/property/'.Session::get('property_uuid').'/rfp/'.$this->accountpayable->id.'/step-1')->with('success',
+        'Changes Saved!');
 
     }
 
@@ -207,11 +210,13 @@ class AccountPayableCreateStep1Component extends Component
 
         AccountPayableParticular::where('id', $id)->delete();
 
-        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-1')->with('success', 'Changes Saved!');
+        return
+        redirect('/property/'.Session::get('property_uuid').'/rfp/'.$this->accountpayable->id.'/step-1')->with('success',
+        'Changes Saved!');
     }
 
     public function cancelRequest(){
-        return redirect('/property/'.Session::get('property_uuid').'/accountpayable')->with('success','Changes Saved!');
+        return redirect('/property/'.Session::get('property_uuid').'/rfp')->with('success','Changes Saved!');
     }
 
     public function updateParticular($id){
@@ -256,7 +261,7 @@ class AccountPayableCreateStep1Component extends Component
 
       AccountPayableParticular::where('batch_no', $batch_no)->delete();
 
-    return redirect('/property/'.Session::get('property_uuid').'/accountpayable/')->with('success', 'Changes Saved!');
+    return redirect('/property/'.Session::get('property_uuid').'/rfp/')->with('success', 'Changes Saved!');
 
     }
 
@@ -266,7 +271,8 @@ class AccountPayableCreateStep1Component extends Component
             'units' => Property::find(Session::get('property_uuid'))->units,
             'vendors' => Property::find(Session::get('property_uuid'))->billers,
             'managers' => UserProperty::where('property_uuid', Session::get('property_uuid'))->where('role_id', 9)->where('user_id', '!=',97)->approved()->get(),
-            'accountpayables' => UserProperty::where('property_uuid', Session::get('property_uuid'))->where('role_id', 4)->where('user_id','!=' ,97)->approved()->get()
+            'accountpayables' => UserProperty::where('property_uuid', Session::get('property_uuid'))->where('role_id', 4)->where('user_id','!=' ,97)->approved()->get(),
+
         ]);
     }
 }

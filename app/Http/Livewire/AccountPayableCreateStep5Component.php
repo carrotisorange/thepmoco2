@@ -128,7 +128,7 @@ class AccountPayableCreateStep5Component extends Component
             Notification::route('mail', $first_approver)->notify(new SendAccountPayableStep2NotificationToManager($content));
         }
 
-        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-5')->with('success', 'Changes Saved!');
+        return redirect('/property/'.Session::get('property_uuid').'/rfp/'.$this->accountpayable->id.'/step-5')->with('success', 'Changes Saved!');
     }
 
     public function updateParticular($id){
@@ -207,7 +207,7 @@ class AccountPayableCreateStep5Component extends Component
          'status'=> 'liquidation approved by manager'
          ]);
 
-       return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-5')->with('success', 'Changes Saved!');
+       return redirect('/property/'.Session::get('property_uuid').'/rfp/'.$this->accountpayable->id.'/step-5')->with('success', 'Changes Saved!');
     }
     public function render()
     {

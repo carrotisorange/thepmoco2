@@ -111,7 +111,9 @@ class CreateAccountPayableLiquidationStep1Component extends Component
                 'cv_number' => sprintf('%08d', AccountPayable::where('property_uuid',Session::get('property_uuid'))->where('status','!=', 'pending')->count())
         ]);
 
-        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/liquidation/step-2')->with('success', 'Changes Saved!');
+        return
+        redirect('/property/'.Session::get('property_uuid').'/rfp/'.$this->accountpayable->id.'/liquidation/step-2')->with('success',
+        'Changes Saved!');
     }
 
     public function updateParticular(){

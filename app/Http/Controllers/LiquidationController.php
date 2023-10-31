@@ -40,14 +40,11 @@ class LiquidationController extends Controller
                 'property' => $property,
                 'accountpayable' => $accountPayable,
             ]);
-        // }else{
-        //     return redirect('/property/'.$property->uuid.'/accountpayable/'.$accountPayable->id.'/liquidation/step-2');
-        // }
-
+    
     }
 
     public function step2(Property $property, AccountPayable $accountPayable){
-        
+
         return view('properties.liquidations.step2',[
             'property' => $property,
             'accountpayable' => $accountPayable

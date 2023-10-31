@@ -230,7 +230,7 @@
                             </div>
                             <div class="min-w-0 flex-1">
                                 <div class="text-sm font-medium text-gray-900">
-                                    <a href="/property/{{ Session::get('property_uuid') }}/accountpayable">
+                                    <a href="/property/{{ Session::get('property_uuid') }}/rfp">
                                         <span class="absolute inset-0" aria-hidden="true"></span>
                                         Account Payables
                                     </a>

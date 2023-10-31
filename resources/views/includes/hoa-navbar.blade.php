@@ -55,7 +55,7 @@
 
         <div class="font-medium leading-3 -ml-2 text-xs text-center text-gray-900 mt-10">Houses</div>
 
-       
+
         <!-- Home Owners -->
         @if(Session::get('property_uuid'))
         <x-nav-link href="/property/{{ Session::get('property_uuid') }}/tenant" :active="request()->routeIs('tenant')">
@@ -77,7 +77,7 @@
 
         <div class="font-medium leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Home <br>Owners</div>
 
- 
+
 
         <!-- Guest -->
 
@@ -103,9 +103,9 @@
 
         <div class="font-medium leading-3 ml-0 text-xs text-center text-gray-900 mt-10">Guests</div>
 
-       
 
-      
+
+
 
         <!-- Concerns -->
         @if(Session::get('property_uuid'))
@@ -182,7 +182,7 @@
 
         <!-- Account Payable -->
         @if(Session::get('property_uuid'))
-        <x-nav-link href="/property/{{ Session::get('property_uuid') }}/accountpayable"
+        <x-nav-link href="/property/{{ Session::get('property_uuid') }}/rfp"
             :active="request()->routeIs('accountpayable')">
 
             <span class="sr-only">Request for<br> Purchases </span>
@@ -192,7 +192,7 @@
                 d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
         </x-nav-link>
         @else
-        <x-nav-link href="/property/" :active="request()->routeIs('accountpayable')">
+        <x-nav-link href="/property/" :active="request()->routeIs('rfp')">
 
             <span class="sr-only">Request for<br> Purchases </span>
             <img class="h-8 w-auto" src="{{ asset('/brands/ap_gr.png') }}" fill="none" viewBox="0 0 24 24"

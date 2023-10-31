@@ -11,7 +11,7 @@
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
 
                 <x-button
-                    onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/accountpayable/{{ 'purchase' }}/{{ Str::random(3) }}/store'">
+                    onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/rfp/{{ 'purchase' }}/{{ Str::random(3) }}/store'">
                     New Request
                 </x-button>
 
@@ -47,19 +47,13 @@
                     @endif
                     @endforeach
                 </x-form-select>
-
             </div>
-
         </div>
         @endif
 
         <div class="overflow-auto -my-2 -mx-4 sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-
                 <div class="mb-5 mt-2  shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                    <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
-
-                    </div>
                     @if($accountpayables->count())
                     @include('tables.accountpayables')
                     @else
@@ -76,29 +70,17 @@
                             <div class="mt-6">
                                 <div class="group inline-block">
                                     <x-button
-                                        onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/accountpayable/{{ 'purchase' }}/{{ Str::random(3) }}/store'">
+                                        onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/rfp/{{ 'purchase' }}/{{ Str::random(3) }}/store'">
                                         <span class="pr-1 font-semibold flex-1">
                                             New Request</span>
 
                                     </x-button>
-                                    {{-- or
-                                    <x-button wire:click="clearFilters">
-                                        <span class="pr-1 font-semibold flex-1"> &nbsp
-                                            Show All Requests</span>
-
-                                        </span>
-                                    </x-button> --}}
-
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
                     @endif
-
                 </div>
-
             </div>
         </div>
     </div>

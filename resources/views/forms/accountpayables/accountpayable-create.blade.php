@@ -164,10 +164,10 @@
 
         </div>
         <div class="flex justify-end">
-            <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/accountpayable'">
+            <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/rfp'">
                     Cancel
                 </x-button>
-            
+
             <x-button type="submit">
                 Create
             </x-button>

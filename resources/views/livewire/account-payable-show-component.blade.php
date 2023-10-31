@@ -5,7 +5,7 @@
             <h1 class="text-3xl font-bold text-gray-500">{{ucfirst(Route::current()->getName())}}</h1>
         </div>
         <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-            <a href="/property/{{ $accountpayable->property_uuid }}/accountpayable/{{ $accountpayable->id }}/step1/export"
+            <a href="/property/{{ $accountpayable->property_uuid }}/rfp/{{ $accountpayable->id }}/step1/export"
                 target="_blank"
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
                 type="button">Export
@@ -15,7 +15,7 @@
             </x-button>
 
             {{-- @endcan --}}
-            <x-button onclick="window.location.href='/property/{{ $accountpayable->property_uuid }}/accountpayable'">
+            <x-button onclick="window.location.href='/property/{{ $accountpayable->property_uuid }}/rfp'">
                 Back
             </x-button>
 
@@ -26,7 +26,6 @@
             <div class="sm:flex sm:items-center">
                 <div class="mt-5 sm:flex-auto">
                     <h1 class="text-base font-semibold leading-6 text-gray-900">Accounts Payable Details</h1>
-
                 </div>
             </div>
             <div class="mt-8 flow-root">
@@ -90,42 +89,7 @@
                                         {{ $accountpayable->requester->name }}
                                     </td>
                                 </tr>
-                                {{-- <tr>
-                                    <th scope="col"
-                                        class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
-                                        Status
-                                    </th>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        {{ $accountpayable->status }}
-                                    </td>
-                                </tr> --}}
-                                {{--
-                                <tr>
-                                    <th scope="col"
-                                        class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
-                                        Approver 1 (Manager)
-                                    </th>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        @if($accountpayable->approver_id)
-                                        {{ App\Models\User::find($accountpayable->approver_id)->name }}
-                                        @else
-                                        NA
-                                        @endif
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="col"
-                                        class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
-                                        Approver 2 (Account Payable)
-                                    </th>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        @if($accountpayable->approver2_id)
-                                        {{ App\Models\User::find($accountpayable->approver2_id)->name }}
-                                        @else
-                                        NA
-                                        @endif
-                                    </td>
-                                </tr> --}}
+                              
 
                             </thead>
                         </table>

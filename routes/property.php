@@ -38,7 +38,7 @@ use App\Http\Controllers\TenantReferenceController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\TenantWalletController;
 use App\Http\Controllers\BillController;
-use App\Http\Controllers\AccountPayableController;
+use App\Http\Controllers\RFPController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\BulletinController;
 use App\Http\Controllers\CalendarController;
@@ -409,83 +409,80 @@ Route::group(['middleware'=>['auth', 'verified']], function(){
     });
 
     //Routes for Account Payable
-    Route::prefix('accountpayable')->group(function(){
-        Route::get('/', [AccountPayableController::class, 'index'])->name('accountpayable');
-        Route::get('export/{status?}/{created_at?}/{request_for?}/{limitDisplayTo?}', [AccountPayableController::class, 'export']);
+    Route::prefix('rfp')->group(function(){
+        Route::get('/', [RFPController::class, 'index'])->name('rfp');
+        Route::get('export/{status?}/{created_at?}/{request_for?}/{limitDisplayTo?}', [RFPController::class, 'export']);
 
 
-        Route::get('{accountPayable}', [AccountPayableController::class, 'show'])->name('accountpayable');
-        Route::get('{accountPayable}/liquidation/step-1', [LiquidationController::class, 'step1'])->name('accountpayable');
-        Route::post('{accountPayable}/liquidation/step-1', [LiquidationController::class, 'step1'])->name('accountpayable');
-        Route::get('{accountPayable}/liquidation/step-2', [LiquidationController::class, 'step2'])->name('accountpayable');
-        Route::get('{accountPayable}/liquidation/{liquidation}/export', [LiquidationController::class, 'export'])->name('accountpayable');
-        Route::get('{accountPayable}/export/complete', [LiquidationController::class,'export_complete'])->name('accountpayable');
+        Route::get('{accountPayable}', [RFPController::class, 'show'])->name('rfp');
+        Route::get('{accountPayable}/liquidation/step-1', [LiquidationController::class, 'step1'])->name('rfp');
+        Route::post('{accountPayable}/liquidation/step-1', [LiquidationController::class, 'step1'])->name('rfp');
+        Route::get('{accountPayable}/liquidation/step-2', [LiquidationController::class, 'step2'])->name('rfp');
+        Route::get('{accountPayable}/liquidation/{liquidation}/export', [LiquidationController::class, 'export'])->name('rfp');
+        Route::get('{accountPayable}/export/complete', [LiquidationController::class,'export_complete'])->name('rfp');
 
 
-        Route::get('{accountPayable}/download', [AccountPayableController::class, 'download']);
+        Route::get('{accountPayable}/download', [RFPController::class, 'download']);
 
         Route::controller(RequestForPurchaseController::class)->group(function () {
 
-            Route::get('{accountPayable}', 'show')->name('accountpayable');
+            Route::get('{accountPayable}', 'show')->name('rfp');
             Route::get('{id}/attachment',  'download');
 
-            // Route::get('{accountPayable}/export/step-1', [AccountPayableController::class, 'export_step1']);
-
             Route::get('{id}/approve', 'approve');
-            //Route::get('{str_random}/create', 'create')->name('accountpayable');
 
             //step 1
             Route::get('{accountpayable}/{batch_no}/store', 'store');
             Route::get('{accountpayable}/step1/export', 'download_step_1');
 
             //step 2
-            Route::get('{accountpayable}/step-1', 'create_step_1')->name('accountpayable');
+            Route::get('{accountpayable}/step-1', 'create_step_1')->name('rfp');
 
 
             //step 3
-            Route::get('{accountpayable}/step-2', 'create_step_2')->name('accountpayable');
+            Route::get('{accountpayable}/step-2', 'create_step_2')->name('rfp');
 
-            Route::get('{accountpayable}/step-3', 'create_step_3')->name('accountpayable');
+            Route::get('{accountpayable}/step-3', 'create_step_3')->name('rfp');
 
 
             //step 4
-            Route::get('{accountpayable}/step-4', 'create_step_4')->name('accountpayable');
+            Route::get('{accountpayable}/step-4', 'create_step_4')->name('rfp');
 
             //step 5
-            Route::get('{accountpayable}/step-5', 'create_step_5')->name('accountpayable');
+            Route::get('{accountpayable}/step-5', 'create_step_5')->name('rfp');
 
             //step 6
-            Route::get('{accountpayable}/step-6', 'create_step_6')->name('accountpayable');
+            Route::get('{accountpayable}/step-6', 'create_step_6')->name('rfp');
 
-            Route::get('{accountpayable}/step-7', 'create_step_7')->name('accountpayable');
+            Route::get('{accountpayable}/step-7', 'create_step_7')->name('rfp');
 
 
             //request status sample
-            Route::get('{random_str}/request-status', 'create_request_status')->name('accountpayable');
+            Route::get('{random_str}/request-status', 'create_request_status')->name('rfp');
             Route::post('request-status', 'store_request_status');
 
             //comment page
-            Route::get('{random_str}/request-comment', 'create_request_comment')->name('accountpayable');
+            Route::get('{random_str}/request-comment', 'create_request_comment')->name('rfp');
             Route::post('request-comment', 'store_request_comment');
 
             //pdf
 
-            Route::get('{random_str}/step1', 'create_step1')->name('accountpayable');
+            Route::get('{random_str}/step1', 'create_step1')->name('rfp');
             Route::post('step1', 'store_step1');
 
-            Route::get('{random_str}/step2', 'create_step2')->name('accountpayable');
+            Route::get('{random_str}/step2', 'create_step2')->name('rfp');
             Route::post('step2', 'store_step2');
 
-            Route::get('{random_str}/step3', 'create_step3')->name('accountpayable');
+            Route::get('{random_str}/step3', 'create_step3')->name('rfp');
             Route::post('step3', 'store_step3');
 
-            Route::get('{random_str}/step4', 'create_step4')->name('accountpayable');
+            Route::get('{random_str}/step4', 'create_step4')->name('rfp');
             Route::post('step4', 'store_step4');
 
-            Route::get('{random_str}/step5', 'create_step5')->name('accountpayable');
+            Route::get('{random_str}/step5', 'create_step5')->name('rfp');
             Route::post('step5', 'store_step5');
 
-            Route::get('{random_str}/step6', 'create_step6')->name('accountpayable');
+            Route::get('{random_str}/step6', 'create_step6')->name('rfp');
             Route::post('step6', 'store_step6');
 
 

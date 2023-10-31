@@ -86,7 +86,7 @@
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
             @if($accountpayable->status != 'approved')
             {{-- @can('manager') --}}
-            <a href="/property/{{ Session::get('property_uuid') }}/accountpayable/{{ $accountpayable->id }}/approve"
+            <a href="/property/{{ Session::get('property_uuid') }}/rfp/{{ $accountpayable->id }}/approve"
                 class="text-indigo-600 hover:text-indigo-900">Approve</a>
             {{-- @endcan --}}
             @else
