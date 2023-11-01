@@ -56,9 +56,7 @@
                             <input type="email" wire:model.debounce.500ms="email"
                                 class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                                 placeholder="">
-                            @error('email')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                         <x-validation-error-component name='email' />
                         </div>
                     </div>
                     <div class="sm:col-span-4">
@@ -68,9 +66,7 @@
                             <input type="text" wire:model.debounce.500ms="mobile_number"
                                 class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm"
                                 placeholder="">
-                            @error('mobile_number')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                          <x-validation-error-component name='mobile_number' />
                         </div>
                     </div>
 

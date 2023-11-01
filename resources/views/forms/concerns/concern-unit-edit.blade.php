@@ -2,16 +2,7 @@
     enctype="multipart/form-data">
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
-            {{-- <nav aria-label="Breadcrumb" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <ol role="list" class="flex items-center space-x-4">
-                    <li>
-                        <div class="flex items-center">
-                            <a href="/property/{{ Session::get('property_uuid') }}/concern"><img class="h-5 w-auto"
-                                    src="{{ asset('/brands/back-button.png') }}"></a>
-                        </div>
-                    </li>
-                </ol>
-            </nav> --}}
+
             <div class="mt-5 px-4 sm:px-6 lg:px-8">
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
@@ -25,7 +16,6 @@
                 <div class=" px-4 py-5 sm:rounded-lg sm:p-6">
                     <div class="md:grid md:grid-cols-6 md:gap-6">
 
-
                         <div class="col-span-3 sm:col-span-3">
                             <label for="created_at" class="block text-sm font-medium text-gray-700">Date reported
                                 </label>
@@ -33,27 +23,13 @@
                                 value="{{ Carbon\Carbon::parse($concern_details->created_at)->format('M d, Y') }}"
                                 readonly
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                            @error('created_at')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                         <x-validation-error-component name='created_at' />
                         </div>
-
-                        {{-- <div class="col-span-3 sm:col-span-2">
-                            <label for="tenant_uuid" class="block text-sm font-medium text-gray-700">Tenant</label>
-                            <input type="text" wire:model="tenant_uuid" autocomplete="tenant_uuid"
-                                value="{{ $concern_details->tenant->tenant }}" readonly
-                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                            @error('tenant_uuid')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
-                        </div> --}}
 
                         <div class="col-span-3 sm:col-span-3">
                             <label for="unit_uuid" class="block text-sm font-medium text-gray-700">Unit
                                 No.</label>
-                            @error('unit_uuid')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                         <x-validation-error-component name='unit_uuid' />
                             <input type="text" wire:model="unit_uuid" autocomplete="unit_uuid"
                                 value="{{$concern_details->unit->unit }}" readonly
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
@@ -62,9 +38,7 @@
                         <div class="col-span-4 sm:col-span-4">
                             <label for="subject" class="block text-sm font-medium text-gray-700">
                                 Subject</label>
-                            @error('subject')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                           <x-validation-error-component name='subject' />
                             <input type="text" autocomplete="subject" wire:model="subject" readonly
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
                         </div>
@@ -103,9 +77,7 @@
                                 </option>
                                 @endforeach
                             </select>
-                            @error('category_id')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                          <x-validation-error-component name='category_id' />
 
                         </div>
 
@@ -125,9 +97,7 @@
                                     pending
                                 </option>
                             </select>
-                            @error('status')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                           <x-validation-error-component name='status' />
 
                         </div>
 
@@ -145,9 +115,7 @@
                                 </option>
 
                             </select>
-                            @error('urgency')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                          <x-validation-error-component name='urgency' />
 
                         </div>
 
@@ -160,9 +128,7 @@
                                     class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block h-96 w-full sm:text-sm border border-gray-700 rounded-md">
                                         {{ $concern_details->concern }}
                                         </textarea>
-                                @error('concern')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                              <x-validation-error-component name='concern' />
                             </div>
 
                         </div>
@@ -172,9 +138,7 @@
                                 on</label>
                             <input type="date" wire:model="assessed_at" autocomplete="assessed_at"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                            @error('assessed_at')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                          <x-validation-error-component name='assessed_at' />
                         </div>
 
                         <div class="col-span-6 sm:col-span-2">
@@ -193,9 +157,7 @@
                                         </option>
                                         @endforeach
                                     </select>
-                                    @error('assessed_by_id')
-                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                    @enderror
+                                  <x-validation-error-component name='assessed_by_id' />
                                 </div>
 
 
@@ -222,9 +184,7 @@
                                         </option>
                                         @endforeach
                                     </select>
-                                    @error('assigned_to_id')
-                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                    @enderror
+                                  <x-validation-error-component name='assigned_to_id' />
                                 </div>
 
 
@@ -243,9 +203,7 @@
                                         <textarea wire:model="initial_assessment" rows="3"
                                             class="h-16 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700 rounded-md"
                                             placeholder="">{{ $subject }}</textarea>
-                                        @error('initial_assessment')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                     <x-validation-error-component name='initial_assessment' />
                                     </div>
 
                                 </div>
@@ -263,9 +221,7 @@
                                         <textarea wire:model="action_taken" rows="3"
                                             class="h-16 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700 rounded-md"
                                             placeholder="">{{ $action_taken }}</textarea>
-                                        @error('action_taken')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                      <x-validation-error-component name='action_taken' />
                                     </div>
 
                                 </div>
@@ -281,7 +237,7 @@
                     <x-button class="bg-red-500" onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/concern'">
                         Cancel
                     </x-button>
-                    
+
                     <x-button type="submit">
                         Update
                     </x-button>

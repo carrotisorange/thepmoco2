@@ -13,9 +13,7 @@
                   />
 
             </div>
-            @error('unit')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-        @enderror
+          <x-validation-error-component name='unit' />
         </div>
         <div class="sm:col-span-2">
             <div
@@ -25,9 +23,7 @@
                 <x-form-input type="number" wire:model="price" value="{{ old('price', $unit_details->price) }}" step="0.001"/>
 
             </div>
-            @error('price')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
+          <x-validation-error-component name='price' />
         </div>
 
         <div class="sm:col-span-1">
@@ -41,9 +37,7 @@
                     @endforeach
                 </x-form-select>
             </div>
-            @error('building_id')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
+           <x-validation-error-component name='building_id' />
         </div>
 
         <div class="sm:col-span-1">
@@ -59,9 +53,7 @@
                     @endforeach
                 </x-form-select>
             </div>
-            @error('floor_id')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
+          <x-validation-error-component name='floor_id' />
         </div>
 
         <div class="sm:col-span-1">
@@ -77,9 +69,7 @@
                     @endforeach
                 </x-form-select>
             </div>
-            @error('category_id')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
+           <x-validation-error-component name='category_id' />
         </div>
 
         <div class="sm:col-span-1">
@@ -95,9 +85,7 @@
                     @endforeach
                 </x-form-select>
             </div>
-            @error('status_id')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
+           <x-validation-error-component name='status_id' />
         </div>
 
         <div class="sm:col-span-1">
@@ -107,9 +95,7 @@
                     (sqm)</x-label>
                 <x-form-input type="text" wire:model="size" value="{{old('size', $unit_details->size)}}"/>
             </div>
-            @error('size')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
+          <x-validation-error-component name='size' />
         </div>
 
         <div class="sm:col-span-1">
@@ -119,9 +105,7 @@
                 <x-form-input type="number" min="1" wire:model="occupancy"
                     value="{{old('occupancy', $unit_details->occupancy)}}" />
             </div>
-            @error('occupancy')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
+         <x-validation-error-component name='occupancy' />
         </div>
 
         <div class="sm:col-span-2">
@@ -140,9 +124,7 @@
                     </option>
                 </x-form-select>
             </div>
-            @error('is_the_unit_for_rent_to_tenant')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
+         <x-validation-error-component name='is_the_unit_for_rent_to_tenant' />
         </div>
 
         @if ($is_the_unit_for_rent_to_tenant == 1)
@@ -162,9 +144,7 @@
                     </option>
                 </x-form-select>
             </div>
-            @error('rent_type')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
+           <x-validation-error-component name='rent_type' />
         </div>
         <div class="sm:col-span-2">
             <div
@@ -187,9 +167,7 @@
                     </option>
                 </x-form-select>
             </div>
-            @error('rent_duration')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
+          <x-validation-error-component name='rent_duration' />
         </div>
         @if($rent_duration === 'long_term')
         <div class="sm:col-span-3">
@@ -205,9 +183,7 @@
                 <x-form-input type="number" wire:model="rent" step="0.001" value="{{old('rent', $unit_details->rent)}}"
                     />
             </div>
-            @error('rent')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
+         <x-validation-error-component name='rent' />
         </div>
 
         <div class="sm:col-span-3">
@@ -218,9 +194,7 @@
                     value="{{old('discount', $unit_details->discount)}}"
                     />
             </div>
-            @error('discount')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
+          <x-validation-error-component name='discount' />
         </div>
         @else
 
@@ -234,9 +208,7 @@
                     value="{{old('transient_rent', $unit_details->transient_rent)}}"
                     />
             </div>
-            @error('transient_rent')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
+          <x-validation-error-component name='transient_rent' />
         </div>
 
         <div class="sm:col-span-3">
@@ -249,9 +221,7 @@
                     value="{{old('transient_discount', $unit_details->transient_discount)}}"
                   />
             </div>
-            @error('transient_discount')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
+          <x-validation-error-component name='transient_discount' />
         </div>
         @endif
 
@@ -264,6 +234,7 @@
                     Management Fee
                 </x-label>
                 <x-form-input type="number" wire:model="management_fee" step="0.001"/>
+                <x-validation-error-component name='management_fee' />
             </div>
         </div>
 
@@ -274,6 +245,7 @@
                     Marketing Fee
                 </x-label>
                 <x-form-input type="number" wire:model="marketing_fee" step="0.001"/>
+                 <x-validation-error-component name='marketing_fee' />
             </div>
         </div>
 

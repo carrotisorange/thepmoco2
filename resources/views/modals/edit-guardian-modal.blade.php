@@ -26,9 +26,7 @@
                     <input type="text" id="guardian" wire:model="guardian"
                         class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="" required>
-                    @error('guardian')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                  <x-validation-error-component name='guardian' />
                 </div>
 
                 <div class="mt-5 sm:mt-6">
@@ -40,9 +38,7 @@
                         @endforeach
 
                     </select>
-                    @error('guardian_relationship_id')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                  <x-validation-error-component name='guardian_relationship_id' />
                 </div>
 
                 <div class="mt-5 sm:mt-6">
@@ -50,9 +46,7 @@
                     <input type="text" id="guardian_mobile_number" wire:model="guardian_mobile_number"
                         class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="" required>
-                    @error('guardian_mobile_number')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                   <x-validation-error-component name='guardian_mobile_number' />
                 </div>
 
                 <div class="mt-5 sm:mt-6">
@@ -60,9 +54,7 @@
                     <input type="email" id="guardian_email" wire:model="guardian_email"
                         class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="" required>
-                    @error('guardian_email')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                   <x-validation-error-component name='guardian_email' />
                 </div>
 
 

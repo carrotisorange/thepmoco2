@@ -38,9 +38,7 @@
                                                     value="{{ old('subject') }}"
                                                     placeholder="Statements of Account is not updated." />
                                             </div>
-                                            @error('subject')
-                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                            @enderror
+                                       <x-validation-error-component name='subject' />
                                         </div>
 
                                         <div class="sm:col-span-2">
@@ -57,9 +55,7 @@
                                                 </option>
                                                 @endforeach
                                             </x-form-select>
-                                            @error('category_id')
-                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                            @enderror
+                                           <x-validation-error-component name='category_id' />
                                         </div>
 
 
@@ -76,9 +72,7 @@
                                                 </option>
                                                 @endforeach
                                             </x-form-select>
-                                            @error('unit_uuid')
-                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                            @enderror
+                                          <x-validation-error-component name='unit_uuid' />
                                         </div>
 
 
@@ -90,9 +84,7 @@
                                                 </x-form-textarea>
                                             </div>
 
-                                            @error('concern')
-                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                            @enderror
+                                           <x-validation-error-component name='concern' />
                                         </div>
 
                                         <div class="sm:col-span-3">
@@ -102,9 +94,7 @@
                                                 <x-form-input wire:model="availability_date" type="date"
                                                     value="{{ old('availability_date') }}" />
                                             </div>
-                                            @error('availability_date')
-                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                            @enderror
+                                         <x-validation-error-component name='availability_date' />
                                         </div>
 
                                         <div class="sm:col-span-3">
@@ -114,9 +104,7 @@
                                                 <x-form-input wire:model="availability_time" type="time"
                                                     value="{{ old('availability_time') }}" />
                                             </div>
-                                            @error('availability_time')
-                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                            @enderror
+                                           <x-validation-error-component name='availability_time' />
                                         </div>
 
                                         <div class="col-span-6">

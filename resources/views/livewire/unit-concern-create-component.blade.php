@@ -38,9 +38,7 @@
                                                 <input wire:model="subject" type="text" value="{{ old('subject') }}"
                                                     class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700  rounded-md">
                                             </div>
-                                            @error('subject')
-                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                            @enderror
+                                           <x-validation-error-component name='subject' />
                                         </div>
 
                                         <div class="sm:col-span-3">
@@ -57,9 +55,7 @@
                                                 </option>
                                                 @endforeach
                                             </select>
-                                            @error('category_id')
-                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                            @enderror
+                                          <x-validation-error-component name='category_id' />
                                         </div>
 
 
@@ -73,9 +69,7 @@
                                             <p class="mt-2 text-sm text-gray-500">Please share your concern in
                                                 detail.
                                             </p>
-                                            @error('concern')
-                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                            @enderror
+                                          <x-validation-error-component name='concern' />
                                         </div>
 
 

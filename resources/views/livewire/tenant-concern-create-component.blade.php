@@ -6,12 +6,7 @@
                 <h1 class="text-3xl font-bold text-gray-700">{{ $tenant->tenant }} / Tenant Concern Form</h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                {{-- <button type="button"
-                    onclick="window.location.href='/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/concerns'"
-                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-900 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">
-                    View reported concerns
-                </button> --}}
-
+  
             </div>
         </div>
         <div class="mt-8 flex flex-col">
@@ -38,9 +33,7 @@
                                                 <input wire:model="subject" type="text" value="{{ old('subject') }}"
                                                     class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700  rounded-md">
                                             </div>
-                                            @error('subject')
-                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                            @enderror
+                                           <x-validation-error-component name='subject' />
                                         </div>
 
                                         <div class="sm:col-span-2">
@@ -57,9 +50,7 @@
                                                 </option>
                                                 @endforeach
                                             </select>
-                                            @error('category_id')
-                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                            @enderror
+                                          <x-validation-error-component name='category_id' />
                                         </div>
 
 
@@ -77,9 +68,7 @@
                                                 </option>
                                                 @endforeach
                                             </select>
-                                            @error('unit_uuid')
-                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                            @enderror
+                                          <x-validation-error-component name='unit_uuid' />
                                         </div>
 
 
@@ -93,9 +82,7 @@
                                             <p class="mt-2 text-sm text-gray-500">Please share your concern in
                                                 detail.
                                             </p>
-                                            @error('concern')
-                                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                            @enderror
+                                         <x-validation-error-component name='concern' />
                                         </div>
 
 
@@ -146,16 +133,9 @@
                                 </div>
                         </form>
                     </div>
-
-                    {{-- <button type="button"
-                        class="mb-5 inline-flex items-center rounded border border-gray-300 bg-white px-2.5 py-1.5 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-30">Select
-                        All</button> --}}
                 </div>
             </div>
         </div>
 
-        {{-- <div class="px-4 mt-5 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
-            {{ $collections->links() }}
-        </div> --}}
     </div>
 </div>

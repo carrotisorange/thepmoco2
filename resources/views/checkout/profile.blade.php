@@ -38,91 +38,55 @@
                     @csrf
                     @method('PATCH')
                     <div class="sm:col-span-2">
-                        <label for="first-name" class="block text-sm font-medium text-gray-700">Username</label>
+                        <x-label>Username</x-label>
                         <div class="mt-1">
                             <input type="text" name="username" id="username" autocomplete="username" value="{{old('username')}}"
                                 class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
                         </div>
-                        @error('username')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                        <x-validation-error-component name='username' />
                     </div>
                     <div class="sm:col-span-2">
-                        <label for="last-name" class="block text-sm font-medium text-gray-700">Email address</label>
+                        <x-label>Email address</x-label>
                         <div class="mt-1">
                             <input type="text" name="email" id="email" autocomplete="email"
                                 value="{{old('email', $user->email)}}"
                                 class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
                         </div>
-                        @error('email')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                      <x-validation-error-component name='email' />
                     </div>
                     <div class="sm:col-span-2">
-                        <label for="mobile_number" class="block text-sm font-medium text-gray-700">Mobile Number</label>
+                        <x-label>Mobile Number</x-label>
                         <div class="mt-1">
                             <input type="text" name="mobile_number" id="mobile_number" autocomplete="organization"
                                 value="{{old('mobile_number', $user->mobile_number)}}"
                                 class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
                         </div>
-                        @error('mobile_number')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                       <x-validation-error-component name='mobile_number' />
                     </div>
 
                     <div>
-                        <label for="first-name" class="block text-sm font-medium text-gray-700">Password</label>
+                        <x-label>Password</x-label>
                         <div class="mt-1">
                             <input type="password" name="password" id="password" autocomplete="password"
                                 {{old('password')}}"
                                 class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
                         </div>
-                        @error('password')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                     <x-validation-error-component name='password' />
                     </div>
                     <div>
-                        <label for="last-name" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                        <x-label for="last-name" class="block text-sm font-medium text-gray-700">Confirm Password</x-label>
                         <div class="mt-1">
                             <input type="password" name="password_confirmation" id="password_confirmation"
                                 autocomplete="password_confirmation" value="{{old('password_confirmation')}}"
                                 class="py-3 px-4 block w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
                         </div>
-                        @error('password_confirmation')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                       <x-validation-error-component name='password_confirmation' />
                     </div>
 
-                    {{-- <div class="sm:col-span-2">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0">
-                                <!-- Enabled: "bg-indigo-600", Not Enabled: "bg-gray-200" -->
-                                <button type="button"
-                                    class="bg-gray-200 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                    role="switch" aria-checked="false">
-                                    <span class="sr-only">Agree to policies</span>
-                                    <!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
-                                    <span aria-hidden="true"
-                                        class="translate-x-0 inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"></span>
-                                </button>
-                            </div>
-                            <div class="ml-3">
-                                <p class="text-base text-gray-500">
-                                    By selecting this, you agree to the
-                                    <a href="/privacy-policy" class="font-medium text-gray-700 underline">Privacy
-                                        Policy</a>
-                                    and
-                                    <a href="/terms-of-service" class="font-medium text-gray-700 underline">Terms of
-                                        Service</a>.
-                                </p>
-                            </div>
-                        </div>
-                    </div> --}}
                     <div class="sm:col-span-2">
-                        <button type="submit"
-                            class="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                        <x-button type="submit">
                             Submit
-                        </button>
+                        </x-button>
                     </div>
                 </form>
             </div>

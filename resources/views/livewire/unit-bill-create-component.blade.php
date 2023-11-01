@@ -25,9 +25,7 @@
                                     Due</label>
                                 <input type="text" wire:model="total_amount_due" readonly
                                     class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                                @error('total_amount_due')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                               <x-validation-error-component name='total_amount_due' />
                             </div>
 
                             <div class="col-span-2">
@@ -37,7 +35,7 @@
 
                             </div>
 
-                            @if($type==='tenant')
+                            @if($type=='tenant')
 
                             <div class="col-span-2">
                                 <label for="" class="block text-sm font-medium text-gray-700">Bill Split (Divide the
@@ -53,9 +51,7 @@
                                         no
                                     </option>
                                 </select>
-                                {{-- <input type="text" value="Yes"
-                                    class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                                --}}
+
 
                             </div>
                             @endif

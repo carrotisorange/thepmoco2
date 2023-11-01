@@ -30,9 +30,7 @@
                         <x-form-input type="date" wire:model="created_at" autocomplete="created_at"
                            value="{{ Carbon\Carbon::parse($concern_details->created_at)->format('M d, Y') }}"
                            readonly />
-                        @error('created_at')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                       <x-validation-error-component name='created_at' />
                      </div>
 
                      <div class="col-span-3 sm:col-span-2">
@@ -53,17 +51,13 @@
                      <div class="col-span-3 sm:col-span-3">
                         <x-label for="mobile_number">Mobile</x-label>
                         <x-form-input type="text" wire:model="mobile_number" autocomplete="mobile_number" />
-                        @error('mobile_number')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                       <x-validation-error-component name='mobile_number' />
                      </div>
 
                      <div class="col-span-3 sm:col-span-3">
                         <x-label for="email">Email</x-label>
                         <x-form-input type="email" wire:model="email" autocomplete="email" />
-                        @error('email')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                       <x-validation-error-component name='email' />
                      </div>
 
                      <div class="col-span-4 sm:col-span-6">
@@ -71,9 +65,7 @@
                            Subject</x-label>
 
                         <x-form-input type="text" autocomplete="subject" wire:model="subject" readonly />
-                        @error('subject')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                      <x-validation-error-component name='subject' />
                      </div>
 
                      <div class="col-span-3 sm:col-span-6">
@@ -133,9 +125,7 @@
                            </option>
                            @endforeach
                         </x-form-select>
-                        @error('category_id')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                      <x-validation-error-component name='category_id' />
 
                      </div>
 
@@ -154,9 +144,7 @@
                               pending
                            </option>
                         </x-form-select>
-                        @error('status')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                       <x-validation-error-component name='status' />
 
                      </div>
 
@@ -173,9 +161,7 @@
                            </option>
 
                         </x-form-select>
-                        @error('urgency')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                       <x-validation-error-component name='urgency' />
 
                      </div>
 
@@ -187,9 +173,7 @@
                            <x-form-textarea id="concern" wire:model="concern" row="20">
                               {{ $concern_details->concern }}
                            </x-form-textarea>
-                           @error('concern')
-                           <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                           @enderror
+                         <x-validation-error-component name='concern' />
                         </div>
 
                      </div>
@@ -199,9 +183,7 @@
                            Date
                         </x-label>
                         <x-form-input type="date" wire:model="availability_date" autocomplete="availability_date" />
-                        @error('availability_date')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                       <x-validation-error-component name='availability_date' />
                      </div>
 
                      <div class="col-span-3 sm:col-span-3">
@@ -209,17 +191,13 @@
                            Time
                         </x-label>
                         <x-form-input type="time" wire:model="availability_time" autocomplete="availability_time" />
-                        @error('availability_time')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                      <x-validation-error-component name='availability_time' />
                      </div>
 
                      <div class="col-span-3 sm:col-span-2">
                         <x-label for="assessed_at">Date Assessed</x-label>
                         <x-form-input type="date" wire:model="assessed_at" autocomplete="assessed_at" />
-                        @error('assessed_at')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                      <x-validation-error-component name='assessed_at' />
                      </div>
 
 
@@ -239,9 +217,7 @@
                                  </option>
                                  @endforeach
                               </x-formselect>
-                              @error('assessed_by_id')
-                              <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                              @enderror
+                           <x-validation-error-component name='assessed_by_id' />
 
                               @else
                               @if($assessed_by_id)
@@ -276,9 +252,7 @@
                                  </option>
                                  @endforeach
                               </x-form-select>
-                              @error('assigned_to_id')
-                              <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                              @enderror
+                             <x-validation-error-component name='assessed_to_id' />
                               @else
                               @if($assigned_to_id)
                               {{ App\Models\User::find($assigned_to_id)->name }}
@@ -304,9 +278,7 @@
                               <div class="mt-1">
                                  <x-form-textarea wire:model="initial_assessment" rows="3">{{ $subject }}
                                  </x-form-textarea>
-                                 @error('initial_assessment')
-                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                 @enderror
+                                <x-validation-error-component name='initial_assessment' />
                               </div>
 
                            </div>
@@ -323,9 +295,7 @@
                               <div class="mt-1">
                                  <x-form-textarea wire:model="action_taken" rows="3">{{ $action_taken }}
                                  </x-form-textarea>
-                                 @error('action_taken')
-                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                 @enderror
+                                <x-validation-error-component name='action_taken' />
                               </div>
 
                            </div>

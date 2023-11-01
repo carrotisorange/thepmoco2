@@ -25,9 +25,7 @@
                                     <x-form-input type="text" name="property" id="property" autocomplete="property"
                                         wire:model="property" value="{{old('property', $property)}}" />
                                 </div>
-                                @error('property')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                                 <x-validation-error-component name='property' />
 
                             </div>
 
@@ -45,9 +43,7 @@
                                         autocomplete="registered_tin" wire:model="registered_tin"
                                         value="{{old('registered_tin', $registered_tin)}}" />
                                 </div>
-                                @error('registered_tin')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                           <x-validation-error-component name='registered_tin' />
 
                             </div>
                         </div>
@@ -72,9 +68,7 @@
                                             owned</option>
                                     </x-form-select>
                                 </div>
-                                @error('ownership')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                              <x-validation-error-component name='ownership' />
 
                             </div>
 
@@ -98,9 +92,7 @@
                                         @endforeach
                                     </x-form-select>
                                 </div>
-                                @error('type_id')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                              <x-validation-error-component name='type_id' />
 
                             </div>
                         </div>
@@ -116,10 +108,7 @@
                                     <x-form-input type="email" name="email" id="email" autocomplete="email"
                                         value="{{old('email', $email)}}" wire:model="email" />
                                 </div>
-                                @error('email')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
-
+                               <x-validation-error-component name='email' />
                             </div>
                         </div>
                     </div>
@@ -134,9 +123,7 @@
                                     <x-form-input type="text" name="mobile" id="mobile" autocomplete="mobile"
                                         value="{{old('mobile', $mobile)}}" wire:model="mobile" />
                                 </div>
-                                @error('mobile')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                               <x-validation-error-component name='mobile_number' />
 
                             </div>
                         </div>
@@ -153,10 +140,7 @@
                                     <x-form-input type="text" name="telephone" id="mobile" autocomplete="telephone"
                                         value="{{old('telephone', $telephone)}}" wire:model="telephone" />
                                 </div>
-                                @error('telephone')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
-
+                            <x-validation-error-component name='telephone' />
                             </div>
                         </div>
                     </div>
@@ -172,9 +156,7 @@
                                         autocomplete="facebook_page" value="{{old('facebook_page', $facebook_page)}}"
                                         wire:model="facebook_page" />
                                 </div>
-                                @error('facebook_page')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                            <x-validation-error-component name='facebook_page' />
 
                             </div>
                         </div>
@@ -199,9 +181,7 @@
                                         @endforeach
                                     </x-form-select>
                                 </div>
-                                @error('country_id')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                             <x-validation-error-component name='country_id' />
 
                             </div>
                         </div>
@@ -225,9 +205,7 @@
                                         @endforeach
                                     </x-form-select>
                                 </div>
-                                @error('province_id')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                             <x-validation-error-component name='province_id' />
 
                             </div>
                         </div>
@@ -250,9 +228,7 @@
                                         @endforeach
                                     </x-form-select>
                                 </div>
-                                @error('city_id')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                              <x-validation-error-component name='ownership' />
                             </div>
                         </div>
                     </div>
@@ -269,9 +245,7 @@
                                     <x-form-input type="text" name="barangay" id="barangay" autocomplete="barangay"
                                         value="{{old('barangay', $barangay)}}" wire:model="barangay" />
                                 </div>
-                                @error('barangay')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                              <x-validation-error-component name='barangay' />
 
                             </div>
                         </div>
@@ -289,9 +263,7 @@
                                         value="{{old('note_to_transient', $note_to_transient)}}"
                                         wire:model="note_to_transient" />
                                 </div>
-                                @error('note_to_transient')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                              <x-validation-error-component name='note_to_transient' />
 
                             </div>
                         </div>
@@ -310,9 +282,7 @@
                                         autocomplete="note_to_bill" value="{{old('note_to_bill', $note_to_bill)}}"
                                         wire:model="note_to_bill" />
                                 </div>
-                                @error('note_to_bill')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                                  <x-validation-error-component name='note_to_bill' />
 
                             </div>
                         </div>
@@ -335,9 +305,7 @@
                                         </option>
                                     </x-form-select>
                                 </div>
-                                @error('status')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                              <x-validation-error-component name='status' />
 
                             </div>
                         </div>

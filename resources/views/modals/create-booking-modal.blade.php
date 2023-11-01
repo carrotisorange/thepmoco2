@@ -31,9 +31,7 @@
                     @endforeach
                 </x-form-select>
 
-                @error('unit_uuid')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+                <x-validation-error-component name='unit_uuid' />
             </div>
 
             <div class="mt-5 sm:mt-6">
@@ -41,9 +39,7 @@
                 <input type="number" id="price" wire:model="price" readonly
                     class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="" required>
-                @error('price')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+              <x-validation-error-component name='price' />
             </div>
 
             <div class="mt-5 sm:mt-6">
@@ -51,9 +47,7 @@
                 <input type="date" id="movein_at" wire:model="movein_at"
                     class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="" required>
-                @error('movein_at')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+             <x-validation-error-component name='movein_at' />
             </div>
 
             <div class="mt-5 sm:mt-6">
@@ -61,9 +55,7 @@
                 <input type="date" id="moveout_at" wire:model="moveout_at"
                     class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="" required>
-                @error('moveout_at')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+              <x-validation-error-component name='moveout_at' />
             </div>
 
             <div class="mt-5 sm:mt-6">

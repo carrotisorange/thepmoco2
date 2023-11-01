@@ -28,9 +28,7 @@
                         <x-form-input id="due_date" type="date"
                             value="{{ Carbon\Carbon::now()->addDay(7)->format('Y-m-d') }}" name="due_date" />
 
-                        @error('due_date')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                      <x-validation-error-component name='due_date' />
                     </div>
                 </div>
                 <div class="mt-5 flex flex-wrap -mx-3 mb-6">
@@ -51,9 +49,7 @@
                         <x-form-input id="penalty" type="number"
                             value="{{ (App\Models\Bill::where('owner_uuid', $owner->uuid)->posted()->sum('bill') -  App\Models\Collection::where('owner_uuid', $owner->uuid)->posted()->sum('collection'))*.1 }}"
                             name="penalty" min="0" step="0.001" />
-                        @error('penalty')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                       <x-validation-error-component name='penalty' />
                     </div>
                 </div>
                 <div class="mt-5 flex flex-wrap -mx-3 mb-6">
@@ -65,9 +61,7 @@
 appearance-none
 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600
 peer" placeholder="Put your notes here." name="note_to_bill">{{ $note_to_bill }}</textarea>
-                        @error('note_to_bill')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                      <x-validation-error-component name='note_to_bill' />
                     </div>
                 </div>
                 {{-- @if($tenant->email)

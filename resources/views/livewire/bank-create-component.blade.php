@@ -9,25 +9,19 @@
         <div class="mt-5 sm:mt-6">
             <label class="text-sm" for="bank_name">Name of the bank</label>
             <x-form-input type="text" wire:model="bank_name" />
-            @error('bank_name')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
+           <x-validation-error-component name='bank_name' />
         </div>
 
         <div class="mt-5 sm:mt-6">
             <label class="text-sm" for="account_name">Account Name </label>
             <x-form-input type="text" wire:model="account_name" readonly/>
-            @error('account_name')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
+            <x-validation-error-component name='account_name' />
         </div>
 
         <div class="mt-5 sm:mt-6">
             <label class="text-sm" for="account_number">Account Number </label>
             <x-form-input type="text" wire:model="account_number" />
-            @error('account_number')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
+          <x-validation-error-component name='account_number' />
         </div>
 
         <div class="mt-5 sm:mt-6">

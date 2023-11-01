@@ -73,27 +73,21 @@
                                         <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
                                         <input type="text" wire:model.lazy="name" autocomplete="name"
                                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                                        @error('name')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                       <x-validation-error-component name='name' />
                                     </div>
                                     <div class="col-span-6 sm:col-span-2">
                                         <label for="username"
                                             class="block text-sm font-medium text-gray-700">Username</label>
                                         <input type="text" wire:model.lazy="username" autocomplete="username"
                                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                                        @error('username')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                      <x-validation-error-component name='username' />
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-2">
                                         <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                                         <input type="email" wire:model.lazy="email" autocomplete="email"
                                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                                        @error('email')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                     <x-validation-error-component name='email' />
                                     </div>
 
 
@@ -102,9 +96,7 @@
                                             Number</label>
                                         <input type="text" wire:model.lazy="mobile_number" autocomplete="mobile_number"
                                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                                        @error('mobile_number')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                       <x-validation-error-component name='mobile_number' />
                                     </div>
 
                                     <div class="col-span-2">
@@ -120,9 +112,7 @@
                                             </option>
                                         </select>
 
-                                        @error('gender')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                      <x-validation-error-component name='gender' />
                                     </div>
 
                                     @if($user_id == auth()->user()->id)
@@ -131,9 +121,7 @@
                                             class="block text-sm font-medium text-gray-700">Password</label>
                                         <input type="password" wire:model.lazy="password" autocomplete="password"
                                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                                        @error('password')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                      <x-validation-error-component name='password' />
                                     </div>
                                     @endif
 
@@ -150,10 +138,7 @@
                                                 'selected'}}>{{ $role->role }}</option>
                                             @endforeach
                                         </select>
-                                        {{-- @endif --}}
-                                        @error('role_id')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                      <x-validation-error-component name='role_id' />
                                     </div>
                                     @endcan
 

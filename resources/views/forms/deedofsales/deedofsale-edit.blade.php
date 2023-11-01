@@ -49,9 +49,7 @@
 
                     </div>
 
-                    @error('title')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                  <x-validation-error-component name='title' />
                     @if($title)
                     <p class="text-green-500 text-xs mt-2">File has been attached. <i
                             class="fa-solid fa-circle-check"></i></p>
@@ -108,9 +106,7 @@
 
                     </div>
 
-                    @error('tax_declaration')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                <x-validation-error-component name='tax_declaration' />
                     @if($tax_declaration)
                     <p class="text-green-500 text-xs mt-2">File has been attached. <i
                             class="fa-solid fa-circle-check"></i></p>
@@ -164,9 +160,7 @@
 
                     </div>
 
-                    @error('deed_of_sales')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                  <x-validation-error-component name='deed_of_sales' />
                     @if($deed_of_sales)
                     <p class="text-green-500 text-xs mt-2">File has been attached. <i
                             class="fa-solid fa-circle-check"></i></p>
@@ -223,9 +217,7 @@
 
                     </div>
 
-                    @error('contract_to_sell')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                  <x-validation-error-component name='contract_to_sell' />
                     @if($contract_to_sell)
                     <p class="text-green-500 text-xs mt-2">File has been attached. <i
                             class="fa-solid fa-circle-check"></i></p>
@@ -282,9 +274,7 @@
 
                     </div>
 
-                    @error('certificate_of_membership')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                   <x-validation-error-component name='certificate_of_membership' />
                     @if($certificate_of_membership)
                     <p class="text-green-500 text-xs mt-2">File has been attached. <i
                             class="fa-solid fa-circle-check"></i></p>
@@ -292,7 +282,7 @@
                 </div>
             </div>
             <div class="px-4 py-3 text-right sm:px-6">
-               
+
                 <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/owner/{{ $deedOfSale_info->owner_uuid }}'">
                             Cancel
                         </x-button>

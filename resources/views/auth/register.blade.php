@@ -18,9 +18,7 @@
                     <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
                         autofocus />
 
-                    @error('name')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                    <x-validation-error-component name='name' />
                 </div>
 
                 <!-- Email Address -->
@@ -30,9 +28,7 @@
                     <x-input id="username" class="block mt-1 w-full" type="text" name="username"
                         :value="old('username')" required />
 
-                    @error('username')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                    <x-validation-error-component name='username' />
                 </div>
 
                 <!-- Email Address -->
@@ -42,9 +38,7 @@
                     <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
                         required />
 
-                    @error('email')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                    <x-validation-error-component name='email' />
                 </div>
 
                 <!-- Mobile Number -->
@@ -53,11 +47,9 @@
 
                     <x-input id="mobile_number" class="block mt-1 w-full" type="number" name="mobile_number"
                         :value="old('mobile_number')" required />
-                </div>
 
-                @error('mobile_number')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+                    <x-validation-error-component name='mobile_number' />
+                </div>
 
                 <!-- Password -->
                 <div class="mt-4">
@@ -66,9 +58,7 @@
                     <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
                         autocomplete="new-password" />
 
-                    @error('password')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                    <x-validation-error-component name='password' />
                 </div>
 
                 <!-- Confirm Password -->
@@ -111,11 +101,11 @@
 
                 <div class="flex items-center justify-end mt-4">
                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                        {{ __('Already registered?') }}
+                        Already Registered?
                     </a>
 
                     <x-button class="ml-4">
-                        {{ __('Register') }}
+                       Register
                     </x-button>
                 </div>
             </form>

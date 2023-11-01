@@ -7,9 +7,7 @@
             <x-label>Biller <span class="text-red-600">*</span></x-label>
             <x-form-input id="biller" type="text" name="biller" required />
 
-            @error('biller')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
+           <x-validation-error-component name='biller' />
         </div>
     </div>
     <div class="mt-5">

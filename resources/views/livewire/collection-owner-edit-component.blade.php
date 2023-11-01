@@ -53,9 +53,7 @@
                 <div class="col-span-1">
                     <label for="created_at" class="">Payment Date</label>
                     <x-form-input type="date" form="edit-form" name="created_at" wire:model="created_at" />
-                    @error('created_at')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                   <x-validation-error-component name='created_at' />
                 </div>
 
                 <div class="col-span-1">
@@ -73,9 +71,7 @@
 
 
                     </x-form-select>
-                    @error('form')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                   <x-validation-error-component name='form' />
 
                 </div>
 
@@ -83,18 +79,14 @@
                 <div class="col-span-1">
                     <label for="bank" class="">Name of the bank</label>
                     <x-form-input type="text" form="edit-form" name="bank" wire:model="bank" />
-                    @error('bank')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                   <x-validation-error-component name='bank' />
                 </div>
 
                 <div class="col-span-1">
                     <label for="date_deposited" class="">Date Deposited
                     </label>
                     <x-form-input type="date" form="edit-form" name="date_deposited" wire:model="date_deposited" />
-                    @error('date_deposited')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                   <x-validation-error-component name='date_deposited' />
                 </div>
                 @endif
 
@@ -103,9 +95,7 @@
                     <label for="check_no" class="">Check No
                     </label>
                     <x-form-input type="text" form="edit-form" name="check_no" wire:model="check_no" />
-                    @error('check_no')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                   <x-validation-error-component name='check_no' />
                 </div>
                 @endif
 

@@ -41,9 +41,7 @@
                                         <input id="created_at" name="created_at" type="date" wire:model="created_at"
                                             autocomplete="date-liquidation"
                                             class="ml-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
-                                        @error('created_at')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                       <x-validation-error-component name='created_at' />
                                     </td>
                                 </tr>
 
@@ -55,9 +53,7 @@
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         <input id="name" name="name" type="name" autocomplete="name" wire:model="name"
                                             class="ml-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
-                                        @error('name')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                       <x-validation-error-component name='name' />
                                     </td>
                                 </tr>
                                 <tr>
@@ -76,13 +72,7 @@
                                             </option>
                                             @endforeach
                                         </select>
-                                        {{-- <input id="department" name="department" type="department"
-                                            autocomplete="department" wire:model="department"
-                                            class="ml-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
-                                        --}}
-                                        @error('department')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                      <x-validation-error-component name='department' />
                                     </td>
                                 </tr>
                                 <tr>
@@ -102,9 +92,7 @@
                                             @endforeach
                                         </select>
 
-                                        @error('unit_uuid')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                       <x-validation-error-component name='unit_uuid' />
                                     </td>
                                 </tr>
 
@@ -256,20 +244,13 @@
                     <label for="cash_advance" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Cash
                         Advance</label>
                     CV Number: {{ $accountpayableliquidation }}
-                    {{-- <input id="cash_advance" name="cash_advance" step="0.001" type="number" placeholder="CV NUMBER"
-                        autocomplete="cv_number" wire:model="cv_number"
-                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
-                    @error('cv_number')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror --}}
+
                     <div class="mt-2 sm:col-start-3 sm:mt-0">
 
                         <input id="cash_advance" name="cash_advance" type="number" step="0.001"
                             autocomplete="cash_advance" wire:model="cash_advance"
                             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
-                        @error('cash_advance')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                       <x-validation-error-component name='cash_advance' />
                     </div>
                 </div>
 
@@ -289,40 +270,6 @@
                 </div>
             </div>
 
-
-
-            <!-- approval section -->
-            {{-- <div class="mt-5 p-5 border flex justify-between text-sm">
-                <div>
-                    Prepared by:
-                    <input id="prepared_by" name="prepared_by" type="text" value="{{ auth()->user()->name }}" readonly
-                        autocomplete="prepared_by"
-                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
-                    @error('prepared_by')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <div>
-                    Noted by:
-                    <input id="noted_by" name="noted_by" type="text" autocomplete="noted_by"
-                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
-                    @error('noted_by')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <div>
-                    Approved by:
-                    <input id="approved_by" name="approved_by" type="text" autocomplete="approved_by"
-                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
-                    @error('approved_by')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div>
-
-
-            </div> --}}
 
             <div>
                 <p class="mt-5 px-6 text-right">

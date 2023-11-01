@@ -11,18 +11,14 @@
                             <x-label for="floor_id">Heading/Greetings </x-label>
                             <x-form-input wire:model='greetings' name="headings">
                             </x-form-input>
-                            @error('greetings')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                           <x-validation-error-component name='greetings' />
 
                         </div>
                         <div class="lg:col-span-2 mt-3 ml-5">
                             <x-label for="floor_id">Elecom Rules</x-label>
                             <x-form-input wire:model='elecom_rules' name="elecom_rules">
                             </x-form-input>
-                            @error('elecom_rules')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                         <x-validation-error-component name='elecom_rules' />
 
                         </div>
 
@@ -30,9 +26,7 @@
                             <x-label for="floor_id">General Instructions</x-label>
                             <x-form-input wire:model='general_instructions' name="general_instructions">
                             </x-form-input>
-                            @error('general_instructions')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                           <x-validation-error-component name='general_instructions' />
 
                         </div>
 

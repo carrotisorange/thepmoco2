@@ -9,18 +9,14 @@
                             Name</label>
                         <input type="text" wire:model.lazy="tenant" autocomplete="tenant"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('tenant')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                      <x-validation-error-component name='tenant' />
                     </div>
 
                     <div class="col-span-6 lg:col-span-2">
                         <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                         <input type="email" wire:model.lazy="email" autocomplete="email"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('email')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                      <x-validation-error-component name='email' />
                     </div>
 
                     <div class="col-span-6 lg:col-span-2">
@@ -28,9 +24,7 @@
                         <input type="text" wire:model.lazy="mobile_number" autocomplete="mobile_number"
                             value="{{ old('mobile_number') }}"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('mobile_number')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                       <x-validation-error-component name='mobile_number' />
                     </div>
 
                     <div class="col-span-6 lg:col-span-2">
@@ -38,9 +32,7 @@
                         <input type="date" wire:model.lazy="birthdate" autocomplete="birthdate"
                             value="{{ old('birthdate') }}"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('birthdate')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                     <x-validation-error-component name='birthdate' />
                     </div>
 
                     <div class="col-span-6 lg:col-span-1">
@@ -54,9 +46,7 @@
                             <option value="co-tenant" {{ old('category')=='co-tenant' ? 'selected' : 'Select one' }}>{{
                                 'co-tenant' }}</option>
                         </select>
-                        @error('category')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                      <x-validation-error-component name='category' />
                     </div>
 
                     <div class="col-span-6 lg:col-span-1">
@@ -72,9 +62,7 @@
                             <option value="LGBTQ" {{ old('gender')=='LGBTQ' ? 'selected' : 'Select one' }}>{{
                                 'LGBTQ' }}</option>
                         </select>
-                        @error('gender')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                      <x-validation-error-component name='gender' />
                     </div>
 
 
@@ -98,9 +86,7 @@
                                 {{
                                 'divorced' }}</option>
                         </select>
-                        @error('civil_status')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                      <x-validation-error-component name='civil_status' />
                     </div>
 
 
@@ -115,9 +101,7 @@
                                 }}>{{ $country->country }}</option>
                             @endforeach
                         </select>
-                        @error('country_id')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                       <x-validation-error-component name='country_id' />
                     </div>
 
                     <div class="col-span-6 lg:col-span-2">
@@ -131,26 +115,8 @@
                                 }}>{{ $province->province }}</option>
                             @endforeach
                         </select>
-                        @error('province_id')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                      <x-validation-error-component name='province_id' />
                     </div>
-
-                    {{-- <div class="col-span-2">
-                        <label for="city_id" class="block text-sm font-medium text-gray-700">City</label>
-                        <select wire:model.lazy="city_id" autocomplete="city_id"
-                            class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            <option value="">Select one</option>
-                            @foreach ($cities as $city)
-                            <option value="{{ $city->id }}" {{ old('city_id')==$city->id?
-                                'selected': 'Select one'
-                                }}>{{ $city->city }}</option>
-                            @endforeach
-                        </select>
-                        @error('city_id')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
-                    </div> --}}
 
                     <div class="col-span-6 lg:col-span-2">
                         <label for="barangay" class="block text-sm font-medium text-gray-700">
@@ -171,9 +137,7 @@
                             <option value="working" {{ old('type')=='working' ? 'selected' : 'Select one' }}>{{
                                 'working' }}</option>
                         </select>
-                        @error('type')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                       <x-validation-error-component name='type' />
                     </div>
 
                     @if($type === 'working')
@@ -182,18 +146,14 @@
                         <input type="text" wire:model.lazy="occupation" autocomplete="occupation"
                             value="{{ old('occupation') }}"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('occupation')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                      <x-validation-error-component name='occupation' />
                     </div>
                     <div class="col-span-2">
                         <label for="employer" class="block text-sm font-medium text-gray-700">Employer</label>
                         <input type="text" wire:model.lazy="employer" autocomplete="employer"
                             value="{{ old('employer') }}"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('employer')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                        <x-validation-error-component name='employer' />
                     </div>
                     <div class="col-span-2">
                         <label for="employer_address" class="block text-sm font-medium text-gray-700">Employer
@@ -201,9 +161,7 @@
                         <input type="text" wire:model.lazy="employer_address" autocomplete="employer_address"
                             value="{{ old('employer_address') }}"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('employer_address')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                         <x-validation-error-component name='employer_address' />
                     </div>
 
                     @elseif($type === 'studying')
@@ -212,9 +170,7 @@
                         </label>
                         <input type="text" wire:model.lazy="course" autocomplete="course" value="{{ old('course') }}"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('course')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                     <x-validation-error-component name='course' />
                     </div>
                     <div class="col-span-1">
                         <label for="year_level" class="block text-sm font-medium text-gray-700">Year Level
@@ -222,18 +178,14 @@
                         <input type="text" wire:model.lazy="year_level" autocomplete="year_level"
                             value="{{ old('year_level') }}"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('year_level')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                       <x-validation-error-component name='year_level' />
                     </div>
                     <div class="col-span-2">
                         <label for="school" class="block text-sm font-medium text-gray-700">School
                         </label>
                         <input type="text" wire:model.lazy="school" autocomplete="school" value="{{ old('school') }}"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('school')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                       <x-validation-error-component name='school' />
                     </div>
 
                     <div class="col-span-2">
@@ -242,9 +194,7 @@
                         <input type="text" wire:model.lazy="school_address" autocomplete="school_address"
                             value="{{ old('school_address') }}"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('school_address')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                      <x-validation-error-component name='school_address' />
 
 
                     </div>
@@ -378,12 +328,12 @@
                 <x-button onclick="window.location.href='{{ asset('/brands/docs/Contract of Lease TEMPLATE.docx') }}'">
                         Export Sample Lease Contract
                 </x-button>
-                
+
                 <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/unit'">
                     Cancel
                 </x-button>
-                
-                <x-button type="submit">     
+
+                <x-button type="submit">
                     Next
                 </x-button>
 

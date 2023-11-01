@@ -13,9 +13,7 @@
                                     Due</label>
                                 <input type="text" wire:model="totalAmountDue"
                                     class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                                @error('totalAmountDue')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                             <x-validation-error-component name='totalAmountDue' />
                             </div>
                         </div>
                     </div>

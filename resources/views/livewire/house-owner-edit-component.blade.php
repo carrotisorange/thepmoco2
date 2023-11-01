@@ -169,25 +169,19 @@
                     <x-label for="occupation">Occupation</x-label>
                     <x-form-input type="text" wire:model="occupation" autocomplete="occupation"
                         value="{{ old('occupation') }}" />
-                    @error('occupation')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                   <x-validation-error-component name='occupation' />
                 </div>
                 <div class="col-span-2">
                     <x-label for="employer">Employer</x-label>
                     <x-form-input type="text" wire:model="employer" autocomplete="employer"
                         value="{{ old('employer') }}" />
-                    @error('employer')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                   <x-validation-error-component name='employer' />
                 </div>
                 <div class="col-span-2">
                     <x-label for="employer_address">Address</x-label>
                     <x-form-input type="text" wire:model="employer_address" autocomplete="employer_address"
                         value="{{ old('employer_address') }}" />
-                    @error('employer_address')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                   <x-validation-error-component name='employer_address' />
                 </div>
 
 

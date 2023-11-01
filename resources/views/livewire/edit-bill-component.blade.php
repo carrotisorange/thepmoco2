@@ -43,39 +43,31 @@
                     @endforeach
                 </x-form-select>
 
-                @error('particular_id')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+               <x-validation-error-component name='particular_id' />
             </div>
 
             <div class="mt-5 sm:mt-6">
                 <label class="text-sm" for="bill">Start</label>
                 <x-form-input type="date" id="start" wire:model="start" />
-                @error('start')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+              <x-validation-error-component name='start' />
             </div>
 
             <div class="mt-5 sm:mt-6">
                 <x-label class="text-sm" for="bill">End</x-label>
                 <x-form-input type="date" id="end" wire:model="end" />
-                @error('end')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+               <x-validation-error-component name='end' />
             </div>
 
 
             <div class="mt-5 sm:mt-6">
                 <x-label class="text-sm" for="bill">Amount</x-label>
                 <x-form-input type="number" step="0.001" id="bill" wire:model="bill" />
-                @error('bill')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+               <x-validation-error-component name='bill' />
             </div>
 
 
             <div class="mt-5 sm:mt-6">
-                <x-button class="w-full" type="submit"> Update
+                <x-button class="w-full"> Update
                 </x-button>
             </div>
         </form>

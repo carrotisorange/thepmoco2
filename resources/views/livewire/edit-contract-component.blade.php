@@ -26,33 +26,25 @@
                     @endforeach
                 </x-form-select>
 
-                @error('unit_uuid')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+              <x-validation-error-component name='unit_uuid' />
             </div>
 
             <div class="mt-5 sm:mt-6">
                 <label class="text-sm" for="start">Rent/mo</label>
                 <x-form-input type="number" step="0.001" id="rent" wire:model="rent" />
-                @error('rent')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+             <x-validation-error-component name='rent' />
             </div>
 
             <div class="mt-5 sm:mt-6">
                 <label class="text-sm" for="start">Movein Date</label>
                 <x-form-input type="date" id="start" wire:model="start" />
-                @error('start')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+              <x-validation-error-component name='start' />
             </div>
 
             <div class="mt-5 sm:mt-6">
                 <label class="text-sm" for="birthdate">Moveout Date</label>
                 <x-form-input type="date" id="end" wire:model="end" />
-                @error('end')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+             <x-validation-error-component name='end' />
             </div>
 
             <div class="mt-5 sm:mt-6">
@@ -79,9 +71,7 @@
 
                 </x-form-select>
 
-                @error('status')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+             <x-validation-error-component name='status' />
             </div>
 
             {{-- @if($status === 'inactive') --}}
@@ -100,9 +90,7 @@
 
                 </x-form-select>
 
-                @error('markTenantAsInactive')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+              <x-validation-error-component name='markTenantAsInactive' />
             </div>
             {{-- @endif --}}
 
@@ -118,9 +106,7 @@
                     @endforeach
                 </x-form-select>
 
-                @error('interaction_id')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+               <x-validation-error-component name='interaction_id' />
             </div>
 
             <div class="sm:col-span-3">

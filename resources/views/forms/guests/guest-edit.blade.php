@@ -11,9 +11,7 @@
                 class="{{ $formDivClasses }}">
                 <x-label for="guest"> Guest </x-label>
                 <x-form-input name="guest" type="text" wire:model="guest" />
-                @error('guest')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+              <x-validation-error-component name='guest' />
             </div>
         </div>
 
@@ -22,9 +20,7 @@
                 class="{{ $formDivClasses }}">
                 <x-label for="job-title">Email</x-label>
                 <x-form-input type="email" wire:model="email" />
-                @error('email')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+               <x-validation-error-component name='email' />
             </div>
         </div>
         <div class="sm:col-span-4">
@@ -32,9 +28,7 @@
                 class="{{ $formDivClasses }}">
                 <x-label for="mobile_number">Mobile No</x-label>
                 <x-form-input type="text" wire:model="mobile_number" />
-                @error('mobile_number')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+                <x-validation-error-component name='mobile_number' />
             </div>
         </div>
 

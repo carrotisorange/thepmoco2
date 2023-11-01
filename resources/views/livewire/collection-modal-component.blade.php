@@ -12,9 +12,7 @@
                     </x-label>
                     <x-form-input wire:model="created_at" type="date" />
 
-                    @error('created_at')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                  <x-validation-error-component name='created_at' />
                 </div>
             </div>
             <div class="overflow-auto mt-5 flex flex-wrap -mx-3 mb-6">
@@ -64,21 +62,9 @@
                         </option>
                     </x-form-select>
 
-                    @error('form')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                 <x-validation-error-component name='form' />
                 </div>
 
-                {{-- <div class="w-full md:w-1/2 px-3">
-                    <x-label for="bill">
-                        Amount
-                    </x-label>
-                    <x-form-input wire:model="collection" type="number" min="1" step="0.001" />
-
-                    @error('collection')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div> --}}
             </div>
 
             @if($form === 'bank')
@@ -89,9 +75,7 @@
                     </x-label>
                     <x-form-input wire:model="bank" type="text" />
 
-                    @error('bank')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                  <x-validation-error-component name='bank' />
                 </div>
 
                 <div class="w-full md:w-1/2 px-3">
@@ -100,9 +84,7 @@
                     </x-label>
                     <x-form-input wire:model="date_deposited" type="date" />
 
-                    @error('date_deposited')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                  <x-validation-error-component name='date_deposited' />
                 </div>
             </div>
 
@@ -113,9 +95,7 @@
                     </x-label>
                     <x-form-input wire:model="attachment" type="file" />
 
-                    @error('attachment')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                   <x-validation-error-component name='attachment' />
                 </div>
             </div>
             @endif
@@ -128,9 +108,7 @@
                     </x-label>
                     <x-form-input wire:model="check_no" type="text" />
 
-                    @error('check_no')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                   <x-validation-error-component name='check_no' />
                 </div>
             </div>
 
@@ -141,9 +119,7 @@
                     </x-label>
                     <x-form-input wire:model="attachment" type="file" />
 
-                    @error('attachment')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                  <x-validation-error-component name='attachment' />
                 </div>
             </div>
             @endif

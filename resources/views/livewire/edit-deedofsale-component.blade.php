@@ -10,17 +10,13 @@
             <div class="mt-2 sm:mt-2">
                 <x-label for="turnover_at">Turnover Date</x-label>
                 <x-form-input type="date" wire:model="turnover_at"/>
-                @error('turnover_at')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+              <x-validation-error-component name='turnover_at' />
             </div>
 
             <div class="mt-2 sm:mt-2">
-                <x-label class="text-sm" for="guardian">Purchasing Price</x-label>
+                <x-label class="text-sm" for="price">Purchasing Price</x-label>
                 <x-form-input type="number" step="0.001" wire:model="price"/>
-                @error('price')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+                <x-validation-error-component name='price' />
             </div>
 
            <div class="mt-2 sm:col-span-3">

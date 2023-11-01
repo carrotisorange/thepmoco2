@@ -26,10 +26,7 @@
                             Email
                         </x-label>
                         <x-form-input id="email" type="email" value="{{ $guest->email }}" name="email" required />
-
-                        @error('due_date')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                        <x-validation-error-component name='email' />
                     </div>
                 </div>
                 <div class="mt-5 flex flex-wrap -mx-3 mb-6">
@@ -40,9 +37,7 @@
                         <x-form-input id="due_date" type="date" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}"
                             name="due_date" />
 
-                        @error('due_date')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                       <x-validation-error-component name='due_date' />
                     </div>
                 </div>
                 <div class="mt-5 flex flex-wrap -mx-3 mb-6">
@@ -63,9 +58,7 @@
                         <x-form-input id="penalty" type="number" step="0.001"
                             value="{{ old('penalty', (($unpaid_bills->sum('bill')-$unpaid_bills->sum('initial_payment'))*.1)) }}"
                             name="penalty" min="0" />
-                        @error('penalty')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                       <x-validation-error-component name='penalty' />
                     </div>
                 </div>
                 <div class="mt-5 flex flex-wrap -mx-3 mb-6">
@@ -77,9 +70,7 @@
 appearance-none
 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600
 peer" placeholder="Put your notes here." name="note_to_bill">{{ $note_to_bill }}</textarea>
-                        @error('note_to_bill')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                     <x-validation-error-component name='note_to_bill' />
                     </div>
                 </div>
                 <div class="mt-5">

@@ -16,6 +16,7 @@ use App\Models\Particular;
 use App\Models\PropertyParticular;
 use App\Models\Unit;
 use Session;
+use App\Models\Booking;
 
 
 class GuestBillCreateComponent extends Component
@@ -88,42 +89,45 @@ class GuestBillCreateComponent extends Component
       $this->validateOnly($propertyName);
    }
 
-   public function storeBill(){
+    public function storeBill(){
 
       $this->validate();
 
       try {
 
-         $bill_no = app('App\Http\Controllers\BillController')->getLatestBillNo(Session::get('property_uuid'));
+      $bill_no = app('App\Http\Controllers\BillController')->getLatestBillNo(Session::get('property_uuid'));
 
-         if($this->particular_id === '8'){
-            $this->bill *=-1;
-         }
+      if($this->particular_id === '8'){
+        $this->bill *=-1;
+      }
+      else{
+        $this->bill = $this->bill;
+      }
 
-         Bill::create([
-            'bill_no' => $bill_no,
-            'unit_uuid' => $this->guest->unit_uuid,
-            'particular_id' => $this->particular_id,
-            'start' => $this->start,
-            'end' => $this->end,
-            'bill' => $this->bill,
-            'reference_no' => $this->guest->uuid,
-            'due_date' => Carbon::parse($this->start)->addDays(7),
-            'user_id' => auth()->user()->id,
-            'property_uuid' => Session::get('property_uuid'),
-            'guest_uuid' => $this->guest->uuid,
-            'is_posted' => true
-         ]);
+      Bill::create([
+        'bill_no' => $bill_no,
+        'unit_uuid' => $this->guest->unit_uuid,
+        'particular_id' => $this->particular_id,
+        'start' => $this->start,
+        'end' => $this->end,
+        'bill' => $this->bill,
+        'reference_no' => $this->guest->uuid,
+        'due_date' => Carbon::parse($this->start)->addDays(7),
+        'user_id' => auth()->user()->id,
+        'property_uuid' => Session::get('property_uuid'),
+        'guest_uuid' => $this->guest->uuid,
+        'is_posted' => true
+      ]);
 
-            app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, 1, 3);
+      app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, 1, 3);
 
-            return redirect('/property/'.Session::get('property_uuid').'/guest/'.$this->guest->uuid.'/bills')->with('success','Changes Saved!');
+        return redirect(url()->previous())->with('success', 'Changes Saved!');
       }
         catch(\Exception $e)
-        {
-            return back()->with('error',$e);
-        }
-   }
+      {
+        return redirect(url()->previous())->with('error', $e);
+      }
+    }
 
       public function storeParticular(){
 
@@ -227,26 +231,6 @@ class GuestBillCreateComponent extends Component
 
    }
 
-     public function unpayBills()
-     {
-         Bill::whereIn('id', $this->selectedBills)
-         ->update([
-            'status' => 'unpaid',
-            'initial_payment' => 0
-         ]);
-
-         $collection_batch_no = Collection::where('bill_id', $this->selectedBills[0])->pluck('batch_no');
-
-         AcknowledgementReceipt::where('collection_batch_no', $collection_batch_no)->delete();
-
-         Collection::whereIn('bill_id', $this->selectedBills)->delete();
-
-          $this->selectedBills = [];
-
-          return redirect('/guest/'.$this->guest->uuid.'/bills')->with('success', 'Changes Saved!');
-
-     }
-
    public function updatedSelectAll($value)
    {
       if($value)
@@ -321,7 +305,7 @@ class GuestBillCreateComponent extends Component
          'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
          'unpaid_bills' => Bill::where('guest_uuid', $this->guest->uuid)->whereIn('status', ['unpaid', 'partially_paid'])->where('bill','>', 0)->orderBy('bill_no','desc')->get(),
          'particulars' => app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid')),
-         'units' => Unit::where('uuid', $this->guest->unit_uuid)->get(),
+         'units' => Booking::where('unit_uuid', $this->guest->unit_uuid)->groupBy('unit_uuid')->get(),
          'particulars' => $particulars,
          'note_to_bill' => $noteToBill
         ]);

@@ -157,9 +157,7 @@
 
                             </div>
 
-                            @error('attachment')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                            <x-validation-error-component name='attachment' />
                             @if ($attachment)
                             <p class="text-green-500 text-xs mt-2">File has been attached. <i
                                     class="fa-solid fa-circle-check"></i></p>

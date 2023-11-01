@@ -13,9 +13,8 @@
                     <option>Fund Transfer</option>
                     <option>Refund</option>
                 </select>
-                @error('request_for')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+
+                <x-validation-error-component name='request_for' />
 
             </div>
 
@@ -32,9 +31,8 @@
                     </option>
                     @endforeach
                 </select>
-                @error('particular_id')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+
+            <x-validation-error-component name='particular_id' />
 
             </div>
 
@@ -54,9 +52,7 @@
                         </option>
                         @endforeach
                     </select>
-                    @error('requester_id')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                  <x-validation-error-component name='requester_id' />
                 </div>
                 {{-- <a href="newunits_detail" class="text-sm text-purple-700">Add Requester</a> --}}
             </div>
@@ -75,9 +71,7 @@
                         </option>
                         @endforeach
                     </select>
-                    @error('biller_id')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                  <x-validation-error-component name='biller_id' />
                 </div>
 
             </div>
@@ -90,9 +84,7 @@
                         class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                         {{old('amount') }}
                     </textarea>
-                    @error('amount')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                 <x-validation-error-component name='amount' />
                 </div>
 
             </div>
@@ -105,9 +97,7 @@
                         class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full h-8 sm:text-sm border border-gray-700 rounded-md">
                         {{ old('source') }}
                     </textarea>
-                    @error('source')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                <x-validation-error-component name='source' />
                 </div>
 
             </div>
@@ -146,21 +136,6 @@
                 </div>
 
             </div>
-
-
-
-            <div class="mt-3 sm:col-span-6">
-                {{-- <div class="form-check">
-                    <input wire:model="sendEmailToManager"
-                        class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                        type="checkbox" value="{{ old('sendEmailToManager'), $sendEmailToManager }}"
-                        id="flexCheckChecked">
-                    <label class="form-check-label inline-block text-gray-800" for="flexCheckChecked">
-                        Send request details to the manager.
-                    </label>
-                </div> --}}
-            </div>
-
 
         </div>
         <div class="flex justify-end">

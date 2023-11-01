@@ -17,9 +17,7 @@
             <option value="1" {{ old('particular_id')==1? 'selected' : 'Select one' }}>Rent </option>
         </x-form-select>
 
-        @error('particular_id')
-        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-        @enderror
+     <x-validation-error-component name='particular_id' />
     </div>
 
     <div class="mt-5">
@@ -35,9 +33,7 @@
                 <x-form-input id="start" type="date" value="{{ old('start', Carbon\Carbon::now()->format('Y-m-d')) }}"
                     name="start" />
 
-                @error('start')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+             <x-validation-error-component name='start' />
             </div>
             <div class="w-full md:w-1/2 px-3">
                 <x-label for="end">
@@ -46,9 +42,7 @@
                 <x-form-input id="end" type="date" name="end"
                     value="{{ old('end', Carbon\Carbon::now()->addMonth()->format('Y-m-d')) }}" />
 
-                @error('end')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+             <x-validation-error-component name='end' />
             </div>
         </div>
     </div>

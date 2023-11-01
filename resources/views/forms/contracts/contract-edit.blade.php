@@ -6,17 +6,13 @@
                     <label for="start" class="block text-sm font-medium text-gray-700">Contracts starts on</label>
                     <input type="date" wire:model="start" autocomplete="start"
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                    @error('start')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                   <x-validation-error-component name='start' />
                 </div>
                 <div class="col-span-1">
                     <label for="end" class="block text-sm font-medium text-gray-700">Contract ends on</label>
                     <input type="date" wire:model="end" autocomplete="end"
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                    @error('end')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                  <x-validation-error-component name='end' />
                 </div>
 
                 <div class="col-span-1">
@@ -47,18 +43,14 @@
                         </option>
 
                     </select>
-                    @error('status')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                  <x-validation-error-component name='status' />
                 </div>
 
                 <div class="col-span-1">
                     <label for="start" class="block text-sm font-medium text-gray-700">Rent/Month/Tenant</label>
                     <input type="number" wire:model="rent" autocomplete="rent"
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                    @error('rent')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                    <x-validation-error-component name='rent' />
                 </div>
 
                 <div class="col-span-1">
@@ -127,9 +119,7 @@
 
                     </div>
 
-                    @error('contract')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                 <x-validation-error-component name='contract' />
                     @if($contract)
                     <p class="text-green-500 text-xs mt-2">File has been attached. <i
                             class="fa-solid fa-circle-check"></i></p>

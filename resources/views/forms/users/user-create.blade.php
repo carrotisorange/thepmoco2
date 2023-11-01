@@ -12,9 +12,7 @@
                         }}>{{ $role->role }}</option>
                     @endforeach
                 </select>
-                @error('role_id')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+               <x-validation-error-component name='role_id' />
 
             </div>
 
@@ -23,9 +21,7 @@
                 <div class="mt-1">
                     <input wire:model.debounce.1000ms="email"
                         class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full h-10 px-3 sm:text-sm border border-gray-700 rounded-md"></input>
-                    @error('email')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                  <x-validation-error-component name='email' />
                 </div>
 
             </div>

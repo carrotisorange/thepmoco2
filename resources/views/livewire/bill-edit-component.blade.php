@@ -52,9 +52,8 @@
                                             </option>
                                             @endforeach
 
-                                        </select> @error('particular_id')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                        </select>
+                                      <x-validation-error-component name='particular_id' />
                                     </td>
                                 </tr>
                                 <tr>
@@ -66,9 +65,7 @@
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         <input type="date" wire:model="start" name="start"
                                             class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-1/2 sm:text-sm border border-gray-700  rounded-md">
-                                        @error('start')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                      <x-validation-error-component name='start' />
                                     </td>
                                 </tr>
                                 <tr>
@@ -80,9 +77,7 @@
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         <input type="date" wire:model="end" name="end"
                                             class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-1/2 sm:text-sm border border-gray-700  rounded-md">
-                                        @error('end')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                       <x-validation-error-component name='end' />
                                     </td>
                                 </tr>
                                 <tr>
@@ -94,9 +89,7 @@
                                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                         <input type="nummber" step="0.001" wire:model="bill_amount" name="bill_amount"
                                             class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-1/2 sm:text-sm border border-gray-700  rounded-md">
-                                        @error('bill_amount')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                       <x-validation-error-component name='bill_amount' />
                                     </td>
                                 </tr>
 

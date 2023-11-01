@@ -7,9 +7,7 @@
                 <input type="text" wire:model.lazy="name" autocomplete="name" readonly
                     class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
-            @error('name')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
+          <x-validation-error-component name='name' />
         </div>
 
         <div class="col-span-full">
@@ -19,9 +17,7 @@
                 <input type="email" wire:model.lazy="email" autocomplete="email" readonly
                     class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
-            @error('email')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
+          <x-validation-error-component name='email' />
         </div>
 
         <div class="col-span-full">
@@ -31,9 +27,7 @@
                 <input type="text" wire:model.lazy="mobile_number" autocomplete="mobile_number" readonly
                     class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
-            @error('mobile_number')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
+           <x-validation-error-component name='mobile_number' />
         </div>
 
         <div class="col-span-full">
@@ -82,49 +76,7 @@
             </div>
         </div>
     </div>
-    {{-- <div class="border-gray-200 pt-5">
-        <fieldset>
-            <label for="expiration-date" class="block text-sm font-medium text-gray-700">Select your
-                duration
-            </label>
-            <div class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
-                @foreach ($checkout_options as $checkout_option)
-                <label class="relative bg-white border rounded-lg shadow-sm p-4 flex cursor-pointer focus:outline-none">
-                    <input type="radio" name="checkout_option" value="{{ $checkout_option->id }}" class="sr-only"
-                        aria-labelledby="delivery-method-0-label"
-                        aria-describedby="delivery-method-0-description-0 delivery-method-0-description-1">
-                    <div class="flex-1 flex">
-                        <div class="flex flex-col">
-                            <span id="delivery-method-0-label" class="block text-sm font-medium text-gray-900">
-                                {{ $checkout_option->option }}
-                            </span>
-                            <span id="delivery-method-0-description-0"
-                                class="mt-1 flex items-center text-sm text-gray-500">
-                                {{ $checkout_option->policy }}
-                            </span>
-                            <span id="delivery-method-0-description-1" class="mt-6 text-sm font-medium text-gray-900">
-                                ₱{{
-                                number_format($selected_plan->price-($selected_plan->price*$checkout_option->discount),
-                                2) }}/month
-                            </span>
-                        </div>
-                    </div>
-
-                    <svg class="h-5 w-5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                        fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd"
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                            clip-rule="evenodd" />
-                    </svg>
-
-                    <div class="absolute -inset-px rounded-lg border-2 pointer-events-none" aria-hidden="true"></div>
-                </label>
-                @endforeach
-            </div>
-        </fieldset>
-    </div> --}}
-
-
+   <x-validation-error-component name='unit_uuid' />
     <button type="submit"
         class="w-full mt-6 bg-purple-600 border border-transparent rounded-md shadow-sm py-2 px-4 text-sm font-medium text-white hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Pay
         ₱{{

@@ -237,9 +237,7 @@
                                 <input id="cash_advance" name="cash_advance" type="number" step="0.001"
                                     autocomplete="cash_advance" wire:model="cash_advance" disabled
                                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
-                                @error('cash_advance')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                               <x-validation-error-component name='cash_advance' />
                             </div>
                         </div>
 

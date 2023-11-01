@@ -60,23 +60,6 @@ class TenantBillCreateComponent extends Component
       }
    }
 
-   public function removeBills()
-   {
-
-      if(!Bill::whereIn('id', $this->selectedBills)->where('status', 'unpaid')->delete())
-      {
-         $this->selectedBills = [];
-
-         return back()->with('error', 'Bill cannot be deleted.');
-      }
-
-      Bill::destroy($this->selectedBills);
-
-      $this->selectedBills = [];
-
-      return redirect(url()->previous())->with('success', 'Changes Saved!');
-   }
-
    public function mount($tenant){
       $this->start = Carbon::now()->format('Y-m-d');
       $this->end = Carbon::now()->addMonth()->format('Y-m-d');
@@ -106,19 +89,15 @@ class TenantBillCreateComponent extends Component
       try {
 
          $bill_no = app('App\Http\Controllers\BillController')->getLatestBillNo(Session::get('property_uuid'));
-        //   $marketing_fee = Unit::find($this->unit_uuid)->marketing_fee;
-        //   $management_fee = Unit::find($this->unit_uuid)->management_fee;
 
          if($this->particular_id === '8'){
             $this->bill *=-1;
-        //  }elseif($this->particular_id === '1'){
-        //     $this->bill = ($this->bill)-($marketing_fee + $management_fee);
          }
          else{
             $this->bill = $this->bill;
          }
 
-          $bill_id = Bill::insertGetId([
+          Bill::insertGetId([
             'bill_no' => $bill_no,
             'unit_uuid' => $this->unit_uuid,
             'particular_id' => $this->particular_id,
@@ -135,56 +114,13 @@ class TenantBillCreateComponent extends Component
             'is_posted' => true
          ]);
 
-
-        //   if($this->particular_id === '1'){
-        //    if($marketing_fee>0){
-        //      Bill::create([
-        //      'bill_id' => $bill_id,
-        //      'bill_no' => $bill_no+1,
-        //      'unit_uuid' => $this->unit_uuid,
-        //      'particular_id' => 71,
-        //      'start' => $this->start,
-        //      'end' => $this->end,
-        //      'bill' => $marketing_fee,
-        //      'reference_no' => $this->tenant->reference_no,
-        //      'due_date' => Carbon::parse($this->start)->addDays(7),
-        //      'user_id' => auth()->user()->id,
-        //      'property_uuid' => Session::get('property_uuid'),
-        //      'tenant_uuid' => $this->tenant->uuid,
-        //      'is_posted' => true,
-        //       'created_at' => Carbon::now(),
-        //      ]);
-        //    }
-
-        // //    if($management_fee>0){
-        // //      Bill::create([
-        // //      'bill_id' => $bill_id,
-        // //      'bill_no' => $bill_no+2,
-        // //      'unit_uuid' => $this->unit_uuid,
-        // //      'particular_id' => 72,
-        // //      'start' => $this->start,
-        // //      'end' => $this->end,
-        // //      'bill' => $management_fee,
-        // //      'reference_no' => $this->tenant->reference_no,
-        // //      'due_date' => Carbon::parse($this->start)->addDays(7),
-        // //      'user_id' => auth()->user()->id,
-        // //      'property_uuid' => Session::get('property_uuid'),
-        // //      'tenant_uuid' => $this->tenant->uuid,
-        // //      'is_posted' => true,
-        // //       'created_at' => Carbon::now(),
-        // //      ]);
-        // //    }
-        //   }
-
-            // app('App\Http\Controllers\BillController')->store(Session::get('property_uuid'), auth()->user()->id, 1, 3);
-
             app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, 1, 3);
 
-            return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant->uuid.'/bills')->with('success','Changes Saved!');
+            return redirect(url()->previous())->with('success', 'Changes Saved!');
       }
         catch(\Exception $e)
         {
-            return back()->with('error',$e);
+            return redirect(url()->previous())->with('error', $e);
         }
    }
 
@@ -222,7 +158,6 @@ class TenantBillCreateComponent extends Component
 
    public function payBills()
    {
-
       //generate collection acknowledgement receipt no
       $collection_ar_no = Property::find(Session::get('property_uuid'))->acknowledgementreceipts->max('ar_no')+1;
 
