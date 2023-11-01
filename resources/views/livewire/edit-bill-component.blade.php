@@ -67,7 +67,7 @@
 
 
             <div class="mt-5 sm:mt-6">
-                <x-button class="w-full"> Update
+                <x-button class="w-full" type="submit"> Update
                 </x-button>
             </div>
         </form>
