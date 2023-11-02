@@ -11,13 +11,13 @@
         <span class="px-6 py-5 flex items-start text-sm font-medium lg:pl-9">
             <span class="flex-shrink-0">
                 <span class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-gray-300">
-                    <span class="text-gray-500">0{{$index+1}}</span>
+                    <span class="text-gray-500">0{{$index}}</span>
                 </span>
             </span>
-    
-    
+
+
             <span class="mt-0.5 ml-4 flex min-w-0 flex-col">
-                <span class="text-xs font-medium text-gray-500">Step {{ $index+1}}:</span>
+                <span class="text-xs font-medium text-gray-500">Step {{ $index}}:</span>
                 <span class="text-xs font-medium text-gray-500">{{ $subfeature }}</span>
             </span>
         </span>

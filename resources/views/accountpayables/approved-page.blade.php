@@ -8,7 +8,8 @@
                 @foreach ($subfeaturesArray as $index => $subfeature)
                 <li class="relative overflow-hidden lg:flex-1">
                     <div class="border border-gray-200 overflow-hidden border-b-0 rounded-t-md lg:border-0">
-                        <x-next-step-stepper-component index={{ $index+1 }}
+                        <x-next-step-stepper-component
+                            index="{{ $index+1 }}"
                             link="/property/{{ Session::get('property_uuid') }}/rfp/{{ $accountpayable->id }}/step-{{ $index+1 }}"
                             subfeature="{{ $subfeature }}" />
                         @include('layouts.separator')

@@ -45,8 +45,7 @@ class AccountPayableCreateStep2Component extends Component
     {
         $this->validate();
 
-        app('App\Http\Controllers\RequestForPurchaseController')->update_approval($this->accountpayable->id,
-        'approved by manager', $this->comment, $this->vendor);
+        app('App\Http\Controllers\RequestForPurchaseController')->update_approval($this->accountpayable->id, 'approved by manager', $this->comment, $this->vendor);
 
         if($this->accountpayable->approver2_id){
 
@@ -57,17 +56,14 @@ class AccountPayableCreateStep2Component extends Component
             Notification::route('mail', $second_approver)->notify(new SendAccountPayableStep3NotificationToAP($content));
         }
 
-        return
-        redirect('/property/'.Session::get('property_uuid').'/rfp/'.$this->accountpayable->id.'/step-2')->with('success',
-        'Changes Saved!');
+        return redirect('/property/'.Session::get('property_uuid').'/rfp/'.$this->accountpayable->id.'/step-2')->with('success','Changes Saved!');
     }
 
     public function rejectRequest(){
 
         $this->validate();
 
-        app('App\Http\Controllers\RequestForPurchaseController')->update_approval($this->accountpayable->id, 'rejected
-        by manager', $this->comment, $this->vendor);
+        app('App\Http\Controllers\RequestForPurchaseController')->update_approval($this->accountpayable->id, 'rejected by manager', $this->comment, $this->vendor);
 
         $content = $this->accountpayable;
 

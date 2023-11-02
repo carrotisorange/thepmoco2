@@ -11,23 +11,26 @@
                     <div class="border border-gray-200 overflow-hidden border-b-0 rounded-t-md lg:border-0">
                         <!-- Current Step -->
                         @if($subfeature == 'InternalDocument' || $subfeature == 'Approval(Manager)')
-                      <x-previous-step-stepper-component index={{ $index+1 }}
+                      <x-previous-step-stepper-component
+                       index="{{ $index+1 }}"
                         link="/property/{{ Session::get('property_uuid') }}/rfp/{{ $accountpayable->id }}/step-{{ $index+1 }}"
                         subfeature="{{ $subfeature }}" />
                     @include('layouts.separator')
 
                         @elseif($subfeature == 'Approval(AccountPayable)')
-                        <x-current-step-stepper-component index={{ $index+1 }}
+                        <x-current-step-stepper-component
+                            index="{{ $index+1 }}"
                             link="/property/{{ Session::get('property_uuid') }}/rfp/{{ $accountpayable->id }}/step-{{ $index+1 }}"
                             subfeature="{{ $subfeature }}" />
                         @include('layouts.separator')
-    
+
                         @else
-                      <x-next-step-stepper-component index={{ $index+1 }}
+                      <x-next-step-stepper-component
+                        index="{{ $index+1 }}"
                         link="/property/{{ Session::get('property_uuid') }}/rfp/{{ $accountpayable->id }}/step-{{ $index+1 }}"
                         subfeature="{{ $subfeature }}" />
                     @include('layouts.separator')
-                
+
                         @endif
                     </div>
                 </li>

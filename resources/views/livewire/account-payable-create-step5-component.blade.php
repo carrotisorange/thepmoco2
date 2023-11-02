@@ -1,14 +1,4 @@
 <div>
-
-    @section('styles')
-    <style>
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-    </style>
-    @endsection
     <div class="px-4 sm:px-6 lg:px-8">
         <form wire:submit.prevent="storeAccountPayableLiquidation">
             <div class="mt-8 flow-root">
@@ -17,47 +7,40 @@
                         <table class="min-w-full divide-y divide-gray-300">
                             <thead>
                                 <tr>
-                                    <th scope="col"
-                                        class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
+                                    <x-th>
                                         Batch No
-                                    </th>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                    </x-th>
+                                    <x-td >
                                         {{ $batch_no }}
-                                    </td>
+                                    </x-td>
                                 </tr>
                                 <tr>
-                                    <th scope="col"
-                                        class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
+                                    <x-th>
                                         Date
                                         Requested
-                                    </th>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <input id="created_at" name="created_at" type="date" wire:model="created_at"
-                                            autocomplete="date-liquidation"
-                                            class="ml-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
+                                    </x-th>
+                                    <x-td >
+                                        <x-form-input id="created_at" name="created_at" type="date" wire:model="created_at"
+                                          />
                                      <x-validation-error-component name='crated_at' />
-                                    </td>
+                                    </x-td>
                                 </tr>
 
                                 <tr>
-                                    <th scope="col"
-                                        class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
+                                    <x-th>
                                         Name
-                                    </th>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <input id="name" name="name" type="name" autocomplete="name" wire:model="name"
-                                            class="ml-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
+                                    </x-th>
+                                    <x-td >
+                                        <x-form-input id="name" name="name" type="name" autocomplete="name" wire:model="name"/>
                                        <x-validation-error-component name='name' />
-                                    </td>
+                                    </x-td>
                                 </tr>
                                 <tr>
-                                    <th scope="col"
-                                        class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
+                                    <x-th>
                                         Department/Section
-                                    </th>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <select wire:model="department"
-                                            class="ml-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6">
+                                    </x-th>
+                                    <x-td >
+                                        <x-form-select wire:model="department">
                                             <option value="" selected>Select a unit</option>
                                             @foreach ($departments as $department)
                                             <option value="{{ $department->role }}" {{ $department===$department->role?
@@ -65,18 +48,16 @@
                                                 {{ $department->role }}
                                             </option>
                                             @endforeach
-                                        </select>
+                                        </x-form-select>
                                       <x-validation-error-component name='department' />
-                                    </td>
+                                    </x-td>
                                 </tr>
                                 <tr>
-                                    <th scope="col"
-                                        class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
+                                    <x-th>
                                         Unit
-                                    </th>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        <select wire:model="unit_uuid"
-                                            class="ml-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6">
+                                    </x-th>
+                                    <x-td >
+                                        <x-form-select wire:model="unit_uuid">
                                             <option value="" selected>Select a unit</option>
                                             @foreach ($units as $unit)
                                             <option value="{{ $unit->uuid }}" {{ 'particulars' .$unit_uuid===$unit->
@@ -84,10 +65,10 @@
                                                 {{ $unit->building->building .'-'.$unit->unit }}
                                             </option>
                                             @endforeach
-                                        </select>
+                                        </x-form-select>
 
                                       <x-validation-error-component name='unit_uuid' />
-                                    </td>
+                                    </x-td>
                                 </tr>
 
                             </thead>
@@ -100,21 +81,15 @@
 
 
     <div class="px-6 pt-5 flex justify-end items-center">
-        {{-- <button type="button" wire:click="updateParticular"
-            class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-            Save Item
-        </button> --}}
-        <button type="button" wire:click="storeNewItem"
-            class="ml-3 inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-            New Particular
-        </button>
+        <x-button  wire:click="storeNewItem">   New Particular
+        </x-button>
     </div>
 
     <!-- table -->
     <div class="sm:col-span-6">
         <div class="mb-5 mt-2 relative overflow-auto ring-opacity-5 md:rounded-lg">
 
-            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <table class="min-w-full divide-y divide-gray-300">
                 <thead class="bg-gray-50">
                     <tr>
                         <x-th>#</x-th>
@@ -137,9 +112,8 @@
                             <x-td>{{ $index+1 }}</x-td>
 
                             <x-td>
-                                <select wire:model="particulars.{{ $index }}.unit_uuid"
-                                    wire:change="updateParticular({{ $particular->id }})"
-                                    class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-36 sm:text-sm border border-gray-700  rounded-md">
+                                <x-table-select wire:model="particulars.{{ $index }}.unit_uuid"
+                                    wire:change="updateParticular({{ $particular->id }})">
                                     <option value="" selected>Select a unit</option>
                                     @foreach ($units as $unit)
                                     <option value="{{ $unit->uuid }}" {{ 'particulars' .$index.'unit_uuid'===$unit->
@@ -147,7 +121,7 @@
                                         {{ $unit->building->building .'-'.$unit->unit }}
                                     </option>
                                     @endforeach
-                                </select>
+                                </x-table-select>
 
                                 @error('particulars.{{ $index }}.unit_uuid')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
@@ -155,9 +129,8 @@
 
                             </x-td>
                             <x-td>
-                                <select wire:model="particulars.{{ $index }}.vendor_id"
-                                    wire:change="updateParticular({{ $particular->id }})"
-                                    class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-36 sm:text-sm border border-gray-700  rounded-md">
+                                <x-table-select wire:model="particulars.{{ $index }}.vendor_id"
+                                    wire:change="updateParticular({{ $particular->id }})">
                                     <option value="" selected>Select a unit</option>
                                     @foreach ($vendors as $vendor)
                                     <option value="{{ $vendor->id }}" {{ 'particulars' .$index.'vendor_id'===$vendor->
@@ -165,42 +138,38 @@
                                         $vendor->biller }}
                                     </option>
                                     @endforeach
-                                </select>
+                                </x-table-select>
 
                                 @error('particulars.{{ $index }}.vendor_id')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </x-td>
                             <x-td>
-                                <input type="text" wire:model="particulars.{{ $index }}.or_number"
-                                    wire:change="updateParticular({{ $particular->id }})"
-                                    class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-36 sm:text-sm border border-gray-700  rounded-md">
+                                <x-table-input type="text" wire:model="particulars.{{ $index }}.or_number"
+                                    wire:change="updateParticular({{ $particular->id }})" />
 
                                 @error('particulars.{{ $index }}.or_number')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </x-td>
                             <x-td>
-                                <input type="text" wire:model="particulars.{{ $index }}.item"
-                                    wire:change="updateParticular({{ $particular->id }})"
-                                    class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-96 sm:text-sm border border-gray-700  rounded-md">
+                                <x-form-input type="text" wire:model="particulars.{{ $index }}.item"
+                                    wire:change="updateParticular({{ $particular->id }})"/>
                                 @error('particulars.{{ $index }}.item')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </x-td>
                             <x-td>
-                                <input type="number" wire:model="particulars.{{ $index }}.quantity"
-                                    wire:change="updateParticular({{ $particular->id }})"
-                                    class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-36 sm:text-sm border border-gray-700  rounded-md">
+                                <x-form-input type="number" wire:model="particulars.{{ $index }}.quantity"
+                                    wire:change="updateParticular({{ $particular->id }})"/>
                                 @error('particulars.{{ $index }}.quantity')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </x-td>
 
                             <x-td>
-                                <input type="number" step="0.001" wire:model="particulars.{{ $index }}.price"
-                                    wire:change="updateParticular({{ $particular->id }})"
-                                    class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-36 sm:text-sm border border-gray-700  rounded-md">
+                                <x-form-input type="number" step="0.001" wire:model="particulars.{{ $index }}.price"
+                                    wire:change="updateParticular({{ $particular->id }})"/>
                                 @error('particulars.{{ $index }}.price')
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                                 @enderror
@@ -208,18 +177,10 @@
                             <x-td>
                                 {{ number_format((double)$particular->quantity * (double)$particular->price, 2) }}
                             </x-td>
-
-
                             <x-td>
-                                <button type="button" wire:click="removeParticular({{ $particular->id }})"
-                                    wire:target="removeParticular"
-                                    class="inline-flex items-center justify-center rounded-md border border-transparent bg-red-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                                    Remove
-                                </button>
-
-
+                                <x-button class="bg-red-500" wire:click="removeParticular({{ $particular->id }})"> Remove
+                                </x-button>
                             </x-td>
-
                         </tr>
                     </div>
                     @endforeach
@@ -229,28 +190,24 @@
         </div>
     </div>
 
-    <!-- /table -->
-
     <div>
         <div class="cols-start-3 mt-10 space-y-3 0 pb-3 sm:space-y-0 sm:divide-y sm:pb-0">
             <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-3">
-                <label for="total" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Liquidation
-                    Total</label>
+                <x-label for="total" >Liquidation
+                    Total</x-label>
                 <div class="mt-2 sm:col-start-3 sm:mt-0">
                     {{ number_format((double)($total),2) }}
                 </div>
             </div>
 
             <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
-                <label for="cash_advance" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Cash
-                    Advance</label>
+                <x-label for="cash_advance" >Cash
+                    Advance</x-label>
                 CV Number: {{ $accountpayableliquidation }}
-
                 <div class="mt-2 sm:col-start-3 sm:mt-0">
-
-                    <input id="cash_advance" name="cash_advance" type="number" step="0.001" autocomplete="cash_advance"
+                    <x-form-input id="cash_advance" name="cash_advance" type="number" step="0.001" autocomplete="cash_advance"
                         wire:model="cash_advance"
-                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-md sm:text-sm sm:leading-6" />
+                       />
                    <x-validation-error-component name='cash_advance' />
                 </div>
             </div>
@@ -258,7 +215,7 @@
 
 
             <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
-                <label for="total_amount" class="block text-sm font-medium leading-6 text-gray-900 sm:pt-1.5">Total
+                <label for="total_amount" >Total
                     Return</label>
 
 

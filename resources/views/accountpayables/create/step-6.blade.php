@@ -10,20 +10,23 @@
                             <!-- Current Step -->
                             @if($subfeature == 'InternalDocument' || $subfeature == 'Approval(Manager)' || $subfeature ==
                             'Approval(AccountPayable)' || $subfeature == 'Payment' || $subfeature == 'Liquidation')
-                           <x-previous-step-stepper-component index={{ $index+1 }}
+                           <x-previous-step-stepper-component
+                                index="{{ $index+1 }}"
                                 link="/property/{{ Session::get('property_uuid') }}/rfp/{{ $accountpayable->id }}/step-{{ $index+1 }}"
                                 subfeature="{{ $subfeature }}" />
 
                             @include('layouts.separator')
 
                             @elseif($subfeature == 'LiquidationApproval(Manager)')
-                          <x-current-step-stepper-component index={{ $index+1 }}
+                          <x-current-step-stepper-component
+                            index="{{ $index+1 }}"
                             link="/property/{{ Session::get('property_uuid') }}/rfp/{{ $accountpayable->id }}/step-{{ $index+1 }}"
                             subfeature="{{ $subfeature }}" />
                             <!-- Separator -->
                             @include('layouts.separator')
                             @else
-                            <x-next-step-stepper-component index={{ $index+1 }}
+                            <x-next-step-stepper-component
+                                index="{{ $index+1 }}"
                                 link="/property/{{ Session::get('property_uuid') }}/rfp/{{ $accountpayable->id }}/step-{{ $index+1 }}"
                                 subfeature="{{ $subfeature }}" />
                             @include('layouts.separator')

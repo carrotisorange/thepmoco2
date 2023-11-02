@@ -1,18 +1,10 @@
 <div>
-
     <div class="mt-5 px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-end">
-            {{-- <button type="button"
-                class="mb-4 bg-white py-2 px-4 underline rounded-md text-sm font-medium text-gray-700 hover:bg-purple-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Export</button>
-            --}}
-        </div>
-        {{-- start-step-1-form --}}
         <form class="space-y-6" wire:submit.prevent="submitForm()">
-
             <div class="md:grid md:grid-cols-6 md:gap-6">
 
                 <div class="sm:col-span-6">
-                    <label for="vendor-details" class="block text-sm font-medium text-gray-700">Particulars</label>
+                    <x-label for="vendor-details" >Particulars</x-label>
 
                 </div>
 
@@ -84,13 +76,13 @@
 
 
                 <div class="sm:col-span-6">
-                    <label for="vendor-details" class="block text-sm font-medium text-gray-700">Vendor Details</label>
+                    <x-label for="vendor-details" >Vendor Details</x-label>
 
                 </div>
 
 
                 <div class="sm:col-span-6">
-                    <label class="block text-sm font-medium text-gray-700"> Selected quotation</label>
+                    <x-label > Selected quotation</x-label>
                     <div
                         class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
@@ -135,7 +127,7 @@
                 </div>
 
                 <div class="sm:col-span-7">
-                    <label class="block text-sm font-medium text-gray-700">Upload the proof of payment</label>
+                    <x-label >Upload the proof of payment</x-label>
                     <div
                         class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
@@ -181,16 +173,12 @@
                 </div>
                 @endcan
 
-
-
-
                 {{-- reject, approve button --}}
                 <div class="col-start-6 flex items-center justify-end">
 
                     <a target="_blank"
                         href="/property/{{Session::get('property_uuid') }}/rfp/{{ $this->accountpayable->id }}/step1/export"
-                        wire:loading.remove
-                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                        class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline">
                         Export
                     </a>
 

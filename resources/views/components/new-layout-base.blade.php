@@ -3,7 +3,6 @@
 
 <head>
     @include('layouts.head')
-    <title>@yield('title')</title>
 </head>
 
 <body class="h-full font-body">
@@ -21,15 +20,7 @@
                                 <img class="h-24 w-15" src="{{ asset('/brands/'.env('APP_LOGO')) }}" />
                             </a>
                         </div>
-
-                        <!-- <div class="hidden space-x-3 sm:-my-px sm:ml-10 sm:flex">
-                            <h1 class="text-xl pt-2 tracking-tight font-medium leading-tight text-gray-700">
-
-                                {{ env('APP_NAME') }}
-
-                            </h1>
-
-                        </div> -->
+                            {{ env('APP_NAME') }}
                     </div>
 
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -76,8 +67,7 @@
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <x-dropdown-link :href="route('logout')"
-                                        onclick="event.preventDefault();
-                                                                                            this.closest('form').submit();">
+                                        onclick="event.preventDefault(); this.closest('form').submit();">
                                         Log Out
                                     </x-dropdown-link>
                                 </form>
@@ -145,17 +135,17 @@
         <!-- Main area -->
         <main class="flex-1 pb-8 h-screen y-screen">
             @if(env('APP_SANDBOX'))
-            @include('layouts.banner')
+                @include('layouts.banner')
             @endif
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                {{ $slot }}
+            @include('layouts.notifications')
+            {{ $slot }}
             </div>
             <div class="text-purple-500">
-                @include('layouts.footer')
+             @include('layouts.footer')
             </div>
         </main>
     </div>
+    @include('layouts.scripts')
 </body>
-@include('layouts.scripts')
-
 </html>

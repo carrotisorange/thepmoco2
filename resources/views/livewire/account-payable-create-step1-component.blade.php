@@ -1,17 +1,14 @@
 <div>
-
     <div class=" mt-5 px-4 sm:px-6 lg:px-8">
         {{-- start-step-1-form --}}
         <form class="space-y-6" wire:submit.prevent="submitForm()">
 
             <div class="md:grid md:grid-cols-6 md:gap-6">
-                <div class="sm:col-span-7">
-                    <x-label for="" ></x-label>
-                </div>
+
 
                 {{-- request for purchase --}}
                 <div class="sm:col-span-6">
-                    <label for="request_for" >Request for</label>
+                    <x-label for="request_for" >Request for</x-label>
                     <x-form-input type="text" wire:model="request_for" name="request_for" readonly />
 
                    <x-validation-error-component name='request_for' />
@@ -33,7 +30,7 @@
                 {{-- requester's name --}}
                 <div class="sm:col-span-2">
                     <x-label for="requester" >Requester</x-label>
-                    <x-form-select id="requester_id" name="requester_id" wire:model="requester_id" class="">
+                    <x-form-select id="requester_id" name="requester_id" wire:model="requester_id" >
                         <option value="{{ $requester_id }}">{{ App\Models\User::find($requester_id)->name }}</option>
                     </x-form-select>
                  <x-validation-error-component name='requester_id' />
@@ -42,7 +39,7 @@
                 <div class="sm:col-span-2">
                     <x-label for="first_approver" >1st Approver
                         (Manager)</x-label>
-                    <x-form-select id="first_approver" name="first_approver" wire:model="first_approver" class="">
+                    <x-form-select id="first_approver" name="first_approver" wire:model="first_approver" >
                         <option value="">Select one</option>
                         @foreach ($managers as $manager)
                         <option value="{{ $manager->user_id }}">{{ $manager->user->name }}</option>
@@ -56,7 +53,7 @@
                 <div class="sm:col-span-2">
                     <x-label for="requester" >2nd Approver (Account
                         Payable)</x-label>
-                    <x-form-select id="second_approver" name="second_approver" wire:model="second_approver" class="">
+                    <x-form-select id="second_approver" name="second_approver" wire:model="second_approver" >
                         <option value="">Select one</option>
                         @foreach ($accountpayables as $accountpayable)
                         <option value="{{ $accountpayable->user_id }}">{{ $accountpayable->user->name }}</option>
@@ -85,7 +82,7 @@
                     <div class="mb-5 mt-2 relative overflow-auto ring-opacity-5 md:rounded-lg">
                             @if($particulars->count())
                             <table class="w-full text-sm text-left">
-                                <thead class="">
+                                <thead >
                                     <tr>
                                         <x-th>#</x-th>
                                         <x-th>UNIT</x-th>

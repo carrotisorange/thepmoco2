@@ -1,5 +1,5 @@
 <x-new-layout>
-    <div class="mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 xl:py-10">}
+    <div class="mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 xl:py-10">
         <div class="lg:border-t lg:border-b lg:border-gray-200">
             <nav class="mx-auto max-w-9xl px-4 sm:px-6 lg:px-8" aria-label="Progress">
                 <ol role="list"
@@ -11,25 +11,28 @@
                         <div class="border border-gray-200 overflow-hidden border-b-0 rounded-t-md lg:border-0">
                             <!-- Current Step -->
                             @if($subfeature == 'InternalDocument')
-                           <x-previous-step-stepper-component index={{ $index+1 }}
+                           <x-previous-step-stepper-component
+                                index="{{ $index+1 }}"
                                 link="/property/{{ Session::get('property_uuid') }}/rfp/{{ $accountpayable->id }}/step-{{ $index+1 }}"
                                 subfeature="{{ $subfeature }}" />
                             @include('layouts.separator')
 
-    
+
 
                             @elseif($subfeature == 'Approval(Manager)')
-                           <x-current-step-stepper-component index={{ $index+1 }}
+                           <x-current-step-stepper-component
+                                index="{{ $index+1 }}"
                                 link="/property/{{ Session::get('property_uuid') }}/rfp/{{ $accountpayable->id }}/step-{{ $index+1 }}"
                                 subfeature="{{ $subfeature }}" />
                             @include('layouts.separator')
-        
+
                             @else
-                            <x-next-step-stepper-component index={{ $index+1 }}
+                            <x-next-step-stepper-component
+                                index="{{ $index+1 }}"
                                 link="/property/{{ Session::get('property_uuid') }}/rfp/{{ $accountpayable->id }}/step-{{ $index+1 }}"
                                 subfeature="{{ $subfeature }}" />
                             @include('layouts.separator')
-              
+
                             @endif
                         </div>
                     </li>

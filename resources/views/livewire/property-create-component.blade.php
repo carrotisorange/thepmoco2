@@ -79,10 +79,10 @@
          </div>
 
          <div class="flex justify-end mt-5">
-            <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-               href="/property">
-               Cancel
-            </a>
+           <x-button onclick="window.location.href='/property'" class="bg-red-500">
+                Cancel
+            </x-button>
+            &nbsp;
 
             <x-button wire:click="create">
                Create
