@@ -9,7 +9,7 @@ use App\Models\AccountPayable;
 use App\Models\AccountPayableParticular;
 use Carbon\Carbon;
 
-class AccountPayableController extends Controller
+class RFPController extends Controller
 {
     public function getAccountPayables($property_uuid){
         return Property::find($property_uuid)->accountpayables();

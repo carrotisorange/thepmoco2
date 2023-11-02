@@ -21,49 +21,37 @@
             @endforeach
         </x-form-select>
 
-        @error('unit_uuid')
-        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-        @enderror
+      <x-validation-error-component name='unit_uuid' />
     </div>
 
     <div class="mt-5 sm:mt-6">
         <x-label class="text-sm" for="price">Rent/night</x-label>
         <x-form-input type="number" id="price" wire:model="price" readonly />
-        @error('price')
-        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-        @enderror
+       <x-validation-error-component name='price' />
     </div>
 
     <div class="mt-5 sm:mt-6">
         <x-label class="text-sm" for="movein_at">Check-in</x-label>
         <x-form-input type="date" wire:model="movein_at" />
-        @error('movein_at')
-        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-        @enderror
+       <x-validation-error-component name='movein_at' />
     </div>
 
     <div class="mt-5 sm:mt-6">
         <x-label class="text-sm" for="arrival_time">Expected Arrival time</x-label>
         <x-form-input type="time" wire:model="arrival_time" />
-        @error('arrival_time')
-        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-        @enderror
+       <x-validation-error-component name='arrival_time' />
     </div>
 
     <div class="mt-5 sm:mt-6">
         <x-label class="text-sm" for="moveout_at">Check-out</x-label>
         <x-form-input type="date" wire:model="moveout_at" />
-        @error('moveout_at')
-        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-        @enderror
+       <x-validation-error-component name='moveout_at' />
     </div>
 
     <div class="mt-5 sm:mt-6">
         <x-label class="text-sm" for="departure_time">Expected Departure time</x-label>
         <x-form-input type="time" wire:model="departure_time" />
-        @error('departure_time')
-        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-        @enderror
+        <x-validation-error-component name='departure_time' />
     </div>
 
     <div class="mt-5 sm:mt-6">
@@ -89,89 +77,67 @@
 
         </x-form-select>
 
-        @error('status')
-        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-        @enderror
+      <x-validation-error-component name='status' />
     </div>
 
     <div class="mt-5 sm:mt-6">
         <x-label class="text-sm" for="no_of_guests">No of guests</x-label>
         <x-form-input type="number" wire:model="no_of_guests" min="0" />
-        @error('no_of_guests')
-        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-        @enderror
+       <x-validation-error-component name='no_of_guests' />
     </div>
 
     <div class="mt-5 sm:mt-6">
         <x-label class="text-sm" for="no_of_children">No of children</x-label>
         <x-form-input type="number" wire:model="no_of_children" min="0" />
-        @error('no_of_children')
-        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-        @enderror
+      <x-validation-error-component name='no_of_children' />
     </div>
 
     <div class="mt-5 sm:mt-6">
         <x-label class="text-sm" for="no_of_senior_citizens">No of senior citizens</x-label>
         <x-form-input type="number" wire:model="no_of_senior_citizens" min="0" />
-        @error('no_of_senior_citizens')
-        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-        @enderror
+      <x-validation-error-component name='no_of_senior_citizens' />
     </div>
 
     <div class="mt-5 sm:mt-6">
         <x-label class="text-sm" for="no_of_pwd">No of companions</x-label>
         <x-form-input type="number" wire:model="no_of_companions" min="0" />
-        @error('no_of_companions')
-        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-        @enderror
+      <x-validation-error-component name='no_of_companions' />
     </div>
 
     <div class="mt-5 sm:mt-6">
         <x-label class="text-sm" for="no_of_pwd">No of pwd</x-label>
         <x-form-input type="number" wire:model="no_of_pwd" min="0" />
-        @error('no_of_pwd')
-        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-        @enderror
+      <x-validation-error-component name='no_of_pwd' />
     </div>
 
     <div class="mt-5 sm:mt-6">
         <x-label class="text-sm" for="vehicle_details">Vehicle details</x-label>
         <x-form-input type="text" wire:model="vehicle_details" />
-        @error('vehicle_details')
-        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-        @enderror
+      <x-validation-error-component name='vehicle_details' />
     </div>
 
     <div class="mt-5 sm:mt-6">
         <x-label class="text-sm" for="plate_number">Plate number</x-label>
         <x-form-input type="text" wire:model="plate_number" />
-        @error('plate_number')
-        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-        @enderror
+       <x-validation-error-component name='plate_number' />
     </div>
 
     <div class="mt-5 sm:mt-6">
         <x-label class="text-sm" for="special_request">Special request</x-label>
         <x-form-input type="text" wire:model="special_request" />
-        @error('special_request')
-        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-        @enderror
+       <x-validation-error-component name='special_request' />
     </div>
 
     <div class="mt-5 sm:mt-6">
         <x-label class="text-sm" for="flight_itinerary">Flight itinerary</x-label>
         <x-form-input type="text" wire:model="flight_itinerary" />
-        @error('flight_itinerary')
-        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-        @enderror
+      <x-validation-error-component name='flight_itinerary' />
     </div>
 
     <div class="mt-5 sm:mt-6">
         <x-label class="text-sm" for="remarks">Remarks</x-label>
         <x-form-input type="text" wire:model="remarks" min="0" />
-        @error('remarks')
-        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-        @enderror
+      <x-validation-error-component name='remarks' />
     </div>
 
     <div class="mt-5 sm:mt-6">

@@ -16,9 +16,7 @@
                         </x-form-select>
                     </div>
 
-                    @error('mode_of_payment')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                 <x-validation-error-component name='mode_of_payment' />
 
                     @if($mode_of_payment === 'bank')
                     <div class="col-span-3">
@@ -26,9 +24,7 @@
                         <input type="text" form="edit-form" name="bank_name" wire:model="bank_name"
                             autocomplete="bank_name"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('bank_name')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                      <x-validation-error-component name='bank_name' />
                     </div>
 
                     <div class="col-span-3">
@@ -37,9 +33,7 @@
                         <input type="date" form="edit-form" name="date_deposited" wire:model="date_deposited"
                             autocomplete="date_deposited"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('date_deposited')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                      <x-validation-error-component name='date_deposited' />
                     </div>
                     @endif
 
@@ -51,9 +45,7 @@
                         <input type="text" form="edit-form" name="check_reference_no" wire:model="check_reference_no"
                             autocomplete="check_no"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('check_reference_no')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                       <x-validation-error-component name='check_reference_no' />
                     </div>
                     @endif
 

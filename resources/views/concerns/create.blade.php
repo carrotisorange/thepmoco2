@@ -18,8 +18,7 @@
                 <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
                     <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
 
-                        <div
-                            class="mb-10 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                        <div class="mb-10 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                             <!-- Selected row actions, only show when rows are selected. -->
                             <div class="absolute top-0 left-12 flex h-12 items-center space-x-3 bg-gray-50 sm:left-16">
 
@@ -39,9 +38,7 @@
                                                     <input wire:model="subject" type="text" value="{{ old('subject') }}"
                                                         class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-700  rounded-md">
                                                 </div>
-                                                @error('subject')
-                                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                                @enderror
+                                              <x-validation-error-component name='subject' />
                                             </div>
 
                                             <div class="sm:col-span-2">
@@ -58,9 +55,7 @@
                                                     </option>
                                                     @endforeach
                                                 </select>
-                                                @error('category_id')
-                                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                                @enderror
+                                             <x-validation-error-component name='category_id' />
                                             </div>
 
 
@@ -79,9 +74,7 @@
                                                     </option>
                                                     @endforeach
                                                 </select>
-                                                @error('unit_uuid')
-                                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                                @enderror
+                                              <x-validation-error-component name='unit_uuid' />
                                             </div>
 
 
@@ -95,9 +88,7 @@
                                                 <p class="mt-2 text-sm text-gray-500">Please share your concern in
                                                     detail.
                                                 </p>
-                                                @error('concern')
-                                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                                @enderror
+                                               <x-validation-error-component name='concern' />
                                             </div>
 
 

@@ -37,15 +37,7 @@
                             particular_id ? 'selected' : 'se' }}>{{ $item->particular }}</option>
                         @endforeach
                     </select>
-                    @error('particular_id')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-
-                    {{-- <span class="text-xs">Can't find your desired particular? Add one <a
-                            class="text-blue-500 text-xs text-decoration-line: underline" href="#/"
-                            data-modal-toggle="instructions-create-particular-modal">
-                            here
-                        </a>.</span> --}}
+                  <x-validation-error-component name='particular_id' />
                 </div>
 
                 <div class="mt-2 sm:mt-6">
@@ -53,9 +45,7 @@
                     <input type="date" id="start" wire:model="start"
                         class="bg-white block p-4 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Search for unit" >
-                    @error('start')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                  <x-validation-error-component name='start' />
                 </div>
 
                 <div class="mt-5 sm:mt-6">
@@ -63,9 +53,7 @@
                     <input type="date" id="end" wire:model="end"
                         class="bg-white block p-4 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Search for unit" >
-                    @error('end')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                  <x-validation-error-component name='end' />
                 </div>
 
                 @if($particular_id != 1)
@@ -74,9 +62,7 @@
                     <input type="number" step="0.001" id="bill" wire:model="bill"
                         class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="" >
-                    @error('bill')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                  <x-validation-error-component name='bill' />
                 </div>
                 @endif
 

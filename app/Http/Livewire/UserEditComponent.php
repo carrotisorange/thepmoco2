@@ -78,7 +78,7 @@ class UserEditComponent extends Component
     }
     public function render()
     {
-        $featureId = 19;
+        $featureId = 18;
 
         $userSubfeatures = Feature::where('id', $featureId)->pluck('subfeatures')->first();
 

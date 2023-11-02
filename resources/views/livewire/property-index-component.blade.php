@@ -99,8 +99,8 @@
                 Portfolio</x-button> --}}
 
 
-            {{-- <x-button onclick="window.location.href='/property/{{Str::random(8)}}/create'">New Property</x-button>
-            --}}
+            <x-button onclick="window.location.href='/property/{{Str::random(8)}}/create'">New Property</x-button>
+
 
 
         </div>

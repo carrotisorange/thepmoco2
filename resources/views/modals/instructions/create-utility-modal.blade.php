@@ -23,9 +23,7 @@
 
                     </x-form-select>
 
-                    @error('utility_type')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                 <x-validation-error-component name='utility_type' />
                 </div>
 
                 <div class="mt-5 sm:mt-6">
@@ -33,9 +31,7 @@
                     <input type="date" id="start_date" wire:model="start_date"
                         class="bg-white block p-4 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Search for unit">
-                    @error('start_date')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                  <x-validation-error-component name='start_date' />
                 </div>
 
                 <div class="mt-5 sm:mt-6">
@@ -43,9 +39,7 @@
                     <input type="date" id="end_date" wire:model="end_date"
                         class="bg-white block p-4 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Search for unit">
-                    @error('end_date')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                   <x-validation-error-component name='end_date' />
                 </div>
 
                 <div class="mt-5 sm:mt-6">
@@ -53,9 +47,7 @@
                     <input type="text" id="kwh" wire:model="kwh"
                         class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="">
-                    @error('kwh')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                  <x-validation-error-component name='kwh' />
                 </div>
 
                 <div class="mt-5 sm:mt-6">
@@ -63,9 +55,7 @@
                     <input type="text" id="min_charge" wire:model="min_charge"
                         class="bg-white block p-4 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="">
-                    @error('min_charge')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                  <x-validation-error-component name='min_charge' />
                 </div>
 
 

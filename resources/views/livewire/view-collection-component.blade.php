@@ -18,33 +18,6 @@
                 </div>
             </div>
             <form wire:submmit.prevent="closeView()">
-                {{-- <div class="mt-5 sm:mt-6">
-                    <label class="text-sm" for="tenant">Tenant</label>
-                    <input type="text" readonly value="{{ $contract->tenant->tenant }}"
-                        class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="" required>
-
-                </div> --}}
-
-                {{-- <div class="mt-5 sm:mt-6">
-                    <label class="text-sm" for="unit_uuid">Unit</label>
-                    <x-form-select id="unit_uuid" name="unit_uuid" wire:model="unit_uuid" class="">
-                        <option value="">Select one</option>
-                        @foreach ($units as $unit)
-                        <option value="{{ $unit->uuid }}" {{ $unit->uuid === $unit_uuid?
-                            'selected'
-                            : 'Select one' }}>
-                            {{ $unit->unit }} - {{ $unit->rent }}/mo
-
-                        </option>
-                        @endforeach
-                    </x-form-select>
-
-                    @error('unit_uuid')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
-                </div> --}}
-
                 <div class="mt-5 sm:mt-6">
                     @if($collection->tenant_uuid)
                     <label class="text-sm" for="start">Tenant</label>
@@ -81,10 +54,7 @@
                             e-wallet
                         </option>
                     </x-form-select>
-
-                    @error('status')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                    <x-validation-error-component name='status' />
                 </div>
 
 
@@ -95,9 +65,7 @@
                     <input type="date" id="date_deposited" wire:model="date_deposited"
                         class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="" required>
-                    @error('date_deposited')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                  <x-validation-error-component name='date_deposited' />
                 </div>
 
                 <div class="mt-5 sm:mt-6">
@@ -105,9 +73,7 @@
                     <input type="text" id="bank" wire:model="bank"
                         class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="" required>
-                    @error('bank')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                  <x-validation-error-component name='bank' />
                 </div>
                 @elseif($mode_of_payment === 'cheque')
                 <div class="mt-5 sm:mt-6">
@@ -115,9 +81,7 @@
                     <input type="text" id="cheque_no" wire:model="cheque_no"
                         class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="" required>
-                    @error('cheque_no')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                  <x-validation-error-component name='cheque_no' />
                 </div>
                 @endif
 
@@ -126,9 +90,7 @@
                     <input type="number" id="amount" wire:model="amount"
                         class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="" required>
-                    @error('amount')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                  <x-validation-error-component name='amount' />
                 </div>
 
 
@@ -137,21 +99,9 @@
                     <label class="text-sm" for="interaction_id">Interaction</label>
                     {{ App\Models\Collection::where('property_uuid',
                     $collection->property_uuid)->where('ar_no',$collection->ar_no)->get() }}
-                    {{-- <x-form-select id="interaction_id" name="interaction_id" wire:model="interaction_id" class="">
-                        <option value="">Select one</option>
-                        @foreach($interactions as $interaction)
-                        <option value="{{ $interaction->id }}" {{ $interaction->id===$interaction_id? 'selected' :
-                            'Select one' }}>
-                            {{ $interaction->interaction }}
-                        </option>
-                        @endforeach
 
 
-                    </x-form-select> --}}
-
-                    @error('interaction_id')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                  <x-validation-error-component name='interaction_id' />
                 </div>
 
                 <div class="mt-5 sm:mt-6">

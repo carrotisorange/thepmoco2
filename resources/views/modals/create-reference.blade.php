@@ -26,9 +26,7 @@
                     <x-form-input wire:model="reference" id="grid-first-name" type="text" name="reference"
                         value="{{ old('reference') }}" />
 
-                    @error('reference')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                   <x-validation-error-component name='reference' />
                 </div>
 
                 <div>
@@ -43,9 +41,7 @@
                             }}>{{ $relationship->relationship }}</option>
                         @endforeach
                     </x-form-select>
-                    @error('relationship_id')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                  <x-validation-error-component name='relationship_id' />
                 </div>
 
                 <div>
@@ -55,9 +51,7 @@
                     <x-form-input wire:model="email" id="grid-last-name" type="email" name="email"
                         value="{{ old('email') }}" />
 
-                    @error('email')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                   <x-validation-error-component name='email' />
                 </div>
 
                 <div>
@@ -67,9 +61,7 @@
                     <x-form-input wire:model="mobile_number" id="grid-last-name" type="text" name="mobile_number"
                         value="{{ old('mobile_number') }}" />
 
-                    @error('mobile_number')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                    <x-validation-error-component name='mobile_number' />
                 </div>
 
                 <div>

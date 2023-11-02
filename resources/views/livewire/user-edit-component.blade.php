@@ -37,33 +37,11 @@
                                 aria-controls="{{ $subfeature }}" aria-selected="false">{{ $subfeature }}</button>
                         </li>
                         @endforeach
-
-                        {{-- <li class="mr-2" role="presentation">
-                            <button
-                                class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                                id="properties-tab" data-tabs-target="#properties" type="button" role="tab"
-                                aria-controls="properties" aria-selected="false">Properties</button>
-                        </li>
-
-                        <li class="mr-2" role="presentation">
-                            <button
-                                class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                                id="sessions-tab" data-tabs-target="#sessions" type="button" role="tab"
-                                aria-controls="sessions" aria-selected="false">Sessions</button>
-                        </li>
-
-                        <li class="mr-2" role="presentation">
-                            <button
-                                class="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
-                                id="documents-tab" data-tabs-target="#documents" type="button" role="tab"
-                                aria-controls="documents" aria-selected="false">Property Documents</button>
-                        </li> --}}
-
                     </ul>
                 </div>
                 <div id="myTabContent" wire:ignore>
                     @foreach($userSubfeaturesArray as $subfeature)
-                    @if($subfeature === 'user')
+                    @if($subfeature == 'user')
                     <div class="p-4 purple rounded-lg dark:bg-gray-800" id="{{ $subfeature }}" role="tabpanel"
                         aria-labelledby="{{ $subfeature }}-tab">
                         <div>
@@ -73,27 +51,21 @@
                                         <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
                                         <input type="text" wire:model.lazy="name" autocomplete="name"
                                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                                        @error('name')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                       <x-validation-error-component name='name' />
                                     </div>
                                     <div class="col-span-6 sm:col-span-2">
                                         <label for="username"
                                             class="block text-sm font-medium text-gray-700">Username</label>
                                         <input type="text" wire:model.lazy="username" autocomplete="username"
                                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                                        @error('username')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                      <x-validation-error-component name='username' />
                                     </div>
 
                                     <div class="col-span-6 sm:col-span-2">
                                         <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                                         <input type="email" wire:model.lazy="email" autocomplete="email"
                                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                                        @error('email')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                     <x-validation-error-component name='email' />
                                     </div>
 
 
@@ -102,9 +74,7 @@
                                             Number</label>
                                         <input type="text" wire:model.lazy="mobile_number" autocomplete="mobile_number"
                                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                                        @error('mobile_number')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                       <x-validation-error-component name='mobile_number' />
                                     </div>
 
                                     <div class="col-span-2">
@@ -120,9 +90,7 @@
                                             </option>
                                         </select>
 
-                                        @error('gender')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                      <x-validation-error-component name='gender' />
                                     </div>
 
                                     @if($user_id == auth()->user()->id)
@@ -131,9 +99,7 @@
                                             class="block text-sm font-medium text-gray-700">Password</label>
                                         <input type="password" wire:model.lazy="password" autocomplete="password"
                                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                                        @error('password')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                      <x-validation-error-component name='password' />
                                     </div>
                                     @endif
 
@@ -150,10 +116,7 @@
                                                 'selected'}}>{{ $role->role }}</option>
                                             @endforeach
                                         </select>
-                                        {{-- @endif --}}
-                                        @error('role_id')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                      <x-validation-error-component name='role_id' />
                                     </div>
                                     @endcan
 
@@ -161,11 +124,10 @@
                             </form>
                         </div>
                         <div class="mt-5 flex justify-end">
-                            <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-                                href="/login">
-                                Cancel
-                            </a>
-
+                           <x-button onclick="window.location.href='/login'" class="bg-red-500">
+                               Cancel
+                            </x-button>
+                            &nbsp;
                             <x-button type="submit" wire:click="updateUser()">
                                 Update
                             </x-button>
@@ -179,12 +141,11 @@
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                                 <div
                                     class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                                    @if($subfeature === 'property')
+                                    @if($subfeature == 'property')
                                     @include('tables.properties')
                                     @elseif($subfeature === 'session')
                                     @include('tables.sessions')
                                     @elseif($subfeature === 'document')
-
                                     @endif
                                 </div>
                             </div>

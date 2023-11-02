@@ -3,6 +3,7 @@
         <tr>
             <x-td><b>Total</b></x-td>
             {{-- <x-td></x-td> --}}
+            {{-- <x-td></x-td> --}}
             <x-td></x-td>
             <x-td></x-td>
             <x-td></x-td>
@@ -23,6 +24,7 @@
 <thead class="">
         <tr>
             <x-th>#</x-th>
+            {{-- <x-th>OR #  </x-th> --}}
             <x-th>AR #</x-th>
             <x-th>BILL #</x-th>
             <x-th> BILL TO</x-th>
@@ -41,7 +43,7 @@
         @foreach($collections as $index => $collection)
         <tr>
             <x-td><b>{{ $index+1 }}</b></x-td>
-
+            {{-- <x-td><x-table-input wire:model="collections.{{ $index }}.or_no" wire:change="updateOrNo({{ $collection->id }})" type="number" min="0000"/></x-td> --}}
             <x-td>{{ $collection->ar_no }}</x-td>
             <x-td>
                 <?php $bill_nos = App\Models\Collection::where('property_uuid', $collection->property_uuid)->posted()->where('ar_no', $collection->ar_no)->get();?>

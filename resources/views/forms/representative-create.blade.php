@@ -16,9 +16,7 @@
                                 }}>{{ $relationship->relationship }}</option>
                             @endforeach
                         </select>
-                        @error('relationship_id')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                     <x-validation-error-component name='relationship_id' />
                     </div>
 
                     @if($relationship_id)
@@ -26,9 +24,7 @@
                         <label for="representative" class="block text-sm font-medium text-gray-700">Full Name</label>
                         <input type="text" wire:model.lazy="representative"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('representative')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                      <x-validation-error-component name='representative' />
                     </div>
 
 
@@ -37,18 +33,14 @@
                         <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                         <input type="text" wire:model.lazy="email"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('email')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                        <x-validation-error-component name='email' />
                     </div>
 
                     <div class="col-span-2">
                         <label for="mobile_number" class="block text-sm font-medium text-gray-700">Mobile</label>
                         <input type="text" wire:model.lazy="mobile_number"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('mobile_number')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                        <x-validation-error-component name='mobile_number' />
                     </div>
 
                     <div class="col-span-6">

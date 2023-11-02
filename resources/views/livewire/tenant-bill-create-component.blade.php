@@ -6,14 +6,6 @@
             <nav class="mt-5 border-b flex col-start-1" aria-label="Breadcrumb">
                 <ol role="list" class="mx-auto flex w-full max-w-screen-xl space-x-4 px-4 sm:px-6">
 
-                    {{-- <li class="flex">
-                        <div class="flex items-center">
-                            <button
-                                onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/tenant'"
-                                class="text-lg font-medium text-gray-500 hover:text-gray-700" aria-current="page">
-                                Tenants</button>
-                        </div>
-                    </li> --}}
 
                     <li class="flex">
                         <div class="flex items-center">
@@ -29,20 +21,6 @@
                         </div>
                     </li>
 
-                    {{-- <li class="flex">
-                        <div class="flex items-center">
-                            <svg class="h-full w-6 flex-shrink-0 text-gray-200" viewBox="0 0 24 44"
-                                preserveAspectRatio="none" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
-                                aria-hidden="true">
-                                <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
-                            </svg>
-                            <button
-                                onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant->uuid }}/bills'"
-                                class="ml-4 text-lg font-bold text-gray-700 hover:text-gray-700" aria-current="page">
-                                Bills</button>
-                        </div>
-
-                    </li> --}}
                 </ol>
             </nav>
 
@@ -60,8 +38,7 @@
                         '!=', 'paid')->count() }})</a></x-button>
                     @endif
 
-
-                    <x-button data-modal-toggle="instructions-create-tenant-bill-modal">
+                    <x-button data-modal-toggle="create-bill-modal">
                         Create Bill</a></x-button>
 
                     <x-button data-modal-toggle="create-particular-modal">
@@ -72,8 +49,6 @@
 
         </div>
     </div>
-    {{-- Reference # : <b> {{ $owner->bill_reference_no }}</b>, Security Deposit: <b> {{
-        number_format(App\Models\Owner::find($owner->uuid)->wallets()->sum('amount'), 2) }}</b> --}}
 
     <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
         <div class="sm:col-span-3">
@@ -149,7 +124,7 @@
             </div>
         </div>
     </div>
-    @include('modals.instructions.create-tenant-bill-modal')
+    @include('modals.create-bill-modal')
     @include('modals.export-tenant-bill')
     @include('modals.send-tenant-bill')
     @include('modals.instructions.create-particular-modal')

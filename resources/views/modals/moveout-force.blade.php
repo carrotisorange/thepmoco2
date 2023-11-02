@@ -14,9 +14,7 @@
 
                     <x-form-textarea wire:model="remarks" />
 
-                    @error('remarks')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                  <x-validation-error-component name='remarks' />
 
                 </div>
             </div>

@@ -123,9 +123,7 @@
                                 </div>
                             </div>
 
-                            @error('reason_for_rejection')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                         <x-validation-error-component name='reason_for_rejection' />
 
 
                         </div>
@@ -140,3 +138,4 @@
             </div>
         </div>
     </div>
+</div>

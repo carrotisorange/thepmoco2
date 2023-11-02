@@ -19,9 +19,7 @@
                     @endforeach
                 </x-form-select>
 
-                @error('particular_id')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+             <x-validation-error-component name='particular_id' />
             </div>
 
             <div class="w-full md:w-1/4 px-3">
@@ -31,9 +29,7 @@
                 <x-form-input wire:model="bill" id="grid-last-name" type="number" value="{{ old('bill') }}" name="bill"
                     min="0" />
 
-                @error('bill')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+             <x-validation-error-component name='bill' />
             </div>
 
             <div class="w-full md:w-1/4 px-3">
@@ -43,9 +39,7 @@
                 <x-form-input wire:model="start" id="grid-last-name" type="date" value="{{ old('start',$start) }}"
                     name="start" />
 
-                @error('start')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+      <x-validation-error-component name='start' />
             </div>
             <div class="w-full md:w-1/4 px-3">
                 <x-label for="end">
@@ -54,9 +48,7 @@
                 <x-form-input wire:model="end" id="grid-last-name" type="date" value="{{ old('end',$end) }}"
                     name="end" />
 
-                @error('end')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+               <x-validation-error-component name='end' />
             </div>
 
 

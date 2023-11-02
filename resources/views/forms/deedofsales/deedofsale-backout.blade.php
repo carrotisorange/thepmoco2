@@ -7,9 +7,7 @@
                     <label for="backout_at" class="block text-sm font-medium text-gray-700">Date of Backout</label>
                     <input type="date" wire:model="backout_at"
                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                    @error('backout_at')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                   <x-validation-error-component name='backout_at' />
                 </div>
 
                 <div class="sm:col-span-3">
@@ -28,9 +26,7 @@
                             </option>
                         </x-form-select>
 
-                        @error('backout_reason')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                       <x-validation-error-component name='backout_reason' />
                     </div>
 
                 </div>

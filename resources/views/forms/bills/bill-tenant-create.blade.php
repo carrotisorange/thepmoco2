@@ -19,9 +19,7 @@
                     @endforeach
                 </x-form-select>
 
-                @error('particular_id')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+              <x-validation-error-component name='particular_id' />
             </div>
         </div>
 
@@ -46,9 +44,7 @@
                     @endforeach
                 </x-form-select>
 
-                @error('unit_uuid')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+             <x-validation-error-component name='unit_uuid' />
             </div>
         </div>
 
@@ -62,9 +58,7 @@
                 <x-form-input id="grid-last-name" type="date"
                     value="{{ old('start', Carbon\Carbon::now()->startOfMonth()->format('Y-m-d')) }}" name="start" />
 
-                @error('start')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+             <x-validation-error-component name='start' />
             </div>
             <div class="w-full md:w-1/2 px-3">
                 <x-label for="end">
@@ -74,9 +68,7 @@
                     value="{{ old('end', Carbon\Carbon::now()->addMonth()->endOfMonth()->format('Y-m-d')) }}"
                     name="end" />
 
-                @error('end')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+              <x-validation-error-component name='end' />
             </div>
 
 
@@ -91,9 +83,7 @@
                 <x-form-input id="grid-last-name" type="number" step="0.001" value="{{ old('bill') }}" name="bill"
                     min="0" />
 
-                @error('bill')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+              <x-validation-error-component name='bill' />
             </div>
         </div>
         <div class="mt-5">

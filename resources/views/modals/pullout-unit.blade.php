@@ -28,9 +28,7 @@
                         <x-form-input id="updated_at" type="date" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}"
                             name="updated_at" />
 
-                        @error('updated_at')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                     <x-validation-error-component name='updated_at' />
                     </div>
                 </div>
 
@@ -43,9 +41,7 @@
 appearance-none
 dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600
 peer" placeholder="Contract has expired." name="unenrollment_reason"></textarea>
-                        @error('unenrollment_reason')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                      <x-validation-error-component name='unenrollment_reason' />
                     </div>
                 </div>
                 <div class="mt-5">

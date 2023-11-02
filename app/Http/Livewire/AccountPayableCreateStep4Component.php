@@ -60,7 +60,9 @@ class AccountPayableCreateStep4Component extends Component
                 'status' => 'liquidation approved by manager',
             ]);
 
-            return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-7')->with('success', 'Changes Saved!');
+            return
+            redirect('/property/'.Session::get('property_uuid').'/rfp/'.$this->accountpayable->id.'/step-7')->with('success',
+            'Changes Saved!');
 
 
         }else{
@@ -69,7 +71,9 @@ class AccountPayableCreateStep4Component extends Component
               'status' => 'released',
               ]);
 
-            return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-4')->with('success', 'Changes Saved!');
+            return
+            redirect('/property/'.Session::get('property_uuid').'/rfp/'.$this->accountpayable->id.'/step-4')->with('success',
+            'Changes Saved!');
 
         }
 
@@ -79,15 +83,6 @@ class AccountPayableCreateStep4Component extends Component
     public function removeAttachment(){
         $this->attachment = '';
     }
-
-    // public function markAsReleased(){
-    //     AccountPayable::where('id', $this->accountpayable->id)
-    //     ->update([
-    //         'status' => 'released'
-    //     ]);
-
-    //     return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-4')->with('success', 'Changes Saved!');
-    // }
 
     public function render()
     {

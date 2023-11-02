@@ -7,26 +7,20 @@
                         <label for="unit" class="block text-sm font-medium text-gray-700">Unit</label>
                         <input type="text" wire:model.lazy="unit" autocomplete="unit" readonly
                             class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('unit')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                     <x-validation-error-component name='unit' />
                     </div>
                     <div class="col-span-1">
                         <label for="start" class="block text-sm font-medium text-gray-700">Start of the contract</label>
                         <input type="date" wire:model.lazy="start" autocomplete="start"
                             class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('start')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                      <x-validation-error-component name='start' />
                     </div>
 
                     <div class="col-span-1">
                         <label for="end" class="block text-sm font-medium text-gray-700">End of the contract</label>
                         <input type="date" wire:model.lazy="end" autocomplete="end"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('end')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                      <x-validation-error-component name='end' />
 
                     </div>
 
@@ -34,18 +28,14 @@
                         <label for="rent" class="block text-sm font-medium text-gray-700">Rent/month/tenant</label>
                         <input type="number" wire:model.lazy="rent" autocomplete="rent" step="0.001"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('rent')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                       <x-validation-error-component name='rent' />
                     </div>
 
                     <div class="col-span-1">
                         <label for="discount" class="block text-sm font-medium text-gray-700">Discount </label>
                         <input type="number" wire:model.lazy="discount" autocomplete="discount" step="0.001"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('discount')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                      <x-validation-error-component name='discount' />
                     </div>
 
                     <div class="col-span-2">
@@ -83,20 +73,6 @@
                         @endif
                         @enderror
                     </div>
-
-                    {{-- @if($contract_details->tenant->email)
-                    <div class="mt-3 col-span-2">
-                        <div class="form-check">
-                            <input wire:model="sendContractToTenant"
-                                class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                                type="checkbox" value="{{ old('sendContractToTenant'), $sendContractToTenant }}"
-                                id="flexCheckChecked">
-                            <label class="form-check-label inline-block text-gray-800" for="flexCheckChecked">
-                                Send contract details to tenant.
-                            </label>
-                        </div>
-                    </div>
-                    @endif --}}
 
                 </div>
             </div>

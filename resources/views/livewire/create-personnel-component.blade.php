@@ -14,9 +14,7 @@
                 @endforeach
 
             </x-form-select>
-            @error('role_id')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
+           <x-validation-error-component name='role_id' />
         </div>
 
         <div class="mt-5 sm:mt-6">
@@ -24,9 +22,7 @@
             <input type="email" id="email" wire:model="email"
                 class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="" required>
-            @error('email')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
+          <x-validation-error-component name='email' />
             <small class="text-indigo-600">
                 * The personnel will receive an email containing the credentials for accessing your property.
             </small>
@@ -37,9 +33,7 @@
             <input type="text" id="mobile_number" wire:model="mobile_number"
                 class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="" required>
-            @error('mobile_number')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
+           <x-validation-error-component name='mobile_number' />
         </div>
 
         <div class="mt-5 sm:mt-6">

@@ -12,9 +12,7 @@
                 }}>{{ $particular->particular }}</option>
             @endforeach
         </select>
-        @error('particular_id')
-        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-        @enderror
+       <x-validation-error-component name='particular_id' />
 
     </div>
 
@@ -29,9 +27,7 @@
             <x-form-input wire:model="start" type="date"
                 value="{{ old('start', Carbon\Carbon::now()->startOfMonth()->format('Y-m-d')) }}" name="start" />
 
-            @error('start')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
+        <x-validation-error-component name='start' />
         </div>
         <div class="w-full md:w-1/2 px-3">
             <x-label for="end">
@@ -40,9 +36,7 @@
             <x-form-input wire:model="end" type="date"
                 value="{{ old('end', Carbon\Carbon::now()->addMonth()->endOfMonth()->format('Y-m-d')) }}" name="end" />
 
-            @error('end')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
+         <x-validation-error-component name='end' />
         </div>
     </div>
 
@@ -54,9 +48,7 @@
             </x-label>
             <x-form-input wire:model="bill" type="number" step="0.001" value="{{ old('bill') }}" min="0" />
 
-            @error('bill')
-            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-            @enderror
+          <x-validation-error-component name='bill' />
         </div>
     </div>
     @endif

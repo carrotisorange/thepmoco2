@@ -1,81 +1,66 @@
 <div>
-
     <div class=" mt-5 px-4 sm:px-6 lg:px-8">
         {{-- start-step-1-form --}}
         <form class="space-y-6" wire:submit.prevent="submitForm()">
 
             <div class="md:grid md:grid-cols-6 md:gap-6">
-                <div class="sm:col-span-7">
-                    <x-label for="" ></x-label>
-                </div>
+
 
                 {{-- request for purchase --}}
                 <div class="sm:col-span-6">
-                    <label for="request_for" >Request for</label>
+                    <x-label for="request_for" >Request for</x-label>
                     <x-form-input type="text" wire:model="request_for" name="request_for" readonly />
 
-                    @error('request_for')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                   <x-validation-error-component name='request_for' />
                 </div>
 
                 {{-- creation date --}}
                 <div class="sm:col-span-3">
                     <x-label for="created_at" >Request Date</x-label>
                     <x-form-input type="date" wire:model="created_at" name="created_at" />
-                    @error('created_at')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                   <x-validation-error-component name='created_at' />
                 </div>
 
                 <div class="sm:col-span-3">
                     <x-label for="due_date" >Due Date</x-label>
                     <x-form-input type="date" wire:model="due_date" name="due_date" />
-                    @error('due_date')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                   <x-validation-error-component name='due_date' />
                 </div>
 
                 {{-- requester's name --}}
                 <div class="sm:col-span-2">
                     <x-label for="requester" >Requester</x-label>
-                    <x-form-select id="requester_id" name="requester_id" wire:model="requester_id" class="">
+                    <x-form-select id="requester_id" name="requester_id" wire:model="requester_id" >
                         <option value="{{ $requester_id }}">{{ App\Models\User::find($requester_id)->name }}</option>
                     </x-form-select>
-                    @error('requester_id')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                 <x-validation-error-component name='requester_id' />
                 </div>
 
                 <div class="sm:col-span-2">
                     <x-label for="first_approver" >1st Approver
                         (Manager)</x-label>
-                    <x-form-select id="first_approver" name="first_approver" wire:model="first_approver" class="">
+                    <x-form-select id="first_approver" name="first_approver" wire:model="first_approver" >
                         <option value="">Select one</option>
                         @foreach ($managers as $manager)
                         <option value="{{ $manager->user_id }}">{{ $manager->user->name }}</option>
                         @endforeach
 
                     </x-form-select>
-                    @error('first_approver')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                  <x-validation-error-component name='first_approver' />
 
                 </div>
 
                 <div class="sm:col-span-2">
                     <x-label for="requester" >2nd Approver (Account
                         Payable)</x-label>
-                    <x-form-select id="second_approver" name="second_approver" wire:model="second_approver" class="">
+                    <x-form-select id="second_approver" name="second_approver" wire:model="second_approver" >
                         <option value="">Select one</option>
                         @foreach ($accountpayables as $accountpayable)
                         <option value="{{ $accountpayable->user_id }}">{{ $accountpayable->user->name }}</option>
                         @endforeach
 
                     </x-form-select>
-                    @error('second_approver')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                   <x-validation-error-component name='second_approver' />
                 </div>
 
 
@@ -97,7 +82,7 @@
                     <div class="mb-5 mt-2 relative overflow-auto ring-opacity-5 md:rounded-lg">
                             @if($particulars->count())
                             <table class="w-full text-sm text-left">
-                                <thead class="">
+                                <thead >
                                     <tr>
                                         <x-th>#</x-th>
                                         <x-th>UNIT</x-th>
@@ -216,25 +201,19 @@
                 <div class="sm:col-span-2">
                     <x-label for="bank" >Bank</x-label>
                     <x-form-input type="text" wire:model="bank" />
-                    @error('bank')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                   <x-validation-error-component name='bank' />
                 </div>
 
                 <div class="sm:col-span-2">
                     <x-label for="bank_name" >Bank Name</x-label>
                     <x-form-input type="text" wire:model="bank_name" />
-                    @error('bank_name')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                   <x-validation-error-component name='bank_name' />
                 </div>
 
                 <div class="sm:col-span-2">
                     <x-label for="bank_account" >Bank Account</x-label>
                     <x-form-input type="text" wire:model="bank_account" />
-                    @error('bank_account')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                   <x-validation-error-component name='bank_account' />
                 </div>
 
 
@@ -269,9 +248,7 @@
 
                             </div>
 
-                            @error('quotation1')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                         <x-validation-error-component name='quotation1' />
                             @if ($quotation1)
                             <p class="text-green-500 text-xs mt-2">File has been attached. <i
                                     class="fa-solid fa-circle-check"></i>
@@ -306,9 +283,7 @@
 
                             </div>
 
-                            @error('quotation2')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                          <x-validation-error-component name='quotation2' />
                             @if ($quotation2)
                             <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i>
                             </p>
@@ -342,9 +317,7 @@
 
                             </div>
 
-                            @error('quotation3')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                         <x-validation-error-component name='quotation3' />
                             @if ($quotation3)
                             <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i>
                             </p>
@@ -374,25 +347,19 @@
                         @endif
 
                     </x-form-select>
-                    @error('selected_quotation')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                 <x-validation-error-component name='selected_quotation' />
                 </div>
 
                 <div class="sm:col-span-3">
                     <x-label for="vendor">Name of the vendor</x-label>
                     <x-form-input type="text" wire:model="vendor" />
-                    @error('vendor')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                  <x-validation-error-component name='vendor' />
                 </div>
 
                 <div class="sm:col-span-3">
                     <x-label for="delivery-date">Delivery Date</x-label>
                     <x-form-input type="date" wire:model="delivery_at" />
-                    @error('delivery_at')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                   <x-validation-error-component name='delivery_at' />
                 </div>
 
                 <div class="col-start-6 flex items-center justify-end">

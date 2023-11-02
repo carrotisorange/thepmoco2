@@ -32,7 +32,7 @@
 
                     <form wire:submit.prevent="sendRemittanceToOwner">
                         <x-button type="submit">Send to
-                            Email</x-button>
+                            Owner</x-button>
 
                 </div>
 

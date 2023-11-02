@@ -10,18 +10,14 @@
                             Name</label>
                         <input type="text" wire:model.lazy="guest" autocomplete="guest"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('guest')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                      <x-validation-error-component name='guest' />
                     </div>
 
                     <div class="col-span-6 sm:col-span-3">
                         <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                         <input type="email" wire:model.lazy="email" autocomplete="email"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('email')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                      <x-validation-error-component name='email' />
                     </div>
 
                     <div class="col-span-6 sm:col-span-3">
@@ -29,27 +25,21 @@
                         <input type="text" wire:model.lazy="mobile_number" autocomplete="mobile_number"
                             value="{{ old('mobile_number') }}"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('mobile_number')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                       <x-validation-error-component name='mobile_number' />
                     </div>
 
                     <div class="col-span-3">
                         <label for="movein_at" class="block text-sm font-medium text-gray-700">Checkin Date </label>
                         <input type="date" wire:model.lazy="movein_at" autocomplete="movein_at"
                             class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('movein_at')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                       <x-validation-error-component name='movein_at' />
                     </div>
 
                     <div class="col-span-3">
                         <label for="moveout_at" class="block text-sm font-medium text-gray-700">Checkout Date</label>
                         <input type="date" wire:model.lazy="moveout_at" autocomplete="moveout_at"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('moveout_at')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                       <x-validation-error-component name='moveout_at' />
 
                     </div>
 
@@ -63,18 +53,14 @@
                             class="block text-sm font-medium text-gray-700">Brand/Model/Year</label>
                         <input type="text" wire:model.lazy="vehicle_details" autocomplete="vehicle_details"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('vehicle_details')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                       <x-validation-error-component name='vehicle_details' />
 
                     </div>
                     <div class="col-span-3">
                         <label for="plate_number" class="block text-sm font-medium text-gray-700">Plate Number</label>
                         <input type="text" wire:model.lazy="plate_number" autocomplete="plate_number"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('plate_number')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                       <x-validation-error-component name='plate_number' />
 
                     </div>
                 </div>
@@ -85,7 +71,7 @@
                     Cancel
                 </x-button>
 
-                <x-button type="submit">  
+                <x-button type="submit">
                      Finish
                 </x-button>
 

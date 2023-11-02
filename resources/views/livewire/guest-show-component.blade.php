@@ -115,11 +115,11 @@
                                         Pay Bills
                                     </x-button>
 
-                                    <x-button data-modal-toggle="create-bill-modal">
+                                    {{-- <x-button data-modal-toggle="create-bill-modal">
                                         New Bill</x-button>
 
                                     <x-button data-modal-toggle="create-particular-modal">
-                                        Add Particular</x-button>
+                                        Add Particular</x-button> --}}
                                     @include('tables.bills')
                                     @else
                                     <div class=" mt-10 text-center mb-10">

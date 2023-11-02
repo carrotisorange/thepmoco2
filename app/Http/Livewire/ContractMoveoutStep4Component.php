@@ -16,16 +16,16 @@ class ContractMoveoutStep4Component extends Component
 
     public function exportMoveoutClearanceForm(){
 
-        
-       
-        return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-3/export')->with('success', 'Changes Saved!');        
-    
+
+
+        return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-3/export')->with('success', 'Changes Saved!');
+
     }
 
     public function submitForm(){
-        
-        
-        
+
+
+
          Contract::where('uuid', $this->contract->uuid)
          ->update([
          'status' => 'inactive'
@@ -39,16 +39,16 @@ class ContractMoveoutStep4Component extends Component
                 'status' => 'inactive'
             ]);
          }
-         
+
          $deposits = Tenant::find($this->contract->tenant_uuid)->bills->whereIn('particular_id',[3,4] )->whereIn('status', ['unpaid', 'partially_paid'])->count();
 
          if($deposits){
-            return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->request_for.'/step-1')->with('success', 'Changes Saved!');     
+            return redirect('/property/'.Session::get('property_uuid').'/rfp/'.$this->request_for.'/step-1')->with('success', 'Changes Saved!');
          }else{
-            return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->contract->tenant_uuid.'/contracts')->with('success', 'Changes Saved!');     
+            return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->contract->tenant_uuid.'/contracts')->with('success', 'Changes Saved!');
          }
 
-           
+
     }
 
     public function render()

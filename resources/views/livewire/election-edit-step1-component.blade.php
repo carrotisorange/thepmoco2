@@ -4,18 +4,14 @@
             <div class="lg:col-span-1 mt-2 ml-5">
                 <x-label for="date_of_election">Date of Election</x-label>
                 <x-form-input wire:model='date_of_election' type="date" name="date_of_election" />
-                @error('date_of_election')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+               <x-validation-error-component name='date_of_election' />
             </div>
 
 
             <div class="lg:col-span-1 mt-2 ml-5">
                 <x-label for="time_limit">Time Limit (In hours)</x-label>
                 <x-form-input wire:model="time_limit" type="number" min="1" name="time_limit" />
-                @error('time_limit')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+           <x-validation-error-component name='time_limit' />
             </div>
 
             <div class="lg:col-span-1 mt-2 ml-5">
@@ -23,9 +19,7 @@
                         class="font-light text-gray-300">requirement to be a voter</span></x-label></label>
                 <x-form-input wire:model="number_of_months_behind_dues" type="number" min="1"
                     name="number_of_months_behind_dues" />
-                @error('number_of_months_behind_dues')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+               <x-validation-error-component name='number_of_months_behind_dues' />
             </div>
 
             <div class="lg:col-span-1 mt-2 ml-5">
@@ -35,17 +29,13 @@
                     <option value="1">yes</option>
                     <option value="0">no</option>
                 </x-form-select>
-                @error('is_proxy_voting_allowed')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+              <x-validation-error-component name='is_proxy_voting_allowed' />
             </div>
 
             <div class="lg:col-span-2 mt-2 ml-5">
                 <x-label for="other_policies">Other Policies </x-label>
                 <x-form-input wire:model="other_policies" name="text" name="other_policies" />
-                @error('other_policies')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+                    <x-validation-error-component name='other_policies' />
             </div>
 
         </div>

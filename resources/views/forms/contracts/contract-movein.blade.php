@@ -7,18 +7,14 @@
                         <label for="start" class="block text-sm font-medium text-gray-700">Start of the contract</label>
                         <input type="date" wire:model.lazy="start" autocomplete="start"
                             class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('start')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                     <x-validation-error-component name='start' />
                     </div>
 
                     <div class="col-span-1">
                         <label for="end" class="block text-sm font-medium text-gray-700">End of the contract</label>
                         <input type="date" wire:model.lazy="end" autocomplete="end"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('end')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                     <x-validation-error-component name='end' />
 
                     </div>
 
@@ -26,18 +22,14 @@
                         <label for="rent" class="block text-sm font-medium text-gray-700">Rent/month/tenant</label>
                         <input type="number" wire:model.lazy="rent" autocomplete="rent" readonly step="0.001"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('rent')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                     <x-validation-error-component name='rent' />
                     </div>
 
                     <div class="col-span-1">
                         <label for="discount" class="block text-sm font-medium text-gray-700">Discount</label>
                         <input type="number" wire:model.lazy="discount" autocomplete="discount" readonly step="0.001"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('discount')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                      <x-validation-error-component name='discount' />
                     </div>
 
                     <div class="col-span-2">
@@ -52,9 +44,7 @@
                                 }}>{{ $interaction->interaction }}</option>
                             @endforeach
                         </select>
-                        @error('interaction_id')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                       <x-validation-error-component name='interaction_id' />
                     </div>
 
                     @if($this->interaction_id == 10)
@@ -63,9 +53,7 @@
                                 class="text-xs"></label>
                         <input type="text" wire:model.lazy="referral" autocomplete="referral"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                        @error('referral')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                     <x-validation-error-component name='referral' />
                     </div>
                     @endif
 

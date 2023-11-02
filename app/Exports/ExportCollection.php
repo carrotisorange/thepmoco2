@@ -1,28 +1,21 @@
 <?php
 
 namespace App\Exports;
-
 use DB;
-
 use Maatwebsite\Excel\Concerns\FromCollection;
-
 use Maatwebsite\Excel\Concerns\WithHeadings;
-
 use App\Models\Collection;
-
 use Session;
-
 
 class ExportCollection implements FromCollection, WithHeadings {
 
    public function headings(): array {
 
-
     return [
 
         "Date",
 
-        // "AR #",
+        "AR #",
 
         "Bill #",
 
@@ -30,7 +23,7 @@ class ExportCollection implements FromCollection, WithHeadings {
 
         "Tenant",
 
-        // "Owner",
+        "Owner",
 
         "Guest",
 
@@ -49,11 +42,11 @@ class ExportCollection implements FromCollection, WithHeadings {
       $collections = Collection::
       select(
         DB::raw('CAST(collections.created_at AS DATE)'),
-        // 'ar_no',
+        'ar_no',
         'bill_no',
         'unit',
          'tenant',
-        // 'owner',
+        'owner',
         'guest',
         'particular',
         DB::raw('concat(start," - ",end)'),

@@ -12,9 +12,7 @@
                 <input type="text" wire:model="name" name="name" id="name"
                     class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="" required>
-                @error('name')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+             <x-validation-error-component name='name' />
             </div>
 
             <div class="mt-5 sm:mt-6">
@@ -22,9 +20,7 @@
                 <input type="email" wire:model="email" name="email" id="email"
                     class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="" required>
-                @error('email')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+              <x-validation-error-component name='email' />
             </div>
 
             <div class="mt-5 sm:mt-6">
@@ -38,9 +34,7 @@
                     @endforeach
                 </x-form-select>
 
-                @error('role_id')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+              <x-validation-error-component name='role_id' />
             </div>
 
             <div class="mt-5 sm:mt-6">
@@ -54,9 +48,7 @@
 
                 </x-form-select>
 
-                @error('is_approved')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+             <x-validation-error-component name='is_approved' />
             </div>
             <!-- NEW RESTRICTIONS -->
             <div class="mt-5 sm:mt-6">

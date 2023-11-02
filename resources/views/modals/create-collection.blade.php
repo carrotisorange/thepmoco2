@@ -18,8 +18,7 @@
             <form class="px-12 pb-4 space-y-6 lg:px-8 sm:pb-6 xl:pb-8"
                 action="/tenant/{{ $tenant->uuid }}/collection/store">
                 @csrf
-                {{--
-                <h3 class="text-xl font-medium text-gray-900 dark:text-white">What do you want to see?</h3> --}}
+             
                 <div>
                     <div class="mt-5 flex flex-wrap -mx-3 mb-6">
 
@@ -33,9 +32,7 @@
                                 <option value="cheque" {{ old('form')=='cheque' ? 'selected' : 'Select one' }}>cheque</option>
                             </x-form-select>
 
-                            @error('form')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                          <x-validation-error-component name='form' />
                         </div>
 
                         <div class="w-full md:w-1/2 px-3">
@@ -45,9 +42,7 @@
                             <x-form-input wire:model="collection" id="grid-last-name" type="number" value="{{ old('collection') }}"
                                 name="collection" min="0" />
 
-                            @error('collection')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                          <x-validation-error-component name='collection' />
                         </div>
                     </div>
                     <div class="mt-5">

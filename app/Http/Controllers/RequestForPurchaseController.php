@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Spatie\Browsershot\Browsershot;
 use Session;
 use App\Models\AccountPayableLiquidation;
+use App\Models\Feature;
 
 class RequestForPurchaseController extends Controller
 {
@@ -28,8 +29,6 @@ class RequestForPurchaseController extends Controller
     }
 
     public function store(Property $property, $request_for, $batch_no){
-
-        // $this->authorize('create_rfp');
 
         $generated_batch_no = auth()->user()->id.'-'.sprintf('%08d', AccountPayable::where('property_uuid',$property->uuid)->where('status', '!=', 'pending')->count()).'-'.$batch_no;
 
@@ -51,7 +50,7 @@ class RequestForPurchaseController extends Controller
                 'status' => 'pending'
         ]);
 
-        return redirect('/property/'.$property->uuid.'/accountpayable/'.$account_payable->id.'/step-1')->with('success', 'Changes Saved!');
+        return redirect('/property/'.$property->uuid.'/rfp/'.$account_payable->id.'/step-1')->with('success', 'Changes Saved!');
 
     }
 
@@ -84,102 +83,140 @@ class RequestForPurchaseController extends Controller
     }
 
       public function create_step_1(Property $property, AccountPayable $accountpayable){
-        //accessible only to the requestor
+
+        $featureId = 13;
+
+        $subfeatures = Feature::where('id', $featureId)->pluck('subfeatures')->first();
+
+        $subfeaturesArray = explode(",", $subfeatures);
+
         if($accountpayable->requester_id === auth()->user()->id){
-            if($accountpayable->status === 'pending' || $accountpayable->status === 'rejected by manager'){
+            if(strcmp($accountpayable->status,"pending") || strcmp($accountpayable->status,"rejected by manager")){
                 return view('accountpayables.create.step-1', [
                   'property' => $property,
-                  'accountpayable' => $accountpayable
+                  'accountpayable' => $accountpayable,
+                  'subfeaturesArray' => $subfeaturesArray
                 ]);
             }else{
                 return view('accountpayables.pending-approval-manager',[
-                    'accountpayable' => $accountpayable
+                    'accountpayable' => $accountpayable,
+                    'subfeaturesArray' => $subfeaturesArray
                 ]);
             }
         }else{
             return view('accountpayables.restricted-page',[
-                'accountpayable' => $accountpayable
+                'accountpayable' => $accountpayable,
+                'subfeaturesArray' => $subfeaturesArray
             ]);
         }
     }
 
     public function create_step_2(Property $property, AccountPayable $accountpayable){
-        //accessible only to the first approver
-            if($accountpayable->status === 'pending'){
+          $featureId = 13;
+
+          $subfeatures = Feature::where('id', $featureId)->pluck('subfeatures')->first();
+
+          $subfeaturesArray = explode(",", $subfeatures);
+
+            if(strcmp($accountpayable->status,"pending")){
                 if($accountpayable->approver_id === auth()->user()->id){
                      return view('accountpayables.create.step-2', [
                         'property' => $property,
-                        'accountpayable' => $accountpayable
+                        'accountpayable' => $accountpayable,
+                        'subfeaturesArray' => $subfeaturesArray
                      ]);
 
                 }else{
                      return view('accountpayables.pending-approval-manager',[
-                        'accountpayable' => $accountpayable
+                        'accountpayable' => $accountpayable,
+                        'subfeaturesArray' => $subfeaturesArray
                      ]);
                 }
-            }elseif($accountpayable->status === 'approved by manager'){
+            }elseif(strcmp($accountpayable->status,"approved by")){
                 return view('accountpayables.approved-page',[
-                    'accountpayable' => $accountpayable
+                    'accountpayable' => $accountpayable,
+                    'subfeaturesArray' => $subfeaturesArray
                 ]);
             }
 
             else{
                 return view('accountpayables.restricted-page',[
-                    'accountpayable' => $accountpayable
+                    'accountpayable' => $accountpayable,
+                    'subfeaturesArray' => $subfeaturesArray
                 ]);
             }
-        // }else{
-
-        // }
-
     }
 
     public function create_step_3(Property $property, AccountPayable $accountpayable){
-        //accessible only to the second approver
+
+          $featureId = 13;
+
+          $subfeatures = Feature::where('id', $featureId)->pluck('subfeatures')->first();
+
+          $subfeaturesArray = explode(",", $subfeatures);
+
          if($accountpayable->approver2_id === auth()->user()->id || Session::get('role_id') === 4){
-                if($accountpayable->status === 'approved by manager'){
+                if(strcmp($accountpayable->status,"approved by manager")){
                       return view('accountpayables.create.step-3', [
                       'property' => $property,
-                      'accountpayable' => $accountpayable
+                      'accountpayable' => $accountpayable,
+                        'subfeaturesArray' => $subfeaturesArray
                       ]);
                 }else{
                      return view('accountpayables.pending-approval-ap',[
-                     'accountpayable' => $accountpayable
+                     'accountpayable' => $accountpayable,
+                       'subfeaturesArray' => $subfeaturesArray
                      ]);
                 }
             }else{
                  return view('accountpayables.restricted-page',[
-                    'accountpayable' => $accountpayable
+                    'accountpayable' => $accountpayable,
+                      'subfeaturesArray' => $subfeaturesArray
                 ]);
             }
     }
 
     public function create_step_4(Property $property, AccountPayable $accountpayable){
-        //accessible only to ap
+
+          $featureId = 13;
+
+          $subfeatures = Feature::where('id', $featureId)->pluck('subfeatures')->first();
+
+          $subfeaturesArray = explode(",", $subfeatures);
+
          if(Session::get('role_id') === 4){
-                if($accountpayable->status === 'approved by ap'){
+                if(strcmp($accountpayable->status,"approved by ap")){
                      return view('accountpayables.create.step-4', [
                         'property' => $property,
-                        'accountpayable' => $accountpayable
+                        'accountpayable' => $accountpayable,
+                          'subfeaturesArray' => $subfeaturesArray
                     ]);
 
                 }else{
                     return view('accountpayables.pending-approval-ap',[
-                    'accountpayable' => $accountpayable
+                    'accountpayable' => $accountpayable,
+                      'subfeaturesArray' => $subfeaturesArray
                     ]);
                 }
             }else{
                 return view('accountpayables.restricted-page',[
-                 'accountpayable' => $accountpayable
+                 'accountpayable' => $accountpayable,
+                   'subfeaturesArray' => $subfeaturesArray
                 ]);
         }
     }
 
     public function create_step_5(Property $property, AccountPayable $accountpayable){
-        //accessible only to the requestor
+
+          $featureId = 13;
+
+          $subfeatures = Feature::where('id', $featureId)->pluck('subfeatures')->first();
+
+          $subfeaturesArray = explode(",", $subfeatures);
+
         if(auth()->user()->id === $accountpayable->requester_id){
 
-                if($accountpayable->status === 'released'){
+                if(strcmp($accountpayable->status,"released")){
 
                     $particulars = AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get();
 
@@ -197,49 +234,63 @@ class RequestForPurchaseController extends Controller
 
                      return view('accountpayables.create.step-5', [
                         'property' => $property,
-                        'accountpayable' => $accountpayable
+                        'accountpayable' => $accountpayable,
+                          'subfeaturesArray' => $subfeaturesArray
                     ]);
 
                 }else{
                     return view('accountpayables.pending-approval-manager',[
-                    'accountpayable' => $accountpayable
+                    'accountpayable' => $accountpayable,
+                      'subfeaturesArray' => $subfeaturesArray
                     ]);
                 }
         }else{
                 return view('accountpayables.restricted-page',[
-                    'accountpayable' => $accountpayable
+                    'accountpayable' => $accountpayable,
+                      'subfeaturesArray' => $subfeaturesArray
                 ]);
         }
     }
 
     public function create_step_6(Property $property, AccountPayable $accountpayable){
-        //accessible only to the first approver
+          $featureId = 13;
+
+          $subfeatures = Feature::where('id', $featureId)->pluck('subfeatures')->first();
+
+          $subfeaturesArray = explode(",", $subfeatures);
+
        if($accountpayable->approver_id === auth()->user()->id){
-                if($accountpayable->status === 'liquidated'){
+                if(strcmp($accountpayable->status,"liquidated")){
                      return view('accountpayables.create.step-6', [
                      'property' => $property,
-                     'accountpayable' => $accountpayable
+                     'accountpayable' => $accountpayable,
+                       'subfeaturesArray' => $subfeaturesArray
                      ]);
 
                 }else{
                      return view('accountpayables.approved-page',[
-                     'accountpayable' => $accountpayable
+                     'accountpayable' => $accountpayable,
+                       'subfeaturesArray' => $subfeaturesArray
                      ]);
                 }
             }else{
                 return view('accountpayables.restricted-page',[
-                    'accountpayable' => $accountpayable
+                    'accountpayable' => $accountpayable,
+                      'subfeaturesArray' => $subfeaturesArray
                 ]);
             }
     }
 
     public function create_step_7(Property $property, AccountPayable $accountpayable){
 
-        //accessible only to ap
-        if($accountpayable->approver2_id === auth()->user()->id){
-            // if($accountpayable->status === 'liquidation approved by manager'){
+          $featureId = 13;
 
-                if(Session::get('skipLiquidation')){
+          $subfeatures = Feature::where('id', $featureId)->pluck('subfeatures')->first();
+
+          $subfeaturesArray = explode(",", $subfeatures);
+
+         if($accountpayable->approver2_id === auth()->user()->id){
+                      if(Session::get('skipLiquidation')){
 
                       AccountPayableLiquidation::updateOrCreate(
                       [
@@ -270,21 +321,17 @@ class RequestForPurchaseController extends Controller
 
                 return view('accountpayables.create.step-7', [
                     'property' => $property,
-                    'accountpayable' => $accountpayable
+                    'accountpayable' => $accountpayable,
+                      'subfeaturesArray' => $subfeaturesArray
                 ]);
-            // }else{
-            //     return view('accountpayables.approved-page',[
-            //         'accountpayable' => $accountpayable
-            //     ]);
-            // }
+
         }else{
             return view('accountpayables.restricted-page',[
-                'accountpayable' => $accountpayable
+                'accountpayable' => $accountpayable,
+                  'subfeaturesArray' => $subfeaturesArray
             ]);
         }
     }
-
-
 
     public function create_request_status($property_uuid){
         return view('accountpayables.create.request-status');

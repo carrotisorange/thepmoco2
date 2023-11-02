@@ -6,12 +6,12 @@
 
         </div>
         {{-- start-step-1-form --}}
-        <form class="space-y-6" wire:submit.prevent="approveRequest()" method="POST">
+        <form class="space-y-6" wire:submit.prevent="approveRequest()">
 
             <div class="md:grid md:grid-cols-6 md:gap-6">
 
                 <div class="sm:col-span-2">
-                    <label class="block text-sm font-medium text-gray-700"> Quotation 1</label>
+                    <x-label > Quotation 1</x-label>
                     <div
                         class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="sm:col-span-2">
-                    <label class="block text-sm font-medium text-gray-700"> Quotation 2</label>
+                    <x-label > Quotation 2</x-label>
                     <div
                         class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
@@ -74,7 +74,7 @@
                 </div>
 
                 <div class="sm:col-span-2">
-                    <label class="block text-sm font-medium text-gray-700"> Quotation 3</label>
+                    <x-label > Quotation 3</x-label>
                     <div
                         class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
@@ -106,7 +106,7 @@
 
 
                 <div class="sm:col-span-6">
-                    <label class="block text-sm font-medium text-gray-700"> Selected quotation</label>
+                    <x-label > Selected quotation</x-label>
                     <div
                         class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
@@ -152,7 +152,7 @@
 
 
                 <div class="sm:col-span-6">
-                    <label for="vendor-details" class="block text-sm font-medium text-gray-700">Particulars</label>
+                    <x-label for="vendor-details" >Particulars</x-label>
 
                 </div>
 
@@ -224,39 +224,32 @@
 
 
                 <div class="sm:col-span-6">
-                    <label for="vendor-details" class="block text-sm font-medium text-gray-700">Vendor Details</label>
+                    <x-label for="vendor-details" >Vendor Details</x-label>
 
                 </div>
 
                 {{-- vendor details --}}
                 <div class="sm:col-span-3">
-                    <label for="vendor-details" class="block text-sm font-medium text-gray-700">Vendor Name:</label>
-                    <input type="text" wire:model="vendor" readonly
-                        class="mt-1 shadow-sm focus:ring-purple-500 focus:border-purple-500 block w-full h-10 sm:text-sm border border-gray-700 rounded-md">
-                    @error('selected_vendor')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                    <x-label for="vendor-details" >Vendor Name:</x-label>
+                    <x-form-input type="text" wire:model="vendor" readonly/>
+                   <x-validation-error-component name='selected_vendor' />
                 </div>
                 <div class="sm:col-span-3">
-                    <label for="delivery-date" class="block text-sm font-medium text-gray-700">Delivery Date:</label>
-                    <input type="date" wire:model="delivery_at" readonly
-                        class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-10 w-full sm:text-sm border border-gray-700  rounded-md">
-                    @error('delivery_at')
-                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                    @enderror
+                    <x-label for="delivery-date" >Delivery Date:</x-label>
+                    <x-form-input type="date" wire:model="delivery_at" readonly/>
+                   <x-validation-error-component name='delivery_at' />
                 </div>
 
 
 
                 <div class="sm:col-span-6">
-                    <label for="vendor-details" class="block text-sm font-medium text-gray-700">Comment</label>
+                    <x-label for="vendor-details" >Comment</x-label>
 
                 </div>
 
 
                 <div class="sm:col-span-6">
-                    <textarea placeholder="Add your comment..." wire:model="comment"
-                        class="p-2 font-base border-[0.1px] resize-none h-[120px] border-[#9EA5B1] rounded-md w-full"></textarea>
+                    <x-form-textarea placeholder="Add your comment..." wire:model="comment"/>
 
                 </div>
 
@@ -268,20 +261,9 @@
                         href="#/" wire:click="rejectRequest()">
                         Reject
                     </a>
-                    <button
-                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-
-                        <svg wire:loading wire:target="approveRequest"
-                            class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
-                            </circle>
-                            <path class="opacity-75" fill="currentColor"
-                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                            </path>
-                        </svg>
+                   <x-button type="submit">
                         Approve
-                    </button>
+                    </x-button>
                 </div>
 
             </div>

@@ -20,11 +20,11 @@ class AccountPayableCreateStep2Component extends Component
     public $comment;
     public $vendor;
     public $delivery_at;
-    
+
     public function mount()
     {
         $this->comment = AccountPayable::find($this->accountpayable->id)->comment;
-        $this->vendor = AccountPayable::find($this->accountpayable->id)->vendor; 
+        $this->vendor = AccountPayable::find($this->accountpayable->id)->vendor;
         $this->delivery_at = AccountPayable::find($this->accountpayable->id)->delivery_at;
      }
 
@@ -45,27 +45,25 @@ class AccountPayableCreateStep2Component extends Component
     {
         $this->validate();
 
-        app('App\Http\Controllers\RequestForPurchaseController')->update_approval($this->accountpayable->id,
-        'approved by manager', $this->comment, $this->vendor);
+        app('App\Http\Controllers\RequestForPurchaseController')->update_approval($this->accountpayable->id, 'approved by manager', $this->comment, $this->vendor);
 
         if($this->accountpayable->approver2_id){
 
             $content = $this->accountpayable;
 
             $second_approver = User::find($this->accountpayable->approver_id)->email;
-            
+
             Notification::route('mail', $second_approver)->notify(new SendAccountPayableStep3NotificationToAP($content));
         }
-    
-        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-2')->with('success', 'Changes Saved!');
+
+        return redirect('/property/'.Session::get('property_uuid').'/rfp/'.$this->accountpayable->id.'/step-2')->with('success','Changes Saved!');
     }
 
     public function rejectRequest(){
-        
+
         $this->validate();
 
-        app('App\Http\Controllers\RequestForPurchaseController')->update_approval($this->accountpayable->id, 'rejected
-        by manager', $this->comment, $this->vendor);
+        app('App\Http\Controllers\RequestForPurchaseController')->update_approval($this->accountpayable->id, 'rejected by manager', $this->comment, $this->vendor);
 
         $content = $this->accountpayable;
 
@@ -73,7 +71,7 @@ class AccountPayableCreateStep2Component extends Component
 
         Notification::route('mail', $requester_email)->notify(new SendAccountPayableStep4NotificationToAdmin($content));
 
-        return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-2')->with('success', 'Changes Saved!');
+        return redirect('/property/'.Session::get('property_uuid').'/rfp/'.$this->accountpayable->id.'/step-2')->with('success', 'Changes Saved!');
     }
 
     public function render()

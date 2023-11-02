@@ -89,7 +89,7 @@ class AccountPayableCreateStep7Component extends Component
 
         Notification::route('mail', $requester_email)->notify(new SendAccountPayableStep4NotificationToAdmin($content));
 
-       return redirect('/property/'.Session::get('property_uuid').'/accountpayable/')->with('success', 'Changes Saved!');
+       return redirect('/property/'.Session::get('property_uuid').'/rfp/')->with('success', 'Changes Saved!');
     }
 
     public function render()

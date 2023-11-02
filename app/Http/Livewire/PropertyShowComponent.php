@@ -28,7 +28,7 @@ class PropertyShowComponent extends Component
 
         $collections = app('App\Http\Controllers\CollectionController')->getCollections(Session::get('property_uuid'));
 
-        $expenses = app('App\Http\Controllers\AccountPayableController')->getAccountPayables(Session::get('property_uuid'));
+        $expenses = app('App\Http\Controllers\RFPController')->getAccountPayables(Session::get('property_uuid'));
 
         $currentOccupancyRate  = app('App\Http\Controllers\PropertyController')->getOccupancyRate(Session::get('property_uuid'));
 

@@ -35,7 +35,7 @@ class AccountPayableIndexComponent extends Component
     }
 
     public function exportAccountPayables(){
-       return redirect('/property/'.Session::get('property_uuid').'/accountpayable/export/'.$this->status.'/'.$this->created_at.'/'.$this->request_for.'/'.$this->limitDisplayTo);
+       return redirect('/property/'.Session::get('property_uuid').'/rfp/export/'.$this->status.'/'.$this->created_at.'/'.$this->request_for.'/'.$this->limitDisplayTo);
     }
 
     public function get_accountpayables(){
@@ -93,9 +93,9 @@ class AccountPayableIndexComponent extends Component
 
        return view('livewire.account-payable-index-component',[
           'accountpayables' => $accountPayables,
-          'statuses' => app('App\Http\Controllers\AccountPayableController')->get_statuses(Session::get('property_uuid')),
-          'dates' => app('App\Http\Controllers\AccountPayableController')->get_dates(Session::get('property_uuid')),
-          'types' => app('App\Http\Controllers\AccountPayableController')->get_types(Session::get('property_uuid')),
+          'statuses' => app('App\Http\Controllers\RFPController')->get_statuses(Session::get('property_uuid')),
+          'dates' => app('App\Http\Controllers\RFPController')->get_dates(Session::get('property_uuid')),
+          'types' => app('App\Http\Controllers\RFPController')->get_types(Session::get('property_uuid')),
           'dates' => AccountPayable::where('property_uuid', Session::get('property_uuid'))
          ->groupByRaw('MONTHNAME(created_at)')
           ->get(),

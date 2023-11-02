@@ -179,25 +179,23 @@
 
             <x-td>
 
-                <x-button data-modal-target="edit-bill-modal-{{$bill->id}}"
-                    data-modal-toggle="edit-bill-modal-{{$bill->id}}"
-                    type="button">
+                <x-button data-modal-toggle="edit-bill-modal-{{$bill->id}}">
                     Edit
                 </x-button>
 
             </x-td>
             <x-td>
-                <x-button class="bg-red-500" data-modal-target="delete-bill-modal-{{$bill->id}}"
+                <x-button class="bg-red-500"
                     data-modal-toggle="delete-bill-modal-{{$bill->id}}">
                     Delete
                 </x-button>
             </x-td>
         </tr>
+
         @livewire('edit-bill-component', ['bill_details' => $bill], key(Carbon\Carbon::now()->timestamp.''.$bill->id))
         @livewire('delete-bill-component', ['bill' => $bill], key(Carbon\Carbon::now()->timestamp.''.$bill->id))
+      
         @endforeach
     </tbody>
-
     @endif
-
 </table>

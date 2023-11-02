@@ -1,5 +1,4 @@
 <div>
-
     <form class="space-y-6" wire:submit.prevent="submitForm()" method="POST">
         <div class="bg-gray-100 mt-5 px-4 py-5 sm:rounded-lg sm:p-6">
             <div class="md:grid md:grid-cols-1 md:gap-6">
@@ -14,14 +13,9 @@
                                 <option value="">Select one</option>
                                 <option value="Security Deposit">Security Deposit</option>
                                 <option value="Rent Deposit">Rent Deposit</option>
-                                {{-- <option value="Rent Deposit" {{ $deposit_type=="Rent Deposit"
-                                    ?'selected': 'Select one' }}>Rent Deposit</option>
-                                <option value="Security Deposit" {{ $deposit_type=="Security Deposit"
-                                    ?'selected': 'Select one' }}>Security Deposit</option> --}}
+
                             </select>
-                            @error('description')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                            <x-validation-error-component name='description' />
                         </div>
 
 
@@ -30,9 +24,7 @@
                                 deposit</label>
                             <input type="numnber" step="0.01" wire:model.lazy="amount" autocomplete="amount"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                            @error('amount')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                         <x-validation-error-component name='amount' />
                         </div>
 
 

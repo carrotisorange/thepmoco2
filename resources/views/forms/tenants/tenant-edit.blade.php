@@ -11,9 +11,7 @@
                 <x-label for="tenant" >Full Name</x-label>
                 <x-form-input type="text" wire:model="tenant"
                   />
-                @error('tenant')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+              <x-validation-error-component name='tenant' />
 
             </div>
         </div>
@@ -39,9 +37,7 @@
                         reserved
                     </option>
                 </x-form-select>
-                @error('status')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+              <x-validation-error-component name='status' />
             </div>
         </div>
 
@@ -56,9 +52,7 @@
                         secondary
                     </option>
                 </x-form-select>
-                @error('category')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+              <x-validation-error-component name='category' />
             </div>
         </div>
 
@@ -66,9 +60,7 @@
             <div  class="{{ $formDivClasses }}">
                 <x-label for="mobile_number" >Mobile #</x-label>
                 <x-form-input type="text" wire:model="mobile_number"/>
-                @error('mobile_number')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+              <x-validation-error-component name='mobile_number' />
             </div>
         </div>
 
@@ -77,9 +69,7 @@
                 <x-label for="email" >Email
                 </x-label>
                 <x-form-input type="email" wire:model="email"/>
-                @error('email')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+              <x-validation-error-component name='email' />
             </div>
         </div>
 
@@ -95,9 +85,7 @@
                     </option>
                     @endforeach
                 </x-form-select>
-                @error('country_id')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+              <x-validation-error-component name='country_id' />
             </div>
         </div>
 
@@ -113,9 +101,7 @@
                     </option>
                     @endforeach
                 </x-form-select>
-                @error('province_id')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+              <x-validation-error-component name='province_id' />
             </div>
         </div>
 
@@ -124,9 +110,7 @@
                 <x-label for="barangay">
                     Address</x-label>
                 <x-form-input type="text" wire:model="barangay"/>
-                @error('barangay')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+              <x-validation-error-component name='barangay' />
             </div>
         </div>
 
@@ -143,9 +127,7 @@
                     </option>
                 </x-form-select>
 
-                @error('type')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+             <x-validation-error-component name='type' />
             </div>
         </div>
 
@@ -155,9 +137,7 @@
             <div class="{{ $formDivClasses }}">
                 <x-label for="course" >Course</x-label>
                 <x-form-input type="text" wire:model="course"/>
-                @error('course')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+                <x-validation-error-component name='course' />
             </div>
         </div>
 
@@ -166,9 +146,7 @@
                 <x-label for="year_level" >Year Level</x-label>
                 <input type="text" wire:model="year_level"
                     class="block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm">
-                @error('year_level')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+              <x-validation-error-component name='year_level' />
             </div>
         </div>
 
@@ -176,9 +154,7 @@
             <div class="{{$formDivClasses}}">
                 <x-label for="school" >School</x-label>
                 <x-form-input type="text" wire:model="school"/>
-                @error('school')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+              <x-validation-error-component name='school' />
             </div>
         </div>
 
@@ -186,9 +162,7 @@
             <div class="{{$formDivClasses}}">
                 <x-label for="school_address" >Address</x-label>
                 <x-form-input type="text" wire:model="school_address"/>
-                @error('school_address')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+               <x-validation-error-component name='school_address' />
             </div>
         </div>
 
@@ -198,9 +172,7 @@
             <div class="{{ $formDivClasses }}">
                 <x-label for="occupation" >Occupation</x-label>
                 <x-form-input type="text" wire:model="occupation"/>
-                @error('occupation')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+               <x-validation-error-component name='occupation' />
             </div>
         </div>
 
@@ -208,9 +180,7 @@
             <div class="{{ $formDivClasses }}">
                 <x-label for="employer" >Employer</x-label>
                 <x-form-input type="text" wire:model="employer"/>
-                @error('employer')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+              <x-validation-error-component name='employer' />
             </div>
         </div>
 
@@ -218,9 +188,7 @@
             <div class="{{ $formDivClasses }}">
                 <x-label for="employer_address" >Address</x-label>
                 <x-form-input type="text" wire:model="employer_address"/>
-                @error('employer_address')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+               <x-validation-error-component name='employer_address' />
             </div>
         </div>
 

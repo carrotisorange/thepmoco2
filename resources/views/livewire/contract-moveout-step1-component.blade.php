@@ -65,9 +65,7 @@
                         </option>
                      </x-form-select>
 
-                     @error('moveout_reason')
-                     <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                     @enderror
+                   <x-validation-error-component name='moveout_reason' />
                   </div>
 
                </div>

@@ -54,6 +54,9 @@
 
                     @endif
 
+                    <x-button data-modal-toggle="create-bill-modal">
+                                    New Bill</x-button>
+
                 </div>
             </div>
 
@@ -127,7 +130,7 @@
             </div>
         </div>
     </div>
-    @include('modals.instructions.create-guest-bill-modal')
+    @include('modals.create-bill-modal')
     @include('modals.export-guest-bill')
     @include('modals.send-guest-bill')
     @include('modals.instructions.create-particular-modal')

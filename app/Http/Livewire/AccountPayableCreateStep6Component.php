@@ -42,7 +42,7 @@ class AccountPayableCreateStep6Component extends Component
 
          }
 
-       return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-6')->with('success', 'Changes Saved!');
+       return redirect('/property/'.Session::get('property_uuid').'/rfp/'.$this->accountpayable->id.'/step-6')->with('success', 'Changes Saved!');
     }
 
     public function rejectLiquidation(){
@@ -58,7 +58,7 @@ class AccountPayableCreateStep6Component extends Component
 
         Notification::route('mail', $requester_email)->notify(new SendAccountPayableStep4NotificationToAdmin($content));
 
-       return redirect('/property/'.Session::get('property_uuid').'/accountpayable/'.$this->accountpayable->id.'/step-6')->with('success', 'Changes Saved!');
+       return redirect('/property/'.Session::get('property_uuid').'/rfp/'.$this->accountpayable->id.'/step-6')->with('success', 'Changes Saved!');
     }
 
     public function render()

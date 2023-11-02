@@ -60,7 +60,7 @@
                     @endif
 
 
-                    <x-button data-modal-toggle="instructions-create-owner-bill-modal">Create Bill</a></x-button>
+                    <x-button data-modal-toggle="create-bill-modal">Create Bill</a></x-button>
 
                     <x-button data-modal-toggle="create-particular-modal"> Create Particular</a></x-button>
                 </div>
@@ -171,7 +171,7 @@
             </div>
         </div>
     </div>
-    @include('modals.instructions.create-owner-bill-modal')
+    @include('modals.create-bill-modal')
     @include('modals.export-owner-bill')
     @include('modals.send-owner-bill')
     @include('modals.instructions.create-particular-modal')

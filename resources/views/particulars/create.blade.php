@@ -43,20 +43,9 @@
 
                                 <x-input id="particular_id" class="block mt-1 w-full" type="text" name="particular_id"
                                     :value="old('particular_id')" form="create-form" required autofocus />
-                                {{-- <select
-                                    class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                    name="particular_id" id="particular_id" form="create-form" required>
-                                    <option value="">Select one</option>
-                                    @foreach ($particulars as $particular)
-                                    <option value="{{ $particular->id }}" {{ old('particular')==$particular->id?
-                                        'selected': 'Select one'
-                                        }}>{{ $particular->particular }}</option>
-                                    @endforeach
-                                </select> --}}
 
-                                @error('particular')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+
+                              <x-validation-error-component name='particular' />
 
                             </div>
 
@@ -67,9 +56,7 @@
                                     name="minimum_charge" :value="old('minimum_charge')" form="create-form" required
                                     autofocus />
 
-                                @error('minimum_charge')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                             <x-validation-error-component name='minimum_charge' />
                             </div>
 
                             <div class="mt-5">
@@ -91,9 +78,7 @@
                                 <x-input id="surcharge" class="block mt-1 w-full" type="number" step="0.01"
                                     name="surcharge" :value="old('surcharge')" form="create-form" required autofocus />
 
-                                @error('surcharge')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                @enderror
+                            <x-validation-error-component name='surcharge' />
                             </div>
                     </div>
                     </form>
