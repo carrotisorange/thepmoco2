@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\AcknowledgementReceipt;
 use App\Models\User;
 use App\Models\Owner;
-use App\Models\Bill;
+use App\Models\DeedOfSale;
+use App\Models\Bulletin;
 use App\Models\Unit;
 
 class OwnerPortalController extends Controller
@@ -25,6 +26,17 @@ class OwnerPortalController extends Controller
         ]);
     }
 
+    public function show_bulletin($role_id, User $user)
+    {
+        $owner_uuid = User::where('id', auth()->user()->id)->value('owner_uuid');
+
+        $property_uuid = DeedOfSale::where('owner_uuid', $owner_uuid)->value('property_uuid');
+
+        return view('portals.tenants.bulletins',[
+            'bulletins' => Bulletin::where('property_uuid', $property_uuid)->where('is_approved',1)->orderBy('id','desc')->get()
+        ]);
+    }
+
      public function show_guests($role_id, User $user, Unit $unit)
     {
         return view('portals.owners.guests',[
@@ -39,7 +51,7 @@ class OwnerPortalController extends Controller
         return view('portals.owners.bills',[
             'bills' => Owner::findOrFail($user->owner_uuid)->bills,
             'view' => 'listView',
-            'isPaymentAllowed' => false 
+            'isPaymentAllowed' => false
         ]);
     }
 

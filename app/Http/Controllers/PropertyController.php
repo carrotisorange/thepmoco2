@@ -123,11 +123,11 @@ class PropertyController extends Controller
         }
         elseif($current_user_role_id == $tenant)
         {
-            return redirect($current_user_role_id.'/tenant/'.$current_user_username.'/contract');
+            return redirect($current_user_role_id.'/tenant/'.$current_user_username.'/bulletin');
         }
         elseif($current_user_role_id == $owner)
         {
-            return redirect($current_user_role_id.'/owner/'.$current_user_username.'/unit');
+            return redirect($current_user_role_id.'/owner/'.$current_user_username.'/bulletin');
         }
         elseif($current_user_role_id != ['12', '10', '8', '7'])
         {

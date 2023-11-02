@@ -14,6 +14,8 @@ use Session;
 use Carbon\Carbon;
 use App\Models\Collection;
 use DB;
+use App\Models\Bulletin;
+use App\Models\Contract;
 
 class PortalTenantController extends Controller
 {
@@ -31,6 +33,17 @@ class PortalTenantController extends Controller
     {
         return view('portals.tenants.contracts',[
             'contracts' => Tenant::findOrFail($user->tenant_uuid)->contracts()->orderBy('start', 'desc')->get()
+        ]);
+    }
+
+    public function show_bulletin($role_id, User $user)
+    {
+        $tenant_uuid = User::where('id', auth()->user()->id)->value('tenant_uuid');
+
+        $property_uuid = Contract::where('tenant_uuid', $tenant_uuid)->value('property_uuid');
+
+        return view('portals.tenants.bulletins',[
+            'bulletins' => Bulletin::where('property_uuid', $property_uuid)->where('is_approved',1)->orderBy('id','desc')->get()
         ]);
     }
 
