@@ -11,7 +11,7 @@
             }
 
             #everything {
-                background-image: url('/brands/landing/faq.jpg');
+                background-image: url('/brands/faq.jpg');
                 background-repeat: no-repeat;
                 background-position: center;
                 background-size: cover;
@@ -21,13 +21,13 @@
 
 
 
-        <div class="mt-0 sm:met-0 lg:-mt-4 px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
+        <div id="everything" class="mt-0 sm:met-0 lg:-mt-10 px-4 py-16 sm:px-6 sm:py-24 lg:py-32 lg:px-8">
             <h1 class="text-4xl font-bold tracking-tight sm:text-4xl lg:text-4xl">
                 <span class=" text-gray-800">Frequently asked questions</span>
 
             </h1>
             <p class="text-xl text-white sm:max-w-3xl">Everything You Need to Know</p>
-            <p class="mt-10 text-md text-gray-700 sm:max-w-3xl">Need assistance? Check out our answers to some of the
+            <p class="mt-10 text-md text-gray-700 sm:max-w-3xl">Check out our answers to some of the
                 most
                 frequently asked questions below. If you can’t find the answer to your question here, <span
                     class="font-bold text-purple-900"><a href="#contactus">get in touch</a></span> with us today.
@@ -311,7 +311,7 @@
                         <h2 class="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">What are the
                             features of
                             an online rental property management system?</h2>
-                        <div class="mt-10 space-y-6 text-gray-500 text-center">
+                        <div class="mt-10 space-y-6 text-gray-100 text-center">
                             <p class="mx-5 text-lg">
                                 Our goal is to help you save money and improve your business. We want to work with you
                                 to streamline
@@ -476,7 +476,7 @@
                         <h2 class="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">The
                             advantages of using
                             an RMS</h2>
-                        <div class="mt-10 space-y-6 text-gray-500 text-center">
+                        <div class="mt-10 space-y-6 text-gray-100 text-center">
                             <div class="flex justify-center items-center">
                                 <p class="mx-5 text-center max-w-5xl text-lg">
                                     The real estate management system is software that helps you to manage your
@@ -567,7 +567,7 @@
 
 
             <!-- asset management section -->
-            <div class=" pb-16 lg:z-10 lg:pb-0" style="background-image: url('/brands/landing/faq-bg.webp');"
+            <div class="pb-16 lg:z-10 lg:pb-0" style="background-image: url('/brands/landing/faq-bg.webp');"
                 alt="a laptop, message icon, settings icon as background">
                 <div class="mt-12 lg:col-span-2 lg:m-0 lg:pl-8">
                     <div class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-4xl lg:px-0 lg:py-20">

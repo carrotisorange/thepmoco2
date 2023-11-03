@@ -135,9 +135,6 @@
         font-family: 'Poppins';
     }
 
-    #nav {
-        background-color: ;
-    }
 
     #button1 {
         background-color: #F79630;
@@ -206,41 +203,107 @@
 
                 <ul
                     class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-10">
-                    <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="/">Home</a></li>
-
+              
                     <li>
                         <button
                             class="text-gray-200 hover:text-gray-400 font-medium rounded-lg text-base text-center inline-flex items-center"
-                            type="button" data-dropdown-toggle="dropdown">Services <svg class="w-4 h-4 ml-2" fill="none"
+                            type="button" data-dropdown-toggle="products">Products<svg class="w-4 h-4 ml-2" fill="none"
                                 stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M19 9l-7 7-7-7"></path>
                             </svg></button>
                         <!-- Dropdown menu -->
-                        <div class="hidden text-base z-50 list-none bg-white rounded-lg" id="dropdown">
+                        <div class="hidden text-base z-50 list-none bg-white" id="products">
 
-                            <ul class="" aria-labelledby="dropdown">
+                            <ul class="" aria-labelledby="products">
                                 <li>
-                                    <a href="/propman" class="text-sm  text-gray-500 block px-4 py-2">Propman</a>
+                                    <a href="/propsuite" class="text-base  text-gray-600 hover:text-yellow-500 hover:underline block px-3  py-3">PropSuite</a>
                                 </li>
                                 <li>
-                                    <a href="/proprent" class="text-sm  text-gray-500 block px-4 py-2">Proprent</a>
+                                    <a href="/propsuite-lite" class="text-base  text-gray-600 hover:text-yellow-500 hover:underline block px-3  py-3">PropSuite Lite</a>
                                 </li>
                                 <li>
-                                    <a href="/propbiz" class="text-sm  text-gray-500 block px-4 py-2">Propbiz</a>
+                                    <a href="/propsuite-daily" class="text-base  text-gray-600 hover:text-yellow-500 hover:underline block px-3  py-3">PropSuite Daily</a>
+                                </li>
+                                <li>
+                                    <a href="/propsuite-hoa" class="text-base  text-gray-600 hover:text-yellow-500 hover:underline block px-3  py-3">PropSuite HOA</a>
+                                </li>
+                                <li>
+                                    <a href="/propsuite-condo" class="text-base  text-gray-600 hover:text-yellow-500 hover:underline block px-3  py-3">PropSuite Condo</a>
                                 </li>
                             </ul>
                         </div>
 
 
-                        <script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
+                 
+                    </li>
+                    <li>
+                        <button
+                            class="text-gray-200 hover:text-gray-400 font-medium rounded-lg text-base text-center inline-flex items-center"
+                            type="button" data-dropdown-toggle="services">Services<svg class="w-4 h-4 ml-2" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg></button>
+                        <!-- Dropdown menu -->
+                        <div class="hidden text-base z-50 list-none bg-white" id="services">
+
+                            <ul class="" aria-labelledby="services">
+                                <li>
+                                    <a href="/propsuite" class="text-base  text-gray-600 hover:text-yellow-500 hover:underline block px-3  py-3">PropSuite</a>
+                                </li>
+                                <li>
+                                    <a href="/propbiz" class="text-base  text-gray-600 hover:text-yellow-500 hover:underline block px-3  py-3">PropBiz</a>
+                                </li>
+                                <li>
+                                    <a href="/proprent" class="text-base  text-gray-600 hover:text-yellow-500 hover:underline block px-3  py-3">PropRent</a>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        
                     </li>
 
-                    <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="about">About</a></li>
+                    <li>
+                        <button
+                            class="text-gray-200 hover:text-gray-400 font-medium rounded-lg text-base text-center inline-flex items-center"
+                            type="button" data-dropdown-toggle="resources">Resources<svg class="w-4 h-4 ml-2" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg></button>
+                        <!-- Dropdown menu -->
+                        <div class="hidden text-base z-50 list-none bg-white" id="resources">
 
-                    <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="faq">FAQs</a></li>
+                            <ul class="" aria-labelledby="resources">
+                                <li>
+                                    <a href="/resources" class="text-base  text-gray-600 hover:text-yellow-500 hover:underline block px-3  py-3">Resources</a>
+                                </li>
+                                <li>
+                                    <a href="/articles" class="text-base  text-gray-600 hover:text-yellow-500 hover:underline block px-3  py-3">Articles</a>
+                                </li>
+                                <li>
+                                    <a href="/about" class="text-base  text-gray-600 hover:text-yellow-500 hover:underline block px-3  py-3">About Us</a>
+                                </li>
+                                <li>
+                                    <a href="/faq" class="text-base  text-gray-600 hover:text-yellow-500 hover:underline block px-3  py-3">FAQs</a>
+                                </li>
+                            </ul>
+                        </div>
 
-                    <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="articles">Articles</a>
+
+                        
+                    </li>
+
+                   
+
+                    <script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
+
+
+                    <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="pricing">Pricing</a></li>
+
+                  
                     </li>
 
 
@@ -266,10 +329,10 @@
         <script>
             const nav = document.querySelector('.navbar');
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 100) nav.style.background = '#4F3F6D';
-        else nav.style.background = 'transparent';
-    });
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) nav.style.background = '#4F3F6D';
+                else nav.style.background = 'transparent';
+            });
         </script>
 
         <div class="navbar-menu relative z-50 hidden">
@@ -354,29 +417,87 @@
                             <a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded"
                                 href="/">Home</a>
                         </li>
+
+
+    
+                        <button class="w-full block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 roundedtext-center inline-flex items-center" type="button" data-dropdown-toggle="prod-mobile">Products
+                            <svg class="justify-end w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        
+                        </button>
+
+                        <div class="w-full hidden bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4 p-4" id="prod-mobile">
+                            
+                            <ul class="py-1" aria-labelledby="prod-mobile">
+                            <li>
+                                <a href="/propsuite" class="w-full text-sm hover:bg-gray-100 text-gray-700 block p-4">PropSuite</a>
+                            </li>
+                            <li>
+                                <a href="/propsuite-lite" class="w-full text-sm hover:bg-gray-100 text-gray-700 block p-4">PropSuite Lite</a>
+                            </li>
+                            <li>
+                                <a href="/propsuite-daily" class="w-full text-sm hover:bg-gray-100 text-gray-700 block p-4">PropSuite Daily</a>
+                            </li>
+                            <li>
+                                <a href="/propsuite-hoa" class="w-full text-sm hover:bg-gray-100 text-gray-700 block p-4">PropSuite HOA</a>
+                            </li>
+                            <li>
+                                <a href="/propsuite-condo" class="w-full text-sm hover:bg-gray-100 text-gray-700 block p-4">PropSuite Condo</a>
+                            </li>
+                            </ul>
+                        </div>
+
+                        <button class="w-full block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 roundedtext-center inline-flex items-center" type="button" data-dropdown-toggle="serv-mobile">Services
+                            <svg class="justify-end w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        
+                        </button>
+
+                        <div class="w-full hidden bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4 p-4" id="serv-mobile">
+                            
+                            <ul class="py-1" aria-labelledby="serv-mobile">
+                            <li>
+                                <a href="/propsuite" class="w-full text-sm hover:bg-gray-100 text-gray-700 block p-4">PropSuite</a>
+                            </li>
+                            <li>
+                                <a href="/propbiz" class="w-full text-sm hover:bg-gray-100 text-gray-700 block p-4">PropBiz</a>
+                            </li>
+                            <li>
+                                <a href="/proprent" class="w-full text-sm hover:bg-gray-100 text-gray-700 block p-4">PropRent</a>
+                            </li>
+                       
+                            </ul>
+                        </div>
+                        
+                        <button class="w-full block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 roundedtext-center inline-flex items-center" type="button" data-dropdown-toggle="res-mobile">Resources
+                            <svg class="justify-end w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        
+                        </button>
+
+                        <div class="w-full hidden bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4 p-4" id="res-mobile">
+                            
+                            <ul class="py-1" aria-labelledby="res-mobile">
+                            <li>
+                                <a href="/resources" class="w-full text-sm hover:bg-gray-100 text-gray-700 block p-4">Resources</a>
+                            </li>
+                       
+                            <li>
+                                <a href="/articles" class="w-full text-sm hover:bg-gray-100 text-gray-700 block p-4">Articles</a>
+                            </li>
+                            <li>
+                                <a href="/about" class="w-full text-sm hover:bg-gray-100 text-gray-700 block p-4">About Us</a>
+                            </li>
+                            <li>
+                                <a href="/faq" class="w-full text-sm hover:bg-gray-100 text-gray-700 block p-4">FAQs</a>
+                            </li>
+                       
+                            </ul>
+                        </div>
+                        
+
+
+                        
                         <li class="mb-1" tabindex="0">
                             <a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded"
-                                href="propman">Propman</a>
-                        </li>
-                        <li class="mb-1" tabindex="0">
-                            <a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded"
-                                href="proprent">Proprent</a>
-                        </li>
-                        <li class="mb-1" tabindex="0">
-                            <a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded"
-                                href="propbiz">Propbiz</a>
-                        </li>
-                        <li class="mb-1" tabindex="0">
-                            <a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded"
-                                href="about">About Us</a>
-                        </li>
-                        <li class="mb-1" tabindex="0">
-                            <a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded"
-                                href="faq">FAQs</a>
-                        </li>
-                        <li class="mb-1" tabindex="0">
-                            <a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded"
-                                href="articles">Articles</a>
+                                href="/pricing">Pricing</a>
                         </li>
 
                         <li class="mt-5 mb-1" tabindex="0">
