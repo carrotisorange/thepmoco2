@@ -187,7 +187,8 @@ class CollectionModalComponent extends ModalComponent
                 //save the payment
                 Collection::create($validated_data)->unit_uuid;
 
-                if(Tenant::find($this->tenant)->bills()->where('status', 'unpaid')->where('description', 'movein charges')->sum('bill') <= 0)
+                if(Tenant::find($this->tenant)->bills()->posted()->where('status', 'unpaid')->where('description',
+                'movein charges')->sum('bill') <= 0)
                 {
                     Unit::where('uuid',Bill::find($this->selectedBills[$i])->unit_uuid)
                     ->where('status_id', '4')

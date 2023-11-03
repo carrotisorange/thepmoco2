@@ -264,12 +264,14 @@ class TenantBillCreateComponent extends Component
 
       $unpaid_bills = Tenant::find($this->tenant->uuid)
       ->bills()
+        ->posted()
       ->where('status', 'unpaid')
       ->whereIn('id', $this->selectedBills)
       ->sum('bill');
 
       $paid_bills = Tenant::find($this->tenant->uuid)
       ->bills()
+        ->posted()
       ->where('status', 'paid')
       ->whereIn('id', $this->selectedBills)
       ->sum('bill');

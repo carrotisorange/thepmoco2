@@ -49,7 +49,7 @@
 
                     @if($total_unpaid_bills->count())
                     <x-button data-modal-toggle="export-guest-bill"> Export Bills ({{
-                        App\Models\Guest::find($guest->uuid)->bills()->where('status', '!=','paid')->count()
+                        App\Models\Guest::find($guest->uuid)->bills()->posted()->where('status', '!=','paid')->count()
                         }})</a></x-button>
 
                     @endif

@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="mt-5 sm:mt-6">
-                    @can('accountownerandmanager')
+                    @can('accountowner')
                     <x-button class="w-full bg-red-500" type="button" wire:click="deleteUnit"
                       >
                         Delete
@@ -36,7 +36,7 @@
                        >
                         Delete
                     </x-button>
-                    <p class="text-left text-red-500 text-xs mt-2">This feature is locked. Please contact your manager.
+                    <p class="text-center text-red-500 text-xs mt-2">This feature is locked. <br>Please contact the property owner <span class="text-blue-500"><a target="_blank" href="/property/{{ Session::get('property_uuid') }}/personnel">here</a></span> .
                     </p>
                     @endcan
 

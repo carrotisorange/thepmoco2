@@ -80,7 +80,7 @@ class BillController extends Controller
     }
 
     public function getBills($property_uuid){
-        return Property::find($property_uuid)->bills();
+        return Property::find($property_uuid)->bills()->posted();
     }
 
 
@@ -228,6 +228,7 @@ class BillController extends Controller
         if($status == 'paid')
         {
             $bills = Unit::find($unit_uuid)->bills()
+              ->posted()
               ->where('status', 'paid')
               ->when($month, function ($query) use ($month) {
               $query->whereMonth('created_at', $month);
@@ -237,6 +238,7 @@ class BillController extends Controller
 
         }else{
               $bills = Unit::find($unit_uuid)->bills()
+                ->posted()
               ->where('status', 'unpaid')
               ->when($month, function ($query) use ($month) {
               $query->whereMonth('created_at', $month);
@@ -244,6 +246,7 @@ class BillController extends Controller
               ->sum('bill') -
 
               Unit::find($unit_uuid)->bills()
+                ->posted()
               ->where('status', 'unpaid')
               ->when($month, function ($query) use ($month) {
               $query->whereMonth('created_at', $month);

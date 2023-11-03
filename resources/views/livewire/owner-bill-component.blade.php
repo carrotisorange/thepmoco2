@@ -51,11 +51,11 @@
 
                     @if($total_unpaid_bills->count())
                     <x-button data-modal-toggle="export-owner-bill"> Export Bills ({{
-                        App\Models\Owner::find($owner->uuid)->bills()->where('status', '!=','paid')->count()
+                        App\Models\Owner::find($owner->uuid)->bills()->posted()->where('status', '!=','paid')->count()
                         }})</a></x-button>
 
                     <x-button data-modal-toggle="send-owner-bill">
-                       Send Bills ({{ App\Models\Owner::find($owner->uuid)->bills()->where('status',
+                       Send Bills ({{ App\Models\Owner::find($owner->uuid)->bills()->posted()->where('status',
                         '!=', 'paid')->count() }})</a></x-button>
                     @endif
 

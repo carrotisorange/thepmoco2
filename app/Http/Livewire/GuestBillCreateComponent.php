@@ -250,6 +250,7 @@ class GuestBillCreateComponent extends Component
 
       $bills = Guest::find($this->guest->uuid)
       ->bills()
+        ->posted()
       ->orderBy('bill_no','desc')
       ->when($this->status, function($query){
          $query->where('status', $this->status);
@@ -266,12 +267,14 @@ class GuestBillCreateComponent extends Component
 
       $unpaid_bills = Guest::find($this->guest->uuid)
       ->bills()
+        ->posted()
       ->where('status', 'unpaid')
       ->whereIn('id', $this->selectedBills)
       ->sum('bill');
 
       $paid_bills = Guest::find($this->guest->uuid)
       ->bills()
+        ->posted()
       ->where('status', 'paid')
       ->whereIn('id', $this->selectedBills)
       ->sum('bill');

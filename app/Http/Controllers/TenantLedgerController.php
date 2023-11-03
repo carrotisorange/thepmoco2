@@ -24,6 +24,7 @@ class TenantLedgerController extends Controller
 
         $bills = Tenant::find($tenant->uuid)
         ->bills()
+        ->posted()
         ->where('status','paid')
         ->get();
 
