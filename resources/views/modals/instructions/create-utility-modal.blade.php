@@ -9,7 +9,7 @@
     <div class="p-5">
         <form wire:submit.prevent="storeUtilities">
                 <div class="mt-5 sm:mt-6">
-                    <label class="text-sm" for="utility_type">Select a utility</label>
+                    <x-label  for="utility_type">Select a utility</x-label>
                     <x-form-select id="utility_type" name="utility_type" wire:model="utility_type" class="">
                         <option value="">Select one</option>
 
@@ -27,37 +27,28 @@
                 </div>
 
                 <div class="mt-5 sm:mt-6">
-                    <label class="text-sm" for="">Start date</label>
-                    <input type="date" id="start_date" wire:model="start_date"
-                        class="bg-white block p-4 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Search for unit">
+                    <x-label  for="">Start date</x-label>
+                    <x-form-input type="date" id="start_date" wire:model="start_date" />
                   <x-validation-error-component name='start_date' />
                 </div>
 
                 <div class="mt-5 sm:mt-6">
-                    <label class="text-sm" for="">End date</label>
-                    <input type="date" id="end_date" wire:model="end_date"
-                        class="bg-white block p-4 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Search for unit">
+                    <x-label  for="">End date</x-label>
+                    <x-form-input type="date" id="end_date" wire:model="end_date"/>
                    <x-validation-error-component name='end_date' />
                 </div>
 
                 <div class="mt-5 sm:mt-6">
-                    <label class="text-sm" for="kwh">Rate (Cu/M)</label>
-                    <input type="text" id="kwh" wire:model="kwh"
-                        class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="">
+                    <x-label  for="kwh">Rate (Cu/M)</x-label>
+                    <x-form-input type="text" id="kwh" wire:model="kwh"/>
                   <x-validation-error-component name='kwh' />
                 </div>
 
                 <div class="mt-5 sm:mt-6">
-                    <label class="text-sm" for="">Minimum Charge</label>
-                    <input type="text" id="min_charge" wire:model="min_charge"
-                        class="bg-white block p-4 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="">
+                    <x-label  for="">Minimum Charge</x-label>
+                    <x-form-input type="text" id="min_charge" wire:model="min_charge"/>
                   <x-validation-error-component name='min_charge' />
                 </div>
-
 
                 <div class="mt-5 sm:mt-6">
 
@@ -66,7 +57,6 @@
                     </x-button>
 
                 </div>
-
         </form>
     </div>
 </x-modal-component>

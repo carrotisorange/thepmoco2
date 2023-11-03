@@ -168,7 +168,7 @@ class AccountPayableCreateStep5Component extends Component
 
         $this->cash_advance = AccountPayableLiquidation::where('batch_no',  $this->accountpayable->batch_no)->pluck('cash_advance')->first();
 
-        return redirect(url()->previous())->with('success', 'Changes Saved!');
+        session()->flash('success', 'Changes Saved!');
     }
 
     public function get_particulars(){

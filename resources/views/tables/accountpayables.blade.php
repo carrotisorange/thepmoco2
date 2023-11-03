@@ -50,9 +50,19 @@
             <?php
                 $amount = App\Models\AccountPayableParticular::
                 where('batch_no', $accountpayable->batch_no)
-                ->sum('total')
+                ->sum('total');
+
+                $liquidatedAmount = App\Models\AccountPayableLiquidationParticular::
+                    where('batch_no', $accountpayable->batch_no)
+                    ->sum('total');
             ;?>
-            <x-td>{{ number_format($amount, 2) }}</x-td>
+            <x-td>
+                @if($liquidatedAmount)
+                {{ number_format($liquidatedAmount, 2) }}
+                @else
+                {{ number_format($amount, 2) }}
+                @endif
+            </x-td>
             <x-td>
                 @if($accountpayable->requester_id == auth()->user()->id && ($accountpayable->status=="pending" || $accountpayable->status == "rejected by manager"))
                 <a href="/property/{{ $accountpayable->property_uuid }}/rfp/{{ $accountpayable->id }}/step-1"
