@@ -17,9 +17,10 @@
             <x-td>
                 <b>
                     @if($user_type === 'tenant')
-                    {{ number_format(App\Models\Bill::where('tenant_uuid',$tenant_uuid)->posted()->sum('bill'), 2) }}/
-                    {{ number_format(App\Models\Collection::where('tenant_uuid',$tenant_uuid)->posted()->sum('collection'), 2) }}/
-                    {{ number_format((App\Models\Bill::where('tenant_uuid',$tenant_uuid)->posted()->sum('bill')-App\Models\Collection::where('tenant_uuid', $tenant_uuid)->posted()->sum('collection')), 2) }}
+                   {{ number_format(App\Models\Bill::postedBills('tenant_uuid',$tenant_uuid), 2)}}/{{
+                        number_format(App\Models\Collection::postedCollections('tenant_uuid',$tenant_uuid), 2) }}/{{
+                        number_format(App\Models\Bill::postedBills('tenant_uuid',$tenant_uuid)-App\Models\Collection::postedCollections('tenant_uuid',$tenant_uuid),
+                        2) }}
                     @elseif($user_type === 'owner')
                     {{ number_format(App\Models\Bill::where('owner_uuid',
                     $owner_uuid)->posted()->sum('bill'), 2) }}/
@@ -107,7 +108,7 @@
             <x-td>{{ $index+1 }}</x-td>
             @if($isPaymentAllowed)
             <x-th>
-                @if(!App\Models\Collection::where('bill_id', $bill->id)->posted()->sum('collection'))
+                @if(!App\Models\Collection::paidByBill($bill->id))
                 <x-input name="selectedBills" type="checkbox" wire:model="selectedBills" value="{{ $bill->id }}" />
                 @endif
             </x-th>
@@ -147,29 +148,27 @@
                 {{ Str::limit($bill->particular->particular,15) }} </a>
             </x-td>
             <x-td>
-                {{ number_format($bill->bill, 2) }}
-                /{{ number_format(App\Models\Collection::where('bill_id',
-                $bill->id)->posted()->sum('collection'), 2) }}
-                /{{ number_format(($bill->bill-App\Models\Collection::where('bill_id',
-                $bill->id)->posted()->sum('collection')), 2) }}
+            <div class="flex">
+                {{ number_format($bill->bill, 2) }}/{{ number_format(App\Models\Collection::paidByBill($bill->id), 2) }}/{{
+                number_format(($bill->bill-App\Models\Collection::paidByBill($bill->id)), 2) }}
+                @if(App\Models\Collection::paidByBill($bill->id))
 
-                @if(App\Models\Collection::where('bill_id', $bill->id)->posted()->sum('collection'))
-                <span title="paid"
-                    class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                <x-status-component title="paid" class="bg-green-100 text-green-800">
                     <i class="fa-solid fa-circle-check"></i>
-                </span>
+                </x-status-component>
                 @else
-                <span title="unpaid" class="px-2 text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                <x-status-component title="unpaid" class="bg-red-100 text-red-800">
                     <i class="fa-solid fa-circle-xmark"></i>
-                </span>
+                </x-status-component>
                 @endif
-
                 @if($bill->description === 'movein charges' && $bill->status==='unpaid')
-                <span title="urgent"
-                    class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                <x-status-component title="urgent" class="bg-orange-100 text-orange-800">
                     <i class="fa-solid fa-bolt"></i>
-                </span>
+                </x-status-component>
                 @endif
+            </div>
+
+
             </x-td>
 
             <x-td>
