@@ -23,6 +23,7 @@ Route::prefix('{role_id}/tenant/{user:username}')->group(function(){
         Route::post('concerns/store', 'store_concern');
         Route::get('concerns/{concern}', 'edit_concern')->name('concern');
         Route::get('concerns/{concern}/success','success_concerns')->name('concern');
+        Route::get('bulletin','show_bulletin')->name('bulletin');
     });
 
      Route::get('collection/{collection}/export', [TenantCollectionController::class, 'export']);
