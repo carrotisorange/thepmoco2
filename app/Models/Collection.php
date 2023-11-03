@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Collection extends Model
 {
     use HasFactory, SoftDeletes;
-    
+
     public function property()
     {
         return $this->belongsTo(Property::class, 'property_uuid');
@@ -55,6 +55,14 @@ class Collection extends Model
         {
         return empty($search)? static::query()
         : static::where('ar_no','like', '%'.$search.'%');
+    }
+
+    public function scopePaidByBill($query, $billId){
+        return $query->where('bill_id', $billId)->posted()->sum('collection');
+    }
+
+    public function scopePaidByTenant($query, $tenantUuid){
+        return $query->where('tenant_uuid', $tenantUuid)->posted()->sum('collection');
     }
 
     public function collection()
