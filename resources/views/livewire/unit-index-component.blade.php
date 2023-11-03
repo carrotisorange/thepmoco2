@@ -9,8 +9,6 @@
             </div>
             @if($propertyUnitCount)
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-
-
                 <x-button name="newUnitModal" type="button" data-modal-toggle="instructions-create-unit-modal">New unit
                 </x-button>
 
@@ -237,9 +235,19 @@
                         <div class="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-6">
                             @foreach ($units as $unit)
                             <?php $statusIcon = App\Models\Status::find($unit->status_id)->icon; ?>
+
                             @if(Session::get('owner_uuid'))
                             <a
                                 href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}/owner/{{ Session::get('owner_uuid') }}/deed_of_sale/create">
+                                <div class="hover:bg-purple-200">
+                                    <img src="{{ asset('/brands/'.$statusIcon) }}"
+                                        class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
+                                    <h3 class="text-center mt-2">{{ $unit->unit }}</h3>
+                                </div>
+                            </a>
+                            @elseif (Session::get('tenant_uuid'))
+                            <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}/tenant/{{ Session::get('tenant_uuid')
+                            }}/contract/{{ Str::random(8) }}/create"">
                                 <div class="hover:bg-purple-200">
                                     <img src="{{ asset('/brands/'.$statusIcon) }}"
                                         class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">

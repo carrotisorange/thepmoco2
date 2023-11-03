@@ -84,8 +84,6 @@ class TenantCreateComponent extends Component
 
     public function submitForm()
     {
-
-
         $validatedData = $this->validate();
 
        try{
@@ -93,15 +91,7 @@ class TenantCreateComponent extends Component
 
                 $tenant_uuid = $this->store_tenant($validatedData);
 
-                // if($this->generateCredentials)
-                // {
-                //     $user_id = $this->store_user();
-
-                //     app('App\Http\Controllers\UserController')->update_user_tenant_uuid($user_id, $tenant_uuid);
-
-                // }
-
-            return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/tenant/'.$tenant_uuid.'/guardian/'.Str::random(8).'/create')->with('success', 'Changes Saved!');
+                return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/tenant/'.$tenant_uuid.'/guardian/'.Str::random(8).'/create')->with('success', 'Changes Saved!');
 
             });
 
