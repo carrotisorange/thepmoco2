@@ -24,7 +24,7 @@ class TenantLedgerController extends Controller
 
         $bills = Tenant::find($tenant->uuid)
         ->bills()
-        ->whereIn('status', ['paid', 'partially_paid'])
+        ->where('status','paid')
         ->get();
 
         $collections = Tenant::find($tenant->uuid)

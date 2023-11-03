@@ -157,7 +157,7 @@ class BillController extends Controller
             'due_date' => $due_date,
             'user' => User::find(auth()->user()->id)->name,
             'role' => User::find(auth()->user()->id)->role->role,
-            'bills' => Bill::where('tenant_uuid', $tenant->uuid)->posted()->whereIn('status', ['unpaid','partially_paid'])->orderBy('bill_no', 'desc')->get(),
+            'bills' => Bill::where('tenant_uuid', $tenant->uuid)->posted()->where('status','unpaid')->orderBy('bill_no', 'desc')->get(),
             'balance' => $balance,
             'balance_after_due_date' => $balance + $penalty,
             'note_to_bill' => $note,
@@ -188,7 +188,7 @@ class BillController extends Controller
 
     public function get_tenant_balance($tenant_uuid)
     {
-        return Bill::where('tenant_uuid', $tenant_uuid)->whereIn('status', ['unpaid', 'partially_paid'])->orderBy('bill_no','desc')->get();
+        return Bill::where('tenant_uuid', $tenant_uuid)->where('status','unpaid')->orderBy('bill_no','desc')->get();
     }
 
     public function get_property_bills($property_uuid, $month, $status)
@@ -228,7 +228,7 @@ class BillController extends Controller
         if($status == 'paid')
         {
             $bills = Unit::find($unit_uuid)->bills()
-              ->whereIn('status', ['paid', 'partially_paid'])
+              ->where('status', 'paid')
               ->when($month, function ($query) use ($month) {
               $query->whereMonth('created_at', $month);
               })
@@ -237,14 +237,14 @@ class BillController extends Controller
 
         }else{
               $bills = Unit::find($unit_uuid)->bills()
-              ->whereIn('status', ['unpaid', 'partially_paid'])
+              ->where('status', 'unpaid')
               ->when($month, function ($query) use ($month) {
               $query->whereMonth('created_at', $month);
               })
               ->sum('bill') -
 
               Unit::find($unit_uuid)->bills()
-              ->whereIn('status', ['unpaid', 'partially_paid'])
+              ->where('status', 'unpaid')
               ->when($month, function ($query) use ($month) {
               $query->whereMonth('created_at', $month);
               })

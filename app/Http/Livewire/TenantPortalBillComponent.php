@@ -26,19 +26,11 @@ class TenantPortalBillComponent extends Component
 
     public function payBills()
     {
-        $amount_to_be_paid = ($this->get_unpaid_bills($this->selectedBills) + $this->partially_paid_bills($this->selectedBills)) - $this->paid_bills($this->selectedBills);
+        $amount_to_be_paid = ($this->get_unpaid_bills($this->selectedBills)) - $this->paid_bills($this->selectedBills);
 
         $batch_no = auth()->user()->id.'_'.Str::random(8);
 
-        $request_id = PaymentRequest::firstOrCreate(
-            [
-                'tenant_uuid' => $this->tenant->uuid,
-                'bill_nos' => Bill::whereIn('id', $this->selectedBills)->pluck('bill_no'),
-                'amount' => $amount_to_be_paid,
-                // 'batch_no' => $batch_no,
-                // 'status' => 'pending',
-            ],
-
+        $request_id = PaymentRequest::create(
             [
                 'tenant_uuid' => $this->tenant->uuid,
                 'bill_nos' => Bill::whereIn('id', $this->selectedBills)->pluck('bill_no'),
@@ -60,19 +52,6 @@ class TenantPortalBillComponent extends Component
         ->where('status', 'unpaid')
         ->whereIn('id', $selectedBills)
         ->sum('bill');
-    }
-
-    public function partially_paid_bills($selectedBills)
-    {
-        return Tenant::find($this->tenant->uuid)
-        ->bills()
-        ->where('status', 'partially_paid')
-        ->whereIn('id', $selectedBills)
-        ->sum('bill') - Tenant::find($this->tenant->uuid)
-        ->bills()
-        ->where('status', 'partially_paid')
-        ->whereIn('id', $selectedBills)
-        ->sum('initial_payment');
     }
 
     public function paid_bills($selectedBills)
@@ -106,8 +85,6 @@ class TenantPortalBillComponent extends Component
 
         $unpaid_bills = $this->get_unpaid_bills($this->selectedBills);
 
-        $partially_paid_bills = $this->partially_paid_bills($this->selectedBills);
-
         $paid_bills = $this->paid_bills($this->selectedBills);
 
         $bills = app('App\Http\Controllers\PortalTenantController')->get_bills($this->tenant->uuid);
@@ -121,8 +98,8 @@ class TenantPortalBillComponent extends Component
              })
            ->orderBy('id','desc')->get(),
 
-            'total' => ($unpaid_bills + $partially_paid_bills) - $paid_bills,
-            'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
+            'total' => ($unpaid_bills) - $paid_bills,
+            'total_unpaid_bills' => $bills->where('status','unpaid'),
             'statuses' => $statuses,
             'start_dates' => $start_dates,
             'end_dates' => $end_dates,

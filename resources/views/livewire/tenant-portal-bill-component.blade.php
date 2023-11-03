@@ -6,12 +6,13 @@
                 <h1 class="text-3xl font-bold text-gray-700">Bills</h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <x-button type="submit"
+                <x-button
                     onclick="window.location.href='/{{ auth()->user()->role_id }}/tenant/{{ auth()->user()->username }}/payments/pending'">
                     View Pending Payments
                 </x-button>
-                @if($total_unpaid_bills->sum('bill') && $selectedBills)
-                <x-button type="submit" wire:click="payBills()">
+
+                @if($selectedBills)
+                <x-button wire:click="payBills">
                     Pay Bills
                 </x-button>
                 @endif
@@ -21,8 +22,7 @@
         <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
             <div class="sm:col-span-4">
 
-                @if($total_unpaid_bills->sum('bill') && $selectedBills)
-
+                @if( $selectedBills)
 
                 <p class="mt-2 text-sm text-gray-500">
                     You've selected {{ count($selectedBills) }} {{ Str::plural('bill', count($selectedBills))}}

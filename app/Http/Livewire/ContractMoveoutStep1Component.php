@@ -31,7 +31,7 @@ class ContractMoveoutStep1Component extends Component
         $this->moveout_reason = $contract->moveout_reason;
         $this->tenant = $contract->tenant->tenant;
         $this->unit = $contract->unit->building->building.' '.$contract->unit->unit;
-        $this->unpaid_bills = Tenant::find($this->contract->tenant->uuid)->bills()->whereIn('status', ['unpaid', 'partially_paid'])->sum(DB::raw('bill-initial_payment'));
+        $this->unpaid_bills = Tenant::find($this->contract->tenant->uuid)->bills()->where('status', 'unpaid')->sum(DB::raw('bill-initial_payment'));
         $this->bank_name = $contract->bank_name;
         $this->account_name = $contract->account_name;
         $this->account_number = $contract->account_number;
@@ -58,9 +58,9 @@ class ContractMoveoutStep1Component extends Component
     public function submitForm()
     {
         $validatedData = $this->validate();
-   
+
         if(auth()->user()->role_id == '8'){
-            
+
             $validatedData['status'] = 'pendingmoveout';
 
             $this->contract->update($validatedData);
@@ -69,21 +69,21 @@ class ContractMoveoutStep1Component extends Component
 
             return redirect('/8/tenant/'.auth()->user()->username.'/contracts/')->with('success', 'Changes Saved!');
 
-        }else{  
+        }else{
             if(!$this->unpaid_bills > 0){
-            
+
                 $validatedData['status'] = 'active';
 
             } else{
                 $validatedData['status'] = 'pendingmoveout';
 
-            }   
-            
+            }
+
         $this->contract->update($validatedData);
 
-         return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-3')->with('success', 'Changes Saved!');        
+         return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-3')->with('success', 'Changes Saved!');
         }
-       
+
     }
 
     public function render()

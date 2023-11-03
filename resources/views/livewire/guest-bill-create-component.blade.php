@@ -71,8 +71,6 @@
             <x-form-select wire:model.lazy="status" autocomplete="status">
                 <option value="all" {{ $status=='' ? 'selected' : 'selected' }}> all </option>
                 <option value="paid" {{ $status=='paid' ? 'selected' : 'selected' }}> paid </option>
-                <option value="partially_paid" {{ $status=='partially_paid' ? 'selected' : 'selected' }}> partially paid
-                </option>
                 <option value="unpaid" {{ $status=='unpaid' ? 'selected' : 'selected' }}> unpaid </option>
             </x-form-select>
             @endif

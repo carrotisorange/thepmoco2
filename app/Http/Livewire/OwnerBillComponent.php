@@ -217,16 +217,6 @@ class OwnerBillComponent extends Component
       ->whereIn('id', $this->selectedBills)
       ->sum('bill');
 
-      $partially_paid_bills = Owner::find($this->owner->uuid)
-      ->bills()
-      ->where('status', 'partially_paid')
-      ->whereIn('id', $this->selectedBills)
-      ->sum('bill') - Owner::find($this->owner->uuid)
-      ->bills()
-      ->where('status', 'partially_paid')
-      ->whereIn('id', $this->selectedBills)
-      ->sum('initial_payment');
-
       $paid_bills = Owner::find($this->owner->uuid)
       ->bills()
       ->where('status', 'paid')
@@ -234,17 +224,17 @@ class OwnerBillComponent extends Component
       ->sum('bill');
 
       $total_count = Bill::whereIn('id', $this->selectedBills)
-      ->whereIn('status', ['paid', 'partially_paid'])
+      ->where('status', 'paid')
       ->count();
 
         $noteToBill = Property::find(Session::get('property_uuid'))->note_to_bill;
 
       return view('livewire.owner-bill-component',[
          'bills' => $bills,
-         'total' => ($unpaid_bills + $partially_paid_bills) - $paid_bills,
+         'total' => ($unpaid_bills) - $paid_bills,
          'total_count' => $total_count,
-         'total_paid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
-         'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
+         'total_paid_bills' => $bills->where('status', 'unpaid'),
+         'total_unpaid_bills' => $bills->where('status', 'unpaid'),
          'total_bills' => $bills,
          'statuses' => $statuses,
          'particulars' => app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid')),

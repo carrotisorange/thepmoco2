@@ -40,7 +40,7 @@ class ContractMoveoutStep4Component extends Component
             ]);
          }
 
-         $deposits = Tenant::find($this->contract->tenant_uuid)->bills->whereIn('particular_id',[3,4] )->whereIn('status', ['unpaid', 'partially_paid'])->count();
+         $deposits = Tenant::find($this->contract->tenant_uuid)->bills->whereIn('particular_id',[3,4] )->where('status', 'unpaid')->count();
 
          if($deposits){
             return redirect('/property/'.Session::get('property_uuid').'/rfp/'.$this->request_for.'/step-1')->with('success', 'Changes Saved!');
