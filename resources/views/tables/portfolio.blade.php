@@ -334,10 +334,8 @@
             </x-td>
             @foreach ($properties as $property)
             <x-td>
-                {{ App\Models\Property::find($property->uuid)->bills->whereIn('status', ['unpaid',
-                'partially_paid'])->count() -
-                App\Models\Property::find($property->uuid)->bills->whereIn('status', ['unpaid',
-                'partially_paid'])->count() }}
+                {{ App\Models\Property::find($property->uuid)->bills->where('status', 'unpaid')->count() -
+                App\Models\Property::find($property->uuid)->bills->where('status', 'unpaid')->count() }}
             </x-td>
             @endforeach
         </tr>

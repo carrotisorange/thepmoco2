@@ -24,7 +24,7 @@ class PortalTenantController extends Controller
         return view('portals.tenants.index',[
             'tenant' => Tenant::findOrFail($user->tenant_uuid)->tenant,
             'contracts' => Tenant::findOrFail($user->tenant_uuid)->contracts,
-            'unpaid_bills' => Tenant::findOrFail($user->tenant_uuid)->bills()->whereIn('status', ['unpaid', 'partially_paid']),
+            'unpaid_bills' => Tenant::findOrFail($user->tenant_uuid)->bills()->where('status', 'unpaid'),
             'concerns' => Tenant::findOrFail($user->tenant_uuid)->concerns,
         ]);
     }
@@ -88,7 +88,7 @@ class PortalTenantController extends Controller
 
     public function get_unpaid_bills($tenant_uuid)
     {
-        return Bill::where('tenant_uuid', $tenant_uuid)->whereIn('status', ['unpaid', 'partially_paid'])->where('bill','>', 0)->orderBy('bill_no','desc')->get();
+        return Bill::where('tenant_uuid', $tenant_uuid)->where('status', 'unpaid')->where('bill','>', 0)->orderBy('bill_no','desc')->get();
     }
 
     public function show_collections($role_id, User $user)

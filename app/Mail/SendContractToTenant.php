@@ -34,7 +34,7 @@ class SendContractToTenant extends Mailable
         return $this->subject(Session::get('property'))
                     ->from(auth()->user()->email)
                     ->markdown('emails.sendcontracttotenant', [
-                        'url' => 'https://www.thepmo.co',
+                        'url' => env('APP_URL'),
                     ]);
     }
 }

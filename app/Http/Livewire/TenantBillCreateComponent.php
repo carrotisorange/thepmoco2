@@ -268,16 +268,6 @@ class TenantBillCreateComponent extends Component
       ->whereIn('id', $this->selectedBills)
       ->sum('bill');
 
-      $partially_paid_bills = Tenant::find($this->tenant->uuid)
-      ->bills()
-      ->where('status', 'partially_paid')
-      ->whereIn('id', $this->selectedBills)
-      ->sum('bill') - Tenant::find($this->tenant->uuid)
-      ->bills()
-      ->where('status', 'partially_paid')
-      ->whereIn('id', $this->selectedBills)
-      ->sum('initial_payment');
-
       $paid_bills = Tenant::find($this->tenant->uuid)
       ->bills()
       ->where('status', 'paid')
@@ -285,7 +275,7 @@ class TenantBillCreateComponent extends Component
       ->sum('bill');
 
       $total_count = Bill::whereIn('id', $this->selectedBills)
-      ->whereIn('status', ['paid', 'partially_paid'])
+      ->where('status', 'paid')
       ->count();
 
       $particulars = app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid'));
@@ -294,15 +284,14 @@ class TenantBillCreateComponent extends Component
 
       return view('livewire.tenant-bill-create-component',[
          'bills' => $bills,
-         'total' => ($unpaid_bills + $partially_paid_bills) - $paid_bills,
+         'total' => ($unpaid_bills) - $paid_bills,
          'total_count' => $total_count,
-         'total_paid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
-         'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
+         'total_paid_bills' => $bills->where('status', 'unpaid'),
+         'total_unpaid_bills' => $bills->where('status', 'unpaid'),
          'total_bills' => $bills,
          'statuses' => $statuses,
-         'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
+         'total_unpaid_bills' => $bills->where('status','unpaid'),
          'unpaid_bills' => app('App\Http\Controllers\BillController')->get_tenant_balance($this->tenant->uuid),
-         // 'particulars' => app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid')),
          'units' => app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($this->tenant->uuid),
          'note_to_bill' => $noteToBill,
          'particulars' => $particulars

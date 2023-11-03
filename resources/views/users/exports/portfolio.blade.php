@@ -22,7 +22,7 @@
         <x-td>
             {{
             Str::limit($property->property->type->type,10) }}
-  
+
         </x-td>
         @endforeach
     </tr>
@@ -140,10 +140,8 @@
         </x-th>
         @foreach ($data as $property)
         <x-td>
-            {{ number_format($property->property->bills->whereIn('status', ['unpaid',
-            'partially_paid'])->sum('bill') -
-            $property->property->bills->whereIn('status', ['unpaid',
-            'partially_paid'])->sum('initial_payment'), 2) }}
+            {{ number_format($property->property->bills->where('status', 'unpaid')->sum('bill') -
+            $property->property->bills->where('status', 'unpaid')->sum('initial_payment'), 2) }}
         </x-td>
         @endforeach
     </tr>
@@ -153,7 +151,7 @@
         </x-th>
         @foreach ($data as $property)
         @if($property->property->bills->count())
-        <?php $collection_efficiency = 
+        <?php $collection_efficiency =
                                                             $property->property->collections->sum('collection') / $property->property->bills->sum('bill'); ?>
         @else
         <?php $collection_efficiency = 0;?>
@@ -169,10 +167,8 @@
         </x-th>
         @foreach ($data as $property)
         <x-td>
-            {{ $property->property->bills->whereIn('status', ['unpaid',
-            'partially_paid'])->count() -
-            $property->property->bills->whereIn('status', ['unpaid',
-            'partially_paid'])->count() }}
+            {{ $property->property->bills->where('status', 'unpaid')->count() -
+            $property->property->bills->where('status', 'unpaid')->count() }}
         </x-td>
         @endforeach
     </tr>

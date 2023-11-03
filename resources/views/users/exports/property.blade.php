@@ -180,10 +180,8 @@
                 </th>
 
                 <td>
-                    {{ number_format($data->bills->whereIn('status', ['unpaid',
-                    'partially_paid'])->sum('bill') -
-                    $data->bills->whereIn('status', ['unpaid',
-                    'partially_paid'])->sum('initial_payment'), 2) }}
+                    {{ number_format($data->bills->where('status','unpaid')->sum('bill') -
+                    $data->bills->where('status', 'unpaid')->sum('initial_payment'), 2) }}
                 </td>
 
             </tr>
@@ -210,10 +208,8 @@
                 </th>
 
                 <td>
-                    {{ $data->bills->whereIn('status', ['unpaid',
-                    'partially_paid'])->count() -
-                    $data->bills->whereIn('status', ['unpaid',
-                    'partially_paid'])->count() }}
+                    {{ $data->bills->where('status', 'unpaid')->count() -
+                    $data->bills->where('status', 'unpaid')->count() }}
                 </td>
 
             </tr>

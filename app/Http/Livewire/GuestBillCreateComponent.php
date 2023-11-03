@@ -270,16 +270,6 @@ class GuestBillCreateComponent extends Component
       ->whereIn('id', $this->selectedBills)
       ->sum('bill');
 
-      $partially_paid_bills = Guest::find($this->guest->uuid)
-      ->bills()
-      ->where('status', 'partially_paid')
-      ->whereIn('id', $this->selectedBills)
-      ->sum('bill') - Guest::find($this->guest->uuid)
-      ->bills()
-      ->where('status', 'partially_paid')
-      ->whereIn('id', $this->selectedBills)
-      ->sum('initial_payment');
-
       $paid_bills = Guest::find($this->guest->uuid)
       ->bills()
       ->where('status', 'paid')
@@ -287,7 +277,7 @@ class GuestBillCreateComponent extends Component
       ->sum('bill');
 
       $total_count = Bill::whereIn('id', $this->selectedBills)
-      ->whereIn('status', ['paid', 'partially_paid'])
+      ->where('status', 'paid')
       ->count();
 
       $particulars = app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid'));
@@ -296,14 +286,14 @@ class GuestBillCreateComponent extends Component
 
       return view('livewire.guest-bill-create-component',[
          'bills' => $bills,
-         'total' => ($unpaid_bills + $partially_paid_bills) - $paid_bills,
+         'total' => ($unpaid_bills) - $paid_bills,
          'total_count' => $total_count,
-         'total_paid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
-         'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
+         'total_paid_bills' => $bills->where('status', 'unpaid'),
+         'total_unpaid_bills' => $bills->where('status', 'unpaid'),
          'total_bills' => $bills,
          'statuses' => $statuses,
-         'total_unpaid_bills' => $bills->whereIn('status', ['unpaid', 'partially_paid']),
-         'unpaid_bills' => Bill::where('guest_uuid', $this->guest->uuid)->whereIn('status', ['unpaid', 'partially_paid'])->where('bill','>', 0)->orderBy('bill_no','desc')->get(),
+         'total_unpaid_bills' => $bills->where('status', 'unpaid'),
+         'unpaid_bills' => Bill::where('guest_uuid', $this->guest->uuid)->where('status', 'unpaid')->where('bill','>', 0)->orderBy('bill_no','desc')->get(),
          'particulars' => app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid')),
          'units' => Booking::where('unit_uuid', $this->guest->unit_uuid)->groupBy('unit_uuid')->get(),
          'particulars' => $particulars,

@@ -23,48 +23,6 @@
         </div>
 
 
-
-        <div class="mt-2 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-            <div class="sm:col-span-4">
-                <form>
-
-                    <div class="relative w-full mb-5">
-
-
-
-                    </div>
-            </div>
-
-            </form>
-
-            <div class="sm:col-span-2">
-                <form>
-
-                    <div class="relative w-full mb-5">
-                        <div class="flex absolute justify-end inset-y-0 left-0 items-center pl-3 pointer-events-none">
-
-                        </div>
-
-
-
-
-                    </div>
-
-
-            </div>
-
-
-
-            </form>
-
-
-
-
-
-
-        </div>
-
-
         <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
 
 
@@ -84,6 +42,13 @@
 
                         <div class="mt-5 md:mt-0 md:col-span-6">
 
-                            @include('forms.tenants.paymentrequest-edit')
-                            @endforeach
+                          @livewire('edit-payment-request-component',['payment_request' => $payment_request])
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
 </x-tenant-portal-layout>

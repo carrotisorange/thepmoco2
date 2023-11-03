@@ -35,7 +35,7 @@ class WelcomeMailToMember extends Mailable
             ->from(auth()->user()->email)
             ->from($this->details['email'])
             ->markdown('emails.welcomemailtomember', [
-                'url' => 'https://www.thepmo.co',
+                'url' => env('APP_URL'),
             ]);
     }
 }

@@ -266,11 +266,6 @@ class FinancialController extends Controller
            ->where('collections.is_posted',1)
                   ->where('bills.particular_id', 1)
            ->sum('collection');
-
-
-        // find($property_uuid)->bills()->posted()->wherein('status', ['paid', 'partially_paid'])
-        // ->whereYear('created_at', Carbon::now()->year)
-        // ->sum('initial_payment');
     }
 
     public function get_total_billed_rent($property_uuid){
@@ -279,13 +274,11 @@ class FinancialController extends Controller
 
     public function get_actual_revenue_collected($property_uuid){
         return DB::table('collections')
-        // ->select(DB::raw("SUM(collections.collection) as amount"), 'particulars.particular as particular')
         ->join('bills','collections.bill_id', 'bills.id')
         ->join('particulars', 'bills.particular_id', 'particulars.id')
         ->where('collections.property_uuid', $property_uuid)
         ->whereYear('collections.created_at', Carbon::now()->format('Y'))
         ->where('collections.is_posted',1)
-        // ->groupBy('bills.particular_id')
         ->sum('collection');
     }
 }

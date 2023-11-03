@@ -32,7 +32,7 @@ class ContractMoveoutStep3Component extends Component
 
     public function mount($contract)
     {
-        $this->bills = Bill::where('tenant_uuid',$this->contract->tenant->uuid)->whereIn('status', ['unpaid', 'partially_paid'])->get();
+        $this->bills = Bill::where('tenant_uuid',$this->contract->tenant->uuid)->where('status', 'unpaid')->get();
         $this->tenant_uuid = $contract->tenant_uuid;
         $this->remarks = $contract->remarks;
     }

@@ -39,11 +39,6 @@
                     class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                     <i class="fa-solid fa-circle-check"></i>
                 </span>
-                @elseif($item->status === 'partially_paid')
-                <span title="partially_paid"
-                    class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
-                    <i class="fa-solid fa-clock"></i>
-                </span>
                 @else
                 <span title="unpaid" class="px-2 text-sm leading-5 font-semibold rounded-full bg-red-100 text-red-800">
                     <i class="fa-solid fa-circle-xmark"></i>

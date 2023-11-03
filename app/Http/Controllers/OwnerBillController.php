@@ -25,7 +25,7 @@ class OwnerBillController extends Controller
 
     public function get_owner_balance($owner_uuid)
     {
-        return Bill::where('owner_uuid', $owner_uuid)->whereIn('status', ['unpaid', 'partially_paid'])->orderBy('bill_no','desc')->get();
+        return Bill::where('owner_uuid', $owner_uuid)->where('status', 'unpaid')->orderBy('bill_no','desc')->get();
     }
 
     public function store(Request $request, Property $property, Owner $owner)
@@ -120,7 +120,7 @@ class OwnerBillController extends Controller
             'user' => User::find(auth()->user()->id)->name,
             'role' => User::find(auth()->user()->id)->role->role,
             'balance' => $balance,
-            'bills' => Bill::where('owner_uuid', $owner->uuid)->whereIn('status', ['unpaid','partially_paid'])->get(),
+            'bills' => Bill::where('owner_uuid', $owner->uuid)->where('status', 'unpaid')->get(),
             'balance_after_due_date' => $balance + $penalty,
             'note_to_bill' => $note,
         ];

@@ -14,37 +14,32 @@
                             <option value="e-wallet" {{ old('mode_of_payment')=='e-wallet' ? 'selected' : 'Select one'
                                 }}>e-wallet</option>
                         </x-form-select>
+                        <x-validation-error-component name='mode_of_payment' />
                     </div>
 
-                 <x-validation-error-component name='mode_of_payment' />
+
 
                     @if($mode_of_payment === 'bank')
                     <div class="col-span-3">
-                        <label for="bank_name" class="block text-sm font-medium text-gray-700">Name of the bank</label>
-                        <input type="text" form="edit-form" name="bank_name" wire:model="bank_name"
-                            autocomplete="bank_name"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        <x-label for="bank_name" >Name of the bank</x-label>
+                        <x-form-input type="text" form="edit-form" name="bank_name" wire:model="bank_name"/>
                       <x-validation-error-component name='bank_name' />
                     </div>
 
                     <div class="col-span-3">
-                        <label for="date_deposited" class="block text-sm font-medium text-gray-700">Date Deposited
-                        </label>
-                        <input type="date" form="edit-form" name="date_deposited" wire:model="date_deposited"
-                            autocomplete="date_deposited"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        <x-label for="date_deposited" >Date Deposited
+                        </x-label>
+                        <x-form-input type="date" form="edit-form" name="date_deposited" wire:model="date_deposited"/>
                       <x-validation-error-component name='date_deposited' />
                     </div>
                     @endif
 
                     @if($mode_of_payment === 'cheque' || $mode_of_payment === 'e-wallet')
                     <div class="col-span-6">
-                        <label for="check_reference_no" class="block text-sm font-medium text-gray-700">Check/Reference
+                        <x-label for="check_reference_no" >Check/Reference
                             Number
-                        </label>
-                        <input type="text" form="edit-form" name="check_reference_no" wire:model="check_reference_no"
-                            autocomplete="check_no"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        </x-label>
+                        <x-form-input type="text" form="edit-form" name="check_reference_no" wire:model="check_reference_no"/>
                        <x-validation-error-component name='check_reference_no' />
                     </div>
                     @endif
@@ -53,9 +48,9 @@
 
                     <div class="col-span-6">
 
-                        <label class="block text-sm font-medium text-gray-700"> You may upload the proof of payment
+                        <x-label > You may upload the proof of payment
                             here.
-                        </label>
+                        </x-label>
                         <div class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
                             <div class="space-y-1 text-center">
 
@@ -73,12 +68,6 @@
 
                                 @else
 
-                                {{-- @if($payment_request->proof_of_payment)
-                                <span class="text-blue-500 text-xs mt-2">
-                                    <a target="_blank"
-                                        href="{{ asset('/storage/'.$payment_request->proof_of_payment) }}">View the
-                                        attachment.</a></span>
-                                @endif --}}
                                 @if($proof_of_payment)
                                 <span class="text-red-500 text-xs mt-2">
                                     <a href="#/" wire:click="removeAttachment()">Remove the
