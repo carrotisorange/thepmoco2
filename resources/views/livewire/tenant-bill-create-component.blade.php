@@ -26,11 +26,11 @@
                     @if($total_unpaid_bills->count())
                     <x-button data-modal-toggle="export-tenant-bill">Export
                         Bill ({{
-                        App\Models\Tenant::find($tenant->uuid)->bills()->where('status', '!=','paid')->count()
+                        App\Models\Tenant::find($tenant->uuid)->bills()->posted()->where('status', '!=','paid')->count()
                         }})</a></x-button>
 
                     <x-button data-modal-toggle="send-tenant-bill">Send
-                        Bill ({{ App\Models\Tenant::find($tenant->uuid)->bills()->where('status',
+                        Bill ({{ App\Models\Tenant::find($tenant->uuid)->bills()->posted()->where('status',
                         '!=', 'paid')->count() }})</a></x-button>
                     @endif
 
@@ -51,6 +51,7 @@
             <x-form-select wire:model.lazy="status" autocomplete="status">
                 <option value="all" {{ $status=='' ? 'selected' : 'selected' }}> all </option>
                 <option value="paid" {{ $status=='paid' ? 'selected' : 'selected' }}> paid </option>
+
                 <option value="unpaid" {{ $status=='unpaid' ? 'selected' : 'selected' }}> unpaid </option>
             </x-form-select>
             @endif

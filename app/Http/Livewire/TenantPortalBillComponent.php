@@ -44,11 +44,11 @@ class TenantPortalBillComponent extends Component
     }
 
 
-
     public function get_unpaid_bills($selectedBills)
     {
         return Tenant::find($this->tenant->uuid)
         ->bills()
+        ->posted()
         ->where('status', 'unpaid')
         ->whereIn('id', $selectedBills)
         ->sum('bill');
@@ -58,6 +58,7 @@ class TenantPortalBillComponent extends Component
     {
         return Tenant::find($this->tenant->uuid)
         ->bills()
+        ->posted()
         ->where('status', 'paid')
         ->whereIn('id', $selectedBills)
         ->sum('bill');
@@ -71,17 +72,17 @@ class TenantPortalBillComponent extends Component
 
         $start_dates = Bill::where('tenant_uuid', $this->tenant->uuid)
         ->select('*',DB::raw("(DATE_FORMAT(start,'%M %d, %Y')) as period_covered_start"), DB::raw('count(*) as count'))
+        ->posted()
         ->groupBy('period_covered_start')
         ->orderBy('start')
         ->get();
 
         $end_dates = Bill::where('tenant_uuid', $this->tenant->uuid)
         ->select('*',DB::raw("(DATE_FORMAT(end,'%M %d, %Y')) as period_covered_end"), DB::raw('count(*) as count'))
+        ->posted()
         ->groupBy('period_covered_end')
         ->orderBy('end')
         ->get();
-
-        //$particulars = app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid'));
 
         $unpaid_bills = $this->get_unpaid_bills($this->selectedBills);
 
@@ -103,7 +104,6 @@ class TenantPortalBillComponent extends Component
             'statuses' => $statuses,
             'start_dates' => $start_dates,
             'end_dates' => $end_dates,
-            //'particulars' => $particulars
         ]);
     }
 }

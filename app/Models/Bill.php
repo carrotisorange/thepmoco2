@@ -65,6 +65,12 @@ class Bill extends Model
         return $query->where($type, $uuid)->posted()->sum('bill');
     }
 
+    public function scopePostedStatusBills($query, $type, $uuid, $status){
+        return $query->where($type, $uuid)->posted()->where('status', $status)->sum('bill');
+    }
+
+
+
     public static function search($search)
     {
          return empty($search)? static::query()

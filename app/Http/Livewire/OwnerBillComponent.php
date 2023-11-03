@@ -213,12 +213,14 @@ class OwnerBillComponent extends Component
 
       $unpaid_bills = Owner::find($this->owner->uuid)
       ->bills()
+        ->posted()
       ->where('status', 'unpaid')
       ->whereIn('id', $this->selectedBills)
       ->sum('bill');
 
       $paid_bills = Owner::find($this->owner->uuid)
       ->bills()
+        ->posted()
       ->where('status', 'paid')
       ->whereIn('id', $this->selectedBills)
       ->sum('bill');

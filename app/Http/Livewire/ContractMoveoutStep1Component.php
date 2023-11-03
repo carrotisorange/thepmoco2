@@ -31,7 +31,8 @@ class ContractMoveoutStep1Component extends Component
         $this->moveout_reason = $contract->moveout_reason;
         $this->tenant = $contract->tenant->tenant;
         $this->unit = $contract->unit->building->building.' '.$contract->unit->unit;
-        $this->unpaid_bills = Tenant::find($this->contract->tenant->uuid)->bills()->where('status', 'unpaid')->sum(DB::raw('bill-initial_payment'));
+        $this->unpaid_bills = Tenant::find($this->contract->tenant->uuid)->bills()->posted()->where('status',
+        'unpaid')->sum(DB::raw('bill-initial_payment'));
         $this->bank_name = $contract->bank_name;
         $this->account_name = $contract->account_name;
         $this->account_number = $contract->account_number;

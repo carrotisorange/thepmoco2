@@ -18,7 +18,11 @@ use App\Models\Collection;
 use App\Models\Remittance;
 use App\Models\DeedOfSale;
 use App\Models\Feature;
-
+use App\Models\Contract;
+use App\Models\Bill;
+use App\Models\Unit;
+use App\Models\Guest;
+use App\Models\Booking;
 
 
 class UnitShowComponent extends Component
@@ -170,25 +174,40 @@ class UnitShowComponent extends Component
         }
     }
 
-    public function deleteUnit(){
-        app('App\Http\Controllers\ContractController')->destroy($this->unit_details->uuid,null);
-         DeedOfSale::where('unit_uuid', $this->unit_details->uuid)->delete();
-        app('App\Http\Controllers\PropertyUtilityController')->destroy($this->unit_details->uuid);
-        app('App\Http\Controllers\PropertyGuestController')->destroy($this->unit_details->uuid);
-        app('App\Http\Controllers\PropertyConcernController')->destroy($this->unit_details->uuid);
-        app('App\Http\Controllers\BillController')->destroy($this->unit_details->uuid);
-        app('App\Http\Controllers\UnitController')->destroy($this->unit_details->uuid);
-        Collection::where('unit_uuid', $this->unit_details->uuid)->delete();
-        UnitInventory::where('unit_uuid', $this->unit_details->uuid)->delete();
-        AccountPayableLiquidation::where('unit_uuid', $this->unit_details->uuid)->delete();
-        AccountPayableLiquidationParticular::where('unit_uuid', $this->unit_details->uuid)->delete();
-        AccountPayableParticular::where('unit_uuid', $this->unit_details->uuid)->delete();
-        Remittance::where('unit_uuid', $this->unit_details->uuid)->delete();
+    public function deleteUnit()
+     {
+         try {
 
+            DB::beginTransaction();
 
-        return redirect('/property/'.$this->unit_details->property_uuid.'/unit/')->with('success', 'Changes Saved!');
-    }
+               Contract::where('unit_uuid', $this->unit_details->uuid)->delete();
+               DeedOfSale::where('unit_uuid', $this->unit_details->uuid)->delete();
+               Utility::where('unit_uuid', $this->unit_details->uuid)->delete();
+               Guest::where('unit_uuid', $this->unit_details->uuid)->delete();
+               Concern::where('unit_uuid', $this->unit_details->uuid)->delete();
+               Bill::where('unit_uuid', $this->unit_details->uuid)->delete();
+               Collection::where('unit_uuid', $this->unit_details->uuid)->delete();
+               UnitInventory::where('unit_uuid', $this->unit_details->uuid)->delete();
+               AccountPayableLiquidation::where('unit_uuid', $this->unit_details->uuid)->delete();
+               AccountPayableLiquidationParticular::where('unit_uuid', $this->unit_details->uuid)->delete();
+               AccountPayableParticular::where('unit_uuid', $this->unit_details->uuid)->delete();
+               Remittance::where('unit_uuid', $this->unit_details->uuid)->delete();
 
+               Booking::where('unit_uuid', $this->unit_details->uuid)->delete();
+               Guest::where('unit_uuid', $this->unit_details->uuid)->delete();
+               Unit::where('uuid', $this->unit_details->uuid)->delete();
+
+                DB::commit();
+
+                return redirect('/property/'.$this->unit_details->property_uuid.'/unit/')->with('success', 'Changes Saved!');
+
+        }catch (\Exception $e) {
+               DB::rollback();
+            return redirect(url()->previous())->with('error', $e);
+        }
+     }
+
+    
     public function closeModal(){
 
         return redirect('/property/'.$this->unit_details->property_uuid.'/unit/'.$this->unit_details->uuid);
