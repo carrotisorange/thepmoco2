@@ -243,6 +243,7 @@ class TenantBillCreateComponent extends Component
     {
       $bills = Tenant::find($this->tenant->uuid)
       ->bills()
+      ->posted()
       ->orderBy('bill_no','desc')
       ->when($this->status, function($query){
          $query->where('status', $this->status);
