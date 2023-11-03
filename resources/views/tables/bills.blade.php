@@ -89,7 +89,6 @@
             @if($isPaymentAllowed)
             <x-th></x-th>
             @endif
-            {{-- <x-th>ID</x-th> --}}
             <x-th>BILL #</x-th>
             <x-th>DATE POSTED</x-th>
             <x-th>BILL TO</x-th>
@@ -97,8 +96,6 @@
             <x-th>PERIOD COVERED</x-th>
             <x-th>PARTICULAR</x-th>
             <x-th>AMOUNT DUE/AMOUNT PAID/BALANCE</x-th>
-            {{-- <x-th>INITIAL PAYMENT</x-th>
-            <x-th>BALANCE </x-th> --}}
             <x-th></x-th>
             <x-th></x-th>
         </tr>
@@ -115,7 +112,6 @@
                 @endif
             </x-th>
             @endif
-            {{-- <x-td>{{ $bill->id }}</x-td> --}}
             <x-td>{{ $bill->bill_no}}</x-td>
 
             <x-td>
@@ -123,26 +119,25 @@
             </x-td>
             <x-td>
                 @if($bill->tenant_uuid)
-                <a title="tenant" class="text-blue-500 text-decoration-line: underline" target="_blank"
-                    href="/property/{{ $bill->property_uuid }}/tenant/{{ $bill->tenant_uuid }}">
-                    {{ Str::limit($bill->tenant->tenant,20) }} </a> (T)
+               <x-link-component link="/property/{{ $bill->property_uuid }}/tenant/{{ $bill->tenant_uuid }}">
+                    {{ Str::limit($bill->tenant->tenant,20) }} (T)
+                </x-link-component>
                 @elseif($bill->owner_uuid)
-                <a title="owner" class="text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ $bill->property_uuid }}/owner/{{ $bill->owner_uuid }}">
-                    {{ Str::limit($bill->owner->owner,20) }} </a> (O)
+              <x-link-component link="/property/{{ $bill->property_uuid }}/owner/{{ $bill->owner_uuid }}">
+                    {{ Str::limit($bill->owner->owner,20) }} (O)
+                </x-link-component>
                 @elseif($bill->guest_uuid)
-                <a title="guest" class="text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ $bill->property_uuid }}/guest/{{ $bill->guest_uuid }}">
-                    {{ Str::limit(App\Models\Guest::find($bill->guest_uuid)->guest,20) }} </a> (G)
+              <x-link-component link="/property/{{ $bill->property_uuid }}/guest/{{ $bill->guest_uuid }}">
+                    {{ Str::limit($bill->guest->guest,20) }} (G)
+                </x-link-component>
                 @else
                 NA
                 @endif
             </x-td>
             <x-td>
-                <a class="text-blue-500 text-decoration-line: underline" target="_blank"
-                    href="/property/{{ Session::get('property_uuid') }}/unit/{{ $bill->unit->uuid }}">
-                    {{ Str::limit($bill->unit->unit,20) }} </a>
-                </a>
+               <x-link-component link="/property/{{ $bill->property_uuid }}/unit/{{ $bill->unit_uuid }}">
+                    {{ Str::limit($bill->unit->unit,20) }}
+                </x-link-component>
             </x-td>
             <x-td>
                 {{ Carbon\Carbon::parse($bill->start)->format('M d, Y').'-'.Carbon\Carbon::parse($bill->end)->format('M
@@ -194,7 +189,7 @@
 
         @livewire('edit-bill-component', ['bill_details' => $bill], key(Carbon\Carbon::now()->timestamp.''.$bill->id))
         @livewire('delete-bill-component', ['bill' => $bill], key(Carbon\Carbon::now()->timestamp.''.$bill->id))
-      
+
         @endforeach
     </tbody>
     @endif

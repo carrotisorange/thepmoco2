@@ -1,11 +1,9 @@
 <div>
-
     <div class="my-5 px-4 sm:px-6 lg:px-8">
         <div class="sm:grid grid-cols-1 lg:grid-cols-4 sm:items-center">
 
             <nav class="mt-5 border-b flex col-start-1" aria-label="Breadcrumb">
                 <ol role="list" class="mx-auto flex w-full max-w-screen-xl space-x-4 px-4 sm:px-6">
-
 
                     <li class="flex">
                         <div class="flex items-center">

@@ -2,14 +2,11 @@
     <thead class="">
         <tr>
             <x-th>#</x-th>
-            {{-- <x-th>ID</x-th> --}}
             <x-th>UNIT</x-th>
             <x-th>TENANT</x-th>
             <x-th>PERIOD COVERED</x-th>
             <x-th>RENT/MO</x-th>
-            <x-th>STATUS</x-th>
-            {{-- <x-th>INTERACTION</x-th> --}}
-            {{-- <x-th>CONTRACT</x-th> --}}
+
             <x-th></x-th>
         </tr>
     </thead>
@@ -20,29 +17,33 @@
                 <div style="width: 10px">
                     <x-td>{{ $index+1 }} </x-td>
                 </div>
-
-
-                {{-- <x-td>{{ Str::limit($contract->uuid, 10) }}</x-td> --}}
                 <x-td>
-                    <a class="text-blue-500 text-decoration-line: underline"
-                        href="/property/{{ Session::get('property_uuid') }}/unit/{{ $contract->unit->uuid }}">
-                        {{ $contract->unit->unit }}
-                    </a>
+                    <x-link-component link="/property/{{ Session::get('property_uuid') }}/unit/{{ $contract->unit->uuid }}">
+                       {{ $contract->unit->unit }}
+                    </x-link-component>
                 </x-td>
                 <x-td>
-                    <div class="text-sm text-gray-900">
                         @if(auth()->user()->role_id == '8')
                         {{ $contract->tenant->tenant }}
                         @else
-                        <a class="text-blue-500 text-decoration-line: underline"
-                            href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $contract->tenant->uuid }}">
-                            {{ $contract->tenant->tenant }}
-                        </a>
+                        <x-link-component link="/property/{{ Session::get('property_uuid') }}/tenant/{{ $contract->tenant->uuid }}">
+                          {{ $contract->tenant->tenant }} @if($contract->status === 'active')
+                        <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </span>
+                        @else
+                        <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                            <i class="fa-solid fa-clock"></i>
+                        </span>
                         @endif
-                    </div>
+                        @if($contract->end <= Carbon\Carbon::now()->addMonth() && $contract->status == 'active')
+                            <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-orange-100 text-orange-800">
+                                <i class="fa-solid fa-clock"></i>
+                            </span>
+                            @endif
+                        </x-link-component>
+                        @endif
                 </x-td>
-
-
                 <x-td>
                     {{Carbon\Carbon::parse($contract->start)->format('M d, Y')}} -
                     {{Carbon\Carbon::parse($contract->end)->format('M
@@ -50,42 +51,6 @@
 
 
                 <x-td>{{number_format($contract->rent, 2)}}</x-td>
-                <x-td>
-                    @if($contract->status === 'active')
-                    <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                        <i class="fa-solid fa-circle-check"></i> {{ $contract->status }}
-                    </span>
-                    @else
-
-                    <span class="px-2 text-sm leading-5 font-semibold rounded-full
-                                                                bg-orange-100 text-orange-800">
-                        <i class="fa-solid fa-clock"></i> {{
-                        $contract->status }}
-                    </span>
-                    @endif
-                    @if($contract->end <= Carbon\Carbon::now()->addMonth() && $contract->status
-                        == 'active')
-                        <span
-                            class="px-2 text-sm leading-5 font-semibold rounded-full
-                                                                                                                        bg-orange-100 text-orange-800">
-                            <i class="fa-solid fa-clock"></i> expiring
-                        </span>
-                        @endif
-                </x-td>
-                {{-- <x-td>
-                    @if($contract->interaction_id)
-                    {{ $contract->interaction->interaction }}
-                    @endif
-                </x-td> --}}
-                {{-- <x-td>
-                    @if(!$contract->contract == null)
-                    <a href="/property/{{ $contract->property_uuid }}/tenant/{{ $contract->tenant_uuid }}/contract/{{ $contract->contract }}/contract"
-                        target="_blank"
-                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Contract</a>
-                    @else
-                    No contract was uploaded.
-                    @endif
-                </x-td> --}}
                 <x-td>
                     @cannot('tenant')
                     <x-button id="dropdownDefaultButton({{ $contract->uuid }})" data-dropdown-placement="right"
@@ -150,6 +115,5 @@
         @livewire('edit-contract-component',['property' => App\Models\Property::find(Session::get('property_uuid')),
         'contract' => $contract], key($contract->uuid))
         @endforeach
-
     </tbody>
 </table>
