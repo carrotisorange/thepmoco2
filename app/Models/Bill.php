@@ -61,8 +61,8 @@ class Bill extends Model
         return $query->where('is_posted', true);
     }
 
-    public function scopePostedTenantBill($query, $tenantUuid){
-        return $query->where('tenant_uuid', $tenantUuid)->posted()->sum('bill');
+    public function scopePostedBills($query, $type, $uuid){
+        return $query->where($type, $uuid)->posted()->sum('bill');
     }
 
     public static function search($search)

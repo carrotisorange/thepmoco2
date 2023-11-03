@@ -50,12 +50,12 @@
                 <div class="sm:my-10 md:my-5 lg:my-0">
 
                     @if($total_unpaid_bills->count())
-                    <x-button data-modal-toggle="export-owner-bill"> Bills ({{
+                    <x-button data-modal-toggle="export-owner-bill"> Export Bills ({{
                         App\Models\Owner::find($owner->uuid)->bills()->where('status', '!=','paid')->count()
                         }})</a></x-button>
 
                     <x-button data-modal-toggle="send-owner-bill">
-                        Bills ({{ App\Models\Owner::find($owner->uuid)->bills()->where('status',
+                       Send Bills ({{ App\Models\Owner::find($owner->uuid)->bills()->where('status',
                         '!=', 'paid')->count() }})</a></x-button>
                     @endif
 

@@ -36,9 +36,8 @@
                         <x-label for="due_date">
                             Total Unpaid Bills
                         </x-label>
-                        {{ number_format(App\Models\Bill::where('guest_uuid',
-                        $guest->uuid)->posted()->sum('bill')-App\Models\Collection::where('guest_uuid',
-                        $guest->uuid)->posted()->sum('collection'), 2) }}
+                      {{ number_format(App\Models\Bill::postedBills('guest_uuid',$guest->uuid) -
+                    App\Models\Collection::postedCollections('guest_uuid',$guest->uuid),2) }}
 
                     </div>
                 </div>
@@ -47,9 +46,9 @@
                         <x-label for="due_date">
                             Penalty After Due Date
                         </x-label>
-                        <x-form-input id="penalty" type="number"
-                            value="{{ old('penalty', ((App\Models\Bill::where('guest_uuid', $guest->uuid)->posted()->sum('bill')-App\Models\Collection::where('guest_uuid', $guest->uuid)->posted()->sum('collection'))*.1)) }}"
-                            name="penalty" min="0" step="0.001" />
+                       <x-form-input id="penalty" type="number" step="0.001"
+                            value="{{ old('penalty', ((App\Models\Bill::postedBills('guest_uuid',$guest->uuid)-App\Models\Collection::postedCollections('guest_uuid',$guest->uuid))*.1)) }}"
+                            name="penalty" />
                       <x-validation-error-component name='penalty' />
                     </div>
                 </div>

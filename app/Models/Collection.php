@@ -61,9 +61,10 @@ class Collection extends Model
         return $query->where('bill_id', $billId)->posted()->sum('collection');
     }
 
-    public function scopePaidByTenant($query, $tenantUuid){
-        return $query->where('tenant_uuid', $tenantUuid)->posted()->sum('collection');
+    public function scopePostedCollections($query, $type, $uuid){
+        return $query->where($type, $uuid)->posted()->sum('collection');
     }
+
 
     public function collection()
     {

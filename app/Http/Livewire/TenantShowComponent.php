@@ -171,8 +171,6 @@ class TenantShowComponent extends Component
 
         $count_user = User::where('email', $this->tenant_details->email)->count();
 
-        ddd($count_user);
-
         if($count_user > 0)
         {
             return redirect(url()->previous())->with('error', 'Access already exists!');

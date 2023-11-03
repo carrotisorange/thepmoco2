@@ -55,7 +55,7 @@
                     @endif
 
                     <x-button data-modal-toggle="create-bill-modal">
-                                    New Bill</x-button>
+                                    Create Bill</x-button>
 
                 </div>
             </div>

@@ -36,8 +36,8 @@
                         <x-label for="due_date">
                             Total Unpaid Bills
                         </x-label>
-                        {{ number_format(App\Models\Bill::where('owner_uuid', $owner->uuid)->posted()->sum('bill') -
-                        App\Models\Collection::where('owner_uuid', $owner->uuid)->posted()->sum('collection'), 2) }}
+                        {{ number_format(App\Models\Bill::postedBills('owner_uuid', $owner->uuid) -
+                        App\Models\Collection::postedCollections('owner_uuid', $owner->uuid), 2) }}
 
                     </div>
                 </div>
@@ -47,8 +47,8 @@
                             Penalty After Due Date
                         </x-label>
                         <x-form-input id="penalty" type="number"
-                            value="{{ (App\Models\Bill::where('owner_uuid', $owner->uuid)->posted()->sum('bill') -  App\Models\Collection::where('owner_uuid', $owner->uuid)->posted()->sum('collection'))*.1 }}"
-                            name="penalty" min="0" step="0.001" />
+                            value="{{ (App\Models\Bill::postedBills('owner_uuid', $owner->uuid) -  App\Models\Collection::postedCollections('owner_uuid', $owner->uuid))*.1 }}"
+                            name="penalty" step="0.001" />
                        <x-validation-error-component name='penalty' />
                     </div>
                 </div>
@@ -64,20 +64,7 @@ peer" placeholder="Put your notes here." name="note_to_bill">{{ $note_to_bill }}
                       <x-validation-error-component name='note_to_bill' />
                     </div>
                 </div>
-                {{-- @if($tenant->email)
-                <div class="mt-5 flex flex-wrap -mx-3 mb-6">
-                    <div class="w-full md:w-full px-3">
-                        <div class="form-check">
-                            <input
-                                class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                                type="checkbox" name="sendBills" id="flexCheckChecked" checked>
-                            <label class="form-check-label inline-block text-gray-700" for="flexCheckChecked">
-                                Send unpaid bills to {{ $tenant->email }}.
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                @endif --}}
+
                 <div class="mt-5">
                     <p class="text-right">
                         <x-button type="submit">Export</x-button>
