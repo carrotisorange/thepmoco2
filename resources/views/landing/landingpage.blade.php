@@ -481,7 +481,7 @@
                                 <img class="h-48 inline-block border text-gray-500  rounded-lg py-4 px-4 text-sm font-medium text-center border-gray-300 hover:border-purple-500 border-b-2"
                                     id="propsuite-hoa-tab" data-tabs-target="#propsuite-hoa" type="button" role="tab"
                                     aria-controls="propsuite-hoa" aria-selected="false"
-                                    src="{{ asset('/brands/landing/prop-HOA.png')}}">
+                                    src="{{ asset('/brands/landing/prop-hoa.png')}}">
                                 
                             </li>
                             <li class="mr-2 rounded-xl" role="presentation">
