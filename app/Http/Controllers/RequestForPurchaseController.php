@@ -91,7 +91,7 @@ class RequestForPurchaseController extends Controller
         $subfeaturesArray = explode(",", $subfeatures);
 
         if($accountpayable->requester_id === auth()->user()->id){
-            if(strcmp($accountpayable->status,"pending") || strcmp($accountpayable->status,"rejected by manager")){
+            if($accountpayable->status=="pending" || ($accountpayable->status=="rejected by manager")){
                 return view('accountpayables.create.step-1', [
                   'property' => $property,
                   'accountpayable' => $accountpayable,
@@ -118,7 +118,7 @@ class RequestForPurchaseController extends Controller
 
           $subfeaturesArray = explode(",", $subfeatures);
 
-            if(strcmp($accountpayable->status,"pending")){
+            if($accountpayable->status== "pending"){
                 if($accountpayable->approver_id === auth()->user()->id){
                      return view('accountpayables.create.step-2', [
                         'property' => $property,
@@ -132,7 +132,7 @@ class RequestForPurchaseController extends Controller
                         'subfeaturesArray' => $subfeaturesArray
                      ]);
                 }
-            }elseif(strcmp($accountpayable->status,"approved by")){
+            }elseif(($accountpayable->status=="approved by")){
                 return view('accountpayables.approved-page',[
                     'accountpayable' => $accountpayable,
                     'subfeaturesArray' => $subfeaturesArray
@@ -156,7 +156,7 @@ class RequestForPurchaseController extends Controller
           $subfeaturesArray = explode(",", $subfeatures);
 
          if($accountpayable->approver2_id === auth()->user()->id || Session::get('role_id') === 4){
-                if(strcmp($accountpayable->status,"approved by manager")){
+                if(($accountpayable->status=="approved by manager")){
                       return view('accountpayables.create.step-3', [
                       'property' => $property,
                       'accountpayable' => $accountpayable,
@@ -185,7 +185,7 @@ class RequestForPurchaseController extends Controller
           $subfeaturesArray = explode(",", $subfeatures);
 
          if(Session::get('role_id') === 4){
-                if(strcmp($accountpayable->status,"approved by ap")){
+                if(($accountpayable->status=="approved by ap")){
                      return view('accountpayables.create.step-4', [
                         'property' => $property,
                         'accountpayable' => $accountpayable,
@@ -216,7 +216,7 @@ class RequestForPurchaseController extends Controller
 
         if(auth()->user()->id === $accountpayable->requester_id){
 
-                if(strcmp($accountpayable->status,"released")){
+                if(($accountpayable->status=="released")){
 
                     $particulars = AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get();
 
@@ -260,7 +260,7 @@ class RequestForPurchaseController extends Controller
           $subfeaturesArray = explode(",", $subfeatures);
 
        if($accountpayable->approver_id === auth()->user()->id){
-                if(strcmp($accountpayable->status,"liquidated")){
+                if(($accountpayable->status=="liquidated")){
                      return view('accountpayables.create.step-6', [
                      'property' => $property,
                      'accountpayable' => $accountpayable,
