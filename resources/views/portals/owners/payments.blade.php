@@ -29,7 +29,7 @@
 
                         </div>
 
-                        @include('portals.owners.tables.payments')
+                        @include('tables.collections')
 
                     </div>
 

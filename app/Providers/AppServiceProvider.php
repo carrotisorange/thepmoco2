@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Model::unguard();
-        
+
         Schema::defaultStringLength(191);
 
         Gate::define('admin', function(){
@@ -58,12 +58,12 @@ class AppServiceProvider extends ServiceProvider
             return (Session::get('role_id') === 5);
         });
 
-        Gate::define('unitowner', function(){
+        Gate::define('unitownerandtenant', function(){
             return Session::get('role_id') === 7;
         });
 
         Gate::define('tenant', function(){
-            return Session::get('role_id') === 8 || auth()->user()->role_id === 8;
+            return Session::get('role_id') === 8 || auth()->user()->role_id === 7;
         });
 
         Gate::define('manager', function(){
@@ -91,5 +91,5 @@ class AppServiceProvider extends ServiceProvider
         });
 
     }
-    
+
 }

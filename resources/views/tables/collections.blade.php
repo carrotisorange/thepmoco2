@@ -149,11 +149,12 @@
                     </ul>
                 </div>
                 @cannot('tenant')
-            <x-button class="bg-red-500" data-modal-target="delete-collection-modal-{{$collection->id}}" data-modal-toggle="delete-collection-modal-{{$collection->id}}"
-                type="button">
-                Delete
-            </x-button>
-            @endcannot
+                <x-button class="bg-red-500" data-modal-target="delete-collection-modal-{{$collection->id}}" data-modal-toggle="delete-collection-modal-{{$collection->id}}"
+                    type="button">
+                    Delete
+                </x-button>
+
+                 @endcannot
 
             </x-td>
 

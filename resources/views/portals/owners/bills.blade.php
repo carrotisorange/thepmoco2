@@ -11,10 +11,10 @@
                     </h1>
                 </div>
                 <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                    @if($bills->count())
+                    {{-- @if($bills->count())
                     <x-button onclick="window.location.href=''">
                         Pay Bills</x-button>
-                    @endif
+                    @endif --}}
 
                 </div>
             </div>
@@ -32,7 +32,7 @@
 
                         </div>
 
-                        @include('tables.bills')
+                        @include('portals.owners.tables.bills')
 
                     </div>
 

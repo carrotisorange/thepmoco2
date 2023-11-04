@@ -9,7 +9,7 @@
             {{--<x-th>PARTICULAR</x-th --}} <x-th>MODE OF PAYMENT</x-th>
             <x-th>AMOUNT PAID</x-th>
             <x-th>STATUS</x-th>
-       
+
 
         </tr>
     </thead>
