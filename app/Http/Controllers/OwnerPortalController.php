@@ -32,7 +32,7 @@ class OwnerPortalController extends Controller
 
         $property_uuid = DeedOfSale::where('owner_uuid', $owner_uuid)->value('property_uuid');
 
-        return view('portals.tenants.bulletins',[
+        return view('portals.owners.bulletins',[
             'bulletins' => Bulletin::where('property_uuid', $property_uuid)->where('is_approved',1)->orderBy('id','desc')->get()
         ]);
     }
