@@ -522,8 +522,6 @@ class PropertyController extends Controller
 
     public function edit(Property $property)
     {
-        // $this->authorize('is_portfolio_update_allowed');
-
         return view('properties.edit',[
             'property_details' => $property,
         ]);
