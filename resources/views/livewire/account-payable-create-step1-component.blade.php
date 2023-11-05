@@ -41,8 +41,8 @@
                         (Manager)</x-label>
                     <x-form-select id="first_approver" name="first_approver" wire:model="first_approver" >
                         <option value="">Select one</option>
-                        @foreach ($managers as $manager)
-                        <option value="{{ $manager->user_id }}">{{ $manager->user->name }}</option>
+                        @foreach ($firstApprovers as $firstApprover)
+                        <option value="{{ $firstApprover->user_id }}">{{ $firstApprover->user->name }}</option>
                         @endforeach
 
                     </x-form-select>
@@ -55,8 +55,8 @@
                         Payable)</x-label>
                     <x-form-select id="second_approver" name="second_approver" wire:model="second_approver" >
                         <option value="">Select one</option>
-                        @foreach ($accountpayables as $accountpayable)
-                        <option value="{{ $accountpayable->user_id }}">{{ $accountpayable->user->name }}</option>
+                        @foreach ($secondApprovers as $secondApprover)
+                        <option value="{{ $secondApprover->user_id }}">{{ $secondApprover->user->name }}</option>
                         @endforeach
 
                     </x-form-select>

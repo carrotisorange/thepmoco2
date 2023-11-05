@@ -42,7 +42,7 @@
                 Confirm
             </x-button>
             @else
-            <x-button class="w-full" type="button" disabled disabled>
+            <x-button class="w-full" type="button" disabled>
                 Confirm
             </x-button>
             <p class="text-red-500 text-xs mt-2">This feature is locked. Please contact your manager.</p>
