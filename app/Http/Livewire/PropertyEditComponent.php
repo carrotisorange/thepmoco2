@@ -76,14 +76,14 @@ class PropertyEditComponent extends Component
         return [
             'property' => 'required',
             'type_id' => ['required', Rule::exists('types', 'id')],
-            'thumbnail' => 'nullable | mimes:jpg,png, max:102400',
-            'doc1' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
-            'doc2' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
-            'doc3' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
-            'doc4' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
-            'doc5' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
-            'doc6' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
-            'doc7' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            'thumbnail' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            // 'doc1' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            // 'doc2' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            // 'doc3' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            // 'doc4' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            // 'doc5' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            // 'doc6' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            // 'doc7' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
             'description' => 'nullable',
             'country_id' => ['required', Rule::exists('countries', 'id')],
             'province_id' => ['required', Rule::exists('provinces', 'id')],
@@ -108,14 +108,11 @@ class PropertyEditComponent extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function submitForm(Request $request)
+    public function submitForm()
     {
-
-        $validated = $this->validate();
-
         try{
-            DB::transaction(function () use ($validated, $request){
-              $this->update_property($validated, $request);
+            DB::transaction(function (){
+                $this->property_details->update($this->validate());
             });
 
             $featureId = 20;
@@ -131,7 +128,7 @@ class PropertyEditComponent extends Component
         }
     }
 
-    public function update_property($validated, $request)
+    public function update_property($validated)
     {
         if ($this->thumbnail === null) {
             $thumbnail = $this->property_details->thumbnail;
@@ -168,7 +165,6 @@ class PropertyEditComponent extends Component
         }else{
             $doc5 = $this->doc4->store('doc5');
         }
-
 
         if ($this->doc6 === null) {
             $doc6 = $this->property_details->doc6;

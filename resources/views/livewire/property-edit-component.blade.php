@@ -311,7 +311,7 @@
                         </div>
                     </div>
 
-                    <div class="sm:col-span-12">
+                    {{-- <div class="sm:col-span-12">
                         <div class="{{ $formDivClasses }}">
                             <x-label for="thumbnail">
                                 Thumbnail
@@ -352,7 +352,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     @if(Session::get('property_type_id' == 8))
                     <div class="sm:col-span-12">
