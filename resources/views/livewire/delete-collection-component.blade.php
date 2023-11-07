@@ -21,9 +21,6 @@
         <x-button wire:click="deleteCollection({{ $collection->id }})" class="w-full bg-red-500">
             Yes, I'm sure
         </x-button>
-
-
-
     </div>
 
 </x-modal-component>

@@ -22,25 +22,27 @@ class PortalTenantController extends Controller
     public function index($role_id, User $user)
     {
         return view('portals.tenants.index',[
-            'tenant' => Tenant::findOrFail($user->tenant_uuid)->tenant,
-            'contracts' => Tenant::findOrFail($user->tenant_uuid)->contracts,
-            'unpaid_bills' => Tenant::findOrFail($user->tenant_uuid)->bills()->posted()->where('status', 'unpaid'),
-            'concerns' => Tenant::findOrFail($user->tenant_uuid)->concerns,
+            'tenant' => Tenant::findOrFail(Session::get('tenant_uuid'))->tenant,
+            'contracts' => Tenant::findOrFail(Session::get('tenant_uuid'))->contracts,
+            'unpaid_bills' => Tenant::findOrFail(Session::get('tenant_uuid'))->bills()->posted()->where('status', 'unpaid'),
+            'concerns' => Tenant::findOrFail(Session::get('tenant_uuid'))->concerns,
         ]);
     }
 
     public function show_contracts($role_id, User $user)
     {
+        $contracts = Contract::where('tenant_uuid', Session::get('tenant_uuid'))->get();
+
         return view('portals.tenants.contracts',[
-            'contracts' => Tenant::findOrFail($user->tenant_uuid)->contracts()->orderBy('start', 'desc')->get()
+            'contracts' => $contracts
         ]);
     }
 
     public function show_bulletin($role_id, User $user)
     {
-        $tenant_uuid = User::where('id', auth()->user()->id)->value('tenant_uuid');
+        Session::put('tenant_uuid', User::where('id', auth()->user()->id)->value('tenant_uuid'));
 
-        $property_uuid = Contract::where('tenant_uuid', $tenant_uuid)->value('property_uuid');
+        $property_uuid = Contract::where('tenant_uuid', Session::get('tenant_uuid'))->value('property_uuid');
 
         return view('portals.tenants.bulletins',[
             'bulletins' => Bulletin::where('property_uuid', $property_uuid)->where('is_approved',1)->orderBy('id','desc')->get()
@@ -49,22 +51,22 @@ class PortalTenantController extends Controller
 
     public function show_bills($role_id, User $user)
     {
+        $tenant = Tenant::findOrFail(Session::get('tenant_uuid'));
+
+        $bills = Bill::where('tenant_uuid', Session::get('tenant_uuid'))->posted()->get();
+
         return view('portals.tenants.bills',[
-            'tenant' => Tenant::findOrFail($user->tenant_uuid),
-            'unpaid_bills' => app('App\Http\Controllers\BillController')->get_tenant_balance($user->tenant_uuid),
+            'tenant' => $tenant,
+            'unpaid_bills' => $bills
         ]);
     }
-
-
-    public function get_bills($tenant_uuid)
-    {
-          return Bill::where('tenant_uuid', $tenant_uuid)->posted()->orderBy('id','desc')->get();
-    }
-
-
+        public function get_bills($tenant_uuid)
+        {
+        return Bill::where('tenant_uuid', $tenant_uuid)->posted()->orderBy('id','desc')->get();
+        }
     public function export_bills($role_id, User $user)
     {
-        $tenant = Tenant::findOrFail($user->tenant_uuid);
+        $tenant = Tenant::findOrFail(Session::get('tenant_uuid'));
 
         $data = $this->get_bill_data($tenant);
 
@@ -82,20 +84,15 @@ class PortalTenantController extends Controller
          'reference_no' => $tenant->bill_reference_no,
          'user' => User::find(auth()->user()->id)->name,
          'role' => User::find(auth()->user()->id)->role->role,
-         'bills' => $this->get_unpaid_bills($tenant->uuid),
+         'bills' => Bill::where('tenant_uuid', $tenant->uuid)->where('status', 'unpaid')->where('bill','>', 0)->orderBy('bill_no','desc')->get(),
          ];
-    }
-
-    public function get_unpaid_bills($tenant_uuid)
-    {
-        return Bill::where('tenant_uuid', $tenant_uuid)->where('status', 'unpaid')->where('bill','>', 0)->orderBy('bill_no','desc')->get();
     }
 
     public function show_collections($role_id, User $user)
     {
         return view('portals.tenants.collections',[
             'collections' => Collection::select('*', DB::raw("SUM(collection) as collection"),DB::raw("count(collection) as count"))
-            ->where('tenant_uuid', $user->tenant_uuid)
+            ->where('tenant_uuid', Session::get('tenant_uuid'))
             ->posted()
             ->groupBy('ar_no')
             ->orderBy('ar_no', 'desc')
@@ -106,14 +103,15 @@ class PortalTenantController extends Controller
     public function show_collections_pending($role_id, User $user, $status)
     {
         return view('portals.tenants.payment-requests',[
-            'requests' => PaymentRequest::where('tenant_uuid', $user->tenant_uuid)->where('status', $status)->orderBy('created_at', 'desc')->get()
+            'requests' => PaymentRequest::where('tenant_uuid', Session::get('tenant_uuid'))->where('status', $status)->orderBy('created_at', 'desc')->get()
         ]);
     }
 
     public function show_concerns($role_id, User $user)
     {
+        $concerns = Concern::where('tenant_uuid',Session::get('tenant_uuid'))->orderBy('created_at', 'desc')->get();
         return view('portals.tenants.concerns',[
-            'concerns' => Tenant::find($user->tenant_uuid)->concerns()->orderBy('created_at', 'desc')->get(),
+            'concerns' => $concerns,
         ]);
     }
 
@@ -186,15 +184,6 @@ class PortalTenantController extends Controller
         'updated_at' => null,
         'mode_of_payment' => $request->mode_of_payment,
       ]);
-
-        //   Notification::create([
-        //   'type' => 'payment request',
-        //   'user_id' => $user->id,
-        //   'details' => 'uploaded a proof of payment.',
-        //   'status' => 'pending',
-        //     'role_id' => $role_id,
-        //   'property_uuid' => Tenant::find($user->tenant_uuid)->property->uuid
-        //   ]);
 
       }
 
