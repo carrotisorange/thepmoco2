@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\AcknowledgementReceipt;
+use App\Models\Bill;
 use Livewire\Component;
 use App\Models\Collection;
 use Session;
@@ -36,12 +37,25 @@ class DeleteCollectionComponent extends Component
             'description' => $this->description
         ]);
 
+        $billIds = Collection::where('property_uuid', Session::get('property_uuid'))
+          ->where('ar_no', $this->collection->ar_no)
+          ->pluck('bill_id');
+
+        $collectionBatchNo = Collection::where('property_uuid', Session::get('property_uuid'))
+          ->where('ar_no', $this->collection->ar_no)
+          ->value('batch_no');
+
+        Bill::whereIn('id', $billIds)->update([
+            'status'=> 'unpaid'
+        ]);
+
+        AcknowledgementReceipt::where('collection_batch_no', $collectionBatchNo)->delete();
+
         Collection::where('property_uuid', Session::get('property_uuid'))
         ->where('ar_no', $this->collection->ar_no)
         ->delete();
 
         return redirect(url()->previous())->with('success', 'Changes Saved!');
-
     }
 
     public function render()

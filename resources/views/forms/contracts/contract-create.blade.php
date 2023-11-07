@@ -4,64 +4,53 @@
             <div class="mt-5 md:mt-0 md:col-span-2">
                 <div class="grid grid-cols-2 gap-6">
                     <div class="col-span-1">
-                        <label for="start" class="block text-sm font-medium text-gray-700">Start of the contract</label>
-                        <input type="date" wire:model.lazy="start" autocomplete="start"
-                            class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                         <x-validation-error-component name='start' />
+                        <x-label for="start" >Start of the contract</x-label>
+                        <x-form-input type="date" wire:model="start" autocomplete="start" />
+                        <x-validation-error-component name='start' />
                     </div>
 
                     <div class="col-span-1">
-                        <label for="end" class="block text-sm font-medium text-gray-700">End of the contract</label>
-                        <input type="date" wire:model.lazy="end" autocomplete="end"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
+                        <x-label for="end" >End of the contract</x-label>
+                        <x-form-input type="date" wire:model="end" autocomplete="end" />
                      <x-validation-error-component name='end' />
-
                     </div>
 
                     <div class="col-span-1">
-                        <label for="rent" class="block text-sm font-medium text-gray-700">Rent/month/tenant</label>
-                        <input type="number" wire:model.lazy="rent" autocomplete="rent" step="0.001"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                      <x-validation-error-component name='rent' />
+                        <x-label for="rent" >Rent/month/tenant</x-label>
+                        <x-form-input type="number" wire:model="rent" autocomplete="rent" step="0.001"/>
+                        <x-validation-error-component name='rent' />
                     </div>
 
                     <div class="col-span-1">
-                        <label for="discount" class="block text-sm font-medium text-gray-700">Discount </label>
-                        <input type="number" wire:model.lazy="discount" autocomplete="discount" step="0.001"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                       <x-validation-error-component name='discount' />
+                        <x-label for="discount" >Discount </x-label>
+                        <x-form-input type="number" wire:model="discount" autocomplete="discount" step="0.001" />
+                        <x-validation-error-component name='discount' />
                     </div>
 
                     <div class="col-span-2">
-                        <label for="interaction_id" class="block text-sm font-medium text-gray-700">How did you acquire
-                            the tenant?</label>
-                        <select wire:model.lazy="interaction_id" autocomplete="interaction_id"
-                            class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-
+                        <x-label for="interaction_id" >How did you acquire the tenant?</x-label>
+                        <x-form-select wire:model="interaction_id" autocomplete="interaction_id">
                             @foreach ($interactions as $interaction)
                             <option value="{{ $interaction->id }}" {{ old('interaction_id')==$interaction->id?
                                 'selected': 'Select one'
                                 }}>{{ $interaction->interaction }}</option>
                             @endforeach
-                        </select>
+                        </x-form-select>
                      <x-validation-error-component name='interaction_id' />
                     </div>
 
                     @if($this->interaction_id == 10)
                     <div class="col-span-2">
-                        <label for="referral" class="block text-sm font-medium text-gray-700">Name of the referral<span
-                                class="text-xs"></label>
-                        <input type="text" wire:model.lazy="referral" autocomplete="referral"
-                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                    <x-validation-error-component name='referral' />
+                        <x-label for="referral" >Name of the referral</x-label>
+                        <x-form-input type="text" wire:model="referral" autocomplete="referral" />
+                        <x-validation-error-component name='referral' />
                     </div>
                     @endif
 
                     <div class="col-span-2">
-
-                        <label class="block text-sm font-medium text-gray-700"> You may attached the signed contract
+                        <x-label > You may attached the signed contract
                             here.
-                        </label>
+                        </x-label>
                         <div class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
                             <div class="space-y-1 text-center">
 
@@ -92,9 +81,6 @@
 
                         @endif
                         @enderror
-
-
-
                     </div>
 
 

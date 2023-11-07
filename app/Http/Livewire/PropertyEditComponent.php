@@ -76,7 +76,7 @@ class PropertyEditComponent extends Component
         return [
             'property' => 'required',
             'type_id' => ['required', Rule::exists('types', 'id')],
-            'thumbnail' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            // 'thumbnail' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
             // 'doc1' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
             // 'doc2' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
             // 'doc3' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
