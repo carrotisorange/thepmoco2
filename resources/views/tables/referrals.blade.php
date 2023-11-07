@@ -11,13 +11,9 @@
     <tbody class="bg-white divide-y divide-gray-200">
         <tr>
             <x-td>{{ $referral->referral }}</x-td>
-            <x-td>{{$referral->contract->tenant->tenant.' in
-                '.$referral->contract->unit->unit }}</x-td>
+            <x-td>{{$referral->contract->tenant->tenant.' in'.$referral->contract->unit->unit }}</x-td>
             <x-td>{{ $referral->contract->user->name }}</x-td>
-            <x-td>
-                <{{ Carbon\Carbon::parse($referral->
-                    created_at)->timezone('Asia/Manila')->format('M
-                    d, Y @ H:i') }}
+            <x-td>{{ Carbon\Carbon::parse($referral->created_at)->timezone('Asia/Manila')->format('M d, Y @ H:i') }}
             </x-td>
             @empty
             <x-td>No data found.</x-td>

@@ -2,7 +2,6 @@
   <thead class="">
         <tr>
             <x-th>#</x-th>
-            <x-th>ID</x-th>
             <x-th>UNIT </x-th>
             <x-th>PERIOD COVERED</x-th>
             <x-th>PREVIOUS/CURRENT/CONSUMPTION</x-th>
@@ -16,14 +15,11 @@
     <tbody class="bg-white divide-y divide-gray-200">
         @foreach ($utilities as $index => $utility)
         <tr>
-            <x-th>{{ $index+1 }}</x-th>
-            <x-th>
-               {{  $utility->id }}
-            </x-th>
+            <x-td>{{ $index+1 }}</x-td>
             <x-td>
-                <a class="text-blue-500 text-decoration-line: underline" target="_blank"
-                    href="/property/{{ $utility->property_uuid }}/unit/{{ $utility->unit_uuid }}">{{ $utility->unit_name
-                    }}</a>
+                <x-link-component link="/property/{{ $utility->property_uuid }}/unit/{{ $utility->unit_uuid }}">
+                   {{ $utility->unit_name }}
+                </x-link-component>
             </x-td>
             <x-td>
                 {{ Carbon\Carbon::parse($utility->start_date)->format('M d, y') }}-{{
@@ -70,10 +66,7 @@
 
             </x-td>
             <x-td>
-                <x-button data-modal-target="edit-utility-modal-{{$utility->id}}"
-                    data-modal-toggle="edit-utility-modal-{{$utility->id}}"
-                  
-                    type="button">
+                <x-button data-modal-toggle="edit-utility-modal-{{$utility->id}}">
                     Edit
                 </x-button>
             </x-td>

@@ -6,7 +6,6 @@
             <x-th>TENANT</x-th>
             <x-th>PERIOD COVERED</x-th>
             <x-th>RENT/MO</x-th>
-
             <x-th></x-th>
         </tr>
     </thead>
@@ -54,8 +53,7 @@
                 <x-td>
                     @cannot('tenant')
                     <x-button id="dropdownDefaultButton({{ $contract->uuid }})" data-dropdown-placement="right"
-                        data-dropdown-toggle="dropdown({{ $contract->uuid }})"
-                       >Action
+                        data-dropdown-toggle="dropdown({{ $contract->uuid }})">Action
                     &nbsp; <i class="fa-solid fa-caret-down"></i>
                     </x-button>
 

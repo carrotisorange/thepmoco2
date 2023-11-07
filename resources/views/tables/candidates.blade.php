@@ -5,7 +5,6 @@
             <x-th>Election Year</x-th>
             <x-th>House Owner</x-th>
             <x-th>Email</x-th>
-
             <x-th>Mobile</x-th>
             <x-th>House</x-th>
             <x-th>Number of years as HOA member</x-th>

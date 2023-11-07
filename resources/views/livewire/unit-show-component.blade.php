@@ -4,7 +4,6 @@
   text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
                                                     dark:text-gray-200 dark:hover:text-white';
 ?>
-
 <div>
 
     @include('modals.popup-error')
@@ -189,6 +188,17 @@
 
 
                                         </div>
+                                    </div>
+                                    @endif
+                                    @elseif($subfeature == 'bill')
+                                    @if($bills->count())
+                                    @include('tables.bills')
+                                    @else
+                                    <div class=" mt-10 text-center mb-10">
+                                        <i class="fa-solid fa-circle-plus"></i>
+                                        <h3 class="mt-2 text-sm font-medium text-gray-900">No bills</h3>
+
+                                      
                                     </div>
                                     @endif
                                     @elseif($subfeature == 'utility')
@@ -502,9 +512,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
-
-
                                     </div>
                                     @endif
                                 </div>

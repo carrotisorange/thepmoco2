@@ -4,7 +4,6 @@
         <tr>
             <x-th>#</x-th>
             <x-th>Date</x-th>
-
             <x-th>Name</x-th>
             <x-th>Property</x-th>
             <x-th>Role</x-th>

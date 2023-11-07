@@ -8,17 +8,13 @@
             <div class="mt-5 sm:mt-6">
                 <x-label for="title">Title </x-label>
                 <x-form-input name="title" type="text" wire:model="title" />
-                @error('title')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+                <x-validation-error-component name='title' />
             </div>
 
             <div class="mt-5 sm:mt-6">
                 <x-label for="title">Description </x-label>
                 <x-form-textarea name="description" wire:model="description" />
-                @error('description')
-                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                @enderror
+                <x-validation-error-component name='description' />
             </div>
 
             <div class="mt-5 sm:mt-6">

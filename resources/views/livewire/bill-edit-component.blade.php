@@ -1,5 +1,4 @@
 <div>
-
     <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
             <h1 class="text-3xl font-bold text-gray-500"{{ucfirst(Route::current()->getName())}}>
@@ -18,7 +17,6 @@
             <div class="sm:flex sm:items-center">
                 <div class="mt-5 sm:flex-auto">
                     <h1 class="text-base font-semibold leading-6 text-gray-900">Bill Details</h1>
-
                 </div>
             </div>
             <div class="mt-8 flow-root">
@@ -107,3 +105,5 @@
                 </x-button>
             </div>
         </div>
+    </div>
+</div>

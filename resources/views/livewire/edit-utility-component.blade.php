@@ -9,13 +9,11 @@
             <div class="mt-5 sm:mt-6">
                 <x-label for="unit_uuid">Unit</x-label>
                 <x-form-input type="text" readonly value="{{ App\Models\Unit::find($utility->unit_uuid)->unit }}" />
-
             </div>
 
             <div class="mt-5 sm:mt-6">
                 <x-label for="type">Particular</x-label>
                 <x-form-input type="text" readonly value="{{ $utility->type }}" />
-
             </div>
 
             <div class="mt-5 sm:mt-6">

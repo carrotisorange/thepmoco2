@@ -15,11 +15,16 @@
     <tbody class="bg-white divide-y divide-gray-200">
         <tr>
             <x-td>{{ $index+1 }}</x-td>
-
-            <x-td><a href="/property/{{ Session::get('property_uuid') }}/guest/{{ $item->uuid }}"
-                    class="text-indigo-500 text-decoration-line: underline">{{ $item->guest }}</a></x-td>
-            <x-td><a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $item->unit_uuid }}"
-                    class="text-indigo-500 text-decoration-line: underline">{{ $item->unit->unit }}</a></x-td>
+            <x-td>
+                <x-link-component link="/property/{{ Session::get('property_uuid') }}/guest/{{ $item->uuid }}">
+                    {{ $item->guest }}
+                </x-link-component>
+            </x-td>
+            <x-td>
+                <x-link-component link="/property/{{ Session::get('property_uuid') }}/unit/{{ $item->unit_uuid }}">
+                    {{ $item->unit->unit }}
+                </x-link-component>
+            </x-td>
             <x-td>{{ $item->mobile_number }}</x-td>
             <x-td>{{ $item->email }}</x-td>
             <?php
