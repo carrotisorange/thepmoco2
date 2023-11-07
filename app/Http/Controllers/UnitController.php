@@ -24,7 +24,7 @@ class UnitController extends Controller
 
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,$featureId,$restrictionId);
 
-        return view('units.show',[
+        return view('features.units.show',[
             'property' => $property,
             'unit_details' => $unit,
             'deed_of_sales' => app('App\Http\Controllers\DeedOfSaleController')->show_unit_deed_of_sales($unit->uuid),
@@ -43,7 +43,7 @@ class UnitController extends Controller
 
      public function edit(Property $property, $batch_no)
     {
-        return view('units.edit-bulk',[
+        return view('features.units.edit-bulk',[
             'property' => $property,
             'batch_no' => $batch_no,
         ]);

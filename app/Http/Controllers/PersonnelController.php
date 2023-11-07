@@ -46,4 +46,21 @@ class PersonnelController extends Controller
     {
         return Property::find($property_uuid)->property_users()->get();
     }
+
+    public function create(Property $property, $random_str)
+    {
+        $this->authorize('accountownerandmanager');
+
+        return view('features.personnels.create',[
+            'property' => $property
+        ]);
+    }
+
+    public function delegate(Property $property, $user_id, $property_uuid)
+    {
+        app('App\Http\Controllers\UserPropertyController')->store($property_uuid,$user_id,false,false);
+
+        return redirect(url()->previous())->with('success', 'Changes Saved!');
+    }
 }
+

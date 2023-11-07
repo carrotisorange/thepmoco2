@@ -10,7 +10,7 @@ class UnitEnrolleeController extends Controller
 {
     public function index(Property $property, Unit $unit)
     {
-        return view('units.enrollees.index',[
+        return view('features.units.enrollees.index',[
                 'unit' => Unit::find($unit->uuid),
                 'enrollees' => Unit::find($unit->uuid)->enrollees,
         ]);

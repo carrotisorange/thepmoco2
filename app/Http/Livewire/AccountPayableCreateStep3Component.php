@@ -52,7 +52,7 @@ class AccountPayableCreateStep3Component extends Component
     {
         $this->validate();
 
-        app('App\Http\Controllers\RequestForPurchaseController')->update_approval($this->accountpayable->id, 'approved by ap', $this->comment, $this->vendor);
+        app('App\Http\Controllers\RFPController')->update_approval($this->accountpayable->id, 'approved by ap', $this->comment, $this->vendor);
 
         $ap = UserProperty::where('property_uuid', Session::get('property_uuid'))->where('role_id', 4)->approved()->pluck('user_id')->first();
 
@@ -76,7 +76,7 @@ class AccountPayableCreateStep3Component extends Component
 
         $this->validate();
 
-        app('App\Http\Controllers\RequestForPurchaseController')->update_approval($this->accountpayable->id, 'rejected
+        app('App\Http\Controllers\RFPController')->update_approval($this->accountpayable->id, 'rejected
         by ap', $this->comment, $this->vendor);
 
         $content = $this->accountpayable;

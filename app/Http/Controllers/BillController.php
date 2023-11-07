@@ -49,7 +49,7 @@ class BillController extends Controller
     {
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens', 10);
 
-        return view('tenants.bills.index',[
+        return view('features.tenants.bills.index',[
         'tenant' => $tenant,
         'property' => $property,
         ]);
@@ -62,7 +62,7 @@ class BillController extends Controller
         ->where('property_uuid', $property->uuid)
         ->get();
 
-        return view('bills.edit', [
+        return view('features.bills.edit', [
             'property' => $property,
             'batch_no' => $batch_no,
             'particulars' => $particulars
@@ -73,7 +73,7 @@ class BillController extends Controller
     {
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens', 10);
 
-        return view('owners.bills.index',[
+        return view('features.owners.bills.index',[
         'owner' => $owner,
         'property' => $property,
         ]);
@@ -119,7 +119,7 @@ class BillController extends Controller
 
     public function drafts($property_uuid,$batch_no){
 
-        return view('bills.drafts', [
+        return view('features.bills.drafts', [
             'property_uuid' => $property_uuid,
             'batch_no' => $batch_no
         ]);
@@ -131,7 +131,7 @@ class BillController extends Controller
 
         $data = $this->get_bill_data($tenant, $request->due_date, $request->penalty, $request->note_to_bill);
 
-        $folder_path = 'tenants.bills.export';
+        $folder_path = 'features.tenants.bills.export';
 
         $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
 
@@ -165,7 +165,7 @@ class BillController extends Controller
     }
 
     public function create_new(Property $property, Unit $unit, Tenant $tenant, Contract $contract){
-        return view('bills.create-new',[
+        return view('features.bills.create-new',[
             'property' => $property,
           'unit' => Unit::find($unit->uuid),
           'tenant' => $tenant,
@@ -281,7 +281,7 @@ class BillController extends Controller
 
         $particulars = app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid'));
 
-        return view('bills.create',[
+        return view('features.bills.create',[
             'unit' => $unit,
             'tenant' => $tenant,
             'contract' => $contract,
@@ -322,7 +322,7 @@ class BillController extends Controller
         ->where('property_uuid', $property->uuid)
         ->get();
 
-        return view('bills.edit', [
+        return view('features.bills.edit', [
             'property' => $property,
             'batch_no' => $batch_no,
             'particulars' => $particulars

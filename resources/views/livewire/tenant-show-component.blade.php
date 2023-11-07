@@ -256,7 +256,7 @@
 
                                     @elseif($subfeature == 'deposit')
                                     @if($wallets->count())
-                                    @include('tenants.tables.deposits')
+                                    @include('features.tenants.tables.deposits')
                                     @else
                                     <div class=" mt-10 text-center mb-10">
                                         <i class="fa-solid fa-circle-plus"></i>

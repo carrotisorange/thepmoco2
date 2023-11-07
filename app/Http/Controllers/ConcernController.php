@@ -58,7 +58,7 @@ class ConcernController extends Controller
     {
        // $this->authorize('is_concern_create_allowed');
 
-        return view('tenants.concerns.create');
+        return view('features.concerns.create');
     }
 
     public function show($property_uuid, Concern $concern)
@@ -69,7 +69,7 @@ class ConcernController extends Controller
 
         app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'opens one',13);
 
-        return view('concerns.show',[
+        return view('features.concerns.show',[
             'concern' => $concern
         ]);
     }
@@ -78,7 +78,7 @@ class ConcernController extends Controller
     {
         app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'opens one',13);
 
-        return view('tenants.concerns.edit',[
+        return view('features.tenants.concerns.edit',[
             'concern' => $concern,
         ]);
     }

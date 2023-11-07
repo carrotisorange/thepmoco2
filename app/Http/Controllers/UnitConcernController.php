@@ -16,7 +16,7 @@ class UnitConcernController extends Controller
      */
     public function index(Property $property, Unit $unit)
     {
-        return view('units.concerns.index',[
+        return view('features.units.concerns.index',[
             'unit' => $unit,
             'concerns' => Unit::find($unit->uuid)->concerns
         ]);
@@ -29,7 +29,7 @@ class UnitConcernController extends Controller
      */
     public function create(Property $property, Unit $unit)
     {
-        return view('units.concerns.create',[
+        return view('features.units.concerns.create',[
             'unit' => $unit
         ]);
     }
@@ -64,7 +64,7 @@ class UnitConcernController extends Controller
      */
     public function edit(Property $property, Unit $unit, Concern $concern)
     {
-        return view('units.concerns.edit',[
+        return view('features.units.concerns.edit',[
         'unit' => $unit,
         'concern' => $concern,
         ]);

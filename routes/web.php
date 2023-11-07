@@ -3,41 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Route;
-use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\PortfolioController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 require __DIR__.'/auth.php';
 
-require __DIR__.'/portfolio.php';
+require __DIR__.'/feature.php';
 
-require __DIR__.'/property.php';
+require __DIR__.'/portals/sale.php';
 
-require __DIR__.'/sale.php';
+require __DIR__.'/portals/tenant.php';
 
-require __DIR__.'/tenant.php';
-
-require __DIR__.'/owner.php';
+require __DIR__.'/portals/owner.php';
 
 require __DIR__.'/user.php';
 
-require __DIR__.'/marketing.php';
-
-//All routes that do not require authentication and verification
 require __DIR__.'/checkout.php';
 
-//show this route if a user tries to access broken links
+require __DIR__.'/portfolio.php';
+
 Route::fallback(function () {
     return view('layouts.not-found');
 });
@@ -102,9 +85,6 @@ Route::get('/privacy', function(){
     return view('landing.privacy');
 });
 
-// articles
-
-
 Route::get('/hoa-payable', function(){
     return view('HOA.AP.hoa-payable');
 });
@@ -117,7 +97,6 @@ Route::get('/homeowners', function(){
     return view('HOA.homeowners.homeowners');
 });
 
-//homeowner portal
 
 Route::get('/welcome', function(){
     return view('HOA.homeowner.welcome');
@@ -126,9 +105,6 @@ Route::get('/welcome', function(){
 Route::get('/profile-setup', function(){
     return view('HOA.homeowner.profile-setup');
 });
-
-
-
 
 Route::get('/propsuite', function(){
     return view('propsuite.propsuite');
@@ -157,8 +133,6 @@ Route::get('/proppay', function(){
     return view('proppay.proppay');
 });
 
-
-
 Route::get('/demopage', function(){
     return view('landing.demopage');
 });
@@ -170,18 +144,3 @@ Route::get('/demo', function(){
 Route::get('/survey', function(){
     return view('landing.survey');
 });
-
-
-
-// Route::post('/register', function(Request $request){
-
-//     $attributes = $request->validate([
-//     'name' => ['required', 'string', 'max:255'],
-//     'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-//     'mobile_number' => ['required', 'unique:users'],
-//     ]);
-
-//     User::create($attributes);
-
-//     return back()->with('success', 'The form has been submitted!');
-// });

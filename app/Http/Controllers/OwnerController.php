@@ -44,7 +44,7 @@ class OwnerController extends Controller
 
         Session::forget('tenant_uuid');
 
-        return view('owners.show',[
+        return view('features.owners.show',[
             'property' => $property,
             'owner_details' => $owner,
         ]);
@@ -57,7 +57,7 @@ class OwnerController extends Controller
 
     public function create(Property $property, Unit $unit)
     {
-        return view('owners.create', [
+        return view('features.owners.create', [
             'unit' => $unit,
         ]);
     }
@@ -75,11 +75,6 @@ class OwnerController extends Controller
     public function show_owner_deed_of_sales($owner_uuid)
     {
         return Owner::find($owner_uuid)->deed_of_sales()->paginate(5);
-    }
-
-    public function show_owner_enrollees($owner_uuid)
-    {
-        return Owner::find($owner_uuid)->enrollees()->paginate(5);
     }
 
     public function show_owner_spouses($owner_uuid)

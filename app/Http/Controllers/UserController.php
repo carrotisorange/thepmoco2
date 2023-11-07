@@ -27,7 +27,7 @@ class UserController extends Controller
                 'data' => $portfolio,
             ];
 
-            $folder_path = 'users.exports.portfolio';
+            $folder_path = 'features.personnels.exports.portfolio';
 
             $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
 
@@ -43,7 +43,7 @@ class UserController extends Controller
                 'data' => $property,
             ];
 
-            $folder_path = 'users.exports.property';
+            $folder_path = 'features.personnels.exports.property';
 
             $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
 
@@ -52,15 +52,6 @@ class UserController extends Controller
             return $pdf->stream($pdf_name);
         }
 
-    }
-
-    public function create(Property $property, $random_str)
-    {
-        $this->authorize('accountownerandmanager');
-
-        return view('users.create',[
-            'property' => $property
-        ]);
     }
 
     public function isTrialExpired($date)
@@ -143,13 +134,6 @@ class UserController extends Controller
         Mail::to($email)->send(new WelcomeMailToMember($details));
     }
 
-    public function delegate(Property $property, $user_id, $property_uuid)
-    {
-        app('App\Http\Controllers\UserPropertyController')->store($property_uuid,$user_id,false,false);
-
-        return redirect(url()->previous())->with('success', 'Changes Saved!');
-    }
-
     /**
      * Display the specified resource.
      *
@@ -165,14 +149,14 @@ class UserController extends Controller
     {
         Subscription::where('user_id', auth()->user()->id)->where('status', 'pending')->delete();
 
-        return view('users.unlock');
+        return view('features.personnels.unlock');
     }
 
     public function edit(User $user)
     {
        if($user->id === auth()->user()->id || auth()->user()->role_id == '5' || auth()->user()->role_id == '9'){
 
-           return view('users.edit', [
+           return view('features.personnels.edit', [
             'user' => $user,
             'roles' => Role::orderBy('role')->where('id','!=','5')->where('id','!=','10')->get(),
            ]);

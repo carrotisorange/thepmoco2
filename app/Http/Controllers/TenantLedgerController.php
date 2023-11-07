@@ -34,7 +34,7 @@ class TenantLedgerController extends Controller
 
         $ledgers = $bills->merge( $collections);
 
-        return view('tenants.ledgers.index', [
+        return view('features.tenants.ledgers.index', [
             'tenant' => $tenant,
             'bills'=> $bills,
             'collections'=> $collections,

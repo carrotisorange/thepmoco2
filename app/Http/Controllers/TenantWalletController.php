@@ -14,7 +14,7 @@ class TenantWalletController extends Controller
     }
 
     public function create(Property $property, Tenant $tenant){
-        return view('tenants.wallets.create',[
+        return view('features.tenants.wallets.create',[
             'tenant' => $tenant
         ]);
     }
@@ -23,7 +23,7 @@ class TenantWalletController extends Controller
     {
         Wallet::create([
             'tenant_uuid' => $tenant_uuid,
-            'amount' => $amount, 
+            'amount' => $amount,
             'description' => $description
         ]);
     }

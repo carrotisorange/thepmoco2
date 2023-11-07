@@ -8,6 +8,6 @@ use App\Models\Property;
 class BulletinController extends Controller
 {
     public function index(Property $property){
-        return view('bulletins.index');
+        return view('features.bulletins.index');
     }
 }

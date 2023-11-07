@@ -11,7 +11,7 @@ use App\Models\Reference;
 class TenantReferenceController extends Controller
 {
     public function create(Property $property, Tenant $tenant){
-        return view('tenants.references.create',[
+        return view('features.tenants.references.create',[
             'tenant'=> $tenant
         ]);
     }

@@ -84,46 +84,6 @@ class PropertyShowComponent extends Component
             'current_collection_rate' => $current_collection_rate,
             'occupancy_rate_value' => $occupancy_rate_value,
             'occupancy_rate_date' => $occupancy_rate_date
-
-            // 'pending_concerns' => app('App\Http\Controllers\ConcernController')->get_property_concerns(Session::get('property_uuid'),'pending', ''),
-            // 'closed_concerns' => app('App\Http\Controllers\ConcernController')->get_property_concerns(Session::get('property_uuid'), 'closed', Carbon::now()->month),
-            // 'payment_requests' => app('App\Http\Controllers\CollectionController')->get_property_payment_requests(Session::get('property_uuid'), 'pending'),
-            // 'roles' => app('App\Http\Controllers\RoleController')->get_property_user_roles(Session::get('property_uuid')),
-            // 'daily_collections' => app('App\Http\Controllers\CollectionController')->get_property_collections(Session::get('property_uuid'), Carbon::today(), Carbon::now()->month)->sum('collection'),
-            // 'current_monthly_collections' => app('App\Http\Controllers\CollectionController')->get_property_collections(Session::get('property_uuid'),'',Carbon::now()->month)->sum('collection'),
-            // 'previous_monthly_collections' => app('App\Http\Controllers\CollectionController')->get_property_collections(Session::get('property_uuid'),'', Carbon::now()->subMonth()->month)->sum('collection'),
-
-            // 'current_monthly_moveouts' => app('App\Http\Controllers\ContractController')->get_property_moveouts(Session::get('property_uuid'),'', Carbon::now()->month)->count(),
-            // 'current_monthly_expenses' => app('App\Http\Controllers\RequestForPurchaseController')->get_property_expenses(Session::get('property_uuid'),'', Carbon::now()->month)->sum('amount'),
-            // 'previous_monthly_expenses' => app('App\Http\Controllers\RequestForPurchaseController')->get_property_expenses(Session::get('property_uuid'),'', Carbon::now()->subMonth(1)->month)->sum('amount'),
-            // 'tenants' => app('App\Http\Controllers\TenantController')->get_property_tenants(Session::get('property_uuid') ,''),
-            // 'units' => app('App\Http\Controllers\UnitController')->getUnits(Session::get('property_uuid'), '','', ''),
-            // 'occupied_units' => app('App\Http\Controllers\UnitController')->getUnits(Session::get('property_uuid'), 2, '', ''),
-            // 'vacant_units' => app('App\Http\Controllers\UnitController')->getUnits(Session::get('property_uuid'), 1,'', ''),
-            // 'unlisted_units' => app('App\Http\Controllers\UnitController')->getUnits(Session::get('property_uuid'), 1,'', 0),
-
-
-            // 'occupancy_rate_value' => app('App\Http\Controllers\PropertyController')->get_occupancy_rate_values($this->occupancyGraphValue),
-            // 'occupancy_rate_date' => app('App\Http\Controllers\PropertyController')->get_occupancy_rate_dates($this->occupancyGraphValue),
-
-            // 'collection_rate_date' => app('App\Http\Controllers\PropertyController')->get_collection_rate_dates($this->collectionLineValue),
-            // 'collection_rate_value' => app('App\Http\Controllers\PropertyController')->get_collection_rate_values($this->collectionLineValue),
-            // 'expense_rate_value' => app('App\Http\Controllers\PropertyController')->get_expense_rate_values($this->collectionLineValue),
-            // 'current_collection_rate' => app('App\Http\Controllers\PropertyController')->get_current_collection_rate(),
-            // 'bill_rate_value' => app('App\Http\Controllers\PropertyController')->get_bill_rate_values(),
-            // 'tenant_type_label' => app('App\Http\Controllers\PropertyController')->get_tenant_type_labels(),
-            // 'tenant_type_value' => app('App\Http\Controllers\PropertyController')->get_tenant_type_values(),
-            // 'tenant_movein_value' => app('App\Http\Controllers\PropertyController')->get_tenant_movein_values(),
-            // 'tenant_movein_label' => app('App\Http\Controllers\PropertyController')->get_tenant_movein_labels(),
-            // 'tenant_moveout_value' => app('App\Http\Controllers\PropertyController')->get_tenant_moveout_values(),
-            // 'reasons_for_moveout_label' => app('App\Http\Controllers\PropertyController')->get_reasons_for_moveout_labels(),
-            // 'reasons_for_moveout_value' => app('App\Http\Controllers\PropertyController')->get_reasons_for_moveout_values(),
-            // 'delinquent_tenants' => app('App\Http\Controllers\PropertyController')->get_delinquents('tenant'),
-            // 'delinquent_guests' => app('App\Http\Controllers\PropertyController')->get_delinquents('guest'),
-            // 'delinquent_owners' => app('App\Http\Controllers\PropertyController')->get_delinquents('owner'),
-            // 'owners' => Owner::where('property_uuid', Session::get('property_uuid')),
-            // 'buildings' => PropertyBuilding::where('property_uuid', Session::get('property_uuid'))->count(),
-            // 'personnels' => app('App\Http\Controllers\UserPropertyController')->getPersonnels(Session::get('property_uuid')),
         ]);
     }
 }

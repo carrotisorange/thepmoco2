@@ -84,7 +84,7 @@ class OwnerBillController extends Controller
 
        $data = $this->get_bill_data($owner, $request->due_date, $request->penalty, $request->note_to_bill);
 
-       $folder_path = 'owners.bills.export';
+       $folder_path = 'features.owners.bills.export';
 
        $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
 

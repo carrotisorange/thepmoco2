@@ -112,7 +112,7 @@
                                     class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                                     @if($subfeature == 'inventory')
                                     @if($inventories->count())
-                                    @include('units.tables.inventories')
+                                    @include('features.units.tables.inventories')
                                     @else
                                     <div class="mt-10 text-center mb-10">
                                         <i class="fa-solid fa-circle-plus"></i>
@@ -198,7 +198,7 @@
                                         <i class="fa-solid fa-circle-plus"></i>
                                         <h3 class="mt-2 text-sm font-medium text-gray-900">No bills</h3>
 
-                                      
+
                                     </div>
                                     @endif
                                     @elseif($subfeature == 'utility')
@@ -226,7 +226,7 @@
                                     </div>
                                     @endif
                                     @elseif($subfeature == 'financial')
-                                    @include('units.tables.financials')
+                                    @include('features.units.tables.financials')
                                     @elseif($subfeature == 'remittance')
                                     <div class="flex justify-end items-center ">
                                         <x-button

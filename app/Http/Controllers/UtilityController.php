@@ -9,7 +9,28 @@ use Session;
 
 class UtilityController extends Controller
 {
-    
+
+    public function index(Property $property)
+    {
+        $featureId = 15;
+
+        $restrictionId = 2;
+
+        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
+            return abort(403);
+        }
+
+        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,$restrictionId,$featureId);
+
+        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
+
+        return view('properties.utilities.index');
+    }
+
+    public function destroy($unit_uuid){
+        Utility::where('unit_uuid', $unit_uuid)->delete();
+    }
+
     public function store($property_uuid, $unit_uuid, $previous_water_utility_reading, $previous_electric_utility_reading, $user_id, $start_date, $end_date, $batch_no, $option, $rate, $min_charge)
     {
         if($option === 'electric')
@@ -18,7 +39,7 @@ class UtilityController extends Controller
         }else{
             $this->store_utilities_by_type($property_uuid, $unit_uuid, $previous_water_utility_reading, $user_id, $start_date, $end_date, $batch_no, $option, $rate, $min_charge);
         }
-       
+
     }
 
     public function store_utilities_by_type($property_uuid, $unit_uuid, $utility_type, $user_id, $start_date, $end_date, $batch_no, $option, $rate, $min_charge)
@@ -49,7 +70,7 @@ class UtilityController extends Controller
      */
     public function edit($property_uuid, $batch_no, $option)
     {
-       return view('utilities.edit',[
+       return view('features.utilities.edit',[
             'batch_no' => $batch_no,
             'option' => $option
        ]);
@@ -71,7 +92,7 @@ class UtilityController extends Controller
                     'end_date' => $end_date,
                     'kwh' => $kwh,
                     'min_charge' => $min_charge,
-                    'current_consumption' => DB::raw('current_reading-previous_reading'), 
+                    'current_consumption' => DB::raw('current_reading-previous_reading'),
                     'total_amount_due' => DB::raw('((current_reading-previous_reading)*kwh)+'.$min_charge)
          ]);
     }

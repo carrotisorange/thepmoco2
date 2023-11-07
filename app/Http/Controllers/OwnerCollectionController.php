@@ -40,7 +40,7 @@ class OwnerCollectionController extends Controller
         ->where('batch_no', $batch_no)
         ->get();
 
-        return view('owners.collections.edit',[
+        return view('features.owners.collections.edit',[
          'collections' => $collections,
          'owner' => $owner,
          'batch_no' => $batch_no,
@@ -57,7 +57,7 @@ class OwnerCollectionController extends Controller
         $collection,
      );
 
-     $folder_path = 'owners.collections.export';
+     $folder_path = 'features.owners.collections.export';
 
      $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
 

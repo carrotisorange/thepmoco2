@@ -16,29 +16,29 @@ class ElectionController extends Controller
 
         $elections = Property::find(Session::get('property_uuid'))->elections;
 
-        return view('elections.index',[
+        return view('features.elections.index',[
             'elections' => $elections
         ]);
     }
 
     public function create(Property $property){
-        return view('elections.create');
+        return view('features.elections.create');
     }
 
     public function edit_step_1(Property $property, Election $election){
-        return view('elections.edit-step-1',[
+        return view('features.elections.edit-step-1',[
             'election' => $election
         ]);
     }
 
     public function create_step_2(Property $property, Election $election){
-        return view('elections.create-step-2',[
+        return view('features.elections.create-step-2',[
             'election' => $election
         ]);
     }
 
     public function export_step_2(Property $property, Election $election){
-        $folder_path = 'elections.export-step-2';
+        $folder_path = 'features.elections.export-step-2';
 
         $voters = Voter::where('election_id', $election->id)
         ->where('number_of_past_due_account','<',$election->number_of_months_behind_dues)
@@ -58,13 +58,13 @@ class ElectionController extends Controller
     }
 
     public function create_step_3(Property $property, Election $election){
-        return view('elections.create-step-3',[
+        return view('features.elections.create-step-3',[
             'election' => $election
         ]);
     }
 
     public function export_step_3(Property $property, Election $election){
-        $folder_path = 'elections.export-step-3';
+        $folder_path = 'features.elections.export-step-3';
 
         $candidates = Voter::where('election_id', $election->id)
         ->where('is_candidate',1)
@@ -84,14 +84,14 @@ class ElectionController extends Controller
     }
 
     public function create_step_4(Property $property, Election $election){
-        return view('elections.create-step-4',[
+        return view('features.elections.create-step-4',[
             'election' => $election
         ]);
     }
 
 
     public function create_step_5(Property $property, Election $election){
-        return view('elections.create-step-5',[
+        return view('features.elections.create-step-5',[
             'election' => $election
         ]);
     }

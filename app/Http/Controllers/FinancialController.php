@@ -106,7 +106,7 @@ class FinancialController extends Controller
             'expenses' => $expenses,
         ];
 
-        $folder_path = 'financials.export';
+        $folder_path = 'features.financials.export';
 
         $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
 

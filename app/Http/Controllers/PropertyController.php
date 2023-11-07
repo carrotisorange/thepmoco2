@@ -549,22 +549,6 @@ class PropertyController extends Controller
 
     }
 
-    public function show_tenant_contract($uuid)
-    {
-        return view('properties.show-tenant-contract',[
-            'property' => Property::find($uuid),
-        ]);
-    }
-
-     public function show_owner_contract($uuid)
-     {
-        return view('properties.show-owner-contract',[
-            'property' => Property::find($uuid),
-        ]);
-     }
-
-     //other functions
-
     public function destroy_property_session()
     {
         Session::forget('property');

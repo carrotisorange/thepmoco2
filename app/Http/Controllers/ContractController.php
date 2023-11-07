@@ -61,7 +61,7 @@ class ContractController extends Controller
         })
        ->paginate(10);
 
-       return view('contracts.index',[
+       return view('features.contracts.index',[
         'contracts' => $contracts
        ]);
     }
@@ -148,7 +148,7 @@ class ContractController extends Controller
     {
        // $this->authorize('is_contract_create_allowed');
 
-        return view('contracts.create', [
+        return view('features.contracts.create', [
             'unit' => $unit,
             'tenant' => $tenant
         ]);
@@ -197,7 +197,7 @@ class ContractController extends Controller
     {
        // $this->authorize('is_contract_update_allowed');
 
-        return view('contracts.edit',[
+        return view('features.contracts.edit',[
           'contract' => Contract::findOrFail($contract->uuid),
           'property' => Property::find(Session::get('property_uuid')),
         ]);
@@ -207,7 +207,7 @@ class ContractController extends Controller
     {
          Session::flash('success', 'Premove-in processed hasbeen completed.');
 
-        return view('contracts.edit',[
+        return view('features.contracts.edit',[
         'contract' => Contract::findOrFail($contract->uuid),
         'property' => Property::find(Session::get('property_uuid')),
         ]);
@@ -220,7 +220,7 @@ class ContractController extends Controller
 
     public function moveout_step_1(Property $property, Tenant $tenant, Contract $contract)
     {
-        return view('contracts.moveouts.step-1', [
+        return view('features.contracts.moveouts.step-1', [
             'ismovein' => 'moveout',
             'property' => $property,
             'contract' => $contract
@@ -229,7 +229,7 @@ class ContractController extends Controller
 
     public function moveout_step_2(Property $property, Tenant $tenant, Contract $contract)
     {
-        return view('contracts.moveouts.step-2', [
+        return view('features.contracts.moveouts.step-2', [
             'contract' => $contract
         ]);
     }
@@ -237,7 +237,7 @@ class ContractController extends Controller
 
     public function moveout_step_3(Property $property, Tenant $tenant, Contract $contract)
     {
-        return view('contracts.moveouts.step-3', [
+        return view('features.contracts.moveouts.step-3', [
 
             'property' => $property,
             'tenant' => $tenant,
@@ -251,7 +251,7 @@ class ContractController extends Controller
             'contract' => $contract
         ];
 
-        $pdf = \PDF::loadView('contracts.moveouts.clearance', $data);
+        $pdf = \PDF::loadView('features.contracts.moveouts.clearance', $data);
 
          $pdf->output();
 
@@ -274,7 +274,7 @@ class ContractController extends Controller
 
     public function moveout_step_4(Property $property, Tenant $tenant, Contract $contract)
     {
-        return view('contracts.moveouts.step-4', [
+        return view('features.contracts.moveouts.step-4', [
             'property' => $property,
             'contract' => $contract,
             'tenant' => $tenant
@@ -283,7 +283,7 @@ class ContractController extends Controller
 
     public function moveout_step_5(Property $property, Tenant $tenant, Contract $contract)
     {
-    return view('contracts.moveouts.step-5', [
+    return view('features.contracts.moveouts.step-5', [
     'contract' => $contract
     ]);
     }
@@ -296,7 +296,7 @@ class ContractController extends Controller
 
          Session::forget('owner_uuid');
 
-         return view('contracts.renew',[
+         return view('features.contracts.renew',[
             'contract_details' => $contract
          ]);
     }
@@ -333,7 +333,7 @@ class ContractController extends Controller
             'user' => $contract->user->name
         ];
 
-        $pdf = \PDF::loadView('contracts.export', $data);
+        $pdf = \PDF::loadView('features.contracts.export', $data);
 
          $pdf->output();
 
@@ -355,14 +355,14 @@ class ContractController extends Controller
 
     public function transfer(Property $property, Tenant $tenant, Contract $contract)
     {
-        return view('contracts.transfer',[
+        return view('features.contracts.transfer',[
             'contract_details' => $contract
         ]);
     }
 
     public function movein(Property $property, Unit $unit, Tenant $tenant, Contract $contract)
     {
-        return view('contracts.movein', [
+        return view('features.contracts.movein', [
             'unit' => $unit,
             'tenant' => $tenant,
             'contract' => $contract,
@@ -371,12 +371,12 @@ class ContractController extends Controller
 
     public function new(Property $property, Tenant $tenant)
     {
-        return view('contracts.new-contract',[
+        return view('features.contracts.new-contract',[
             'tenant' => $tenant
         ]);
     }
 
     public function export_moveout_form(Property $property, Tenant $tenant, Contract $contract){
-        return view('contracts.moveouts.clearance');
+        return view('features.contracts.moveouts.clearance');
     }
 }

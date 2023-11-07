@@ -12,6 +12,6 @@ use Session;
 class ElectionPolicyFormController extends Controller
 {
     public function create(Property $property){
-        return view('elections.policy-form.create');
+        return view('features.elections.policy-form.create');
     }
 }

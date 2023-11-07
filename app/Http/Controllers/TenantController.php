@@ -52,7 +52,7 @@ class TenantController extends Controller
 
         $list_of_all_relationships = app('App\Http\Controllers\RelationshipController')->index();
 
-        return view('tenants.show',[
+        return view('features.tenants.show',[
             'property' => $property,
             'tenant_details' => $tenant,
             'relationships' => $list_of_all_relationships
@@ -82,7 +82,7 @@ class TenantController extends Controller
      */
     public function create(Unit $unit)
     {
-        return view('tenants.create', [
+        return view('features.tenants.create', [
             'unit' => $unit
         ]);
     }

@@ -52,46 +52,8 @@ class CollectionController extends Controller
         return Property::find($property_uuid)->collections();
     }
 
-    // public function getCollections(Property $property, $type='property', $type_id=null)
-    // {
-    //     if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted(12)){
-    //         return abort(403);
-    //     }
-
-    //     app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens',11);
-
-    //     app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
-
-    //     if($type === 'property'){
-    //         return view('properties.collections.index',[
-    //         'property' => $property,
-    //         'collections'=> AcknowledgementReceipt::where('property_uuid', $property->uuid)->orderBy('id','desc')->get(),
-    //         ]);
-
-    //     }elseif($type === 'tenant'){
-    //         $tenant = Tenant::find($type_id);
-
-    //         return view('tenants.collections.index',[
-    //         'tenant' => $tenant,
-    //         'collections' => app('App\Http\Controllers\CollectionController')->get_tenant_collections($property->uuid, $tenant->uuid),
-    //     ]);
-    //     }elseif($type === 'owner'){
-    //         $owner = Owner::find($type_id);
-
-    //         return view('owners.collections.index',[
-    //             'owner' => Owner::find($type_id),
-    //             'collections' => app('App\Http\Controllers\OwnerCollectionController')->get_owner_collections($property->uuid, $owner->uuid),
-    //         ]);
-    //     }elseif($type==='pending'){
-    //         return view('payment_requests.index',[
-    //             'requests' => $this->get_property_payment_requests($property->uuid, $type)->get()
-    //         ]);
-    //     }
-    // }
-
-
     public function tenant_collection_index(Property $property, Tenant $tenant){
-          return view('tenants.collections.index',[
+          return view('features.tenants.collections.index',[
           'tenant' => $tenant,
           'collections' => app('App\Http\Controllers\CollectionController')->get_tenant_collections($property->uuid,$tenant->uuid)
           ]);
@@ -118,7 +80,7 @@ class CollectionController extends Controller
     public function edit_collections(Property $property, Tenant $tenant, $batch_no)
     {
 
-      return view('tenants.collections.edit',[
+      return view('features.collections.edit',[
          'tenant' => $tenant,
          'batch_no' => $batch_no
       ]);
@@ -393,7 +355,7 @@ class CollectionController extends Controller
             $collection,
          );
 
-        $folder_path = 'tenants.collections.export';
+        $folder_path = 'features.tenants.collections.export';
 
         $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
 
