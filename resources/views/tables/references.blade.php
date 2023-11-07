@@ -18,13 +18,10 @@
             <x-td> {{ $reference->mobile_number }} </x-td>
             <x-td> {{ $reference->email }} </x-td>
             <x-td>
-                <x-button data-modal-target="edit-reference-modal-{{$reference->id}}"
-                    data-modal-toggle="edit-reference-modal-{{$reference->id}}"
-                    type="button">
+                <x-button data-modal-toggle="edit-reference-modal-{{$reference->id}}">
                     Edit
                 </x-button>
             </x-td>
-
         </tr>
         @livewire('edit-reference-component', ['reference_details' => $reference], key($reference->id))
         @endforeach

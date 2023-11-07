@@ -120,7 +120,7 @@
             </x-td>
             <x-td>
                 @if($bill->tenant_uuid)
-               <x-link-component link="/property/{{ $bill->property_uuid }}/tenant/{{ $bill->tenant_uuid }}">
+                <x-link-component link="/property/{{ $bill->property_uuid }}/tenant/{{ $bill->tenant_uuid }}">
                     {{ Str::limit($bill->tenant->tenant,20) }} (T)
                 </x-link-component>
                 @elseif($bill->owner_uuid)

@@ -2,9 +2,7 @@
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="bg-gray-50">
             <tr>
-                <x-th>#
-                </x-th>
-                <x-th></x-th>
+                <x-th># </x-th>
                 <x-th>Reference #</x-th>
                 <x-th>Tenant</x-th>
                 <x-th>Unit</x-th>
@@ -19,61 +17,41 @@
             <div wire:key="bill-field-{{ $bill->id }}">
                 <tr>
                     <x-td>{{ $index+1 }}</x-td>
-                    <x-td>
-                        {{-- <div class="flex items-center">
-                            <x-input type="checkbox" wire:model="selectedBills.{{ $bill->id }}" />
-                        </div> --}}
-                    </x-td>
+
                      <?php
                         $tenant = App\Models\Tenant::where('uuid',$bill->tenant_uuid)->pluck('tenant')->first();
                         $unit = App\Models\Unit::where('uuid',$bill->unit_uuid)->pluck('unit')->first();
                     ?>
-                    <x-td>{{ $unit.'-'.$bill->bill_no }}</x-td>
-                   
+                    <x-td>{{ $bill->bill_no }}</x-td>
+
                     <x-td>
-                        <a class="text-blue-500 text-decoration-line: underline"
-                            href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $bill->tenant_uuid }}/bills"
-                            target="_blank">
+                        <x-link-component link="/property/{{ Session::get('property_uuid') }}/tenant/{{ $bill->tenant_uuid }}/bills">
                             {{ $tenant }}
-                        </a>
+                        </x-link-component>
                     </x-td>
                     <x-td>
-                        <a class="text-blue-500 text-decoration-line: underline"
-                            href="/property/{{ Session::get('property_uuid') }}/unit/{{ $bill->unit_uuid }}/bills">
+                        <x-link-component link="/property/{{ Session::get('property_uuid') }}/unit/{{ $bill->unit_uuid }}/bills">
                             {{ $unit }}
-                        </a>
+                        </x-link-component>
                     </x-td>
                     <x-td>
-                        <x-table-input form="edit-form" type="date" wire:model="bills.{{ $index }}.start"
-                            wire:change="updateBill({{ $bill->id }})" />
-                        @error('bills.{{ $index }}.start')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                        <x-table-input form="edit-form" type="date" wire:model="bills.{{ $index }}.start" wire:change="updateBill({{ $bill->id }})" />
+                        <x-validation-error-component name='bills.{{ $index }}.start' />
                     </x-td>
                     <x-td>
-                        <x-table-input form="edit-form" type="date" wire:model="bills.{{ $index }}.end"
-                            wire:change="updateBill({{ $bill->id }})" />
-                        @error('bills.{{ $index }}.end')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                        <x-table-input form="edit-form" type="date" wire:model="bills.{{ $index }}.end" wire:change="updateBill({{ $bill->id }})" />
+                       <x-validation-error-component name='bills.{{ $index }}.end' />
                     </x-td>
                     <x-td>
                         <x-table-select form="edit-form">
-                            <option value="{{ $bill->particular_id }}" {{ old('particular_id')==$bill->particular_id
-                                ?
-                                'selected'
-                                :
-                                'Select one' }} selected>{{
-                                $bill->particular->particular }}
+                            <option value="{{ $bill->particular_id }}" {{ old('particular_id')==$bill->particular_id?'selected':'Select one' }} selected>
+                                {{ $bill->particular->particular }}
                             </option>
                         </x-table-select>
                     </x-td>
                     <x-td>
-                        <x-table-input min="1" form="edit-form" type="number" wire:model="bills.{{ $index }}.bill"
-                            wire:change="updateBill({{ $bill->id }})" />
-                        @error('bills.{{ $index }}.bill')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
+                        <x-table-input min="1" form="edit-form" type="number" wire:model="bills.{{ $index }}.bill" wire:change="updateBill({{ $bill->id }})" />
+                        <x-validation-error-component name='bills.{{ $index }}.bill' />
                     </x-td>
                 </tr>
                 @endforeach

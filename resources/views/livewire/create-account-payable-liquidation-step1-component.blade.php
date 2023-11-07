@@ -14,7 +14,6 @@
             <div class="sm:flex sm:items-center">
                 <div class="mt-5 sm:flex-auto">
                     <h1 class="text-base font-semibold leading-6 text-gray-900">Liquidation Details</h1>
-
                 </div>
             </div>
             <div class="mt-8 flow-root">
@@ -104,7 +103,6 @@
             </div>
         </div>
 
-
         <div class="px-6 pt-5 flex justify-end items-center">
             <button type="button" wire:click="updateParticular"
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
@@ -116,7 +114,6 @@
             </button>
         </div>
 
-        <!-- table -->
         <div class="sm:col-span-6">
             <div class="mb-5 mt-2 relative overflow-auto ring-opacity-5 md:rounded-lg">
 
@@ -153,11 +150,7 @@
                                         </option>
                                         @endforeach
                                     </select>
-
-                                    @error('particulars.{{ $index }}.unit_uuid')
-                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                    @enderror
-
+                                    <x-validation-error-component name='particulars.{{ $index }}.unit_uuid' />
                                 </x-td>
                                 <x-td>
                                     <select wire:model="particulars.{{ $index }}.vendor_id"
@@ -171,44 +164,33 @@
                                         @endforeach
                                     </select>
 
-                                    @error('particulars.{{ $index }}.vendor_id')
-                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                    @enderror
+                                    <x-validation-error-component name='particulars.{{ $index }}.vendor_id' />
                                 </x-td>
                                 <x-td>
                                     <input type="text" wire:model="particulars.{{ $index }}.or_number"
                                         class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-36 sm:text-sm border border-gray-700  rounded-md">
 
-                                    @error('particulars.{{ $index }}.or_number')
-                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                    @enderror
+                                 <x-validation-error-component name='particulars.{{ $index }}.or_number' />
                                 </x-td>
                                 <x-td>
                                     <input type="text" wire:model="particulars.{{ $index }}.item"
                                         class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-96 sm:text-sm border border-gray-700  rounded-md">
-                                    @error('particulars.{{ $index }}.item')
-                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                    @enderror
+                                    <x-validation-error-component name='particulars.{{ $index }}.item' />
                                 </x-td>
                                 <x-td>
                                     <input type="number" wire:model="particulars.{{ $index }}.quantity"
                                         class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-36 sm:text-sm border border-gray-700  rounded-md">
-                                    @error('particulars.{{ $index }}.quantity')
-                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                    @enderror
+                                   <x-validation-error-component name='particulars.{{ $index }}.quantity' />
                                 </x-td>
 
                                 <x-td>
                                     <input type="number" step="0.001" wire:model="particulars.{{ $index }}.price"
                                         class="shadow-sm focus:ring-purple-500 focus:border-purple-500 block h-8 w-36 sm:text-sm border border-gray-700  rounded-md">
-                                    @error('particulars.{{ $index }}.price')
-                                    <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                    @enderror
+                                   <x-validation-error-component name='particulars.{{ $index }}.price' />
                                 </x-td>
                                 <x-td>
                                     {{ number_format((double)$particular->quantity * (double)$particular->price, 2) }}
                                 </x-td>
-
 
                                 <x-td>
                                     <button type="button" wire:click="removeParticular({{ $particular->id }})"

@@ -33,15 +33,12 @@
             <td></td>
             <td></td>
             <td></td>
-
             <td></td>
             <td></td>
-
             <td><b>{{ number_format($remittances->sum('total_deductions'), 2) }}</b></td>
             <td><b>{{ number_format($remittances->sum('remittance'), 2) }}</b></td>
             <td></td>
             <td></td>
-
         </tr>
     </tbody>
     <thead>
@@ -91,9 +88,9 @@
         <tr>
             <td class="sticky-col first-col">
                 @if($remittance->unit_uuid)
-                <a target="_blank" title="unit" class="text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ $remittance->property_uuid }}/unit/{{ $remittance->unit_uuid }}/remittances">
-                    {{ Str::limit(App\Models\Unit::find($remittance->unit_uuid)->unit,20) }} </a>
+                    <x-link-component link="/property/{{ $remittance->property_uuid }}/unit/{{ $remittance->unit_uuid }}/remittances">
+                        {{ Str::limit(App\Models\Unit::find($remittance->unit_uuid)->unit,20) }}
+                    </x-link-component>
                 @endif
             </td>
             <td class="sticky-col second-col">{{ Carbon\Carbon::parse($remittance->created_at)->format('M d, Y') }}</td>
@@ -102,11 +99,11 @@
 
             <td class="sticky-col fifth-col">
                 @if($remittance->owner_uuid)
-                   <a target="_blank" title="owner" class="text-blue-500 text-decoration-line: underline"
-                        href="/property/{{ $remittance->property_uuid }}/owner/{{ $remittance->owner_uuid }}">
-                      {{ Str::limit(App\Models\Owner::find($remittance->owner_uuid)->owner,20) }} </a>
+                    <x-link-component link="/property/{{ $remittance->property_uuid }}/owner/{{ $remittance->owner_uuid }}">
+                        {{ Str::limit(App\Models\Owner::find($remittance->owner_uuid)->owner,20) }}
+                    </x-link-component>
                 @else
-                NA
+                    NA
                 @endif
             </td>
             <td class="sticky-col sixth-col"> {{ $remittance->bank_name }}</td>
@@ -123,12 +120,11 @@
             </td>
             <td class="sticky-col tenth-col">
                 @if($remittance->guest_uuid)
-                <a target="_blank" title="guest" class="text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ $remittance->property_uuid }}/guest/{{ $remittance->guest_uuid }}">
-                    {{ Str::limit(App\Models\Guest::find($remittance->guest_uuid)->guest,20) }} </a>
-
+                    <x-link-component link="/property/{{ $remittance->property_uuid }}/guest/{{ $remittance->guest_uuid }}">
+                       {{ Str::limit(App\Models\Guest::find($remittance->guest_uuid)->guest,20) }}
+                    </x-link-component>
                 @else
-                NA
+                    NA
                 @endif
             </td>
             <td>{{ number_format($remittance->monthly_rent, 2) }}</td>

@@ -5,18 +5,12 @@
               <h1 class="text-3xl font-bold text-gray-500">{{ucfirst(Route::current()->getName())}}</h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <x-button class="bg-red-500" wire:click="returnToUtilitiesPage">Cancel
-                </x-button>
-                <x-button wire:click="postUtilities">Confirm
-                </x-button>
+                <x-button class="bg-red-500" wire:click="returnToUtilitiesPage">Cancel </x-button>
+                <x-button wire:click="postUtilities">Confirm </x-button>
             </div>
         </div>
-
         <div class="mt-3 -my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
-
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                <div>
-
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="">
                             <tr>
@@ -38,7 +32,6 @@
                                 <x-td></x-td>
                                 <x-td></x-td>
                                 <x-td>{{ number_format($utilities->sum('total_amount_due'), 2) }}</x-td>
-
                             </tr>
                         </tbody>
                         <tbody class="bg-white divide-y divide-gray-200">
@@ -46,85 +39,42 @@
                             <div wire:key="utility-field-{{ $item->id }}">
                                 <tr>
                                     <x-td>
-                                        <x-table-input form="edit-form" type="text"
-                                            value="{{ App\Models\Unit::find($item->unit_uuid)->unit }}" readonly />
+                                        <x-table-input form="edit-form" type="text" value="{{ App\Models\Unit::find($item->unit_uuid)->unit }}" readonly />
                                     </x-td>
-                                    {{-- <x-td> --}}
-                                        <x-table-input form="edit-form" type="hidden"
-                                            wire:model="utilities.{{ $index }}.start_date"
-                                            wire:change="updateUtilities({{ $item->id }})" readonly />
-                                        @error('utilities.{{ $index }}.start_date')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
-                                        {{--
-                                    </x-td> --}}
-                                    {{-- <x-td> --}}
-                                        <x-table-input form="edit-form" type="hidden"
-                                            wire:model="utilities.{{ $index }}.end_date"
-                                            wire:change="updateUtilities({{ $item->id }})" readonly />
-                                        @error('utilities.{{ $index }}.end_date')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
-                                        {{--
-                                    </x-td> --}}
+                                        <x-table-input form="edit-form" type="hidden" wire:model="utilities.{{ $index }}.start_date" wire:change="updateUtilities({{ $item->id }})" readonly />
+                                        <x-validation-error-component name='utilities.{{ $index }}.start_date' />
+
+                                        <x-table-input form="edit-form" type="hidden" wire:model="utilities.{{ $index }}.end_date" wire:change="updateUtilities({{ $item->id }})" readonly />
+                                        <x-validation-error-component name='utilities.{{ $index }}.end_date' />
                                     <x-td>
-                                        <x-table-input form="edit-form" type="number" step="0.001"
-                                            wire:model="utilities.{{ $index }}.previous_reading"
-                                            wire:change="updateUtilities({{ $item->id }})" />
-                                        @error('utilities.{{ $index }}.previous_reading')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                        <x-table-input form="edit-form" type="number" step="0.001" wire:model="utilities.{{ $index }}.previous_reading" wire:change="updateUtilities({{ $item->id }})" />
+                                        <x-validation-error-component name='utilities.{{ $index }}.previous_reading' />
                                     </x-td>
                                     <x-td>
-                                        <x-table-input form="edit-form" type="number" step="0.001"
-                                            wire:model="utilities.{{ $index }}.current_reading"
-                                            wire:change="updateUtilities({{ $item->id }})" />
-                                        @error('utilities.{{ $index }}.current_reading')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                        <x-table-input form="edit-form" type="number" step="0.001" wire:model="utilities.{{ $index }}.current_reading" wire:change="updateUtilities({{ $item->id }})" />
+                                       <x-validation-error-component name='utilities.{{ $index }}.current_reading' />
                                     </x-td>
                                     <x-td>
-                                        <x-table-input form="edit-form" type="number" step="0.001"
-                                            wire:model="utilities.{{ $index }}.current_consumption" readonly />
-
-                                        @error('utilities.{{ $index }}.current_consumption')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                        <x-table-input form="edit-form" type="number" step="0.001" wire:model="utilities.{{ $index }}.current_consumption" readonly />
+                                        <x-validation-error-component name='utilities.{{ $index }}.current_consumption' />
                                     </x-td>
                                     <x-td>
-                                        <x-table-input form="edit-form" type="number" step="0.001"
-                                            wire:model="utilities.{{ $index }}.kwh"
-                                            wire:change="updateUtilities({{ $item->id }})" />
-
-                                        @error('utilities.{{ $index }}.kwh')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                        <x-table-input form="edit-form" type="number" step="0.001" wire:model="utilities.{{ $index }}.kwh" wire:change="updateUtilities({{ $item->id }})" />
+                                        <x-validation-error-component name='utilities.{{ $index }}.kwh' />
                                     </x-td>
                                     <x-td>
-                                        <x-table-input form="edit-form" type="number" step="0.001"
-                                            wire:model="utilities.{{ $index }}.min_charge"
-                                            wire:change="updateUtilities({{ $item->id }})" />
-
-                                        @error('utilities.{{ $index }}.min_charge')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                        <x-table-input form="edit-form" type="number" step="0.001" wire:model="utilities.{{ $index }}.min_charge" wire:change="updateUtilities({{ $item->id }})" />
+                                        <x-validation-error-component name='utilities.{{ $index }}.min_charge' />
                                     </x-td>
-
-
                                     <x-td>
-                                        <x-table-input form="edit-form" type="number" step="0.001"
-                                            wire:model="utilities.{{ $index }}.total_amount_due" readonly />
-
-                                        @error('utilities.{{ $index }}.total_amount_due')
-                                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                                        @enderror
+                                        <x-table-input form="edit-form" type="number" step="0.001" wire:model="utilities.{{ $index }}.total_amount_due" readonly />
+                                        <x-validation-error-component name='utilities.{{ $index }}.total_amount_due' />
                                     </x-td>
                                 </tr>
                             </div>
                             @endforeach
                         </tbody>
                     </table>
-                </div>
             </div>
         </div>
     </div>

@@ -2,48 +2,37 @@
     <tbody>
         <tr>
             <x-td><b>Total</b></x-td>
-            {{-- <x-td></x-td> --}}
-            {{-- <x-td></x-td> --}}
             <x-td></x-td>
             <x-td></x-td>
             <x-td></x-td>
             <x-td></x-td>
             <x-td></x-td>
             <x-td></x-td>
-            {{-- <x-td></x-td>
-            <x-td></x-td> --}}
             <x-td></x-td>
             <x-td>
                 <b>{{ number_format($collections->sum('collection'), 2) }} ({{ $collections->count() }})</b>
             </x-td>
             <x-td></x-td>
-            {{-- <x-td></x-td> --}}
-
         </tr>
     </tbody>
-<thead class="">
+    <thead class="">
         <tr>
             <x-th>#</x-th>
-            {{-- <x-th>OR #  </x-th> --}}
             <x-th>AR #</x-th>
             <x-th>BILL #</x-th>
             <x-th> BILL TO</x-th>
             <x-th> DATE APPLIED</x-th>
-            {{-- <x-th> DATE DEPOSITED</x-th> --}}
             <x-th> MODE OF PAYMENT</x-th>
             <x-th> CHEQUE NO </x-th>
             <x-th> BANK</x-th>
             <x-th> AMOUNT PAID</x-th>
             <x-th></x-th>
-            {{-- <x-th></x-th> --}}
-            {{-- <x-th></x-th> --}}
         </tr>
     </thead>
     <tbody class="bg-white divide-y divide-gray-200">
         @foreach($collections as $index => $collection)
         <tr>
             <x-td><b>{{ $index+1 }}</b></x-td>
-            {{-- <x-td><x-table-input wire:model="collections.{{ $index }}.or_no" wire:change="updateOrNo({{ $collection->id }})" type="number" min="0000"/></x-td> --}}
             <x-td>{{ $collection->ar_no }}</x-td>
             <x-td>
                 <?php $bill_nos = App\Models\Collection::where('property_uuid', $collection->property_uuid)->posted()->where('ar_no', $collection->ar_no)->get();?>
@@ -53,29 +42,22 @@
             </x-td>
             <x-td>
                 @if($collection->tenant_uuid)
-                <a title="tenant" class="text-blue-500 text-decoration-line: underline" target="_blank"
-                    href="/property/{{ $collection->property_uuid }}/tenant/{{ $collection->tenant_uuid }}">
-                    {{ Str::limit($collection->tenant->tenant,20) }} </a> (T)
+                    <x-link-component link="/property/{{ $collection->property_uuid }}/tenant/{{ $collection->tenant_uuid }}">
+                    {{ Str::limit($collection->tenant->tenant,20) }} (T)
+                    </x-link-component>
                 @elseif($collection->owner_uuid)
-                <a title="owner" class="text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ $collection->property_uuid }}/owner/{{ $collection->owner_uuid }}">
-                    {{ Str::limit($collection->owner->owner,20) }} </a> (O)
+                    <x-link-component link="/property/{{ $collection->property_uuid }}/owner/{{ $collection->owner_uuid }}">
+                        {{ Str::limit($collection->owner->owner,20) }} (O)
+                    </x-link-component>
                 @elseif($collection->guest_uuid)
-                <a title="guest" class="text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ $collection->property_uuid }}/guest/{{ $collection->guest_uuid }}">
-                    {{ Str::limit($collection->guest->guest,20) }} </a> (G)
+                    <x-link-component link="/property/{{ $collection->property_uuid }}/guest/{{ $collection->guest_uuid }}">
+                        {{ Str::limit($collection->guest->guest,20) }} (G)
+                    </x-link-component>
                 @else
-                NA
+                    NA
                 @endif
             </x-td>
             <x-td> {{ Carbon\Carbon::parse($collection->created_at)->format('M d, Y') }} </x-td>
-            {{-- <x-td>
-                @if($collection->date_deposited)
-                {{ Carbon\Carbon::parse($collection->date_deposited)->format('M d, Y') }}
-                @else
-                NA
-                @endif
-            </x-td> --}}
             <x-td> {{ $collection->form }} </x-td>
             <x-td>
                 @if($collection->cheque_no)
@@ -144,7 +126,6 @@
                             class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Proof
                             of deposit</a>
                         @else
-
                         @endif
                     </ul>
                 </div>
@@ -153,14 +134,10 @@
                     type="button">
                     Delete
                 </x-button>
-
                  @endcannot
-
             </x-td>
-
         </tr>
         @livewire('delete-collection-component', ['collection' => $collection], key(Carbon\Carbon::now()->timestamp.''.$collection->id))
         @endforeach
-
     </tbody>
 </table>

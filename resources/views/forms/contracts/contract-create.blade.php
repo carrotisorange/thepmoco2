@@ -83,8 +83,6 @@
                         @enderror
                     </div>
 
-
-
                     <div class="mt-3 col-span-2">
                         <div class="form-check">
                             <input wire:model="autoGenerateBills"
