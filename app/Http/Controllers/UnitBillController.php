@@ -12,17 +12,12 @@ use Illuminate\Support\Str;
 
 class UnitBillController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function index(Property $property, Unit $unit)
     {
          return view('features.units.bills.index',[
          'unit' => $unit,
-          'bills' => app('App\Http\Controllers\BillController')->show_unit_bills($unit->uuid),
+          'bills' => app('App\Http\Controllers\Features\BillController')->show_unit_bills($unit->uuid),
           'view' => 'listView',
           'isPaymentAllowed' => false,
           'isIndividualView' => true,

@@ -1,6 +1,6 @@
    <?php
     use Illuminate\Support\Facades\Route;
-    use App\Http\Controllers\ConcernController;
+    use App\Http\Controllers\Features\ConcernController;
 
     Route::controller(ConcernController::class)->group(function () {
         Route::prefix('concern')->group(function(){

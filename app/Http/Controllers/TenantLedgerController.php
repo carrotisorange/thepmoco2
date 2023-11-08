@@ -8,20 +8,8 @@ use Illuminate\Http\Request;
 
 class TenantLedgerController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function index(Tenant $tenant)
     {
-        // $bills = DB::table('bills')->select('bill_no as no','bill as amount', 'created_at')->where('tenant_uuid', $tenant->uuid)->groupBy('id')->get();
-
-        // $collections = DB::table('collections')->select('ar_no as no','collection as amount','created_at')->where('tenant_uuid', $tenant->uuid)->groupBy('bill_id')->get();
-
-        // $ledgers = $bills->merge($collections);
-
         $bills = Tenant::find($tenant->uuid)
         ->bills()
         ->posted()

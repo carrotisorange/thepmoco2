@@ -1,5 +1,5 @@
-<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-<thead class="">
+<x-table-component>
+    <x-table-head-component>
         <tr>
             <x-th>#</x-th>
             <x-th>Owner</x-th>
@@ -8,9 +8,10 @@
             <x-th>Purchasing Price</x-th>
             <x-th></x-th>
         </tr>
-    </thead>
-    @foreach ($deed_of_sales as $index => $deedofsale)
-    <tbody class="bg-white divide-y divide-gray-200">
+    </x-table-head-component>
+
+    <x-table-body-component>
+        @foreach ($deed_of_sales as $index => $deedofsale)
         <tr>
             <x-td>{{ $index+1 }}</x-td>
             <x-td>
@@ -34,7 +35,6 @@
         </tr>
         @livewire('edit-deedofsale-component',['property' => $deedofsale->property, 'deedofsale'
         => $deedofsale], key(Carbon\Carbon::now()->timestamp.''.$deedofsale->uuid))
-
         @endforeach
-    </tbody>
-</table>
+    </x-table-body-component>
+</x-table-component>

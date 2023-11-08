@@ -122,7 +122,7 @@ class RemittanceIndexComponent extends Component
 
         foreach($collections as $collection){
              if($collection->bill->particular_id === 1){
-                app('App\Http\Controllers\RemittanceController')->store(
+                app('App\Http\Controllers\Features\RemittanceController')->store(
                     $collection->property_uuid,
                     $collection->unit->uuid,
                     $collection->ar_no,

@@ -1,6 +1,6 @@
  <?php
     use Illuminate\Support\Facades\Route;
-    use App\Http\Controllers\CollectionController;
+    use App\Http\Controllers\Features\CollectionController;
 
     Route::get('dcr/{start_date}/{end_date}/{format}', [CollectionController::class, 'export_dcr']);
 

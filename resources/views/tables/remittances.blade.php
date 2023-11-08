@@ -1,5 +1,5 @@
-<table style="overflow: scroll;">
-    <tbody>
+<x-table-component style="overflow: scroll;">
+    <x-table-body-component>
         <tr>
             <td class="sticky-col first-col"><b>Total</b></td>
             <td class="sticky-col second-col"></td>
@@ -40,8 +40,8 @@
             <td></td>
             <td></td>
         </tr>
-    </tbody>
-    <thead>
+    </x-table-body-component>
+    <x-table-head-component>
         <th>Unit #</th>
         <th>Date Paid</th>
         <th>AR #</th>
@@ -81,8 +81,8 @@
         <th>REMITTANCE</th>
         {{-- <th>CV NO.</th> --}}
         <th>Check No</th>
-    </thead>
-    <tbody>
+    </x-table-head-component>
+    <x-table-body-component>
         @foreach ($remittances as $index => $remittance)
         <div wire:key="remittance-field-{{ $remittance->id }}">
         <tr>
@@ -159,5 +159,5 @@
         </tr>
         </div>
         @endforeach
-    </tbody>
-</table>
+    </x-table-body-component>
+</x-table-component>

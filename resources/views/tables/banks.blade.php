@@ -1,6 +1,6 @@
 @if($banks->count())
-<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-  <thead class="">
+<x-table-component>
+  <x-table-head-component>
         <tr>
             <x-th>#</x-th>
             <x-th>Account Name</x-th>
@@ -8,25 +8,24 @@
             <x-th>Account Number</x-th>
             <x-th></x-th>
         </tr>
-    </thead>
+    </x-table-head-component>
     @foreach ($banks as $index => $bank)
-    <tbody class="bg-white divide-y divide-gray-200">
+    <x-table-body-component>
         <tr>
             <x-td>{{ $index+1 }}</x-td>
             <x-td>{{ $bank->account_name }}</x-td>
             <x-td>{{ $bank->bank_name }}</x-td>
             <x-td>{{ $bank->account_number }}</x-td>
             <x-td>
-                <x-button data-modal-target="bank-edit-modal-{{$bank->id}}"
-                    data-modal-toggle="bank-edit-modal-{{$bank->id}}">
+                <x-button data-modal-toggle="bank-edit-modal-{{$bank->id}}">
                     Edit
                 </x-button>
             </x-td>
         </tr>
         @livewire('bank-edit-component', ['bank' => $bank], key(Carbon\Carbon::now()->timestamp.''.$bank->id))
-    </tbody>
+    </x-table-body-component>
     @endforeach
-</table>
+</x-table-component>
 @else
 <div class=" mt-10 text-center mb-10 ">
    <i class="fa-solid fa-circle-plus"></i>

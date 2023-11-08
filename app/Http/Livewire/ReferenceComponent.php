@@ -85,7 +85,7 @@ class ReferenceComponent extends Component
     {
         return view('livewire.reference-component',[
             'relationships' => app('App\Http\Controllers\RelationshipController')->index(),
-            'references' => app('App\Http\Controllers\TenantController')->get_tenant_references($this->tenant->uuid),
+            'references' => app('App\Http\Controllers\Features\TenantController')->get_tenant_references($this->tenant->uuid),
         ]);
     }
 }

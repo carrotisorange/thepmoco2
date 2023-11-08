@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\UnitInventory;
-use Illuminate\Http\Request;
 use App\Models\Property;
 use App\Models\Unit;
 use Illuminate\Support\Str;
@@ -41,14 +40,14 @@ class UnitInventoryController extends Controller
         return view('inventories.movein-create', [
             'property' => $property,
             'unit' => $unit,
-            'tenant' => $tenant, 
+            'tenant' => $tenant,
             'contract' => $contract,
             'ismovein' => true
         ]);
     }
 
     public function export(Property $property, Unit $unit){
-        
+
         $data = [
             'unit' => $unit,
             'inventories' => UnitInventory::where('unit_uuid', $unit->uuid)->where('contract_uuid', '')
@@ -75,7 +74,7 @@ class UnitInventoryController extends Controller
     }
 
      public function export_movein(Property $property, Unit $unit, Contract $contract){
-        
+
         $data = [
             'unit' => $unit,
             'inventories' => UnitInventory::where('unit_uuid', $unit->uuid)->where('contract_uuid', $contract->uuid)

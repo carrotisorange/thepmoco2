@@ -3,11 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PropertyParticular;
-use Illuminate\Http\Request;
-use Session;
 use App\Models\Particular;
-use App\Models\Property;
-use DB;
 
 
 class PropertyParticularController extends Controller
@@ -22,7 +18,7 @@ class PropertyParticularController extends Controller
     }
 
      public function store($property_uuid){
-        for($i=1; $i<=8; $i++){ 
+        for($i=1; $i<=8; $i++){
             PropertyParticular::updateOrCreate(
             [   'property_uuid'=> $property_uuid,
                 'particular_id'=> $i,

@@ -163,15 +163,6 @@ class PortalTenantController extends Controller
             'user_id' => $user->id
         ]);
 
-                // Notification::create([
-                //     'type' => 'payment request',
-                //     'user_id' => $user->id,
-                //     'details' => 'approved a payment request.',
-                //     'status' => 'approved',
-                //     'role_id' => $role_id,
-                //     'property_uuid' => Session::get('property_uuid')
-                // ]);
-
          return redirect('/property/'.Session::get('property_uuid').'/collection/approved')->with('success', 'Changes Saved!');
         }
          else{
@@ -190,10 +181,8 @@ class PortalTenantController extends Controller
       return redirect(auth()->user()->role_id.'/tenant/'.
       auth()->user()->username.'/payments/declined')->with('success', 'Changes Saved!');
 
-
     }
 }
-
 
     public function payment_request_deny(Request $request, $role_id, User $user, $batch_no)
     {
@@ -203,15 +192,6 @@ class PortalTenantController extends Controller
             'reason_for_rejection' => $request->reason_for_rejection,
             'user_id' => $user->id
         ]);
-
-        //    Notification::create([
-        //         'type' => 'payment request',
-        //         'user_id' => $user->id,
-        //         'details' => 'approved a payment request.',
-        //         'status' => 'declined',
-        //         'role_id' => $role_id,
-        //         'property_uuid' => Session::get('property_uuid')
-        //     ]);
 
         return redirect('/property/'.Session::get('property_uuid').'/collection/declined')->with('success', 'Changes Saved!');
     }
@@ -223,7 +203,6 @@ class PortalTenantController extends Controller
 
         return Storage::download(($proof_of_payment), 'AR_'.$user->username.'_'.$paymentrequest->batch_no.'.png');
     }
-
 
     public function edit_concern($role_id, User $user, Concern $concern)
     {

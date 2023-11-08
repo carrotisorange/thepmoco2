@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\Features\CalendarController;
 
 Route::controller(CalendarController::class)->group(function () {
     Route::prefix('calendar')->group(function () {

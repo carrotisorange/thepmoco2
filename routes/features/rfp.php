@@ -1,7 +1,7 @@
 
 <?php
 
-use App\Http\Controllers\RFPController;
+use App\Http\Controllers\Features\RFPController;
 use App\Http\Controllers\LiquidationController;
 use Illuminate\Support\Facades\Route;
 

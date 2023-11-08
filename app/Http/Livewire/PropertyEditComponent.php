@@ -3,14 +3,12 @@
 namespace App\Http\Livewire;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
-use Illuminate\Http\Request;
 use DB;
 use App\Models\Country;
 use App\Models\Province;
 use App\Models\City;
 use App\Models\Type;
 use App\Models\PropertyDocument;
-use Session;
 
 use Livewire\Component;
 
@@ -76,14 +74,6 @@ class PropertyEditComponent extends Component
         return [
             'property' => 'required',
             'type_id' => ['required', Rule::exists('types', 'id')],
-            // 'thumbnail' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
-            // 'doc1' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
-            // 'doc2' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
-            // 'doc3' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
-            // 'doc4' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
-            // 'doc5' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
-            // 'doc6' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
-            // 'doc7' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
             'description' => 'nullable',
             'country_id' => ['required', Rule::exists('countries', 'id')],
             'province_id' => ['required', Rule::exists('provinces', 'id')],

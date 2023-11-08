@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AcknowledgementReceipt;
 use App\Models\User;
 use App\Models\Owner;
 use App\Models\DeedOfSale;

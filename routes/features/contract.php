@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ContractController;
+use App\Http\Controllers\Features\ContractController;
 
     Route::controller(ContractController::class)->group(function () {
         Route::prefix('contract')->group(function () {

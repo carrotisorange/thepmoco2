@@ -1,5 +1,5 @@
-<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-    <thead class="">
+<x-table-component>
+    <x-table-head-component>
         <tr>
             <x-th>#</x-th>
             <x-th>Published on</x-th>
@@ -8,9 +8,9 @@
             <x-th>Description</x-th>
             <x-th>Attachment</x-th>
         </tr>
-    </thead>
-    @foreach ($bulletins as $index => $bulletin)
-    <tbody class="bg-white divide-y divide-gray-200">
+    </x-table-head-component>
+    <x-table-body-component>
+        @foreach ($bulletins as $index => $bulletin)
         <tr>
             <x-td>{{ $index+1 }}</x-td>
             <x-td>{{ Carbon\Carbon::parse($bulletin->created_at)->format('M d, Y') }}</x-td>
@@ -21,6 +21,7 @@
 bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     type="button" href="{{ asset('/storage/'.$bulletin->attachment) }}" target="_blank">View</a></x-td>
         </tr>
-    </tbody>
-    @endforeach
-</table>
+        @endforeach
+    </x-table-body-component>
+
+</x-table-component>

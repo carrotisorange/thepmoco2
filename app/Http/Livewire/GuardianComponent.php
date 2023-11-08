@@ -14,7 +14,7 @@ class GuardianComponent extends Component
     //list of passed parameters
     public $unit;
     public $tenant;
-    
+
     //list of input fields
     public $guardian;
     public $relationship_id;
@@ -33,7 +33,7 @@ class GuardianComponent extends Component
             'relationship_id' => ['required', Rule::exists('relationships', 'id')],
             'guardian' => [ 'required'],
             'email' => ['nullable', 'string', 'email', 'max:255'],
-            'mobile_number' => 'required',   
+            'mobile_number' => 'required',
         ];
     }
 
@@ -44,7 +44,7 @@ class GuardianComponent extends Component
 
     public function submitForm()
     {
-        
+
 
         //validate inputs
         $validated_data = $this->validate();
@@ -55,7 +55,7 @@ class GuardianComponent extends Component
            $this->store_guardian($validated_data);
         }
         catch(\Exception $e)
-        {   
+        {
             return back()->with('error');
         }
     }
@@ -82,7 +82,7 @@ class GuardianComponent extends Component
 
     public function removeGuardian($guardian_id)
     {
-        
+
 
         return app('App\Http\Controllers\GuardianController')->destroy($guardian_id);
 
@@ -92,7 +92,7 @@ class GuardianComponent extends Component
     {
         return view('livewire.guardian-component',[
             'relationships' => app('App\Http\Controllers\RelationshipController')->index(),
-            'guardians' => app('App\Http\Controllers\TenantController')->show_tenant_guardians($this->tenant->uuid)
+            'guardians' => app('App\Http\Controllers\Features\TenantController')->show_tenant_guardians($this->tenant->uuid)
         ]);
     }
 }

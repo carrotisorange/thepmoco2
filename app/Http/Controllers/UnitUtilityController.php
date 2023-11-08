@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Unit;
 
 class UnitUtilityController extends Controller
@@ -11,7 +10,7 @@ class UnitUtilityController extends Controller
         Unit::where('uuid', $unit_uuid)
         ->update([
            'previous_water_reading' => $previous_water_reading,
-           'previous_electric_reading' => $previous_electric_reading 
+           'previous_electric_reading' => $previous_electric_reading
         ]);
     }
 }

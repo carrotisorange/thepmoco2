@@ -9,12 +9,6 @@ use Session;
 
 class OwnerDeedOfSalesController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function index(Property $property, Unit $unit, Owner $owner)
     {
         return view('features.owners.deed_of_sale.index',[

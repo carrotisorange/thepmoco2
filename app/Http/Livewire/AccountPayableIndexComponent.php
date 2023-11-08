@@ -93,9 +93,9 @@ class AccountPayableIndexComponent extends Component
 
        return view('livewire.account-payable-index-component',[
           'accountpayables' => $accountPayables,
-          'statuses' => app('App\Http\Controllers\RFPController')->get_statuses(Session::get('property_uuid')),
-          'dates' => app('App\Http\Controllers\RFPController')->get_dates(Session::get('property_uuid')),
-          'types' => app('App\Http\Controllers\RFPController')->get_types(Session::get('property_uuid')),
+          'statuses' => app('App\Http\Controllers\Features\RFPController')->get_statuses(Session::get('property_uuid')),
+          'dates' => app('App\Http\Controllers\Features\RFPController')->get_dates(Session::get('property_uuid')),
+          'types' => app('App\Http\Controllers\Features\RFPController')->get_types(Session::get('property_uuid')),
           'dates' => AccountPayable::where('property_uuid', Session::get('property_uuid'))
          ->groupByRaw('MONTHNAME(created_at)')
           ->get(),

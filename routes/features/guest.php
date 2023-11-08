@@ -1,6 +1,6 @@
 <?php
     use Illuminate\Support\Facades\Route;
-    use App\Http\Controllers\GuestController;
+    use App\Http\Controllers\Features\GuestController;
 
     Route::controller(GuestController::class)->group(function(){
         Route::prefix('guest')->group(function(){

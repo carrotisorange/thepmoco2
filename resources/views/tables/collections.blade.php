@@ -1,5 +1,5 @@
-<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-    <tbody>
+<x-table-component>
+    <x-table-body-component>
         <tr>
             <x-td><b>Total</b></x-td>
             <x-td></x-td>
@@ -14,8 +14,8 @@
             </x-td>
             <x-td></x-td>
         </tr>
-    </tbody>
-    <thead class="">
+    </x-table-body-component>
+    <x-table-head-component>
         <tr>
             <x-th>#</x-th>
             <x-th>AR #</x-th>
@@ -28,8 +28,8 @@
             <x-th> AMOUNT PAID</x-th>
             <x-th></x-th>
         </tr>
-    </thead>
-    <tbody class="bg-white divide-y divide-gray-200">
+    </x-table-head-component>
+    <x-table-body-component>
         @foreach($collections as $index => $collection)
         <tr>
             <x-td><b>{{ $index+1 }}</b></x-td>
@@ -139,5 +139,5 @@
         </tr>
         @livewire('delete-collection-component', ['collection' => $collection], key(Carbon\Carbon::now()->timestamp.''.$collection->id))
         @endforeach
-    </tbody>
-</table>
+    </x-table-body-component>
+</x-table-component>

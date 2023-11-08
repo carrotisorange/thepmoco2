@@ -3,17 +3,20 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\UnitController;
+
 use App\Http\Controllers\UnitContractController;
 use App\Http\Controllers\UnitDeedOfSalesController;
 use App\Http\Controllers\DeedOfSaleController;
 use App\Http\Controllers\UnitEnrolleeController;
-use App\Http\Controllers\GuestController;
+use App\Http\Controllers\BankController;
 use App\Http\Controllers\UnitConcernController;
 use App\Http\Controllers\UnitInventoryController;
-use App\Http\Controllers\RemittanceController;
-use App\Http\Controllers\OwnerController;
-use App\Http\Controllers\BankController;
+
+use App\Http\Controllers\Features\UnitController;
+use App\Http\Controllers\Features\RemittanceController;
+use App\Http\Controllers\Features\GuestController;
+use App\Http\Controllers\Features\OwnerController;
+use App\Http\Controllers\Features\ContractController;
 
         Route::prefix('unit')->group(function(){
             Route::controller(UnitController::class)->group(function(){
@@ -42,7 +45,7 @@ use App\Http\Controllers\BankController;
 
             Route::get('tenant/{tenant}/contract/{contract}/movein/{random_str}/create', [ContractController::class, 'movein']);
             Route::get('tenant/{tenant}/contract/{contract}', [ContractController::class, 'show'])->name('contract');
-            
+
             Route::get('tenant/{tenant}/contract/{contract}/deposit/{random_str}/create', [WalletController::class, 'create']);
                 Route::get('/contract/{contract}/inventory/export', [UnitInventoryController::class, 'export_movein']);
                 Route::get('enrollee', [UnitEnrolleeController::class, 'index']);

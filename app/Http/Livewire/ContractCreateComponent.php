@@ -64,9 +64,9 @@ class ContractCreateComponent extends Component
       {
 
 
-        $contract_uuid = app('App\Http\Controllers\PropertyController')->generate_uuid();
+        $contract_uuid = app('App\Http\Controllers\Features\PropertyController')->generate_uuid();
 
-        app('App\Http\Controllers\ContractController')->store(auth()->user()->id, $contract_uuid, Session::get('property_uuid'), $this->start, $this->end, $this->interaction_id, $this->rent, $this->tenant->uuid, $this->unit->uuid, 'reserved', 4, 'reserved', 1, 1, $this->referral, $this->sendContractToTenant);
+        app('App\Http\Controllers\Features\ContractController')->store(auth()->user()->id, $contract_uuid, Session::get('property_uuid'), $this->start, $this->end, $this->interaction_id, $this->rent, $this->tenant->uuid, $this->unit->uuid, 'reserved', 4, 'reserved', 1, 1, $this->referral, $this->sendContractToTenant);
 
         return
         redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$contract_uuid)->with('success','Changes Saved!');
@@ -77,9 +77,9 @@ class ContractCreateComponent extends Component
 
         $this->validate();
 
-        $contract_uuid = app('App\Http\Controllers\PropertyController')->generate_uuid();
+        $contract_uuid = app('App\Http\Controllers\Features\PropertyController')->generate_uuid();
 
-        app('App\Http\Controllers\ContractController')->store(auth()->user()->id, $contract_uuid, Session::get('property_uuid'), $this->start, $this->end, $this->interaction_id, $this->rent, $this->tenant->uuid, $this->unit->uuid, 'pendingmovein', 4, 'active', 5, 1, $this->referral, $this->sendContractToTenant);
+        app('App\Http\Controllers\Features\ContractController')->store(auth()->user()->id, $contract_uuid, Session::get('property_uuid'), $this->start, $this->end, $this->interaction_id, $this->rent, $this->tenant->uuid, $this->unit->uuid, 'pendingmovein', 4, 'active', 5, 1, $this->referral, $this->sendContractToTenant);
 
         if($this->autoGenerateBills){
           $this->store_bill();
@@ -109,7 +109,7 @@ class ContractCreateComponent extends Component
                   'bill' => $this->rent,
                   'property_uuid' => Session::get('property_uuid'),
                   'bill_no'=>
-                  app('App\Http\Controllers\BillController')->getLatestBillNo(Session::get('property_uuid')),
+                  app('App\Http\Controllers\Features\BillController')->getLatestBillNo(Session::get('property_uuid')),
                   'user_id' => auth()->user()->id,
                   'due_date' => Carbon::parse($this->start)->addDays(7),
                   'is_posted' => true

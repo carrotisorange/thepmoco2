@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Notification;
 use App\Models\UserProperty;
 use App\Models\User;
 use Session;
-use App\Models\Feature;
 
 class AccountPayableCreateStep1Component extends Component
 {
@@ -107,7 +106,7 @@ class AccountPayableCreateStep1Component extends Component
     }
 
     public function updateAccountPayable(){
-        app('App\Http\Controllers\RFPController')->update(
+        app('App\Http\Controllers\Features\RFPController')->update(
             $this->accountpayable->id,
             $this->request_for,
             $this->created_at,

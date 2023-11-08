@@ -8,7 +8,6 @@ use App\Models\Property;
 use App\Models\Concern;
 use Session;
 
-
 class TenantConcernController extends Controller
 {
     public function index(Property $property, Tenant $tenant)
@@ -25,8 +24,6 @@ class TenantConcernController extends Controller
 
         ]);
     }
-
-
 
     public function destroy($tenant_uuid){
         Concern::where('tenant_uuid', $tenant_uuid)->delete();

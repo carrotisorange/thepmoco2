@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Exports\ExportUsers;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -13,8 +12,8 @@ class ExportExcelController extends Controller
        return view('index');
     }
 
-    public function exportExcelFile() 
+    public function exportExcelFile()
     {
         return Excel::download(new ExportUsers, 'users.xlsx');
-    }    
+    }
 }

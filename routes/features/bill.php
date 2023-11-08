@@ -1,7 +1,7 @@
 <?php
     use Illuminate\Support\Facades\Route;
-    use App\Http\Controllers\BillController;
-    
+    use App\Http\Controllers\Features\BillController;
+
     Route::controller(BillController::class)->group(function(){
         Route::prefix('bill')->group(function(){
             Route::get('customized/{batch_no}','bulk_edit')->name('bill');

@@ -9,12 +9,6 @@ use \PDF;
 
 class UnitContractController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function index(Property $property, Unit $unit)
     {
         return view('features.units.contracts.index',[

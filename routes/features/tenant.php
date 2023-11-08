@@ -1,13 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Features\GuardianController;
+use App\Http\Controllers\Features\TenantController;
+use App\Http\Controllers\Features\ContractController;
+use App\Http\Controllers\Features\ConcernController;
+use App\Http\Controllers\Features\BillController;
+use App\Http\Controllers\Features\CollectionController;
+
 use App\Http\Controllers\TenantContractController;
 use App\Http\Controllers\TenantConcernController;
 use App\Http\Controllers\TenantLedgerController;
-use App\Http\Controllers\TenantController;
-use App\Http\Controllers\ContractController;
-use App\Http\Controllers\BillController;
-use App\Http\Controllers\CollectionController;
+
+use App\Http\Controllers\TenantGuardianController;
+use App\Http\Controllers\TenantReferenceController;
+use App\Http\Controllers\TenantWalletController;
 
     Route::prefix('/tenant')->group(function(){
         Route::controller(TenantController::class)->group(function() {
@@ -74,7 +81,6 @@ use App\Http\Controllers\CollectionController;
                     Route::get('transfer', 'transfer')->name('tenant');
                     Route::get('movein', 'movein')->name('tenant');
                     Route::get('moveout/export', 'export_moveout_form');
-                    Route::get('delete','destroy');
                });
             });
         });

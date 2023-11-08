@@ -125,7 +125,6 @@ class UserController extends Controller
     {
         $details = [
         'email' => $email,
-        // 'name' => $this->name,
         'role' => Role::find($role_id)->role,
         'username' => $username,
         'password'=>$password
@@ -134,12 +133,7 @@ class UserController extends Controller
         Mail::to($email)->send(new WelcomeMailToMember($details));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(User $user)
     {
         return $user;
@@ -166,13 +160,6 @@ class UserController extends Controller
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, User $user)
     {
         $attributes = request()->validate([
@@ -182,13 +169,8 @@ class UserController extends Controller
             'mobile_number' => ['required', Rule::unique('users', 'mobile_number')->ignore($user->id)],
             'role_id' => ['nullable', Rule::exists('roles', 'id')],
             'status' => 'nullable',
-            // 'avatar' => 'image',
-        ]);
 
-        // if($request->avatar != null)
-        // {
-        //     $attributes['avatar'] = request()->file('avatar')->store('avatars');
-        // }
+        ]);
 
         if($request->password != null)
         {
@@ -200,18 +182,5 @@ class UserController extends Controller
 
         return redirect('/user/'.$user->username.'/edit')->with('success', 'Changes Saved!');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-
 
 }

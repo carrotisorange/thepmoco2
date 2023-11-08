@@ -216,12 +216,12 @@ class TenantShowComponent extends Component
 
     public function deleteTenant(){
 
-        app('App\Http\Controllers\ContractController')->destroy(null, $this->tenant_details->uuid);
+        app('App\Http\Controllers\Features\ContractController')->destroy(null, $this->tenant_details->uuid);
         app('App\Http\Controllers\TenantGuardianController')->destroy($this->tenant_details->uuid);
         app('App\Http\Controllers\TenantReferenceController')->destroy($this->tenant_details->uuid);
         app('App\Http\Controllers\TenantConcernController')->destroy($this->tenant_details->uuid);
         app('App\Http\Controllers\TenantConcernController')->destroy($this->tenant_details->uuid);
-        app('App\Http\Controllers\BillController')->delete_bills($this->tenant_details->uuid);
+        app('App\Http\Controllers\Features\BillController')->delete_bills($this->tenant_details->uuid);
         Collection::where('tenant_uuid', $this->tenant_details->uuid)->delete();
         app('App\Http\Controllers\PropertyTenantController')->destroy($this->tenant_details->uuid);
         User::where('tenant_uuid', $this->tenant_details->uuid)->delete();
@@ -244,12 +244,12 @@ class TenantShowComponent extends Component
             'provinces' => app('App\Http\Controllers\ProvinceController')->index($this->country_id),
             'countries' =>  app('App\Http\Controllers\CountryController')->index(),
             'relationships' => app('App\Http\Controllers\RelationshipController')->index(),
-            'references' => app('App\Http\Controllers\TenantController')->get_tenant_references($this->tenant_details->uuid),
-            'guardians' => app('App\Http\Controllers\TenantController')->show_tenant_guardians($this->tenant_details->uuid),
-            'contracts' => app('App\Http\Controllers\TenantController')->show_tenant_contracts($this->tenant_details->uuid),
-            'bills' => app('App\Http\Controllers\BillController')->show_tenant_bills($this->tenant_details->uuid),
-            'concerns' => app('App\Http\Controllers\TenantController')->show_tenant_concerns($this->tenant_details->uuid),
-            'collections' => app('App\Http\Controllers\CollectionController')->get_tenant_collections(Session::get('property_uuid'), $this->tenant_details->uuid),
+            'references' => app('App\Http\Controllers\Features\TenantController')->get_tenant_references($this->tenant_details->uuid),
+            'guardians' => app('App\Http\Controllers\Features\TenantController')->show_tenant_guardians($this->tenant_details->uuid),
+            'contracts' => app('App\Http\Controllers\Features\TenantController')->show_tenant_contracts($this->tenant_details->uuid),
+            'bills' => app('App\Http\Controllers\Features\BillController')->show_tenant_bills($this->tenant_details->uuid),
+            'concerns' => app('App\Http\Controllers\Features\TenantController')->show_tenant_concerns($this->tenant_details->uuid),
+            'collections' => app('App\Http\Controllers\Features\CollectionController')->get_tenant_collections(Session::get('property_uuid'), $this->tenant_details->uuid),
             'wallets' => Wallet::where('tenant_uuid', $this->tenant_details->uuid)->orderBy('id','desc')->get(),
             'username' => User::where('email', $this->tenant_details->email)->value('username'),
             'email_cred' => User::where('email', $this->tenant_details->email)->value('email'),

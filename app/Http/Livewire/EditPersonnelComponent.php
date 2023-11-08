@@ -77,7 +77,7 @@ class EditPersonnelComponent extends Component
             }
         });
 
-        app('App\Http\Controllers\PropertyController')->store_property_session(Session::get('property_uuid'));
+        app('App\Http\Controllers\Features\PropertyController')->store_property_session(Session::get('property_uuid'));
 
         return redirect(url()->previous())->with('success', 'Changes Saved!');
     }

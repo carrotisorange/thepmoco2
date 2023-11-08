@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ParticularController;
 use App\Http\Controllers\PropertyBillerController;
-use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\Features\PropertyController;
 
 Route::group(['middleware'=>['auth', 'verified']], function(){
     Route::prefix('/property')->group(function(){

@@ -84,7 +84,7 @@ class UtilityIndexComponent extends Component
         $batch_no = auth()->user()->id.Str::random(8);
 
         foreach($units as $unit){
-            app('App\Http\Controllers\UtilityController')->store(
+            app('App\Http\Controllers\Features\UtilityController')->store(
                 Session::get('property_uuid'),
                 $unit->uuid,
                 $unit->previous_water_utility_reading,

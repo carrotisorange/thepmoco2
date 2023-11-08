@@ -1,6 +1,6 @@
 <?php
     use Illuminate\Support\Facades\Route;
-    use App\Http\Controllers\PropertyController;
+    use App\Http\Controllers\Features\PropertyController;
 
     Route::controller(PropertyController::class)->group(function () {
         Route::get('/', 'index')->name('dashboard');

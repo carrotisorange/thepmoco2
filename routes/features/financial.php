@@ -1,6 +1,6 @@
 <?php
     use Illuminate\Support\Facades\Route;
-    use App\Http\Controllers\FinancialController;
+    use App\Http\Controllers\Features\FinancialController;
 
     Route::controller(FinancialController::class)->group(function () {
         Route::prefix('financial')->group(function(){

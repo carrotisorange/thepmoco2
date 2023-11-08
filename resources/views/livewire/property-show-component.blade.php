@@ -134,13 +134,11 @@
                                                                 <div class="flex items-center">
 
                                                                     <div class="text-3xl font-bold text-white mr-2">
-                                                                        {{App\Http\Controllers\CollectionController::shortNumber($collections->posted()->where('created_at',
-                                                                        Carbon\Carbon::now()->month)->sum('collection'))}}
+                                                                        {{App\Http\Controllers\Features\CollectionController::shortNumber($collections->posted()->where('created_at',Carbon\Carbon::now()->month)->sum('collection'))}}
                                                                     </div>
-                                                                    <?php $change_in_monthly_collections = App\Http\Controllers\CollectionController::divNumber($collections->posted()->where('created_at', Carbon\Carbon::now()->month())->sum('collection'), $collections->where('created_at', Carbon\Carbon::now()->subMonth())->sum('collection'))*100;?>
-                                                                    @if($collections->where('created_at',
-                                                                    Carbon\Carbon::now()->subMonth())->sum('collection')
-                                                                    > $collections->posted()->where('created_at',
+
+                                                                    <?php $change_in_monthly_collections = App\Http\Controllers\Features\CollectionController::divNumber($collections->posted()->where('created_at', Carbon\Carbon::now()->month())->sum('collection'), $collections->where('created_at', Carbon\Carbon::now()->subMonth())->sum('collection'))*100;?>
+                                                                    @if($collections->where('created_at', Carbon\Carbon::now()->subMonth())->sum('collection')> $collections->posted()->where('created_at',
                                                                     Carbon\Carbon::now()->month())->sum('collection'))
                                                                     <div class="text-md font-medium text-red-500">{{
                                                                         number_format($change_in_monthly_collections, 1)
@@ -212,7 +210,7 @@
                                                                         Carbon\Carbon::now()->month())->where('status',
                                                                         'completed')->sum('amount')) }}
                                                                     </div>
-                                                                    <?php $change_in_monthly_expenses = App\Http\Controllers\CollectionController::divNumber($expenses->where('created_at', Carbon\Carbon::now()->month())->where('status', 'completed')->sum('amount'), $expenses->where('created_at', Carbon\Carbon::now()->subMonth())->where('status', 'completed')->sum('amount'))*100;?>
+                                                                    <?php $change_in_monthly_expenses = App\Http\Controllers\Features\CollectionController::divNumber($expenses->where('created_at', Carbon\Carbon::now()->month())->where('status', 'completed')->sum('amount'), $expenses->where('created_at', Carbon\Carbon::now()->subMonth())->where('status', 'completed')->sum('amount'))*100;?>
                                                                     @if($expenses->where('created_at',
                                                                     Carbon\Carbon::now()->subMonth())->where('status',
                                                                     'completed')->sum('amount') >
@@ -671,7 +669,7 @@
                                                                                         <p
                                                                                             class="mt-1 text-2xl font-semibold text-gray-500">
                                                                                             {{
-                                                                                            App\Http\Controllers\CollectionController::shortNumber($bills->posted()->where('created_at',
+                                                                                            App\Http\Controllers\Features\CollectionController::shortNumber($bills->posted()->where('created_at',
                                                                                             Carbon\Carbon::now()->month())->sum('bill'))
                                                                                             }}
                                                                                         </p>
@@ -695,10 +693,7 @@
                                                                                             Collected Bills </p>
                                                                                         <p
                                                                                             class="mt-1 text-2xl font-semibold text-gray-500">
-                                                                                            {{
-                                                                                            App\Http\Controllers\CollectionController::shortNumber($collections->posted()->where('created_at',
-                                                                                            Carbon\Carbon::now()->month())->sum('collection'))
-                                                                                            }}
+                                                                                            {{App\Http\Controllers\Features\CollectionController::shortNumber($collections->posted()->where('created_at',Carbon\Carbon::now()->month())->sum('collection'))}}
                                                                                         </p>
                                                                                     </div>
                                                                                 </div>
@@ -723,7 +718,7 @@
                                                                                         <p
                                                                                             class="mt-1 text-2xl font-semibold text-gray-500">
                                                                                             {{
-                                                                                            App\Http\Controllers\CollectionController::shortNumber($bills->posted()->where('status',
+                                                                                            App\Http\Controllers\Features\CollectionController::shortNumber($bills->posted()->where('status',
                                                                                             'unpaid')->where('created_at',
                                                                                             Carbon\Carbon::now()->month())->sum('bill'))
                                                                                             }}
@@ -804,7 +799,7 @@
                                                                                 <div class="font-medium">{{
                                                                                     $item['tenant'] }} (T)</div>
                                                                                 <div class="font-light">
-                                                                                    {{App\Http\Controllers\CollectionController::shortNumber(($item['balance']))}}
+                                                                                    {{App\Http\Controllers\Features\CollectionController::shortNumber(($item['balance']))}}
                                                                                 </div>
                                                                             </div>
 
@@ -846,7 +841,7 @@
                                                                                 <div class="font-medium">{{
                                                                                     $item['owner'] }} (O)</div>
                                                                                 <div class="font-light">{{
-                                                                                    App\Http\Controllers\CollectionController::shortNumber(($item['balance']))
+                                                                                    App\Http\Controllers\Features\CollectionController::shortNumber(($item['balance']))
                                                                                     }}</div>
                                                                             </div>
 
@@ -885,7 +880,7 @@
                                                                                 <div class="font-medium">{{
                                                                                     $item['guest'] }} (G)</div>
                                                                                 <div class="font-light">{{
-                                                                                    App\Http\Controllers\CollectionController::shortNumber(($item['balance']))
+                                                                                    App\Http\Controllers\Features\CollectionController::shortNumber(($item['balance']))
                                                                                     }}</div>
                                                                             </div>
 

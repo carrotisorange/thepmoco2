@@ -1,7 +1,6 @@
 @if($representatives->count())
-
-<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-  <thead class="">
+<x-table-component>
+  <x-table-head-component>
         <tr>
             <x-th>#</x-th>
             <x-th> NAME </x-th>
@@ -11,9 +10,9 @@
             <x-th> </x-th>
             <x-th></x-th>
         </tr>
-    </thead>
-    @foreach ($representatives as $index => $representative)
-    <tbody class="bg-white divide-y divide-gray-200">
+    </x-table-head-component>
+    <x-table-body-component>
+        @foreach ($representatives as $index => $representative)
         <tr>
             <x-td> {{$index+1}}  </x-td>
             <x-td> {{ $representative->representative }}   </x-td>
@@ -35,9 +34,9 @@
                     Remove</a>
             </x-td>
         </tr>
-    </tbody>
-    @endforeach
-</table>
+        @endforeach
+    </x-table-body-component>
+</x-table-component>
 @else
 <div class=" mt-10 text-center mb-10 ">
    <i class="fa-solid fa-circle-plus"></i>

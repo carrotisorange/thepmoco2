@@ -1,6 +1,6 @@
  <?php
     use Illuminate\Support\Facades\Route;
-    use App\Http\Controllers\RemittanceController;
+    use App\Http\Controllers\Features\RemittanceController;
 
     Route::controller(RemittanceController::class)->group(function(){
         Route::prefix('remittance')->group(function(){

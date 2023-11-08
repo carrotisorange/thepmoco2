@@ -1,6 +1,5 @@
-<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-    <?php $ctr =1; ?>
-    <thead class="">
+<x-table-component>
+    <x-table-head-component>
         <tr>
             <x-th>#</x-th>
             <x-th>Date</x-th>
@@ -10,15 +9,16 @@
             <x-th>Time in</x-th>
             <x-th>Time out</x-th>
         </tr>
-    </thead>
-    @foreach ($sessions as $session)
-    <tbody class="bg-white divide-y divide-gray-200">
+    </x-table-head-component>
+
+    <x-table-body-component>
+        @foreach ($sessions as $index => $session)
         <?php
             $role_id = App\Models\UserProperty::where('user_id', $session->user_id)->value('role_id');
             $property_uuid = App\Models\UserProperty::where('user_id', $session->user_id)->value('property_uuid');
         ;?>
         <tr>
-            <x-td>{{ $ctr++ }}</x-td>
+            <x-td>{{ $index+1 }}</x-td>
             <x-td>{{
                 Carbon\Carbon::parse($session->created_at)->timezone('Asia/Manila')->format('M d, Y')}}
             </x-td>
@@ -39,6 +39,6 @@
                 @endif
             </x-td>
         </tr>
-    </tbody>
-    @endforeach
-</table>
+        @endforeach
+    </x-table-body-component>
+</x-table-component>

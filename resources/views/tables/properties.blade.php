@@ -1,5 +1,5 @@
-<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-    <thead class="">
+<x-table-component>
+    <x-table-head-component>
         <tr>
             <x-th>#</x-th>
             <x-th>Property</x-th>
@@ -8,9 +8,9 @@
             <x-th>Status</x-th>
             <x-th>Assigned on</x-th>
         </tr>
-    </thead>
-    @foreach ($properties as $index => $property)
-    <tbody class="bg-white divide-y divide-gray-200">
+    </x-table-head-component>
+    <x-table-body-component>
+        @foreach ($properties as $index => $property)
         <tr>
             <x-td>{{ $index+1 }}</x-td>
             <x-td>
@@ -30,5 +30,5 @@
             <x-td>{{ Carbon\Carbon::parse($property->created_at)->format('M d, Y') }}</x-td>
         </tr>
         @endforeach
-    </tbody>
-</table>
+    </x-table-body-component>
+</x-table-component>

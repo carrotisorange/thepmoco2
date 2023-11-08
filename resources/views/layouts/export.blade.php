@@ -79,11 +79,9 @@
         } */
     </style>
 
-
 </head>
 
 <body>
-    <!-- Define header and footer blocks before your content -->
     @if(Session::get('property_uuid'))
     <header>
         {{ Session::get('property') }} | @yield('title')
@@ -92,7 +90,7 @@
             {{ App\Models\Property::find(Session::get('property_uuid'))->province->province }},
             {{ App\Models\Property::find(Session::get('property_uuid'))->city->city }},
             {{ App\Models\Property::find(Session::get('property_uuid'))->barangay }},
-            TIN: {{ Session::get('property_registered_tin') }}     
+            TIN: {{ Session::get('property_registered_tin') }}
             <hr>
             <br>
         </h5>
@@ -128,14 +126,6 @@
         </p>
     </main>
 
-    {{-- <div class="watermark">
-        <img src="https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-6/240803611_1243262802782845_2256620312332033835_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=p3MumaNIVewAX_4yCfX&_nc_ht=scontent.fmnl17-2.fna&oh=00_AfCmU3j8-tp1lT3N-DmAtLdmKftAzut2N6zqlKZSfRmPAw&oe=647D0234"
-            alt="martha logo" width="500" height="500">
-    </div>
-
-    <pre>
-</pre>
-    --}}
 </body>
 
 </html>

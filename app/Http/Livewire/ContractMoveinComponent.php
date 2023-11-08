@@ -74,14 +74,14 @@ class ContractMoveinComponent extends Component
             }
 
             //update status of the tenant
-            app('App\Http\Controllers\TenantController')->update_tenant_status($this->contract_details->tenant->uuid,'active');
+            app('App\Http\Controllers\Features\TenantController')->update_tenant_status($this->contract_details->tenant->uuid,'active');
 
             //store new point
             app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id,4, 1);
 
             if($this->sendContractToTenant)
             {
-                app('App\Http\Controllers\TenantController')->send_mail_to_tenant($this->contract_details->tenant->email, $this->contract_details->tenant->tenant,Carbon::parse($this->start)->format('M d, Y'),Carbon::parse($this->end)->format('M d, Y'), $this->rent, $this->contract_details->unit->unit);
+                app('App\Http\Controllers\Features\TenantController')->send_mail_to_tenant($this->contract_details->tenant->email, $this->contract_details->tenant->tenant,Carbon::parse($this->start)->format('M d, Y'),Carbon::parse($this->end)->format('M d, Y'), $this->rent, $this->contract_details->unit->unit);
             }
 
             if(auth()->user()->role_id === 1)

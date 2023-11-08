@@ -15,11 +15,11 @@ use Laravel\Socialite\Facades\Socialite;
 //Routes for socialte - allow user to register/login using social media sites (i.e. facebook)
 Route::prefix('/auth')->group(function(){
     Route::get('redirect', function(){
-    return Socialite::driver('facebook')->redirect();
+        return Socialite::driver('facebook')->redirect();
     });
 
     Route::get('callback', function(){
-    $user = Socialite::driver('facebook')->user();
+        $user = Socialite::driver('facebook')->user();
     });
 });
 

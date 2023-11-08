@@ -133,9 +133,9 @@ class UtilityEditComponent extends Component
 
     public function store_bill($unit_uuid, $option, $start_date, $end_date, $total_amount_due, $batch_no){
         if($option === 'electric'){
-            app('App\Http\Controllers\BillController')->store(Session::get('property_uuid'), $unit_uuid, '',6, $start_date, $end_date, $total_amount_due, $batch_no, 0);
+            app('App\Http\Controllers\Features\BillController')->store(Session::get('property_uuid'), $unit_uuid, '',6, $start_date, $end_date, $total_amount_due, $batch_no, 0);
         }else{
-           app('App\Http\Controllers\BillController')->store(Session::get('property_uuid'), $unit_uuid, '' ,5,
+           app('App\Http\Controllers\Features\BillController')->store(Session::get('property_uuid'), $unit_uuid, '' ,5,
            $start_date, $end_date, $total_amount_due, $batch_no, 0);
         }
     }

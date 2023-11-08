@@ -1,16 +1,14 @@
-<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-    <thead class="">
+<x-table-component>
+    <x-table-head-component>
         <tr>
             <x-th>#</x-th>
             <x-th>NAME</x-th>
             <x-th>UNIT</x-th>
-
-
             <x-th>CONTACT</x-th>
             <x-th>ADDRESS</x-th>
         </tr>
-    </thead>
-    <tbody class="bg-white divide-y divide-gray-200">
+    </x-table-head-component>
+    <x-table-body-component>
         @foreach($owners as $index => $owner )
         <tr>
            <x-td>{{ $index+1 }}</x-td>
@@ -49,5 +47,5 @@
             </x-td>
         </tr>
         @endforeach
-    </tbody>
-</table>
+    </x-table-body-component>
+</x-table-component>

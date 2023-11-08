@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ElectionController;
+use App\Http\Controllers\Features\ElectionController;
 
 Route::controller(ElectionController::class)->group(function(){
     Route::prefix('election')->group(function(){
