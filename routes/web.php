@@ -49,6 +49,12 @@ Route::controller(ArticleController::class)->group(function () {
 
 Route::get('/portfolio', [PortfolioController::class, 'index'])->name('charts.portfolio');
 
+//dashboard
+
+Route::get('/dashboard', function(){
+    return view('dashboard.dashboard');
+});
+
 Route::get('/about', function(){
     return view('landing.about');
 });
@@ -144,3 +150,36 @@ Route::get('/demo', function(){
 Route::get('/survey', function(){
     return view('landing.survey');
 });
+
+Route::get('/ar', function(){
+    return view('export.ar');
+});
+
+Route::get('/collection', function(){
+    return view('export.collection');
+});
+
+Route::get('/liquidation', function(){
+    return view('export.liquidation');
+});
+
+
+Route::get('/soa', function(){
+    return view('export.soa');
+});
+
+
+
+
+// Route::post('/register', function(Request $request){
+
+//     $attributes = $request->validate([
+//     'name' => ['required', 'string', 'max:255'],
+//     'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+//     'mobile_number' => ['required', 'unique:users'],
+//     ]);
+
+//     User::create($attributes);
+
+//     return back()->with('success', 'The form has been submitted!');
+// });
