@@ -80,7 +80,7 @@ class CollectionController extends Controller
     public function edit_collections(Property $property, Tenant $tenant, $batch_no)
     {
 
-      return view('features.collections.edit',[
+      return view('features.tenants.collections.edit',[
          'tenant' => $tenant,
          'batch_no' => $batch_no
       ]);

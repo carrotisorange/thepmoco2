@@ -7,6 +7,7 @@ use App\Http\Controllers\TenantLedgerController;
 use App\Http\Controllers\TenantController;
 use App\Http\Controllers\ContractController;
 use App\Http\Controllers\BillController;
+use App\Http\Controllers\CollectionController;
 
     Route::prefix('/tenant')->group(function(){
         Route::controller(TenantController::class)->group(function() {
