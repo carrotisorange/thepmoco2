@@ -1,12 +1,14 @@
 <?php
 
+namespace App\Http\Controllers;
+
 use App\Http\Controllers\Controller;
+
 
 use Illuminate\Http\Request;
 use App\Models\Tenant;
 use App\Models\Unit;
 use App\Models\Property;
-use Session;
 
 class TenantContractController extends Controller
 {
@@ -27,6 +29,7 @@ class TenantContractController extends Controller
     public function create(Property $property, Tenant $tenant)
     {
         Session::put('tenant_uuid', $tenant->uuid);
+
         return view('features.units.index', [
             'property' => $property,
             'tenant' => $tenant,

@@ -49,6 +49,7 @@ class GuardianController extends Controller
 
     }
 
+
     public function destroy(Property $property, Tenant $tenant, $guardian_id)
     {
 
