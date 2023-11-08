@@ -20,8 +20,6 @@ use Session;
 
 class TenantController extends Controller
 {
-
-      //core functions
     public function index(Property $property)
     {
         $featureId = 5;
@@ -47,7 +45,8 @@ class TenantController extends Controller
 
     public function show(Property $property, Tenant $tenant)
     {
-        //store activity for opening a particular tenant.
+        Session::put('tenant_uuid', $tenant->uuid);
+
         app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens one',3);
 
         $list_of_all_relationships = app('App\Http\Controllers\RelationshipController')->index();
@@ -63,7 +62,6 @@ class TenantController extends Controller
        Tenant::where('uuid', $tenant_uuid)->delete();
     }
 
-    //other functions
 
     public function getTenants($property_uuid)
     {
@@ -75,26 +73,12 @@ class TenantController extends Controller
         return view('admin.restrictedpages.tenantportal');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create(Unit $unit)
     {
         return view('features.tenants.create', [
             'unit' => $unit
         ]);
     }
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Tenant  $tenant
-     * @return \Illuminate\Http\Response
-     */
-
 
     public function show_all_guardians($tenant_uuid)
     {
@@ -135,7 +119,6 @@ class TenantController extends Controller
           }
 
         try{
-
 
             DB::beginTransaction();
             $tenant->update($attributes);

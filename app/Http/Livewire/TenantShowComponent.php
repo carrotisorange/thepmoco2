@@ -139,29 +139,6 @@ class TenantShowComponent extends Component
         }
     }
 
-    public function redirectToTheCreateGuardianPage(){
-
-
-        return redirect('/property/'. Session::get('property_uuid').'/tenant/'.$this->tenant_details->uuid.'/guardian/'.Str::random(8).'/create');
-    }
-
-    public function redirectToTheCreateReferencePage(){
-
-
-        return redirect('/property/'. Session::get('property_uuid').'/tenant/'.$this->tenant_details->uuid.'/reference/'.Str::random(8).'/create');
-    }
-
-    public function redirectToTheCreateConcernPage(){
-
-
-        return redirect('/property/'. Session::get('property_uuid').'/tenant/'.$this->tenant_details->uuid.'/concern/create');
-    }
-
-    public function redirectToTheCreateContractPage(){
-
-
-        return redirect('/property/'. Session::get('property_uuid').'/tenant/'.$this->tenant_details->uuid.'/units');
-    }
 
     public function sendCredentials()
     {

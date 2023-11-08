@@ -4,6 +4,7 @@
 
     Route::controller(GuestController::class)->group(function(){
         Route::prefix('guest')->group(function(){
+            Route::get('{guest}', 'show')->name('guest');
             Route::get('/', 'index')->name('guest');
             Route::get('bill/{bill}/edit', 'edit_bill')->name('bill');
             Route::get('bills', 'show_bills');

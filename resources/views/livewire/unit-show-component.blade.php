@@ -1,11 +1,8 @@
 <?php
     $statusIcon = App\Models\Status::find($unit_details->status_id)->icon;
-    $addAnchorClass = 'block py-2 px-4 text-sm
-  text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
-                                                    dark:text-gray-200 dark:hover:text-white';
+    $addAnchorClass = 'block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white';
 ?>
 <div>
-
     @include('modals.popup-error')
     <div class="mt-8 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
         <div class="lg:grid lg:grid-cols-12 lg:auto-rows-min lg:gap-x-8">
@@ -97,19 +94,16 @@
                 <div id="myTabContent" wire:ignore>
                     @foreach($unitSubfeaturesArray as $subfeature)
                     @if($subfeature == 'unit')
-                    <div class="p-4 purple rounded-lg dark:bg-gray-800" id="{{ $subfeature }}" role="tabpanel"
-                        aria-labelledby="{{ $subfeature }}-tab">
+                    <div class="p-4 purple rounded-lg dark:bg-gray-800" id="{{ $subfeature }}" role="tabpanel" aria-labelledby="{{ $subfeature }}-tab">
                         <div>
                             @include('forms.units.unit-edit')
                         </div>
                     </div>
                     @else
-                    <div class="p-4 purple rounded-lg dark:bg-gray-800" id="{{ $subfeature }}" role="tabpanel"
-                        aria-labelledby="{{ $subfeature }}-tab">
+                    <div class="p-4 purple rounded-lg dark:bg-gray-800" id="{{ $subfeature }}" role="tabpanel" aria-labelledby="{{ $subfeature }}-tab">
                         <div class="-my-2 overflow-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                                <div
-                                    class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                                     @if($subfeature == 'inventory')
                                     @if($inventories->count())
                                     @include('features.units.tables.inventories')
@@ -181,12 +175,9 @@
                                         <h3 class="mt-2 text-sm font-medium text-gray-900">No concerns</h3>
 
                                         <div class="mt-6">
-                                            <x-button
-                                                onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/unit/{{ $unit_details->uuid }}/concern/{{ Str::random(8) }}/create'">
+                                            <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/unit/{{ $unit_details->uuid }}/concern/{{ Str::random(8) }}/create'">
                                                 New concern
                                             </x-button>
-
-
                                         </div>
                                     </div>
                                     @endif
@@ -208,10 +199,10 @@
                                     <div class="mt-10 text-center mb-10">
                                         <i class="fa-solid fa-circle-plus"></i>
                                         <h3 class="mt-2 text-sm font-medium text-gray-900">No utilities</h3>
-
                                         <div class="mt-6">
-                                            <x-button wire:click="redirectToTheCreateUtilitiesPage">
-                                                New utility reading
+                                            <x-button
+                                                onclick="window.location.href='/property/'{{Session::get('property_uuid')}}/utility/'">
+                                                New utilities
                                             </x-button>
                                         </div>
                                     </div>
@@ -234,45 +225,6 @@
                                             See More Remittance</x-button>
                                     </div>
                                     <div>
-                                        {{-- <div class="items-center justify-center">
-                                            <select id="small" wire:model="remittance_date"
-                                                class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-
-                                                <option value="{{ $remittance_date }}">{{
-                                                    Carbon\Carbon::parse($remittance_date)->format('M, Y') }}</option>
-                                                @foreach ($dates as $date)
-                                                @if(Carbon\Carbon::parse($date->created_at)->format('M, Y') !=
-                                                Carbon\Carbon::parse($remittance_date)->format('M, Y'))
-                                                <option value="{{ $date->created_at }}">{{
-                                                    Carbon\Carbon::parse($date->created_at)->format('M, Y') }}</option>
-                                                @endif
-                                                @endforeach
-                                            </select>
-                                            <button
-                                                class="text-xs text-white bg-purple-500 hover:bg-gray-400 p-2 rounded-lg ">Send
-                                                Email to Owner</button>
-                                        </div> --}}
-
-
-                                        {{-- <div class="-mt-10 flex items-center px-8 py-5 border-b">
-                                            <div class="w-0 flex-1 pt-0.5">
-                                                <p class="text-sm font-medium text-gray-900">Date
-                                                </p>
-
-                                            </div>
-                                        </div> --}}
-
-                                        {{-- <div class="flex items-center px-8 py-5 border-b">
-                                            <div class="w-0 flex-1 pt-0.5">
-                                                <div class="grid grid-cols-2">
-                                                    <p class="text-sm font-medium text-gray-900">Date
-                                                    </p>
-                                                    <p class="mt-1 text-sm font-base text-gray-500">
-                                                        {{ Carbon\Carbon::parse($remittance_date)->format('M, Y') }}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div> --}}
 
                                         <div class="flex items-center px-8 py-5 border-b">
                                             <div class="w-0 flex-1 pt-0.5">
@@ -486,20 +438,9 @@
                                                         {{ number_format($remittances->sum('cause_of_magnet'), 2)}}
                                                     </p>
 
-
-
-
-
-
-
-
-
                                                 </div>
                                             </div>
                                         </div>
-
-
-
 
                                         <div class="flex items-center px-8 py-5">
                                             <div class="w-0 flex-1 pt-0.5">
@@ -521,7 +462,6 @@
                     @endif
                     @endforeach
                 </div>
-
             </div>
         </div>
     </div>

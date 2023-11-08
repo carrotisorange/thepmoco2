@@ -26,8 +26,7 @@
                     </div>
                 </div>
                 <div class="mt-5 sm:mt-6">
-                    <x-button class="w-full" type="button" wire:click="closeModal"
-                        >
+                    <x-button class="w-full" type="button" wire:click="closeModal" >
                         Close
                     </x-button>
                 </div>

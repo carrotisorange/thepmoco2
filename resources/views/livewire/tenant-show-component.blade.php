@@ -1,9 +1,7 @@
 <?php
     $addAnchorClass = 'block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white';
 ?>
-
 <div>
-
     <div class="min-h-screen mt-8 max-w-2xl mx-auto pb-56 sm:px-20 lg:max-w-7xl lg:px-8">
         <div class="lg:grid lg:grid-cols-12 lg:gap-x-8">
             <div class="lg:col-start-4 lg:col-span-9">
@@ -94,13 +92,10 @@
 
             <div class="mt-8 lg:col-span-10">
                 <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
-                    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab"
-                        data-tabs-toggle="#myTabContent" role="tablist">
+                    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
                         @foreach($tenantSubfeaturesArray as $subfeature)
                         <li class="mr-2" role="presentation">
-                            <button class="inline-block p-4 rounded-t-lg border-b-2" id="{{ $subfeature }}-tab"
-                                data-tabs-target="#{{ $subfeature }}" type="button" role="tab"
-                                aria-controls="{{ $subfeature }}" aria-selected="false">
+                            <button class="inline-block p-4 rounded-t-lg border-b-2" id="{{ $subfeature }}-tab" data-tabs-target="#{{ $subfeature }}" type="button" role="tab" aria-controls="{{ $subfeature }}" aria-selected="false">
                                 {{ $subfeature }}
                             </button>
                         </li>
@@ -110,15 +105,13 @@
                 <div id="myTabContent" wire:ignore>
                     @foreach($tenantSubfeaturesArray as $subfeature)
                     @if($subfeature == 'tenant')
-                    <div class="p-4 purple rounded-lg dark:bg-gray-800" id="{{ $subfeature }}" role="tabpanel"
-                        aria-labelledby="{{ $subfeature }}-tab">
+                    <div class="p-4 purple rounded-lg dark:bg-gray-800" id="{{ $subfeature }}" role="tabpanel" aria-labelledby="{{ $subfeature }}-tab">
                         <div>
                             @include('forms.tenants.tenant-edit')
                         </div>
                     </div>
                     @else
-                    <div class="p-4 purple rounded-lg dark:bg-gray-800" id="{{ $subfeature }}" role="tabpanel"
-                        aria-labelledby="{{ $subfeature }}-tab">
+                    <div class="p-4 purple rounded-lg dark:bg-gray-800" id="{{ $subfeature }}" role="tabpanel" aria-labelledby="{{ $subfeature }}-tab">
                         <div class="-my-2 overflow-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                                 <div
@@ -139,14 +132,7 @@
                                     </div>
                                     @else
                                     <div class="mt-10 text-center mb-10">
-                                        {{-- <i class="fa-solid fa-circle-plus"></i> --}}
                                         <h3 class="mt-2 text-sm font-medium text-gray-900">No credentials.</h3>
-
-                                        <div class="mt-6">
-                                            {{-- <x-button disabled>
-                                                New session
-                                            </x-button> --}}
-                                        </div>
                                     </div>
                                     @endif
                                     @elseif($subfeature == 'session')
@@ -154,14 +140,7 @@
                                     @include('tables.sessions')
                                     @else
                                     <div class="mt-10 text-center mb-10">
-                                        {{-- <i class="fa-solid fa-circle-plus"></i> --}}
                                         <h3 class="mt-2 text-sm font-medium text-gray-900">No sessions.</h3>
-
-                                        <div class="mt-6">
-                                            {{-- <x-button disabled>
-                                                New session
-                                            </x-button> --}}
-                                        </div>
                                     </div>
                                     @endif
 
@@ -174,7 +153,7 @@
                                         <h3 class="mt-2 text-sm font-medium text-gray-900">No contracts.</h3>
                                         <p class="mt-1 text-sm text-gray-500">You're almost there!</p>
                                         <div class="mt-6">
-                                            <x-button wire:click="redirectToTheCreateContractPage">
+                                            <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/tenant/{{ $this->tenant_details->uuid }}/units'">
                                                 New contract
                                             </x-button>
                                         </div>
@@ -206,11 +185,9 @@
                                         <h3 class="mt-2 text-sm font-medium text-gray-900">No references</h3>
                                         <p class="mt-1 text-sm text-gray-500">You're almost there!</p>
                                         <div class="mt-6">
-                                            <x-button wire:click="redirectToTheCreateReferencePage">
-
+                                            <x-button data-modal-toggle="create-reference-modal">
                                                 New reference
                                             </x-button>
-
                                         </div>
                                     </div>
                                     @endif
@@ -224,21 +201,16 @@
                                         <p class="mt-1 text-sm text-gray-500">You're almost there!</p>
                                         <div class="mt-6">
                                             <x-button data-modal-toggle="create-concern-modal">
-
                                                 New concern
                                             </x-button>
-
-
                                         </div>
                                     </div>
                                     @endif
                                     @elseif($subfeature == 'bill')
                                     @if($bills->count())
-                                    <x-button
-                                        onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant_details->uuid }}/bills'">
+                                    <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant_details->uuid }}/bills'">
                                         Pay Bills
                                     </x-button>
-
                                     @include('tables.bills')
                                     @else
                                     <div class=" mt-10 text-center mb-10">
@@ -246,8 +218,7 @@
                                         <h3 class="mt-2 text-sm font-medium text-gray-900">No bills</h3>
                                         <p class="mt-1 text-sm text-gray-500">You're almost there!</p>
                                         <div class="mt-6">
-                                            <x-button
-                                                onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant_details->uuid }}/bills'">
+                                            <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant_details->uuid }}/bills'">
                                                 New bill
                                             </x-button>
                                         </div>
@@ -263,9 +234,7 @@
                                         <h3 class="mt-2 text-sm font-medium text-gray-900">No deposits</h3>
                                         <p class="mt-1 text-sm text-gray-500">Deposits are being added during move-in.
                                         </p>
-                                        <div class="mt-6">
 
-                                        </div>
                                     </div>
                                     @endif
                                     @elseif($subfeature == 'collection')
@@ -277,11 +246,9 @@
                                         <h3 class="mt-2 text-sm font-medium text-gray-900">No collections</h3>
                                         <p class="mt-1 text-sm text-gray-500">You're almost there!</p>
                                         <div class="mt-6">
-                                            <x-button
-                                                onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant_details->uuid }}/bills'">
+                                            <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant_details->uuid }}/bills'">
                                                 New collection
                                             </x-button>
-
                                         </div>
                                     </div>
                                     @endif
