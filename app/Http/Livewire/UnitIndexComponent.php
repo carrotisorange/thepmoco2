@@ -2,14 +2,10 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Unit;
-use App\Models\Property;
 use Livewire\WithPagination;
 use Illuminate\Support\Str;
-use App\Models\Plan;
 use Session;
-use App\Models\Feature;
-use App\Models\Type;
+use App\Models\{Unit,Property,Type,Plan};
 
 use Livewire\Component;
 
@@ -148,7 +144,7 @@ class UnitIndexComponent extends Component
     ->when($this->batch_no, function($query){
       $query->where('batch_no', $this->batch_no);
       })
-      ->paginate($this->limitDisplayTo);
+      ->get();
     }
 
     public function editUnits(){

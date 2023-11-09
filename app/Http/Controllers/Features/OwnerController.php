@@ -4,13 +4,9 @@ namespace App\Http\Controllers\Features;
 
 use App\Http\Controllers\Controller;
 
-use App\Models\Owner;
-use App\Models\Unit;
+use App\Models\{Owner,Unit,Property,User,AcknowledgementReceipt};
 use Illuminate\Support\Str;
-use App\Models\Property;
-use App\Models\User;
 use Session;
-use App\Models\AcknowledgementReceipt;
 
 class OwnerController extends Controller
 {

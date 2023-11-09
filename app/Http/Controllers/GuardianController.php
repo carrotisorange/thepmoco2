@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Guardian;
-use App\Models\Unit;
-use App\Models\Tenant;
 use Illuminate\Validation\Rule;
 use DB;
 use Illuminate\Http\Request;
+use App\Models\{Guardian,Unit,Tenant};
+
 use App\Models\Property;
 
 class GuardianController extends Controller

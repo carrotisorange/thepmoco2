@@ -7,7 +7,6 @@
             @if($isPaymentAllowed)
             <x-td></x-td>
             @endif
-
             <x-td></x-td>
             <x-td> </x-td>
             <x-td></x-td>
@@ -109,7 +108,7 @@
             @if($isPaymentAllowed)
             <x-th>
                 @if(!App\Models\Collection::paidByBill($bill->id))
-                <x-input name="selectedBills" type="checkbox" wire:model="selectedBills" value="{{ $bill->id }}" />
+                    <x-input name="selectedBills" type="checkbox" wire:model="selectedBills" value="{{ $bill->id }}" />
                 @endif
             </x-th>
             @endif

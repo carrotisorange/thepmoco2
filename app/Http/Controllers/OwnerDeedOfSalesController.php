@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Owner;
-use App\Models\Property;
-use App\Models\Unit;
 use Session;
+use App\Models\{Owner,Property,Unit};
 
 class OwnerDeedOfSalesController extends Controller
 {

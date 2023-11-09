@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Unit;
-use App\Models\Property;
-use App\Models\Utility;
-use App\Models\Contract;
-use App\Models\DeedOfSale;
 use Session;
 use Illuminate\Support\Str;
+use App\Models\{Unit,Property,Utility,Contract,DeedOfSale};
 
 class UnitBillController extends Controller
 {

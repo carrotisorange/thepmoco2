@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 use App\Models\Tenant;
-use DB;
-
-use Illuminate\Http\Request;
 
 class TenantLedgerController extends Controller
 {

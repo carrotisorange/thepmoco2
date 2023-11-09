@@ -3,18 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use App\Models\Property;
-use App\Models\Owner;
 use Session;
-use App\Models\Bill;
-use App\Models\Collection;
-use App\Models\AcknowledgementReceipt;
-use App\Models\DeedOfSale;
-use App\Models\User;
-
 use DB;
 
+use App\Models\{Property,Owner,Bill,Collection,DeedOfSale};
 
 class OwnerCollectionController extends Controller
 {

@@ -3,10 +3,9 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Remittance;
 use Carbon\Carbon;
-use App\Models\Collection;
 use Session;
+use App\Models\{Collection,Remittance};
 
 class RemittanceIndexComponent extends Component
 {

@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\UnitInventory;
-use App\Models\Property;
-use App\Models\Unit;
-use Illuminate\Support\Str;
 use Carbon\Carbon;
-use App\Models\Tenant;
-use App\Models\Contract;
+use Illuminate\Support\Str;
+use App\Models\{UnitInventory,Property,Unit,Tenant,Contract};
 
 class UnitInventoryController extends Controller
 {

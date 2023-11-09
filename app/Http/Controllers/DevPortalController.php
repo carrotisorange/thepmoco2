@@ -2,16 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Point;
 use DB;
-use App\Models\User;
-use App\Models\Tenant;
-use App\Models\Contract;
-use App\Models\Unit;
-use App\Models\Property;
 use Carbon\Carbon;
-use App\Models\Owner;
 
+use App\Models\{Point,User,Tenant,Contract,Unit,Property,Owner};
 
 class DevPortalController extends Controller
 {
@@ -30,7 +24,7 @@ class DevPortalController extends Controller
          $units = Unit::all();
 
          $tenants = Tenant::all();
-            
+
          $owners = Owner::all();
 
          $contracts = Contract::all();
@@ -86,7 +80,7 @@ class DevPortalController extends Controller
         DB::raw("(DATE_FORMAT(created_at,
         '%M %Y')) as month_year"))
         ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-        
+
         ->take(31)
 
         ->pluck('month_year');
@@ -98,7 +92,7 @@ class DevPortalController extends Controller
         return User::select(DB::raw("(count(*)) as total_user"),
         DB::raw("(DATE_FORMAT(created_at, '%M %Y')) as month_year"))
         ->groupBy(DB::raw("DATE_FORMAT(created_at, '%m-%Y')"))
-     
+
         ->take(31)
 
         ->pluck('total_user');
@@ -120,7 +114,7 @@ class DevPortalController extends Controller
             DB::raw("(DATE_FORMAT(created_at, '%M %D')) as date_year"))
             ->orderBy('created_at')
             ->groupBy(DB::raw("date_year"))
-            
+
             ->pluck('date_year');
         }
 
@@ -130,7 +124,7 @@ class DevPortalController extends Controller
             DB::raw("(DATE_FORMAT(created_at, '%M %D')) as date_year"))
              ->orderBy('created_at')
             ->groupBy(DB::raw("date_year"))
-            
+
             ->pluck('total_session');
         }
 

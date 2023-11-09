@@ -12,9 +12,6 @@
             font-size: 13px;
         }
 
-   
-        
-
         p,
         {
         margin-right: 5px;

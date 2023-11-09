@@ -3,22 +3,12 @@
 namespace App\Http\Controllers\Features;
 
 use App\Http\Controllers\Controller;
-
-use App\Models\Bill;
 use Session;
-use App\Models\Property;
-use App\Models\Unit;
-use App\Models\Tenant;
-use App\Models\Contract;
 use Carbon\Carbon;
-use App\Models\Collection;
 use Illuminate\Http\Request;
-use App\Models\User;
 use App\Mail\SendBillToTenant;
 use Illuminate\Support\Facades\Mail;
-use App\Models\Owner;
-use App\Models\Guest;
-use App\Models\Particular;
+use App\Models\{Bill, Property, Unit, Tenant, Contract, Collection, User, Owner, Guest, Particular};
 
 class BillController extends Controller
 {

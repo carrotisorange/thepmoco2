@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Tenant;
-use App\Models\Property;
-use App\Models\Guardian;
+use App\Models\{Tenant,Property,Guardian};
 
 class TenantGuardianController extends Controller
 {

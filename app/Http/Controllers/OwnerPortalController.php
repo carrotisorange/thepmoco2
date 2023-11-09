@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Owner;
-use App\Models\DeedOfSale;
-use App\Models\Bulletin;
-use App\Models\Unit;
+use App\Models\{User,Owner,DeedOfSale,Bulletin,Unit};
 
 class OwnerPortalController extends Controller
 {

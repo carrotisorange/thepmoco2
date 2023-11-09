@@ -16,7 +16,6 @@
         <div class="mt-3">
             <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                 <div class="sm:col-span-6">
-
                     <label for="default-search"
                         class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
                     <div class="relative w-full mb-5">
@@ -30,11 +29,8 @@
                         <input type="search" id="uuid" wire:model="uuid"
                             class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Search for confirmation no..." required>
-
                     </div>
-
                 </div>
-
                 <div class="sm:col-span-6">
                     <x-form-select name="status" wire:model="status">
                         <option value="">Filter status</option>
@@ -42,19 +38,13 @@
                         <option value="checked-out">Checked-out</option>
                         <option value="cancelled">Cancelled</option>
                         <option value="reserved">Reserved</option>
-
                     </x-form-select>
-
                 </div>
-
             </div>
-
-            {{-- {{ $bookings->links() }} --}}
         </div>
         @endif
         <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-
                 <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                     @if(!$propertyBookingsCount)
                     <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8 mt-10 mb-10">
@@ -68,8 +58,7 @@
                             <h3 class="mt-2 text-sm font-medium text-gray-900">No guests</h3>
                             <p class="mt-1 text-sm text-gray-500">Get started by creating a new guest</p>
                             <div class="mt-6">
-                                <x-button
-                                    onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/calendar'">
+                                <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/calendar'">
                                     New Guest
                                 </x-button>
                             </div>

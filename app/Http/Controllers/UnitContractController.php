@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Unit;
-use App\Models\Property;
-use \PDF;
+use App\Models\{Unit,Property};
 
 class UnitContractController extends Controller
 {

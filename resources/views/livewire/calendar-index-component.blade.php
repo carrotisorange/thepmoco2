@@ -6,33 +6,19 @@
                     {{ucfirst(Route::current()->getName())}}
                 </h1>
             </div>
-
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/guest'"> View
                     Guests in List
                 </x-button>
-
             </div>
-
         </div>
         <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
-
             <div class="inline-block min-w-full py-2 mt-5 align-middle md:px-6 lg:px-8">
-
-                <div id="calendar">
-
-                </div>
-
+                <div id="calendar"> </div>
                 <div class="mb-5 mt-2 relative overflow-hidden ring-black ring-opacity-5 md:rounded-lg">
-
-
                     <div class="mt-10 px-4 sm:px-6 lg:px-8">
-                        <!-- Modal -->
-                        <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
+                        <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
-                                {{-- <form action="" method="POST">
-                                    @csrf --}}
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">Guest Information</h5>
@@ -43,8 +29,6 @@
                                             <input type="hidden" name="property_uuid" id="property_uuid"
                                                 value="{{ Session::get('property_uuid') }}" class="form-control"
                                                 required>
-
-
                                             <label for="">Agent</label>
                                             <select class="form-control" name="agent_id" id="agent_id">
                                                 <option value="">Select an agent</option>
@@ -111,12 +95,8 @@
                                             <x-button id="saveBtn">Book</x-button>
                                         </div>
                                     </div>
-                                    {{--
-                                </form> --}}
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>

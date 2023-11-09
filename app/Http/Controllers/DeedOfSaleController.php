@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DeedOfSale;
-use Illuminate\Http\Request;
-use App\Models\Unit;
-use App\Models\Owner;
-use App\Models\Property;
+use App\Models\{DeedOfSale,Unit,Owner,Property};
 
 class DeedOfSaleController extends Controller
 {

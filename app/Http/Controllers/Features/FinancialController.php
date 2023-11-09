@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Features;
-use App\Http\Controllers\Controller;
 
+use App\Http\Controllers\Controller;
 use App\Models\Property;
 use DB;
 use Carbon\Carbon;

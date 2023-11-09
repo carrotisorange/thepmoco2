@@ -3,14 +3,13 @@
 namespace App\Http\Controllers\Features;
 
 use App\Http\Controllers\Controller;
-use App\Models\Unit;
-use App\Models\Property;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use App\Models\Floor;
 use DB;
-use App\Models\Owner;
 use Session;
+use App\Models\{Unit,Property,Floor,Owner};
+
+
 
 use App\Models\Collection;
 

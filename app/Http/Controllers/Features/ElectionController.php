@@ -1,15 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Features;
-use App\Http\Controllers\Controller;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Property;
-use App\Models\Feature;
-use App\Models\Election;
 use Session;
 use Carbon\Carbon;
-use App\Models\Voter;
+use App\Models\{Property,Feature,Election,Voter};
 
 class ElectionController extends Controller
 {

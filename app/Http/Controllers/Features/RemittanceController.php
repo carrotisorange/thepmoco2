@@ -1,13 +1,9 @@
 <?php
 
 namespace App\Http\Controllers\Features;
-use App\Http\Controllers\Controller;
 
-use App\Models\Property;
-use App\Models\Remittance;
-use App\Models\DeedOfSale;
-use App\Models\Unit;
-use App\Models\Bank;
+use App\Http\Controllers\Controller;
+use App\Models\{Property,Remittance,DeedOfSale,Unit,Bank};
 
 class RemittanceController extends Controller
 {

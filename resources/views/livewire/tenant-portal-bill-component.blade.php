@@ -1,5 +1,4 @@
 <div>
-
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -46,8 +45,8 @@
             <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                     <div class="mb-10 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead class="">
+                        <x-table-component>
+                            <x-table-head-component>
                                 <tr>
                                     <x-th></x-th>
                                     <x-th>BILL #</x-th>
@@ -59,12 +58,10 @@
                                     <x-th>AMOUNT PAID</x-th>
                                     <x-th>BALANCE</x-th>
                                 </tr>
-                            </thead>
-
+                            </x-table-head-component>
+                            <x-table-body-component>
                             @foreach ($bills as $item)
-                            <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
-
-                                @if($item->particular_id != '71' && $item->particular_id != '72')
+                               @if($item->particular_id != '71' && $item->particular_id != '72')
                                 <tr>
                                     <x-td>
                                         @if(!App\Models\Collection::where('bill_id',$item->id)->posted()->sum('collection'))
@@ -80,7 +77,6 @@
                                 <x-td>{{ $item->particular->particular}}</x-td>
                                    <x-td>
                                     {{ number_format($item->bill, 2) }}
-
 
                                         @if(App\Models\Collection::where('bill_id',
                                         $item->id)->posted()->sum('collection'))
@@ -104,18 +100,15 @@
                                     </x-td>
 
                                     <x-td>
-                                        {{ number_format(App\Models\Collection::where('tenant_uuid',
-                                        $item->tenant_uuid)->where('bill_id',
-                                        $item->id)->posted()->sum('collection'), 2) }}
+                                        {{ number_format(App\Models\Collection::where('tenant_uuid', $item->tenant_uuid)->where('bill_id', $item->id)->posted()->sum('collection'), 2) }}
                                     </x-td>
 
                                     <x-td>{{ number_format((($item->bill)-App\Models\Collection::where('tenant_uuid', $item->tenant_uuid)->where('bill_id',$item->id)->posted()->sum('collection')), 2) }}</x-td>
-
-
                                 </tr>
                                 @endif
-                            </tbody>
                             @endforeach
+                            </x-table-body-component>
+                            <x-table-body-component>
                             <tr>
                                 <x-td></x-td>
                                 <x-td></x-td>
@@ -127,11 +120,9 @@
                                 <x-td>{{number_format(App\Models\Collection::where('tenant_uuid', Session::get('tenant_uuid'))->posted()->sum('collection'), 2) }}</x-td>
                                 <x-td>{{number_format((App\Models\Bill::where('tenant_uuid',Session::get('tenant_uuid'))->posted()->sum('bill')-App\Models\Collection::where('tenant_uuid',Session::get('tenant_uuid'))->posted()->sum('collection')), 2) }}</x-td>
                             </tr>
-
-                        </table>
+                            </x-table-body-component>
+                        </x-table-component>
                     </div>
-
-
                 </div>
             </div>
         </div>

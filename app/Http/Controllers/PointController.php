@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Point;
-use App\Models\User;
+use App\Models\{Point,User};
 
 class PointController extends Controller
 {

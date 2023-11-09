@@ -3,22 +3,14 @@
 namespace App\Http\Controllers\Features;
 
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use App\Models\Property;
-use App\Models\Guest;
-use App\Models\Unit;
 use Carbon\Carbon;
-use App\Models\Bill;
-use App\Models\Collection;
 use Session;
-use App\Models\AcknowledgementReceipt;
-use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendPaymentToTenant;
-use App\Models\AdditionalGuest;
-use App\Models\Booking;
+
+use App\Models\{Property,Guest,Unit,Bill,Collection,AdditionalGuest,Booking,AcknowledgementReceipt, User};
 
 class GuestController extends Controller
 {

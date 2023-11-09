@@ -1,30 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Features;
-use App\Http\Controllers\Controller;
 
-use App\Models\Property;
-use App\Models\Type;
-use App\Models\UserProperty;
+use App\Http\Controllers\Controller;
 use Session;
 use DB;
-use Illuminate\Support\Str;
-use App\Models\User;
-use App\Models\Bill;
-use App\Models\Contract;
 use Carbon\Carbon;
-use App\Models\Tenant;
-use App\Models\AcknowledgementReceipt;
-use App\Models\Unit;
-use App\Models\UnitStats;
-use App\Models\Collection;
-use App\Models\AccountPayable;
-use App\Models\Role;
-use App\Models\Owner;
-use App\Models\Guest;
-use App\Models\Country;
-use App\Models\Province;
-use App\Models\City;
+use Illuminate\Support\Str;
+use App\Models\{Property,Type,UserProperty,User,Bill,Contract,Tenant,AcknowledgementReceipt,Unit,UnitStats,Collection,AccountPayable,Role,Owner,Guest,Country,Province,City};
 
 class PropertyController extends Controller
 {

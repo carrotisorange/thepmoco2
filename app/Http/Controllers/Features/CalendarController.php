@@ -3,18 +3,12 @@
 namespace App\Http\Controllers\Features;
 
 use App\Http\Controllers\Controller;
-
 use App\Mail\SendWelcomeMailToGuest;
 use Illuminate\Http\Request;
-use App\Models\Property;
-use App\Models\Bill;
-use Session;
-use App\Models\Guest;
-use Illuminate\Support\Facades\Mail;
-use App\Models\Unit;
-use Carbon\Carbon;
-use App\Models\Booking;
 use Illuminate\Validation\Rule;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\Models\{Property, Bill, Guest, Unit, Booking};
 
 
 class CalendarController extends Controller

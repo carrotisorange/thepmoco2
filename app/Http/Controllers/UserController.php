@@ -3,17 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Role;
-use App\Models\User;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 use App\Mail\WelcomeMailToMember;
 use Carbon\Carbon;
-use App\Models\Property;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
-use App\Models\Subscription;
 use Session;
+use App\Models\{Role,Subscription,User,Property};
+
 
 class UserController extends Controller
 {

@@ -2,16 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Reference;
-use App\Models\Unit;
-use App\Models\Tenant;
-use Session;
-use App\Models\References;
-use Illuminate\Validation\Rule;
-use DB;
-use App\Models\Property;
-
 use Illuminate\Http\Request;
+use DB;
+use Illuminate\Validation\Rule;
+use App\Models\{Reference,Unit,Tenant,Property};
+
 
 class ReferenceController extends Controller
 {

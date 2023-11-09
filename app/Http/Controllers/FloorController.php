@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Floor;
 use DB;
+use App\Models\Floor;
+
 
 class FloorController extends Controller
 {

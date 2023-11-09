@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PropertyParticular;
-use App\Models\Particular;
-
+use App\Models\{PropertyParticular,Particular};
 
 class PropertyParticularController extends Controller
 {

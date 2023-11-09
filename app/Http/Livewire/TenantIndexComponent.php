@@ -3,11 +3,9 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Tenant;
 use Session;
-use App\Models\Property;
 use Livewire\WithPagination;
-use App\Models\Type;
+use App\Models\{Type,Property,Tenant};
 
 class TenantIndexComponent extends Component
 {
@@ -20,8 +18,6 @@ class TenantIndexComponent extends Component
     public $action = 'addNewTenant';
 
     public function redirectToUnitSelectionPage(){
-
-
         return redirect('/property/'.Session::get('property_uuid').'/unit/');
     }
 

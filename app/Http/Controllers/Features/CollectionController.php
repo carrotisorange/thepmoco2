@@ -3,25 +3,15 @@
 namespace App\Http\Controllers\Features;
 
 use App\Http\Controllers\Controller;
-
-
-use App\Models\Collection;
-use App\Models\Property;
-use Carbon\Carbon;
-use App\Models\Bill;
-use App\Models\Tenant;
-use App\Models\PaymentRequest;
-use App\Models\Contract;
 use Session;
 use Illuminate\Http\Request;
 use App\Mail\SendPaymentToTenant;
 use Illuminate\Support\Facades\Mail;
-use App\Models\AcknowledgementReceipt;
-use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ExportCollection;
-use App\Models\Owner;
 use DB;
+use Carbon\Carbon;
+use App\Models\{Collection, Property, Bill, Tenant, PaymentRequest, Contract, AcknowledgementReceipt};
 
 class CollectionController extends Controller
 {

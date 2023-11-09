@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Referral;
-use App\Models\Property;
 use Session;
+use App\Models\{Referral,Property};
+
 
 class ReferralController extends Controller
 {

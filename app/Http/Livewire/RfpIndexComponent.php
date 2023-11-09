@@ -3,14 +3,13 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Property;
 use Livewire\WithPagination;
-use App\Models\AccountPayable;
-use App\Models\AccountPayableParticular;
 use Session;
 use Carbon\Carbon;
 
-class AccountPayableIndexComponent extends Component
+use App\Models\{AccountPayable,Property};
+
+class RfpIndexComponent extends Component
 {
     public $status;
     public $created_at;
@@ -91,7 +90,7 @@ class AccountPayableIndexComponent extends Component
         ->get();
 
 
-       return view('livewire.account-payable-index-component',[
+       return view('livewire.rfp-index-component',[
           'accountpayables' => $accountPayables,
           'statuses' => app('App\Http\Controllers\Features\RFPController')->get_statuses(Session::get('property_uuid')),
           'dates' => app('App\Http\Controllers\Features\RFPController')->get_dates(Session::get('property_uuid')),

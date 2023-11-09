@@ -7,34 +7,18 @@
                 </h1>
             </div>
             @if($propertyCollectionsCount)
-      
             <div class="sm:col-span-6">
-
                 <div class="group inline-block">
-                    <x-button>Export
-
-                        &nbsp; <i class="fa-solid fa-caret-down"></i>
-                    </x-button>
-
-                    <ul
-                        class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
-                                                                                                              transition duration-150 ease-in-out origin-top min-w-32">
-
-                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
-                                href="/property/{{ Session::get('property_uuid') }}/dcr/{{ $start_date }}/{{ $end_date }}/excel"
-                                target="_blank">as
-                                Excel</a>
+                    <x-button>Export  &nbsp; <i class="fa-solid fa-caret-down"></i></x-button>
+                    <ul  class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute  transition duration-150 ease-in-out origin-top min-w-32">
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                            <a href="/property/{{ Session::get('property_uuid') }}/dcr/{{ $start_date }}/{{ $end_date }}/excel"target="_blank">asExcel</a>
                         </li>
-                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
-                                href="/property/{{ Session::get('property_uuid') }}/dcr/{{ $start_date }}/{{ $end_date }}/pdf"
-                                target="_blank">as PDF</a>
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                            <a href="/property/{{ Session::get('property_uuid') }}/dcr/{{ $start_date }}/{{ $end_date }}/pdf" target="_blank">as PDF</a>
                         </li>
-
                     </ul>
-
                 </div>
-
-
                 <x-button
                     onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/pending'">
                     Verify Payments
@@ -44,31 +28,21 @@
                         collection</span>
                         &nbsp; <i class="fa-solid fa-caret-down"></i>
                     </x-button>
-
-                    <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
-                                                      transition duration-150 ease-in-out origin-top min-w-32">
-
-                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
-                                href="/property/{{ Session::get('property_uuid') }}/tenant"
-                                data-modal-toggle="create-particular-modal">from tenant</a>
+                    <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute transition duration-150 ease-in-out origin-top min-w-32">
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                            <a href="/property/{{ Session::get('property_uuid') }}/tenant" data-modal-toggle="create-particular-modal">from tenant</a>
                         </li>
-                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="/property/{{ Session::get("
-                                property") }}/owner" data-modal-toggle="create-particular-modal">from owner</a>
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                            <a href="/property/{{ Session::get("property_uuid") }}/owner" data-modal-toggle="create-particular-modal">from owner </a>
                         </li>
-
                     </ul>
-
                 </div>
-
             </div>
-
-
             @endif
         </div>
 
         @if($propertyCollectionsCount)
         <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-
             <div class="sm:col-span-3">
                 <x-label>Start</x-label>
                 <x-form-input name="start_date" type="date" wire:model="start_date" />
@@ -76,12 +50,9 @@
             <div class="sm:col-span-3">
                 <x-label>End</x-label>
                 <x-form-input name="end_date" type="date" wire:model="end_date" />
-
             </div>
-
         </div>
         <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-
             <div class="sm:col-span-3">
                 <x-form-select name="bill_type" wire:model="bill_type">
                     <option value="">Filter collection to</option>
@@ -89,9 +60,7 @@
                     <option value="owner_uuid">Owner</option>
                     <option value="tenant_uuid">Tenant</option>
                 </x-form-select>
-
             </div>
-
             <div class="sm:col-span-3">
                 <x-form-select name="form" wire:model="form">
                     <option value="">Filter mode of payments </option>
@@ -99,20 +68,14 @@
                     <option value="{{ $item->form }}">{{ $item->form }}</option>
                     @endforeach
                 </x-form-select>
-
             </div>
-
         </div>
         @endif
-        <div class="mt-3">
-            {{-- {{ $collections->links() }} --}}
-        </div>
-
         <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                 <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                     @if($collections->count())
-                    @include('tables.collections')
+                        @include('tables.collections')
                     @else
                     <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8 mt-10 mb-10">
                         <div class="text-center mb-10">
@@ -129,22 +92,14 @@
                                     <x-button> New collection</span>
                                         &nbsp; <i class="fa-solid fa-caret-down"></i>
                                     </x-button>
-
-                                    <ul
-                                        class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
-                                                                                                  transition duration-150 ease-in-out origin-top min-w-32">
-
-                                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
-                                                href="/property/{{ Session::get('property_uuid') }}/tenant"
-                                                data-modal-toggle="create-particular-modal">to tenant</a>
+                                    <ul  class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute  transition duration-150 ease-in-out origin-top min-w-32">
+                                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                                            <a href="/property/{{ Session::get('property_uuid') }}/tenant" data-modal-toggle="create-particular-modal">to tenant</a>
                                         </li>
-                                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
-                                                href="/property/{{ Session::get('property_uuid') }}/owner"
-                                                data-modal-toggle="create-particular-modal">to owner</a>
+                                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                                            <a href="/property/{{ Session::get('property_uuid') }}/owner" data-modal-toggle="create-particular-modal">to owner</a>
                                         </li>
-
                                     </ul>
-
                                 </div>
                             </div>
                         </div>

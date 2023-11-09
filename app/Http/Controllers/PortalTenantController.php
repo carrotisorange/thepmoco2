@@ -2,20 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Tenant;
-use \PDF;
-use App\Models\Bill;
-use Illuminate\Http\Request;
-use App\Models\Concern;
-use Illuminate\Support\Facades\Storage;
-use App\Models\PaymentRequest;
 use Session;
-use Carbon\Carbon;
-use App\Models\Collection;
 use DB;
-use App\Models\Bulletin;
-use App\Models\Contract;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\Models\{User,Tenant,Bill,Collection,Bulletin,Contract,Concern,PaymentRequest};
 
 class PortalTenantController extends Controller
 {

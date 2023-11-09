@@ -1,5 +1,4 @@
 <div>
-
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -9,37 +8,27 @@
             </div>
             @if($propertyUnitCount)
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <x-button name="newUnitModal" type="button" data-modal-toggle="instructions-create-unit-modal">New unit
-                </x-button>
-
+                <x-button data-modal-toggle="instructions-create-unit-modal">New unit </x-button>
                 @if($view === 'list')
                 <x-button wire:click="changeView('thumbnail')">
                     View as Thumbnail
-
                 </x-button>
                 @else
                 <x-button wire:click="changeView('list')">
                     View as List
                 </x-button>
                 @endif
-
-
                 @if($units->count())
-                <x-button wire:click="editUnits"> Edit
-                    All</x-button>
+                <x-button wire:click="editUnits"> Edit</x-button>
                 @endif
-
             </div>
             @endif
         </div>
-
         <div class="mt-3">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                 @if($propertyUnitCount)
-
                 <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                     <div class="sm:col-span-6">
-
                         <label for="default-search"
                             class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
                         <div class="relative w-full mb-5">
@@ -53,11 +42,8 @@
                             <input type="search" id="search" wire:model="search"
                                 class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Search for unit..." required>
-
                         </div>
-
                     </div>
-
                     <div class="sm:col-span-1">
                         <x-form-select name="building_id" id="building_id" wire:model="building_id">
                             <option value="">Filter building</option>
@@ -66,7 +52,6 @@
                             @endforeach
                         </x-form-select>
                     </div>
-
                     <div class="sm:col-span-1">
                         <x-form-select name="category_id" id="category_id" wire:model="category_id">
                             <option value="">Filter category</option>
@@ -75,8 +60,6 @@
                             @endforeach
                         </x-form-select>
                     </div>
-
-
                     <div class="sm:col-span-1">
                         <x-form-select name="status_id" id="status_id" wire:model="status_id"> \
                             <option value="">Filter status</option>
@@ -85,7 +68,6 @@
                             @endforeach
                         </x-form-select>
                     </div>
-
                     <div class="sm:col-span-1">
                         <x-form-select name="sortBy" id="small" wire:model="sortBy">
                             <option value="unit" selected>Sort by</option>
@@ -96,7 +78,6 @@
                             <option value="unit">unit</option>
                         </x-form-select>
                     </div>
-
                     <div class="sm:col-span-1">
                         <x-form-select name="orderBy" id="small" wire:model="orderBy">
                             <option value="" selected>Sorting order</option>
@@ -104,7 +85,7 @@
                             <option value="desc">descending</option>
                         </x-form-select>
                     </div>
-                    <div class="sm:col-span-1">
+                    {{-- <div class="sm:col-span-1">
                         <x-form-select name="limitDisplayTo" id="small" wire:model="limitDisplayTo">
                             <option value="" selected>Limit display to</option>
                             @for ($i = 1; $i <= $totalUnitsCount; $i++) @if($i%10==0 || $i==$totalUnitsCount) <option
@@ -112,15 +93,14 @@
                                 @endif
                                 @endfor
                         </x-form-select>
-                    </div>
+                    </div> --}}
                 </div>
-                <div class="mt-5">
+                {{-- <div class="mt-5">
                     {{ $units->links() }}
-                </div>
+                </div> --}}
 
             </div>
             @endif
-
         </div>
         <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">

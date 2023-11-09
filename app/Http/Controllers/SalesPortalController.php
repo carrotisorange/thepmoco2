@@ -2,14 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\UserProperty;
 use DB;
 use Carbon\Carbon;
-use App\Models\Tenant;
-use App\Models\Owner;
-use App\Models\Property;
-use App\Models\Unit;
+use App\Models\{User,UserProperty,Tenant,Owner,Property,Unit};
 
 class SalesPortalController extends Controller
 {

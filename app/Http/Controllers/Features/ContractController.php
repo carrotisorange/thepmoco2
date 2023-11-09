@@ -1,17 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Features;
+
 use App\Http\Controllers\Controller;
-
-use App\Models\Contract;
-
-use App\Models\Unit;
-use App\Models\Tenant;
-use App\Models\Bill;
-use App\Models\Property;
 use Session;
 use DB;
 use Carbon\Carbon;
+use App\Models\{Contract, Unit, Tenant, Bill, Property};
 
 class ContractController extends Controller
 {

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Particular;
-use App\Models\PropertyParticular;
 use Illuminate\Http\Request;
 use Session;
 use DB;
+use App\Models\{Particular,PropertyParticular};
 
 class ParticularController extends Controller
 {

@@ -3,14 +3,12 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Utility;
+
 use Session;
 use Livewire\WithPagination;
-use App\Models\Unit;
 use Carbon\Carbon;
 use Str;
-use DB;
-use App\Models\Property;
+use App\Models\{Property,Unit,Utility};
 
 class UtilityIndexComponent extends Component
 {

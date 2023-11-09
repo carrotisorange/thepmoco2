@@ -3,21 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Owner;
-use App\Models\Property;
 use Illuminate\Validation\Rule;
-use App\Models\Bill;
 use DB;
 use Session;
 use Carbon\Carbon;
-use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendBillToOwner;
-use App\Models\Collection;
+use App\Models\{Owner,Property,Collection,Bill,User};
+
 
 class OwnerBillController extends Controller
 {
-
     public function get_bill_balance($bill_id)
     {
         return Bill::where('id',$bill_id)->sum('bill') - Bill::where('id',$bill_id)->sum('initial_payment');

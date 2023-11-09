@@ -3,14 +3,11 @@
 namespace App\Http\Controllers\Features;
 
 use App\Http\Controllers\Controller;
-
-use App\Models\Property;
-use Session;
-use App\Models\AccountPayable;
-use App\Models\AccountPayableParticular;
 use Carbon\Carbon;
 use App\Models\Feature;
 use Spatie\Browsershot\Browsershot;
+use Session;
+use App\Models\{Property,AccountPayable,AccountPayableParticular};
 
 class RFPController extends Controller
 {

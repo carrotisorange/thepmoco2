@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Wallet;
-use App\Models\Property;
-use App\Models\Tenant;
-use App\Models\Unit;
-use App\Models\Contract;
+use App\Models\{Wallet,Property,Tenant,Unit,Contract};
 
 class WalletController extends Controller
 {

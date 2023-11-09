@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\User;
-Use App\Models\Subscription;
-use Xendit\Xendit;
 use Carbon\Carbon;
 use DB;
+use App\Models\{User,Subscription};
 
 class SubscriptionController extends Controller
 {

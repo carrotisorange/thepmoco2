@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Tenant;
-use App\Models\Property;
-use App\Models\Concern;
-use Session;
+use App\Models\{Tenant,Property,Concern};
 
 class TenantConcernController extends Controller
 {

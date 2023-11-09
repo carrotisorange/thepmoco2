@@ -12,15 +12,10 @@
                         <x-button data-modal-toggle="instructions-create-utility-modal">
                             New utilities
                         </x-button>
-
                     </span>
-
                 </div>
-
             </div>
-
         </div>
-
         <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
             <div class="sm:col-span-6">
 
@@ -37,32 +32,26 @@
                     <input type="search" id="search" wire:model="search"
                         class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Search for unit..." required>
-
                 </div>
-
             </div>
-
             <div class="sm:col-span-2">
                 <x-form-select id="date_created" wire:model="filter_date">
                     <option value="">Filter date</option>
                     @foreach ($dates as $date)
-                    <option value="{{ $date->start_date }}">{{ Carbon\Carbon::parse($date->start_date)->format('M d, Y')
-                        }}</option>
+                    <option value="{{ $date->start_date }}">
+                        {{ Carbon\Carbon::parse($date->start_date)->format('M d, Y') }}
+                    </option>
                     @endforeach
                 </x-form-select>
-
             </div>
-
             <div class="sm:col-span-2">
                 <x-form-select id="type" wire:model="type">
                     <option value="">Filter utility</option>
                     @foreach ($types as $item)
-                    <option value="{{ $item->type }}">{{ $item->type }}</option>
+                        <option value="{{ $item->type }}">{{ $item->type }}</option>
                     @endforeach
                 </x-form-select>
-
             </div>
-
             <div class="sm:col-span-2">
                 <x-form-select id="small" wire:model="status">
                     <option value="">Filter status</option>
@@ -70,26 +59,16 @@
                     <option value="{{ $item->status }}">{{ $item->status }}</option>
                     @endforeach
                 </x-form-select>
-
             </div>
-
-
-
         </div>
-
         <div class="mt-3">
             {{ $utilities->links() }}
         </div>
-
         <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                 <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-
-
                     @if($utilities->count())
-
-                    @include('tables.utilities')
-          
+                        @include('tables.utilities')
                     @else
                     <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8 mt-10 mb-10">
                         <div class="text-center mb-10">
@@ -102,25 +81,17 @@
                             <h3 class="mt-2 text-sm font-medium text-gray-900">No utilities</h3>
                             <p class="mt-1 text-sm text-gray-500">Get started by creating new utilities</p>
                             <div class="mt-6">
-
                                 <div class="group inline-block">
                                     <x-button data-modal-toggle="instructions-create-utility-modal">
                                         <span class="pr-1 font-semibold flex-1">
                                             New utilities</span>
-
                                     </x-button>
-
-
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
                     @endif
-
                 </div>
-
             </div>
         </div>
     </div>

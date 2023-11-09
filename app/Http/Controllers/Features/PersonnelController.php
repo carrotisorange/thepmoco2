@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Features;
 
 use App\Http\Controllers\Controller;
-use App\Models\Property;
-use App\Models\UserProperty;
 use Session;
+use App\Models\{Property, UserProperty};
 
 class PersonnelController extends Controller
 {
@@ -29,15 +28,11 @@ class PersonnelController extends Controller
         ->where('user_properties.role_id','!=', 5)
         ->count();
 
-        // if($propertyVerifiedPersonnelsCount == 0){
-        //     return redirect('/property/'.Session::get('property_uuid').'/congratulations');
-        // }else{
-                return view('properties.personnels.index',[
-                'users' => app('App\Http\Controllers\UserPropertyController')->getPersonnels($property->uuid,auth()->user()->id),
-                'properties' => app('App\Http\Controllers\UserPropertyController')->get_user_properties($property->uuid,auth()->user()->id),
-                'property' => $property
-            ]);
-        // }
+        return view('properties.personnels.index',[
+            'users' => app('App\Http\Controllers\UserPropertyController')->getPersonnels($property->uuid,auth()->user()->id),
+            'properties' => app('App\Http\Controllers\UserPropertyController')->get_user_properties($property->uuid,auth()->user()->id),
+            'property' => $property
+        ]);
 
 
     }

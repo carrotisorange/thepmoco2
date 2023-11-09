@@ -41,15 +41,12 @@ Route::get('/landing-propsuite', function(){
             return view('landing.landinglanding');});
 
 
- //Routes for Property
 Route::controller(ArticleController::class)->group(function () {
     Route::get('articles', 'index')->name('articles');
     Route::get('article/{id}', 'show')->name('articles');
 });
 
 Route::get('/portfolio', [PortfolioController::class, 'index'])->name('charts.portfolio');
-
-//dashboard
 
 Route::get('/dashboard', function(){
     return view('dashboard.dashboard');
@@ -163,23 +160,6 @@ Route::get('/liquidation', function(){
     return view('export.liquidation');
 });
 
-
 Route::get('/soa', function(){
     return view('export.soa');
 });
-
-
-
-
-// Route::post('/register', function(Request $request){
-
-//     $attributes = $request->validate([
-//     'name' => ['required', 'string', 'max:255'],
-//     'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-//     'mobile_number' => ['required', 'unique:users'],
-//     ]);
-
-//     User::create($attributes);
-
-//     return back()->with('success', 'The form has been submitted!');
-// });

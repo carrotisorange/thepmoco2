@@ -1,5 +1,4 @@
 <div>
-
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -9,18 +8,14 @@
             </div>
             @if($propertyRfpCount)
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-
-                <x-button
-                    onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/rfp/{{ 'purchase' }}/{{ Str::random(3) }}/store'">
+                <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/rfp/{{ 'purchase' }}/{{ Str::random(3) }}/store'">
                     New Request
                 </x-button>
-
             </div>
             @endif
         </div>
         @if($propertyRfpCount)
         <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-
             <div class="sm:col-span-3">
                 <x-label for="">Filter status</x-label>
                 <x-form-select id="status" name="status" wire:model="status" class="">
@@ -30,10 +25,8 @@
                         {{ $status->status }}
                     </option>
                     @endforeach
-
                 </x-form-select>
             </div>
-
             <div class="sm:col-span-3">
                 <x-label for="">Filter date requested</x-label>
                 <x-form-select id="created_at" name="created_at" wire:model="created_at" class="">
@@ -50,12 +43,11 @@
             </div>
         </div>
         @endif
-
         <div class="overflow-auto -my-2 -mx-4 sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                 <div class="mb-5 mt-2  shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                     @if($accountpayables->count())
-                    @include('tables.accountpayables')
+                        @include('tables.accountpayables')
                     @else
                     <div class="-my-2 -mx-4 sm:-mx-6 lg:-mx-8 mt-10 mb-10">
                         <div class="text-center mb-10">
@@ -69,11 +61,8 @@
                             <p class="mt-1 text-sm text-gray-500">Get started by creating a new request</p>
                             <div class="mt-6">
                                 <div class="group inline-block">
-                                    <x-button
-                                        onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/rfp/{{ 'purchase' }}/{{ Str::random(3) }}/store'">
-                                        <span class="pr-1 font-semibold flex-1">
-                                            New Request</span>
-
+                                    <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/rfp/{{ 'purchase' }}/{{ Str::random(3) }}/store'">
+                                        <span class="pr-1 font-semibold flex-1">New Request</span>
                                     </x-button>
                                 </div>
                             </div>

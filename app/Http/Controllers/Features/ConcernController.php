@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Features;
+
 use App\Http\Controllers\Controller;
-use App\Models\Concern;
 use Session;
-use App\Models\Property;
+use App\Models\{Concern, Property};
 
 class ConcernController extends Controller
 {

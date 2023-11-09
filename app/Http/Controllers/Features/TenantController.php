@@ -3,22 +3,14 @@
 namespace App\Http\Controllers\Features;
 
 use App\Http\Controllers\Controller;
-
-use App\Models\Tenant;
 use Illuminate\Http\Request;
-use App\Models\Unit;
-use Illuminate\Validation\Rule;
 use DB;
-use App\Models\Property;
+use Illuminate\Validation\Rule;
 use App\Mail\SendContractToTenant;
 use Illuminate\Support\Facades\Mail;
-use App\Models\Contract;
-use App\Models\Reference;
-use App\Models\Guardian;
-use App\Models\Bill;
-use App\Models\AcknowledgementReceipt;
-use App\Models\Concern;
 use Session;
+use App\Models\{Tenant,Unit,Property,Contract,Reference,Guardian,Bill,AcknowledgementReceipt,Concern};
+
 
 class TenantController extends Controller
 {

@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Property;
-use App\Models\Unit;
-use App\Models\Concern;
+use App\Models\{Property,Unit,Concern};
 
 class UnitConcernController extends Controller
 {

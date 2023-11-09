@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Features;
-use App\Http\Controllers\Controller;
 
-use App\Models\Utility;
+use App\Http\Controllers\Controller;
 use DB;
-use App\Models\Property;
 use Session;
+use App\Models\{Utility,Property};
+
 
 class UtilityController extends Controller
 {

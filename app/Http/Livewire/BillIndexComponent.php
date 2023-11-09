@@ -3,20 +3,12 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Bill;
-use App\Models\Collection;
 use Carbon\Carbon;
 use DB;
-use Illuminate\Validation\Rule;
-
-use Livewire\WithPagination;
-use App\Models\Contract;
-use App\Models\Tenant;
-use App\Models\Particular;
-use App\Models\PropertyParticular;
 use Session;
-use App\Models\Unit;
-use App\Models\Property;
+use Illuminate\Validation\Rule;
+use Livewire\WithPagination;
+use App\Models\{Contract,Tenant,Particular,PropertyParticular,Bill,Collection,Unit,Property};
 
 class BillIndexComponent extends Component
 {
