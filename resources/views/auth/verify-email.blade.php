@@ -10,8 +10,7 @@
             </div>
             <h2 class="pt-3 pb-5 text-center text-2xl font-bold tracking-tight text-gray-900 font-pop">Thanks
                 for signing up!</h2>
-            <p class="text-center text-md font-medium text-medium text-gray-700">Your journey with The Property
-                Manager Online starts when you</p>
+            <p class="text-center text-md font-medium text-medium text-gray-700">Your journey with PropSuite starts when you</p>
             <p class="text-center text-md font-medium text-medium text-gray-700">verify your email by clicking
                 the link we sent you.</p>
             </p>

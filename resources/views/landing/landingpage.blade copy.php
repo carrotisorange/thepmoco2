@@ -30,12 +30,6 @@
             background-size: cover;
         }
 
-        #trust-bg {
-            background-image: url('/brands/landing/trust-bg.png');
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-
         #guide {
             background-color: #5D5270;
         }
@@ -85,13 +79,6 @@
 
         #propbiz-image {
             background-image: url('/brands/propsuite/propman-landing-bg.png');
-        }
-
-        #trustBg {
-            background-image: url('/brands/landing/trust.png');
-            background-repeat: no-repeat;
-            background-size: cover;
-            height:100%;
         }
 
         /* DEMO-SPECIFIC STYLES */
@@ -275,13 +262,13 @@
                         </div>
 
                         <div class="flex-col justify-center sm:-py-2 md:py-20 lg:py-8 lg:ml-20 lg:px-16">
-                            <div class="lg:block lg:py-20  md:max-w-sm lg:max-w-md xl:max-w-lg sm:py-2 mx-10 lg:mx-0 mt-5">
+                            <div class="lg:block lg:py-20 md:max-w-sm lg:max-w-md xl:max-w-lg  sm:py-2 mx-5 mt-5">
                                 <p class="text-sm lg:text-base font-light md:-mt-36 lg:mt-1 text-white text-justify">
                                     Leasing platform
                                     for rental property owners to list vacant rooms and units for long term or short
                                     term rental and a
                                     Leasing Marketplace for tenants to find available place.</p>
-                                <div class="mt-10 flex justify-center lg:justify-end items-center space-x-5">
+                                <div class="mt-10 flex justify-end items-center space-x-5">
                                     <button class="proprentOrangebg rounded-full"> <a href="proprent-search"
                                             target="blank"
                                             class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-yellow-200  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Coming
@@ -308,12 +295,12 @@
                         </div>
 
                         <div class="flex-col justify-center sm:-py-2 md:py-20 lg:py-8 lg:px-16">
-                            <div class="lg:block lg:py-20 md:max-w-sm lg:max-w-md xl:max-w-lg sm:py-2 mx-10 lg:mx-0 mt-5">
+                            <div class="lg:block lg:py-20 md:max-w-sm lg:max-w-md xl:max-w-lg sm:py-2 mx-5 mt-5">
                                 <p class="text-sm lg:text-base font-light md:-mt-36 lg:mt-1 text-white text-justify">
                                     Property management
                                     services that provides online and onsite operations management services to rental
                                     property owners.</p>
-                                <div class="mt-10 flex justify-center lg:justify-end items-center space-x-5">
+                                <div class="mt-10 flex justify-end items-center space-x-5">
                                     <button class="propbizOrangebg rounded-full"> <a href="propbiz"
                                             class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-purple-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Register</a></button>
                                 </div>
@@ -338,14 +325,14 @@
                         </div>
 
                         <div class="flex-col justify-center sm:-py-2 md:py-20 lg:py-8 lg:px-16">
-                            <div class="lg:block lg:py-20 md:max-w-sm lg:max-w-md xl:max-w-lg sm:py-2 mx-10 lg:mx-0 mt-5">
+                            <div class="lg:block lg:py-20 md:max-w-sm lg:max-w-md xl:max-w-lg sm:py-2 mx-5 mt-5">
                                 <p
                                     class="ml-0 lg:ml-16 text-sm lg:text-base font-light md:-mt-36 lg:mt-1 text-white text-justify">
                                     We
                                     provide full suite digital solution for rental property communities and home owners
                                     associations.</p>
-                                <div class="mt-10 flex justify-center lg:justify-end items-center space-x-5">
-                                    <button class="propSuitebg rounded-full"> <a href="resources"
+                                <div class="mt-10 flex justify-end items-center space-x-5">
+                                    <button class="propSuitebg rounded-full"> <a href="about"
                                             class="w-48 flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-bold text-yellow-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Learn
                                             More</a></button>
                                 </div>
@@ -354,57 +341,19 @@
                     </div>
                 </div>
 
-                <div class="slide pb-8 lg:pb-16 py-0 bg-transparent" id="">
-                    <div class="-mt-48 lg:mt-0 mx-auto max-w-2xl px-4 sm:px-6  lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
-                        <!-- Product details -->
-                        <div class="lg:max-w-lg lg:self-end">
-                  
-                        <!-- <div class="">
-                            <img src="{{ asset('/brands/propsuite/limited.png') }}" class="w-36">
-                        </div> -->
-
-                        <div class="-mt-24 flex justify-center items-center">
-                            <img src="{{ asset('/brands/landing/propsuite-hoa.png') }}" class="w-36">
+                <div class="slide py-16 bg-transparent" id="">
+                    <div class="sm:block  md:flex h-full">
+                        <div class="m-auto block">
+                      
+                          <h1 class="text-white text-3xl font-bold text-center">Latest News</h1>
+                      
+                          <p class="mt-5 text-base text-white w-96 font-light">Propsuite celebrates National Shelter Month with DHSUD registered Home Owners Associations with up to 20% discount. Send us your interest thru admin@propsuite.net</p>
                         </div>
-
-
-                           
-
-                            <div class=" flex justify-center items-center">
-                            <img src="{{ asset('/brands/propsuite/shelter.png') }}" class="w-72">
-                            </div>
-
-            
-                        </div>
-
-                        <div class="mt-0 lg:mt-20 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
-                            <div class="overflow-hidden ">
-                                <img src="{{ asset('/brands/propsuite/dhsud-img.png') }}" class="h-48 lg:h-96 w-full object-cover object-center">
-                            </div>
-                        </div>
-
-           
-                        <div>
-                 
-                            <div class="mt-4 flex justify-center items-center">                              
-                                <span class="max-w-sm text-lg lg:text-2xl text-gray-700 font-semibold">
-                                    DHSUD Registered HOA up to 20% discount.
-                                </span>                                
-                            </div>
-   
-                            
-
-                            <div class="mt-10 flex justify-center items-center">
-                                
-                                <a href="https://hoa.propsuite.net" class="flex w-56 items-center justify-center rounded-full border border-transparent bg-yellow-500 px-8 py-3 text-base font-medium text-white hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">Register</a>
-                            </div>
-                          
-                           
-                     
-                        </div>
+                          <div class="m-auto block">
+                            <img src="{{ asset('/brands/shelter-month.png') }}" class="w-96">
+                          </div>
+                        
                     </div>
-                    </div>
-
                 </div>
 
 
@@ -413,7 +362,7 @@
 
 
             </div>
-
+        </div>
 
 
         <script>
@@ -444,136 +393,107 @@
         <div id="services" class="bg-white py-16 sm:py-24 lg:py-32 min-h-screen" id="guide">
             <div class="">
                 <div class="flex justify-center items-center px-5 lg:px-0">
-                    <h2 class="font-semibold text-gray-600 text-3xl">PropSuite for your Property</h2>
+                    <h2 class="font-semibold text-gray-600 text-3xl">What are the services that we offer?</h2>
                 </div>
 
 
 
 
                 <!-- This is an example component -->
-                <div class="max-w-7xl mx-auto hidden lg:block">
+                <div class="max-w-4xl mx-auto hidden lg:block">
 
                     <div class="my-8">
-                        <ul class="flex justify-center items-center -mb-px space-x-8" id="propsuiteTab"
-                            data-tabs-toggle="#propsuiteTab" role="tablist">
+                        <ul class="flex justify-center items-center -mb-px space-x-8" id="myTab"
+                            data-tabs-toggle="#myTabContent" role="tablist">
                             <li class="mr-2 rounded-xl" role="presentation">
-                                <img class="h-48 inline-block border text-gray-500  rounded-lg py-4 px-4 text-sm font-medium text-center border-gray-300 hover:border-purple-500 border-b-2 active"
-                                    id="propsuite-ps-tab" data-tabs-target="#propsuite-ps" type="button" role="tab"
-                                    aria-controls="propsuite-ps" aria-selected="true"
-                                    src="{{ asset('/brands/landing/propsuite.png')}}">
-                                
+                                <img class="h-48 inline-block border text-gray-500  rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 active"
+                                    id="profile-tab" data-tabs-target="#profile" type="button" role="tab"
+                                    aria-controls="profile" aria-selected="true"
+                                    src="{{ asset('/brands/'.env('APP_LOGO_PROPMAN')) }}">
+                                <p class="py-2 block text-base font-semibold text-center">Propman</p>
                             </li>
                             <li class="mr-2 rounded-xl" role="presentation">
-                                <img class="h-48 inline-block border text-gray-500  rounded-lg py-4 px-4 text-sm font-medium text-center border-gray-300 hover:border-purple-500 border-b-2"
-                                    id="propsuite-lite-tab" data-tabs-target="#propsuite-lite" type="button" role="tab"
-                                    aria-controls="propsuite-lite" aria-selected="false"
-                                    src="{{ asset('/brands/landing/prop-lite.png')}}">
-                                
+                                <img class="h-48 inline-block border text-gray-500  rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300"
+                                    id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab"
+                                    aria-controls="dashboard" aria-selected="false"
+                                    src="{{ asset('/brands/'.env('APP_LOGO_PROPRENT')) }}">
+                                <p class="py-2 block text-base font-semibold text-center">Proprent</p>
                             </li>
                             <li class="mr-2 rounded-xl" role="presentation">
-                                <img class="h-48 inline-block border text-gray-500  rounded-lg py-4 px-4 text-sm font-medium text-center border-gray-300 hover:border-purple-500 border-b-2"
-                                    id="propsuite-daily-tab" data-tabs-target="#propsuite-daily" type="button" role="tab"
-                                    aria-controls="propsuite-daily" aria-selected="false"
-                                    src="{{ asset('/brands/landing/prop-daily.png')}}">
-                                
-                            </li>
-                            <li class="mr-2 rounded-xl" role="presentation">
-                                <img class="h-48 inline-block border text-gray-500  rounded-lg py-4 px-4 text-sm font-medium text-center border-gray-300 hover:border-purple-500 border-b-2"
-                                    id="propsuite-hoa-tab" data-tabs-target="#propsuite-hoa" type="button" role="tab"
-                                    aria-controls="propsuite-hoa" aria-selected="false"
-                                    src="{{ asset('/brands/landing/prop-hoa.png')}}">
-                                
-                            </li>
-                            <li class="mr-2 rounded-xl" role="presentation">
-                                <img class="h-48 inline-block border text-gray-500  rounded-lg py-4 px-4 text-sm font-medium text-center border-gray-300 hover:border-purple-500 border-b-2"
-                                    id="propsuite-condo-tab" data-tabs-target="#propsuite-condo" type="button" role="tab"
-                                    aria-controls="propsuite-condo" aria-selected="false"
-                                    src="{{ asset('/brands/landing/prop-condo.png')}}">
-                                
+                                <img class="h-48 inline-block border text-gray-500  rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300"
+                                    id="settings-tab" data-tabs-target="#settings" type="button" role="tab"
+                                    aria-controls="settings" aria-selected="false"
+                                    src="{{ asset('/brands/'.env('APP_LOGO_PROPBIZ')) }}">
+                                <p class="py-2 block text-base font-semibold text-center">Propbiz</p>
                             </li>
 
                         </ul>
                     </div>
-                    <div id="propsuiteTabContent" class="mx-24 mt-10 hidden lg:block">
+                    <div id="myTabContent" class="mt-10 hidden lg:block">
 
-                        <div class="p-4 rounded-lg border " id="propsuite-ps" role="tabpanel" aria-labelledby="propsuite-ps-tab">
+                        <div class="p-4 rounded-lg border " id="profile" role="tabpanel" aria-labelledby="profile-tab">
                             <div class="grid grid-cols-2">
-                                <img class="flex-col w-56 mx-10 justify-center items-center"
-                                src="{{ asset('/brands/landing/propsuite.png')}}">
+                                <img class="flex-col w-72 justify-center items-center"
+                                    src="{{ asset('/brands/propsuite/propman.png') }}">
                                 <div class="flex-col">
-                                    <p class="mx-10 pt-12 text-gray-500 dark:text-gray-400 text-base text-justify"><span
-                                            class="font-bold">PropSuite</span> is a full suite community management system for home owners associations, condominium corporations, and rental property communities.  </p>
-                                    <div class="mx-10 mb- flex items-center justify-end mt-5">
-                                        <a href="/propsuite"><button
-                                                class="bg-yellow-200 hover:bg-yellow-400 px-3 py-2 rounded-full text-sm text-gray-900">Learn
+                                    <p class="text-gray-500 dark:text-gray-400 text-base text-justify"><span
+                                            class="font-bold">Property
+                                            management system</span> as a service that provides a transformative digital
+                                        solution to simplify
+                                        operations of long term or short term rental properties. Unlike manual
+                                        processes, our online system
+                                        provides real-time, reliable and accessible information to landlords and
+                                        managers to increase
+                                        transparency and efficiency of operations. </p>
+                                    <div class="flex items-center justify-end mt-5">
+                                        <a href="propman"><button
+                                                class="bg-yellow-200 hover:bg-yellow-400 p-2 rounded-md text-sm font-bold">Learn
                                                 More</button></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="p-4 rounded-lg border hidden" id="propsuite-lite" role="tabpanel"
-                            aria-labelledby="propsuite-lite-tab">
+                        <div class="p-4 rounded-lg border hidden" id="dashboard" role="tabpanel"
+                            aria-labelledby="dashboard-tab">
                             <div class="grid grid-cols-2">
-                                <img class="flex-col w-56 mx-10 justify-center items-center"
-                                src="{{ asset('/brands/landing/propsuite-lite.png')}}">
+                                <img class="flex-col w-72 justify-center items-center"
+                                    src="{{ asset('/brands/propsuite/proprent.png') }}">
                                 <div class="flex-col">
-                                    <p class="mx-10 pt-12 text-gray-500 dark:text-gray-400 text-base text-justify"><span
-                                            class="font-bold">PropSuite Lite</span>  is a rental property management system for Long Term Rental Property Communities whether for commercial or residential tenants.</p>
-                                    <div class="mx-10 mb- flex items-center justify-end mt-5">
-                                        <a href="/propsuite-lite"><button
-                                                class="bg-yellow-200 hover:bg-yellow-400 px-3 py-2 rounded-full text-sm text-gray-900">Learn
+                                    <p class="text-gray-500 dark:text-gray-400 text-base text-justify"><span
+                                            class="font-bold">Leasing
+                                            Marketplace</span> for tenants to find available place for long term or
+                                        short term rentals. Unlike
+                                        social media pages, we verify the address and the accuracy of the rental space
+                                        to increase trust in
+                                        the proprent community. </p>
+                                    <div class="flex items-center justify-end mt-5">
+                                        <a href="proprent"><button
+                                                class="bg-yellow-200 hover:bg-yellow-400 p-2 rounded-md text-sm font-bold">Learn
                                                 More</button></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="p-4 rounded-lg border hidden" id="propsuite-daily" role="tabpanel"
-                            aria-labelledby="propsuite-daily-tab">
+                        <div class="p-4 rounded-lg border hidden" id="settings" role="tabpanel"
+                            aria-labelledby="settings-tab">
                             <div class="grid grid-cols-2">
-                                <img class="flex-col w-56 mx-10 justify-center items-center"
-                                src="{{ asset('/brands/landing/propsuite-daily.png')}}">
+                                <img class="flex-col w-72 justify-center items-center"
+                                    src="{{ asset('/brands/propsuite/propbiz.png') }}">
                                 <div class="flex-col">
-                                    <p class="mx-10 pt-12 text-gray-500 dark:text-gray-400 text-base text-justify"><span
-                                            class="font-bold">PropSuite Daily</span> is ideal for daily rental properties like guest houses, transient homes, airbnb properties, or Mabuhay Accommodations to manage arrival and departure of guests to avoid double bookings. </p>
-                                    <div class="mx-10 mb- flex items-center justify-end mt-5">
-                                        <a href="/propsuite-daily"><button
-                                                class="bg-yellow-200 hover:bg-yellow-400 px-3 py-2 rounded-full text-sm text-gray-900">Learn
-                                                More</button></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="p-4 rounded-lg border hidden" id="propsuite-hoa" role="tabpanel"
-                            aria-labelledby="propsuite-hoa-tab">
-                            <div class="grid grid-cols-2">
-                                <img class="flex-col w-56 mx-10 justify-center items-center"
-                                src="{{ asset('/brands/landing/propsuite-hoa.png')}}">
-                                <div class="flex-col">
-                                    <p class="mx-10 pt-12 text-gray-500 dark:text-gray-400 text-base text-justify"><span
-                                            class="font-bold">PropSuite HOA</span> is a subdivision community management system for home owners associations.</p>
-                                    <div class="mx-10 mb- flex items-center justify-end mt-5">
-                                        <a href="/propsuite-hoa"><button
-                                                class="bg-yellow-200 hover:bg-yellow-400 px-3 py-2 rounded-full text-sm text-gray-900">Learn
-                                                More</button></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="p-4 rounded-lg border hidden" id="propsuite-condo" role="tabpanel"
-                            aria-labelledby="propsuite-condo-tab">
-                            <div class="grid grid-cols-2">
-                                <img class="flex-col w-56 mx-10 justify-center items-center"
-                                src="{{ asset('/brands/landing/propsuite-condo.png')}}">
-                                <div class="flex-col">
-                                    <p class="mx-10 pt-12 text-gray-500 dark:text-gray-400 text-base text-justify"><span
-                                            class="font-bold">PropSuite Condo</span> is a Condominium Community Management System to improve transparency in the complex management of condominiums.</p>
-                                            <div class="mx-10 mb- flex items-center justify-end mt-5">
-                                        <a href="/propsuite-condo"><button
-                                                class="bg-yellow-200 hover:bg-yellow-400 px-3 py-2 rounded-full text-sm text-gray-900">Learn
+                                    <p class="text-gray-500 dark:text-gray-400 text-base text-justify"><span
+                                            class="font-bold">Property
+                                            management services</span> that provides online and onsite operations
+                                        management services to
+                                        rental property owners. Unlike caretakers, our property and leasing manager
+                                        partners are
+                                        professionals using a management system that allows owners to have real time
+                                        business insights on
+                                        their rental properties.</p>
+                                    <div class="flex items-center justify-end mt-5">
+                                        <a href="propbiz"><button
+                                                class="bg-yellow-200 hover:bg-yellow-400 p-2 rounded-md text-sm font-bold">Learn
                                                 More</button></a>
                                     </div>
                                 </div>
@@ -591,15 +511,17 @@
                         <div class="flex flex-1 flex-col justify-center items-center bg-purple-100 w-full p-6">
 
                             <div class="flex-1">
-                              
-                                <a href="/propsuite"> <img src="{{ asset('/brands/landing/propsuite.png')}}"></a>
+                                <a class="mt-2 block">
+                                    <p class="text-lg text-center font-medium text-gray-800">proprent</p>
+                                </a>
+                                <a href="/proprent"> <img src="{{ asset('/brands/'.env('APP_LOGO_PROPRENT')) }}"></a>
 
                             </div>
                         </div>
                         <div class="flex-col pt-3">
                             <p class="text-gray-500 dark:text-gray-400 text-base text-justify"><span
-                                    class="font-bold">PropSuite</span> 
-                                as a service that provides a transformative digital
+                                    class="font-bold">Property
+                                    management system</span> as a service that provides a transformative digital
                                 solution to simplify
                                 operations of long term or short term rental properties. Unlike manual processes, our
                                 online system
@@ -607,7 +529,7 @@
                                 increase
                                 transparency and efficiency of operations. </p>
                             <div class="flex items-center justify-end mt-5">
-                                <a href="/propsuite"><button
+                                <a href="propman"><button
                                         class="bg-yellow-200 hover:bg-yellow-400 p-2 rounded-md text-sm font-bold">Learn
                                         More</button></a>
                             </div>
@@ -618,22 +540,23 @@
                         <div class="flex flex-1 flex-col justify-center items-center bg-purple-100 w-full p-6">
 
                             <div class="flex-1">
-                              
-                                <a href="/propsuite-lite"> <img src="{{ asset('/brands/landing/propsuite-lite.png')}}"></a>
+                                <a class="mt-2 block">
+                                    <p class="text-lg text-center font-medium text-gray-800">propman</p>
+                                </a>
+                                <a href="/propman"> <img src="{{ asset('/brands/'.env('APP_LOGO_PROPMAN')) }}"></a>
 
                             </div>
                         </div>
                         <div class="flex-col pt-3">
                             <p class="text-gray-500 dark:text-gray-400 text-base text-justify"><span
-                                    class="font-bold">PropSuite Lite</span> as a service that provides a transformative digital
-                                solution to simplify
-                                operations of long term or short term rental properties. Unlike manual processes, our
-                                online system
-                                provides real-time, reliable and accessible information to landlords and managers to
-                                increase
-                                transparency and efficiency of operations. </p>
+                                    class="font-bold">Leasing
+                                    Marketplace</span> for tenants to find available place for long term or short term
+                                rentals. Unlike
+                                social media pages, we verify the address and the accuracy of the rental space to
+                                increase trust in the
+                                proprent community. </p>
                             <div class="flex items-center justify-end mt-5">
-                                <a href="/propsuite-lite"><button
+                                <a href="proprent"><button
                                         class="bg-yellow-200 hover:bg-yellow-400 p-2 rounded-md text-sm font-bold">Learn
                                         More</button></a>
                             </div>
@@ -644,83 +567,29 @@
                         <div class="flex flex-1 flex-col justify-center items-center bg-purple-100 w-full p-6">
 
                             <div class="flex-1">
-                              
-                                <a href="/propsuite-daily"> <img src="{{ asset('/brands/landing/propsuite-daily.png')}}"></a>
+                                <a class="mt-2 block">
+                                    <p class="text-lg text-center font-medium text-gray-800">propbiz</p>
+                                </a>
+                                <a href="/propbiz"> <img src="{{ asset('/brands/'.env('APP_LOGO_PROPBIZ')) }}"></a>
 
                             </div>
                         </div>
                         <div class="flex-col pt-3">
                             <p class="text-gray-500 dark:text-gray-400 text-base text-justify"><span
-                                    class="font-bold">PropSuite Daily</span> as a service that provides a transformative digital
-                                solution to simplify
-                                operations of long term or short term rental properties. Unlike manual processes, our
-                                online system
-                                provides real-time, reliable and accessible information to landlords and managers to
-                                increase
-                                transparency and efficiency of operations. </p>
+                                    class="font-bold">Property
+                                    management services</span> that provides online and onsite operations management
+                                services to rental
+                                property owners. Unlike caretakers, our property and leasing manager partners are
+                                professionals using a
+                                management system that allows owners to have real time business insights on their rental
+                                properties.</p>
                             <div class="flex items-center justify-end mt-5">
-                                <a href="/propsuite-daily"><button
+                                <a href="propbiz"><button
                                         class="bg-yellow-200 hover:bg-yellow-400 p-2 rounded-md text-sm font-bold">Learn
                                         More</button></a>
                             </div>
                         </div>
                     </div>
-
-                    <div class="flex flex-col overflow-hidden rounded-xl">
-                        <div class="flex flex-1 flex-col justify-center items-center bg-purple-100 w-full p-6">
-
-                            <div class="flex-1">
-                              
-                                <a href="/propsuite-hoa"> <img src="{{ asset('/brands/landing/propsuite-hoa.png')}}"></a>
-
-                            </div>
-                        </div>
-                        <div class="flex-col pt-3">
-                            <p class="text-gray-500 dark:text-gray-400 text-base text-justify"><span
-                                    class="font-bold">PropSuite HOA</span> as a service that provides a transformative digital
-                                solution to simplify
-                                operations of long term or short term rental properties. Unlike manual processes, our
-                                online system
-                                provides real-time, reliable and accessible information to landlords and managers to
-                                increase
-                                transparency and efficiency of operations. </p>
-                            <div class="flex items-center justify-end mt-5">
-                                <a href="/propsuite-hoa"><button
-                                        class="bg-yellow-200 hover:bg-yellow-400 p-2 rounded-md text-sm font-bold">Learn
-                                        More</button></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col overflow-hidden rounded-xl">
-                        <div class="flex flex-1 flex-col justify-center items-center bg-purple-100 w-full p-6">
-
-                            <div class="flex-1">
-                              
-                                <a href="/propsuite-condo"> <img src="{{ asset('/brands/landing/propsuite-condo.png')}}"></a>
-
-                            </div>
-                        </div>
-                        <div class="flex-col pt-3">
-                            <p class="text-gray-500 dark:text-gray-400 text-base text-justify"><span
-                                    class="font-bold">PropSuite Condo</span> as a service that provides a transformative digital
-                                solution to simplify
-                                operations of long term or short term rental properties. Unlike manual processes, our
-                                online system
-                                provides real-time, reliable and accessible information to landlords and managers to
-                                increase
-                                transparency and efficiency of operations. </p>
-                            <div class="flex items-center justify-end mt-5">
-                                <a href="/propsuite-condo"><button
-                                        class="bg-yellow-200 hover:bg-yellow-400 p-2 rounded-md text-sm font-bold">Learn
-                                        More</button></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    
-
-                    
 
 
 
@@ -735,27 +604,12 @@
 
         <!-- services end -->
 
-        <div class="bg-gradient-to-r from-purple-400 to-gray-600">
-            <div
-                class="mx-auto max-w-4xl py-16 px-4 sm:px-6 sm:py-24 lg:flex lg:max-w-7xl lg:items-center lg:justify-between lg:px-8">
-                <h2 class="text-4xl font-bold tracking-tight text-gray-200 sm:text-4xl">
-                    <span class="block">Want to know more?</span>
-                    <span
-                        class="-mb-1 block text-indigo-800">Get
-                        in
-                        touch with us now!</span>
-                </h2>
-                <div class="mt-6 space-y-4 sm:flex sm:space-y-0 sm:space-x-5">
-                    <a href="#contact"
-                        class="inline-flex items-center justify-center whitespace-nowrap rounded-full border border-transparent bg-origin-border bg-yellow-400 px-8 py-3 text-base font-medium text-white shadow-sm hover:bg-gray-500">
-                        Contact Us</a>
-                    <a href="/pricing"
-                        class="inline-flex items-center justify-center whitespace-nowrap rounded-full border border-white bg-origin-border  px-8 py-3 text-base font-medium text-white shadow-sm hover:bg-purple-500">
-                        Pricing</a>
 
-                </div>
-            </div>
-        </div>
+        <!-- partnered with section -->
+
+        <x-partner></x-partner>
+        <!-- end partnered with section -->
+
 
         <!-- testimonial section -->
 
@@ -948,40 +802,10 @@
             </div>
         </section>
         <!-- end testimonial section -->
-  
-        <div id="trust-bg" class=" py-16 sm:py-24 lg:py-32">
-        <div class="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 lg:grid-cols- lg:gap-8 lg:px-8">
-            <div class=" text-3xl tracking-tight text-white sm:text-4xl lg:col-span-7">
-            <h2 class="inline sm:block lg:inline xl:block font-light text-3xl">Property + <span class="font-bold">PropSuite</span> + Customer =</h2>
-            <p class="mt-6 inline sm:block lg:inline xl:block font-black text-5xl">Convenience</p>
-            <p class="inline sm:block lg:inline xl:block font-black text-5xl text-purple-300">Trust &</p>
-            <p class="inline sm:block lg:inline xl:block font-black text-5xl">Better Services</p>
-            </div>
-            <div class="w-full  lg:pt-2">
-        
-            </div>
-        </div>
-        </div>
-
-        <!-- partnered with section -->
-
-        <x-partner></x-partner>
-        <!-- end partnered with section -->
-
-        
-
-        
-
-
-        
-
-        
-
-        
 
         <!-- contact us section -->
 
-        <div id="contact">
+        <div>
             <div class="">
                 <div class="relative bg-white shadow-xl">
                     <h2 class="sr-only">Contact us</h2>
@@ -1086,56 +910,53 @@
                                 </ul>
                         </div>
 
-                        
                         <x-contactus></x-contactus>
-
-                        
 
                         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 
                         <script>
                             $(function() {
-                            index = 0;
+        index = 0;
 
-                            setInterval(function() {
-                            index++;
-                            $("#static").fadeOut(0, function() {
-                                $(this)
+        setInterval(function() {
+          index++;
+          $("#static").fadeOut(0, function() {
+            $(this)
 
-                                .css('color', index % 1 == 0 ? '#FFDE59' : '#4F3F6D')
-                                .fadeIn(0);
-                            });
-                            }, 3000);
-                        });
+              .css('color', index % 1 == 0 ? '#FFDE59' : '#4F3F6D')
+              .fadeIn(0);
+          });
+        }, 3000);
+      });
 
                         </script>
                         <script>
                             var text = ["Rental Property Listings", "Property Management Services","Fullsuite Digital Solutions","Property Management System",];
-                            var counter = 0;
-                            var elem = document.getElementById("changeText");
-                            var inst = setInterval(change, 3000);
+    var counter = 0;
+    var elem = document.getElementById("changeText");
+    var inst = setInterval(change, 3000);
 
-                            function change() {
-                            elem.innerHTML = text[counter];
-                            counter++;
-                            if (counter >= text.length) {
-                                counter = 0;
-                                // clearInterval(inst); // uncomment this if you want to stop refreshing after one cycle
-                            }
-                            }
-                                                </script>
+    function change() {
+      elem.innerHTML = text[counter];
+      counter++;
+      if (counter >= text.length) {
+        counter = 0;
+        // clearInterval(inst); // uncomment this if you want to stop refreshing after one cycle
+      }
+    }
+                        </script>
 
-                                                <script>
-                                                    var doc = document.getElementById("background");
-                            var color = ["#4F1964","#DBB132", "#CEBBF6","#DBC054",];
-                            var i = 0;
-                            function change() {
-                                doc.style.backgroundColor = color[i];
-                            i = (i + 1) % color.length;
-                            }
+                        <script>
+                            var doc = document.getElementById("background");
+    var color = ["#4F1964","#DBB132", "#4F3F6D","#DBC054",];
+    var i = 0;
+    function change() {
+        doc.style.backgroundColor = color[i];
+    i = (i + 1) % color.length;
+    }
 
-                            setInterval(change, 3000);
+    setInterval(change, 3000);
                         </script>
 
 
