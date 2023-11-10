@@ -1,5 +1,4 @@
 <div>
-
     <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
             <h1 class="text-3xl font-bold text-gray-500">{{ucfirst(Route::current()->getName())}}</h1>
@@ -10,15 +9,8 @@
                 class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
                 type="button">Export
             </a>
-            {{-- @can('is_account_payable_delete_allowed') --}}
-            <x-button class="bg-red-500" wire:click="deleteAccountPayable({{ $accountpayable->id }})">Delete
-            </x-button>
-
-            {{-- @endcan --}}
-            <x-button onclick="window.location.href='/property/{{ $accountpayable->property_uuid }}/rfp'">
-                Back
-            </x-button>
-
+            <x-button class="bg-red-500" wire:click="deleteAccountPayable({{ $accountpayable->id }})">Delete</x-button>
+            <x-button onclick="window.location.href='/property/{{ $accountpayable->property_uuid }}/rfp'">Back </x-button>
         </div>
     </div>
     <div class="mx-10">
@@ -31,107 +23,78 @@
             <div class="mt-8 flow-root">
                 <div class="-mx-4 -my-2 overflow-auto sm:-mx-6 lg:-mx-8">
                     <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                        <table class="min-w-full divide-y divide-gray-300">
-                            <thead>
-
+                        <x-table-component>
+                            <x-table-head-component>
                                 <tr>
-                                    <th scope="col"
-                                        class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
+                                    <x-th>
                                         Batch No
-                                    </th>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                   </x-th>
+                                    <x-td>
                                         {{ $accountpayable->batch_no }}
-                                    </td>
+                                   </x-td>
                                 </tr>
                                 <tr>
-                                    <th scope="col"
-                                        class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
+                                   <x-th>
                                         Request For
-                                    </th>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                   </x-th>
+                                  <x-td>
                                         {{ $accountpayable->request_for }}
-                                    </td>
+                                  </x-td>
                                 </tr>
                                 <tr>
-                                    <th scope="col"
-                                        class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
+                                  <x-th>
                                         Requested Amount
-                                    </th>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        {{ number_format($accountpayable->amount, 2) }}
-                                    </td>
+                                  </x-th>
+                                  <x-td>
+                                    {{ number_format($accountpayable->amount, 2) }}
+                                  </x-td>
                                 </tr>
                                 <tr>
-                                    <th scope="col"
-                                        class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
-                                        Requested on
-                                    </th>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        {{ Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}
-                                    </td>
+                                   <x-th>
+                                    Requested on
+                                   </x-th>
+                                  <x-td>
+                                    {{ Carbon\Carbon::parse($accountpayable->created_at)->format('M d, Y') }}
+                                  </x-td>
                                 </tr>
                                 <tr>
-                                    <th scope="col"
-                                        class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
-                                        Due Date on
-                                    </th>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        {{ Carbon\Carbon::parse($accountpayable->due_date)->format('M d, Y') }}
-                                    </td>
+                                   <x-th>
+                                    Due Date on
+                                   </x-th>
+                                  <x-td>
+                                    {{ Carbon\Carbon::parse($accountpayable->due_date)->format('M d, Y') }}
+                                  </x-td>
                                 </tr>
 
                                 <tr>
-                                    <th scope="col"
-                                        class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
-                                        Requested by
-                                    </th>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        {{ $accountpayable->requester->name }}
-                                    </td>
+                                    <x-th>Requested by</x-th>
+                                   <x-td>{{ $accountpayable->requester->name }}</x-td>
                                 </tr>
-                              
-
-                            </thead>
-                        </table>
+                            </x-table-head-component>
+                        </x-table-component>
                     </div>
                 </div>
             </div>
-
             <div class="sm:flex sm:items-center">
                 <div class="mt-5 sm:flex-auto">
                     <h1 class="text-base font-semibold leading-6 text-gray-900">Vendor Details</h1>
-
                 </div>
             </div>
             <div class="mt-8 flow-root">
                 <div class="-mx-4 -my-2 overflow-auto sm:-mx-6 lg:-mx-8">
                     <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                        <table class="min-w-full divide-y divide-gray-300">
-                            <thead>
-
+                        <x-table-component>
+                            <x-table-head-component>
                                 <tr>
-                                    <th scope="col"
-                                        class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
-                                        Vendor
-                                    </th>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        {{ $accountpayable->vendor }}
-                                    </td>
+                                    <x-th>Vendor</x-th>
+                                    <x-td>{{ $accountpayable->vendor }}</x-td>
                                 </tr>
                                 <tr>
-                                    <th scope="col"
-                                        class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
-                                        Delivery Date on
-                                    </th>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        {{ Carbon\Carbon::parse($accountpayable->delivery_at)->format('M d, Y') }}
-                                    </td>
+                                    <x-th>Delivery Date on</x-th>
+                                    <x-td>{{ Carbon\Carbon::parse($accountpayable->delivery_at)->format('M d, Y') }}</x-td>
                                 </tr>
-
-
-                            </thead>
-
-                        </table>
+                            </x-table-head-component>
+                        </x-table-component>
                     </div>
                 </div>
             </div>
@@ -139,62 +102,41 @@
             <div class="sm:flex sm:items-center">
                 <div class="mt-5 sm:flex-auto">
                     <h1 class="text-base font-semibold leading-6 text-gray-900">Bank Details</h1>
-
                 </div>
             </div>
             <div class="mt-8 flow-root">
                 <div class="-mx-4 -my-2 overflow-auto sm:-mx-6 lg:-mx-8">
                     <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                        <table class="min-w-full divide-y divide-gray-300">
-                            <thead>
-
+                        <x-table-component>
+                            <x-table-head-component>
                                 <tr>
-                                    <th scope="col"
-                                        class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
-                                        Bank
-                                    </th>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        {{ $accountpayable->bank }}
-                                    </td>
+                                    <x-th>  Bank</x-th>
+                                    <x-td>Bank</x-td>
                                 </tr>
                                 <tr>
-                                    <th scope="col"
-                                        class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
-                                        Bank Name
-                                    </th>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        {{ $accountpayable->bank_name }}
-                                    </td>
+                                   <x-th>Bank Name</x-th>
+                                   <x-td>{{ $accountpayable->bank_name }}</x-td>
                                 </tr>
                                 <tr>
-                                    <th scope="col"
-                                        class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
-                                        Bank Account Number
-                                    </th>
-                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                        {{ $accountpayable->bank_account }}
-                                    </td>
+                                  <x-th>Bank Account Number</x-th>
+                                  <x-td>{{ $accountpayable->bank_account }}</x-td>
                                 </tr>
-
-                            </thead>
-
-                        </table>
+                            </x-table-head-component>
+                        </x-table-component>
                     </div>
                 </div>
             </div>
 
-
             <div class="sm:flex sm:items-center">
                 <div class="mt-5 sm:flex-auto">
                     <h1 class="text-base font-semibold leading-6 text-gray-900">Particulars</h1>
-
                 </div>
             </div>
             <div class="mt-8 flow-root">
                 <div class="-mx-4 -my-2 overflow-auto sm:-mx-6 lg:-mx-8">
                     <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead class="bg-gray-50">
+                        <x-table-component>
+                            <x-table-head-component>
                                 <tr>
                                     <x-th>#</x-th>
                                     <x-th>UNIT</x-th>
@@ -205,8 +147,8 @@
                                     <x-th>Total</x-th>
 
                                 </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
+                            </x-table-head-component>
+                            <x-table-body-component>
                                 @foreach($particulars as $index => $particular)
                                 <div wire:key="particular-field-{{ $particular->id }}">
                                     <tr>
@@ -252,21 +194,15 @@
                                     <x-td></x-td>
                                     <x-td><b>{{ number_format($particulars->sum('total'),2) }}</b></x-td>
                                 </tr>
-                            </tbody>
-                        </table>
+                            </x-table-body-component>
+                        </x-table-component>
                     </div>
                 </div>
             </div>
 
-
-
-
-
-
             <div class="sm:flex sm:items-center">
                 <div class="mt-5 sm:flex-auto">
                     <h1 class="text-base font-semibold leading-6 text-gray-900">Uploaded Quotations/Bills</h1>
-
                 </div>
             </div>
             <div class="mt-8 flow-root">
@@ -274,7 +210,6 @@
                     <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                         <ul role="list" class="divide-y divide-gray-200 rounded-md border border-gray-200">
                             @if($accountpayable->request_for === 'purchase')
-
                             <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
                                 <div class="flex w-0 flex-1 items-center">
                                     <!-- Heroicon name: mini/paper-clip -->
@@ -388,8 +323,6 @@
                     </div>
                 </div>
             </div>
-
-
 
             <div class="sm:flex sm:items-center">
                 <div class="mt-5 sm:flex-auto">

@@ -1,11 +1,9 @@
 <div>
-
     <div class="mt-8 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
         <div class="lg:grid lg:grid-cols-12 lg:auto-rows-min lg:gap-x-8">
             <div class="lg:col-start-4 lg:col-span-9">
                 <h1 class="text-3xl font-bold text-gray-900">{{ $guest_details->guest }}</h1>
             </div>
-
 
             <div class="mt-8 lg:mt-0 lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:row-span-3">
                 <h2 class="sr-only">Images</h2>
@@ -85,8 +83,7 @@
         </div>
 
     </div>
-</div>
-@include('modals.create-additional-guest-modal')
-@include('modals.create-booking-modal')
-@include('modals.warnings.destroy-guest-modal')
+    @include('modals.create-additional-guest-modal')
+    @include('modals.create-booking-modal')
+    @include('modals.warnings.destroy-guest-modal')
 </div>

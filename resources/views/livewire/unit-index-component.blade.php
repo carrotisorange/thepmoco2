@@ -44,7 +44,7 @@
                                 placeholder="Search for unit..." required>
                         </div>
                     </div>
-                    <div class="sm:col-span-1">
+                    <div class="sm:col-span-2">
                         <x-form-select name="building_id" id="building_id" wire:model="building_id">
                             <option value="">Filter building</option>
                             @foreach ($buildings as $item)
@@ -107,12 +107,9 @@
                 <div class="mb-5 mt-2 relative overflow-hidden ring-opacity-5">
                     @if(!$propertyUnitCount)
                     <nav aria-label="Progress">
-                        <ol role="list"
-                            class="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">
+                        <ol role="list" class="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">
                             @foreach($steps as $index => $step)
-                            <?php
-                                    $stepValue = App\Models\PropertyStepper::find($step)->step;
-                                ;?>
+                            <?php  $stepValue = App\Models\PropertyStepper::find($step)->step ;?>
                             @if($step == 1)
                             <li class="relative md:flex md:flex-1">
                                 <!-- Completed Step -->
@@ -128,18 +125,12 @@
                                                     clip-rule="evenodd" />
                                             </svg>
                                         </span>
-                                        <span class="ml-4 text-sm font-medium text-gray-900">Add a {{ $stepValue
-                                            }}</span>
+                                        <span class="ml-4 text-sm font-medium text-gray-900">Add a {{ $stepValue }}</span>
                                     </span>
                                 </a>
-
                                 <!-- Arrow separator for lg screens and up -->
                                 <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
-                                    <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none"
-                                        preserveAspectRatio="none">
-                                        <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke"
-                                            stroke="currentcolor" stroke-linejoin="round" />
-                                    </svg>
+                                  @include('layouts.separator')
                                 </div>
                             </li>
                             @elseif($step == 6)
@@ -156,11 +147,7 @@
 
                                 <!-- Arrow separator for lg screens and up -->
                                 <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
-                                    <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none"
-                                        preserveAspectRatio="none">
-                                        <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke"
-                                            stroke="currentcolor" stroke-linejoin="round" />
-                                    </svg>
+                                  @include('layouts.separator')
                                 </div>
                             </li>
                             @else
@@ -172,27 +159,20 @@
                                             class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
                                             <span class="text-gray-500 group-hover:text-gray-900">0{{ $index+1 }}</span>
                                         </span>
-                                        <span
-                                            class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add
+                                        <span  class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add
                                             a {{ $stepValue }}</span>
                                     </span>
                                 </a>
 
                                 <!-- Arrow separator for lg screens and up -->
                                 <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
-                                    <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none"
-                                        preserveAspectRatio="none">
-                                        <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke"
-                                            stroke="currentcolor" stroke-linejoin="round" />
-                                    </svg>
+                                   @include('layouts.separator')
                                 </div>
                             </li>
                             @endif
                             @endforeach
-
                         </ol>
                     </nav>
-                    <!-- This example requires Tailwind CSS v2.0+ -->
                     <div class="mt-10 text-center mb-10">
                         <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor" aria-hidden="true">
@@ -210,45 +190,39 @@
                         </div>
                     </div>
                     @else
-                    @if($view === 'thumbnail')
-                    <div class="max-w-2xl mx-auto py-8 px-4 sm:px-6 lg:max-w-7xl lg:px-8 mb-24">
-                        <div class="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-6">
-                            @foreach ($units as $unit)
-                            <?php $statusIcon = App\Models\Status::find($unit->status_id)->icon; ?>
-
-                            @if(Session::get('owner_uuid'))
-                            <a
-                                href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}/owner/{{ Session::get('owner_uuid') }}/deed_of_sale/create">
-                                <div class="hover:bg-purple-200">
-                                    <img src="{{ asset('/brands/'.$statusIcon) }}"
-                                        class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
-                                    <h3 class="text-center mt-2">{{ $unit->unit }}</h3>
-                                </div>
-                            </a>
-                            @elseif (Session::get('tenant_uuid'))
-                            <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}/tenant/{{ Session::get('tenant_uuid')
-                            }}/contract/{{ Str::random(8) }}/create"">
-                                <div class="hover:bg-purple-200">
-                                    <img src="{{ asset('/brands/'.$statusIcon) }}"
-                                        class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
-                                    <h3 class="text-center mt-2">{{ $unit->unit }}</h3>
-                                </div>
-                            </a>
-                            @else
-                            <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}">
-                                <div class="hover:bg-purple-200">
-                                    <img src="{{ asset('/brands/'.$statusIcon) }}"
-                                        class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
-                                    <h3 class="text-center mt-2">{{ $unit->unit }}</h3>
-                                </div>
-                            </a>
-                            @endif
-                            @endforeach
+                        @if($view === 'thumbnail')
+                        <div class="max-w-2xl mx-auto py-8 px-4 sm:px-6 lg:max-w-7xl lg:px-8 mb-24">
+                            <div class="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-6">
+                                @foreach ($units as $unit)
+                                    <?php $statusIcon = App\Models\Status::find($unit->status_id)->icon; ?>
+                                    @if(Session::get('owner_uuid'))
+                                        <a  href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}/owner/{{ Session::get('owner_uuid')}}/deed_of_sale/create">
+                                            <div class="hover:bg-purple-200">
+                                                <img src="{{ asset('/brands/'.$statusIcon) }}" class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
+                                                <h3 class="text-center mt-2">{{ $unit->unit }}</h3>
+                                            </div>
+                                        </a>
+                                    @elseif (Session::get('tenant_uuid'))
+                                        <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}/tenant/{{ Session::get('tenant_uuid')}}/contract/{{ Str::random(8) }}/create"">
+                                            <div class="hover:bg-purple-200">
+                                                <img src="{{ asset('/brands/'.$statusIcon) }}" class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
+                                                <h3 class="text-center mt-2">{{ $unit->unit }}</h3>
+                                            </div>
+                                        </a>
+                                    @else
+                                        <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}">
+                                            <div class="hover:bg-purple-200">
+                                                <img src="{{ asset('/brands/'.$statusIcon) }}" class="object-center object-cover aspect-w-4 aspect-h-3 rounded-lg overflow-hidden">
+                                                <h3 class="text-center mt-2">{{ $unit->unit }}</h3>
+                                            </div>
+                                        </a>
+                                    @endif
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
-                    @else
-                    @include('tables.units')
-                    @endif
+                        @else
+                            @include('tables.units')
+                        @endif
                     @endif
                 </div>
             </div>

@@ -1,163 +1,91 @@
 <div>
-
     <div class="mt-5 px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-end">
-
-        </div>
-        {{-- start-step-1-form --}}
-        <form class="space-y-6" wire:submit.prevent="approveRequest()">
-
+        <form class="space-y-6" wire:submit.prevent="approveRequest">
             <div class="md:grid md:grid-cols-6 md:gap-6">
-
                 <div class="sm:col-span-2">
                     <x-label > Quotation 1</x-label>
-                    <div
-                        class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                    <div  class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
                             <div class="flex text-sm text-gray-600">
                                 <label for="selected_quotation"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
                                     <span>
-
                                         @if($accountpayable->quotation1)
-                                        <a href="{{ asset('/storage/'.$accountpayable->quotation1) }}" target="_blank"
-                                            class="text-blue-500 text-decoration-line: underline">View
-                                            Quotation/Bill</a>
+                                        <a href="{{ asset('/storage/'.$accountpayable->quotation1) }}" target="_blank" class="text-blue-500 text-decoration-line: underline">View Quotation/Bill</a>
                                         @else
-
-                                        <a href="#" class="text-red-500 text-decoration-line: underline">No
-                                            quotation/bill
-                                            was uploaded</a>
+                                        <a href="#" class="text-red-500 text-decoration-line: underline">No quotation/bill was uploaded</a>
                                         @endif
-
                                     </span>
-
-
                                 </label>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
-
                 <div class="sm:col-span-2">
                     <x-label > Quotation 2</x-label>
-                    <div
-                        class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
                             <div class="flex text-sm text-gray-600">
-                                <label for="selected_quotation"
-                                    class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
+                                <label for="selected_quotation"  class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
                                     <span>
-
                                         @if($accountpayable->quotation2)
-                                        <a href="{{ asset('/storage/'.$accountpayable->quotation2) }}" target="_blank"
-                                            class="text-blue-500 text-decoration-line: underline">View
-                                            Quotation/Bill</a>
+                                        <a href="{{ asset('/storage/'.$accountpayable->quotation2) }}" target="_blank" class="text-blue-500 text-decoration-line: underline">View Quotation/Bill</a>
                                         @else
-
-                                        <a href="#" class="text-red-500 text-decoration-line: underline">No
-                                            Quotation/Bill
-                                            was uploaded</a>
+                                        <a href="#" class="text-red-500 text-decoration-line: underline">No Quotation/Bill was uploaded</a>
                                         @endif
-
                                     </span>
-
                                 </label>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
-
                 <div class="sm:col-span-2">
                     <x-label > Quotation 3</x-label>
-                    <div
-                        class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
                             <div class="flex text-sm text-gray-600">
                                 <label for="selected_quotation"
                                     class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
                                     <span>
-
                                         @if($accountpayable->quotation3)
-                                        <a href="{{ asset('/storage/'.$accountpayable->quotation3) }}" target="_blank"
-                                            class="text-blue-500 text-decoration-line: underline">View
-                                            Quotation/Bill</a>
+                                        <a href="{{ asset('/storage/'.$accountpayable->quotation3) }}" target="_blank" class="text-blue-500 text-decoration-line: underline">View Quotation/Bill</a>
                                         @else
-
-                                        <a href="#" class="text-red-500 text-decoration-line: underline">No
-                                            Quotation/Bill
-                                            was uploaded</a>
+                                        <a href="#" class="text-red-500 text-decoration-line: underline">No Quotation/Bill was uploaded</a>
                                         @endif
-
                                     </span>
-
                                 </label>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
-
-
                 <div class="sm:col-span-6">
                     <x-label > Selected quotation</x-label>
-                    <div
-                        class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
                             <div class="flex text-sm text-gray-600">
-                                <x-label for="selected_quotation"
-                                    class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
+                                <x-label for="selected_quotation" class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
                                     <span>
-
                                         @if($accountpayable->selected_quotation == 'quotation1')
-
-                                        <a href="{{ asset('/storage/'.$accountpayable->quotation1) }}" target="_blank"
-                                            class="text-blue-500 text-decoration-line: underline">View
-                                            Selected Quotation</a>
-
+                                        <a href="{{ asset('/storage/'.$accountpayable->quotation1) }}" target="_blank" class="text-blue-500 text-decoration-line: underline">View Selected Quotation</a>
                                         @elseif($accountpayable->selected_quotation == 'quotation2')
-
-                                        <a href="{{ asset('/storage/'.$accountpayable->quotation1) }}" target="_blank"
-                                            class="text-blue-500 text-decoration-line: underline">View
-                                            Selected Quotation</a>
-
+                                        <a href="{{ asset('/storage/'.$accountpayable->quotation1) }}" target="_blank" class="text-blue-500 text-decoration-line: underline">View Selected Quotation</a>
                                         @elseif($accountpayable->selected_quotation == 'quotation3')
-
-                                        <a href="{{ asset('/storage/'.$accountpayable->quotation3) }}" target="_blank"
-                                            class="text-blue-500 text-decoration-line: underline">View
-                                            Selected Quotation</a>
-
+                                        <a href="{{ asset('/storage/'.$accountpayable->quotation3) }}" target="_blank" class="text-blue-500 text-decoration-line: underline">View Selected Quotation</a>
                                         @else
-                                        <a href="#" class="text-red-500 text-decoration-line: underline">No Selected
-                                            Quotation
-                                            was uploaded</a>
+                                        <a href="#" class="text-red-500 text-decoration-line: underline">No Selected Quotation was uploaded</a>
                                         @endif
-
                                     </span>
-
-
                                 </x-label>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
-
-
                 <div class="sm:col-span-6">
                     <x-label for="vendor-details" >Particulars</x-label>
-
                 </div>
-
                 <div class="sm:col-span-6">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead class="bg-gray-50">
+                    <x-table-component>
+                        <x-table-head-component>
                             <tr>
                                 <x-th>#</x-th>
                                 <x-th>UNIT</x-th>
@@ -167,8 +95,8 @@
                                 <x-th>Price</x-th>
                                 <x-th>Total</x-th>
                             </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
+                        </x-table-head-component>
+                        <x-table-body-component>
                             @foreach($particulars as $index => $particular)
                             <div wire:key="particular-field-{{ $particular->id }}">
                                 <tr>
@@ -203,6 +131,8 @@
                                 </tr>
                             </div>
                             @endforeach
+                            </x-table-body-component>
+                            <x-table-body-component>
                             <tr>
                                 <x-td>Total</x-td>
                                 <x-td></x-td>
@@ -212,16 +142,12 @@
                                 <x-td></x-td>
                                 <x-td>{{ number_format($particulars->sum('total'),2) }}</x-td>
                             </tr>
-                        </tbody>
-                    </table>
+                            </x-table-body-component>
+                    </x-table-component>
                 </div>
-
-
                 <div class="sm:col-span-6">
                     <x-label for="vendor-details" >Vendor Details</x-label>
                 </div>
-
-                {{-- vendor details --}}
                 <div class="sm:col-span-3">
                     <x-label for="vendor">Vendor Name:</x-label>
                     <x-form-input type="text" wire:model="vendor" readonly/>
@@ -232,34 +158,17 @@
                     <x-form-input type="date" wire:model="delivery_at" readonly/>
                     <x-validation-error-component name='delivery_at' />
                 </div>
-
                 <div class="sm:col-span-6">
                     <x-label for="vendor-details" >Comment</x-label>
-
                 </div>
-
-
                 <div class="sm:col-span-6">
                     <x-form-textarea placeholder="Add your comment..." wire:model="comment"/>
-
                 </div>
-
-
-                {{-- reject, approve button --}}
                 <div class="col-start-6 flex items-center justify-end">
-
-                    <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline"
-                        href="#/" wire:click="rejectRequest()">
-                        Reject
-                    </a>
-                    <x-button type="submit">
-                        Approve
-                    </x-button>
+                    <a class="whitespace-nowrap px-3 py-2 text-sm text-red-500 text-decoration-line: underline" href="#/" wire:click="rejectRequest"> Reject </a>
+                    <x-button type="submit"> Approve </x-button>
                 </div>
-
             </div>
         </form>
-        {{-- end-step-1-form --}}
     </div>
-
 </div>

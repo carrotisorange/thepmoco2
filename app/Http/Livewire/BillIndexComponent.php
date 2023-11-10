@@ -229,9 +229,9 @@ class BillIndexComponent extends Component
             $attributes['tenant_uuid'] = $tenant_uuid[$i];
 
                if($this->particular_id === '8'){
-                  $attributes['bill'] = -($this->bill);
+                    $attributes['bill'] = -($this->bill);
                }else{
-                $attributes['bill'] = $rent;
+                    $attributes['bill'] = $rent;
                }
 
                 $attributes['bill_no'] = $bill_no++;

@@ -20,7 +20,6 @@
                         </li>
                     </ul>
                 </div>
-
                 <x-button wire:click="viewDelinquents" wire.loading.remove type="button">
                     @if($filter_bill_to === 'delinquent')
                     View All

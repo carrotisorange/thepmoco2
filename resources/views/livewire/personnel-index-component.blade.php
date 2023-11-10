@@ -17,12 +17,9 @@
                 <div class="mb-5 mt-2 relative overflow-hidden ring-black ring-opacity-5 md:rounded-lg">
                     @if(!$propertyPersonnelsCount)
                     <nav aria-label="Progress">
-                        <ol role="list"
-                            class="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">
+                        <ol role="list" class="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">
                             @foreach($steps as $index => $step)
-                            <?php
-                                    $stepValue = App\Models\PropertyStepper::find($step)->step;
-                                ;?>
+                            <?php $stepValue = App\Models\PropertyStepper::find($step)->step ;?>
                             @if($step == 1 || $step == 6 || $step == 2 || $step == 8 || $step == 4)
                             <li class="relative md:flex md:flex-1">
                                 <!-- Completed Step -->
@@ -42,14 +39,9 @@
                                             }}</span>
                                     </span>
                                 </a>
-
                                 <!-- Arrow separator for lg screens and up -->
                                 <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
-                                    <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none"
-                                        preserveAspectRatio="none">
-                                        <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke"
-                                            stroke="currentcolor" stroke-linejoin="round" />
-                                    </svg>
+                                  @include('layouts.separator')
                                 </div>
                             </li>
                             @elseif($step == 5)
@@ -66,11 +58,7 @@
 
                                 <!-- Arrow separator for lg screens and up -->
                                 <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
-                                    <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none"
-                                        preserveAspectRatio="none">
-                                        <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke"
-                                            stroke="currentcolor" stroke-linejoin="round" />
-                                    </svg>
+                                   @include('layouts.separator')
                                 </div>
                             </li>
                             @else
@@ -82,24 +70,17 @@
                                             class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
                                             <span class="text-gray-500 group-hover:text-gray-900">0{{ $index+1 }}</span>
                                         </span>
-                                        <span
-                                            class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add
+                                        <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add
                                             a {{ $stepValue }}</span>
                                     </span>
                                 </a>
-
                                 <!-- Arrow separator for lg screens and up -->
                                 <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
-                                    <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none"
-                                        preserveAspectRatio="none">
-                                        <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke"
-                                            stroke="currentcolor" stroke-linejoin="round" />
-                                    </svg>
+                                   @include('layouts.separator')
                                 </div>
                             </li>
                             @endif
                             @endforeach
-
                         </ol>
                     </nav>
                     <!-- This example requires Tailwind CSS v2.0+ -->

@@ -60,17 +60,15 @@
                 </div>
             </div>
     </div>
-
     <div class="px-6 pt-5 flex justify-end items-center">
         <x-button  wire:click="storeNewItem">
             New Particular
         </x-button>
     </div>
-
     <div class="sm:col-span-6">
         <div class="mb-5 mt-2 relative overflow-auto ring-opacity-5 md:rounded-lg">
-            <table class="min-w-full divide-y divide-gray-300">
-                <thead class="bg-gray-50">
+            <x-table-component>
+                <x-table-head-component>
                     <tr>
                         <x-th>#</x-th>
                         <x-th>UNIT</x-th>
@@ -82,8 +80,8 @@
                         <x-th>TOTAL</x-th>
                         <x-th></x-th>
                     </tr>
-                </thead>
-                <tbody class="bg-white divide-y divide-gray-200">
+                </x-table-head-component>
+                <x-table-body-component>
                     @foreach($particulars as $index => $particular)
                     <div wire:key="particular-field-{{ $particular->id }}">
                         <tr>
@@ -139,8 +137,8 @@
                         </tr>
                     </div>
                     @endforeach
-                </tbody>
-            </table>
+                </x-table-body-component>
+            </x-table-component>
         </div>
     </div>
     <div>
@@ -151,7 +149,6 @@
                     {{ number_format((double)($total),2) }}
                 </div>
             </div>
-
             <div class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6">
                 <x-label for="cash_advance" >Cash Advance</x-label>
                 CV Number: {{ $accountpayableliquidation }}

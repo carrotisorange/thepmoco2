@@ -1,41 +1,29 @@
 <div>
     <div class=" mt-5 px-4 sm:px-6 lg:px-8">
-        {{-- start-step-1-form --}}
-        <form class="space-y-6" wire:submit.prevent="submitForm()">
-
+        <form class="space-y-6" wire:submit.prevent="submitForm">
             <div class="md:grid md:grid-cols-6 md:gap-6">
-
-
-                {{-- request for purchase --}}
                 <div class="sm:col-span-6">
                     <x-label for="request_for" >Request for</x-label>
                     <x-form-input type="text" wire:model="request_for" name="request_for" readonly />
-
-                   <x-validation-error-component name='request_for' />
+                    <x-validation-error-component name='request_for' />
                 </div>
-
-                {{-- creation date --}}
                 <div class="sm:col-span-3">
                     <x-label for="created_at" >Request Date</x-label>
                     <x-form-input type="date" wire:model="created_at" name="created_at" />
-                   <x-validation-error-component name='created_at' />
+                    <x-validation-error-component name='created_at' />
                 </div>
-
                 <div class="sm:col-span-3">
                     <x-label for="due_date" >Due Date</x-label>
                     <x-form-input type="date" wire:model="due_date" name="due_date" />
-                   <x-validation-error-component name='due_date' />
+                    <x-validation-error-component name='due_date' />
                 </div>
-
-                {{-- requester's name --}}
                 <div class="sm:col-span-2">
                     <x-label for="requester" >Requester</x-label>
                     <x-form-select id="requester_id" name="requester_id" wire:model="requester_id" >
                         <option value="{{ $requester_id }}">{{ App\Models\User::find($requester_id)->name }}</option>
                     </x-form-select>
-                 <x-validation-error-component name='requester_id' />
+                    <x-validation-error-component name='requester_id' />
                 </div>
-
                 <div class="sm:col-span-2">
                     <x-label for="first_approver" >1st Approver
                         (Manager)</x-label>
@@ -44,12 +32,9 @@
                         @foreach ($firstApprovers as $firstApprover)
                         <option value="{{ $firstApprover->user_id }}">{{ $firstApprover->user->name }}</option>
                         @endforeach
-
                     </x-form-select>
-                  <x-validation-error-component name='first_approver' />
-
+                    <x-validation-error-component name='first_approver' />
                 </div>
-
                 <div class="sm:col-span-2">
                     <x-label for="requester" >2nd Approver (Account
                         Payable)</x-label>
@@ -58,14 +43,10 @@
                         @foreach ($secondApprovers as $secondApprover)
                         <option value="{{ $secondApprover->user_id }}">{{ $secondApprover->user->name }}</option>
                         @endforeach
-
                     </x-form-select>
-                   <x-validation-error-component name='second_approver' />
+                    <x-validation-error-component name='second_approver' />
                 </div>
-
-
                 @if($particulars->count())
-
                 <div class="sm:col-span-6">
                     <p class="text-right">
                         <x-button data-modal-toggle="instructions-create-vendor-modal">
@@ -77,12 +58,11 @@
                     </p>
                 </div>
                 @endif
-
                 <div class="sm:col-span-6">
                     <div class="mb-5 mt-2 relative overflow-auto ring-opacity-5 md:rounded-lg">
-                            @if($particulars->count())
-                            <table class="w-full text-sm text-left">
-                                <thead >
+                        @if($particulars->count())
+                            <x-table-component>
+                                <x-table-head-component>
                                     <tr>
                                         <x-th>#</x-th>
                                         <x-th>UNIT</x-th>
@@ -93,8 +73,8 @@
                                         <x-th>TOTAL</x-th>
                                         <x-th></x-th>
                                     </tr>
-                                </thead>
-                                <tbody>
+                                </x-table-head-component>
+                                <x-table-body-component>
                                     @foreach($particulars as $index => $particular)
                                     <div wire:key="particular-field-{{ $particular->id }}">
                                         <tr>
@@ -110,7 +90,6 @@
                                                     </option>
                                                     @endforeach
                                                 </x-form-select>
-
                                             </x-td>
                                             <x-td>
                                                 <x-form-select wire:model="particulars.{{ $index }}.vendor_id"
@@ -123,8 +102,6 @@
                                                     </option>
                                                     @endforeach
                                                 </x-form-select>
-
-
                                             </x-td>
                                             <x-td>
                                                 <x-form-input name="item" type="text"
@@ -169,8 +146,8 @@
                                         <x-td><b>{{ number_format((double) $amount, 2)}}</b></x-td>
                                         <x-th></x-th>
                                     </tr>
-                                </tbody>
-                            </table>
+                                </x-table-body-component>
+                            </x-table-component>
                             @else
                             <div class="text-center">
                                 <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24"
@@ -183,7 +160,6 @@
                                 <p class="mt-1 text-sm text-gray-500">Get started by adding a new particular.</p>
                                 <div class="mt-6">
                                     <x-button wire:click="addNewParticular">
-
                                         New particular
                                     </x-button>
 
@@ -192,41 +168,30 @@
                             @endif
                     </div>
                 </div>
-
-
                 <div class="sm:col-span-6">
                     <x-label for="vendor" >Bank Details</x-label>
                 </div>
-
                 <div class="sm:col-span-2">
                     <x-label for="bank" >Bank</x-label>
                     <x-form-input type="text" wire:model="bank" />
-                   <x-validation-error-component name='bank' />
+                    <x-validation-error-component name='bank' />
                 </div>
-
                 <div class="sm:col-span-2">
                     <x-label for="bank_name" >Bank Name</x-label>
                     <x-form-input type="text" wire:model="bank_name" />
-                   <x-validation-error-component name='bank_name' />
+                    <x-validation-error-component name='bank_name' />
                 </div>
-
                 <div class="sm:col-span-2">
                     <x-label for="bank_account" >Bank Account</x-label>
                     <x-form-input type="text" wire:model="bank_account" />
-                   <x-validation-error-component name='bank_account' />
+                    <x-validation-error-component name='bank_account' />
                 </div>
-
-
                 <div class="sm:col-span-7">
-                    <x-label for="" >Please upload the
-                        quotations/bills</x-label>
-
+                    <x-label for="" >Please upload the  quotations/bills</x-label>
                 </div>
-
                 <div class="sm:col-span-2">
                     <x-label> Quotation/Bill 1</x-label>
-                    <div
-                        class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                    <div  class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                         <div class="space-y-1 text-center">
                             <div class="flex text-sm text-gray-600">
                               <label for="quotation1"
@@ -247,7 +212,6 @@
                             </label>
 
                             </div>
-
                          <x-validation-error-component name='quotation1' />
                             @if ($quotation1)
                             <p class="text-green-500 text-xs mt-2">File has been attached. <i
@@ -282,8 +246,7 @@
                                 </label>
 
                             </div>
-
-                          <x-validation-error-component name='quotation2' />
+                            <x-validation-error-component name='quotation2' />
                             @if ($quotation2)
                             <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i>
                             </p>
@@ -291,7 +254,6 @@
                         </div>
                     </div>
                 </div>
-
                <div class="sm:col-span-2">
                     <x-label> Quotation/Bill 3</x-label>
                     <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
@@ -314,10 +276,8 @@
                                         <a href="#/" wire:click="removeQuotation('quotation3')">Remove the attachment</a></span>
                                     @endif
                                 </label>
-
                             </div>
-
-                         <x-validation-error-component name='quotation3' />
+                            <x-validation-error-component name='quotation3' />
                             @if ($quotation3)
                             <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i>
                             </p>
@@ -327,9 +287,7 @@
                 </div>
                 <div class="sm:col-span-7">
                     <x-label>Selected Vendor Details</x-label>
-
                 </div>
-
                 <div class="sm:col-span-6">
                     <x-label for="vendor">Select a quotation:</x-label>
                     <x-form-select id="selected_quotation" wire:model="selected_quotation">
@@ -345,31 +303,23 @@
                         @else
                         <option value="">Please select one</option>
                         @endif
-
                     </x-form-select>
-                 <x-validation-error-component name='selected_quotation' />
+                    <x-validation-error-component name='selected_quotation' />
                 </div>
-
                 <div class="sm:col-span-3">
                     <x-label for="vendor">Name of the vendor</x-label>
                     <x-form-input type="text" wire:model="vendor" />
-                  <x-validation-error-component name='vendor' />
+                    <x-validation-error-component name='vendor' />
                 </div>
-
                 <div class="sm:col-span-3">
                     <x-label for="delivery-date">Delivery Date</x-label>
                     <x-form-input type="date" wire:model="delivery_at" />
-                   <x-validation-error-component name='delivery_at' />
+                    <x-validation-error-component name='delivery_at' />
                 </div>
-
                 <div class="col-start-6 flex items-center justify-end">
-                    <x-button class="bg-red-500" wire:click="cancelRequest()">
-                        Cancel
-                    </x-button>
+                    <x-button class="bg-red-500" wire:click="cancelRequest">Cancel</x-button>
                     &nbsp;
-                    <x-button type="submit">
-                        Confirm
-                    </x-button>
+                    <x-button type="submit"> Confirm  </x-button>
                 </div>
             </div>
         </form>
