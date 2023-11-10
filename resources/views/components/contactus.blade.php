@@ -1,5 +1,5 @@
 <!-- Contact form -->
-<div class="py-10 px-6 sm:px-10 col-span-1  lg:col-span-2 xl:p-12">
+                  <div class="py-10 px-6 sm:px-10 col-span-1  lg:col-span-2 xl:p-12">
                     
                     <form action="https://formsubmit.co/admin@propsuite.net" method="POST" class="mt-6 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                       
@@ -72,12 +72,35 @@
                         <div class="col-span-3 sm:flex sm:justify-end">
                           <button type="submit" class="mt-2 inline-flex w-full items-center justify-center rounded-full border border-transparent bg-purple-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Submit</button>
                         </div>
+
+                        <div class="col-span-3 bg-gray-100 py-4 lg:py-0">
+                            <div
+                                class="mx-auto max-w-4xl  px-4 sm:px-6 py-8 lg:flex lg:max-w-7xl lg:items-center lg:justify-between lg:px-8">
+                                <h2 class="text-lg font-bold tracking-tight text-gray-900 sm:text-2xl">
+                                    <span class="block">Includes Site Seal</span>
+                                    <span
+                                        class="max-w-lg py-5 -mb-1 block  bg-clip-text pb-1 text-gray-700 text-base font-light">Your data security and privacy is important to us. With Comodo SSL, communication exchanged between our servers and our users are encrypted. This effectively protects against data theft and bolsters overall trust and security in our website.</span>
+                                </h2>
+                                <div class="">
+                                <img class="mx-auto w-96"
+                                                                src="{{ asset('/brands/landing/comodo-logo.png') }}"
+                                                                alt="comodo logo">
+                                    
+
+                                </div>
+                            </div>
+                        </div>
+
                       </div>                     
                     </form>
+
+                    
                   </div>
 
                 </div>
               </div>
             </div>
           </div>
+
+          
 <!-- end contact us section -->

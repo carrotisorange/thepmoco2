@@ -43,30 +43,7 @@
 
         </div>
 
-        <div class="bg-gray-100">
-            <div class="mx-auto max-w-7xl py-16 px-4 sm:px-6 lg:px-8">
-                <p class="text-center text-xl font-semibold text-gray-500">Partnered with:</p>
-                <div class="mt-6 grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-4">
-                    <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-                        <a href=""><img class="h-20" src="{{ asset('/brands/landing/digital-ocean.png') }}"
-                                alt="digital ocean logo"></a>
-                    </div>
-                    <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-                        <img class="h-20" src="{{ asset('/brands/landing/aim-logo.png') }}"
-                            alt="asian institute of management logo">
-                    </div>
-                    <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-                        <img class="h-20" src="{{ asset('/brands/clients/client-3.png') }}" alt="martha logo">
-                    </div>
-                    <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-                        <img class="h-20" src="{{ asset('/brands/clients/client-4.png') }}" alt="cura logo">
-                    </div>
-
-
-
-                </div>
-            </div>
-        </div>
+        <x-partner></x-partner>
 
         <!-- value  -->
 
@@ -276,7 +253,7 @@
             </div>
         </div>
 
-        <x-partner></x-partner>
+        
 
         <div>
             <div id="contactus">

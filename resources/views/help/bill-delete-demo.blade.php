@@ -1,6 +1,6 @@
-<x-new-layout>
+<x-new-layout-base>
     <div class="mx-20 mt-4 inline-flex">
-        <a href="/help">
+        <a href="/support">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-7 h-7">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -21,9 +21,9 @@
 
         <p class="pt-5 text-center text-light text-sm">A demo video for deleting bills per tenant.
         <p class="text-center text-light text-sm"><span class="font-semibold text-purple-700">
-                <a href="https://thepropertymanager.online/about#contactus">Contact Us</a></span> for questions or
+                <a href="/about#contactus">Contact Us</a></span> for questions or
             concerns.</p>
         </p>
     </div>
 
-</x-new-layout>
+</x-new-layout-base>
