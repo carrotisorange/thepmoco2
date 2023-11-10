@@ -1,16 +1,12 @@
 <?php
 
 namespace App\Http\Livewire;
+
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 use DB;
-use App\Models\Country;
-use App\Models\Province;
-use App\Models\City;
-use App\Models\Type;
-use App\Models\PropertyDocument;
-
 use Livewire\Component;
+use App\Models\{Country,Province,City,Type,PropertyDocument};
 
 class PropertyEditComponent extends Component
 {

@@ -4,8 +4,8 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Session;
-use App\Models\Bill;
 use DB;
+use App\Models\Bill;
 
 class BillBulkEditComponent extends Component
 {

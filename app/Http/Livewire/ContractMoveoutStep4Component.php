@@ -3,8 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Contract;
-use App\Models\Tenant;
+use App\Models\{Contract,Tenant};
 
 class ContractMoveoutStep4Component extends Component
 {

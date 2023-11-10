@@ -3,19 +3,13 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\ConcernCategory;
-use App\Models\Tenant;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Notification;
 use Str;
-use App\Models\Unit;
-use App\Models\Concern;
-use App\Models\UserProperty;
-use App\Notifications\NotifyAdminOnConcernReportedByTenant;
-use App\Models\User;
 use Carbon\Carbon;
-use App\Models\Contract;
+use App\Notifications\NotifyAdminOnConcernReportedByTenant;
+use App\Models\{ConcernCategory,Unit,Concern,UserProperty,User,Contract};
 
 class PortalTenantConcernComponent extends Component
 {
@@ -72,7 +66,7 @@ class PortalTenantConcernComponent extends Component
         $validatedData['property_uuid'] = Unit::findOrFail($this->unit_uuid)->property_uuid;
 
         $validatedData['image'] = $this->image->store('concerns');
-        
+
 
         $concern_id = Concern::create($validatedData)->id;
 

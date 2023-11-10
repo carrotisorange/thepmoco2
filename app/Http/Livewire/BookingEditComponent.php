@@ -6,13 +6,7 @@ use Livewire\Component;
 use App\Models\Property;
 use Illuminate\Validation\Rule;
 use DB;
-use Carbon\Carbon;
-use App\Models\Guest;
-use App\Models\AcknowledgementReceipt;
-use App\Models\AdditionalGuest;
-use App\Models\Bill;
-use App\Models\Collection;
-use App\Models\Booking;
+use App\Models\{Guest,AcknowledgementReceipt,AdditionalGuest,Booking};
 
 class BookingEditComponent extends Component
 {

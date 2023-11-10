@@ -3,12 +3,10 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\User;
-use App\Models\UserProperty;
 use Illuminate\Validation\Rule;
-use App\Models\UserRestriction;
 use DB;
 use Session;
+use App\Models\{UserRestriction,User,UserProperty};
 
 class EditPersonnelComponent extends Component
 {

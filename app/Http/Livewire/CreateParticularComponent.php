@@ -3,8 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\PropertyParticular;
-use App\Models\Particular;
+use App\Models\{PropertyParticular,Particular};
 
 class CreateParticularComponent extends Component
 {
@@ -45,7 +44,7 @@ class CreateParticularComponent extends Component
            'particular_id'=> $particular_id,
         ]
         ,
-        [   
+        [
             'property_uuid'=> Session::get('property_uuid'),
             'particular_id'=> $particular_id,
             'minimum_charge' => 0.00,

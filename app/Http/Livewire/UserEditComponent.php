@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Http\Livewire;
+
 use Illuminate\Validation\Rule;
 use DB;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
-use App\Models\User;
 use Livewire\WithPagination;
-use App\Models\Feature;
+use App\Models\{User,Feature};
 
 class UserEditComponent extends Component
 {

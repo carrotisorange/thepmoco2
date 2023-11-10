@@ -1,14 +1,13 @@
 <?php
 
 namespace App\Http\Livewire;
-use App\Models\Reference;
-use App\Models\Relationship;
+
 use DB;
 use Illuminate\Validation\Rule;
 use Session;
 use Str;
-
 use Livewire\Component;
+use App\Models\Reference;
 
 class ReferenceComponent extends Component
 {

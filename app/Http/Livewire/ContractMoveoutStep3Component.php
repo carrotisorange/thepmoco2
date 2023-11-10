@@ -3,14 +3,8 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use Carbon\Carbon;
 use Session;
-use App\Models\Tenant;
-use DB;
-use App\Models\Contract;
-use App\Models\Bill;
-use Illuminate\Http\Request;
-use App\Models\Collection;
+use App\Models\{Tenant,Contract,Bill,Collection};
 
 class ContractMoveoutStep3Component extends Component
 {

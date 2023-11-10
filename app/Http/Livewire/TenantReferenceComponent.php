@@ -1,18 +1,17 @@
 <?php
 
 namespace App\Http\Livewire;
-use App\Models\Reference;
-use Illuminate\Validation\Rule;
-use DB;
-use Session;
 
+use Illuminate\Validation\Rule;
+use Session;
 use Livewire\Component;
+use App\Models\Reference;
 
 class TenantReferenceComponent extends Component
 {
     //list of passed parameters
     public $tenant;
-    
+
     //list of input fields
     public $reference;
     public $relationship_id;
@@ -30,7 +29,7 @@ class TenantReferenceComponent extends Component
             'relationship_id' => ['required', Rule::exists('relationships', 'id')],
             'reference' => [ 'required'],
             'email' => ['nullable', 'string', 'email', 'max:255'],
-            'mobile_number' => 'required',   
+            'mobile_number' => 'required',
         ];
     }
 
@@ -41,7 +40,7 @@ class TenantReferenceComponent extends Component
 
     public function submitForm()
     {
-        
+
 
         //validate inputs
         $validated_data = $this->validate();
@@ -52,7 +51,7 @@ class TenantReferenceComponent extends Component
            $this->store_reference($validated_data);
         }
         catch(\Exception $e)
-        {   
+        {
             return back()->with('error');
         }
     }

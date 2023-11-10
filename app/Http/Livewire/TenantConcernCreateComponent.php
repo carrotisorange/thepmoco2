@@ -3,22 +3,18 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\ConcernCategory;
-use App\Models\Tenant;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
-use App\Models\Notification;
 use Str;
-use App\Models\Unit;
-use App\Models\Concern;
 use Session;
+use App\Models\{Concern,ConcernCategory,Tenant};
 
 class TenantConcernCreateComponent extends Component
 {
     public $tenant;
 
     public $concern_details;
-    
+
     use WithFileUploads;
 
     public $user;
@@ -62,7 +58,7 @@ class TenantConcernCreateComponent extends Component
         $validatedData['tenant_uuid'] = $this->tenant->uuid;
         $validatedData['reference_no'] = auth()->user()->id.'_'.Str::random(8);
         $validatedData['property_uuid'] = Session::get('property_uuid');
-   
+
 
         if($this->image)
         {

@@ -2,13 +2,9 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\AccountPayableLiquidation;
 use Livewire\Component;
 use Carbon\Carbon;
-use App\Models\AccountPayable;
-use App\Models\Property;
-use App\Models\AccountPayableLiquidationParticular;
-use App\Models\Role;
+use App\Models\{AccountPayableLiquidation,AccountPayable,Property,AccountPayableLiquidationParticular,Role};
 
 class CreateAccountPayableLiquidationStep1Component extends Component
 {

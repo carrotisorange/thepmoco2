@@ -1,14 +1,12 @@
 <?php
 
 namespace App\Http\Livewire;
-use App\Models\Representative;
-use App\Models\Relationship;
-use App\Models\Owner;
 use Livewire\Component;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 use DB;
 use Session;
+use App\Models\{Representative,Relationship,Owner};
 
 class RepresentativeComponent extends Component
 {

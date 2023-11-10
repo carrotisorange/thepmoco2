@@ -2,11 +2,9 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\DeedOfSale;
-use App\Models\deedOfSalesDetails;
-use DB;
 use Livewire\WithFileUploads;
 use Livewire\Component;
+use App\Models\DeedOfSale;
 
 class DeedOfSaleEditComponent extends Component
 {

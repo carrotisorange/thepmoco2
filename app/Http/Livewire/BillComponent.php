@@ -1,18 +1,14 @@
 <?php
 
 namespace App\Http\Livewire;
+
 use Illuminate\Validation\Rule;
-use App\Models\Bill;
 use Illuminate\Support\Str;
+use Livewire\Component;
 use DB;
 use Session;
-use App\Models\Property;
-use App\Models\Particular;
-use App\Models\Contract;
 use Carbon\Carbon;
-use App\Models\Tenant;
-
-use Livewire\Component;
+use App\Models\{Bill,Particular,Contract,Tenant};
 
 class BillComponent extends Component
 {

@@ -1,14 +1,12 @@
 <?php
 
 namespace App\Http\Livewire;
-use App\Models\Unit;
-use App\Models\Tenant;
+
+use Livewire\Component;
 use Illuminate\Validation\Rule;
 use Livewire\WithPagination;
 use Session;
-use App\Models\Property;
-
-use Livewire\Component;
+use App\Models\{Property,Unit,Tenant};
 
 class UnitEditBulkComponent extends Component
 {

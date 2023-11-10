@@ -3,12 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Bill;
-use App\Models\Contract;
-use App\Models\DeedOfSale;
-use App\Models\Tenant;
-use App\Models\Utility;
-use App\Models\Owner;
+use App\Models\{Utility,Bill};
 
 class UnitUtilityEditComponent extends Component
 {

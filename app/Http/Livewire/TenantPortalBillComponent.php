@@ -3,12 +3,9 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use Xendit\Xendit;
-use App\Models\Tenant;
 use Str;
-use App\Models\PaymentRequest;
-use App\Models\Bill;
 use DB;
+use App\Models\{PaymentRequest,Bill,Tenant};
 
 class TenantPortalBillComponent extends Component
 {

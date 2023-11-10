@@ -3,14 +3,13 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Tenant;
 use Illuminate\Validation\Rule;
 use App\Models\Guardian;
 
 class CreateGuardianComponent extends Component
 {
     public $tenant;
-    
+
     //input variables
     public $guardian;
     public $relationship_id;
@@ -44,7 +43,7 @@ class CreateGuardianComponent extends Component
     }
 
     public function render()
-    {   
+    {
         return view('livewire.create-guardian-component',[
             'relationships' => app('App\Http\Controllers\RelationshipController')->index(),
         ]);

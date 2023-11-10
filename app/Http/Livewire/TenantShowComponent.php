@@ -1,19 +1,16 @@
 <?php
 
 namespace App\Http\Livewire;
-use Illuminate\Support\Str;
+
+use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use DB;
 use Illuminate\Validation\Rule;
 use Livewire\WithPagination;
-use App\Models\User;
 use Session;
-use App\Models\Wallet;
-use Illuminate\Support\Facades\Hash;
-use Carbon\Carbon;
-use App\Models\Collection;
-use App\Models\Feature;
+use App\Models\{Wallet,User,Collection,Feature};
 
 class TenantShowComponent extends Component
 {

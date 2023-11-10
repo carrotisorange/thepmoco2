@@ -1,18 +1,19 @@
 <?php
 
 namespace App\Http\Livewire;
-use App\Models\Guardian;
-use Illuminate\Validation\Rule;
-use DB;
-use Session;
 
 use Livewire\Component;
+use Illuminate\Validation\Rule;
+use Session;
+use App\Models\Guardian;
+
+
 
 class TenantGuardianComponent extends Component
 {
     //list of passed parameters
     public $tenant;
-    
+
     //list of input fields
     public $guardian;
     public $relationship_id;
@@ -30,7 +31,7 @@ class TenantGuardianComponent extends Component
             'relationship_id' => ['required', Rule::exists('relationships', 'id')],
             'guardian' => [ 'required'],
             'email' => ['nullable', 'string', 'email', 'max:255'],
-            'mobile_number' => 'required',   
+            'mobile_number' => 'required',
         ];
     }
 
@@ -41,7 +42,7 @@ class TenantGuardianComponent extends Component
 
     public function submitForm()
     {
-        
+
 
         //validate inputs
         $validated_data = $this->validate();
@@ -52,7 +53,7 @@ class TenantGuardianComponent extends Component
            $this->store_guardian($validated_data);
         }
         catch(\Exception $e)
-        {   
+        {
             return back()->with('error');
         }
     }

@@ -2,12 +2,11 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\DeedOfSale;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use Session;
-
 use Livewire\Component;
+use App\Models\DeedOfSale;
 
 class DeedOfSaleComponent extends Component
 {

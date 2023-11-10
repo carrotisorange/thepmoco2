@@ -3,13 +3,10 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Booking;
 use Carbon\Carbon;
-use Illuminate\Validation\Rule;
-use App\Models\Bill;
-use App\Models\Guest;
-use App\Models\Contract;
 use Session;
+use Illuminate\Validation\Rule;
+use App\Models\{Bill,Guest,Contract,Booking};
 
 class CreateBillComponent extends Component
 {

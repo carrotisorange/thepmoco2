@@ -1,14 +1,11 @@
 <?php
 
 namespace App\Http\Livewire;
-use App\Models\Bank;
-use App\Models\DeedOfSale;
-use Illuminate\Support\Str;
+
 use DB;
 use Session;
-use App\Models\Unit;
-
 use Livewire\Component;
+use App\Models\{Unit,DeedOfSale};
 
 class BankComponent extends Component
 {
@@ -50,7 +47,7 @@ class BankComponent extends Component
 
    public function submitForm()
    {
-      
+
 
       $validatedData = $this->validate();
 

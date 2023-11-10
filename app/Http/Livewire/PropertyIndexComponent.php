@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Livewire;
-use App\Models\UserProperty;
+
 use Livewire\Component;
-use App\Models\Feature;
+use App\Models\{Feature,UserProperty};
 
 class PropertyIndexComponent extends Component
 {

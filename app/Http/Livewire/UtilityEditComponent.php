@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Http\Livewire;
-use Livewire\WithPagination;
 
+use Livewire\WithPagination;
 use Livewire\Component;
 use Session;
-use App\Models\Utility;
-use App\Models\Unit;
+use App\Models\{Utility,Unit};
 
 class UtilityEditComponent extends Component
 {

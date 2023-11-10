@@ -4,15 +4,14 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Session;
-use App\Models\Collection;
-use App\Models\Bill;
 use Carbon\Carbon;
 use Livewire\WithFileUploads;
+use App\Models\{Collection,Bill};
 
 class GuestStoreCollectionComponent extends Component
 {
     use WithFileUploads;
-    
+
     public $batch_no;
     public $guest;
     public $collections;
@@ -22,7 +21,7 @@ class GuestStoreCollectionComponent extends Component
     public $bank;
     public $check_no;
     public $created_at;
-    public $date_deposited; 
+    public $date_deposited;
     public $sendPayment = false;
 
     public function mount($collections, $guest, $batch_no)

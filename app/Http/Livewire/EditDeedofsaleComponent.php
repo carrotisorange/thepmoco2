@@ -2,11 +2,10 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\DeedOfSale;
 use Livewire\Component;
-use Illuminate\Validation\Rule;
 use Carbon\Carbon;
 use Livewire\WithFileUploads;
+use App\Models\DeedOfSale;
 
 class EditDeedofsaleComponent extends Component
 {

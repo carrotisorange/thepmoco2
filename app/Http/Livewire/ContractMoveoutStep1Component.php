@@ -5,8 +5,8 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Carbon\Carbon;
 use Session;
-use App\Models\Tenant;
 use DB;
+use App\Models\Tenant;
 
 class ContractMoveoutStep1Component extends Component
 {

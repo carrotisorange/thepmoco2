@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\DeedOfSale;
 use Livewire\Component;
 use DB;
 use Session;
+use App\Models\DeedOfSale;
 
 class DeedOfSaleBackoutComponent extends Component
 {

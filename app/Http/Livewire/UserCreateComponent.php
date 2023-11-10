@@ -6,24 +6,19 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use Session;
-use App\Models\User;
-use App\Models\UserProperty;
 use Livewire\WithPagination;
-use App\Models\Feature;
-use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 use DB;
-
 use Livewire\Component;
+use App\Models\{Feature,Role,User,UserProperty};
 
 class UserCreateComponent extends Component
 {
    use WithFileUploads;
 
    use WithPagination;
-
-
+   
    //personnel fields
    public $role_id;
    public $name;

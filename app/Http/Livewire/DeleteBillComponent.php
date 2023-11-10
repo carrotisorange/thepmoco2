@@ -2,10 +2,8 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\AcknowledgementReceipt;
 use Livewire\Component;
-use App\Models\Bill;
-use App\Models\Collection;
+use App\Models\{Bill,AcknowledgementReceipt,Collection};
 
 class DeleteBillComponent extends Component
 {

@@ -3,21 +3,12 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Property;
 use Illuminate\Validation\Rule;
 use DB;
-use Carbon\Carbon;
-use App\Models\Guest;
-use App\Models\AcknowledgementReceipt;
-use App\Models\AdditionalGuest;
-use App\Models\Bill;
-use App\Models\Collection;
-use App\Models\Booking;
-use Illuminate\Support\Facades\Mail;
-use App\Models\Unit;
 use App\Mail\SendWelcomeMailToGuest;
 use Session;
-use App\Models\Feature;
+use Illuminate\Support\Facades\Mail;
+use App\Models\{Guest,Property,AcknowledgementReceipt,AdditionalGuest,Bill,Collection,Booking,Unit,Feature};
 
 class GuestShowComponent extends Component
 {

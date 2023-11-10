@@ -2,12 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Str;
 use Session;
 use App\Models\{Unit,Property,Type,Plan};
-
-use Livewire\Component;
 
 class UnitIndexComponent extends Component
 {

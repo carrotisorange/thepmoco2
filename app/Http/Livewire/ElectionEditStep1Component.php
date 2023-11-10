@@ -3,12 +3,9 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Election;
-use Session;
-use App\Models\Bill;
 use DB;
-use App\Models\Voter;
-use Carbon\Carbon;
+use Session;
+use App\Models\{Bill,Election,Voter,Carbon};
 
 class ElectionEditStep1Component extends Component
 {

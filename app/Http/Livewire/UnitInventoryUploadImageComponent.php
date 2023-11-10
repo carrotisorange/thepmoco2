@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\UnitInventory;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use App\Models\UnitInventory;
 
 class UnitInventoryUploadImageComponent extends Component
 {
@@ -27,12 +27,12 @@ class UnitInventoryUploadImageComponent extends Component
     {
         $this->validateOnly($propertyName);
     }
-    
+
 
     public function submitForm(){
 
-        
-        
+
+
         $this->validate();
 
         if ($this->image === null) {

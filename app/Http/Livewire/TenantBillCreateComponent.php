@@ -2,23 +2,14 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\AcknowledgementReceipt;
-use App\Models\Tenant;
-use App\Models\Bill;
 use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\Collection;
 use Illuminate\Validation\Rule;
 use Carbon\Carbon;
 use DB;
-use App\Models\Property;
-use App\Models\Particular;
-use App\Models\PropertyParticular;
-use App\Models\Unit;
 use Session;
-use App\Models\Contract;
-use App\Models\PaymentRequest;
-
+use App\Models\{Property,Particular,PropertyParticular,Tenant,Bill,Contract};
 
 class TenantBillCreateComponent extends Component
 {

@@ -3,14 +3,9 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Contract;
-use App\Models\Interaction;
-use App\Models\Property;
 use Carbon\Carbon;
-use App\Models\Unit;
 use Livewire\WithFileUploads;
-use App\Models\Tenant;
-use DB;
+use App\Models\{Tenant,Contract,Interaction,Property,Unit};
 
 class EditContractComponent extends Component
 {
