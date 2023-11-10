@@ -11,7 +11,6 @@ class DeleteBillComponent extends Component
 {
     public $bill;
 
-    //input variables
     public $description;
 
     protected function rules()
@@ -38,10 +37,13 @@ class DeleteBillComponent extends Component
         Bill::where('id', $this->bill->id)
         ->delete();
 
+        $collectionBatchNo = Collection::where('bill_id', $this->bill->id)->value('batch_no');
+
+        AcknowledgementReceipt::where('collection_batch_no', $collectionBatchNo)->delete();
+
         Collection::where('bill_id', $this->bill->id)->delete();
 
         return redirect(url()->previous())->with('success', 'Changes Saved!');
-
     }
 
     public function render()

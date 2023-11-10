@@ -128,18 +128,20 @@ class CollectionController extends Controller
 
             $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
 
-            $pdf_name = str_replace(' ', '_', $property->property).'_DCR_'.str_replace(' ', '_', $start_date.'_'.$end_date).'.pdf';
+            $fileName = str_replace(' ', '_', $property->property).'_DCR_'.str_replace(' ', '_', $start_date.'_'.$end_date).'.pdf';
 
-            return $pdf->stream($pdf_name);
+            return $pdf->stream($fileName);
 
         }else{
 
             Session::put('export_dcr_start_date', $start_date);
             Session::put('export_dcr_end_date', $end_date);
 
-            $pdf_name = str_replace(' ', '_', $property->property).'_DCR_'.str_replace(' ', '_', $start_date.'_'.$end_date).'.xlsx';
+            $fileName = str_replace(' ', '_', $property->property).'_DCR_'.str_replace(' ', '_',$start_date.'_'.$end_date).'.xlsx';
 
-            return Excel::download(new ExportCollection(), $pdf_name);
+            ob_end_clean(); // this
+            ob_start(); // and this
+            return Excel::download(new ExportCollection(), $fileName);
         }
 
     }

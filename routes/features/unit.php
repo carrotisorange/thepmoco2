@@ -20,6 +20,8 @@ use App\Http\Controllers\Features\GuestController;
 use App\Http\Controllers\Features\OwnerController;
 use App\Http\Controllers\Features\BillController;
 use App\Http\Controllers\Features\ContractController;
+use App\Http\Controllers\Features\UnitBillController;
+use App\Http\Controllers\Features\WalletController;
 
         Route::prefix('unit')->group(function(){
             Route::controller(UnitController::class)->group(function(){

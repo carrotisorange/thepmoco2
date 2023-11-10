@@ -3,15 +3,11 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use Carbon\Carbon;
 use Session;
-use App\Models\AccountPayable;
-use App\Models\AccountPayableParticular;
 use App\Notifications\SendAccountPayableStep3NotificationToAP;
 use App\Notifications\SendAccountPayableStep4NotificationToAdmin;
 use Illuminate\Support\Facades\Notification;
-use App\Models\UserProperty;
-use App\Models\User;
+use App\Models\{User,AccountPayable,AccountPayableParticular};
 
 class AccountPayableCreateStep2Component extends Component
 {
