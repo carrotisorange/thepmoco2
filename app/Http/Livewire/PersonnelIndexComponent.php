@@ -3,11 +3,10 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\UserProperty;
 use Livewire\WithPagination;
 use Illuminate\Support\Str;
 use Session;
-use App\Models\Type;
+use App\Models\{UserProperty,Type};
 
 class PersonnelIndexComponent extends Component
 {

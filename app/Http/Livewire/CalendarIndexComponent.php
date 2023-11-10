@@ -3,9 +3,8 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Property;
-use App\Models\Agent;
 use Session;
+use App\Models\{Property,Agent};
 
 class CalendarIndexComponent extends Component
 {

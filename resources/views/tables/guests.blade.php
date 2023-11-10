@@ -1,5 +1,5 @@
-<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-<thead class="">
+<x-table-component>
+<x-table-head-component>
         <tr>
             <x-th>#</x-th>
             <x-th>Guest</x-th>
@@ -10,9 +10,9 @@
             <x-th>Checkin</x-th>
             <x-th>Checkout</x-th>
         </tr>
-    </thead>
-    @foreach ($guests as $index => $item)
-    <tbody class="bg-white divide-y divide-gray-200">
+    </x-table-head-component>
+    <x-table-body-component>
+        @foreach ($guests as $index => $item)
         <tr>
             <x-td>{{ $index+1 }}</x-td>
             <x-td>
@@ -32,7 +32,6 @@
                 $end = strtotime($item->moveout_at); // convert to timestamps
                 $days = (int)(($end - $start)/86400)
             ?>
-            {{-- <x-td>{{ number_format($item->price, 2) }} ({{ $days }} night/s)</x-td> --}}
             <x-td>{{ $item->status }}</x-td>
             <x-td>
                 {{Carbon\Carbon::parse($item->movein_at)->format('M d, Y')}} @ {{
@@ -43,6 +42,6 @@
                 Carbon\Carbon::parse($item->departure_time)->format('H:i:s') }}
             </x-td>
         </tr>
-    </tbody>
-    @endforeach
-</table>
+        @endforeach
+    </x-table-body-component>
+</x-table-component>

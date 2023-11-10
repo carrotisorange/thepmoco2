@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Tenant;
-use App\Models\Property;
-use App\Models\Reference;
-
+use App\Models\{Tenant,Property,Reference};
 
 class TenantReferenceController extends Controller
 {
     public function create(Property $property, Tenant $tenant){
-        return view('tenants.references.create',[
+        return view('features.tenants.references.create',[
             'tenant'=> $tenant
         ]);
     }

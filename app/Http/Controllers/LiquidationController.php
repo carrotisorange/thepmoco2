@@ -2,14 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Property;
-use App\Models\AccountPayableParticular;
-use App\Models\AccountPayable;
-use App\Models\AccountPayableLiquidation;
-use App\Models\AccountPayableLiquidationParticular;
-use PDF;
-use Carbon\Carbon;
+use App\Models\{Property,AccountPayableParticular,AccountPayable,AccountPayableLiquidation,AccountPayableLiquidationParticular};
 
 class LiquidationController extends Controller
 {
@@ -40,7 +33,7 @@ class LiquidationController extends Controller
                 'property' => $property,
                 'accountpayable' => $accountPayable,
             ]);
-    
+
     }
 
     public function step2(Property $property, AccountPayable $accountPayable){

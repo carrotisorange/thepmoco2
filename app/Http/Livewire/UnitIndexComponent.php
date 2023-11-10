@@ -2,14 +2,10 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Unit;
-use App\Models\Property;
 use Livewire\WithPagination;
 use Illuminate\Support\Str;
-use App\Models\Plan;
 use Session;
-use App\Models\Feature;
-use App\Models\Type;
+use App\Models\{Unit,Property,Type,Plan};
 
 use Livewire\Component;
 
@@ -148,7 +144,7 @@ class UnitIndexComponent extends Component
     ->when($this->batch_no, function($query){
       $query->where('batch_no', $this->batch_no);
       })
-      ->paginate($this->limitDisplayTo);
+      ->get();
     }
 
     public function editUnits(){
@@ -169,11 +165,11 @@ class UnitIndexComponent extends Component
             'categories' => app('App\Http\Controllers\CategoryController')->index(Session::get('property_uuid')),
             'buildings' => app('App\Http\Controllers\PropertyBuildingController')->index(Session::get('property_uuid')),
             'floors' => app('App\Http\Controllers\FloorController')->index(Session::get('property_uuid')),
-            'rents' => app('App\Http\Controllers\UnitController')->getUnitRents(Session::get('property_uuid')),
-            'discounts' => app('App\Http\Controllers\UnitController')->getUnitDiscounts(Session::get('property_uuid')),
-            'sizes' => app('App\Http\Controllers\UnitController')->getUnitSizes(Session::get('property_uuid')),
-            'occupancies' => app('App\Http\Controllers\UnitController')->getUnitOccupancies(Session::get('property_uuid')),
-            'enrollment_statuses' => app('App\Http\Controllers\UnitController')->getUnitEnrollmentStatuses(Session::get('property_uuid')),
+            'rents' => app('App\Http\Controllers\Features\UnitController')->getUnitRents(Session::get('property_uuid')),
+            'discounts' => app('App\Http\Controllers\Features\UnitController')->getUnitDiscounts(Session::get('property_uuid')),
+            'sizes' => app('App\Http\Controllers\Features\UnitController')->getUnitSizes(Session::get('property_uuid')),
+            'occupancies' => app('App\Http\Controllers\Features\UnitController')->getUnitOccupancies(Session::get('property_uuid')),
+            'enrollment_statuses' => app('App\Http\Controllers\Features\UnitController')->getUnitEnrollmentStatuses(Session::get('property_uuid')),
             'units_count' => Property::find(Session::get('property_uuid'))->units->count(),
             'steps' => $steps,
             'propertyUnitCount' => $propertyUnitCount,

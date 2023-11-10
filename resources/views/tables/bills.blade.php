@@ -1,13 +1,12 @@
-<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+<x-table-component>
     @if($bills->count())
     @if($isIndividualView)
-    <tbody class="bg-white divide-y divide-gray-200">
+    <x-table-body-component>
         <tr>
             <x-td><b>Total</b></x-td>
             @if($isPaymentAllowed)
             <x-td></x-td>
             @endif
-
             <x-td></x-td>
             <x-td> </x-td>
             <x-td></x-td>
@@ -51,9 +50,9 @@
             <x-td></x-td>
             <x-td></x-td>
         </tr>
-    </tbody>
+    </x-table-body-component>
     @else
-    <tbody class="bg-white divide-y divide-gray-200">
+    <x-table-body-component>
         <tr>
             <x-td><b>Total</b></x-td>
             @if($isPaymentAllowed)
@@ -81,10 +80,10 @@
 
             <x-td></x-td>
         </tr>
-    </tbody>
+    </x-table-body-component>
     @endif
     @endif
-    <thead class="bg-gray-50">
+    <x-table-head-component>
         <tr>
             <x-th>#</x-th>
             @if($isPaymentAllowed)
@@ -100,16 +99,16 @@
             <x-th></x-th>
             <x-th></x-th>
         </tr>
-    </thead>
+    </x-table-head-component>
     @if($view === 'listView')
-    <tbody class="bg-white divide-y divide-gray-200">
+    <x-table-body-component>
         @foreach ($bills as $index => $bill)
         <tr>
             <x-td>{{ $index+1 }}</x-td>
             @if($isPaymentAllowed)
             <x-th>
                 @if(!App\Models\Collection::paidByBill($bill->id))
-                <x-input name="selectedBills" type="checkbox" wire:model="selectedBills" value="{{ $bill->id }}" />
+                    <x-input name="selectedBills" type="checkbox" wire:model="selectedBills" value="{{ $bill->id }}" />
                 @endif
             </x-th>
             @endif
@@ -190,6 +189,6 @@
         @livewire('delete-bill-component', ['bill' => $bill], key(Carbon\Carbon::now()->timestamp.''.$bill->id))
 
         @endforeach
-    </tbody>
+    </x-table-body-component>
     @endif
-</table>
+</x-table-component>

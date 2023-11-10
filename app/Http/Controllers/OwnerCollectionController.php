@@ -3,18 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use App\Models\Property;
-use App\Models\Owner;
 use Session;
-use App\Models\Bill;
-use App\Models\Collection;
-use App\Models\AcknowledgementReceipt;
-use App\Models\DeedOfSale;
-use App\Models\User;
-
 use DB;
 
+use App\Models\{Property,Owner,Bill,Collection,DeedOfSale};
 
 class OwnerCollectionController extends Controller
 {
@@ -40,7 +32,7 @@ class OwnerCollectionController extends Controller
         ->where('batch_no', $batch_no)
         ->get();
 
-        return view('owners.collections.edit',[
+        return view('features.owners.collections.edit',[
          'collections' => $collections,
          'owner' => $owner,
          'batch_no' => $batch_no,
@@ -57,7 +49,7 @@ class OwnerCollectionController extends Controller
         $collection,
      );
 
-     $folder_path = 'owners.collections.export';
+     $folder_path = 'features.owners.collections.export';
 
      $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
 
@@ -100,7 +92,7 @@ class OwnerCollectionController extends Controller
     {
         Property::find($property->uuid)->collections()->where('owner_uuid', $owner->uuid)->where('is_posted', 0)->where('batch_no', '!=', $batch_no)->forceDelete();
 
-         $ar_no = app('App\Http\Controllers\CollectionController')->getLatestAr($property->uuid);
+         $ar_no = app('App\Http\Controllers\Features\CollectionController')->getLatestAr($property->uuid);
 
          $counter = $this->get_selected_bills_count($batch_no);
 
@@ -116,23 +108,23 @@ class OwnerCollectionController extends Controller
 
             $total_amount_due = app('App\Http\Controllers\OwnerBillController')->get_bill_balance($bill_id);
 
-            app('App\Http\Controllers\CollectionController')->update($ar_no, $bill_id, $collection, $form, $created_at);
+            app('App\Http\Controllers\Features\CollectionController')->update($ar_no, $bill_id, $collection, $form, $created_at);
 
             if(($total_amount_due) <= $collection)
             {
-                app('App\Http\Controllers\BillController')->update_bill_amount_due($bill_id, 'paid');
+                app('App\Http\Controllers\Features\BillController')->update_bill_amount_due($bill_id, 'paid');
 
-                app('App\Http\Controllers\BillController')->update_bill_initial_payment($bill_id , $collection);
+                app('App\Http\Controllers\Features\BillController')->update_bill_initial_payment($bill_id , $collection);
             }
             else
             {
-                app('App\Http\Controllers\BillController')->update_bill_amount_due($bill_id, 'partially_paid');
+                app('App\Http\Controllers\Features\BillController')->update_bill_amount_due($bill_id, 'partially_paid');
 
-                app('App\Http\Controllers\BillController')->update_bill_initial_payment($bill_id, $collection);
+                app('App\Http\Controllers\Features\BillController')->update_bill_initial_payment($bill_id, $collection);
             }
          }
 
-         app('App\Http\Controllers\CollectionController')
+         app('App\Http\Controllers\Features\CollectionController')
          ->storeAr(
                  '',
                   $owner->uuid,

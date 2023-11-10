@@ -19,7 +19,6 @@
                 </div>
             </div>
 
-
             <div class="mt-5 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                 <div class="sm:col-span-6">
                     <label for="bill_to">To whom do you want the bill to be posted?</label>
@@ -30,30 +29,10 @@
                         <option value="unit">unit</option>
                         <option value="owner">owner</option>
                         <option value="tenant">tenant</option>
-
                     </select>
 
                 </div>
-
-                {{-- @if($bill_to === 'tenant')
-                <div class="sm:col-span-3">
-                    <label for="isBillSplit">Do you want to split the bills?</label>
-                    <select id="isBillSplit" wire:model="isBillSplit"
-                        class="text-left bg-white block p-1 w-full text-sm h-8 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                        <option value="">Please select one</option>
-                        <option value="yes">yes</option>
-                        <option value="no">no</option>
-
-                    </select>
-
-                </div>
-                @endif --}}
-
-
-
             </div>
-
-
             @if($bill_to)
             <div class="mt-3 -my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -156,7 +135,6 @@
                                                 <x-table-input form="edit-form" type="text"
                                                     value="{{ $item->bill/$active_contracts }}" readonly />
 
-
                                             </x-td>
                                             @endif
                                         </tr>
@@ -165,10 +143,7 @@
                                 </tbody>
                             </table>
                         </form>
-
-
                     </div>
-                    {{-- {{ $utilities->links() }} --}}
                 </div>
             </div>
             @endif

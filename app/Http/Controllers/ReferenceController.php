@@ -2,34 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Reference;
-use App\Models\Unit;
-use App\Models\Tenant;
-use Session;
-use App\Models\References;
-use Illuminate\Validation\Rule;
-use DB;
-use App\Models\Property;
-
 use Illuminate\Http\Request;
+use DB;
+use Illuminate\Validation\Rule;
+use App\Models\{Reference,Unit,Tenant,Property};
+
 
 class ReferenceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create(Property $property, Unit $unit, Tenant $tenant)
     {
          return view('references.create',[
@@ -38,12 +18,7 @@ class ReferenceController extends Controller
          ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request, Unit $unit, Tenant $tenant)
     {
            try{
@@ -71,46 +46,6 @@ class ReferenceController extends Controller
            }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Reference  $reference
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Reference $reference)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Reference  $reference
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Reference $reference)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Reference  $reference
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Reference $reference)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Reference  $reference
-     * @return \Illuminate\Http\Response
-     */
      public function destroy(Property $property, Tenant $tenant, $reference_id)
      {
         Reference::destroy($reference_id);

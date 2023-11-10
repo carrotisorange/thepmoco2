@@ -29,28 +29,28 @@ class FinancialIndexComponent extends Component
     {
         if($this->filter == 'monthly')
         {
-            $collections = app('App\Http\Controllers\FinancialController')->getCollections('DATE_FORMAT(created_at, "%b-%Y") as date');
+            $collections = app('App\Http\Controllers\Features\FinancialController')->getCollections('DATE_FORMAT(created_at, "%b-%Y") as date');
 
-            $accountpayables = app('App\Http\Controllers\FinancialController')->getExpenses('DATE_FORMAT(created_at, "%b-%Y") as date');
+            $accountpayables = app('App\Http\Controllers\Features\FinancialController')->getExpenses('DATE_FORMAT(created_at, "%b-%Y") as date');
 
         }elseif($this->filter == 'yearly'){
-            $collections = app('App\Http\Controllers\FinancialController')->getCollections('DATE_FORMAT(created_at, "%Y") as date');
+            $collections = app('App\Http\Controllers\Features\FinancialController')->getCollections('DATE_FORMAT(created_at, "%Y") as date');
 
-            $accountpayables = app('App\Http\Controllers\FinancialController')->getExpenses('DATE_FORMAT(created_at, "%Y") as date');
+            $accountpayables = app('App\Http\Controllers\Features\FinancialController')->getExpenses('DATE_FORMAT(created_at, "%Y") as date');
         }else
         {
-            $collections = app('App\Http\Controllers\FinancialController')->getCollections('DATE_FORMAT(created_at, "%d-%b-%Y") as date');
+            $collections = app('App\Http\Controllers\Features\FinancialController')->getCollections('DATE_FORMAT(created_at, "%d-%b-%Y") as date');
 
-            $accountpayables = app('App\Http\Controllers\FinancialController')->getExpenses('DATE_FORMAT(created_at, "%d-%b-%Y") as date');
+            $accountpayables = app('App\Http\Controllers\Features\FinancialController')->getExpenses('DATE_FORMAT(created_at, "%d-%b-%Y") as date');
         }
 
         $cashflows = $collections->merge($accountpayables);
 
-        $total_occupancy_rent = app('App\Http\Controllers\FinancialController')->get_total_occupancy_rent(Session::get('property_uuid'));
+        $total_occupancy_rent = app('App\Http\Controllers\Features\FinancialController')->get_total_occupancy_rent(Session::get('property_uuid'));
 
-        $total_vacancy_rent = app('App\Http\Controllers\FinancialController')->get_total_vacancy_rent(Session::get('property_uuid'));
+        $total_vacancy_rent = app('App\Http\Controllers\Features\FinancialController')->get_total_vacancy_rent(Session::get('property_uuid'));
 
-        $total_occupied_rent = app('App\Http\Controllers\FinancialController')->get_total_occupied_rent(Session::get('property_uuid'));
+        $total_occupied_rent = app('App\Http\Controllers\Features\FinancialController')->get_total_occupied_rent(Session::get('property_uuid'));
 
         $potential_gross_rent = $total_occupancy_rent;
 
@@ -58,11 +58,11 @@ class FinancialIndexComponent extends Component
 
         $effective_gross_rent = $total_occupied_rent;
 
-        $collected_rent = app('App\Http\Controllers\FinancialController')->get_total_collected_rent(Session::get('property_uuid'));
+        $collected_rent = app('App\Http\Controllers\Features\FinancialController')->get_total_collected_rent(Session::get('property_uuid'));
 
-        $billed_rent = app('App\Http\Controllers\FinancialController')->get_total_billed_rent(Session::get('property_uuid'));
+        $billed_rent = app('App\Http\Controllers\Features\FinancialController')->get_total_billed_rent(Session::get('property_uuid'));
 
-        $actual_revenue_collected = app('App\Http\Controllers\FinancialController')->get_actual_revenue_collected(Session::get('property_uuid'));
+        $actual_revenue_collected = app('App\Http\Controllers\Features\FinancialController')->get_actual_revenue_collected(Session::get('property_uuid'));
 
         $revenues = DB::table('collections')
         ->select(DB::raw("SUM(collections.collection) as amount"), 'particulars.particular as particular')

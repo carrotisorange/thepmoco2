@@ -1,5 +1,5 @@
-<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-<thead class="">
+<x-table-component>
+    <x-table-head-component>
         <tr>
             <x-th>#</x-th>
             <x-th>NAME</x-th>
@@ -8,8 +8,8 @@
             <x-th>  EMAIL </x-th>
             <x-th></x-th>
         </tr>
-    </thead>
-    <tbody class="bg-white divide-y divide-gray-200">
+    </x-table-head-component>
+    <x-table-body-component>
     @foreach ($guardians as $index => $guardian)
         <tr>
             <x-th> {{ $index+1 }}  </x-th>
@@ -25,5 +25,5 @@
         </tr>
        @livewire('edit-guardian-component', ['guardian_details' => $guardian], key($guardian->id))
     @endforeach
-    </tbody>
-</table>
+    </x-table-body-component>
+</x-table-component>

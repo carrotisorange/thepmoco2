@@ -3,21 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Owner;
-use App\Models\Property;
 use Illuminate\Validation\Rule;
-use App\Models\Bill;
 use DB;
 use Session;
 use Carbon\Carbon;
-use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendBillToOwner;
-use App\Models\Collection;
+use App\Models\{Owner,Property,Collection,Bill,User};
+
 
 class OwnerBillController extends Controller
 {
-
     public function get_bill_balance($bill_id)
     {
         return Bill::where('id',$bill_id)->sum('bill') - Bill::where('id',$bill_id)->sum('initial_payment');
@@ -41,7 +37,7 @@ class OwnerBillController extends Controller
         try {
              DB::transaction(function () use ($property, $request, $owner, $attributes){
 
-            $bill_no = app('App\Http\Controllers\BillController')->getLatestBillNo($property->uuid);
+            $bill_no = app('App\Http\Controllers\Features\BillController')->getLatestBillNo($property->uuid);
 
             $attributes['bill_no']= $bill_no;
 
@@ -80,11 +76,11 @@ class OwnerBillController extends Controller
 
     public function export(Request $request, Property $property, Owner $owner)
     {
-       app('App\Http\Controllers\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
+       app('App\Http\Controllers\Features\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
 
        $data = $this->get_bill_data($owner, $request->due_date, $request->penalty, $request->note_to_bill);
 
-       $folder_path = 'owners.bills.export';
+       $folder_path = 'features.owners.bills.export';
 
        $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
 
@@ -93,7 +89,7 @@ class OwnerBillController extends Controller
 
     public function send(Request $request, Property $property, Owner $owner)
     {
-        app('App\Http\Controllers\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
+        app('App\Http\Controllers\Features\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
 
         $data = $this->get_bill_data($owner, $request->due_date, $request->penalty, $request->note_to_bill);
 

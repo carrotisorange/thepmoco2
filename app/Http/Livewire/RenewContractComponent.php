@@ -124,7 +124,7 @@ class RenewContractComponent extends Component
    {
          $contract_uuid = Str::uuid();
 
-         $bill_no = app('App\Http\Controllers\BillController')->getLatestBillNo($this->contract_details->property_uuid);
+         $bill_no = app('App\Http\Controllers\Features\BillController')->getLatestBillNo($this->contract_details->property_uuid);
 
          $reference_no = Carbon::now()->timestamp.''.$bill_no;
 

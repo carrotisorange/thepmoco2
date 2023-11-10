@@ -1,5 +1,5 @@
-<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-    <thead class="">
+<x-table-component>
+    <x-table-head-component>
         <tr>
             <x-th>#</x-th>
             <x-th>Election Year</x-th>
@@ -13,15 +13,15 @@
             <x-th>Resume</x-th>
 
         </tr>
-    </thead>
-    <tbody class="bg-white divide-y divide-gray-200">
+    </x-table-head-component>
+    <x-table-body-component>
         @foreach ($candidates as $index => $candidate)
         <?php
-        $houseOwner = App\Models\HouseOwner::find($candidate->house_owner_id);
-        $position = App\Models\Position::find($houseOwner->id)->position;
-        $electionYear = Carbon\Carbon::parse(App\Models\Election::find($candidate->election_id)->created_at)->format('Y');
-        $house = App\Models\House::find(App\Models\HouseOwnership::where('house_owner_id',$candidate->house_owner_id)->pluck('house_id')->first())->house;
-    ?>
+            $houseOwner = App\Models\HouseOwner::find($candidate->house_owner_id);
+            $position = App\Models\Position::find($houseOwner->id)->position;
+            $electionYear = Carbon\Carbon::parse(App\Models\Election::find($candidate->election_id)->created_at)->format('Y');
+            $house = App\Models\House::find(App\Models\HouseOwnership::where('house_owner_id',$candidate->house_owner_id)->pluck('house_id')->first())->house;
+        ?>
         <tr>
             <x-td>{{ $index+1 }}</x-td>
             <x-td>{{ $electionYear }}</x-td>
@@ -40,5 +40,5 @@
             </x-td>
         </tr>
         @endforeach
-    </tbody>
-</table>
+    </x-table-body-component>
+</x-table-component>

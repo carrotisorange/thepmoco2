@@ -3,20 +3,12 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Bill;
-use App\Models\Collection;
 use Carbon\Carbon;
 use DB;
-use Illuminate\Validation\Rule;
-
-use Livewire\WithPagination;
-use App\Models\Contract;
-use App\Models\Tenant;
-use App\Models\Particular;
-use App\Models\PropertyParticular;
 use Session;
-use App\Models\Unit;
-use App\Models\Property;
+use Illuminate\Validation\Rule;
+use Livewire\WithPagination;
+use App\Models\{Contract,Tenant,Particular,PropertyParticular,Bill,Collection,Unit,Property};
 
 class BillIndexComponent extends Component
 {
@@ -215,9 +207,9 @@ class BillIndexComponent extends Component
       ->where('contracts.status','active')
       ->pluck('tenant_uuid');
 
-      $bill_no = app('App\Http\Controllers\BillController')->getLatestBillNo(Session::get('property_uuid'));
+      $bill_no = app('App\Http\Controllers\Features\BillController')->getLatestBillNo(Session::get('property_uuid'));
 
-      $batch_no = app('App\Http\Controllers\BillController')->generate_bill_batch_no($bill_no);
+      $batch_no = app('App\Http\Controllers\Features\BillController')->generate_bill_batch_no($bill_no);
 
       $bill_count = Contract::where('property_uuid', Session::get('property_uuid'))->where('status', 'active')->count();
 
@@ -237,9 +229,9 @@ class BillIndexComponent extends Component
             $attributes['tenant_uuid'] = $tenant_uuid[$i];
 
                if($this->particular_id === '8'){
-                  $attributes['bill'] = -($this->bill);
+                    $attributes['bill'] = -($this->bill);
                }else{
-                $attributes['bill'] = $rent;
+                    $attributes['bill'] = $rent;
                }
 
                 $attributes['bill_no'] = $bill_no++;

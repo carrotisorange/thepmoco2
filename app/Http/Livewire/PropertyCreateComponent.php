@@ -65,7 +65,7 @@ class PropertyCreateComponent extends Component
             DB::transaction(function () use ($validatedData){
 
 
-               $new_property = app('App\Http\Controllers\PropertyController')->store($validatedData, $this->type_id);
+               $new_property = app('App\Http\Controllers\Features\PropertyController')->store($validatedData, $this->type_id);
 
                app('App\Http\Controllers\UserPropertyController')->store($new_property->uuid->toString(), auth()->user()->id, 0, 1, 5);
 
@@ -77,7 +77,7 @@ class PropertyCreateComponent extends Component
 
                app('App\Http\Controllers\PointController')->store($new_property->uuid->toString(), auth()->user()->id, 50, 6);
 
-               app('App\Http\Controllers\PropertyController')->store_property_session($new_property->uuid->toString());
+               app('App\Http\Controllers\Features\PropertyController')->store_property_session($new_property->uuid->toString());
 
             //    app('App\Http\Controllers\PropertyDocumentController')->store($new_property->uuid->toString());
 

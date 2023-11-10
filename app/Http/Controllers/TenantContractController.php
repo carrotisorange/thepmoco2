@@ -2,23 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Tenant;
-use App\Models\Unit;
-use App\Models\Property;
-use Session;
+
+use App\Models\{Tenant,Unit,Property};
 
 class TenantContractController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function index(Property $property, Tenant $tenant)
     {
-        return view('tenants.contracts.index',[
+        return view('features.tenants.contracts.index',[
             'tenant' => Tenant::find($tenant->uuid),
             'contracts' => Tenant::find($tenant->uuid)->contracts()->orderBy('created_at', 'desc')->get(),
             'units' => Property::find(Session::get('property_uuid'))->units()->where('status_id', '1')->get(),
@@ -33,7 +26,8 @@ class TenantContractController extends Controller
     public function create(Property $property, Tenant $tenant)
     {
         Session::put('tenant_uuid', $tenant->uuid);
-        return view('units.index', [
+
+        return view('features.units.index', [
             'property' => $property,
             'tenant' => $tenant,
             'batch_no' => '',

@@ -1,5 +1,5 @@
-<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-   <thead class="">
+<x-table-component>
+   <x-table-head-component>
         <tr>
             <x-th>#</x-th>
             <x-th>NAME</x-th>
@@ -9,8 +9,8 @@
             <x-th>IS AUTHORIZED?</x-th>
             <x-th></x-th>
         </tr>
-    </thead>
-    <tbody class="bg-white divide-y divide-gray-200">
+    </x-table-head-component>
+    <x-table-body-component>
         @foreach($personnels as $index => $personnel )
         <tr>
             <x-td>{{ $index+1 }}</x-td>
@@ -57,5 +57,5 @@
         </tr>
         @livewire('edit-personnel-component', ['personnel' => $personnel], key(Carbon\Carbon::now()->timestamp.''.$index.''.$personnel->id))
         @endforeach
-    </tbody>
-</table>
+    </x-table-body-component>
+</x-table-component>

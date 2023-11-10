@@ -1,5 +1,4 @@
 <div>
-
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -9,74 +8,18 @@
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 @if($propertyPersonnelsCount)
-                <x-button data-modal-target="create-personnel-modal" data-modal-toggle="create-personnel-modal"> New
-                    Personnel
-                </x-button>
+                <x-button data-modal-toggle="create-personnel-modal"> New Personnel</x-button>
                 @endif
-
             </div>
         </div>
-
-        {{-- <div class="mt-3">
-            @if($propertyPersonnelsCount)
-
-            <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-                <div class="sm:col-span-6">
-
-                    <label for="default-search"
-                        class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
-                    <div class="relative w-full mb-5">
-                        <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                            </svg>
-                        </div>
-                        <input type="search" id="search" wire:model="search"
-                            class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Search for tenants..." required>
-
-                    </div>
-
-                </div>
-
-                <div class="sm:col-span-3">
-                    <x-select name="category" wire:model="category">
-                        <option value="" selected>Filter category</option>
-                        @foreach ($categories as $category)
-                        <option value="{{ $category->category }}">{{ $category->category }}</option>
-                        @endforeach
-                    </x-select>
-
-                </div>
-
-                <div class="sm:col-span-3">
-                    <x-select name="status" wire:model="status">
-                        <option value="" selected>Filter status</option>
-                        @foreach ($statuses as $status)
-                        <option value="{{ $status->status }}">{{ $status->status }}</option>
-                        @endforeach
-                    </x-select>
-
-                </div>
-
-            </div>
-            @endif
-
-        </div> --}}
         <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-
                 <div class="mb-5 mt-2 relative overflow-hidden ring-black ring-opacity-5 md:rounded-lg">
                     @if(!$propertyPersonnelsCount)
                     <nav aria-label="Progress">
-                        <ol role="list"
-                            class="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">
+                        <ol role="list" class="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">
                             @foreach($steps as $index => $step)
-                            <?php
-                                    $stepValue = App\Models\PropertyStepper::find($step)->step;
-                                ;?>
+                            <?php $stepValue = App\Models\PropertyStepper::find($step)->step ;?>
                             @if($step == 1 || $step == 6 || $step == 2 || $step == 8 || $step == 4)
                             <li class="relative md:flex md:flex-1">
                                 <!-- Completed Step -->
@@ -96,14 +39,9 @@
                                             }}</span>
                                     </span>
                                 </a>
-
                                 <!-- Arrow separator for lg screens and up -->
                                 <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
-                                    <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none"
-                                        preserveAspectRatio="none">
-                                        <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke"
-                                            stroke="currentcolor" stroke-linejoin="round" />
-                                    </svg>
+                                  @include('layouts.separator')
                                 </div>
                             </li>
                             @elseif($step == 5)
@@ -120,11 +58,7 @@
 
                                 <!-- Arrow separator for lg screens and up -->
                                 <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
-                                    <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none"
-                                        preserveAspectRatio="none">
-                                        <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke"
-                                            stroke="currentcolor" stroke-linejoin="round" />
-                                    </svg>
+                                   @include('layouts.separator')
                                 </div>
                             </li>
                             @else
@@ -136,24 +70,17 @@
                                             class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
                                             <span class="text-gray-500 group-hover:text-gray-900">0{{ $index+1 }}</span>
                                         </span>
-                                        <span
-                                            class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add
+                                        <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add
                                             a {{ $stepValue }}</span>
                                     </span>
                                 </a>
-
                                 <!-- Arrow separator for lg screens and up -->
                                 <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
-                                    <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none"
-                                        preserveAspectRatio="none">
-                                        <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke"
-                                            stroke="currentcolor" stroke-linejoin="round" />
-                                    </svg>
+                                   @include('layouts.separator')
                                 </div>
                             </li>
                             @endif
                             @endforeach
-
                         </ol>
                     </nav>
                     <!-- This example requires Tailwind CSS v2.0+ -->
@@ -174,16 +101,12 @@
                             </x-button>
                         </div>
                     </div>
-
                     @else
-                    @include('tables.personnels')
+                        @include('tables.personnels')
                     @endif
-
-
                 </div>
             </div>
         </div>
-
     </div>
     @livewire('create-personnel-component')
 </div>

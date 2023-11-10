@@ -23,6 +23,7 @@ use App\Models\Bill;
 use App\Models\Unit;
 use App\Models\Guest;
 use App\Models\Booking;
+use App\Models\Tenant;
 
 
 class UnitShowComponent extends Component
@@ -111,47 +112,6 @@ class UnitShowComponent extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function redirectToTheCreateUnitInventoryPage(){
-
-
-        return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit_details->uuid.'/inventory/'.Str::random(8).'/create');
-    }
-
-    public function redirectToTheCreateOwnerPage(){
-
-
-
-        return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit_details->uuid.'/owner/'.Str::random(8).'/create');
-    }
-
-    public function redirectToTheCreateTenantPage(){
-
-
-
-        return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit_details->uuid.'/tenant/'.Str::random(8).'/create');
-    }
-
-    public function redirectToTheCreateGuestPage(){
-
-
-
-        return redirect('/property/'.Session::get('property_uuid').'/calendar');
-    }
-
-    public function redirectToTheCreateUtilitiesPage(){
-
-
-
-        return redirect('/property/'.Session::get('property_uuid').'/utility/');
-    }
-
-    public function redirectToTheCreateConcernPage(){
-
-
-
-        return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit_details->uuid.'/concern/'.Str::random(8).'/create');
-    }
-
     public function submitForm()
     {
         $validatedData = $this->validate();
@@ -169,7 +129,6 @@ class UnitShowComponent extends Component
             return redirect(url()->previous())->with('success', 'Changes Saved!');
 
         }catch(\Exception $e){
-
             return redirect(url()->previous())->with('error', $e);
         }
     }
@@ -177,41 +136,34 @@ class UnitShowComponent extends Component
     public function deleteUnit()
      {
          try {
-
             DB::beginTransaction();
+                $tenantUuids = Contract::where('unit_uuid', $this->unit_details->uuid)->pluck('tenant_uuid');
+                Contract::where('unit_uuid', $this->unit_details->uuid)->delete();
+                Tenant::whereIn('uuid', $tenantUuids)->delete();
+                DeedOfSale::where('unit_uuid', $this->unit_details->uuid)->delete();
+                Utility::where('unit_uuid', $this->unit_details->uuid)->delete();
+                Guest::where('unit_uuid', $this->unit_details->uuid)->delete();
+                Concern::where('unit_uuid', $this->unit_details->uuid)->delete();
+                Bill::where('unit_uuid', $this->unit_details->uuid)->delete();
+                Collection::where('unit_uuid', $this->unit_details->uuid)->delete();
+                UnitInventory::where('unit_uuid', $this->unit_details->uuid)->delete();
+                AccountPayableLiquidation::where('unit_uuid', $this->unit_details->uuid)->delete();
+                AccountPayableLiquidationParticular::where('unit_uuid', $this->unit_details->uuid)->delete();
+                AccountPayableParticular::where('unit_uuid', $this->unit_details->uuid)->delete();
+                Remittance::where('unit_uuid', $this->unit_details->uuid)->delete();
+                Booking::where('unit_uuid', $this->unit_details->uuid)->delete();
+                Guest::where('unit_uuid', $this->unit_details->uuid)->delete();
+                Unit::where('uuid', $this->unit_details->uuid)->delete();
 
-               Contract::where('unit_uuid', $this->unit_details->uuid)->delete();
-               DeedOfSale::where('unit_uuid', $this->unit_details->uuid)->delete();
-               Utility::where('unit_uuid', $this->unit_details->uuid)->delete();
-               Guest::where('unit_uuid', $this->unit_details->uuid)->delete();
-               Concern::where('unit_uuid', $this->unit_details->uuid)->delete();
-               Bill::where('unit_uuid', $this->unit_details->uuid)->delete();
-               Collection::where('unit_uuid', $this->unit_details->uuid)->delete();
-               UnitInventory::where('unit_uuid', $this->unit_details->uuid)->delete();
-               AccountPayableLiquidation::where('unit_uuid', $this->unit_details->uuid)->delete();
-               AccountPayableLiquidationParticular::where('unit_uuid', $this->unit_details->uuid)->delete();
-               AccountPayableParticular::where('unit_uuid', $this->unit_details->uuid)->delete();
-               Remittance::where('unit_uuid', $this->unit_details->uuid)->delete();
+            DB::commit();
 
-               Booking::where('unit_uuid', $this->unit_details->uuid)->delete();
-               Guest::where('unit_uuid', $this->unit_details->uuid)->delete();
-               Unit::where('uuid', $this->unit_details->uuid)->delete();
-
-                DB::commit();
-
-                return redirect('/property/'.$this->unit_details->property_uuid.'/unit/')->with('success', 'Changes Saved!');
+            return redirect('/property/'.$this->unit_details->property_uuid.'/unit/')->with('success', 'Changes Saved!');
 
         }catch (\Exception $e) {
-               DB::rollback();
+            DB::rollback();
             return redirect(url()->previous())->with('error', $e);
         }
      }
-
-    
-    public function closeModal(){
-
-        return redirect('/property/'.$this->unit_details->property_uuid.'/unit/'.$this->unit_details->uuid);
-    }
 
 
     public function render()
@@ -259,16 +211,16 @@ class UnitShowComponent extends Component
             'floors' => app('App\Http\Controllers\FloorController')->index(null),
             'categories' => app('App\Http\Controllers\CategoryController')->index(null),
             'statuses' => app('App\Http\Controllers\StatusController')->index(null),
-            'bookings' => app('App\Http\Controllers\GuestController')->show_unit_guests($this->unit_details->uuid),
-            'bills' => app('App\Http\Controllers\BillController')->show_unit_bills($this->unit_details->uuid),
+            'bookings' => app('App\Http\Controllers\Features\GuestController')->show_unit_guests($this->unit_details->uuid),
+            'bills' => app('App\Http\Controllers\Features\BillController')->show_unit_bills($this->unit_details->uuid),
             'deed_of_sales' => app('App\Http\Controllers\DeedOfSaleController')->show_unit_deed_of_sales($this->unit_details->uuid),
-            'contracts' => app('App\Http\Controllers\ContractController')->show_unit_contracts($this->unit_details->uuid),
-            'total_collected_bills' => app('App\Http\Controllers\BillController')->get_unit_bills($this->unit_details->uuid,null,'paid'),
-            'total_uncollected_bills' => app('App\Http\Controllers\BillController')->get_unit_bills($this->unit_details->uuid ,null,'unpaid'),
+            'contracts' => app('App\Http\Controllers\Features\ContractController')->show_unit_contracts($this->unit_details->uuid),
+            'total_collected_bills' => app('App\Http\Controllers\Features\BillController')->get_unit_bills($this->unit_details->uuid,null,'paid'),
+            'total_uncollected_bills' => app('App\Http\Controllers\Features\BillController')->get_unit_bills($this->unit_details->uuid ,null,'unpaid'),
             'utilities' => $utilities,
             'concerns' => Concern::where('unit_uuid', $this->unit_details->uuid)->get(),
             'inventories' => UnitInventory::where('unit_uuid', $this->unit_details->uuid)->where('contract_uuid', '')->get(),
-            'collections' => app('App\Http\Controllers\UnitController')->getCollections($this->unit_details->property_uuid, $this->unit_details->uuid),
+            'collections' => app('App\Http\Controllers\Features\UnitController')->getCollections($this->unit_details->property_uuid, $this->unit_details->uuid),
             'revenues' => $revenues,
             'expenses' => $expenses,
             'remittances' => Remittance::where('unit_uuid', $this->unit_details->uuid)

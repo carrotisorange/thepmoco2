@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Status;
-use Illuminate\Http\Request;
-use Session;
 use DB;
+use App\Models\Status;
 
 class StatusController extends Controller
 {

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Xendit\Xendit;
-use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
@@ -14,8 +13,9 @@ use Illuminate\Validation\Rule;
 use Illuminate\Auth\Events\Registered;
 use DB;
 use Str;
-use App\Models\Plan;
 use Session;
+
+use App\Models\{Plan,User};
 
 class CheckoutController extends Controller
 {
@@ -62,13 +62,13 @@ class CheckoutController extends Controller
             // }else{
             //     return redirect('/thankyoutrial/');
             // }
-        
+
        }catch(\Exception $e)
        {
             DB::rollback();
 
             return back()->with('Cannot perform your action');
-       }    
+       }
     }
 
     public function show_thankyou_regular_plan_page()
@@ -90,7 +90,7 @@ class CheckoutController extends Controller
 public function charge_user_account($plan_id, $external_id, $description, $email, $mobile_number, $name, $amount, $interval)
 {
     Xendit::setApiKey(config('services.xendit.xendit_secret_key_dev'));
-    
+
         $params = [
             'external_id' => $external_id,
             'payer_email' => $email,
@@ -132,7 +132,7 @@ public function charge_user_account($plan_id, $external_id, $description, $email
     }
 
     public function show_complete_profile_page(User $user)
-    {  
+    {
         if($user->password)
         {
             abort(403);
@@ -152,7 +152,7 @@ public function charge_user_account($plan_id, $external_id, $description, $email
           'mobile_number' => ['required', Rule::unique('users', 'mobile_number')->ignore($user->id)],
           'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-    
+
         User::where('username', $user->username)
         ->update([
             //'name' => $request->name,
@@ -168,7 +168,7 @@ public function charge_user_account($plan_id, $external_id, $description, $email
 
         return redirect(RouteServiceProvider::HOME);
     }
-    
+
     public function show_privacy_policy()
     {
         return ;

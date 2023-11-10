@@ -3,10 +3,9 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Remittance;
 use Carbon\Carbon;
-use App\Models\Collection;
 use Session;
+use App\Models\{Collection,Remittance};
 
 class RemittanceIndexComponent extends Component
 {
@@ -122,7 +121,7 @@ class RemittanceIndexComponent extends Component
 
         foreach($collections as $collection){
              if($collection->bill->particular_id === 1){
-                app('App\Http\Controllers\RemittanceController')->store(
+                app('App\Http\Controllers\Features\RemittanceController')->store(
                     $collection->property_uuid,
                     $collection->unit->uuid,
                     $collection->ar_no,

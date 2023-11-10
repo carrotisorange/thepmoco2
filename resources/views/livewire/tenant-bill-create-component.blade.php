@@ -11,10 +11,10 @@
                                 aria-hidden="true">
                                 <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
                             </svg>
-                            <button
-                                onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant->uuid }}'"
+                            <button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant->uuid }}'"
                                 class="ml-4 text-lg font-medium text-gray-500 hover:text-gray-700 ">
-                                {{ $tenant->tenant }} </button>
+                                {{ $tenant->tenant }} 
+                            </button>
                         </div>
                     </li>
 

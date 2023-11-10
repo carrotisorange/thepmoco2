@@ -15,7 +15,7 @@ class Unit extends Model
     public $incrementing = false;
 
     public $primaryKey = 'uuid';
-    
+
     public function getRouteKeyName()
     {
         return 'uuid';
@@ -33,7 +33,8 @@ class Unit extends Model
         'is_enrolled' => 0,
         'is_the_unit_for_rent_to_tenant' => 1,
         'floor_id' => 1,
-        'rent_type' => 'rent_per_unit'
+        'rent_type' => 'rent_per_unit',
+        'rent_duration' => 'long_term'
     ];
 
     public function category()

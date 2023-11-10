@@ -2,11 +2,10 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Property;
 use Livewire\Component;
 use Session;
 use Livewire\WithPagination;
-use App\Models\Booking;
+use App\Models\{Property,Booking};
 
 class GuestIndexComponent extends Component
 {

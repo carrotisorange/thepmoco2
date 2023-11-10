@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Bank;
-use App\Models\Unit;
-use App\Models\Owner;
-use App\Models\Property;
 use Session;
+use App\Models\{Bank,Unit,Owner,Property};
 
 class BankController extends Controller
 {

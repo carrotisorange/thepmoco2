@@ -2,17 +2,16 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
-use App\Models\Property;
-use App\Models\Contract;
 use Session;
+use Livewire\Component;
+use App\Models\{Property,Contract};
 
 class ContractIndexComponent extends Component
 {
     public $status;
-    
+
     public function redirectToUnitSelectionPage(){
-        
+
 
         // Session::put('tenant_uuid', $tenant->uuid);
 
@@ -24,7 +23,7 @@ class ContractIndexComponent extends Component
     }
 
     public function render()
-    {   
+    {
         $statuses = Contract::where('property_uuid', Session::get('property_uuid'))
         ->select('status')
         ->whereNotNull('status')

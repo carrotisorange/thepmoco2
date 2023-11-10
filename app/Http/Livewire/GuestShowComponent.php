@@ -23,7 +23,6 @@ class GuestShowComponent extends Component
 {
     public $guest_details;
 
-    //guest input fields
     public $guest;
     public $uuid;
     public $mobile_number;
@@ -118,7 +117,6 @@ class GuestShowComponent extends Component
 
     public function exportGuest(){
 
-
         return redirect('/property/'.Session::get('property_uuid').'/guest/'.$this->guest_details->uuid.'/export');
     }
 
@@ -131,7 +129,7 @@ class GuestShowComponent extends Component
             'price' => 'nullable'
         ]);
 
-        $validated['uuid'] = app('App\Http\Controllers\PropertyController')->generate_uuid();
+        $validated['uuid'] = app('App\Http\Controllers\Features\PropertyController')->generate_uuid();
         $validated['property_uuid'] = Session::get('property_uuid');
         $validated['guest_uuid'] = $this->guest_details->uuid;
 

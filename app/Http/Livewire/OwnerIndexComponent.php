@@ -2,12 +2,10 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Owner;
 use Livewire\Component;
 use Session;
 use Livewire\WithPagination;
-use App\Models\Property;
-use App\Models\Type;
+use App\Models\{Property,Type,Owner};
 
 class OwnerIndexComponent extends Component
 {

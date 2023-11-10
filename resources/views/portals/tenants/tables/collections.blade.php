@@ -7,7 +7,7 @@
             <x-th> DATE DEPOSITED</x-th>
             <x-th> MODE OF PAYMENT </x-th>
             <x-th> CHEQUE NO </x-th>
-            <x-th> BANK</x-th>
+            <x-th> BANK</x-th>k
             <x-th> AMOUNT PAID</x-th>
             <x-th></x-th>
             <x-th></x-th>

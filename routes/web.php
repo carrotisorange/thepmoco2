@@ -3,41 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Route;
-use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\PortfolioController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 require __DIR__.'/auth.php';
 
-require __DIR__.'/portfolio.php';
+require __DIR__.'/feature.php';
 
-require __DIR__.'/property.php';
+require __DIR__.'/portals/sale.php';
 
-require __DIR__.'/sale.php';
+require __DIR__.'/portals/tenant.php';
 
-require __DIR__.'/tenant.php';
-
-require __DIR__.'/owner.php';
+require __DIR__.'/portals/owner.php';
 
 require __DIR__.'/user.php';
 
-require __DIR__.'/marketing.php';
-
-//All routes that do not require authentication and verification
 require __DIR__.'/checkout.php';
 
-//show this route if a user tries to access broken links
+require __DIR__.'/portfolio.php';
+
 Route::fallback(function () {
     return view('layouts.not-found');
 });
@@ -58,13 +41,16 @@ Route::get('/landing-propsuite', function(){
             return view('landing.landinglanding');});
 
 
- //Routes for Property
 Route::controller(ArticleController::class)->group(function () {
     Route::get('articles', 'index')->name('articles');
     Route::get('article/{id}', 'show')->name('articles');
 });
 
 Route::get('/portfolio', [PortfolioController::class, 'index'])->name('charts.portfolio');
+
+Route::get('/dashboard', function(){
+    return view('dashboard.dashboard');
+});
 
 Route::get('/about', function(){
     return view('landing.about');
@@ -102,9 +88,6 @@ Route::get('/privacy', function(){
     return view('landing.privacy');
 });
 
-// articles
-
-
 Route::get('/hoa-payable', function(){
     return view('HOA.AP.hoa-payable');
 });
@@ -117,7 +100,6 @@ Route::get('/homeowners', function(){
     return view('HOA.homeowners.homeowners');
 });
 
-//homeowner portal
 
 Route::get('/welcome', function(){
     return view('HOA.homeowner.welcome');
@@ -127,10 +109,13 @@ Route::get('/profile-setup', function(){
     return view('HOA.homeowner.profile-setup');
 });
 
+Route::get('/propsuite', function(){
+    return view('propsuite.propsuite');
+});
 
-
-
-
+Route::get('/propsuite2', function(){
+    return view('propsuite.propsuite2');
+});
 
 Route::get('/proprent', function(){
     return view('proprent.proprent');
@@ -151,34 +136,6 @@ Route::get('/proppay', function(){
     return view('proppay.proppay');
 });
 
-Route::get('/pricing', function(){
-    return view('landing.pricing');
-});
-
-Route::get('/resources', function(){
-    return view('landing.resources');
-});
-
-Route::get('/propsuite', function(){
-    return view('landing.propsuite.propsuite');
-});
-
-Route::get('/propsuite-lite', function(){
-    return view('landing.propsuite.propsuite-lite');
-});
-
-Route::get('/propsuite-daily', function(){
-    return view('landing.propsuite.propsuite-daily');
-});
-
-Route::get('/propsuite-hoa', function(){
-    return view('landing.propsuite.propsuite-hoa');
-});
-
-Route::get('/propsuite-condo', function(){
-    return view('landing.propsuite.propsuite-condo');
-});
-
 Route::get('/demopage', function(){
     return view('landing.demopage');
 });
@@ -187,45 +144,22 @@ Route::get('/demo', function(){
     return view('landing.demo');
 });
 
-//demo
-Route::get('/calendar-demo', function(){
-    return view('help.calendar-demo');
-});
-
-Route::get('/guest-demo', function(){
-    return view('help.guest-demo');
-});
-
-Route::get('/utilities-demo', function(){
-    return view('help.utilities-demo');
-});
-
-Route::get('/personnel-demo', function(){
-    return view('help.personnel-demo');
-});
-
-Route::get('/bill-delete-demo', function(){
-    return view('help.bill-delete-demo');
-});
-
-
-
 Route::get('/survey', function(){
     return view('landing.survey');
 });
 
+Route::get('/ar', function(){
+    return view('export.ar');
+});
 
+Route::get('/collection', function(){
+    return view('export.collection');
+});
 
+Route::get('/liquidation', function(){
+    return view('export.liquidation');
+});
 
-// Route::post('/register', function(Request $request){
-
-//     $attributes = $request->validate([
-//     'name' => ['required', 'string', 'max:255'],
-//     'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-//     'mobile_number' => ['required', 'unique:users'],
-//     ]);
-
-//     User::create($attributes);
-
-//     return back()->with('success', 'The form has been submitted!');
-// });
+Route::get('/soa', function(){
+    return view('export.soa');
+});

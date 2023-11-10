@@ -1,86 +1,69 @@
-<table class="min-w-full">
-  <tdead class="">
+<x-table-component>
+    <x-table-head-component>
         <tr>
-            <x-td>
-                <b>Property</b>
-            </x-td>
+            <x-td> <b>Property</b></x-td>
             @foreach ($properties->where('status', 'active') as $property)
-            <?php $propertyTypeLandingPage = App\Models\Feature::find(App\Models\Type::find( $property->type_id)->landing_page_feature_id)->alias;
-                    ?>
+            <?php 
+                $propertyTypeLandingPage = App\Models\Feature::find(App\Models\Type::find( $property->type_id)->landing_page_feature_id)->alias;
+            ?>
             <x-td>
-                <a class="text-purple-500 text-decoration-line: underline" href="/property/{{ $property->property_uuid }}/{{ $propertyTypeLandingPage }}">{{Str::limit($property->property) }}</a>
+                <x-link-component link="/property/{{ $property->property_uuid }}/{{ $propertyTypeLandingPage }}">{{Str::limit($property->property) }}</x-link-component>
             </x-td>
             @endforeach
         </tr>
-    </tdead>
+    </x-table-head-component>
 
-    <tbody class="">
+    <x-table-body-component>
         <tr>
-            <x-td>
-              Type
-            </x-td>
+            <x-td> Type </x-td>
             @foreach ($properties->where('status', 'active') as $property)
-            <x-td>
-             {{
-            Str::limit($property->type) }}
-            </x-td>
+            <x-td>{{ Str::limit($property->type) }} </x-td>
             @endforeach
         </tr>
-    </tbody>
+    </x-table-body-component>
 
-
-    <tbody class="">
+    <x-table-head-component>
         <tr>
-            <x-td>
-                <b>Personnel</b></x-td>
+            <x-td> <b>Personnel</b></x-td>
             @foreach ($properties->where('status', 'active') as $property)
             <x-td>
                 {{ App\Models\Property::find($property->uuid)->property_users()->count() }}
             </x-td>
             @endforeach
         </tr>
-    </tbody>
+    </x-table-head-component>
 
-
-    <tbody class="">
+    <x-table-body-component>
         <tr>
-            <x-td>
-                <b>Unit</b></x-td>
+            <x-td> <b>Unit</b></x-td>
             @foreach ($properties as $property)
             <x-td>
                 {{ App\Models\Property::find($property->uuid)->units()->count() }}
             </x-td>
             @endforeach
-
         </tr>
-    <tbody>
+    </x-table-body-component>
 
-        <tbody class="">
-            <tr>
-                <x-td>
-                      <b>Rent Duration</b></x-td>
-
-
-            </tr>
-        <tbody>
-
-    <tbody class="">
+     <x-table-body-component>
         <tr>
-            <x-td>
-                  Transient </x-td>
+            <x-td> <b>Rent Duration</b>  </x-td>
+        </tr>
+    </x-table-body-component>
+
+   <x-table-body-component>
+        <tr>
+            <x-td>  Transient </x-td>
             @foreach ($properties as $property)
             <x-td>
                 {{ App\Models\Property::find($property->uuid)->units->where('rent_duration', 'daily')->count() }}
             </x-td>
             @endforeach
-
         </tr>
-    <tbody>
+    </x-table-body-component>
 
-         <tbody class="">
+   <x-table-body-component>
         <tr>
-            <x-td>
-                  Long Term </x-td>
+            <x-td>   Long Term </x-td>
             @foreach ($properties as $property)
             <x-td>
                 {{ App\Models\Property::find($property->uuid)->units->where('rent_duration', 'long_term')->count() }}
@@ -88,12 +71,11 @@
             @endforeach
 
         </tr>
-    <tbody>
+    </x-table-body-component>
 
-    <tbody class="">
+   <x-table-body-component>
         <tr>
-            <x-td>
-                  Short Term </x-td>
+            <x-td>   Short Term </x-td>
             @foreach ($properties as $property)
             <x-td>
                 {{ App\Models\Property::find($property->uuid)->units->where('rent_duration', 'short_term')->count() }}
@@ -101,129 +83,106 @@
             @endforeach
 
         </tr>
-    <tbody>
+    </x-table-body-component>
 
-        <tbody class="">
-            <tr>
-                <x-td>
-                      <b>Status</b></x-td>
-
-
-            </tr>
-        <tbody>
-
-    <tbody class="">
+    <x-table-body-component>
         <tr>
-            <x-td>
-                   Occupied </x-td>
+            <x-td>   <b>Status</b></x-td>
+
+
+        </tr>
+    </x-table-body-component>
+
+   <x-table-body-component>
+        <tr>
+            <x-td> Occupied </x-td>
             @foreach ($properties as $property)
             <x-td>
                 {{ App\Models\Property::find($property->uuid)->units->where('status_id', 2)->count() }}
             </x-td>
             @endforeach
-
         </tr>
-    <tbody>
+    </x-table-body-component>
 
-
-    <tbody class="">
+    <x-table-body-component>
         <tr>
-            <x-td>
-                   Vacant </x-td>
+            <x-td>Vacant </x-td>
             @foreach ($properties as $property)
             <x-td>
                 {{ App\Models\Property::find($property->uuid)->units->where('status_id', 1)->count() }}
             </x-td>
             @endforeach
-
         </tr>
-    </tbody>
+    </x-table-body-component>
 
 
-    <tbody class="">
+    <x-table-body-component>
         <tr>
-            <x-td>
-                    Reserved </x-td>
+            <x-td>  Reserved </x-td>
             @foreach ($properties as $property)
             <x-td>
                 {{ App\Models\Property::find($property->uuid)->units->where('status_id', 4)->count() }}
             </x-td>
             @endforeach
-
         </tr>
-    </tbody>
+    </x-table-body-component>
 
-
-    <tbody class="">
+    <x-table-body-component>
         <tr>
-            <x-td>
-                   Dirty
-            </x-td>
+            <x-td> Dirty </x-td>
             @foreach ($properties as $property)
             <x-td>
                 {{ App\Models\Property::find($property->uuid)->units->where('status_id', 3)->count() }}
             </x-td>
             @endforeach
-
         </tr>
-    </tbody>
+    </x-table-body-component>
 
-
-    <tbody class="">
+    <x-table-body-component>
         <tr>
-            <x-td>
-                   Pending
-            </x-td>
+            <x-td> Pending  </x-td>
             @foreach ($properties as $property)
             <x-td>
                 {{ App\Models\Property::find($property->uuid)->units->where('status_id', 6)->count() }}
             </x-td>
             @endforeach
-
         </tr>
-    </tbody>
+    </x-table-body-component>
 
-
-    <tbody class="">
+    <x-table-body-component>
         <tr>
-            <x-td>
-                   Under Maintenance </x-td>
+            <x-td>  Under Maintenance </x-td>
             @foreach ($properties as $property)
             <x-td>
                 {{ App\Models\Property::find($property->uuid)->units->where('status_id', 5)->count() }}
             </x-td>
             @endforeach
-
         </tr>
-    </tbody>
+    </x-table-body-component>
 
-    <tbody class="">
+    <x-table-body-component>
         <tr>
-            <x-td>
-                <b>Tenant</b>
-            </x-td>
+            <x-td>  <b>Tenant</b>   </x-td>
             @foreach ($properties as $property)
             <x-td>
                 {{ App\Models\Property::find($property->uuid)->tenants->count() }}
             </x-td>
             @endforeach
         </tr>
-    </tbody>
+    </x-table-body-component>
 
-    <tbody class="">
+    <x-table-body-component>
             <tr>
-                <x-td>
-                      Active</x-td>
-                    @foreach ($properties as $property)
+                <x-td>  Active</x-td>
+            @foreach ($properties as $property)
           <x-td>
                 {{ App\Models\Property::find($property->uuid)->tenants->where('status', 'active')->count() }}
             </x-td>
             @endforeach
-
             </tr>
-        <tbody>
+        </x-table-body-component>
 
-            <tbody class="">
+    <x-table-body-component>
                 <tr>
                     <x-td>
                           Inactive</x-td>
@@ -234,11 +193,9 @@
                     @endforeach
 
                 </tr>
-            <tbody>
+            </x-table-body-component>
 
-            <tbody>
-
-            <tbody class="">
+<x-table-body-component>
                 <tr>
                     <x-td>
                           Forced Moveout</x-td>
@@ -249,9 +206,9 @@
                     @endforeach
 
                 </tr>
-            <tbody>
+            </x-table-body-component>
 
-    <tbody class="">
+<x-table-body-component>
         <tr>
             <x-td>
                 Occupancy Rate
@@ -267,9 +224,9 @@
             </x-td>
             @endforeach
         </tr>
-    </tbody>
+    </x-table-body-component>
 
-     <tbody class="">
+<x-table-body-component>
         <tr>
             <x-td>
               Posted Bills
@@ -280,9 +237,9 @@
             </x-td>
             @endforeach
         </tr>
-    </tbody>
+    </x-table-body-component>
 
-    <tbody class="">
+<x-table-body-component>
         <tr>
             <x-td>
                  Collected Bills
@@ -293,9 +250,9 @@
             </x-td>
             @endforeach
         </tr>
-    </tbody>
+    </x-table-body-component>
 
-    <tbody class="">
+<x-table-body-component>
         <tr>
             <x-td>
                  Uncollected Bills
@@ -306,9 +263,9 @@
             </x-td>
             @endforeach
         </tr>
-    </tbody>
+    </x-table-body-component>
 
-    <tbody class="">
+<x-table-body-component>
         <tr>
             <x-td>
                 Collection Efficiency
@@ -325,9 +282,9 @@
             </x-td>
             @endforeach
         </tr>
-    </tbody>
+    </x-table-body-component>
 
-    <tbody class="">
+<x-table-body-component>
         <tr>
             <x-td>
                 Past Due Accounts
@@ -339,10 +296,10 @@
             </x-td>
             @endforeach
         </tr>
-    </tbody>
+    </x-table-body-component>
 
 
-            <tbody class="">
+<x-table-body-component>
         <tr>
             <x-td>
                 <b>Contract</b></x-td>
@@ -352,9 +309,9 @@
             </x-td>
             @endforeach
         </tr>
-    </tbody>
+    </x-table-body-component>
 
-    <tbody class="">
+<x-table-body-component>
         <tr>
             <x-td>
                   Active </x-td>
@@ -364,9 +321,9 @@
             </x-td>
             @endforeach
         </tr>
-    </tbody>
+    </x-table-body-component>
 
-    <tbody class="">
+<x-table-body-component>
         <tr>
             <x-td>
                    Expired </x-td>
@@ -376,9 +333,9 @@
             </x-td>
             @endforeach
         </tr>
-    </tbody>
+    </x-table-body-component>
 
-    <tbody class="">
+  <x-table-body-component>
         <tr>
             <x-td>
              <b>Concern</b>
@@ -389,8 +346,8 @@
             </x-td>
             @endforeach
         </tr>
-    </tbody>
- <tbody class="">
+    </x-table-body-component>
+ <x-table-body-component>
         <tr>
             <x-td>
                  Active
@@ -401,9 +358,9 @@
             </x-td>
             @endforeach
         </tr>
-    </tbody>
+    </x-table-body-component>
 
-    <tbody class="">
+   <x-table-body-component>
         <tr>
             <x-td>
                  Pending
@@ -414,8 +371,8 @@
             </x-td>
             @endforeach
         </tr>
-    </tbody>
-    <tbody class="">
+    </x-table-body-component>
+<x-table-body-component>
         <tr>
             <x-td>
                  Closed
@@ -426,5 +383,5 @@
             </x-td>
             @endforeach
         </tr>
-    </tbody>
-</table>
+    </x-table-body-component>
+</x-table-component>

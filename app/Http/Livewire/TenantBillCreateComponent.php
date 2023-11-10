@@ -88,7 +88,7 @@ class TenantBillCreateComponent extends Component
 
       try {
 
-         $bill_no = app('App\Http\Controllers\BillController')->getLatestBillNo(Session::get('property_uuid'));
+         $bill_no = app('App\Http\Controllers\Features\BillController')->getLatestBillNo(Session::get('property_uuid'));
 
          if($this->particular_id === '8'){
             $this->bill *=-1;
@@ -185,7 +185,7 @@ class TenantBillCreateComponent extends Component
             $is_posted = false;
 
             //call the method for storing new collection
-            $collection_id =  app('App\Http\Controllers\CollectionController')->store(
+            $collection_id =  app('App\Http\Controllers\Features\CollectionController')->store(
                $tenant_uuid,
                '',
                '',
@@ -293,7 +293,7 @@ class TenantBillCreateComponent extends Component
          'total_bills' => $bills,
          'statuses' => $statuses,
          'total_unpaid_bills' => $bills->where('status','unpaid'),
-         'unpaid_bills' => app('App\Http\Controllers\BillController')->get_tenant_balance($this->tenant->uuid),
+         'unpaid_bills' => app('App\Http\Controllers\Features\BillController')->get_tenant_balance($this->tenant->uuid),
          'units' => app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($this->tenant->uuid),
          'note_to_bill' => $noteToBill,
          'particulars' => $particulars

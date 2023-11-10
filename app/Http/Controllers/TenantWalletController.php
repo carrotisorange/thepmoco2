@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Tenant;
-use App\Models\Property;
-use App\Models\Wallet;
+use App\Models\{Tenant,Property,Wallet};
 
 class TenantWalletController extends Controller
 {
@@ -14,7 +11,7 @@ class TenantWalletController extends Controller
     }
 
     public function create(Property $property, Tenant $tenant){
-        return view('tenants.wallets.create',[
+        return view('features.tenants.wallets.create',[
             'tenant' => $tenant
         ]);
     }
@@ -23,7 +20,7 @@ class TenantWalletController extends Controller
     {
         Wallet::create([
             'tenant_uuid' => $tenant_uuid,
-            'amount' => $amount, 
+            'amount' => $amount,
             'description' => $description
         ]);
     }

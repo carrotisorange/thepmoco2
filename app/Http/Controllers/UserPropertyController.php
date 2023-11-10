@@ -53,24 +53,4 @@ class UserPropertyController extends Controller
        ->get();
     }
 
-
-    public function remove_access(Property $property, UserProperty $userProperty)
-    {
-        UserProperty::where('id', $userProperty->id)
-        ->update([
-            'is_approved' => 0,
-        ]);
-
-       return redirect(url()->previous())->with('success', 'Changes Saved!');
-    }
-
-    public function restore_access(Property $property, UserProperty $userProperty)
-    {
-        UserProperty::where('id', $userProperty->id)
-        ->update([
-            'is_approved' => 1,
-        ]);
-
-        return redirect(url()->previous())->with('success', 'Changes Saved!');
-    }
 }

@@ -3,14 +3,12 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Utility;
+
 use Session;
 use Livewire\WithPagination;
-use App\Models\Unit;
 use Carbon\Carbon;
 use Str;
-use DB;
-use App\Models\Property;
+use App\Models\{Property,Unit,Utility};
 
 class UtilityIndexComponent extends Component
 {
@@ -84,7 +82,7 @@ class UtilityIndexComponent extends Component
         $batch_no = auth()->user()->id.Str::random(8);
 
         foreach($units as $unit){
-            app('App\Http\Controllers\UtilityController')->store(
+            app('App\Http\Controllers\Features\UtilityController')->store(
                 Session::get('property_uuid'),
                 $unit->uuid,
                 $unit->previous_water_utility_reading,

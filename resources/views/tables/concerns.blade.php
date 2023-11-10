@@ -1,5 +1,5 @@
-<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-<thead class="">
+<x-table-component>
+<x-table-head-component>
         <tr>
             <x-th>#</x-th>
             <x-th>REFERENCE #</x-th>
@@ -10,8 +10,8 @@
             <x-th>CATEGORY</x-th>
             <x-th></x-th>
         </tr>
-    </thead>
-    <tbody class="bg-white divide-y divide-gray-200">
+    </x-table-head-component>
+    <x-table-body-component>
         @foreach ($concerns as $index => $concern)
         <tr>
             <x-td>{{ $index+1 }}</x-td>
@@ -56,5 +56,5 @@
             </x-td>
         </tr>
         @endforeach
-    </tbody>
-</table>
+    </x-table-body-component>
+</x-table-component>

@@ -1,5 +1,4 @@
 <x-new-layout>
-
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
 
         <div class="pt-6 sm:pb-5">
@@ -38,11 +37,8 @@
                                         </span>
                                     </span>
                                 </a>
-
-
                             </div>
                         </li>
-
 
 
                         <li class="relative overflow-hidden lg:flex-1">
@@ -141,7 +137,6 @@
                                     </span>
                                 </a>
                             </div>
-
                             <div class="hidden absolute top-0 left-0 w-3 inset-0 lg:block" aria-hidden="true">
                                 <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none"
                                     preserveAspectRatio="none">
@@ -152,10 +147,7 @@
                         </li>
                     </ol>
                 </nav>
-
-
             </div>
-
             @livewire('bank-component', ['unit' => $unit, 'owner' => $owner])
         </div>
     </div>

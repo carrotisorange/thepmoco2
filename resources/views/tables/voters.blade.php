@@ -1,19 +1,17 @@
-<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-    <thead class="">
+<x-table-component>
+    <x-table-head-component>
         <tr>
             <x-th>#</x-th>
             <x-th>Election Year</x-th>
             <x-th>House Owner</x-th>
             <x-th>Email</x-th>
-
             <x-th>Mobile</x-th>
             <x-th>House</x-th>
             <x-th>Number of years as HOA member</x-th>
             <x-th>Past Due Accounts</x-th>
-
         </tr>
-    </thead>
-    <tbody class="bg-white divide-y divide-gray-200">
+    </x-table-head-component>
+    <x-table-body-component>
     @foreach ($voters as $index => $voter)
     <?php
         $houseOwner = App\Models\HouseOwner::find($voter->house_owner_id);
@@ -32,5 +30,5 @@
             <x-td>{{ $voter->number_of_past_due_account }}</x-td>
         </tr>
     @endforeach
-    </tbody>
-</table>
+    </x-table-body-component>
+</x-table-component>

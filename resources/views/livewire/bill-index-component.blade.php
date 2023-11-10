@@ -7,28 +7,19 @@
                 </h1>
             </div>
             @if($propertyBillsCount)
-
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-
-
                 <div class="group inline-block">
-                    <x-button wire.loading.remove>
-                        New bill
+                    <x-button wire.loading.remove> New bill
                         &nbsp; <i class="fa-solid fa-caret-down"></i>
                     </x-button>
-
-                    <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
-                              transition duration-150 ease-in-out origin-top min-w-32">
+                    <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute transition duration-150 ease-in-out origin-top min-w-32">
                         <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
                             <a href="#/" type="button" data-modal-toggle="instructions-create-bill-modal">
                                 Tenant
                             </a>
                         </li>
-
                     </ul>
-
                 </div>
-
                 <x-button wire:click="viewDelinquents" wire.loading.remove type="button">
                     @if($filter_bill_to === 'delinquent')
                     View All
@@ -45,15 +36,11 @@
                 <x-button wire:click="changeView('listView')" wire.loading.remove type="button"> View List
                 </x-button>
                 @endif
-
             </div>
             @endif
-
-
         </div>
         @if($propertyBillsCount)
         <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-
             <div class="sm:col-span-3">
                 <x-form-select name="bill_type" wire:model="bill_type">
                     <option value="">Filter bill to</option>
@@ -61,18 +48,14 @@
                     <option value="owner_uuid">Owner</option>
                     <option value="tenant_uuid">Tenant</option>
                 </x-form-select>
-
             </div>
-
             <div class="sm:col-span-3">
                 <x-form-select name="status" wire:model="status">
                     <option value="">Filter bill status</option>
                     @foreach ($statuses as $item)
                     <option value="{{ $item->status }}">{{ $item->status }}</option>
                     @endforeach
-
                 </x-form-select>
-
             </div>
             <div class="sm:col-span-3">
                 <x-form-select name="particular" wire:model="particular">
@@ -80,9 +63,7 @@
                     @foreach ($particulars as $item)
                     <option value="{{ $item->particular_id }}">{{ $item->particular }}</option>
                     @endforeach
-
                 </x-form-select>
-
             </div>
             <div class="sm:col-span-3">
                 <x-form-select name="posted_dates" wire:model="posted_dates">
@@ -90,25 +71,18 @@
                     <option value="monthly">1-30 days</option>
                     <option value="quaterly">1-90 days</option>
                     <option value="alltime">90 days and over</option>
-
                 </x-form-select>
-
             </div>
-
         </div>
         @endif
-
         <div class="mt-3">
             {{ $bills->links() }}
         </div>
-
         <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                 <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-
                     @if($bills->count())
-
-                    @include('tables.bills')
+                        @include('tables.bills')
                     @else
                     <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8 mt-10 mb-10">
                         <div class="text-center mb-10">
@@ -125,16 +99,12 @@
                                     <x-button id="dropdownButton" data-dropdown-toggle="unitCreateDropdown">New Bill
                                         &nbsp; <i class="fa-solid fa-caret-down"></i>
                                     </x-button>
-
                                     <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
                                               transition duration-150 ease-in-out origin-top min-w-32">
-
                                         <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
                                             <a href="#/" data-modal-toggle="instructions-create-bill-modal">
                                                 Tenant
                                             </a>
-
-
                                         </li>
                                     </ul>
 
@@ -144,9 +114,7 @@
                         </div>
                     </div>
                     @endif
-
                 </div>
-
             </div>
         </div>
         @include('modals.instructions.create-bill-modal')

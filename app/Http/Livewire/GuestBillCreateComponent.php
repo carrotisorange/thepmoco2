@@ -95,7 +95,7 @@ class GuestBillCreateComponent extends Component
 
       try {
 
-      $bill_no = app('App\Http\Controllers\BillController')->getLatestBillNo(Session::get('property_uuid'));
+      $bill_no = app('App\Http\Controllers\Features\BillController')->getLatestBillNo(Session::get('property_uuid'));
 
       if($this->particular_id === '8'){
         $this->bill *=-1;
@@ -190,7 +190,7 @@ class GuestBillCreateComponent extends Component
             $is_posted = false;
 
             //call the method for storing new collection
-            $collection_id =  app('App\Http\Controllers\CollectionController')->store(
+            $collection_id =  app('App\Http\Controllers\Features\CollectionController')->store(
                '',
                '',
                $guest_uuid,

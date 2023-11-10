@@ -1,5 +1,4 @@
 <div>
-
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -9,19 +8,14 @@
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 @if($propertyTenantsCount)
-                <x-button on type="button" data-modal-toggle="instructions-create-tenant-modal"> New tenant
-                </x-button>
+                <x-button data-modal-toggle="instructions-create-tenant-modal"> New tenant  </x-button>
                 @endif
-
             </div>
         </div>
-
         <div class="mt-3">
             @if($propertyTenantsCount)
-
             <div class="mt-5 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                 <div class="sm:col-span-6">
-
                     <label for="default-search"
                         class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
                     <div class="relative w-full mb-5">
@@ -35,11 +29,8 @@
                         <input type="search" id="search" wire:model="search"
                             class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Search for tenants..." required>
-
                     </div>
-
                 </div>
-
                 <div class="sm:col-span-3">
                     <x-form-select name="category" wire:model="category">
                         <option value="" selected>Filter category</option>
@@ -47,9 +38,7 @@
                         <option value="{{ $category->category }}">{{ $category->category }}</option>
                         @endforeach
                     </x-form-select>
-
                 </div>
-
                 <div class="sm:col-span-3">
                     <x-form-select name="status" wire:model="status">
                         <option value="" selected>Filter status</option>
@@ -57,33 +46,27 @@
                         <option value="{{ $status->status }}">{{ $status->status }}</option>
                         @endforeach
                     </x-form-select>
-
                 </div>
-
             </div>
             @endif
             {{ $tenants->links() }}
         </div>
         <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-
                 <div class="mb-5 mt-2 relative overflow-hidden ring-black ring-opacity-5 md:rounded-lg">
                     @if(!$propertyTenantsCount)
                     <nav aria-label="Progress">
-                        <ol role="list"
-                            class="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">
+                        <ol role="list" class="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">
                             @foreach($steps as $index => $step)
                             <?php
                                     $stepValue = App\Models\PropertyStepper::find($step)->step;
                                 ;?>
                             @if($step == 1 || $step == 6)
                             <li class="relative md:flex md:flex-1">
-                                <!-- Completed Step -->
                                 <a href="#" class="group flex w-full items-center">
                                     <span class="flex items-center px-6 py-4 text-sm font-medium">
                                         <span
                                             class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-purple-600 group-hover:bg-purple-800">
-                                            <!-- Heroicon name: solid/check -->
                                             <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg"
                                                 viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                                 <path fill-rule="evenodd"
@@ -95,14 +78,8 @@
                                             }}</span>
                                     </span>
                                 </a>
-
-                                <!-- Arrow separator for lg screens and up -->
                                 <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
-                                    <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none"
-                                        preserveAspectRatio="none">
-                                        <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke"
-                                            stroke="currentcolor" stroke-linejoin="round" />
-                                    </svg>
+                                   @include('layouts.separator')
                                 </div>
                             </li>
                             @elseif($step == 2)
@@ -119,11 +96,7 @@
 
                                 <!-- Arrow separator for lg screens and up -->
                                 <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
-                                    <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none"
-                                        preserveAspectRatio="none">
-                                        <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke"
-                                            stroke="currentcolor" stroke-linejoin="round" />
-                                    </svg>
+                                    @include('layouts.separator')
                                 </div>
                             </li>
                             @else
@@ -141,21 +114,14 @@
                                     </span>
                                 </a>
 
-                                <!-- Arrow separator for lg screens and up -->
                                 <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
-                                    <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none"
-                                        preserveAspectRatio="none">
-                                        <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke"
-                                            stroke="currentcolor" stroke-linejoin="round" />
-                                    </svg>
+                                    @include('layouts.separator')
                                 </div>
                             </li>
                             @endif
                             @endforeach
-
                         </ol>
                     </nav>
-                    <!-- This example requires Tailwind CSS v2.0+ -->
                     <div class="mt-10 text-center mb-10">
                         <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor" aria-hidden="true">
@@ -172,14 +138,12 @@
                             </x-button>
                         </div>
                     </div>
-
                     @else
                     @include('tables.tenants')
                     @endif
-
-
                 </div>
             </div>
         </div>
         @include('modals.instructions.create-tenant-modal')
     </div>
+</div>

@@ -12,9 +12,7 @@
                     <x-button id="dropdownButton" data-dropdown-toggle="ownerCreateDropdown">Add
                         &nbsp; <i class="fa-solid fa-caret-down"></i>
                     </x-button>
-
-                    <div id="ownerCreateDropdown"
-                        class="text-left hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
+                    <div id="ownerCreateDropdown" class="text-left hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
                         <ul class="py-1" aria-labelledby="dropdownButton">
                             <li>
                                 <a href="/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/unit"
@@ -29,21 +27,17 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#/" data-modal-toggle="bank-create-modal"
-                                    class="{{ $addAnchorClass }}">
+                                <a href="#/" data-modal-toggle="bank-create-modal" class="{{ $addAnchorClass }}">
                                     New bank
                                 </a>
                             </li>
-
                             <li>
-                                <a href="/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/bills"
-                                    class="{{ $addAnchorClass }}">
+                                <a href="/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/bills"  class="{{ $addAnchorClass }}">
                                     New bill
                                 </a>
                             </li>
                             <li>
-                                <a href="/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/bills"
-                                    class="{{ $addAnchorClass }}">
+                                <a href="/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/bills" class="{{ $addAnchorClass }}">
                                     New collection
                                 </a>
                             </li>
@@ -54,7 +48,6 @@
 
             <div class="mt-8 lg:mt-0 lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:row-span-3">
                 <h2 class="sr-only">Images</h2>
-
                 <div class="grid grid-cols-1 lg:gap-6">
                     <div class="flex items-center justify-center">
                         @if($owner_details->photo_id)
@@ -65,7 +58,6 @@
                             class="lg:col-span-2 md:row-span-2 rounded-md w-56 lg:w-full">
                         @endif
                     </div>
-
                     <div class="mt-5 flex items-center justify-center">
                         <p class="mt-5 text-lg text-center text-gray-700">
                             @if(!$email_cred)
@@ -77,16 +69,13 @@
                     </div>
                 </div>
             </div>
-
             <div class="mt-8 lg:col-span-9">
                 <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
                     <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab"
                         data-tabs-toggle="#myTabContent" role="tablist">
                         @foreach($ownerSubfeaturesArray as $subfeature)
                         <li class="mr-2" role="presentation">
-                            <button class="inline-block p-4 rounded-t-lg border-b-2" id="{{ $subfeature }}-tab"
-                                data-tabs-target="#{{ $subfeature }}" type="button" role="tab"
-                                aria-controls="{{ $subfeature }}" aria-selected="false">
+                            <button class="inline-block p-4 rounded-t-lg border-b-2" id="{{ $subfeature }}-tab"  data-tabs-target="#{{ $subfeature }}" type="button" role="tab" aria-controls="{{ $subfeature }}" aria-selected="false">
                                 {{ $subfeature }}
                             </button>
                         </li>
@@ -96,8 +85,7 @@
                 <div id="myTabContent" wire:ignore>
                     @foreach($ownerSubfeaturesArray as $subfeature)
                     @if($subfeature == 'owner')
-                    <div class="p-4 purple rounded-lg dark:bg-gray-800" id="{{ $subfeature }}" role="tabpanel"
-                        aria-labelledby="{{ $subfeature }}-tab">
+                    <div class="p-4 purple rounded-lg dark:bg-gray-800" id="{{ $subfeature }}" role="tabpanel" aria-labelledby="{{ $subfeature }}-tab">
                         <div>
                             @include('forms.owners.owner-edit')
                         </div>
@@ -107,8 +95,7 @@
                         aria-labelledby="{{ $subfeature }}-tab">
                         <div class="-my-2 overflow-auto sm:-mx-6 lg:-mx-8">
                             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                                <div
-                                    class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                                <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                                     @if($subfeature == 'credentials')
                                     @if($email_cred)
                                     <div class="sm:col-span-4">
@@ -118,23 +105,12 @@
                                         </div>
                                     </div>
                                     <div class="sm:col-span-4 mt-8">
-                                        <div class="">
                                             <x-label for="tenant">Username</x-label>
                                             <x-form-input type="text" value="{{ $username }}" disabled />
-
-
-                                        </div>
                                     </div>
                                     @else
                                     <div class="mt-10 text-center mb-10">
-                                        {{-- <i class="fa-solid fa-circle-plus"></i> --}}
                                         <h3 class="mt-2 text-sm font-medium text-gray-900">No credentials.</h3>
-
-                                        <div class="mt-6">
-                                            {{-- <x-button disabled>
-                                                New session
-                                            </x-button> --}}
-                                        </div>
                                     </div>
                                     @endif
                                     @elseif($subfeature == 'session')
@@ -142,14 +118,7 @@
                                     @include('tables.sessions')
                                     @else
                                     <div class="mt-10 text-center mb-10">
-                                        {{-- <i class="fa-solid fa-circle-plus"></i> --}}
                                         <h3 class="mt-2 text-sm font-medium text-gray-900">No sessions.</h3>
-
-                                        <div class="mt-6">
-                                            {{-- <x-button disabled>
-                                                New session
-                                            </x-button> --}}
-                                        </div>
                                     </div>
                                     @endif
                                     @elseif($subfeature == 'unit')
@@ -159,8 +128,7 @@
                                     @elseif($subfeature == 'representative')
                                     @include('tables.representatives')
                                     @elseif($subfeature == 'bill')
-                                    <x-button
-                                        onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/bills'">
+                                    <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/bills'">
                                         Pay Bills
                                     </x-button>
                                     @include('tables.bills')

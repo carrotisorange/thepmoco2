@@ -6,8 +6,7 @@ use Livewire\Component;
 use Session;
 use DB;
 use Carbon\Carbon;
-use App\Models\Collection;
-use App\Models\Property;
+use App\Models\{Collection,Property};
 
 class CollectionIndexComponent extends Component
 {

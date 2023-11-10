@@ -1,13 +1,12 @@
 <div>
-
     <div class="mx-10">
         <form wire:submit.prevent="approveLiquidation">
             <div class="px-4 sm:px-6 lg:px-8">
                 <div class="mt-8 flow-root">
                     <div class="-mx-4 -my-2 overflow-auto sm:-mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                            <table class="min-w-full divide-y divide-gray-300">
-                                <thead>
+                            <x-table-component>
+                                <x-table-head-component>
                                     <tr>
                                         <x-th >
                                             Batch No
@@ -48,10 +47,8 @@
                                         <x-td >{{
                                             $accountpayableliquidation->department }}</x-td>
                                     </tr>
-
-                                </thead>
-
-                            </table>
+                                </x-table-head-component>
+                            </x-table-component>
                         </div>
                     </div>
                 </div>
@@ -65,8 +62,8 @@
                 <div class="mt-8 flow-root">
                     <div class="-mx-4 -my-2 overflow-auto sm:-mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                            <table class="min-w-full divide-y divide-gray-300">
-                                <thead>
+                            <x-table-component>
+                                <x-table-head-component>
                                     <tr>
                                         <x-th >
                                             #
@@ -90,8 +87,8 @@
                                         <x-th >
                                             Total</x-th>
                                     </tr>
-                                </thead>
-                                <tbody class="divide-y divide-gray-200">
+                                </x-table-head-component>
+                                <x-table-body-component>
                                     @foreach($particulars as $index => $particular)
                                     <tr>
                                         <x-td
@@ -128,6 +125,8 @@
                                         </x-td>
                                     </tr>
                                     @endforeach
+                                    </x-table-body-component>
+                                    <x-table-body-component>
                                     <tr>
                                         <x-th >
                                             Total
@@ -143,28 +142,22 @@
                                             number_format($particulars->sum('total'),2) }}
                                         </x-th>
                                     </tr>
-                                </tbody>
-                            </table>
+                                </x-table-body-component>
+                            </x-table-component>
                         </div>
                     </div>
                 </div>
                 <div class="mt-2 flex justify-end">
-                    <div>
                         <p class="mt-5 px-6 text-right">
-
                             <x-button class="bg-red-500" wire:click="rejectLiquidation">
                                 Reject
                             </x-button>
-
                             <x-button type="submit">
                                 Approve
                             </x-button>
-
                         </p>
-                    </div>
                 </div>
             </div>
         </form>
     </div>
-
 </div>

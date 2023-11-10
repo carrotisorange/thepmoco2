@@ -3,11 +3,10 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Property;
 use Session;
-use App\Models\Concern;
 use DB;
 use Livewire\WithPagination;
+use App\Models\{Concern,Property};
 
 class ConcernIndexComponent extends Component
 {
@@ -15,7 +14,7 @@ class ConcernIndexComponent extends Component
 
     public $search;
     public $status;
-    
+
     public function render()
     {
         $propertyConcernsCount = Property::find(Session::get('property_uuid'))->concerns->count();

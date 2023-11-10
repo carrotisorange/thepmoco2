@@ -1,5 +1,5 @@
-<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-  <thead class="">
+<x-table-component>
+  <x-table-head-component>
         <tr>
             <x-th>#</x-th>
             <x-th>DATE</x-th>
@@ -8,8 +8,8 @@
             <x-th>CASHOUT FLOW</x-th>
             <x-th>REVENUE</x-th>
         </tr>
-    </thead>
-    <tbody class="bg-white divide-y divide-gray-200">
+    </x-table-head-component>
+    <x-table-body-component>
         @foreach ($accountpayables->union($collections) as $index => $cashflow)
         <tr>
             <x-td>{{ $index+1 }}</x-td>
@@ -29,9 +29,8 @@
 
         </tr>
         @endforeach
-    </tbody>
-    <tbody class="bg-white divide-y divide-gray-200">
-        <!-- Selected: "bg-gray-50" -->
+    </x-table-body-component>
+    <x-table-body-component>
         <tr>
             <x-td><b>Total</b></x-td>
             <x-td></x-td>
@@ -45,5 +44,5 @@
 
             <x-td><b>{{ number_format($income-$expense, 2) }}</b></x-td>
         </tr>
-    </tbody>
-</table>
+    </x-table-body-component>
+</x-table-component>

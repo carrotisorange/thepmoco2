@@ -12,7 +12,6 @@
                 </x-button>
             </div>
         </div>
-
         <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                 <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
@@ -29,16 +28,10 @@
                                                 class="text-white bg-purple-500 hover:bg-gray-700  font-medium rounded-full text-sm px-3 py-2.5 text-center">
                                                 View
                                             </a>
-
-
                                         </div>
 
                                         <embed src="{{ asset('/storage/'.$bulletin->attachment) }}" type="application/pdf" height="500px" width="1200">
-
-
-
                                     </div>
-
                                 </div>
                                 @endforeach
 
@@ -61,7 +54,7 @@
                                     <p class="mt-1 text-sm text-gray-500">Get started by creating a new bulletin</p>
                                                 <div class="mt-6">
                                                     <div class="group inline-block">
-                                            <x-button data-modal-target="create-bulletin-modal"
+                                            <x-button 
                                                             data-modal-toggle="create-bulletin-modal"> New
                                                 Bulletin
                                                         </x-button>
@@ -75,4 +68,5 @@
                             </div>
                         </div>
     @livewire('bulletin-create-component')
+</div>
 </div>

@@ -21,11 +21,7 @@
 
                     <!-- Arrow separator for lg screens and up -->
                     <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
-                        <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none"
-                            preserveAspectRatio="none">
-                            <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke" stroke="currentcolor"
-                                stroke-linejoin="round" />
-                        </svg>
+                       @include('layouts.separator')
                     </div>
                 </li>
                 @else
@@ -45,11 +41,7 @@
 
                     <!-- Arrow separator for lg screens and up -->
                     <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
-                        <svg class="h-full w-full text-gray-300" viewBox="0 0 22 80" fill="none"
-                            preserveAspectRatio="none">
-                            <path d="M0 -2L20 40L0 82" vector-effect="non-scaling-stroke" stroke="currentcolor"
-                                stroke-linejoin="round" />
-                        </svg>
+                       @include('layouts.separator')
                     </div>
                 </li>
                 @endif
@@ -183,15 +175,6 @@
     </div>
 
     @else
-    <div class="mt-8 flex flex-col">
-        <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-9">
-            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="mt-8 flex flex-col">
         <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-9">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">

@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Property;
-use App\Models\PropertyDocument;
-use App\Models\Document;
+use App\Models\{Property,PropertyDocument,Document};
 
 class PropertyDocumentController extends Controller
 {

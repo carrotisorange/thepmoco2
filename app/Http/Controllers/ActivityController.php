@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Activity;
-use Carbon\Carbon;
 
 class ActivityController extends Controller
 {

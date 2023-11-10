@@ -47,22 +47,22 @@ class GuestComponent extends Component
 
     public function submitForm()
     {
-        
+
 
         $validatedData = $this->validate();
 
        try{
             DB::transaction(function () use ($validatedData){
-            
-            $guest_uuid = app('App\Http\Controllers\PropertyController')->generate_uuid();
-               
-            app('App\Http\Controllers\GuestController')->store($guest_uuid, $this->unit_uuid, $this->guest, $this->email, $this->mobile_number, $this->movein_at, $this->moveout_at, $this->vehicle_details, $this->plate_number);
+
+            $guest_uuid = app('App\Http\Controllers\Features\PropertyController')->generate_uuid();
+
+            app('App\Http\Controllers\Features\GuestController')->store($guest_uuid, $this->unit_uuid, $this->guest, $this->email, $this->mobile_number, $this->movein_at, $this->moveout_at, $this->vehicle_details, $this->plate_number);
 
             return
             redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit_uuid)->with('success','Changes Saved!');
-      
+
             });
-        
+
        }catch(\Exception $e)
        {
             return back()->with('error',$e);

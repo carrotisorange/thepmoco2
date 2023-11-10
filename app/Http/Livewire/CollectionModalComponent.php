@@ -12,7 +12,6 @@ use Illuminate\Http\Request;
 use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
 use Carbon\Carbon;
-use App\Models\Point;
 use DB;
 use App\Models\Unit;
 use App\Models\Contract;
@@ -91,8 +90,6 @@ class CollectionModalComponent extends ModalComponent
             DB::commit();
 
             $this->resetForm();
-
-            // $this->closeModal();
 
        }catch(\Exception $e)
        {

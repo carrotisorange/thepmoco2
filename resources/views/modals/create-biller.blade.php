@@ -3,6 +3,6 @@
         <x-slot name="id">
             create-biller-modal
         </x-slot>
-        @include('forms.accountpayables.biller-create')
+        @include('forms.features.rfps.biller-create')
     </x-modal-component>
 </div>

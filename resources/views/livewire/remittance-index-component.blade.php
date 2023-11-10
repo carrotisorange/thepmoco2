@@ -1,5 +1,4 @@
 <div>
-
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -7,40 +6,27 @@
                     {{ucfirst(Route::current()->getName())}}
                 </h1>
             </div>
-
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-
                 <x-button data-modal-toggle="instructions-create-remittance-modal" type="button">Create
                     remittance
                 </x-button>
-
-
-
             </div>
-
-
         </div>
-
         <div class="mt-5">
             <x-form-select id="small" wire:model="created_at">
                 <option value="{{ $created_at }}">{{ Carbon\Carbon::parse($created_at)->format('M, Y') }}</option>
                 @foreach ($dates as $date)
-                @if(Carbon\Carbon::parse($date->created_at)->format('M, Y') !=
-                Carbon\Carbon::parse($created_at)->format('M, Y'))
-                <option value="{{ $date->created_at }}">{{ Carbon\Carbon::parse($date->created_at)->format('M, Y')
-                    }}</option>
+                    @if(Carbon\Carbon::parse($date->created_at)->format('M, Y') != Carbon\Carbon::parse($created_at)->format('M, Y'))
+                    <option value="{{ $date->created_at }}">{{ Carbon\Carbon::parse($date->created_at)->format('M, Y')}}</option>
                 @endif
                 @endforeach
             </x-form-select>
         </div>
-
         <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                 <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-
                     @if($remittances->count())
-
-                    @include('tables.remittances')
+                        @include('tables.remittances')
                     @else
                     <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8 mt-10 mb-10">
                         <div class="text-center mb-10">
@@ -57,19 +43,14 @@
                                     <x-button data-modal-toggle="instructions-create-remittance-modal" type="button">
                                         Create remittance
                                     </x-button>
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
                     @endif
-
                 </div>
-
             </div>
         </div>
-
     </div>
     @include('modals.instructions.create-remittance-modal')
 </div>

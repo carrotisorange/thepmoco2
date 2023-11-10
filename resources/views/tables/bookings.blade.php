@@ -1,5 +1,5 @@
-<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-    <thead class="">
+<x-table-component>
+    <x-table-head-component>
         <tr>
             <x-th>#</x-th>
             <x-th>Unit</x-th>
@@ -11,9 +11,8 @@
             <x-th>Agent</x-th>
             <x-th></x-th>
         </tr>
-    </thead>
-
-    <tbody class="bg-white divide-y divide-gray-200">
+    </x-table-head-component>
+    <x-table-body-component>
         @foreach ($bookings as $index => $booking)
         <tr>
             <x-td>{{ $index+1 }}</x-td>
@@ -48,5 +47,5 @@
 
         @livewire('edit-booking-component',['property' => App\Models\Property::find(Session::get('property_uuid')), 'booking'=> $booking], key(Carbon\Carbon::now()->timestamp.''.$booking->id))
         @endforeach
-    </tbody>
-</table>
+    </x-table-body-component>
+</x-table-component>

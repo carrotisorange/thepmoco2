@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\AccountPayableParticular;
-use Illuminate\Http\Request;
 
 class AccountPayableParticularController extends Controller
 {

@@ -3,17 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Role;
-use App\Models\User;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 use App\Mail\WelcomeMailToMember;
 use Carbon\Carbon;
-use App\Models\Property;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
-use App\Models\Subscription;
 use Session;
+use App\Models\{Role,Subscription,User,Property};
+
 
 class UserController extends Controller
 {
@@ -27,7 +25,7 @@ class UserController extends Controller
                 'data' => $portfolio,
             ];
 
-            $folder_path = 'users.exports.portfolio';
+            $folder_path = 'features.personnels.exports.portfolio';
 
             $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
 
@@ -43,7 +41,7 @@ class UserController extends Controller
                 'data' => $property,
             ];
 
-            $folder_path = 'users.exports.property';
+            $folder_path = 'features.personnels.exports.property';
 
             $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
 
@@ -52,15 +50,6 @@ class UserController extends Controller
             return $pdf->stream($pdf_name);
         }
 
-    }
-
-    public function create(Property $property, $random_str)
-    {
-        $this->authorize('accountownerandmanager');
-
-        return view('users.create',[
-            'property' => $property
-        ]);
     }
 
     public function isTrialExpired($date)
@@ -134,7 +123,6 @@ class UserController extends Controller
     {
         $details = [
         'email' => $email,
-        // 'name' => $this->name,
         'role' => Role::find($role_id)->role,
         'username' => $username,
         'password'=>$password
@@ -143,19 +131,7 @@ class UserController extends Controller
         Mail::to($email)->send(new WelcomeMailToMember($details));
     }
 
-    public function delegate(Property $property, $user_id, $property_uuid)
-    {
-        app('App\Http\Controllers\UserPropertyController')->store($property_uuid,$user_id,false,false);
 
-        return redirect(url()->previous())->with('success', 'Changes Saved!');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(User $user)
     {
         return $user;
@@ -165,14 +141,14 @@ class UserController extends Controller
     {
         Subscription::where('user_id', auth()->user()->id)->where('status', 'pending')->delete();
 
-        return view('users.unlock');
+        return view('features.personnels.unlock');
     }
 
     public function edit(User $user)
     {
        if($user->id === auth()->user()->id || auth()->user()->role_id == '5' || auth()->user()->role_id == '9'){
 
-           return view('users.edit', [
+           return view('features.personnels.edit', [
             'user' => $user,
             'roles' => Role::orderBy('role')->where('id','!=','5')->where('id','!=','10')->get(),
            ]);
@@ -182,13 +158,6 @@ class UserController extends Controller
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, User $user)
     {
         $attributes = request()->validate([
@@ -198,13 +167,8 @@ class UserController extends Controller
             'mobile_number' => ['required', Rule::unique('users', 'mobile_number')->ignore($user->id)],
             'role_id' => ['nullable', Rule::exists('roles', 'id')],
             'status' => 'nullable',
-            // 'avatar' => 'image',
-        ]);
 
-        // if($request->avatar != null)
-        // {
-        //     $attributes['avatar'] = request()->file('avatar')->store('avatars');
-        // }
+        ]);
 
         if($request->password != null)
         {
@@ -216,18 +180,5 @@ class UserController extends Controller
 
         return redirect('/user/'.$user->username.'/edit')->with('success', 'Changes Saved!');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-
 
 }

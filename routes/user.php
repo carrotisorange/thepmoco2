@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PointController;
-use App\Http\Controllers\SalesPortalController;
 use App\Http\Controllers\SubscriptionController;
 
 //All routes for user

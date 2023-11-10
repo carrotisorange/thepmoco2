@@ -1,5 +1,4 @@
 <div>
-
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -11,16 +10,12 @@
                 <x-button data-modal-toggle="instructions-create-owner-modal">
                     New owner
                 </x-button>
-
             </div>
         </div>
-
         <div class="mt-3">
             @if($propertyOwnersCount)
-
             <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                 <div class="sm:col-span-6">
-
                     <label for="default-search"
                         class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>
                     <div class="relative w-full mb-5">
@@ -34,24 +29,16 @@
                         <input type="search" id="search" wire:model="search"
                             class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Search for unit..." required>
-
                     </div>
-
                 </div>
-
-
-
             </div>
             @endif
             {{ $owners->links() }}
         </div>
         <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-
                 <div class="mb-5 mt-2 relative overflow-hidden ring-black ring-opacity-5 md:rounded-lg">
                     @if(!$propertyOwnersCount)
-
-                    <!-- This example requires Tailwind CSS v2.0+ -->
                     <div class="mt-10 text-center mb-10">
                         <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24"
                             stroke="currentColor" aria-hidden="true">
@@ -76,3 +63,4 @@
         </div>
         @include('modals.instructions.create-owner-modal')
     </div>
+</div>

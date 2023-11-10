@@ -50,7 +50,7 @@ class CreateBillComponent extends Component
             $this->bill *=-1;
         }
 
-        $bill_no = app('App\Http\Controllers\BillController')->getLatestBillNo(Session::get('property_uuid'));
+        $bill_no = app('App\Http\Controllers\Features\BillController')->getLatestBillNo(Session::get('property_uuid'));
 
         $validated['bill_no'] = $bill_no;
         $validated['bill'] = $this->bill;

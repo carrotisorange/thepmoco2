@@ -57,7 +57,7 @@ class EditUtilityComponent extends Component
 
     public function updateUtility()
     {
- 
+
         sleep(2);
 
         $tenant_uuid = Tenant::where('uuid', $this->bill_to)->pluck('uuid')->first();
@@ -91,11 +91,11 @@ class EditUtilityComponent extends Component
          'min_charge' => $this->min_charge
         ]);
 
-        app('App\Http\Controllers\BillController')->store($this->utility->property_uuid, $this->utility->unit_uuid, $tenant_uuid, $owner_uuid, $particular_id, $this->utility->start_date, $this->utility->end_date, $this->total_amount_due, $this->utility->batch_no, 1);
+        app('App\Http\Controllers\Features\BillController')->store($this->utility->property_uuid, $this->utility->unit_uuid, $tenant_uuid, $owner_uuid, $particular_id, $this->utility->start_date, $this->utility->end_date, $this->total_amount_due, $this->utility->batch_no, 1);
 
         return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
-    
+
 
     public function render()
     {

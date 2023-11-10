@@ -1,9 +1,5 @@
 <div>
-
     <style>
-        /* since nested groupes are not supported we have to use
-                                 regular css for the nested dropdowns
-                              */
         li>ul {
             transform: translatex(100%) scale(0)
         }
@@ -68,16 +64,10 @@
                         <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="/property/{{ Session::get("
                                 property") }}/unit" data-modal-toggle="create-particular-modal">to unit</a>
                         </li>
-
                     </ul>
-
                 </div>
-
             </div>
-
         </div>
-
-
         <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                 <div class="mt-3">
@@ -100,11 +90,8 @@
                             <input type="search" id="search" wire:model="search"
                                 class="bg-white block p-4 pl-10 w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Search for reference no..." required>
-
                         </div>
-
                     </div>
-
                     <div class="sm:col-span-6">
                         <x-form-select id="small" name="status" wire:model="status">
                             <option value="">Filter status</option>
@@ -112,17 +99,12 @@
                             <option value="{{ $item->status }}">{{ $item->status }}</option>
                             @endforeach
                         </x-form-select>
-
                     </div>
-
                 </div>
                 @endif
                 <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-
-
                     @if($concerns->count())
-
-                    @include('tables.concerns')
+                        @include('tables.concerns')
                     @else
                     <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8 mt-10 mb-10">
                         <div class="text-center mb-10">
@@ -148,31 +130,17 @@
                                             </svg>
                                         </span>
                                     </x-button>
-
-                                    <ul
-                                        class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
-                                                                      transition duration-150 ease-in-out origin-top min-w-32">
-
-                                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
-                                                href="/property/{{ Session::get('property_uuid') }}/tenant"
-                                                data-modal-toggle="create-particular-modal">to tenant</a>
+                                    <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute transition duration-150 ease-in-out origin-top min-w-32">
+                                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="/property/{{ Session::get('property_uuid') }}/tenant" data-modal-toggle="create-particular-modal">to tenant</a></li>
+                                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="/property/{{ Session::get(" property") }}/unit" data-modal-toggle="create-particular-modal">to unit</a>
                                         </li>
-                                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
-                                                href="/property/{{ Session::get(" property") }}/unit"
-                                                data-modal-toggle="create-particular-modal">to unit</a>
-                                        </li>
-
                                     </ul>
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
                     @endif
-
                 </div>
-
             </div>
         </div>
     </div>

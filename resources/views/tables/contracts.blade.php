@@ -1,5 +1,5 @@
-<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-    <thead class="">
+<x-table-component>
+    <x-table-head-component>
         <tr>
             <x-th>#</x-th>
             <x-th>UNIT</x-th>
@@ -8,8 +8,8 @@
             <x-th>RENT/MO</x-th>
             <x-th></x-th>
         </tr>
-    </thead>
-    <tbody class=" bg-white divide-y divide-gray-200">
+    </x-table-head-component>
+    <x-table-body-component>
         @foreach ($contracts as $index => $contract)
         <div wire:key="contract-field-{{ $contract->uuid }}" wire:ignore.self>
             <tr>
@@ -113,5 +113,5 @@
         @livewire('edit-contract-component',['property' => App\Models\Property::find(Session::get('property_uuid')),
         'contract' => $contract], key($contract->uuid))
         @endforeach
-    </tbody>
-</table>
+    </x-table-body-component>
+</x-table-component>

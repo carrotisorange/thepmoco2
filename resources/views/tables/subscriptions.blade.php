@@ -1,5 +1,5 @@
-<table class="min-w-full table-fixed">
-  <thead class="">
+<x-table-component>
+  <x-table-head-component>
         <tr>
             <x-th>#</x-th>
             <x-th>SUBSCRIBED ON </x-th>
@@ -9,8 +9,8 @@
             <x-th>Description</x-th>
             <x-th>Expires on</x-th>
         </tr>
-    </thead>
-    <tbody class=" divide-gray-50 border divide-y gap-y-6 bg-white">
+    </x-table-head-component>
+    <x-table-body-component>
         @foreach($subscriptions as $index => $subscription )
         <tr>
           <x-td>
@@ -35,5 +35,5 @@
          </x-td>
         </tr>
         @endforeach
-    </tbody>
-</table>
+    </x-table-body-component>
+</x-table-component>

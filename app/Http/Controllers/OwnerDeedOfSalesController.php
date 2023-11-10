@@ -2,22 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Owner;
-use App\Models\Property;
-use App\Models\Unit;
 use Session;
+use App\Models\{Owner,Property,Unit};
 
 class OwnerDeedOfSalesController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function index(Property $property, Unit $unit, Owner $owner)
     {
-        return view('owners.deed_of_sale.index',[
+        return view('features.owners.deed_of_sale.index',[
             'owner' => Owner::find($owner->uuid),
             'deed_of_sales' => Owner::find($owner->uuid)->deed_of_sales
         ]);
@@ -31,9 +23,9 @@ class OwnerDeedOfSalesController extends Controller
     public function create(Property $property, Owner $owner)
     {
         Session::put('owner_uuid', $owner->uuid);
-        
-          return view('units.index', [
-            'property' => $property, 
+
+          return view('features.units.index', [
+            'property' => $property,
             'owner' => $owner,
             'batch_no' => '',
         ]);
