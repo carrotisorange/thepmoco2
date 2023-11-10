@@ -110,7 +110,7 @@
                                     </div>
                                     @else
                                     <div class="mt-10 text-center mb-10">
-                                        <h3 class="mt-2 text-sm font-medium text-gray-900">No credentials.</h3>
+                                        <h3 class="mt-2 text-sm font-medium text-gray-900">No {{ $subfeature }}</h3>
                                     </div>
                                     @endif
                                     @elseif($subfeature == 'session')
@@ -118,24 +118,42 @@
                                     @include('tables.sessions')
                                     @else
                                     <div class="mt-10 text-center mb-10">
-                                        <h3 class="mt-2 text-sm font-medium text-gray-900">No sessions.</h3>
+                                        <h3 class="mt-2 text-sm font-medium text-gray-900">No {{ $subfeature }}</h3>
                                     </div>
                                     @endif
                                     @elseif($subfeature == 'unit')
                                     @include('tables.deedofsales')
                                     @elseif($subfeature == 'spouse')
+                                    @if($spouses->count())
                                     @include('tables.spouses')
+                                    @else
+                                    <div class="mt-10 text-center mb-10">
+                                        <h3 class="mt-2 text-sm font-medium text-gray-900">No {{ $subfeature }}</h3>
+                                    </div>
+                                    @endif
                                     @elseif($subfeature == 'representative')
+                                    @if($representatives->count())
                                     @include('tables.representatives')
+                                    @else
+                                    <div class="mt-10 text-center mb-10">
+                                        <h3 class="mt-2 text-sm font-medium text-gray-900">No {{ $subfeature }}</h3>
+                                    </div>
+                                    @endif
                                     @elseif($subfeature == 'bill')
                                     <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/bills'">
                                         Pay Bills
                                     </x-button>
                                     @include('tables.bills')
                                     @elseif($subfeature == 'collection')
+                                    @if($collections->count())
                                     @include('tables.collections')
+                                    @else
+                                    <div class="mt-10 text-center mb-10">
+                                        <h3 class="mt-2 text-sm font-medium text-gray-900">No {{ $subfeature }}</h3>
+                                    </div>
+                                    @endif
                                     @elseif($subfeature == 'bank')
-                                    @include('tables.banks')
+                                    @include('tables.banks')        
                                     @endif
                                 </div>
                             </div>

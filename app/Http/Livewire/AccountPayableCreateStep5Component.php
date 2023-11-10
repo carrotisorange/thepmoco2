@@ -2,17 +2,13 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\AccountPayableLiquidation;
 use Livewire\Component;
 use Carbon\Carbon;
-use App\Models\AccountPayable;
-use App\Models\Property;
-use App\Models\AccountPayableLiquidationParticular;
-use App\Models\Role;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\SendAccountPayableStep2NotificationToManager;
-use App\Models\User;
 use Session;
+use App\Models\{AccountPayableLiquidation,User,AccountPayable,Property,AccountPayableLiquidationParticular,Role};
+
 
 class AccountPayableCreateStep5Component extends Component
 {

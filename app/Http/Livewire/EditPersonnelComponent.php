@@ -41,10 +41,7 @@ class EditPersonnelComponent extends Component
     }
 
     public function get_user_restrictions(){
-        return UserRestriction::
-        // join('features', 'user_restrictions.feature_id', 'features.id')
-        where('user_id', $this->personnel->user->id)
-        // ->where('is_active',1)
+        return UserRestriction::where('user_id', $this->personnel->user->id)
         ->where('restriction_id',2)->orderBy('feature_id')->get();
     }
 

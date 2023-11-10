@@ -1,7 +1,6 @@
 @component('mail::message')
-# Hi, {{ $data['owner'] }}!
 
-{{-- Reference #: {{ $data['reference_no'] }} --}}
+Hi, {{ $data['owner'] }}!
 
 Date: {{ Carbon\Carbon::now()->format('M d, Y') }}
 
@@ -17,15 +16,10 @@ Bills Breakdown
 | Bill # | Date Posted | Unit | Particular | Period Covered | Amount |
 | ------------- |------------- |------------- |------------- |------------- |------------- |
 @foreach ($data['bills'] as $item)
-@if ($item->bill-App\Models\Collection::where('bill_id', $item->id)->posted()->sum('collection') > 0)
-| {{ $item->bill_no }} | {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }} | {{ $item->unit->unit }} | {{
-$item->particular->particular }} | {{ Carbon\Carbon::parse($item->start)->format('M d,
-Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }} | {{
-number_format(($item->bill-App\Models\Collection::where('bill_id', $item->id)->sum('collection')),2)
-}} |
-@endif
+    @if ($item->bill-App\Models\Collection::where('bill_id', $item->id)->posted()->sum('collection') > 0)
+    | {{ $item->bill_no }} | {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }} | {{ $item->unit->unit }} | {{ $item->particular->particular }} | {{ Carbon\Carbon::parse($item->start)->format('M d, Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }} | {{ number_format(($item->bill-App\Models\Collection::where('bill_id', $item->id)->sum('collection')),2) }} |
+    @endif
 @endforeach
-
 @endcomponent
 
 @if($data['note_to_bill'])

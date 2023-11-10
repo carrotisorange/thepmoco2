@@ -1,7 +1,5 @@
 @component('mail::message')
-# Hi, {{ $data['tenant'] }}!
-{{--
-Reference #: {{ $data['reference_no'] }} --}}
+Hi, {{ $data['tenant'] }}!
 
 Date: {{ Carbon\Carbon::now()->format('M d, Y') }}
 
@@ -17,21 +15,11 @@ Bills Breakdown
 | Bill # | Date Posted | Unit | Particular | Period Covered | Amount |
 | ------------- |------------- |------------- |------------- |------------- |------------- |
 @foreach ($data['bills'] as $item)
-{{--
-  $marketing_fee = App\Models\Bill::where('particular_id', '71')->where('bill_id',$item->id)->posted()->pluck('bill')->last();
-  $management_fee = App\Models\Bill::where('particular_id', '72')->where('bill_id',$item->id)->posted()->pluck('bill')->last();
-
-    $other_fees = $marketing_fee + $management_fee --}}
-
-@if($item->particular_id != '71' && $item->particular_id != '72')
-@if ($item->bill-App\Models\Collection::where('bill_id', $item->id)->posted()->sum('collection') > 0)
-| {{ $item->bill_no }} | {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }} | {{ $item->unit->unit }} |
-@if($item->particular_id === 1) Due to unit owner @else {{ $item->particular->particular }} @endif | {{
-Carbon\Carbon::parse($item->start)->format('M d, Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }} | {{
-number_format((($item->bill)-App\Models\Collection::where('bill_id', $item->id)->sum('collection')),2) }}
-|
-@endif
-@endif
+    @if($item->particular_id != '71' && $item->particular_id != '72')
+        @if ($item->bill-App\Models\Collection::where('bill_id', $item->id)->posted()->sum('collection') > 0)
+        | {{ $item->bill_no }} | {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }} | {{ $item->unit->unit }} | @if($item->particular_id === 1) Due to unit owner @else {{ $item->particular->particular }} @endif | {{Carbon\Carbon::parse($item->start)->format('M d, Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }} | {{number_format((($item->bill)-App\Models\Collection::where('bill_id', $item->id)->sum('collection')),2) }}|
+        @endif
+    @endif
 @endforeach
 
 @endcomponent

@@ -3,14 +3,9 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\AccountPayable;
 use Livewire\WithFileUploads;
-use App\Models\AccountPayableParticular;
-use App\Notifications\SendAccountPayableStep4NotificationToAdmin;
-use Illuminate\Support\Facades\Notification;
-use App\Models\UserProperty;
-use App\Models\User;
 use Session;
+use App\Models\{AccountPayableParticular,AccountPayable};
 
 class AccountPayableCreateStep4Component extends Component
 {
