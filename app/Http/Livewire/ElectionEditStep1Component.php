@@ -42,6 +42,7 @@ class ElectionEditStep1Component extends Component
     }
 
     public function submitForm(){
+
         $validatedInputs = $this->validate();
 
         $houseOwners = Bill::select('*',DB::raw('datediff(CURRENT_DATE,start)/30 as delayed_dues_in_months'))
@@ -68,9 +69,6 @@ class ElectionEditStep1Component extends Component
 
         return redirect('/property/'.Session::get('property_uuid').'/election/'.$this->election->id.'/create/step-2')->with('success', 'Success!');
     }
-
-
-
 
     public function render()
     {
