@@ -7,7 +7,7 @@ use Illuminate\Validation\Rule;
 use DB;
 use Session;
 use Carbon\Carbon;
-use App\Models\{Utility,AccountPayableLiquidation,AccountPayableLiquidationParticular,AccountPayableParticular,Concern,UnitInventory,Collection,RemittanceDeedOfSale,Feature,Contract,Bill,Unit,Guest,Booking,Tenant};
+use App\Models\{Utility,AccountPayableLiquidation,AccountPayableLiquidationParticular,AccountPayableParticular,Concern,UnitInventory,Collection,Remittance,DeedOfSale,Feature,Contract,Bill,Unit,Guest,Booking,Tenant};
 
 class UnitShowComponent extends Component
 {
