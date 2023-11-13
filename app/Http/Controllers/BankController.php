@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Subfeatures;
+namespace App\Http\Controllers;
 
 use Session;
 use App\Models\{Bank,Unit,Owner,Property};
