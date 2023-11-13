@@ -77,7 +77,7 @@ class RfpIndexComponent extends Component
 
     public function render()
     {
-        $propertyRfpCount = Property::find(Session::get('property_uuid'))->collections->count();
+        $propertyRfpCount = Property::find(Session::get('property_uuid'))->accountpayables->count();
 
         $accountPayables = AccountPayable::where('property_uuid', Session::get('property_uuid'))
           ->when($this->created_at, function($query){
@@ -90,7 +90,7 @@ class RfpIndexComponent extends Component
         ->get();
 
 
-       return view('livewire.rfp-index-component',[
+       return view('livewire.features.rfp.rfp-index-component',[
           'accountpayables' => $accountPayables,
           'statuses' => app('App\Http\Controllers\Features\RFPController')->get_statuses(Session::get('property_uuid')),
           'dates' => app('App\Http\Controllers\Features\RFPController')->get_dates(Session::get('property_uuid')),
