@@ -7,7 +7,8 @@ use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 use Session;
 use DB;
-use Livewire\{Component,Owner,Spouse,Representative};
+use Livewire\Component;
+use App\Models\Owner,Spouse,Representative;
 
 class OwnerCreateComponent extends Component
 {
