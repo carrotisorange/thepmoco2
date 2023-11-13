@@ -5,7 +5,6 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Illuminate\Validation\Rule;
 use App\Models\Guardian;
-use Session;
 
 class EditGuardianComponent extends Component
 {
@@ -16,7 +15,7 @@ class EditGuardianComponent extends Component
     public $relationship_id;
     public $mobile_number;
     public $email;
-    
+
     public function mount($guardian_details){
        $this->guardian = $guardian_details->guardian;
        $this->relationship_id = $guardian_details->relationship_id;
@@ -38,7 +37,7 @@ class EditGuardianComponent extends Component
     {
         $this->validateOnly($propertyName);
     }
-    
+
     public function updateGuardian(){
 
         $validated = $this->validate();

@@ -2,29 +2,12 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\AccountPayableLiquidation;
-use App\Models\AccountPayableLiquidationParticular;
-use App\Models\AccountPayableParticular;
 use Livewire\Component;
 use Illuminate\Validation\Rule;
 use DB;
 use Session;
-use App\Models\Utility;
-use App\Models\Concern;
 use Carbon\Carbon;
-use Illuminate\Support\Str;
-use App\Models\UnitInventory;
-use App\Models\Collection;
-use App\Models\Remittance;
-use App\Models\DeedOfSale;
-use App\Models\Feature;
-use App\Models\Contract;
-use App\Models\Bill;
-use App\Models\Unit;
-use App\Models\Guest;
-use App\Models\Booking;
-use App\Models\Tenant;
-
+use App\Models\{Utility,AccountPayableLiquidation,AccountPayableLiquidationParticular,AccountPayableParticular,Concern,UnitInventory,Collection,Remittance,DeedOfSale,Feature,Contract,Bill,Unit,Guest,Booking,Tenant};
 
 class UnitShowComponent extends Component
 {

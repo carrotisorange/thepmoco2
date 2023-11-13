@@ -2,15 +2,13 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Tenant;
 use Illuminate\Support\Str;
-
 use Livewire\WithFileUploads;
 use DB;
 use Illuminate\Validation\Rule;
 use Session;
-
 use Livewire\Component;
+use App\Models\Tenant;
 
 class TenantCreateComponent extends Component
 {

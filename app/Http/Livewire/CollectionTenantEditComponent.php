@@ -4,11 +4,9 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Session;
-use App\Models\Collection;
-use App\Models\Bill;
 use Carbon\Carbon;
 use Livewire\WithFileUploads;
-use App\Models\PaymentRequest;
+use App\Models\{Bill,PaymentRequest};
 
 class CollectionTenantEditComponent extends Component
 {

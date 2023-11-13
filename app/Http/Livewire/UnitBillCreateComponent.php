@@ -3,12 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Bill;
-use App\Models\Contract;
-use App\Models\DeedOfSale;
-use App\Models\Tenant;
-use App\Models\Utility;
-use App\Models\Owner;
+use App\Models\{Bill,Contract,DeedOfSale,Tenant,Utility,Owner};
 
 class UnitBillCreateComponent extends Component
 {
@@ -30,13 +25,13 @@ class UnitBillCreateComponent extends Component
     }
     public function submitForm(){
 
-        
+
 
         try{
             if($this->type==='tenant'){
-                
+
                 $contracts = Contract::where('unit_uuid', $this->unit->uuid)->where('status', 'active')->get();
-                
+
                 foreach($contracts as $contract){
 
                 if($this->isBillSplit === 'yes'){
@@ -50,12 +45,12 @@ class UnitBillCreateComponent extends Component
                 app('App\Http\Controllers\Features\BillController')->store($tenant->property_uuid, $this->unit->uuid,
                 $tenant->uuid, '',$this->particular_id, $this->utility->start_date, $this->utility->end_date, $amount,
                 '', 1);
-                
+
             }
             }else{
-                
+
                 $deedofsales = DeedOfSale::where('unit_uuid', $this->unit->uuid)->where('status', 'active')->get();
-                
+
                 foreach($deedofsales as $deedofsale){
 
                 if($this->isBillSplit === 'yes'){
@@ -67,10 +62,10 @@ class UnitBillCreateComponent extends Component
                  $owner = Owner::find($deedofsale['owner_uuid']);
 
                 app('App\Http\Controllers\Features\BillController')->store($owner->property_uuid, $this->unit->uuid, '',$owner->uuid, $this->particular_id, $this->utility->start_date, $this->utility->end_date, $amount, '', 1);
-                
+
             }
             }
-            
+
 
           Utility::where('id', $this->utility->id)
           ->update(
@@ -86,7 +81,7 @@ class UnitBillCreateComponent extends Component
         // return back()->with('success');
 
         }catch(\Exception $e){
-        
+
             return back()->with('error',$e);
         }
 
@@ -99,7 +94,7 @@ class UnitBillCreateComponent extends Component
             return 5;
         }
     }
-    
+
     public function render()
     {
         // ddd($this->get_particular_id($this->utility->type));

@@ -3,18 +3,16 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\ConcernCategory;
-use App\Models\Tenant;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Str;
-use App\Models\Concern;
 use Session;
+use App\Models\{Concern,ConcernCategory,Tenant};
 
 class CreateConcernComponent extends Component
 {
     use WithFileUploads;
-    
+
     public $tenant;
 
     //input variables
@@ -34,7 +32,7 @@ class CreateConcernComponent extends Component
             'image' => 'required |max:102400',
         ];
     }
-    
+
     public function updated($propertyName)
     {
        $this->validateOnly($propertyName);
@@ -45,7 +43,7 @@ class CreateConcernComponent extends Component
         sleep(2);
 
         $validated = $this->validate();
-     
+
         $validated['tenant_uuid'] = $this->tenant->uuid;
         $validated['reference_no'] = auth()->user()->id.'_'.Str::random(8);
         $validated['property_uuid'] = $this->tenant->property_uuid;
@@ -58,7 +56,7 @@ class CreateConcernComponent extends Component
         // }
 
         $concern = Concern::create($validated);
- 
+
        return redirect('/property/'.Session::get('property_uuid').'/concern/'.$concern->id.'/edit')->with('success', 'Changes Saved!');
     }
 

@@ -3,8 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\AccountPayable;
-use App\Models\AccountPayableParticular;
+use App\Models\{AccountPayable,AccountPayableParticular};
 
 class DeleteAccountpayableComponent extends Component
 {

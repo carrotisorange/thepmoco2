@@ -5,10 +5,8 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use DB;
 use Session;
-use App\Models\Election;
-use App\Models\Bill;
-use App\Models\Voter;
 use Carbon\Carbon;
+use App\Models\{Election,Bill,Voter};
 
 class ElectionCreateComponent extends Component
 {

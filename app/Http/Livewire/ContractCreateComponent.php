@@ -2,16 +2,11 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Contract;
-use DB;
 use Livewire\WithFileUploads;
-
 use Livewire\Component;
 use Carbon\Carbon;
 use Session;
-use Illuminate\Support\Str;
-use App\Models\Bill;
-use App\Models\UserProperty;
+use App\Models\{Contract,Bill};
 
 class ContractCreateComponent extends Component
 {

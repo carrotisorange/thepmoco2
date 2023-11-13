@@ -2,22 +2,14 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\AcknowledgementReceipt;
-use App\Models\Guest;
-use App\Models\Bill;
+
 use Livewire\WithPagination;
 use Livewire\Component;
-use App\Models\Collection;
+use Session;
 use Illuminate\Validation\Rule;
 use Carbon\Carbon;
 use DB;
-use App\Models\Property;
-use App\Models\Particular;
-use App\Models\PropertyParticular;
-use App\Models\Unit;
-use Session;
-use App\Models\Booking;
-
+use App\Models\{Collection,Property,Particular,PropertyParticular,Booking,Guest,Bill};
 
 class GuestBillCreateComponent extends Component
 {

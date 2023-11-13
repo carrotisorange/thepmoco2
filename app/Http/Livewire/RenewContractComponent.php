@@ -6,13 +6,10 @@ use App\Mail\SendContractToTenant;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Carbon\Carbon;
-use App\Models\Property;
-use Session;
-use App\Models\Unit;
 use Illuminate\Support\Str;
-use App\Models\Contract;
 use Illuminate\Support\Facades\Mail;
 use DB;
+use App\Models\{Unit,Contract};
 
 class RenewContractComponent extends Component
 {

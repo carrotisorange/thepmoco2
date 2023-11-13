@@ -4,16 +4,12 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Carbon\Carbon;
-use App\Models\PropertyBuilding;
-use App\Models\Owner;
 use Session;
 
 class PropertyShowComponent extends Component
 {
     public function render()
     {
-        // return view('layouts.under-construction-general');
-
         app('App\Http\Controllers\Features\PropertyController')->store_property_session(Session::get('property_uuid'));
 
         app('App\Http\Controllers\Features\PropertyController')->save_unit_stats(Session::get('property_uuid'));

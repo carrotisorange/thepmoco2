@@ -2,22 +2,14 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\AcknowledgementReceipt;
 use Illuminate\Support\Facades\Hash;
 use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
 use DB;
-use App\Models\User;
-use App\Models\Representative;
-use App\Models\Owner;
 use Session;
 use Carbon\Carbon;
-use App\Models\Bill;
-use App\Models\DeedOfSale;
-use App\Models\Spouse;
-use App\Models\Collection;
-use App\Models\Feature;
 use Livewire\Component;
+use App\Models\{AcknowledgementReceipt,User,Representative,Owner,Bill,DeedOfSale,Spouse,Collection,Feature};
 
 class OwnerShowComponent extends Component
 {

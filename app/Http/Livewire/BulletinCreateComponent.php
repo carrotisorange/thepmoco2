@@ -3,10 +3,9 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Bulletin;
 use Livewire\WithFileUploads;
 use Session;
-
+use App\Models\Bulletin;
 
 class BulletinCreateComponent extends Component
 {

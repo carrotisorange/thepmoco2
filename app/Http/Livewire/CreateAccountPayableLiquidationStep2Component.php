@@ -3,8 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\AccountPayableLiquidationParticular;
-use App\Models\AccountPayableLiquidation;
+use App\Models\{AccountPayableLiquidationParticular,AccountPayableLiquidation};
 
 class CreateAccountPayableLiquidationStep2Component extends Component
 {

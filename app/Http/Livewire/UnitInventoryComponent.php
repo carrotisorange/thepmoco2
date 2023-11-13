@@ -3,11 +3,10 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\UnitInventory;
 use Carbon\Carbon;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Str;
-
+use App\Models\UnitInventory;
 
 class UnitInventoryComponent extends Component
 {
@@ -57,13 +56,13 @@ class UnitInventoryComponent extends Component
                     'quantity' => $inventory->quantity,
                     'remarks' => $inventory->remarks,
                     'updated_at' => Carbon::now()
-                ]);   
+                ]);
             }
 
             session()->flash('success', 'Changes Saved!');
 
             $this->inventories = $this->get_inventories();
-            
+
        }catch(\Exception $e){
             return redirect(url()->previous())->with('error', $e);
        }
@@ -71,17 +70,17 @@ class UnitInventoryComponent extends Component
 
     }
 
-    
+
     public function uploadImage($id){
-        
-        
+
+
 
         return redirect('/property/'.$this->unitDetails->property_uuid.'/unit/'.$this->unitDetails->uuid.'/inventory/'.$id);
     }
 
      public function skipUnitInventoryProcess()
     {
-        
+
 
         return
         redirect('/property/'.$this->unitDetails->property_uuid.'/tenant/'.$this->contract->tenant_uuid.'/contract/'.$this->contract->uuid.'/moveout/step-2')->with('success',
@@ -90,7 +89,7 @@ class UnitInventoryComponent extends Component
 
     public function addNewUnitInventory(){
 
-        
+
 
         UnitInventory::create(
             [
@@ -105,23 +104,23 @@ class UnitInventoryComponent extends Component
 
     public function removeUnitInventory($id){
 
-        
+
 
         UnitInventory::where('id', $id)->delete();
-        
+
         session()->flash('success', 'Changes Saved!');
     }
 
 
     public function redirectToTheUnitPage(){
-        
-        
+
+
 
         return redirect('/property/'.$this->unitDetails->property_uuid.'/unit/'.$this->unitDetails->uuid);
     }
 
     public function submitForm(){
-        
+
 
         // UnitInventory::where('unit_uuid', $this->unitDetails->uuid)
         // ->update([
@@ -139,14 +138,14 @@ class UnitInventoryComponent extends Component
 
         return redirect('/property/'.$this->unitDetails->property_uuid.'/unit/'.$this->unitDetails->uuid.'/tenant/'.$this->tenant->uuid.'/contract/'.$this->contract->uuid.'/bill/'.Str::random(8).'/create')->with('success', 'Changes Saved!');
     }
-    
+
     public function get_inventories(){
         return UnitInventory::where('unit_uuid', $this->unitDetails->uuid)
         ->where('contract_uuid', '')
         ->orderBy('created_at', 'desc')
         ->get();
     }
-    
+
     public function render()
     {
         return view('livewire.unit-inventory-component');

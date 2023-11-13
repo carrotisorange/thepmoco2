@@ -1,4 +1,5 @@
 <x-new-layout-base>
+
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
     <div class="pt-10 block lg:flex justify-between">
@@ -18,7 +19,7 @@
                     </div>
                     </div>
                     <div>
-                 
+
                     </div>
                 </div>
         </div>
@@ -39,11 +40,11 @@
                     </dl>
                     </div>
         </div>
-        
+
     </div>
 
     <div class="mt-8 grid grid-cols-4">
-        
+
         <!-- number of contracts -->
         <div class="w-full col-span-3 lg:col-span-1">
             <div class="w-full bg-white rounded-lg shadow p-2 md:p-6">
@@ -59,7 +60,7 @@
                         </div>
                         </div>
                         <div>
-                        
+
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-3 mb-2">
@@ -71,7 +72,7 @@
                         <dt class="w-8 h-8 rounded-full bg-green-100 text-sm font-medium flex items-center justify-center mb-1">12</dt>
                         <dd class="text-sm font-medium">Inactive</dd>
                     </dl>
-                   
+
                     </div>
                 </div>
             </div>
@@ -92,7 +93,7 @@
                         </div>
                         </div>
                         <div>
-                        
+
                         </div>
                     </div>
                     <div class="grid grid-cols-3 gap-3 mb-2">
@@ -113,7 +114,7 @@
             </div>
         </div>
 
-        
+
         <!-- number of tenants -->
         <div class="w-full col-span-3 lg:col-span-1">
             <div class="w-full bg-white rounded-lg shadow p-2 md:p-6">
@@ -135,7 +136,7 @@
                             </div>
                         </div>
                     <div>
-                        
+
                 </div>
             </div>
                     <div class="grid grid-cols-2 gap-3 mb-2">
@@ -151,7 +152,7 @@
                 </div>
             </div>
         </div>
-            
+
         <!-- number of owners -->
         <div class="w-full col-span-3 lg:col-span-1">
             <div class="w-full bg-white rounded-lg shadow p-2 md:p-6">
@@ -172,7 +173,7 @@
                         </div>
                         </div>
                         <div>
-                        
+
                         </div>
                     </div>
                     <div class="grid grid-cols-2 gap-3 mb-2">
@@ -191,20 +192,13 @@
 
     </div>
 
-    
-
-
 
     <!-- second row -->
     <div class="mt-10 grid grid-cols-4">
-    
-
         <!-- occupancy rate -->
         <div class="col-span-4 lg:col-span-2">
-            
-            
             <div class="w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
-            
+
             <div class="flex justify-between mb-3">
                 <div class="flex justify-center items-center">
                     <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white pr-1">Occupancy Rate</h5>
@@ -235,8 +229,6 @@
                     </div>
                 </div>
             </div>
-
-      
 
             <!-- Donut Chart -->
             <div class="py-6" id="donut-chart"></div>
@@ -274,7 +266,7 @@
                         </li>
                     </ul>
                 </div>
-     
+
                 </div>
             </div>
             </div>
@@ -423,7 +415,7 @@
                 </span>
                 </div>
             </div>
-            
+
             <div class="grid grid-cols-2 py-3">
                 <dl>
                 <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Collection</dt>
@@ -434,7 +426,7 @@
                 <dd class="leading-none text-xl font-bold text-red-600 dark:text-red-500">-₱18,230</dd>
                 </dl>
             </div>
-            
+
             <div id="bar-chart"></div>
                 <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
                 <div class="flex justify-between items-center pt-5">
@@ -476,11 +468,11 @@
                         </li>
                         </ul>
                     </div>
-                   
+
                 </div>
                 </div>
             </div>
-            
+
             <script>
             // ApexCharts options and config
             window.addEventListener("load", function() {
@@ -577,21 +569,21 @@
                     opacity: 1,
                 }
                 }
-            
+
                 if(document.getElementById("bar-chart") && typeof ApexCharts !== 'undefined') {
                 const chart = new ApexCharts(document.getElementById("bar-chart"), options);
                 chart.render();
                 }
             });
             </script>
-        
+
         </div>
     </div>
     <div class="mt-10 grid grid-cols-6">
 
         <!-- bills -->
         <div class="col-span-6 lg:col-span-2">
-        
+
             <div class="w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
 
             <div class="flex justify-between items-start w-full">
@@ -607,7 +599,7 @@
                                 <p>Report helps navigate cumulative growth of community activities. Ideally, the chart should have a growing trend, as stagnating chart signifies a significant decrease of community activity.</p>
                                 <h3 class="font-semibold text-gray-900 dark:text-white">Calculation</h3>
                                 <p>For each date bucket, the all-time volume of activities is calculated. This means that activities in period n contain all activities up to period n, plus the activities generated by your community in period.</p>
-                                
+
                             </div>
                         <div data-popper-arrow></div>
                     </div>
@@ -640,7 +632,7 @@
                     </div>
                 </div>
             </div>
-           
+
             </div>
 
             <!-- Line Chart -->
@@ -757,7 +749,7 @@
 
         <!-- collection rate -->
         <div class="col-span-6 lg:col-span-2">
-         
+
             <div class="w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
             <div class="flex justify-between pb-4 mb-4 border-b border-gray-200 dark:border-gray-700">
                 <div class="flex items-center">
@@ -820,7 +812,7 @@
                         </li>
                         </ul>
                     </div>
-       
+
                 </div>
                 </div>
             </div>
@@ -935,8 +927,8 @@
 
                     var chart = new ApexCharts(document.getElementById("collection-chart"), options);
             chart.render();
-              
-                    
+
+
             });
             </script>
 
@@ -951,7 +943,7 @@
             <ul class="divide-y divide-gray-200 dark:divide-gray-700 shadow p-3">
             <li class="pb-3 sm:pb-4">
                 <div class="flex items-center space-x-4">
-                  
+
                     <div class="flex-1 min-w-0">
                         <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
                         Neil Sims
@@ -967,7 +959,7 @@
             </li>
             <li class="py-3 sm:py-4">
                 <div class="flex items-center space-x-4">
-                    
+
                     <div class="flex-1 min-w-0">
                         <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
                         Bonnie Green
@@ -983,7 +975,7 @@
             </li>
             <li class="py-3 sm:py-4">
                 <div class="flex items-center space-x-4">
-                    
+
                     <div class="flex-1 min-w-0">
                         <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
                         Michael Gough
@@ -999,7 +991,7 @@
             </li>
             <li class="py-3 sm:py-4">
                 <div class="flex items-center space-x-4">
-                    
+
                     <div class="flex-1 min-w-0">
                         <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
                         Thomas Lean
@@ -1015,7 +1007,7 @@
             </li>
             <li class="pt-3 pb-0 sm:pt-4">
                 <div class="flex items-center space-x-4">
-                   
+
                     <div class="flex-1 min-w-0">
                         <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
                         Lana Byrd
@@ -1043,17 +1035,17 @@
         </div>
 
     </div>
-          
-            
+
+
 
 
     <!-- fourth row -->
 
     <div class="mt-10 grid grid-cols-4">
-        
+
         <!-- water consumption -->
         <div class="col-span-4 lg:col-span-2">
-            
+
             <div class="w-full bg-white rounded-lg shadow dark:bg-gray-800">
             <div class="flex justify-between p-4 md:p-6 pb-0 md:pb-0">
                 <div>
@@ -1103,7 +1095,7 @@
                         </li>
                     </ul>
                 </div>
-         
+
                 </div>
             </div>
             </div>
@@ -1149,7 +1141,7 @@
                     data: [150, 141, 145, 152, 135, 125],
                     color: "#1A56DB",
                     },
-                    
+
                 ],
                 chart: {
                     sparkline: {
@@ -1206,7 +1198,7 @@
 
         <!-- electricity -->
         <div class="col-span-4 lg:col-span-2">
-            
+
             <div class="w-full bg-white rounded-lg shadow dark:bg-gray-800">
             <div class="flex justify-between p-4 md:p-6 pb-0 md:pb-0">
                 <div>
@@ -1256,7 +1248,7 @@
                         </li>
                     </ul>
                 </div>
-         
+
                 </div>
             </div>
             </div>
@@ -1302,7 +1294,7 @@
                     data: [150, 141, 145, 152, 135, 125],
                     color: "#ffba08",
                     },
-                    
+
                 ],
                 chart: {
                     sparkline: {
@@ -1360,11 +1352,11 @@
 
     </div>
     <!-- fourth row row -->
-    
+
     <div class="mt-10 grid grid-cols-6">
         <!-- concerns -->
         <div class="col-span-6 lg:col-span-3 p-4">
-            
+
             <div class="w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
             <div class="flex justify-between pb-4 mb-4 border-b border-gray-200 dark:border-gray-700">
                 <div class="flex items-center">
@@ -1432,7 +1424,7 @@
                         </li>
                         </ul>
                     </div>
-       
+
                 </div>
                 </div>
             </div>
@@ -1547,8 +1539,8 @@
 
                     var chart = new ApexCharts(document.getElementById("column-chart"), options);
             chart.render();
-              
-                    
+
+
             });
             </script>
 
@@ -1562,14 +1554,14 @@
                     <div class="flex justify-between py-2">
                         <h1 class="py-1 font-light text-sm">Average Number of Days Stayed:</h1>
                         <span class="bg-green-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-green-900 dark:text-green-300">
-                    
+
                         42.5% day/s
                 </span>
                     </div>
                     <ul class="divide-y divide-gray-200 dark:divide-gray-700 shadow p-3">
                         <li class="pb-3 sm:pb-4">
                             <div class="flex items-center space-x-4">
-                            
+
                                 <div class="flex-1 min-w-0">
                                     <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
                                     Neil Sims
@@ -1585,7 +1577,7 @@
                         </li>
                         <li class="py-3 sm:py-4">
                             <div class="flex items-center space-x-4">
-                                
+
                                 <div class="flex-1 min-w-0">
                                     <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
                                     Bonnie Green
@@ -1601,7 +1593,7 @@
                         </li>
                         <li class="py-3 sm:py-4">
                             <div class="flex items-center space-x-4">
-                                
+
                                 <div class="flex-1 min-w-0">
                                     <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
                                     Michael Gough
@@ -1617,7 +1609,7 @@
                         </li>
                         <li class="py-3 sm:py-4">
                             <div class="flex items-center space-x-4">
-                                
+
                                 <div class="flex-1 min-w-0">
                                     <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
                                     Thomas Lean
@@ -1633,7 +1625,7 @@
                         </li>
                         <li class="pt-3 pb-0 sm:pt-4">
                             <div class="flex items-center space-x-4">
-                            
+
                                 <div class="flex-1 min-w-0">
                                     <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
                                     Lana Byrd
@@ -1658,7 +1650,7 @@
                 </div>
 
         </div>
-     
+
     </div>
     <!-- fifth row row -->
 
@@ -1676,7 +1668,7 @@
                     <ul class="divide-y divide-gray-200 dark:divide-gray-700 shadow p-3">
                     <li class="pb-3 sm:pb-4">
                         <div class="flex items-center space-x-4">
-                        
+
                             <div class="flex-1 min-w-0">
                                 <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
                                 Neil Sims
@@ -1689,7 +1681,7 @@
                     </li>
                     <li class="py-3 sm:py-4">
                         <div class="flex items-center space-x-4">
-                            
+
                             <div class="flex-1 min-w-0">
                                 <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
                                 Bonnie Green
@@ -1702,7 +1694,7 @@
                     </li>
                     <li class="py-3 sm:py-4">
                         <div class="flex items-center space-x-4">
-                            
+
                             <div class="flex-1 min-w-0">
                                 <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
                                 Michael Gough
@@ -1715,7 +1707,7 @@
                     </li>
                     <li class="py-3 sm:py-4">
                         <div class="flex items-center space-x-4">
-                            
+
                             <div class="flex-1 min-w-0">
                                 <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
                                 Thomas Lean
@@ -1728,7 +1720,7 @@
                     </li>
                     <li class="pt-3 pb-0 sm:pt-4">
                         <div class="flex items-center space-x-4">
-                        
+
                             <div class="flex-1 min-w-0">
                                 <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
                                 Lana Byrd
@@ -1741,7 +1733,7 @@
                     </li>
                 </ul>
 
-     
+
         </div>
         <!-- memos -->
         <div class="col-span-6 lg:col-span-3">
@@ -1760,14 +1752,14 @@
                     </div>
                     </div>
                     <div>
-                 
+
                     </div>
                 </div>
         </div>
         </div>
-            
+
 
     </div>
-    
-   
+
+
 </x-new-layout>

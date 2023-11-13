@@ -3,9 +3,8 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\AccountPayableParticular;
-use App\Models\AccountPayable;
 use Session;
+use App\Models\{AccountPayableParticular,AccountPayable};
 
 class AccountPayableShowComponent extends Component
 {

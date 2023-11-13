@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Livewire;
-use App\Models\DeedOfSale;
+
 use Session;
-use App\Models\Unit;
 use DB;
+use App\Models\Unit;
 
 use Livewire\Component;
 
@@ -33,7 +33,7 @@ class OccupancyComponent extends Component
 
     public function submitForm()
     {
-        
+
 
         $validatedData = $this->validate();
 
@@ -48,7 +48,7 @@ class OccupancyComponent extends Component
          {
             return back()->with('error',$e);
          }
-        
+
     }
 
     public function update_deed_of_sales($validatedData)

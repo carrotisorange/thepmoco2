@@ -1,14 +1,12 @@
 <?php
 
 namespace App\Http\Livewire;
-use App\Models\Property;
 
 use Livewire\Component;
 use Carbon\Carbon;
-use App\Models\Booking;
 use Illuminate\Validation\Rule;
-use App\Models\Unit;
 use Session;
+use App\Models\{Unit,Booking};
 
 class EditBookingComponent extends Component
 {

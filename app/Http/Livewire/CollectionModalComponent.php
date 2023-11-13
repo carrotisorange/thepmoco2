@@ -2,19 +2,12 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\AcknowledgementReceipt;
 use Session;
-use App\Models\Collection;
-use App\Models\Bill;
-use App\Models\Property;
-use App\Models\Tenant;
-use Illuminate\Http\Request;
-use Livewire\WithFileUploads;
-use LivewireUI\Modal\ModalComponent;
 use Carbon\Carbon;
 use DB;
-use App\Models\Unit;
-use App\Models\Contract;
+use Livewire\WithFileUploads;
+use LivewireUI\Modal\ModalComponent;
+use App\Models\{AcknowledgementReceipt,Collection,Bill,Property,Tenant,Unit,Contract};
 
 class CollectionModalComponent extends ModalComponent
 {

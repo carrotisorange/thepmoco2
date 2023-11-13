@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Livewire;
+
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 use DB;

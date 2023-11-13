@@ -4,10 +4,9 @@ namespace App\Http\Livewire;
 
 use App\Models\CheckoutOption;
 use Livewire\Component;
-use App\Models\Plan;
 use DB;
 use Str;
-use App\Models\DiscountCode;
+use App\Models\{DiscountCode,Plan};
 
 class CheckoutComponent extends Component
 {

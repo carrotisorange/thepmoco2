@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Livewire;
-use App\Models\Guardian;
+
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
-use DB;
 use Session;
+use App\Models\Guardian;
 
 use Livewire\Component;
 

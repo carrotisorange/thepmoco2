@@ -3,22 +3,19 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Feature;
-use Exception;
 use Str;
-use DB;
 use Xendit\Xendit;
-use App\Models\Subscription;
+use App\Models\{Feature,Subscription};
 
 class FeatureCheckoutComponent extends Component
 {
 
     public $selectedFeature = [];
 
-    public $selectedAllFeature = false;    
+    public $selectedAllFeature = false;
 
     public function updatedSelectedAllFeature($selectedAllFeature)
-    {   
+    {
         if($selectedAllFeature)
         {
             $this->selectedFeature = $this->get_features()->pluck('id');
@@ -38,10 +35,10 @@ class FeatureCheckoutComponent extends Component
 
     public function submitForm()
     {
-        
+
 
         $external_id = auth()->user()->id.'_'.Str::random(8);
-        
+
         $description = count($this->selectedFeature).' features';
 
         for ($i=0; $i<count($this->selectedFeature); $i++) {
@@ -50,7 +47,7 @@ class FeatureCheckoutComponent extends Component
 
             app('App\Http\Controllers\SubscriptionController')->store_subscription(
                 auth()->user()->id, $feature_id, $external_id, $amount, count($this->selectedFeature)
-            );              
+            );
         }
 
         try{
@@ -82,9 +79,9 @@ class FeatureCheckoutComponent extends Component
 
             $createRecurring = \Xendit\Recurring::create($params);
 
-        return redirect ($createRecurring['last_created_invoice_url']);  
+        return redirect ($createRecurring['last_created_invoice_url']);
 
-       
+
         }catch(\Exception $e)
         {
             return back()->with('error', 'Cannot complete your action');
@@ -100,7 +97,7 @@ class FeatureCheckoutComponent extends Component
     {
         return Feature::whereIn('id', $this->selectedFeature)->sum('price');
     }
-    
+
     public function render()
     {
         return view('livewire.feature-checkout-component',[

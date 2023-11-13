@@ -4,14 +4,12 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Illuminate\Validation\Rule;
-use App\Models\User;
-use App\Models\UserProperty;
 use Illuminate\SUpport\Str;
-use App\Models\Role;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use DB;
 use Session;
+use App\Models\{User,UserProperty,Role};
 
 class CreatePersonnelComponent extends Component
 {
@@ -25,13 +23,13 @@ class CreatePersonnelComponent extends Component
         'email' => ['required', 'string', 'email', 'max:255'],
         'role_id' => ['required', Rule::exists('roles', 'id')],
     ]);
-    
+
     $username = Role::find($this->role_id)->role.''.UserProperty::where('property_uuid', Session::get('property_uuid'))->where('role_id',$this->role_id)->count();
 
     $password = Str::random(8);
-    
+
     $is_user_exists = User::where('email', $this->email)->pluck('id')->first();
-    
+
         $is_role_exists = UserProperty::where('property_uuid',Session::get('property_uuid'))->where('user_id', $is_user_exists)->where('role_id', $this->role_id)->pluck('id')->first();
 
         if($is_role_exists){
@@ -70,7 +68,7 @@ class CreatePersonnelComponent extends Component
                'role_id' => $this->role_id
         ]
     );
-    
+
 
     if($user->role_id == '5')
         {

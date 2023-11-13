@@ -3,9 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Bill;
-use App\Models\Contract;
-use App\Models\DeedOfSale;
+use App\Models\{Bill,Contract,DeedOfSale};
 
 class BillDraftComponent extends Component
 {
@@ -35,14 +33,14 @@ class BillDraftComponent extends Component
         $this->validateOnly($propertyName);
 
     }
-    
+
     public function getBills(){
         return Bill::where('property_uuid', Session::get('property_uuid'))->where('batch_no', $this->batch_no)->get();
     }
 
     public function postBills(){
-        
-        
+
+
 
         if($this->bill_to == 'tenant'){
             if($this->isBillSplit == 'yes'){
@@ -97,8 +95,8 @@ class BillDraftComponent extends Component
                         'is_posted' => true
             ]);
         }
-        
-    
+
+
         return redirect('/property/'.Session::get('property_uuid').'/bill')->with('success', 'Changes Saved!');
     }
 

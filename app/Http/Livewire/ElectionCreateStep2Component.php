@@ -3,8 +3,8 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Voter;
 use Session;
+use App\Models\Voter;
 
 class ElectionCreateStep2Component extends Component
 {

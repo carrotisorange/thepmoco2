@@ -3,13 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Utility;
-use App\Models\Contract;
-use App\Models\DeedOfSale;
-use App\Models\Booking;
-use App\Models\Tenant;
-use App\Models\Owner;
-use App\Models\Guest;
+use App\Models\{Utility,Contract,DeedOfSale,Tenant,Owner};
 
 class EditUtilityComponent extends Component
 {

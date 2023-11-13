@@ -9,15 +9,11 @@ class CreateUnitInventoryComponent extends Component
 {
     public $unit;
 
-    //input variables
     public $item;
     public $quantity;
     public $remarks;
     public $image;
 
-    
-
-    
     protected function rules()
     {
         return [
@@ -27,7 +23,7 @@ class CreateUnitInventoryComponent extends Component
             // 'image' => 'nullable | mimes:jpg,png|max:102400',
             ];
     }
-    
+
     public function updated($propertyName)
     {
        $this->validateOnly($propertyName);

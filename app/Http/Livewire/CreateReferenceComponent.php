@@ -3,14 +3,13 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Tenant;
 use Illuminate\Validation\Rule;
 use App\Models\Reference;
 
 class CreateReferenceComponent extends Component
 {
     public $tenant;
-    
+
     //input variables
     public $reference;
     public $relationship_id;
@@ -44,7 +43,7 @@ class CreateReferenceComponent extends Component
     }
 
     public function render()
-    {   
+    {
         return view('livewire.create-reference-component',[
             'relationships' => app('App\Http\Controllers\RelationshipController')->index(),
         ]);

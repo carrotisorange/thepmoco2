@@ -1,16 +1,13 @@
 <?php
 
 namespace App\Http\Livewire;
-use App\Models\ConcernCategory;
+
 use Session;
 use Livewire\Component;
-use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 use Carbon\Carbon;
 use DB;
-use App\Models\Tenant;
-use App\Models\Unit;
-use App\Models\User;
+use App\Models\{Tenant,Unit,ConcernCategory};
 
 class ConcernEditComponent extends Component
 {

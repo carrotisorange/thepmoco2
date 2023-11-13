@@ -2,15 +2,12 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Owner;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 use Session;
 use DB;
-use App\Models\Spouse;
-use App\Models\Representative;
-use Livewire\Component;
+use Livewire\{Component,Owner,Spouse,Representative};
 
 class OwnerCreateComponent extends Component
 {

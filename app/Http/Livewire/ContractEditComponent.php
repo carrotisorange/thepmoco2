@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Livewire;
+
 use Livewire\WithFileUploads;
 use DB;
 use Session;
-use App\Models\Contract;
-
 use Livewire\Component;
+use App\Models\Contract;
 
 class ContractEditComponent extends Component
 {

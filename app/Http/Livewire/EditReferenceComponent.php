@@ -4,8 +4,8 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Illuminate\Validation\Rule;
-use App\Models\Reference;
 use Session;
+use App\Models\Reference;
 
 class EditReferenceComponent extends Component
 {
@@ -16,7 +16,7 @@ class EditReferenceComponent extends Component
     public $relationship_id;
     public $mobile_number;
     public $email;
-    
+
     public function mount($reference_details){
        $this->reference = $reference_details->reference;
        $this->relationship_id = $reference_details->relationship_id;
@@ -38,7 +38,7 @@ class EditReferenceComponent extends Component
     {
         $this->validateOnly($propertyName);
     }
-    
+
     public function updateReference(){
 
         $validated = $this->validate();

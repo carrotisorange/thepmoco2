@@ -3,12 +3,10 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Remittance;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendRemittanceToOwner;
-use App\Models\DeedOfSale;
-use App\Models\Owner;
+use App\Models\{Remittance,Owner};
 
 class RemittanceShowComponent extends Component
 {

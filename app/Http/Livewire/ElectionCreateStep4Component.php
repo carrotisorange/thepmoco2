@@ -3,8 +3,8 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Election;
 use Session;
+use App\Models\Election;
 
 class ElectionCreateStep4Component extends Component
 {
@@ -35,7 +35,7 @@ class ElectionCreateStep4Component extends Component
     }
 
     public function submitForm(){
- 
+
         $validatedInputs = $this->validate();
 
         Election::where('id', $this->election->id)->update($validatedInputs);

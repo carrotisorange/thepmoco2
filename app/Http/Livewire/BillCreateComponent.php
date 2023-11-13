@@ -4,12 +4,9 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Session;
-use App\Models\Bill;
 use Illuminate\Validation\Rule;
 use Carbon\Carbon;
-use DB;
-use App\Models\Particular;
-use App\Models\UserProperty;
+use App\Models\{Bill,Particular,UserProperty};
 
 class BillCreateComponent extends Component
 {

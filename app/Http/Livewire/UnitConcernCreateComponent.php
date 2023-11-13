@@ -3,22 +3,18 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\ConcernCategory;
-use App\Models\Tenant;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
-use App\Models\Notification;
-use Str;
-use App\Models\Unit;
-use App\Models\Concern;
 use Session;
+use Str;
+use App\Models\{Concern,ConcernCategory};
 
 class UnitConcernCreateComponent extends Component
 {
     public $unit;
 
     public $concern_details;
-    
+
     use WithFileUploads;
 
     public $user;
