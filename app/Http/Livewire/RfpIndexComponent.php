@@ -77,7 +77,7 @@ class RfpIndexComponent extends Component
 
     public function render()
     {
-        $propertyRfpCount = Property::find(Session::get('property_uuid'))->collections->count();
+        $propertyRfpCount = Property::find(Session::get('property_uuid'))->accountpayables->count();
 
         $accountPayables = AccountPayable::where('property_uuid', Session::get('property_uuid'))
           ->when($this->created_at, function($query){
