@@ -90,7 +90,7 @@ class RfpIndexComponent extends Component
         ->get();
 
 
-       return view('livewire.features.rfp.rfp-index-component',[
+       return view('livewire.rfp-index-component',[
           'accountpayables' => $accountPayables,
           'statuses' => app('App\Http\Controllers\Features\RFPController')->get_statuses(Session::get('property_uuid')),
           'dates' => app('App\Http\Controllers\Features\RFPController')->get_dates(Session::get('property_uuid')),
