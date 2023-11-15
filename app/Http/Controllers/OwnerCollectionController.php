@@ -51,7 +51,7 @@ class OwnerCollectionController extends Controller
 
      $folder_path = 'features.owners.collections.export';
 
-     $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
+     $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data);
 
     $pdf_name = str_replace(' ', '_', $property->property).'_AR_'.$collection->ar_no.'.pdf';
 
@@ -142,7 +142,7 @@ class OwnerCollectionController extends Controller
                   $request->proof_of_payment,
          );
 
-         app('App\Http\Controllers\PointController')->store($property->uuid, auth()->user()->id,
+         app('App\Http\Controllers\Utilities\PointController')->store($property->uuid, auth()->user()->id,
          Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);
 
          return redirect('/property/'.$property->uuid.'/owner/'.$owner->uuid)->with('success','Changes Saved!');

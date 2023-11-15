@@ -10,46 +10,42 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Models\{Property, Bill, Guest, Unit, Booking};
 
-
 class CalendarController extends Controller
 {
     public function index(Property $property){
 
-        $featureId = 4;
+        $featureId = 4; //refer to the features table
 
-        $restrictionId = 2;
+        $restrictionId = 2; //refer to the restrictions table
 
-        app('App\Http\Controllers\Features\PropertyController')->store_property_session($property->uuid);
+        app('App\Http\Controllers\PropertyController')->storePropertySession($property->uuid);
 
-        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
+        app('App\Http\Controllers\Utilities\UserPropertyController')->isUserAuthorized();
+
+        if(!app('App\Http\Controllers\Utilities\UserRestrictionController')->isFeatureAuthorized($featureId, $restrictionId)){
             return abort(403);
         }
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,$restrictionId,$featureId);
+        app('App\Http\Controllers\PropertyController')->storeUnitStatistics();
 
-        app('App\Http\Controllers\Features\PropertyController')->save_unit_stats($property->uuid);
-
-        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($featureId,$restrictionId);
 
         $events = array();
 
-        $bookings = Property::find($property->uuid)->bookings->where('status', '!=',
-        'cancelled');
-
+        $bookings = Property::find($property->uuid)->bookings->where('status', '!=','cancelled');
 
 
         foreach($bookings as $booking){
             $events[] = [
                 'id' => $booking->guest->uuid,
                 'title' => $booking->guest->guest.' @ '.$booking->unit->unit,
-                // 'unit' => $booking->unit->unit,
                 'start' => $booking->movein_at,
                 'end' => $booking->moveout_at,
                 'status' => $booking->status
             ];
         }
 
-        return view('properties.calendars.index',[
+        return view('features.calendars.index',[
             'property' => $property,
             'units' => Property::find($property->uuid)->units,
             'events' => $events,
@@ -82,8 +78,8 @@ class CalendarController extends Controller
             $end = strtotime($request->moveout_at); // convert to timestamps
             $days = (int)(($end - $start)/86400);
             $price = (Unit::find($request->unit_uuid)->transient_rent * $days) - Unit::find($request->unit_uuid)->transient_discount;
-            $guest_uuid = app('App\Http\Controllers\Features\PropertyController')->generate_uuid();
-            $booking_uuid = app('App\Http\Controllers\Features\PropertyController')->generate_uuid();
+            $guest_uuid = app('App\Http\Controllers\PropertyController')->generate_uuid();
+            $booking_uuid = app('App\Http\Controllers\PropertyController')->generate_uuid();
             $guest = $this->store_guest(
                 $guest_uuid,
                 $request->guest,

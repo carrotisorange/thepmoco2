@@ -201,7 +201,7 @@ class RemittanceShowComponent extends Component
 
     public function render()
     {
-        return view('livewire.remittance-show-component',[
+        return view('livewire.features.remittance.remittance-show-component',[
             'remittance' => Remittance::find($this->getRemittanceId()),
 
             'dates' => Remittance::where('property_uuid', $this->unit->property_uuid)

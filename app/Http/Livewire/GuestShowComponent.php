@@ -120,7 +120,7 @@ class GuestShowComponent extends Component
             'price' => 'nullable'
         ]);
 
-        $validated['uuid'] = app('App\Http\Controllers\Features\PropertyController')->generate_uuid();
+        $validated['uuid'] = app('App\Http\Controllers\PropertyController')->generate_uuid();
         $validated['property_uuid'] = Session::get('property_uuid');
         $validated['guest_uuid'] = $this->guest_details->uuid;
 
@@ -176,7 +176,7 @@ class GuestShowComponent extends Component
           ->orderBy('ar_no', 'desc')
           ->get();
 
-        return view('livewire.guest-show-component',[
+        return view('livewire.features.guest.guest-show-component',[
             'units' => Property::find(Session::get('property_uuid'))->units->where('rent_duration', 'daily'),
             'bills' => Guest::find($this->guest_details->uuid)->bills()->orderBy('created_at', 'desc')->get(),
             'collections' => $collections,

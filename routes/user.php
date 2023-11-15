@@ -1,25 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\PointController;
-use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\Utilities\PointController;
+use App\Http\Controllers\Subfeatures\SubscriptionController;
 
 //All routes for user
 Route::prefix('user/{user:username}')->group(function(){
-    //routes for user crud operations
-    Route::patch('/update',[UserController::class, 'update']);
-
-    Route::get('/unlock', [UserController::class, 'unlock']);
-
-    Route::get('/edit',[UserController::class, 'edit'])->name('profile');
-
+    Route::controller(UserController::class)->group(function(){
+        Route::patch('/update','update');
+        Route::get('/unlock', 'unlock');
+        Route::get('/edit','edit')->name('profile');
+        Route::get('/export/{portfolio}','export');
+    });
     Route::get('/subscriptions/{external_id:external_id?}',[SubscriptionController::class, 'index'])->name('subscription');
-
     Route::post('/subscriptions/{external_id:external:id}/unsubscribe',[SubscriptionController::class, 'unsubscribe'])->name('subscription');
-
-    Route::get('/export/{portfolio}',[UserController::class, 'export']);
-
 });
 
  //route for point crud operations

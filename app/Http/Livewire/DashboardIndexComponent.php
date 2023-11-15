@@ -5,81 +5,103 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Carbon\Carbon;
 use Session;
+use App\Models\{Unit,Booking};
+use DB;
 
 class DashboardIndexComponent extends Component
 {
     public function render()
     {
-        app('App\Http\Controllers\PropertyController')->storePropertySession(Session::get('property_uuid'));
+        $buildings = app('App\Http\Controllers\Utilities\PropertyBuildingController')->getBuildings();
 
-        app('App\Http\Controllers\PropertyController')->save_unit_stats(Session::get('property_uuid'));
+        $contracts = app('App\Http\Controllers\Features\ContractController')->getContracts();
 
-        $contracts = app('App\Http\Controllers\Features\ContractController')->getContracts(Session::get('property_uuid'));
+        $tenants = app('App\Http\Controllers\Features\TenantController')->getTenants();
 
-        $concerns = app('App\Http\Controllers\Features\ConcernController')->getConcerns(Session::get('property_uuid'));
+        $verifiedTenants = app('App\Http\Controllers\Features\TenantController')->getVerifiedTenants();
 
-        $units = app('App\Http\Controllers\Features\UnitController')->getUnits(Session::get('property_uuid'));
+        $units =app('App\Http\Controllers\Features\UnitController')->getUnits();
 
-        $tenants = app('App\Http\Controllers\Features\TenantController')->getTenants(Session::get('property_uuid'));
+        $owners =app('App\Http\Controllers\Features\OwnerController')->getOwners();
 
-        $collections = app('App\Http\Controllers\Features\CollectionController')->getCollections(Session::get('property_uuid'));
+        $verifiedOwners = app('App\Http\Controllers\Features\OwnerController')->getVerifiedOwners();
 
-        $expenses = app('App\Http\Controllers\Features\RFPController')->getAccountPayables(Session::get('property_uuid'));
+        $personnels =app('App\Http\Controllers\Features\PersonnelController')->getPersonnels();
 
-        $currentOccupancyRate  = app('App\Http\Controllers\PropertyController')->getOccupancyRate(Session::get('property_uuid'));
+        $verifiedPersonnels =app('App\Http\Controllers\Features\PersonnelController')->getVerifiedPersonnels();
 
-        $paymentRequests = app('App\Http\Controllers\PropertyController')->getOccupancyRate(Session::get('property_uuid'));
+        $occupancyRateLabels = Unit::where('property_uuid', Session::get('property_uuid'))
+        ->join('statuses', 'units.status_id', 'statuses.id')
+        ->groupBy('status_id')
+        ->orderBy('status')
+        ->pluck('status');
 
-        $bills = app('App\Http\Controllers\Features\BillController')->getBills(Session::get('property_uuid'));
+        $occupancyRateLabels = join('", "', $occupancyRateLabels->toArray());
 
-        $delinquentTenants = app('App\Http\Controllers\PropertyController')->getDelinquents('tenant',Session::get('property_uuid'));
+        $occupancyRateValues = Unit::where('property_uuid', Session::get('property_uuid'))
+        ->select(DB::raw('count(*) as unit_count', 'status'))
+        ->join('statuses', 'units.status_id', 'statuses.id')
+        ->groupBy('units.status_id')
+        ->orderBy('status')
+        ->pluck('unit_count');
 
-        $delinquentOwners = app('App\Http\Controllers\PropertyController')->getDelinquents('owner',Session::get('property_uuid'));
+        $occupancyRateValues = join('", "', $occupancyRateValues->toArray());
 
-        $delinquentGuests = app('App\Http\Controllers\PropertyController')->getDelinquents('guest',Session::get('property_uuid'));
+        $guests =app('App\Http\Controllers\Features\GuestController')->getGuests();
 
-        $personnels = app('App\Http\Controllers\Features\PersonnelController')->getPersonnels(Session::get('property_uuid'));
+        $averageNumberOfDaysStayed = Booking::where('property_uuid', Session::get('property_uuid'))
+        ->select(DB::raw('avg(DATEDIFF(moveout_at,movein_at)) as average_days_stayed, count(*) as guest_count'))
+        ->where('property_uuid', Session::get('property_uuid'))
+        ->value('average_days_stayed');
 
-        $total_collected_bills = app('App\Http\Controllers\Features\BillController')->get_property_bills(Session::get('property_uuid'),Carbon::now()->month,'paid');
+        // $concerns = app('App\Http\Controllers\Features\ConcernController')->getConcerns(Session::get('property_uuid'));
 
-        $total_uncollected_bills = app('App\Http\Controllers\Features\BillController')->get_property_bills(Session::get('property_uuid'),Carbon::now()->month, 'unpaid');
+        // $collections = app('App\Http\Controllers\Features\CollectionController')->getCollections(Session::get('property_uuid'));
 
-        $collection_rate_date = app('App\Http\Controllers\PropertyController')->get_collection_rate_dates();
+        // $expenses = app('App\Http\Controllers\Features\RFPController')->getAccountPayables(Session::get('property_uuid'));
 
-        $collection_rate_value = app('App\Http\Controllers\PropertyController')->get_collection_rate_values();
+        // $currentOccupancyRate  = app('App\Http\Controllers\PropertyController')->getOccupancyRate(Session::get('property_uuid'));
 
-        $expense_rate_value = app('App\Http\Controllers\PropertyController')->get_expense_rate_values();
+        // $paymentRequests = app('App\Http\Controllers\PropertyController')->getOccupancyRate(Session::get('property_uuid'));
 
-        $current_collection_rate = app('App\Http\Controllers\PropertyController')->get_current_collection_rate();
+        // $bills = app('App\Http\Controllers\Features\BillController')->getBills(Session::get('property_uuid'));
 
-        $occupancy_rate_value = app('App\Http\Controllers\PropertyController')->get_occupancy_rate_values('this_year');
+        // $delinquentTenants = app('App\Http\Controllers\PropertyController')->getDelinquents('tenant',Session::get('property_uuid'));
 
-        $occupancy_rate_date = app('App\Http\Controllers\PropertyController')->get_occupancy_rate_dates('this_year');
+        // $delinquentOwners = app('App\Http\Controllers\PropertyController')->getDelinquents('owner',Session::get('property_uuid'));
+
+        // $delinquentGuests = app('App\Http\Controllers\PropertyController')->getDelinquents('guest',Session::get('property_uuid'));
+
+        // $total_collected_bills = app('App\Http\Controllers\Features\BillController')->get_property_bills(Session::get('property_uuid'),Carbon::now()->month,'paid');
+
+        // $total_uncollected_bills = app('App\Http\Controllers\Features\BillController')->get_property_bills(Session::get('property_uuid'),Carbon::now()->month, 'unpaid');
+
+        // $collection_rate_date = app('App\Http\Controllers\PropertyController')->get_collection_rate_dates();
+
+        // $collection_rate_value = app('App\Http\Controllers\PropertyController')->get_collection_rate_values();
+
+        // $expense_rate_value = app('App\Http\Controllers\PropertyController')->get_expense_rate_values();
+
+        // $current_collection_rate = app('App\Http\Controllers\PropertyController')->get_current_collection_rate();
+
+        // $occupancy_rate_value = app('App\Http\Controllers\PropertyController')->get_occupancy_rate_values('this_year');
+
+        // $occupancy_rate_date = app('App\Http\Controllers\PropertyController')->get_occupancy_rate_dates('this_year');
 
         return view('livewire.features.dashboard.dashboard-index-component',[
             'contracts' => $contracts,
-            'new_contracts_count' => app('App\Http\Controllers\Features\ContractController')->get_contracts_trend_count(Session::get('property_uuid')),
-            'new_contracts_date' => app('App\Http\Controllers\Features\ContractController')->get_contracts_trend_date(Session::get('property_uuid')),
-            'concerns' => $concerns,
-            'units' => $units,
             'tenants' => $tenants,
-            'collections' => $collections,
-            'expenses' => $expenses,
-            'currentOccupancyRate' => $currentOccupancyRate,
-            'paymentRequests' => $paymentRequests,
-            'bills' => $bills,
-            'delinquentTenants' => $delinquentTenants,
-            'delinquentOwners' => $delinquentOwners,
-            'delinquentGuests' => $delinquentGuests,
+            'verifiedTenants' => $verifiedTenants,
+            'units' => $units,
+            'owners' => $owners,
             'personnels' => $personnels,
-            'total_collected_bills' => $total_collected_bills,
-            'total_uncollected_bills' => $total_uncollected_bills,
-            'collection_rate_date' => $collection_rate_date,
-            'collection_rate_value' => $collection_rate_value,
-            'expense_rate_value' => $expense_rate_value,
-            'current_collection_rate' => $current_collection_rate,
-            'occupancy_rate_value' => $occupancy_rate_value,
-            'occupancy_rate_date' => $occupancy_rate_date
+            'verifiedPersonnels' => $verifiedPersonnels,
+            'buildings' => $buildings,
+            'occupancyRateLabels' => $occupancyRateLabels,
+            'occupancyRateValues' => $occupancyRateValues,
+            'guests' => $guests,
+            'averageNumberOfDaysStayed' => $averageNumberOfDaysStayed,
+            'verifiedOwners' => $verifiedOwners
         ]);
     }
 }

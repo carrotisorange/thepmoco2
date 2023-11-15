@@ -5,7 +5,6 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Carbon\Carbon;
 use Session;
-use Http\Livewire\URL;
 use App\Models\Bill;
 
 class EditBillComponent extends Component
@@ -46,7 +45,7 @@ class EditBillComponent extends Component
     public function render()
     {
         return view('livewire.edit-bill-component',[
-            'particulars' => app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid')),
+            'particulars' => app('App\Http\Controllers\Utilities\PropertyParticularController')->index(Session::get('property_uuid')),
         ]);
     }
 }

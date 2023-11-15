@@ -28,8 +28,8 @@ class PropertyIndexComponent extends Component
     public function render()
     {
         $userId = auth()->user()->id;
-        $properties  = app('App\Http\Controllers\Features\PropertyController')->get_properties($userId, $this->search,$this->sortBy, $this->filterByPropertyType, $this->limitDisplayTo);
-        $propertyTypes = app('App\Http\Controllers\Features\PropertyController')->get_property_types(auth()->user()->id);
+        $properties  = app('App\Http\Controllers\PropertyController')->get_properties($userId, $this->search,$this->sortBy, $this->filterByPropertyType, $this->limitDisplayTo);
+        $propertyTypes = app('App\Http\Controllers\PropertyController')->get_property_types(auth()->user()->id);
         $userPropertyCount = UserProperty::where('user_id', $userId)->count();
 
         $featureId = 19;

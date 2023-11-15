@@ -108,9 +108,9 @@ class BillCreateComponent extends Component
 
     public function render()
     {
-        return view('livewire.bill-create-component',[
+        return view('livewire.features.bill.bill-create-component',[
 
-            'particulars' => app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid')),
+            'particulars' => app('App\Http\Controllers\Utilities\PropertyParticularController')->index(Session::get('property_uuid')),
             'units' => app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($this->tenant->uuid),
             'bills' => app('App\Http\Controllers\Features\BillController')->show_tenant_bills($this->tenant->uuid),
         ]);

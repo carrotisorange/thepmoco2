@@ -93,10 +93,10 @@ class UnitEditBulkComponent extends Component
     public function render()
     {
         return view('livewire.unit-edit-bulk-component',[
-            'buildings' => app('App\Http\Controllers\PropertyBuildingController')->index(Session::get('property_uuid')),
-            'floors' => app('App\Http\Controllers\FloorController')->index(null),
-            'categories' => app('App\Http\Controllers\CategoryController')->index(null),
-            'statuses' => app('App\Http\Controllers\StatusController')->index(null),
+            'buildings' => app('App\Http\Controllers\Utilities\PropertyBuildingController')->index(Session::get('property_uuid')),
+            'floors' => app('App\Http\Controllers\Utilities\FloorController')->index(null),
+            'categories' => app('App\Http\Controllers\Utilities\CategoryController')->index(null),
+            'statuses' => app('App\Http\Controllers\Utilities\StatusController')->index(null),
             'propertyUnitsCount' => Property::find(Session::get('property_uuid'))->units->count()
         ]);
     }

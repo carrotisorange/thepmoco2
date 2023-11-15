@@ -2,19 +2,14 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\AcknowledgementReceipt;
-use App\Models\Owner;
-use App\Models\Bill;
-use Livewire\WithPagination;
 use Livewire\Component;
-use App\Models\Collection;
-use App\Models\DeedOfSale;
+
+use Livewire\WithPagination;
 use Carbon\Carbon;
 use DB;
 use Session;
-use App\Models\Property;
-use App\Models\Unit;
 use Illuminate\Validation\Rule;
+use App\Models\{Property,Collection,DeedOfSale,Owner,Bill};
 
 class OwnerBillComponent extends Component
 {
@@ -97,7 +92,7 @@ class OwnerBillComponent extends Component
         'is_posted' => true
      ]);
 
-      app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, 1, 3);
+      app('App\Http\Controllers\Utilities\PointController')->store(Session::get('property_uuid'), auth()->user()->id, 1, 3);
 
       return redirect(url()->previous())->with('success', 'Changes Saved!');
       }
@@ -239,7 +234,7 @@ class OwnerBillComponent extends Component
          'total_unpaid_bills' => $bills->where('status', 'unpaid'),
          'total_bills' => $bills,
          'statuses' => $statuses,
-         'particulars' => app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid')),
+         'particulars' => app('App\Http\Controllers\Utilities\PropertyParticularController')->index(Session::get('property_uuid')),
          'note_to_bill' => $noteToBill,
         'units' => DeedOfSale::where('owner_uuid', $this->owner->uuid)->get(),
         ]);

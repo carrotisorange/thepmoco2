@@ -9,7 +9,7 @@ class TenantGuardianController extends Controller
     public function create(Property $property, Tenant $tenant){
         return view('features.tenants.guardians.create',[
             'tenant' => $tenant,
-            'relationships' => app('App\Http\Controllers\RelationshipController')->index(),
+            'relationships' => app('App\Http\Controllers\Utilities\RelationshipController')->index(),
         ]);
     }
 

@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire;
 
+use Livewire\Component;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 use DB;
-use Livewire\Component;
 
 class PropertyCreateComponent extends Component
 {
@@ -66,21 +66,19 @@ class PropertyCreateComponent extends Component
             DB::transaction(function () use ($validatedData){
 
 
-               $new_property = app('App\Http\Controllers\Features\PropertyController')->store($validatedData, $this->type_id);
+               $new_property = app('App\Http\Controllers\PropertyController')->store($validatedData, $this->type_id);
 
-               app('App\Http\Controllers\UserPropertyController')->store($new_property->uuid->toString(), auth()->user()->id, 0, 1, 5);
+               app('App\Http\Controllers\Utilities\UserPropertyController')->store($new_property->uuid->toString(), auth()->user()->id, 0, 1, 5);
 
-               app('App\Http\Controllers\UserRestrictionController')->store($new_property->uuid->toString(), auth()->user()->id);
+               app('App\Http\Controllers\Utilities\UserRestrictionController')->store($new_property->uuid->toString(), auth()->user()->id);
 
-               app('App\Http\Controllers\PropertyParticularController')->store($new_property->uuid->toString());
+               app('App\Http\Controllers\Utilities\PropertyParticularController')->store($new_property->uuid->toString());
 
-               app('App\Http\Controllers\RoleController')->store($new_property->uuid->toString());
+               app('App\Http\Controllers\Utilities\RoleController')->store($new_property->uuid->toString());
 
-               app('App\Http\Controllers\PointController')->store($new_property->uuid->toString(), auth()->user()->id, 50, 6);
+               app('App\Http\Controllers\Utilities\PointController')->store($new_property->uuid->toString(), auth()->user()->id, 50, 6);
 
-               app('App\Http\Controllers\Features\PropertyController')->store_property_session($new_property->uuid->toString());
-
-            //    app('App\Http\Controllers\PropertyDocumentController')->store($new_property->uuid->toString());
+               app('App\Http\Controllers\PropertyController')->storePropertySession($new_property->uuid->toString());
 
                return redirect('/property/'.$new_property->uuid->toString().'/success')->with('success', 'Changes Saved!');
 
@@ -94,8 +92,8 @@ class PropertyCreateComponent extends Component
      public function render()
      {
         return view('livewire.property-create-component',[
-         'countries' => app('App\Http\Controllers\CountryController')->index(),
-         'types' => app('App\Http\Controllers\TypeController')->index(),
+         'countries' => app('App\Http\Controllers\Utilities\CountryController')->index(),
+         'types' => app('App\Http\Controllers\Utilities\TypeController')->index(),
         ]);
      }
 }

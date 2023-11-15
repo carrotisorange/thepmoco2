@@ -16,23 +16,27 @@ class TenantController extends Controller
 {
     public function index(Property $property)
     {
-        $featureId = 5;
+        $featureId = 5; //refer to the features table
 
-        $restrictionId = 2;
+        $restrictionId = 2; //refer to the restrictions table
 
-        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
+        app('App\Http\Controllers\PropertyController')->storePropertySession($property->uuid);
+
+        app('App\Http\Controllers\Utilities\UserPropertyController')->isUserAuthorized();
+
+        if(!app('App\Http\Controllers\Utilities\UserRestrictionController')->isFeatureAuthorized($featureId, $restrictionId)){
             return abort(403);
         }
 
         Session::forget('tenant_uuid');
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,$restrictionId, $featureId);
+        app('App\Http\Controllers\PropertyController')->storeUnitStatistics();
 
-        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($restrictionId, $featureId);
 
         $tenants = $this->getTenants($property->uuid);
 
-        return view('properties.tenants.index',[
+        return view('features.tenants.index',[
             'tenants'=>$tenants
         ]);
     }
@@ -41,9 +45,9 @@ class TenantController extends Controller
     {
         Session::put('tenant_uuid', $tenant->uuid);
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens one',3);
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity('opens one',3);
 
-        $list_of_all_relationships = app('App\Http\Controllers\RelationshipController')->index();
+        $list_of_all_relationships = app('App\Http\Controllers\Utilities\RelationshipController')->index();
 
         return view('features.tenants.show',[
             'property' => $property,
@@ -57,9 +61,14 @@ class TenantController extends Controller
     }
 
 
-    public function getTenants($property_uuid)
+    public function getTenants()
     {
-        return Property::find($property_uuid)->tenants;
+        return Tenant::where('property_uuid',Session::get('property_uuid'));
+    }
+
+    public function getVerifiedTenants(){
+        return Tenant::join('users', 'tenants.uuid', 'users.tenant_uuid')
+        ->where('tenants.property_uuid', Session::get('property_uuid'));
     }
 
     public function unlock(Property $property)

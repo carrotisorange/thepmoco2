@@ -155,7 +155,7 @@ class RemittanceIndexComponent extends Component
 
     public function render()
     {
-        return view('livewire.remittance-index-component',[
+        return view('livewire.features.remittance.remittance-index-component',[
 
             'dates' => Remittance::where('property_uuid', Session::get('property_uuid'))
             ->groupBy('created_at')

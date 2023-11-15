@@ -21,7 +21,9 @@ class DashboardController extends Controller
             return abort(403);
         }
 
-        app('App\Http\Controllers\Utilities\ActivityController')->store($property->uuid, auth()->user()->id,$restrictionId,$featureId);
+        app('App\Http\Controllers\PropertyController')->storeUnitStatistics();
+
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($featureId,$restrictionId);
 
         return view('features.dashboard.index');
     }

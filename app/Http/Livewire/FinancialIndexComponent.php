@@ -15,7 +15,6 @@ class FinancialIndexComponent extends Component
     public $startDate;
     public $endDate;
 
-
     public function mount(){
         $this->startDate = Carbon::now()->startOfYear()->format('Y-m-d');
         $this->endDate = Carbon::now()->format('Y-m-d');
@@ -27,36 +26,13 @@ class FinancialIndexComponent extends Component
 
     public function render()
     {
-        if($this->filter == 'monthly')
-        {
-            $collections = app('App\Http\Controllers\Features\FinancialController')->getCollections('DATE_FORMAT(created_at, "%b-%Y") as date');
+        $propertyCollectionsCount = Collection::where('property_uuid', Session::get('property_uuid'))->posted()->count();
 
-            $accountpayables = app('App\Http\Controllers\Features\FinancialController')->getExpenses('DATE_FORMAT(created_at, "%b-%Y") as date');
+        $potential_gross_rent = app('App\Http\Controllers\Features\FinancialController')->get_total_occupancy_rent(Session::get('property_uuid'));
 
-        }elseif($this->filter == 'yearly'){
-            $collections = app('App\Http\Controllers\Features\FinancialController')->getCollections('DATE_FORMAT(created_at, "%Y") as date');
+        $less_vacancy = app('App\Http\Controllers\Features\FinancialController')->get_total_vacancy_rent(Session::get('property_uuid'));
 
-            $accountpayables = app('App\Http\Controllers\Features\FinancialController')->getExpenses('DATE_FORMAT(created_at, "%Y") as date');
-        }else
-        {
-            $collections = app('App\Http\Controllers\Features\FinancialController')->getCollections('DATE_FORMAT(created_at, "%d-%b-%Y") as date');
-
-            $accountpayables = app('App\Http\Controllers\Features\FinancialController')->getExpenses('DATE_FORMAT(created_at, "%d-%b-%Y") as date');
-        }
-
-        $cashflows = $collections->merge($accountpayables);
-
-        $total_occupancy_rent = app('App\Http\Controllers\Features\FinancialController')->get_total_occupancy_rent(Session::get('property_uuid'));
-
-        $total_vacancy_rent = app('App\Http\Controllers\Features\FinancialController')->get_total_vacancy_rent(Session::get('property_uuid'));
-
-        $total_occupied_rent = app('App\Http\Controllers\Features\FinancialController')->get_total_occupied_rent(Session::get('property_uuid'));
-
-        $potential_gross_rent = $total_occupancy_rent;
-
-        $less_vacancy = $total_vacancy_rent;
-
-        $effective_gross_rent = $total_occupied_rent;
+        $effective_gross_rent = app('App\Http\Controllers\Features\FinancialController')->get_total_occupied_rent(Session::get('property_uuid'));
 
         $collected_rent = app('App\Http\Controllers\Features\FinancialController')->get_total_collected_rent(Session::get('property_uuid'));
 
@@ -81,27 +57,21 @@ class FinancialIndexComponent extends Component
           ->join('account_payables','account_payable_liquidations.batch_no', 'account_payables.batch_no')
           ->where('account_payables.property_uuid', Session::get('property_uuid'))
           ->whereBetween('account_payables.created_at', [$this->startDate,$this->endDate])
-        //   ->whereNotNull('account_payable_liquidations.approved_by')
           ->groupBy('account_payable_liquidation_particulars.item')
           ->orderBy('amount', 'desc')
           ->where('account_payables.status', 'completed')
           ->get();
 
-          $propertyCollectionsCount = Collection::where('property_uuid', Session::get('property_uuid'))->posted()->count();
-        return view('livewire.financial-index-component',[
-              'cashflows' => $cashflows,
-              'collections' => $collections,
-              'accountpayables' => $accountpayables,
-              'potential_gross_rent' => $potential_gross_rent,
-              'less_vacancy' => $less_vacancy,
-              'effective_gross_rent' => $effective_gross_rent,
-              'collected_rent' => $collected_rent,
-              'billed_rent' => $billed_rent,
-              'actual_revenue_collected' => $actual_revenue_collected,
-              'revenues' => $revenues,
-              'expenses' => $expenses,
-              'propertyCollectionsCount' => $propertyCollectionsCount
-
+        return view('livewire.features.financial.financial-index-component',[
+            'revenues' => $revenues,
+            'expenses' => $expenses,
+            'potential_gross_rent' => $potential_gross_rent,
+            'less_vacancy' => $less_vacancy,
+            'effective_gross_rent' => $effective_gross_rent,
+            'collected_rent' => $collected_rent,
+            'billed_rent' => $billed_rent,
+            'actual_revenue_collected' => $actual_revenue_collected,
+            'propertyCollectionsCount' => $propertyCollectionsCount
         ]);
     }
 }

@@ -32,10 +32,10 @@ class PersonnelIndexComponent extends Component
 
     $steps = explode(",", $stepper);
 
-     return view('livewire.personnel-index-component', [
+     return view('livewire.features.personnel.personnel-index-component', [
         'personnels' => $personnels,
         'propertyPersonnelsCount' => $propertyPersonnelsCount,
-        'statuses' => app('App\Http\Controllers\UserPropertyController')->get_user_statuses(Session::get('property_uuid')),
+        'statuses' => app('App\Http\Controllers\Utilities\UserPropertyController')->get_user_statuses(Session::get('property_uuid')),
         'steps' => $steps
       ]);
    }

@@ -11,6 +11,22 @@ use App\Models\{Property,Feature,Election,Voter};
 class ElectionController extends Controller
 {
     public function index(Property $property){
+           
+        $featureId = 20; //refer to the features table
+
+        $restrictionId = 2; //refer to the restrictions table
+
+        app('App\Http\Controllers\PropertyController')->storePropertySession($property->uuid);
+
+        app('App\Http\Controllers\Utilities\UserPropertyController')->isUserAuthorized();
+
+        if(!app('App\Http\Controllers\Utilities\UserRestrictionController')->isFeatureAuthorized($featureId, $restrictionId)){
+           return abort(403);
+        }
+
+        app('App\Http\Controllers\PropertyController')->storeUnitStatistics();
+
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($featureId,$restrictionId);
 
         $elections = Property::find(Session::get('property_uuid'))->elections;
 
@@ -48,7 +64,7 @@ class ElectionController extends Controller
         ];
 
 
-        $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
+        $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data);
 
         $pdf_name = str_replace(' ', '_', $property->property).'_'.Carbon::parse($election->date_of_election)->format('Y').'_Election_Voters.pdf';
 
@@ -74,7 +90,7 @@ class ElectionController extends Controller
         ];
 
 
-        $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
+        $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data);
 
         $pdf_name = str_replace(' ', '_', $property->property).'_'.Carbon::parse($election->date_of_election)->format('Y').'_Election_Candidates_.pdf';
 

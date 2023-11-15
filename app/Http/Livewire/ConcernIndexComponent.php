@@ -36,7 +36,7 @@ class ConcernIndexComponent extends Component
             ->groupBy('status')
             ->get();
 
-        return view('livewire.concern-index-component',[
+        return view('livewire.features.concern.concern-index-component',[
             'concerns' => $concerns,
             'statuses' => $statuses,
             'propertyConcernsCount' => $propertyConcernsCount

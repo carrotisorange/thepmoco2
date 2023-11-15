@@ -5,8 +5,8 @@
             <x-th>#</x-th>
             <x-th> NAME </x-th>
             <x-th>  RELATIONSHIP </x-th>
-            <x-th>    MOBILE  </x-th>
-            <x-th>  EMAIL </x-th>
+            <x-th>   MOBILE  </x-th>
+            <x-th> EMAIL </x-th>
             <x-th> </x-th>
             <x-th></x-th>
         </tr>

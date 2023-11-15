@@ -2,11 +2,10 @@
 
 namespace App\Http\Livewire;
 
+use Livewire\Component;
 use Session;
 use DB;
 use App\Models\Unit;
-
-use Livewire\Component;
 
 class OccupancyComponent extends Component
 {

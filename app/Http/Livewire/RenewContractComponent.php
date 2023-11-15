@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire;
 
-use App\Mail\SendContractToTenant;
 use Livewire\Component;
+use App\Mail\SendContractToTenant;
 use Livewire\WithFileUploads;
 use Carbon\Carbon;
 use Illuminate\Support\Str;

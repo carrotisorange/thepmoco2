@@ -6,17 +6,17 @@
     <div class="p-4">
         <form wire:submit.prevent="updateBank">
             <div class="mt-5 sm:mt-6">
-                <label class="text-sm" for="bank_name">Name of the bank</label>
+                <x-label for="bank_name">Name of the bank</x-label>
                 <x-form-input type="text" wire:model="bank_name" />
                 <x-validation-error-component name='bank_name' />
             </div>
             <div class="mt-5 sm:mt-6">
-                <label class="text-sm" for="account_name">Account Name </label>
+                <x-label for="account_name">Account Name </x-label>
                 <x-form-input type="text" wire:model="account_name" readonly />
                 <x-validation-error-component name='account_name' />
             </div>
             <div class="mt-5 sm:mt-6">
-                <label class="text-sm" for="account_number">Account Number </label>
+                <x-label for="account_number">Account Number </x-label>
                 <x-form-input type="text" wire:model="account_number" />
                 <x-validation-error-component name='account_number' />
             </div>

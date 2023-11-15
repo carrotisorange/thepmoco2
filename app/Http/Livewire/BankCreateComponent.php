@@ -42,6 +42,6 @@ class BankCreateComponent extends Component
 
     public function render()
     {
-        return view('livewire.bank-create-component');
+        return view('livewire.subfeatures.banks.bank-create-component');
     }
 }

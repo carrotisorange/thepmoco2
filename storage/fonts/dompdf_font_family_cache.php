@@ -83,5 +83,8 @@ return array (
     '600' => $fontDir . '/nunito_600_b4a85f5daa357b666a14c66ed1b6e1f9',
     'bold' => $fontDir . '/nunito_bold_b30fa3d4421a43e0930ae0eea5638dc1',
   ),
+  'poppins' => array(
+    'normal' => $fontDir . '/poppins_normal_ee697d7869cb745ccf3ccccc013145ad',
+  ),
 );
 }; ?>

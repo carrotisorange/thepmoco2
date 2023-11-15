@@ -58,7 +58,7 @@ class TenantIndexComponent extends Component
 
         $steps = explode(",", $stepper);
 
-        return view('livewire.tenant-index-component', [
+        return view('livewire.features.tenant.tenant-index-component', [
             'tenants' => $tenants,
             'statuses' => $statuses,
             'categories' => $categories,

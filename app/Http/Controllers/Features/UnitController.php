@@ -7,14 +7,38 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use DB;
 use Session;
-use App\Models\{Unit,Property,Floor,Owner};
-
-
-
-use App\Models\Collection;
+use App\Models\{Unit,Property,Floor,Owner,Collection};
 
 class UnitController extends Controller
 {
+
+    public function index(Property $property, $batch_no=null, $action=null)
+    {
+        $featureId = 3; //refer to the features table
+
+        $restrictionId = 2; //refer to the restrictions table
+
+        app('App\Http\Controllers\PropertyController')->storePropertySession($property->uuid);
+
+        app('App\Http\Controllers\Utilities\UserPropertyController')->isUserAuthorized();
+
+        if(!app('App\Http\Controllers\Utilities\UserRestrictionController')->isFeatureAuthorized($featureId, $restrictionId)){
+            return abort(403);
+        }
+
+        Session::forget('tenant_uuid');
+
+        Session::forget('owner_uuid');
+
+        app('App\Http\Controllers\PropertyController')->storeUnitStatistics();
+
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($featureId,$restrictionId);
+
+        return view('features.units.index',[
+            'property' => $property,
+            'batch_no' => $batch_no,
+        ]);
+    }
 
       public function show(Property $property, Unit $unit, $action=null)
     {
@@ -22,12 +46,12 @@ class UnitController extends Controller
 
         $restrictionId = 2;
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,$featureId,$restrictionId);
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($featureId,$restrictionId);
 
         return view('features.units.show',[
             'property' => $property,
             'unit_details' => $unit,
-            'deed_of_sales' => app('App\Http\Controllers\DeedOfSaleController')->show_unit_deed_of_sales($unit->uuid),
+            'deed_of_sales' => app('App\Http\Controllers\Subfeatures\DeedOfSaleController')->show_unit_deed_of_sales($unit->uuid),
         ]);
 
     }
@@ -44,32 +68,6 @@ class UnitController extends Controller
      public function edit(Property $property, $batch_no)
     {
         return view('features.units.edit-bulk',[
-            'property' => $property,
-            'batch_no' => $batch_no,
-        ]);
-    }
-
-    public function index(Property $property, $batch_no=null, $action=null)
-    {
-        $featureId = 3;
-
-        $restrictionId = 2;
-
-        app('App\Http\Controllers\Features\PropertyController')->store_property_session($property->uuid);
-
-        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
-            return abort(403);
-         }
-
-        Session::forget('tenant_uuid');
-
-        Session::forget('owner_uuid');
-
-        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
-
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,$restrictionId,$featureId);
-
-        return view('properties.units.index',[
             'property' => $property,
             'batch_no' => $batch_no,
         ]);
@@ -148,26 +146,10 @@ class UnitController extends Controller
         ->get();
     }
 
-    public function getUnits($property_uuid)
+    public function getUnits()
     {
-        return Property::find($property_uuid)->units();
-
+        return Unit::where('property_uuid',Session::get('property_uuid'));
     }
-
-
-    // public function getUnits($property_uuid, $status, $duration, $unlisted)
-    // {
-    //     return Unit::where('property_uuid', $property_uuid)
-    //      ->when($status, function ($query) use ($status) {
-    //      $query->where('status_id', $status);
-    //      })
-    //     ->when($duration, function ($query) use ($duration) {
-    //       $query->whereMonth('updated_at', $duration);
-    //       })
-    //     ->when($unlisted, function ($query) use ($unlisted) {
-    //        $query->whereMonth('is_the_unit_for_rent_to_tenant', $unlisted);
-    //        });
-    // }
 
     public function update(Request $request, Property $property, Unit $unit)
     {

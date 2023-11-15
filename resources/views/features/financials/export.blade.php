@@ -2,7 +2,7 @@
 @section('title', 'Financials')
 @section('content')
 <p>
-            Date: {{ Carbon\Carbon::parse($startDate)->format('M d, Y').'-'.Carbon\Carbon::parse($endDate)->format('M d, Y') }} 
+            Date: {{ Carbon\Carbon::parse($startDate)->format('M d, Y').'-'.Carbon\Carbon::parse($endDate)->format('M d, Y') }}
         </p>
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="">
@@ -56,5 +56,4 @@
             </thead>
 
         </table>
-
 @endsection

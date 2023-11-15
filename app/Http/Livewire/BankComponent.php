@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use Livewire\Component;
 use DB;
 use Session;
-use Livewire\Component;
 use App\Models\{Unit,DeedOfSale};
 
 class BankComponent extends Component
@@ -60,7 +60,7 @@ class BankComponent extends Component
 
                if($this->bank_name)
                {
-                  app('App\Http\Controllers\BankController')->store($this->bank_name, $this->account_name, $this->account_number, $this->owner->uuid);
+                  app('App\Http\Controllers\Subfeatures\BankController')->store($this->bank_name, $this->account_name, $this->account_number, $this->owner->uuid);
                }
            });
 
@@ -96,6 +96,6 @@ class BankComponent extends Component
 
    public function render()
    {
-      return view('livewire.bank-component');
+      return view('livewire.subfeatures.banks.bank-component');
    }
 }

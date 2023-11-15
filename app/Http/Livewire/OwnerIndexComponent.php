@@ -26,7 +26,7 @@ class OwnerIndexComponent extends Component
 
         $steps = explode(",", $stepper);
 
-        return view('livewire.owner-index-component', [
+        return view('livewire.features.owner.owner-index-component', [
         'owners' => Owner::search($this->search)
         ->where('property_uuid', Session::get('property_uuid'))
         ->orderBy('created_at', 'asc')

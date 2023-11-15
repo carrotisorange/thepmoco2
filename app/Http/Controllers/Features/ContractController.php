@@ -10,20 +10,23 @@ use App\Models\{Contract, Unit, Tenant, Bill, Property};
 
 class ContractController extends Controller
 {
-
     public function index(Property $property){
 
-        $featureId = 6;
+        $featureId = 6; //refer to the features table
 
-        $restrictionId = 2;
+        $restrictionId = 2; //refer to the restrictions table
 
-        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
+        app('App\Http\Controllers\PropertyController')->storePropertySession($property->uuid);
+
+        app('App\Http\Controllers\Utilities\UserPropertyController')->isUserAuthorized();
+
+        if(!app('App\Http\Controllers\Utilities\UserRestrictionController')->isFeatureAuthorized($featureId, $restrictionId)){
             return abort(403);
         }
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,$restrictionId,$featureId);
+        app('App\Http\Controllers\PropertyController')->storeUnitStatistics();
 
-        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($featureId,$restrictionId);
 
         return view('properties.contracts.index',[
             'property' => $property
@@ -39,7 +42,7 @@ class ContractController extends Controller
 
         // $this->authorize('is_contract_read_allowed');
 
-        return view('properties.contracts.show',[
+        return view('features.contracts.show',[
             'contract' => $contract,
             'tenant' => $tenant
         ]);
@@ -48,7 +51,7 @@ class ContractController extends Controller
     {
        // $this->authorize('is_contract_read_allowed');
 
-        app('App\Http\Controllers\ActivityController')->store($property_uuid, auth()->user()->id,'opens',5);
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity('opens',5);
 
        $contracts = Contract::where('property_uuid', $property_uuid)
         ->when($status, function ($query) use ($status) {
@@ -61,28 +64,9 @@ class ContractController extends Controller
        ]);
     }
 
-    // public function getContracts($property)
-    // {
-    //     return Contract::where('property_uuid', $property)->where('status', 'active')->orderBy('start', 'asc')->get();
-    // }
-
-    public function getContracts($property_uuid)
+    public function getContracts()
     {
-        return Property::find($property_uuid)->contracts();
-        // ->when($status, function ($query) use ($status) {
-        //   $query->where('status', $status);
-        // })
-        // ->when($dateBeforeExpiration, function ($query) use ($dateBeforeExpiration) {
-        //   $query->where('end','<=', $dateBeforeExpiration);
-        // })
-        // ->when($movein, function ($query) use ($movein) {
-        //   $query->whereMonth('start', $movein);
-        // })
-        // ->when($moveout, function ($query) use ($moveout) {
-        //   $query->whereMonth('end', $moveout);
-        // })
-        // ->orderBy('start', 'desc')
-        // ->get();
+        return Contract::where('property_uuid',Session::get('property_uuid'));
     }
 
     public function get_contracts_trend_count($property_uuid)
@@ -171,12 +155,12 @@ class ContractController extends Controller
           app('App\Http\Controllers\Features\TenantController')->update_tenant_status($tenant_uuid, $tenant_status);
 
           //store new point
-          app('App\Http\Controllers\PointController')->store($property_uuid, $user_id ,$point, $action_id);
+          app('App\Http\Controllers\Utilities\PointController')->store($property_uuid, $user_id ,$point, $action_id);
 
           //store new referral
           if($referral)
           {
-            app('App\Http\Controllers\ReferralController')->store($referral, $contract_uuid, $property_uuid);
+            app('App\Http\Controllers\Subfeatures\ReferralController')->store($referral, $contract_uuid, $property_uuid);
           }
 
           if($sendContractToTenant)

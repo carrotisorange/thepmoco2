@@ -79,7 +79,7 @@ class CreateBillComponent extends Component
       }
         return view('livewire.create-bill-component',[
             'units' => $units,
-            'particulars' => app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid')),
+            'particulars' => app('App\Http\Controllers\Utilities\PropertyParticularController')->index(Session::get('property_uuid')),
         ]);
     }
 }

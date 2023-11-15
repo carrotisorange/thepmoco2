@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire;
 
-use Session;
 use Livewire\Component;
+use Session;
 use App\Models\{Property,Contract};
 
 class ContractIndexComponent extends Component
@@ -36,7 +36,7 @@ class ContractIndexComponent extends Component
         })
         ->paginate(10);
 
-        return view('livewire.contract-index-component',[
+        return view('livewire.features.contract.contract-index-component',[
             'contracts' => $contracts,
             'statuses' => $statuses
         ]);

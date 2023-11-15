@@ -65,7 +65,7 @@ class UnitIndexComponent extends Component
             ]);
        }
 
-        app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, $this->numberOfUnits, 5);
+        app('App\Http\Controllers\Utilities\PointController')->store(Session::get('property_uuid'), auth()->user()->id, $this->numberOfUnits, 5);
 
         $propertyTenantsCount = Property::find(Session::get('property_uuid'))->tenants->count();
 
@@ -158,12 +158,12 @@ class UnitIndexComponent extends Component
 
         $propertyUnitCount = Property::find(Session::get('property_uuid'))->units()->count();
 
-        return view('livewire.unit-index-component',[
+        return view('livewire.features.unit.unit-index-component',[
             'units' => $this->get_units(),
-            'statuses' => app('App\Http\Controllers\StatusController')->index(Session::get('property_uuid')),
-            'categories' => app('App\Http\Controllers\CategoryController')->index(Session::get('property_uuid')),
-            'buildings' => app('App\Http\Controllers\PropertyBuildingController')->index(Session::get('property_uuid')),
-            'floors' => app('App\Http\Controllers\FloorController')->index(Session::get('property_uuid')),
+            'statuses' => app('App\Http\Controllers\Utilities\StatusController')->index(Session::get('property_uuid')),
+            'categories' => app('App\Http\Controllers\Utilities\CategoryController')->index(Session::get('property_uuid')),
+            'buildings' => app('App\Http\Controllers\Utilities\PropertyBuildingController')->index(Session::get('property_uuid')),
+            'floors' => app('App\Http\Controllers\Utilities\FloorController')->index(Session::get('property_uuid')),
             'rents' => app('App\Http\Controllers\Features\UnitController')->getUnitRents(Session::get('property_uuid')),
             'discounts' => app('App\Http\Controllers\Features\UnitController')->getUnitDiscounts(Session::get('property_uuid')),
             'sizes' => app('App\Http\Controllers\Features\UnitController')->getUnitSizes(Session::get('property_uuid')),

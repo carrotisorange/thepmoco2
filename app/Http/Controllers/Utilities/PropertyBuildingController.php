@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Utilities;
 
 use App\Http\Controllers\Controller;
 use App\Models\PropertyBuilding;
+use Session;
 
 class PropertyBuildingController extends Controller
 {
@@ -13,5 +14,9 @@ class PropertyBuildingController extends Controller
            $query->where('property_buildings.property_uuid', $property_uuid);
         })
         ->get();
+    }
+
+    public function getBuildings(){
+        return PropertyBuilding::where('property_uuid', Session::get('property_uuid'));
     }
 }

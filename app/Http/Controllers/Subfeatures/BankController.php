@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Subfeatures;
 
 use App\Http\Controllers\Controller;
 use Session;

@@ -45,7 +45,7 @@ class CreateGuardianComponent extends Component
     public function render()
     {
         return view('livewire.create-guardian-component',[
-            'relationships' => app('App\Http\Controllers\RelationshipController')->index(),
+            'relationships' => app('App\Http\Controllers\Utilities\RelationshipController')->index(),
         ]);
     }
 }

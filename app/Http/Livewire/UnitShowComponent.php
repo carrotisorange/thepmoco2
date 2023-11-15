@@ -107,7 +107,7 @@ class UnitShowComponent extends Component
 
             $restrictionId = 3;
 
-            app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,$restrictionId,$featureId);
+            app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($featureId,$restrictionId);
 
             return redirect(url()->previous())->with('success', 'Changes Saved!');
 
@@ -189,14 +189,14 @@ class UnitShowComponent extends Component
 
             $unitSubfeaturesArray = explode(",", $unitSubfeatures);
 
-        return view('livewire.unit-show-component',[
-            'buildings' => app('App\Http\Controllers\PropertyBuildingController')->index($this->unit_details->property_uuid),
-            'floors' => app('App\Http\Controllers\FloorController')->index(null),
-            'categories' => app('App\Http\Controllers\CategoryController')->index(null),
-            'statuses' => app('App\Http\Controllers\StatusController')->index(null),
+        return view('livewire.features.unit.unit-show-component',[
+            'buildings' => app('App\Http\Controllers\Utilities\PropertyBuildingController')->index($this->unit_details->property_uuid),
+            'floors' => app('App\Http\Controllers\Utilities\FloorController')->index(null),
+            'categories' => app('App\Http\Controllers\Utilities\CategoryController')->index(null),
+            'statuses' => app('App\Http\Controllers\Utilities\StatusController')->index(null),
             'bookings' => app('App\Http\Controllers\Features\GuestController')->show_unit_guests($this->unit_details->uuid),
             'bills' => app('App\Http\Controllers\Features\BillController')->show_unit_bills($this->unit_details->uuid),
-            'deed_of_sales' => app('App\Http\Controllers\DeedOfSaleController')->show_unit_deed_of_sales($this->unit_details->uuid),
+            'deed_of_sales' => app('App\Http\Controllers\Subfeatures\DeedOfSaleController')->show_unit_deed_of_sales($this->unit_details->uuid),
             'contracts' => app('App\Http\Controllers\Features\ContractController')->show_unit_contracts($this->unit_details->uuid),
             'total_collected_bills' => app('App\Http\Controllers\Features\BillController')->get_unit_bills($this->unit_details->uuid,null,'paid'),
             'total_uncollected_bills' => app('App\Http\Controllers\Features\BillController')->get_unit_bills($this->unit_details->uuid ,null,'unpaid'),

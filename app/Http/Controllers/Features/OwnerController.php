@@ -10,22 +10,34 @@ use Session;
 
 class OwnerController extends Controller
 {
-
     public function index(Property $property){
 
-        $featureId = 8;
+        $featureId = 8; //refer to the features table
 
-        $restrictionId = 2;
+        $restrictionId = 2; //refer to the restrictions table
 
-        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
+        app('App\Http\Controllers\PropertyController')->storePropertySession($property->uuid);
+
+        app('App\Http\Controllers\Utilities\UserPropertyController')->isUserAuthorized();
+
+        if(!app('App\Http\Controllers\Utilities\UserRestrictionController')->isFeatureAuthorized($featureId, $restrictionId)){
             return abort(403);
         }
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,$restrictionId,$featureId);
+        app('App\Http\Controllers\PropertyController')->storeUnitStatistics();
 
-        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($featureId,$restrictionId);
 
-        return view('properties.owners.index');
+        return view('features.owners.index');
+    }
+
+    public function getOwners(){
+        return Owner::where('property_uuid', Session::get('property_uuid'));
+    }
+
+    public function getVerifiedOwners(){
+        return Owner::join('users', 'owners.uuid', 'users.owner_uuid')
+        ->where('owners.property_uuid', Session::get('property_uuid'));
     }
 
     public function unlock(Property $property)
@@ -35,7 +47,7 @@ class OwnerController extends Controller
 
     public function show(Property $property, Owner $owner)
     {
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens one',2);
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity('opens one',2);
 
         Session::forget('tenant_uuid');
 

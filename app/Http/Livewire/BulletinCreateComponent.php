@@ -49,7 +49,7 @@ class BulletinCreateComponent extends Component
 
         $restrictionId = 1;
 
-        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'),auth()->user()->id,$restrictionId,$featureId);
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($featureId,$restrictionId);
 
         return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
@@ -60,6 +60,6 @@ class BulletinCreateComponent extends Component
 
     public function render()
     {
-        return view('livewire.bulletin-create-component');
+        return view('livewire.features.bulletin.bulletin-create-component');
     }
 }

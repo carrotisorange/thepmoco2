@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire;
 
+use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use Session;
-use Livewire\Component;
 use App\Models\DeedOfSale;
 
 class DeedOfSaleComponent extends Component
@@ -47,7 +47,7 @@ class DeedOfSaleComponent extends Component
 
             $this->store_deed_of_sale($validatedData);
 
-            app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, 5, 7);
+            app('App\Http\Controllers\Utilities\PointController')->store(Session::get('property_uuid'), auth()->user()->id, 5, 7);
 
             return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/owner/'.$this->owner->uuid.'/bank/create')->with('success','Changes Saved!');
 

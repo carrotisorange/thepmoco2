@@ -2,12 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use Livewire\Component;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 use Session;
 use DB;
-use Livewire\{Component,Owner,Spouse,Representative};
+use App\Models\Owner,Spouse,Representative;
 
 class OwnerCreateComponent extends Component
 {
@@ -100,7 +101,7 @@ class OwnerCreateComponent extends Component
                 if($this->hasAuthorizedRepresentative)
                 {
                     //method to create a new representative
-                    $representative_id = app('App\Http\Controllers\RepresentativeController')->store(
+                    $representative_id = app('App\Http\Controllers\Subfeatures\RepresentativeController')->store(
                         $this->representative_name, $this->representative_email, $this->representative_mobile_number, $this->representative_relationship_id, $owner_uuid
                     );
 
@@ -116,11 +117,11 @@ class OwnerCreateComponent extends Component
                 if($this->generateCredentials)
                 {
                     $user_id = $this->store_user();
-                    app('App\Http\Controllers\UserController')->update_user_owner_uuid($user_id, $owner_uuid);
+                    app('App\Http\Controllers\Auth\UserController')->update_user_owner_uuid($user_id, $owner_uuid);
                 }
 
                 //method to create a new point
-                app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id,4, 1);
+                app('App\Http\Controllers\Utilities\PointController')->store(Session::get('property_uuid'), auth()->user()->id,4, 1);
 
                 return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/owner/'.$owner_uuid.'/deed_of_sale/create')
                 ->with('success', 'Changes Saved!');
@@ -136,10 +137,10 @@ class OwnerCreateComponent extends Component
 
         public function store_user()
         {
-            return app('App\Http\Controllers\UserController')->store(
+            return app('App\Http\Controllers\Auth\UserController')->store(
                 $this->owner,
                 $this->email,
-                app('App\Http\Controllers\UserController')->generate_temporary_username(),
+                app('App\Http\Controllers\Auth\UserController')->generate_temporary_username(),
                 auth()->user()->external_id,
                 $this->email,
                 7, //owner
@@ -226,10 +227,10 @@ class OwnerCreateComponent extends Component
         public function render()
         {
             return view('livewire.owner-create-component',[
-                'countries' => app('App\Http\Controllers\CountryController')->index(),
-                'provinces' => app('App\Http\Controllers\ProvinceController')->index($this->country_id),
-                'cities' => app('App\Http\Controllers\CityController')->index($this->province_id),
-                'relationships' => app('App\Http\Controllers\RelationshipController')->index(),
+                'countries' => app('App\Http\Controllers\Utilities\CountryController')->index(),
+                'provinces' => app('App\Http\Controllers\Utilities\ProvinceController')->index($this->country_id),
+                'cities' => app('App\Http\Controllers\Utilities\CityController')->index($this->province_id),
+                'relationships' => app('App\Http\Controllers\Utilities\RelationshipController')->index(),
             ]);
         }
 }

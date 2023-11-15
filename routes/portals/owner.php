@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\OwnerPortalController;
+use App\Http\Controllers\Portals\PortalOwnerController;
 
 Route::prefix('{role_id:id}/owner/{user:username}')->group(function(){
-    Route::controller(OwnerPortalController::class)->group(function () {
+    Route::controller(PortalOwnerController::class)->group(function () {
         Route::get('/', 'index')->name('dashboard');
         Route::get('/unit','show_units')->name('unit');
         Route::get('/bill', 'show_bills')->name('bill');

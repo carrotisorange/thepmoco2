@@ -11,7 +11,6 @@
                 onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/election/create'">
                New Election
             </x-button>
-
             </div>
         </div>
         </div>

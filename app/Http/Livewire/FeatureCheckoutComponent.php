@@ -45,7 +45,7 @@ class FeatureCheckoutComponent extends Component
             $feature_id = $this->selectedFeature[$i];
             $amount = Feature::find($feature_id)->price;
 
-            app('App\Http\Controllers\SubscriptionController')->store_subscription(
+            app('App\Http\Controllers\Subfeatures\SubscriptionController')->store_subscription(
                 auth()->user()->id, $feature_id, $external_id, $amount, count($this->selectedFeature)
             );
         }

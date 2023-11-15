@@ -11,25 +11,23 @@ use App\Models\{Property,AccountPayable,AccountPayableParticular};
 
 class RFPController extends Controller
 {
-    public function getAccountPayables($property_uuid){
-        return Property::find($property_uuid)->accountpayables();
-    }
-
     public function index(Property $property, $status=null)
     {
-        $featureId = 13;
+        $featureId = 13; //refer to the features table
 
-        $restrictionId = 2;
+        $restrictionId = 2; //refer to the restrictions table
 
-        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
+        app('App\Http\Controllers\PropertyController')->storePropertySession($property->uuid);
+
+        app('App\Http\Controllers\Utilities\UserPropertyController')->isUserAuthorized();
+
+        if(!app('App\Http\Controllers\Utilities\UserRestrictionController')->isFeatureAuthorized($featureId, $restrictionId)){
             return abort(403);
         }
 
-        app('App\Http\Controllers\Features\PropertyController')->store_property_session(Session::get('property_uuid'));
+        app('App\Http\Controllers\PropertyController')->storeUnitStatistics();
 
-        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,$restrictionId,$featureId);
-
-        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, Session::get('property_uuid'));
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($featureId,$restrictionId);
 
         return view('features.rfps.index',[
             'accountpayables' => Property::find(Session::get('property_uuid'))->accountpayables()
@@ -38,6 +36,10 @@ class RFPController extends Controller
                })->orderBy('created_at', 'desc')->get(),
             'property' => $property
         ]);
+    }
+
+    public function getAccountPayables($property_uuid){
+        return Property::find($property_uuid)->accountpayables();
     }
 
     public function get_accountpayables($property_uuid, $status, $created_at, $request_for, $limitDisplayTo, $search){
@@ -225,7 +227,7 @@ class RFPController extends Controller
         return $pdf->stream($property->property.'-'.Carbon::now()->format('M d, Y').'accountpayables.pdf');
     }
 
-      public function create_step_1(Property $property, AccountPayable $accountpayable){
+    public function create_step_1(Property $property, AccountPayable $accountpayable){
 
         $featureId = 13;
 
@@ -233,8 +235,8 @@ class RFPController extends Controller
 
         $subfeaturesArray = explode(",", $subfeatures);
 
-        if($accountpayable->requester_id === auth()->user()->id){
-            if($accountpayable->status=="pending" || ($accountpayable->status=="rejected by manager")){
+        if($accountpayable->requester_id == auth()->user()->id){
+            if($accountpayable->status=="pending" || $accountpayable->status=="rejected by manager"){
                 return view('features.rfps.create.step-1', [
                   'property' => $property,
                   'accountpayable' => $accountpayable,
@@ -255,6 +257,7 @@ class RFPController extends Controller
     }
 
     public function create_step_2(Property $property, AccountPayable $accountpayable){
+
           $featureId = 13;
 
           $subfeatures = Feature::where('id', $featureId)->pluck('subfeatures')->first();
@@ -298,7 +301,7 @@ class RFPController extends Controller
 
           $subfeaturesArray = explode(",", $subfeatures);
 
-         if($accountpayable->approver2_id === auth()->user()->id || Session::get('role_id') === 4){
+         if($accountpayable->approver2_id == auth()->user()->id || Session::get('role_id') == 4){
                 if(($accountpayable->status=="approved by manager")){
                       return view('features.rfps.create.step-3', [
                       'property' => $property,
@@ -327,7 +330,7 @@ class RFPController extends Controller
 
           $subfeaturesArray = explode(",", $subfeatures);
 
-         if(Session::get('role_id') === 4){
+         if(Session::get('role_id') == 4){
                 if(($accountpayable->status=="approved by ap")){
                      return view('features.rfps.create.step-4', [
                         'property' => $property,
@@ -357,14 +360,14 @@ class RFPController extends Controller
 
           $subfeaturesArray = explode(",", $subfeatures);
 
-        if(auth()->user()->id === $accountpayable->requester_id){
+        if(auth()->user()->id == $accountpayable->requester_id){
 
                 if(($accountpayable->status=="released")){
 
                     $particulars = AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get();
 
                     foreach($particulars as $particular){
-                      app('App\Http\Controllers\AccountPayableLiquidationParticularController')->store(
+                      app('App\Http\Controllers\Subfeatures\AccountPayableLiquidationParticularController')->store(
                       $particular->item,
                       $particular->price,
                       $particular->quantity,
@@ -396,6 +399,7 @@ class RFPController extends Controller
     }
 
     public function create_step_6(Property $property, AccountPayable $accountpayable){
+
           $featureId = 13;
 
           $subfeatures = Feature::where('id', $featureId)->pluck('subfeatures')->first();
@@ -432,7 +436,7 @@ class RFPController extends Controller
 
           $subfeaturesArray = explode(",", $subfeatures);
 
-         if($accountpayable->approver2_id === auth()->user()->id){
+         if($accountpayable->approver2_id == auth()->user()->id){
                       if(Session::get('skipLiquidation')){
 
                       AccountPayableLiquidation::updateOrCreate(
@@ -450,7 +454,7 @@ class RFPController extends Controller
                     $particulars = AccountPayableParticular::where('batch_no', $accountpayable->batch_no)->get();
 
                     foreach($particulars as $particular){
-                      app('App\Http\Controllers\AccountPayableLiquidationParticularController')->store(
+                      app('App\Http\Controllers\Subfeatures\AccountPayableLiquidationParticularController')->store(
                       $particular->item,
                       $particular->price,
                       $particular->quantity,
@@ -475,6 +479,9 @@ class RFPController extends Controller
             ]);
         }
     }
+
+
+
 
     public function create_request_status($property_uuid){
         return view('features.rfps.create.request-status');

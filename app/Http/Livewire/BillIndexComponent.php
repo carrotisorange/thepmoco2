@@ -269,30 +269,6 @@ class BillIndexComponent extends Component
       ]);
    }
 
-   public function render()
-   {
-      $particulars = app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid'));
-
-      $dates_posted = $this->get_posted_dates();
-
-      $period_covered_starts = $this->get_period_covered_starts();
-
-      $period_covered_ends = $this->get_period_covered_ends();
-
-      $propertyBillsCount = Property::find(Session::get('property_uuid'))->bills->count();
-
-      return view('livewire.bill-index-component', [
-         'bills' => $this->get_bills(),
-         'collections' => Collection::where('property_uuid', Session::get('property_uuid'))->posted()->get(),
-         'statuses' =>  $this->get_statuses(),
-         'particulars' => $particulars,
-         'dates_posted' => $dates_posted,
-         'period_covered_starts' => $period_covered_starts,
-         'period_covered_ends' => $period_covered_ends,
-         'propertyBillsCount' => $propertyBillsCount
-        ]);
-   }
-
    public function get_statuses()
    {
       return Bill::where('bills.property_uuid', Session::get('property_uuid'))
@@ -330,6 +306,30 @@ class BillIndexComponent extends Component
    public function exportBills(){
 
       return redirect('/property/'.Session::get('property_uuid').'/bill/export/status/'.$this->status.'/particular/'.$this->particular.'/date/'.$this->posted_dates);
+   }
+
+    public function render()
+   {
+      $particulars = app('App\Http\Controllers\Utilities\PropertyParticularController')->index(Session::get('property_uuid'));
+
+      $dates_posted = $this->get_posted_dates();
+
+      $period_covered_starts = $this->get_period_covered_starts();
+
+      $period_covered_ends = $this->get_period_covered_ends();
+
+      $propertyBillsCount = Property::find(Session::get('property_uuid'))->bills->count();
+
+      return view('livewire.features.bill.bill-index-component', [
+         'bills' => $this->get_bills(),
+         'collections' => Collection::where('property_uuid', Session::get('property_uuid'))->posted()->get(),
+         'statuses' =>  $this->get_statuses(),
+         'particulars' => $particulars,
+         'dates_posted' => $dates_posted,
+         'period_covered_starts' => $period_covered_starts,
+         'period_covered_ends' => $period_covered_ends,
+         'propertyBillsCount' => $propertyBillsCount
+     ]);
    }
 
 }

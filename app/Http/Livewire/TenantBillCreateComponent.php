@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\WithPagination;
 use Livewire\Component;
+use Livewire\WithPagination;
 use App\Models\Collection;
 use Illuminate\Validation\Rule;
 use Carbon\Carbon;
@@ -105,7 +105,7 @@ class TenantBillCreateComponent extends Component
             'is_posted' => true
          ]);
 
-            app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, 1, 3);
+            app('App\Http\Controllers\Utilities\PointController')->store(Session::get('property_uuid'), auth()->user()->id, 1, 3);
 
             return redirect(url()->previous())->with('success', 'Changes Saved!');
       }
@@ -271,7 +271,7 @@ class TenantBillCreateComponent extends Component
       ->where('status', 'paid')
       ->count();
 
-      $particulars = app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid'));
+      $particulars = app('App\Http\Controllers\Utilities\PropertyParticularController')->index(Session::get('property_uuid'));
 
       $noteToBill = Property::find(Session::get('property_uuid'))->note_to_bill;
 

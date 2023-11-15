@@ -72,7 +72,7 @@ class EditPersonnelComponent extends Component
             }
         });
 
-        app('App\Http\Controllers\Features\PropertyController')->store_property_session(Session::get('property_uuid'));
+        app('App\Http\Controllers\PropertyController')->storePropertySession(Session::get('property_uuid'));
 
         return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
@@ -82,7 +82,7 @@ class EditPersonnelComponent extends Component
         $availableFeatures = UserRestriction::where('user_id',auth()->user()->id)->where('property_uuid', Session::get('property_uuid'))->where('restriction_id', 2)->where('is_approved',1)->groupBy('feature_id')->orderBy('feature_id')->get();
 
         return view('livewire.edit-personnel-component',[
-            'roles' => app('App\Http\Controllers\RoleController')->get_roles(Session::get('property_uuid')),
+            'roles' => app('App\Http\Controllers\Utilities\RoleController')->get_roles(Session::get('property_uuid')),
             'availableFeatures' => $availableFeatures
         ]);
     }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use Livewire\Component;
 use Illuminate\Validation\Rule;
 use Session;
-use Livewire\Component;
 use App\Models\Reference;
 
 class TenantReferenceComponent extends Component
@@ -70,7 +70,7 @@ class TenantReferenceComponent extends Component
     public function render()
     {
         return view('livewire.tenant-reference-component',[
-            'relationships' => app('App\Http\Controllers\RelationshipController')->index(),
+            'relationships' => app('App\Http\Controllers\Utilities\RelationshipController')->index(),
         ]);
     }
 }

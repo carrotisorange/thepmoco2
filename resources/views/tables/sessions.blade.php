@@ -10,7 +10,6 @@
             <x-th>Time out</x-th>
         </tr>
     </x-table-head-component>
-
     <x-table-body-component>
         @foreach ($sessions as $index => $session)
         <?php

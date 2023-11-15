@@ -58,10 +58,6 @@ class PropertyController extends Controller
         return Property::create($validatedData);
     }
 
-
-
-
-
        public function redirectPageTo(){
 
         $current_user_role_id = auth()->user()->role_id;
@@ -464,18 +460,17 @@ class PropertyController extends Controller
         ]);
     }
 
-
-    public function save_unit_stats($property_uuid)
+    public function storeUnitStatistics()
     {
         UnitStats::firstOrCreate([
-            'total' => app('App\Http\Controllers\Features\UnitController')->getUnits($property_uuid, '', '', '')->count(),
-            'vacant' => app('App\Http\Controllers\Features\UnitController')->getUnits($property_uuid, 1,'', '')->count(),
-            'occupied' => app('App\Http\Controllers\Features\UnitController')->getUnits($property_uuid, 2,'', '')->count(),
-            'dirty' => app('App\Http\Controllers\Features\UnitController')->getUnits($property_uuid, 3,'', '')->count(),
-            'reserved' => app('App\Http\Controllers\Features\UnitController')->getUnits($property_uuid, 4,'', '')->count(),
-            'under_maintenance' => app('App\Http\Controllers\Features\UnitController')->getUnits($property_uuid, 5,'', '')->count(),
-            'pending' => app('App\Http\Controllers\Features\UnitController')->getUnits($property_uuid, 6,'', '')->count(),
-            'property_uuid' => $property_uuid
+            'total' =>  Unit::where('property_uuid',Session::get('property_uuid'))->count(),
+            'vacant' => Unit::where('property_uuid',Session::get('property_uuid'))->where('status_id',1)->count(),
+            'occupied' => Unit::where('property_uuid',Session::get('property_uuid'))->where('status_id',2)->count(),
+            'dirty' => Unit::where('property_uuid',Session::get('property_uuid'))->where('status_id',3)->count(),
+            'reserved' => Unit::where('property_uuid',Session::get('property_uuid'))->where('status_id',4)->count(),
+            'under_maintenance' => Unit::where('property_uuid',Session::get('property_uuid'))->where('status_id',5)->count(),
+            'pending' => Unit::where('property_uuid',Session::get('property_uuid'))->where('status_id',6)->count(),
+            'property_uuid' => Session::get('property_uuid')
         ]);
 
     }
@@ -572,13 +567,12 @@ class PropertyController extends Controller
 
         $address = $country.', '.$province.', '.$city.', '.$barangay;
 
-
         return $address;
     }
 
     public function unlock($property_uuid)
     {
-        app('App\Http\Controllers\Utilities\ActivityController')->store($property_uuid, auth()->user()->id,'opens',20);
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity('opens',20);
 
         return view('admin.restrictedpages.portfolio');
     }

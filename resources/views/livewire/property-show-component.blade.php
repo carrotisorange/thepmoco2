@@ -78,7 +78,7 @@
                         </div>
                         <!--Body-->
                         <div class="my-5">
-          
+
                             <div x-data="{ openTab: 1 }" class="">
                                 <div class="mx-auto">
                                     <div class="mb-4 flex space-x-4 p-2 bg-white rounded-lg shadow-md">
@@ -94,10 +94,10 @@
                                             <span
                                                 class="bg-red-100 text-red-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-red-900 dark:text-red-300">
                                                 12
-                                                
+
                                             </span>
                                         </div>
-                                        
+
                                         <ul class="divide-y divide-gray-200 dark:divide-gray-700 shadow p-3">
                                             <!-- limit list to 5 -->
                                             <li class="pb-3 sm:pb-4">
@@ -202,10 +202,10 @@
                                             <span
                                                 class="bg-red-100 text-red-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-red-900 dark:text-red-300">
                                                 12
-                                                
+
                                             </span>
                                         </div>
-                                        
+
                                         <ul class="divide-y divide-gray-200 dark:divide-gray-700 shadow p-3">
                                             <!-- limit list to 5 -->
                                             <li class="pb-3 sm:pb-4">
@@ -293,7 +293,7 @@
                                                     </div>
                                                 </div>
                                             </li>
-                                        </ul>   
+                                        </ul>
                                         <div class="flex justify-end items-center pt-5">
                                             <!-- Button -->
                                             <button
@@ -301,7 +301,7 @@
                                                 type="button">
                                                 See all Payment Requests
                                             </button>
-                                        </div> 
+                                        </div>
                                     </div>
 
                                     <div x-show="openTab === 3" class="transition-all duration-300 bg-white p-4 rounded-lg shadow-md border-l-4 border-purple-600">
@@ -310,10 +310,10 @@
                                             <span
                                                 class="bg-red-100 text-red-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-red-900 dark:text-red-300">
                                                 18
-                                                
+
                                             </span>
                                         </div>
-                                        
+
                                         <ul class="divide-y divide-gray-200 dark:divide-gray-700 shadow p-3">
                                             <!-- limit list to 5 -->
                                             <li class="pb-3 sm:pb-4">
@@ -418,10 +418,10 @@
                                             <span
                                                 class="bg-red-100 text-red-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-red-900 dark:text-red-300">
                                                 12
-                                                
+
                                             </span>
                                         </div>
-                                        
+
                                         <ul class="divide-y divide-gray-200 dark:divide-gray-700 shadow p-3">
                                             <!-- limit list to 5 -->
                                             <li class="pb-3 sm:pb-4">
@@ -524,7 +524,7 @@
 
                             <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
                          </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -799,10 +799,10 @@
                     <div class="flex justify-center items-center">
                         <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white pr-1">Occupancy Rate
                         </h5>
-                        
-                        
+
+
                     </div>
-                
+
                 </div>
 
                 <!-- Donut Chart -->
@@ -876,7 +876,7 @@
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">December</a>
                                 </li>
 
-                                
+
                             </ul>
                         </div>
 
@@ -1124,7 +1124,7 @@
 
         </div>
 
-        
+
     </div>
     <div class="mt-7 grid grid-cols-6">
         <!-- income rate -->
@@ -1134,7 +1134,7 @@
                     <dl>
                         <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Income</dt>
                         <dd class="leading-none text-3xl font-bold text-gray-900 dark:text-white">₱5,405</dd>
-                    </dl>                   
+                    </dl>
                 </div>
 
                 <div class="grid grid-cols-2 py-3">
@@ -1218,7 +1218,7 @@
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">December</a>
                                 </li>
 
-                                
+
                             </ul>
                         </div>
 
@@ -1445,7 +1445,7 @@
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">December</a>
                                 </li>
 
-                                
+
                             </ul>
                         </div>
 
@@ -1620,13 +1620,13 @@
                                 <p>are those users who have access to their portals and have verified their email addresses. </p>
                                 <h3 class="font-semibold text-gray-900 dark:text-white">Unverified</h3>
                                 <p>are those users who have been given access to their portals via emails but haven't verified their email address yet.</p>
-                                
+
                             </div>
                                 <div data-popper-arrow></div>
                             </div>
                         </div>
-                        
-                        
+
+
                     </div>
 
                 </div>
@@ -1702,7 +1702,7 @@
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">December</a>
                                 </li>
 
-                                
+
                             </ul>
                         </div>
 
@@ -1788,7 +1788,7 @@
                 <span
                     class="text-red-800 text-lg font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-red-900 dark:text-red-300">
                     18
-                                                
+
                 </span>
             </div>
             <ul class="divide-y divide-gray-200 dark:divide-gray-700 shadow p-3">
@@ -1903,7 +1903,7 @@
                         <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">1234</h5>
                         <p class="text-base font-normal text-gray-500 dark:text-gray-400">Total Water Consumption</p>
                     </div>
-                   
+
                 </div>
                 <div id="waters-chart" class="px-2.5"></div>
                 <div
@@ -1975,7 +1975,7 @@
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">December</a>
                                 </li>
 
-                                
+
                             </ul>
                         </div>
 
@@ -2159,7 +2159,7 @@
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">December</a>
                                 </li>
 
-                                
+
                             </ul>
                         </div>
 
@@ -2278,19 +2278,19 @@
                             <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">15</h5>
                             <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Concerns</p>
                         </div>
-                        
+
                     </div>
                     <div>
-                    
+
                             <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">15</h5>
                             <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Concerns Resolved</p>
-                        
+
                     </div>
                     <div>
-                    
+
                             <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">15</h5>
                             <p class="text-sm font-normal text-gray-500 dark:text-gray-400">All time Concerns</p>
-                        
+
                     </div>
                 </div>
 
@@ -2376,7 +2376,7 @@
                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">December</a>
                                 </li>
 
-                                
+
                             </ul>
                         </div>
 
@@ -2526,7 +2526,7 @@
                     </div>
                 </div>
             </div>
-    
+
             <div class="flex justify-between">
                 <h1 class="py-3 font-bold text-xl">Election Date</h1>
                 <p class="p-3 text-lg font-medium">October 23, 2023</p>
@@ -2535,7 +2535,7 @@
                 <h1 class="py-1 font-light text-base">Current BODS:</h1>
                 <span
                     class="bg-green-100 text-green-800 text-base font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-green-900 dark:text-green-300">
-                    5                        
+                    5
                 </span>
             </div>
             <ul class="divide-y divide-gray-200 dark:divide-gray-700 shadow p-3">
@@ -2609,14 +2609,14 @@
 
 
         </div>
-        
+
 
     </div>
     <!-- fifth row row -->
 
     <div class="mt-10 grid grid-cols-6">
-        
-        
+
+
     </div>
 
     <!-- fifth row end -->

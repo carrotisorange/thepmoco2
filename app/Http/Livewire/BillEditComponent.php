@@ -55,7 +55,7 @@ class BillEditComponent extends Component
     public function render()
     {
         return view('livewire.bill-edit-component',[
-            'particulars' => app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid'))
+            'particulars' => app('App\Http\Controllers\Utilities\PropertyParticularController')->index(Session::get('property_uuid'))
         ]);
     }
 }

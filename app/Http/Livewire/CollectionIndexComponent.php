@@ -26,24 +26,6 @@ class CollectionIndexComponent extends Component
         $this->end_date = Carbon::now()->format('Y-m-d');
     }
 
-    public function render()
-    {
-        $collections = $this->get_ars();
-
-        $mode_of_payments = Collection::where('property_uuid', Session::get('property_uuid'))
-        ->groupBy('form')
-        ->get();
-
-        $propertyCollectionsCount = Property::find(Session::get('property_uuid'))->collections->count();
-
-        return view('livewire.collection-index-component',[
-            'collections' => $collections,
-            'mode_of_payments' => $mode_of_payments,
-            'propertyCollectionsCount' => $propertyCollectionsCount
-
-        ]);
-    }
-
     public function exportDCR(){
         return redirect('/property/'.Session::get('property_uuid') .'/dcr/'.$this->start_date.'/'.$this->end_date);
     }
@@ -69,5 +51,24 @@ class CollectionIndexComponent extends Component
         ->groupBy('ar_no')
         ->orderBy('ar_no', 'desc')
         ->get();
+    }
+
+
+    public function render()
+    {
+        $collections = $this->get_ars();
+
+        $mode_of_payments = Collection::where('property_uuid', Session::get('property_uuid'))
+        ->groupBy('form')
+        ->get();
+
+        $propertyCollectionsCount = Property::find(Session::get('property_uuid'))->collections->count();
+
+        return view('livewire.features.collection.collection-index-component',[
+            'collections' => $collections,
+            'mode_of_payments' => $mode_of_payments,
+            'propertyCollectionsCount' => $propertyCollectionsCount
+
+        ]);
     }
 }

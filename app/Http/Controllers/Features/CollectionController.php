@@ -15,22 +15,24 @@ use App\Models\{Collection, Property, Bill, Tenant, PaymentRequest, Contract, Ac
 
 class CollectionController extends Controller
 {
-
     public function index(Property $property)
     {
-        $featureId = 12;
+        $featureId = 12; //refer to the features table
 
-        $restrictionId = 2;
+        $restrictionId = 2; //refer to the restrictions table
 
-        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
+        app('App\Http\Controllers\PropertyController')->storePropertySession($property->uuid);
+
+        app('App\Http\Controllers\Utilities\UserPropertyController')->isUserAuthorized();
+
+        if(!app('App\Http\Controllers\Utilities\UserRestrictionController')->isFeatureAuthorized($featureId, $restrictionId)){
             return abort(403);
         }
+        app('App\Http\Controllers\PropertyController')->storeUnitStatistics();
+        
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($featureId,$restrictionId);
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,$restrictionId,$featureId);
-
-        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
-
-        return view('properties.collections.index',[
+        return view('features.collections.index',[
         'property' => $property,
         'collections'=> AcknowledgementReceipt::where('property_uuid', $property->uuid)->orderBy('id','desc')->get()
         ]);
@@ -126,7 +128,7 @@ class CollectionController extends Controller
 
             $folder_path = 'properties.collections.export_dcr';
 
-            $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
+            $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data);
 
             $fileName = str_replace(' ', '_', $property->property).'_DCR_'.str_replace(' ', '_', $start_date.'_'.$end_date).'.pdf';
 
@@ -247,7 +249,7 @@ class CollectionController extends Controller
          );
 
 
-         app('App\Http\Controllers\PointController')->store($property->uuid, auth()->user()->id, Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);
+         app('App\Http\Controllers\Utilities\PointController')->store($property->uuid, auth()->user()->id, Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);
 
          $contract_status = Tenant::find($tenant->uuid)->bills->where('status', '!=','paid')->where('description','movein charges');
 
@@ -353,7 +355,7 @@ class CollectionController extends Controller
 
         $folder_path = 'features.tenants.collections.export';
 
-        $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
+        $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data);
 
         $pdf_name = str_replace(' ', '_', $property->property).'_AR_'.$collection->ar_no.'.pdf';
 

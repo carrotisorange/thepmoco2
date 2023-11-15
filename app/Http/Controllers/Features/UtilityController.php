@@ -7,24 +7,27 @@ use DB;
 use Session;
 use App\Models\{Utility,Property};
 
-
 class UtilityController extends Controller
 {
     public function index(Property $property)
     {
-        $featureId = 15;
+        $featureId = 15; //refer to the features table
 
-        $restrictionId = 2;
+        $restrictionId = 2; //refer to the restrictions table
 
-        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
+        app('App\Http\Controllers\PropertyController')->storePropertySession($property->uuid);
+
+        app('App\Http\Controllers\Utilities\UserPropertyController')->isUserAuthorized();
+
+        if(!app('App\Http\Controllers\Utilities\UserRestrictionController')->isFeatureAuthorized($featureId, $restrictionId)){
             return abort(403);
         }
 
-        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,$restrictionId,$featureId);
+        app('App\Http\Controllers\PropertyController')->storeUnitStatistics();
 
-        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($featureId,$restrictionId);
 
-        return view('properties.utilities.index');
+        return view('features.utilities.index');
     }
 
     public function destroy($unit_uuid){
@@ -62,12 +65,6 @@ class UtilityController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Utility  $utility
-     * @return \Illuminate\Http\Response
-     */
     public function edit($property_uuid, $batch_no, $option)
     {
        return view('features.utilities.edit',[
@@ -76,13 +73,7 @@ class UtilityController extends Controller
        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Utility  $utility
-     * @return \Illuminate\Http\Response
-     */
+
     public function update($property_uuid, $batch_no, $start_date, $end_date, $kwh, $min_charge)
     {
          Utility::where('property_uuid', $property_uuid)

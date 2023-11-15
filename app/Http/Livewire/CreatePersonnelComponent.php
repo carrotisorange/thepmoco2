@@ -79,8 +79,9 @@ class CreatePersonnelComponent extends Component
             ]);
 
         }else{
-            app('App\Http\Controllers\UserRestrictionController')->store(Session::get('property_uuid'), $user->id);
-            app('App\Http\Controllers\UserController')->send_email($this->role_id, $this->email, $this->email, $password);
+            app('App\Http\Controllers\Utilities\UserRestrictionController')->store(Session::get('property_uuid'),
+            $user->id);
+            app('App\Http\Controllers\Auth\UserController')->send_email($this->role_id, $this->email, $this->email, $password);
     }
 
         return redirect(url()->previous())->with('success', 'Changes Saved!');
@@ -97,7 +98,7 @@ class CreatePersonnelComponent extends Component
     public function render()
     {
         return view('livewire.create-personnel-component',[
-            'roles' => app('App\Http\Controllers\RoleController')->get_roles(Session::get('property_uuid')),
+            'roles' => app('App\Http\Controllers\Utilities\RoleController')->get_roles(Session::get('property_uuid')),
         ]);
     }
 }

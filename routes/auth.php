@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
 
+
 //Routes for socialte - allow user to register/login using social media sites (i.e. facebook)
 Route::prefix('/auth')->group(function(){
     Route::get('redirect', function(){
