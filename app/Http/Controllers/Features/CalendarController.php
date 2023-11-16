@@ -116,7 +116,7 @@ class CalendarController extends Controller
 
         app('App\Http\Controllers\BookingController')->sendWelcomeMailToGuest(
             $booking->uuid,
-            $booking->guest,
+            $booking->guest->guest,
             $booking->movein_at,
             $booking->moveout_at,
             $booking->unit->unit,

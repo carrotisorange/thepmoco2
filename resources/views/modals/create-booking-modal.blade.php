@@ -7,7 +7,7 @@
     <form wire:submit.prevent="storeBooking">
         <div class="mt-5 sm:mt-6">
             <x-label for="unit_uuid">Unit</x-label>
-            <x-form-select id="unit_uuid" name="unit_uuid" wire:model="unit_uuid" class="">
+            <x-form-select id="unit_uuid" name="unit_uuid" wire:model="unit_uuid">
                 <option value="">Select one</option>
                 @foreach ($units as $unit)
                 <option value="{{ $unit->uuid }}" {{ $unit->uuid === $unit_uuid? 'selected': 'Select one' }}>
@@ -37,7 +37,7 @@
         </div>
 
         <div class="mt-5 sm:mt-6">
-            <x-button class="w-full" type="submit" wire:click="storeBooking">
+            <x-button class="w-full" type="submit">
                 Confirm
             </x-button>
         </div>
