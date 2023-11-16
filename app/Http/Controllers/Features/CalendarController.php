@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Features;
 
 use App\Http\Controllers\Controller;
-use App\Mail\SendWelcomeMailToGuest;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Mail;
 use App\Models\{Property, Bill, Guest, Unit, Booking};
 
 
@@ -76,7 +74,7 @@ class CalendarController extends Controller
 
         // try{
 
-            // DB::transaction(function () use ($request, $validatedData){
+        //     DB::transaction(function () use ($request, $validatedData){
 
             $start = strtotime($request->movein_at); // convert to timestamps
             $end = strtotime($request->moveout_at); // convert to timestamps
@@ -84,6 +82,7 @@ class CalendarController extends Controller
             $price = (Unit::find($request->unit_uuid)->transient_rent * $days) - Unit::find($request->unit_uuid)->transient_discount;
             $guest_uuid = app('App\Http\Controllers\Features\PropertyController')->generate_uuid();
             $booking_uuid = app('App\Http\Controllers\Features\PropertyController')->generate_uuid();
+
             $guest = $this->store_guest(
                 $guest_uuid,
                 $request->guest,
@@ -111,11 +110,25 @@ class CalendarController extends Controller
                 $request->no_of_pwd,
                 $request->remarks
             );
+
             $particular_id = 1; //rent
 
             $this->store_bill($request->property_uuid, $request->unit_uuid, $particular_id, $request->movein_at, $request->moveout_at, $price, $guest->uuid);
 
-            $this->send_mail_to_guest($guest, $booking);
+        app('App\Http\Controllers\BookingController')->sendWelcomeMailToGuest(
+            $booking->uuid,
+            $booking->guest,
+            $booking->movein_at,
+            $booking->moveout_at,
+            $booking->unit->unit,
+            $booking->price,
+            $booking->email,
+            $booking->no_of_children,
+            $booking->no_of_senior_citizens,
+            $booking->no_of_pwd,
+            $booking->remarks,
+            $booking->no_of_guests
+        );
 
             $this->update_unit($request->unit_uuid);
 
@@ -192,26 +205,6 @@ class CalendarController extends Controller
             'is_posted' => true,
             'description' => 'movein charges'
          ]);
-    }
-
-    public function send_mail_to_guest($guest, $booking)
-      {
-        $details =[
-          'uuid' => $guest->uuid,
-          'guest' => $guest->guest,
-          'checkin_date' => $guest->movein_at,
-          'checkout_date' => $guest->moveout_at,
-          'unit' => $guest->unit->unit,
-          'price' => $guest->price,
-          'email' => $guest->email,
-          'no_of_children' => $booking->no_of_children,
-          'no_of_senior_citizens' => $booking->no_of_senior_citizens,
-          'no_of_pwd' => $booking->no_of_pwd,
-          'remarks' => $booking->remarks,
-          'no_of_guests' => $booking->no_of_guests
-        ];
-
-         Mail::to($guest->email)->send(new SendWelcomeMailToGuest($details));
     }
 
     public function update(Request $request, $id){
