@@ -31,15 +31,14 @@ class CalendarController extends Controller
 
         $events = array();
 
-        $bookings = Property::find($property->uuid)->bookings->where('status', '!=',
-        'cancelled');
 
+        $bookings = Booking::where('property_uuid',$property->uuid)->where('status', '!=', 'cancelled')->get();
 
 
         foreach($bookings as $booking){
             $events[] = [
-                'id' => $booking->guest->uuid,
-                'title' => $booking->guest->guest.' @ '.$booking->unit->unit,
+                'id' => $booking->guest_uuid,
+                'title' => Guest::where('uuid',$booking->guest_uuid)->value('guest').' @ '.Unit::where('uuid',$booking->unit_uuid)->value('unit'),
                 // 'unit' => $booking->unit->unit,
                 'start' => $booking->movein_at,
                 'end' => $booking->moveout_at,
