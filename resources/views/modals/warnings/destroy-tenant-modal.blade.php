@@ -26,13 +26,11 @@
                 </div>
                 <div class="mt-5 sm:mt-6">
                     @can('accountownerandmanager')
-                    <x-button class="w-full bg-red-500" type="button" wire:click="deleteTenant"
-                       >
+                    <x-button class="w-full bg-red-500" type="button" wire:click="deleteTenant">
                         Delete
                     </x-button>
                     @else
-                    <x-button class="w-full bg-red-500" type="button" disabled
-                      >
+                    <x-button class="w-full bg-red-500" type="button" disabled>
                         Delete
                     </x-button>
                     <p class="text-left text-red-500 text-xs mt-2">This feature is locked. Please contact your manager.
