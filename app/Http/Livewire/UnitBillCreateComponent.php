@@ -3,7 +3,8 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\{Bill,Contract,DeedOfSale,Tenant,Utility,Owner};
+use App\Models\{Contract,DeedOfSale,Tenant,Utility,Owner};
+use Session;
 
 class UnitBillCreateComponent extends Component
 {
@@ -42,10 +43,18 @@ class UnitBillCreateComponent extends Component
 
                  $tenant = Tenant::find($contract['tenant_uuid']);
 
-                app('App\Http\Controllers\Features\BillController')->store($tenant->property_uuid, $this->unit->uuid,
-                $tenant->uuid, '',$this->particular_id, $this->utility->start_date, $this->utility->end_date, $amount,
-                '', 1);
-
+                app('App\Http\Controllers\Features\BillController')->store(
+                    Session::get('property_uuid'),
+                    $this->unit->uuid,
+                    $tenant->uuid,
+                    '', //owner uuid is null
+                    $this->particular_id,
+                    $this->utility->start_date,
+                    $this->utility->end_date,
+                    $amount,
+                    '',
+                    1
+                );
             }
             }else{
 
@@ -61,11 +70,20 @@ class UnitBillCreateComponent extends Component
 
                  $owner = Owner::find($deedofsale['owner_uuid']);
 
-                app('App\Http\Controllers\Features\BillController')->store($owner->property_uuid, $this->unit->uuid, '',$owner->uuid, $this->particular_id, $this->utility->start_date, $this->utility->end_date, $amount, '', 1);
-
+                app('App\Http\Controllers\Features\BillController')->store(
+                    Session::get('property_uuid'),
+                    $this->unit->uuid,
+                    '', //tenant uuid is null
+                    $owner->uuid,
+                    $this->particular_id,
+                    $this->utility->start_date,
+                    $this->utility->end_date,
+                    $amount,
+                    '',
+                    1
+                );
             }
-            }
-
+        }
 
           Utility::where('id', $this->utility->id)
           ->update(

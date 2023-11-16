@@ -20,15 +20,10 @@ class BillCreateComponent extends Component
     public $unit_uuid;
 
     public $contract;
-
     public $view = 'listView';
-
     public $isPaymentAllowed = false;
-
     public $isIndividualView = true;
-
     public $tenant_uuid;
-
     public $user_type = 'tenant';
 
     public function mount($unit, $tenant)
@@ -64,19 +59,26 @@ class BillCreateComponent extends Component
 
     public function submitForm()
     {
-
-
-         $validated_data = $this->validate();
+        $this->validate();
 
        try{
 
-         app('App\Http\Controllers\Features\BillController')->store(Session::get('property_uuid'), $this->unit->uuid, $this->tenant->uuid,'', $this->particular_id, $this->start, $this->end, $this->bill, '', 1);
+         app('App\Http\Controllers\Features\BillController')->store(
+            Session::get('property_uuid'),
+            $this->unit->uuid,
+            $this->tenant->uuid,
+            '',//owner uuid is null
+            $this->particular_id,
+            $this->start,
+            $this->end,
+            $this->bill,
+            '',
+            1
+        );
 
-        if($this->particular_id === '3' || $this->particular_id === '4'){
+        if($this->particular_id == '3' || $this->particular_id == '4'){
             app('App\Http\Controllers\WalletController')->store($this->tenant->uuid, '', $this->bill, Particular::find($this->particular_id)->particular);
         }
-
-        $this->reset_form();
 
         return redirect(url()->previous())->with('success', 'Changes Saved!');
 
@@ -85,12 +87,6 @@ class BillCreateComponent extends Component
          return redirect(url()->previous())->with('error', $e);
        }
 
-    }
-
-    public function reset_form()
-    {
-        $this->particular_id = '';
-        $this->bill = '';
     }
 
     public function redirectToContractShowPage(){
@@ -103,13 +99,11 @@ class BillCreateComponent extends Component
              return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid);
         }
 
-
     }
 
     public function render()
     {
         return view('livewire.features.bill.bill-create-component',[
-
             'particulars' => app('App\Http\Controllers\Utilities\PropertyParticularController')->index(Session::get('property_uuid')),
             'units' => app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($this->tenant->uuid),
             'bills' => app('App\Http\Controllers\Features\BillController')->show_tenant_bills($this->tenant->uuid),

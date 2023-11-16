@@ -99,7 +99,7 @@ class TransferContractComponent extends Component
     {
         $contract_uuid = Str::uuid();
 
-        $bill_no = app('App\Http\Controllers\Features\BillController')->getLatestBillNo(Session::get('property_uuid'));
+        $bill_no = app('App\Http\Controllers\Features\BillController')->getLatestBillNo();
 
         $reference_no = Carbon::now()->timestamp.''.$bill_no;
 

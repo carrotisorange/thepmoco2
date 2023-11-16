@@ -126,31 +126,26 @@ class GuestShowComponent extends Component
 
         $booking = Booking::create($validated);
 
-        $this->send_mail_to_guest($booking);
+        app('App\Http\Controllers\Subfeatures\BookingController')->sendWelcomeMailToGuest(
+          $booking->uuid,
+          $booking->guest->guest,
+          $booking->movein_at,
+          $booking->moveout_at,
+          $booking->unit->unit,
+          $booking->price,
+          $booking->email,
+          $booking->no_of_children,
+          $booking->no_of_senior_citizens,
+          $booking->no_of_pwd,
+          $booking->remarks,
+          $booking->no_of_guests
+          );
 
         return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 
     public function updatedUnitUuid(){
         $this->price = Unit::find($this->unit_uuid)->transient_rent;
-    }
-
-     public function send_mail_to_guest($booking)
-      {
-        $property = Property::find($booking->property_uuid);
-
-        $details =[
-          'uuid' => $booking->uuid,
-          'guest' => $booking->guest->guest,
-          'checkin_date' => $booking->movein_at,
-          'checkout_date' => $booking->moveout_at,
-          'unit' => $booking->unit->unit,
-        //   'price' => $guest->price,
-          'email' => $booking->guest->email,
-          'notes' => $property->note_to_transient
-        ];
-
-         Mail::to($booking->guest->email)->send(new SendWelcomeMailToGuest($details));
     }
 
     public function redirectToTheCreateBillPage(){

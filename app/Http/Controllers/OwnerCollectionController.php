@@ -92,7 +92,7 @@ class OwnerCollectionController extends Controller
     {
         Property::find($property->uuid)->collections()->where('owner_uuid', $owner->uuid)->where('is_posted', 0)->where('batch_no', '!=', $batch_no)->forceDelete();
 
-         $ar_no = app('App\Http\Controllers\Features\CollectionController')->getLatestAr($property->uuid);
+         $ar_no = app('App\Http\Controllers\Features\CollectionController')->getLatestAr();
 
          $counter = $this->get_selected_bills_count($batch_no);
 

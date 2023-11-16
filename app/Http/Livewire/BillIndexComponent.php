@@ -207,7 +207,7 @@ class BillIndexComponent extends Component
       ->where('contracts.status','active')
       ->pluck('tenant_uuid');
 
-      $bill_no = app('App\Http\Controllers\Features\BillController')->getLatestBillNo(Session::get('property_uuid'));
+      $bill_no = app('App\Http\Controllers\Features\BillController')->getLatestBillNo();
 
       $batch_no = app('App\Http\Controllers\Features\BillController')->generate_bill_batch_no($bill_no);
 

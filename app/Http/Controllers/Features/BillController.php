@@ -99,7 +99,7 @@ class BillController extends Controller
             'bill' => $total_amount_due,
             'batch_no' => $batch_no,
             'property_uuid' => $property_uuid,
-            'bill_no'=> $this->getLatestBillNo($property_uuid),
+            'bill_no'=> $this->getLatestBillNo(),
             'user_id' => auth()->user()->id,
             'due_date' => Carbon::parse($start_date)->addDays(7),
             'is_posted' => $posted,
@@ -250,9 +250,9 @@ class BillController extends Controller
 
     }
 
-    public function getLatestBillNo($property_uuid)
+    public function getLatestBillNo()
     {
-        return sprintf('%08d',Property::find($property_uuid)->bills()->withTrashed()->max('bill_no')+1);
+        return sprintf('%08d',Property::find(Session::get('property_uuid'))->bills()->withTrashed()->max('bill_no')+1);
     }
 
     public function generate_bill_reference_no($type, $bill_no)

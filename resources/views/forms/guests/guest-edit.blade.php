@@ -19,6 +19,10 @@
         </div>
     </div>
     <div class="mt-5 flex justify-end">
+        <x-button data-modal-toggle="warning-destroy-guest-modal" class=" bg-red-600">
+            Delete
+        </x-button>
+        &nbsp;
         <x-button type="submit">
             Update
         </x-button>

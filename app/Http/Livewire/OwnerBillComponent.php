@@ -66,7 +66,7 @@ class OwnerBillComponent extends Component
 
       try {
 
-        $bill_no = app('App\Http\Controllers\Features\BillController')->getLatestBillNo(Session::get('property_uuid'));
+        $bill_no = app('App\Http\Controllers\Features\BillController')->getLatestBillNo();
 
         if($this->particular_id === '8'){
             $this->bill *=-1;

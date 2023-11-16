@@ -29,7 +29,7 @@ class CollectionController extends Controller
             return abort(403);
         }
         app('App\Http\Controllers\PropertyController')->storeUnitStatistics();
-        
+
         app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($featureId,$restrictionId);
 
         return view('features.collections.index',[
@@ -38,9 +38,9 @@ class CollectionController extends Controller
         ]);
     }
 
-    public function getLatestAr($property)
+    public function getLatestAr()
     {
-        return Property::find($property)->collections()->posted()->withTrashed()->max('ar_no')+1;
+        return Property::find(Session::get('property_uuid'))->collections()->posted()->withTrashed()->max('ar_no')+1;
     }
 
     public function getCollections($property_uuid){
@@ -187,7 +187,7 @@ class CollectionController extends Controller
          app('App\Http\Controllers\Features\CollectionController')->delete_unposted_collections($tenant->uuid, $batch_no);
 
          //generate collection acknowledgement receipt no
-         $ar_no = app('App\Http\Controllers\Features\CollectionController')->getLatestAr($property->uuid);
+         $ar_no = app('App\Http\Controllers\Features\CollectionController')->getLatestAr();
 
          $counter = $this->get_selected_bills_count($batch_no, $tenant->uuid, $property->uuid);
 

@@ -10,6 +10,7 @@ use Session;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendPaymentToTenant;
 
+
 use App\Models\{Property,Guest,Unit,Bill,Collection,AdditionalGuest,Booking,AcknowledgementReceipt, User};
 
 class GuestController extends Controller
@@ -107,9 +108,9 @@ class GuestController extends Controller
 
     public function update_collections(Request $request, Property $property, Guest $guest, $batch_no)
      {
-          Property::find($property->uuid)->collections()->where('guest_uuid', $guest->uuid)->where('is_posted', 0)->where('batch_no', '!=', $batch_no)->forceDelete();
+        Property::find($property->uuid)->collections()->where('guest_uuid', $guest->uuid)->where('is_posted', 0)->where('batch_no', '!=', $batch_no)->forceDelete();
 
-         $ar_no = app('App\Http\Controllers\Features\CollectionController')->getLatestAr($property->uuid);
+         $ar_no = app('App\Http\Controllers\Features\CollectionController')->getLatestAr();
 
          $counter = $this->get_selected_bills_count($batch_no, $guest->uuid);
 

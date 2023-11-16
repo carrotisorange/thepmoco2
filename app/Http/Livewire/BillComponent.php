@@ -52,7 +52,7 @@ class BillComponent extends Component
 
       $validated_data = $this->validate();
 
-      $bill_no = app('App\Http\Controllers\Features\BillController')->getLatestBillNo(Session::get('property_uuid')->uuid);
+      $bill_no = app('App\Http\Controllers\Features\BillController')->getLatestBillNo();
 
       try
       {

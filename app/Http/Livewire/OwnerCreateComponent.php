@@ -8,7 +8,7 @@ use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 use Session;
 use DB;
-use App\Models\Owner,Spouse,Representative;
+use App\Models\{Owner,Spouse,Representative};
 
 class OwnerCreateComponent extends Component
 {
@@ -195,7 +195,7 @@ class OwnerCreateComponent extends Component
             }
 
             //$owner_uuid = Owner::create($validatedData)->uuid;
-            $bill_no = app('App\Http\Controllers\Features\BillController')->getLatestBillNo(Session::get('property_uuid'));
+            $bill_no = app('App\Http\Controllers\Features\BillController')->getLatestBillNo();
 
             $owner_uuid = Owner::create([
                     'uuid' => Str::uuid(),

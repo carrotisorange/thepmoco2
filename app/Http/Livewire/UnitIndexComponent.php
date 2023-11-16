@@ -37,7 +37,7 @@ class UnitIndexComponent extends Component
 
     public $numberOfUnits = 1;
 
-    public function storeUnits(){
+    public function storeUnit(){
 
       if(($this->numberOfUnits <= 0 || !$this->numberOfUnits)){
         return redirect(url()->previous())->with('error', 'Cannot accept value less than 0 or null.');

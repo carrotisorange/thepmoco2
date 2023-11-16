@@ -104,7 +104,7 @@ class ContractCreateComponent extends Component
                   'bill' => $this->rent,
                   'property_uuid' => Session::get('property_uuid'),
                   'bill_no'=>
-                  app('App\Http\Controllers\Features\BillController')->getLatestBillNo(Session::get('property_uuid')),
+                  app('App\Http\Controllers\Features\BillController')->getLatestBillNo(),
                   'user_id' => auth()->user()->id,
                   'due_date' => Carbon::parse($this->start)->addDays(7),
                   'is_posted' => true

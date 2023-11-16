@@ -9,15 +9,15 @@
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/unit'">Back</x-button>
                 @if(App\Models\Property::find(Session::get('property_uuid'))->units->count())
-                <x-button wire:click="updateUnit()">
+                <x-button wire:click="updateUnit">
                     Update
                 </x-button>
                 @endif
             </div>
         </div>
         <div class="mt-3 -my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead class="bg-gray-50">
+                <x-table-component>
+                    <x-table-head-component>
                         <tr>
                             <x-th> Unit  </x-th>
                             <x-th> Floor </x-th>
@@ -30,9 +30,8 @@
                             <x-th> Discount </x-th>
                             <x-th> Occupancy  </x-th>
                         </tr>
-                    </thead>
-
-                    <tbody class="bg-white divide-y divide-gray-200">
+                    </x-table-head-component>
+                    <x-table-body-component>
                         @foreach ($units as $index => $unit)
                         <div wire:key="unit-field-{{ $unit->uuid }}">
                             <tr>
@@ -130,8 +129,8 @@
                             </tr>
                         </div>
                         @endforeach
-                    </tbody>
-                </table>
+                    </x-table-body-component>
+                </x-table-component>
         </div>
     </div>
 </div>
