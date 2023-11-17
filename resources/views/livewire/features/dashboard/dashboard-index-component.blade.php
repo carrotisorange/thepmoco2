@@ -1354,7 +1354,13 @@
                                 alt="coins" />
                         </div>
                         <div>
-                            <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">{{ number_format(($totalPostedUnpaidBills/$totalPostedPaidBills)*100,2) }}%</h5>
+                            <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">
+                                @if($totalPostedUnpaidBills>0)
+                                    {{ number_format(($totalPostedPaidBills/$totalPostedUnpaidBills)*100,2) }}%
+                                @else
+                                    NA
+                                @endif
+                            </h5>
                             <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Collection Rate</p>
                         </div>
                     </div>
