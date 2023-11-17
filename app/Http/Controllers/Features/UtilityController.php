@@ -30,6 +30,11 @@ class UtilityController extends Controller
         return view('features.utilities.index');
     }
 
+    public function get($type=null, $status=null)
+    {
+        return Utility::getAll(Session::get('property_uuid'), $type, $status);
+    }
+
     public function destroy($unit_uuid){
         Utility::where('unit_uuid', $unit_uuid)->delete();
     }

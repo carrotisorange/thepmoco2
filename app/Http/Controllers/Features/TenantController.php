@@ -60,7 +60,11 @@ class TenantController extends Controller
        Tenant::where('uuid', $tenant_uuid)->delete();
     }
 
-
+    public function get($status=null, $groupBy=null)
+    {
+        return Tenant::getAll(Session::get('property_uuid'), $status, $groupBy);
+    }
+    
     public function getTenants()
     {
         return Tenant::where('property_uuid',Session::get('property_uuid'));

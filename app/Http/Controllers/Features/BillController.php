@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Mail\SendBillToTenant;
 use Illuminate\Support\Facades\Mail;
+use DB;
 use App\Models\{Bill, Property, Unit, Tenant, Contract, Collection, User, Owner, Guest, Particular};
 
 class BillController extends Controller
@@ -37,6 +38,22 @@ class BillController extends Controller
             'batch_no' => $batch_no,
             'drafts' => $drafts,
         ]);
+    }
+
+    public function get($isPosted=null, $status=null, $groupBy=null)
+    {
+        return Bill::getAll(Session::get('property_uuid'), $isPosted, $status, $groupBy);
+    }
+
+    public function getDelinquentTenants(){
+        return Bill::join('tenants', 'bills.tenant_uuid', 'tenants.uuid')
+        ->select(DB::raw('sum(bill) as totalBill, tenant, email'))
+        ->where('bills.property_uuid',Session::get('property_uuid'))
+        ->whereMonth('bills.start','<=', Carbon::now()->subMonth()->month)
+        ->where('bills.status', 'unpaid')
+        ->groupBy('bills.tenant_uuid')
+        ->orderBy('totalBill', 'desc')
+        ->get();
     }
 
     public function tenant_index(Property $property, Tenant $tenant)

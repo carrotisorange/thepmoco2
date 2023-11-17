@@ -38,6 +38,11 @@ class CollectionController extends Controller
         ]);
     }
 
+    public function get($status=null, $groupBy=null)
+    {
+        return Collection::getAll(Session::get('property_uuid'), $status,$groupBy);
+    }
+
     public function getLatestAr()
     {
         return Property::find(Session::get('property_uuid'))->collections()->posted()->withTrashed()->max('ar_no')+1;

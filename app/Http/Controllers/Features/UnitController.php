@@ -146,9 +146,9 @@ class UnitController extends Controller
         ->get();
     }
 
-    public function getUnits()
+    public function get($status=null, $groupBy=null)
     {
-        return Unit::where('property_uuid',Session::get('property_uuid'));
+        return Unit::getAll(Session::get('property_uuid'), $status, $groupBy);
     }
 
     public function update(Request $request, Property $property, Unit $unit)

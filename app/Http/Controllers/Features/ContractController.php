@@ -64,9 +64,9 @@ class ContractController extends Controller
        ]);
     }
 
-    public function getContracts()
+    public function get($status=null, $groupBy=null)
     {
-        return Contract::where('property_uuid',Session::get('property_uuid'));
+        return Contract::getAll(Session::get('property_uuid'), $status, $groupBy);
     }
 
     public function get_contracts_trend_count($property_uuid)

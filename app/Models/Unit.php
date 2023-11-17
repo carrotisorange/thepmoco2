@@ -132,4 +132,18 @@ class Unit extends Model
     public function account_payable_particulars(){
         return $this->hasMany(AccountPayableParticular::class);
     }
+
+public function scopeGetAll($query, $propertyUuid, $status, $groupBy){
+    $results = $query->when($propertyUuid, function($query, $propertyUuid){
+            $query->where('property_uuid', $propertyUuid);
+        })
+        ->when($status, function($query, $status){
+            $query->where('status_id', $status);
+        })
+        ->when($groupBy, function($query, $groupBy){
+            $query->groupBy($groupBy);
+        })->get();
+
+    return $results;
+}
 }

@@ -25,4 +25,19 @@ class Utility extends Model
     public function scopePosted($query){
         return $query->where('is_posted', 1);
     }
+
+    public function scopeGetAll($query, $propertyUuid, $type, $isPosted){
+       $results =
+            $query->when($propertyUuid, function($query, $propertyUuid){
+                $query->where('property_uuid', $propertyUuid);
+            })
+            ->when($type, function($query, $type){
+                $query->where('type', $type);
+            })
+            ->when($isPosted, function($query, $isPosted){
+              $query->where('is_posted', $isPosted);
+            })->get();
+
+        return $results;
+    }
 }

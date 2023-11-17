@@ -76,4 +76,22 @@ class Bill extends Model
          return empty($search)? static::query()
          : static::where('reference_no','like', '%'.$search.'%');
     }
+
+    public function scopeGetAll($query, $propertyUuid, $isPosted, $status, $groupBy){
+       $results =
+            $query->when($propertyUuid, function($query, $propertyUuid){
+                $query->where('property_uuid', $propertyUuid);
+            })
+            ->when($isPosted, function($query, $isPosted){
+                $query->where('is_posted', $isPosted);
+            })
+            ->when($status, function($query, $status){
+              $query->where('status', $status);
+            })
+            ->when($groupBy, function($query, $groupBy){
+                $query->groupBy($groupBy);
+            })->get();
+
+        return $results;
+    }
  }

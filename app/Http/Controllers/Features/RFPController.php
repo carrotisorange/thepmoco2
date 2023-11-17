@@ -38,6 +38,11 @@ class RFPController extends Controller
         ]);
     }
 
+    public function get($status=null, $groupBy=null)
+    {
+        return AccountPayable::getAll(Session::get('property_uuid'), $status, $groupBy);
+    }
+
     public function getAccountPayables($property_uuid){
         return Property::find($property_uuid)->accountpayables();
     }

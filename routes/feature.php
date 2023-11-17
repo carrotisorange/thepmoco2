@@ -38,7 +38,7 @@ Route::group(['middleware'=>['auth', 'web','verified']], function(){
     });
 
     Route::get('/unit-calendar', function(){
-        return view('features.calendar.unit-calendar');
+        return view('features.calendars.unit-calendar');
     });
 
 });

@@ -9,8 +9,7 @@ use Carbon\Carbon;
 use Session;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendPaymentToTenant;
-
-
+use DB;
 use App\Models\{Property,Guest,Unit,Bill,Collection,AdditionalGuest,Booking,AcknowledgementReceipt, User};
 
 class GuestController extends Controller
@@ -38,9 +37,18 @@ class GuestController extends Controller
         ]);
     }
 
-    public function getGuests(){
-        return Guest::where('property_uuid', Session::get('property_uuid'));
-    }
+
+      public function get($status=null, $groupBy=null)
+      {
+        return Guest::getAll(Session::get('property_uuid'), $status, $groupBy);
+      }
+
+      public function averageNumberOfDaysGuestsStayed(){
+        return Booking::where('property_uuid', Session::get('property_uuid'))
+        ->select(DB::raw('avg(DATEDIFF(moveout_at,movein_at)) as average_days_stayed, count(*) as guest_count'))
+        ->where('property_uuid', Session::get('property_uuid'))
+        ->value('average_days_stayed');
+      }
 
     public function show_unit_guests($unit_uuid)
     {

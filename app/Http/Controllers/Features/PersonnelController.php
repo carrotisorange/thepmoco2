@@ -34,9 +34,9 @@ class PersonnelController extends Controller
         ]);
     }
 
-    public function getPersonnels()
+     public function get($isApproved=null, $groupBy=null)
     {
-        return UserProperty::where('property_uuid',Session::get('property_uuid'));
+        return UserProperty::getAll(Session::get('property_uuid'), $isApproved, $groupBy);
     }
 
     public function getVerifiedPersonnels(){

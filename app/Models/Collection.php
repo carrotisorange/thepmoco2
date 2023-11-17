@@ -71,4 +71,18 @@ class Collection extends Model
         return User::find(1);
     }
 
+    public function scopeGetAll($query, $propertyUuid, $status, $groupBy){
+       $results = $query->when($propertyUuid, function($query, $propertyUuid){
+                $query->where('property_uuid', $propertyUuid);
+            })
+            ->when($status, function($query, $status){
+                $query->where('is_posted', $status);
+            })
+            ->when($groupBy, function($query, $groupBy){
+                $query->groupBy($groupBy);
+            })->get();
+
+        return $results;
+    }
+
 }

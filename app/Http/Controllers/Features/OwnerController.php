@@ -31,8 +31,9 @@ class OwnerController extends Controller
         return view('features.owners.index');
     }
 
-    public function getOwners(){
-        return Owner::where('property_uuid', Session::get('property_uuid'));
+    public function get($groupBy=null)
+    {
+        return Owner::getAll(Session::get('property_uuid'), $groupBy);
     }
 
     public function getVerifiedOwners(){

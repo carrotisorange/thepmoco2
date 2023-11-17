@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Features;
 use App\Http\Controllers\Controller;
-
-use App\Models\Property;
+use Session;
+use App\Models\{Property,Bulletin};
 
 class BulletinController extends Controller
 {
@@ -26,5 +26,10 @@ class BulletinController extends Controller
         app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($featureId,$restrictionId);
 
         return view('features.bulletins.index');
+    }
+
+    public function get($status=null, $groupBy=null)
+    {
+        return Bulletin::getAll(Session::get('property_uuid'), $status, $groupBy);
     }
 }

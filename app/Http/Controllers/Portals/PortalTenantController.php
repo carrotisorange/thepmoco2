@@ -24,6 +24,8 @@ class PortalTenantController extends Controller
 
     public function show_contracts($role_id, User $user)
     {
+        Session::put('tenant_uuid', User::where('id', auth()->user()->id)->value('tenant_uuid'));
+
         $contracts = Contract::where('tenant_uuid', Session::get('tenant_uuid'))->get();
 
         return view('portals.tenants.contracts',[

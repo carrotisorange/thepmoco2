@@ -31,6 +31,11 @@ class ConcernController extends Controller
         ]);
     }
 
+    public function get($status=null, $groupBy=null)
+    {
+        return Concern::getAll(Session::get('property_uuid'), $status, $groupBy);
+    }
+
     public function destroy($unit_uuid){
 
         Concern::where('unit_uuid', $unit_uuid)->delete();

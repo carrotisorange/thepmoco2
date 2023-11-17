@@ -30,6 +30,7 @@ class BulletinCreateComponent extends Component
     }
 
     public function submitForm(){
+        
         $validatedData = $this->validate();
 
         try{
