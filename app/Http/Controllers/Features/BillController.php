@@ -45,6 +45,33 @@ class BillController extends Controller
         return Bill::getAll(Session::get('property_uuid'), $isPosted, $status, $groupBy);
     }
 
+    public function getJsonEncodedBillForDashboard($status=null){
+
+        $data = Bill::where('property_uuid', Session::get('property_uuid'))
+        ->select(DB::raw('monthname(created_at) as month_name, sum(bill) as total'))
+        ->posted()
+          ->when($status, function($query, $status){
+            $query->where('status', $status);
+        })
+        ->whereYear('created_at', Carbon::now()->year)
+        ->groupBy(DB::raw('month(created_at)'))
+        ->orderBy(DB::raw('month(created_at)'))
+        ->limit(6);
+
+        $jsonString = $data->get('month_name','total');
+
+        $newFormatData = [];
+
+        foreach ($jsonString as $dataPoint) {
+            $newFormatData[] = [
+                "x" => $dataPoint["month_name"],
+                "y" => $dataPoint["total"],
+            ];
+        }
+
+       return json_encode($newFormatData);
+    }
+
     public function getDelinquentTenants(){
         return Bill::join('tenants', 'bills.tenant_uuid', 'tenants.uuid')
         ->select(DB::raw('sum(bill) as totalBill, tenant, email'))

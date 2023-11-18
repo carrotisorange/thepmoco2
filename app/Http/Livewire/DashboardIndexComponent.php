@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Carbon\Carbon;
 use Session;
-use App\Models\{Unit,Collection,AccountPayable};
+use App\Models\{Unit,Collection, Utility};
 use DB;
 
 class DashboardIndexComponent extends Component
@@ -59,20 +59,33 @@ class DashboardIndexComponent extends Component
         $totalPostedPaidBills =app('App\Http\Controllers\Features\BillController')->get(1, 'paid')->sum('bill');
         $totalPostedUnpaidBills =app('App\Http\Controllers\Features\BillController')->get(1, 'unpaid')->sum('bill');
 
-        $incomeBarValues = Collection::select(DB::raw('monthname(collections.created_at) as collection_month_name, sum(collections.collection) as total_collection,
-        monthname(account_payables.created_at) as ap_month_name, sum(amount) as total_amount'))
-        ->leftJoin('account_payables', DB::raw('monthname(collections.created_at)'), DB::raw('monthname(account_payables.created_at)'))
-        ->where('collections.property_uuid', Session::get('property_uuid'))
-        ->groupBy('collection_month_name')
-        ->where('collections.is_posted',1)
-        ->where('account_payables.status', 'completed')
-        ->limit(5)
-        // ->whereYear('collections.created_at', Carbon::now()->year)
-        ->orderBy(DB::raw('month(collections.created_at)'));
+        $billedBillBarValues = app('App\Http\Controllers\Features\BillController')->getJsonEncodedBillForDashboard();
+        $uncollectedBillBarValues = app('App\Http\Controllers\Features\BillController')->getJsonEncodedBillForDashboard('unpaid');
+        $collectedBillBarValues = app('App\Http\Controllers\Features\BillController')->getJsonEncodedBillForDashboard('paid');
 
-        $incomeBarLabels = json_encode($incomeBarValues->pluck('ap_month_name'));
+        // $incomeBarValues = Collection::select(DB::raw('monthname(collections.created_at) as collection_month_name, sum(collections.collection) as total_collection,
+        // monthname(account_payables.created_at) as ap_month_name, sum(amount) as total_amount'))
+        // ->leftJoin('account_payables', DB::raw('monthname(collections.created_at)'), DB::raw('monthname(account_payables.created_at)'))
+        // ->where('collections.property_uuid', Session::get('property_uuid'))
+        // ->groupBy('collection_month_name')
+        // ->where('collections.is_posted',1)
+        // ->where('account_payables.status', 'completed')
+        // ->limit(5)
+        // ->whereYear('collections.created_at', Carbon::now()->year)
+        // ->orderBy(DB::raw('month(collections.created_at)'));
+
+        $incomeBarValues = Collection::select(DB::raw('monthname(created_at) as month_name, sum(collection) as total_collection'))
+        ->where('collections.property_uuid', Session::get('property_uuid'))
+        ->groupBy(DB::raw('month(created_at)'))
+        ->posted()
+        ->limit(5)
+        ->whereYear('created_at', Carbon::now()->year)
+        ->groupBy(DB::raw('month(created_at)'));
+
+        $incomeBarLabels = json_encode($incomeBarValues->pluck('month_name'));
         $collectionBarValues = json_encode($incomeBarValues->pluck('total_collection'));
-        $expenseBarValues = json_encode($incomeBarValues->pluck('total_amount'));
+        // ddd($collectionBarValues);
+        // $expenseBarValues = json_encode($incomeBarValues->pluck('total_amount'));
 
         if($totalPostedUnpaidBills > 0){
             $collectionRate = number_format(($totalPostedPaidBills/$totalPostedUnpaidBills)*100,2).'%';
@@ -91,8 +104,14 @@ class DashboardIndexComponent extends Component
 
         $delinquentTenants =app('App\Http\Controllers\Features\BillController')->getDelinquentTenants();
 
-        $totalWaterConsumption =app('App\Http\Controllers\Features\UtilityController')->get('water',1)->sum('current_consumption');
+        $totalWaterConsumption = app('App\Http\Controllers\Features\UtilityController')->get('water',1)->sum('current_consumption');
         $totalElectricConsumption =app('App\Http\Controllers\Features\UtilityController')->get('electric',1)->sum('current_consumption');
+
+
+        $utilityWaterConsumptionChartLabels = app('App\Http\Controllers\Features\UtilityController')->getJsonEncodedUtilityForDashboard('water')->pluck('month_name');
+        $utilityWaterConsumptionChartValues = app('App\Http\Controllers\Features\UtilityController')->getJsonEncodedUtilityForDashboard('water')->pluck('total_consumption');
+        $utilityElectricConsumptionChartLabels = app('App\Http\Controllers\Features\UtilityController')->getJsonEncodedUtilityForDashboard('electric')->pluck('month_name');
+        $utilityElectricConsumptionChartValues = app('App\Http\Controllers\Features\UtilityController')->getJsonEncodedUtilityForDashboard('electric')->pluck('total_consumption');
 
         $totalConcerns =app('App\Http\Controllers\Features\ConcernController')->get()->count();
         $totalClosedConcerns =app('App\Http\Controllers\Features\ConcernController')->get('closed')->count();
@@ -135,7 +154,14 @@ class DashboardIndexComponent extends Component
            'collectionRate',
            'incomeBarLabels',
            'collectionBarValues',
-           'expenseBarValues')
+        //    'expenseBarValues',
+           'billedBillBarValues',
+           'uncollectedBillBarValues',
+           'collectedBillBarValues',
+           'utilityWaterConsumptionChartLabels',
+           'utilityWaterConsumptionChartValues',
+           'utilityElectricConsumptionChartLabels',
+           'utilityElectricConsumptionChartValues')
         );
     }
 }

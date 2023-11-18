@@ -13,6 +13,19 @@
         </tr>
     </x-table-head-component>
     <x-table-body-component>
+        <tr>
+            <x-td></x-td>
+         <x-td></x-td>
+          <x-td></x-td>
+            <x-td>{{ $utilities->sum('previous_reading') }}/{{ $utilities->sum('current_reading') }}/{{ $utilities->sum('current_consumption') }}</x-td>
+          <x-td></x-td>
+           <x-td>{{ $utilities->sum('min_charge') }}</x-td>
+           <x-td>{{ $utilities->sum('total_amount_due') }}</x-td>
+           <x-td></x-td>
+           <x-td></x-td>
+        </tr>
+    </x-table-body-component>
+    <x-table-body-component>
         @foreach ($utilities as $index => $utility)
         <tr>
             <x-td>{{ $index+1 }}</x-td>

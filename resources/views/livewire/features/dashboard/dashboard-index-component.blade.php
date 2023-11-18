@@ -1246,11 +1246,7 @@
                     color: "#2D3047",
                     data: {!! $collectionBarValues !!},
                     },
-                    {
-                    name: "Expense",
-                    data: {!! $expenseBarValues !!},
-                    color: "#93B7BE",
-                    }
+
                 ],
                 chart: {
                     sparkline: {
@@ -1372,7 +1368,7 @@
                     </dl>
                     <dl class="flex items-center justify-end">
                         <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal mr-1">Total Unbilled:</dt>
-                        <dd class="text-gray-900 text-sm dark:text-white font-semibold">6</dd>
+                        <dd class="text-gray-900 text-sm dark:text-white font-semibold">NA</dd>
                     </dl>
                 </div>
 
@@ -1469,59 +1465,22 @@
                 // ApexCharts options and config
             window.addEventListener("load", function() {
                 const options = {
-                    colors: ["#1A56DB", "#b4c4ae"],
+                    // colors: ["#1A56DB", "#b4c4ae"],
                     series: [
                         {
                         name: "Billed",
                         color: "#5d5179",
-                        data: [
-                            { x: "Jan", y: 231 },
-                            { x: "Feb", y: 122 },
-                            { x: "Mar", y: 63 },
-                            { x: "Apr", y: 421 },
-                            { x: "May", y: 122 },
-                            { x: "Jun", y: 323 },
-                            { x: "Jul", y: 111 },
-                        ],
-                        },
-                        {
-                        name: "Unbilled",
-                        color: "#C6ABFD",
-                        data: [
-                            { x: "Jan", y: 100 },
-                            { x: "Feb", y: 130 },
-                            { x: "Mar", y: 80 },
-                            { x: "Apr", y: 300 },
-                            { x: "May", y: 90 },
-                            { x: "Jun", y: 222 },
-                            { x: "Jul", y: 279 },
-                        ],
-                        },
-                        {
-                        name: "Collected",
-                        color: "#AD84F3",
-                        data: [
-                            { x: "Jan", y: 200 },
-                            { x: "Feb", y: 180 },
-                            { x: "Mar", y: 50 },
-                            { x: "Apr", y: 300 },
-                            { x: "May", y: 120 },
-                            { x: "Jun", y: 70 },
-                            { x: "Jul", y: 300 },
-                        ],
+                        data:{!! $billedBillBarValues !!},
                         },
                         {
                         name: "Uncollected",
+                        color: "#AD84F3",
+                        data: {!! $uncollectedBillBarValues !!},
+                        },
+                        {
+                        name: "Collected",
                         color: "#A5A5A5",
-                        data: [
-                            { x: "Jan", y: 123 },
-                            { x: "Feb", y: 40 },
-                            { x: "Mar", y: 20 },
-                            { x: "Apr", y: 222 },
-                            { x: "May", y: 300 },
-                            { x: "Jun", y: 32 },
-                            { x: "Jul", y: 11 },
-                        ],
+                        data:{!! $collectedBillBarValues !!},
                         },
                     ],
                     chart: {
@@ -1729,7 +1688,7 @@
             window.addEventListener("load", function() {
             const getChartOptions = () => {
                 return {
-                    series: [26.8, 20.4],
+                    series: [{!! $totalPostedPaidBills !!}, {!! $totalPostedUnpaidBills !!}],
                     colors: ["#E0CA3C", "#AB4B4B"],
                     chart: {
                     height: 420,
@@ -1765,14 +1724,14 @@
                     yaxis: {
                     labels: {
                         formatter: function (value) {
-                        return value + "%"
+                        return value
                         },
                     },
                     },
                     xaxis: {
                     labels: {
                         formatter: function (value) {
-                        return value  + "%"
+                        return value
                         },
                     },
                     axisTicks: {
@@ -1942,7 +1901,7 @@
                 // set the labels option to true to show the labels on the X and Y axis
                 xaxis: {
                     show: true,
-                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                    categories: {!! $utilityWaterConsumptionChartLabels !!},
                     labels: {
                     show: true,
                     style: {
@@ -1973,7 +1932,7 @@
                 series: [
                     {
                     name: "Water Consumption",
-                    data: [150, 141, 145, 152, 135, 125],
+                    data: {!! $utilityWaterConsumptionChartValues !!},
                     color: "#1A56DB",
                     },
 
@@ -2126,7 +2085,7 @@
                 // set the labels option to true to show the labels on the X and Y axis
                 xaxis: {
                     show: true,
-                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                    categories: {!! $utilityElectricConsumptionChartLabels !!},
                     labels: {
                     show: true,
                     style: {
@@ -2157,7 +2116,7 @@
                 series: [
                     {
                     name: "Electricity Consumption",
-                    data: [150, 141, 145, 152, 135, 125],
+                    data: {!! $utilityElectricConsumptionChartValues !!},
                     color: "#ffba08",
                     },
 

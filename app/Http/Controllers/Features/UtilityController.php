@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use DB;
 use Session;
 use App\Models\{Utility,Property};
+use Carbon\Carbon;
 
 class UtilityController extends Controller
 {
@@ -33,6 +34,18 @@ class UtilityController extends Controller
     public function get($type=null, $status=null)
     {
         return Utility::getAll(Session::get('property_uuid'), $type, $status);
+    }
+
+    public function getJsonEncodedUtilityForDashboard($type){
+        return Utility::select(DB::raw('monthname(created_at) as month_name, sum(current_consumption) as
+        total_consumption'))
+        ->where('property_uuid', Session::get('property_uuid'))
+        ->groupBy(DB::raw('month(created_at)'))
+        ->where('is_posted',1)
+        ->limit(7)
+        ->where('type', $type)
+        ->whereYear('created_at', Carbon::now()->year)
+        ->groupBy(DB::raw('month(created_at)'));
     }
 
     public function destroy($unit_uuid){

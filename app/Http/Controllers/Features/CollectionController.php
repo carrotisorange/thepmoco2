@@ -42,7 +42,7 @@ class CollectionController extends Controller
     {
         return Collection::getAll(Session::get('property_uuid'), $status,$groupBy);
     }
-
+    
     public function getLatestAr()
     {
         return Property::find(Session::get('property_uuid'))->collections()->posted()->withTrashed()->max('ar_no')+1;
