@@ -15,30 +15,31 @@
             <td><b>{{ number_format($remittances->sum('net_rent'), 2) }}</b></td>
             <td><b>{{ number_format($remittances->sum('management_fee'), 2) }}</b></td>
             <td><b>{{ number_format($remittances->sum('marketing_fee'), 2) }}</b></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><b>{{ number_format($remittances->sum('bank_transfer_fee'), 2) }}</b></td>
+            <td><b>{{ number_format($remittances->sum('miscellaneous_fee'), 2) }}</b></td>
+            <td><b>{{ number_format($remittances->sum('membership_fee'), 2) }}</b></td>
+            <td><b>{{ number_format($remittances->sum('condo_dues'), 2) }}</b></td>
+            <td><b>{{ number_format($remittances->sum('parking_dues'), 2) }}</b></td>
+            <td><b>{{ number_format($remittances->sum('water'), 2) }}</b></td>
+            <td><b>{{ number_format($remittances->sum('electricity'), 2) }}</b></td>
+            <td><b>{{ number_format($remittances->sum('generator_share'), 2) }}</b></td>
+            <td><b>{{ number_format($remittances->sum('surcharges'), 2) }}</b></td>
+            <td><b>{{ number_format($remittances->sum('building_insurance'), 2) }}</b></td>
+            <td><b>{{ number_format($remittances->sum('real_property_tax'), 2) }}</b></td>
+            <td><b>{{ number_format($remittances->sum('housekeeping_fee'), 2) }}</b></td>
+            <td><b>{{ number_format($remittances->sum('laundry_fee'), 2) }}</b></td>
+            <td><b>{{ number_format($remittances->sum('complimentary'), 2) }}</b></td>
+            <td><b>{{ number_format($remittances->sum('internet'), 2) }}</b></td>
+            <td><b>{{ number_format($remittances->sum('special_assessment'), 2) }}</b></td>
+            <td><b>{{ number_format($remittances->sum('materials_recovery_facility'), 2) }}</b></td>
+            <td><b>{{ number_format($remittances->sum('recharge_of_fire_extinguisher'), 2) }}</b></td>
+            <td><b>{{ number_format($remittances->sum('environmental_fee'), 2) }}</b></td>
+            <td><b>{{ number_format($remittances->sum('bladder_tank'), 2) }}</b></td>
+            <td><b>{{ number_format($remittances->sum('cause_of_magnet'), 2) }}</b></td>
             <td><b>{{ number_format($remittances->sum('total_deductions'), 2) }}</b></td>
             <td><b>{{ number_format($remittances->sum('remittance'), 2) }}</b></td>
             <td></td>
-            <td></td>
+            {{-- <td></td> --}}
         </tr>
     </x-table-body-component>
     <x-table-head-component>

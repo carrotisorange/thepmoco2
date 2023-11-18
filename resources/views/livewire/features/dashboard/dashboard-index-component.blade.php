@@ -783,7 +783,7 @@
                                     alt="door" />
                             </div>
                             <div>
-                                <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">{{ $totalUnits->count() }}</h5>
+                                <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">{{ $totalUnits }}</h5>
                                 <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Number of Units</p>
                             </div>
                         </div>
@@ -794,21 +794,21 @@
                     <div class="grid grid-cols-3 gap-3 mb-2">
                         <dl class=" rounded-lg flex flex-col items-center justify-center h-[78px]">
                             <dt class="w-8 h-8 rounded-full bg-indigo-400 text-sm font-medium flex items-center justify-center mb-1">
-                             {{ $totalOccupiedUnits->count() }}</dt>
+                             {{ $totalOccupiedUnits }}</dt>
                             <dd class="text-sm font-medium">Occupied</dd>
                         </dl>
                         <dl class=" rounded-lg flex flex-col items-center justify-center h-[78px]">
                             <dt
                                 class="w-8 h-8 rounded-full bg-indigo-200 text-sm font-medium flex items-center justify-center mb-1">
-                              {{ $totalVacantUnits->count() }}</dt>
+                              {{ $totalVacantUnits}}</dt>
                             <dd class="text-sm font-medium">Vacant</dd>
                         </dl>
                         <dl class=" rounded-lg flex flex-col items-center justify-center h-[78px]">
                             <dt
                                 class="w-8 h-8 rounded-full bg-indigo-100 text-sm font-medium flex items-center justify-center mb-1">
-                                {{ $totalMaintenanceUnits->count() }}
+                                {{ $totalReservedUnits }}
                             </dt>
-                            <dd class="text-sm font-medium">Maintenance</dd>
+                            <dd class="text-sm font-medium">Reserved</dd>
                         </dl>
                     </div>
                 </div>
@@ -965,7 +965,7 @@
             window.addEventListener("load", function() {
                 const getChartOptions = () => {
                     return {
-                    series: [35.1, 23.5, 2.4],
+                    series: {!! $occupancyPieChartValues !!},
                     colors: ["#1C64F2", "#16BDCA", "#FDBA8C"],
                     chart: {
                         height: 320,
@@ -995,7 +995,7 @@
                                 const sum = w.globals.seriesTotals.reduce((a, b) => {
                                     return a + b
                                 }, 0)
-                                return `${sum}k`
+                                return `{!! $occupancyRate !!}`
                                 },
                             },
                             value: {
@@ -1016,7 +1016,7 @@
                         top: -2,
                         },
                     },
-                    labels: ["Occupied", "Vacant", "Reserved"],
+                    labels: {!! $occupancyPieChartLabels !!},
                     dataLabels: {
                         enabled: true,
                     },
@@ -1027,14 +1027,14 @@
                     yaxis: {
                         labels: {
                         formatter: function (value) {
-                            return value + "k"
+                            return value
                         },
                         },
                     },
                     xaxis: {
                         labels: {
                         formatter: function (value) {
-                            return value  + "k"
+                            return value
                         },
                         },
                         axisTicks: {
@@ -1244,11 +1244,11 @@
                     {
                     name: "Collection",
                     color: "#2D3047",
-                    data: ["1420", "1620", "1820", "1420", "1650", "2120"],
+                    data: {!! $collectionBarValues !!},
                     },
                     {
                     name: "Expense",
-                    data: ["788", "810", "866", "788", "1100", "1200"],
+                    data: {!! $expenseBarValues !!},
                     color: "#93B7BE",
                     }
                 ],
@@ -1302,7 +1302,7 @@
                         return "₱" + value
                     }
                     },
-                    categories: ["Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                    categories: {!! $incomeBarLabels !!},
                     axisTicks: {
                     show: false,
                     },
@@ -1355,11 +1355,7 @@
                         </div>
                         <div>
                             <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">
-                                @if($totalPostedUnpaidBills>0)
-                                    {{ number_format(($totalPostedPaidBills/$totalPostedUnpaidBills)*100,2) }}%
-                                @else
-                                    NA
-                                @endif
+                                {{ $collectionRate }}
                             </h5>
                             <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Collection Rate</p>
                         </div>
@@ -1733,8 +1729,8 @@
             window.addEventListener("load", function() {
             const getChartOptions = () => {
                 return {
-                    series: [52.8, 26.8, 20.4],
-                    colors: ["#93B7BE", "#E0CA3C", "#AB4B4B"],
+                    series: [26.8, 20.4],
+                    colors: ["#E0CA3C", "#AB4B4B"],
                     chart: {
                     height: 420,
                     width: "100%",
@@ -1755,7 +1751,7 @@
                         }
                     },
                     },
-                    labels: ["All Bills", "Paid", "Unpaid"],
+                    labels: ["Paid", "Unpaid"],
                     dataLabels: {
                     enabled: true,
                     style: {

@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Carbon\Carbon;
 use Session;
-use App\Models\{Unit,Booking};
+use App\Models\{Unit,Collection,AccountPayable};
 use DB;
 
 class DashboardIndexComponent extends Component
@@ -20,10 +20,10 @@ class DashboardIndexComponent extends Component
         $totalTenants = app('App\Http\Controllers\Features\TenantController')->get()->count();
         $totalVerifiedTenants = app('App\Http\Controllers\Features\TenantController')->getVerifiedTenants()->whereNotNull('email_verified_at')->count();
 
-        $totalUnits = app('App\Http\Controllers\Features\UnitController')->get();
-        $totalOccupiedUnits = app('App\Http\Controllers\Features\UnitController')->get(2);
-        $totalVacantUnits = app('App\Http\Controllers\Features\UnitController')->get(1);
-        $totalMaintenanceUnits = app('App\Http\Controllers\Features\UnitController')->get(5);
+        $totalUnits = app('App\Http\Controllers\Features\UnitController')->get()->count();
+        $totalOccupiedUnits = app('App\Http\Controllers\Features\UnitController')->get(2)->count();
+        $totalVacantUnits = app('App\Http\Controllers\Features\UnitController')->get(1)->count();
+        $totalReservedUnits = app('App\Http\Controllers\Features\UnitController')->get(4)->count();
 
         $totalOwners = app('App\Http\Controllers\Features\OwnerController')->get()->count();
         $totalVerifiedOwners = app('App\Http\Controllers\Features\OwnerController')->getVerifiedOwners()->whereNotNull('email_verified_at')->count();
@@ -32,22 +32,22 @@ class DashboardIndexComponent extends Component
         $totalActivePersonnels =app('App\Http\Controllers\Features\PersonnelController')->get(1)->count();
         $totalVerifiedPersonnels =app('App\Http\Controllers\Features\PersonnelController')->get()->count();
 
-        $occupancyRateLabels = Unit::where('property_uuid', Session::get('property_uuid'))
-        ->join('statuses', 'units.status_id', 'statuses.id')
-        ->groupBy('status_id')
-        ->orderBy('status')
-        ->pluck('status');
-
-        $occupancyRateLabels = join('", "', $occupancyRateLabels->toArray());
-
-        $occupancyRateValues = Unit::where('property_uuid', Session::get('property_uuid'))
-        ->select(DB::raw('count(*) as unit_count', 'status'))
+        $occupancyPieChartValues = Unit::where('property_uuid', Session::get('property_uuid'))
+        ->select(DB::raw('count(*) as unit_count, status'))
         ->join('statuses', 'units.status_id', 'statuses.id')
         ->groupBy('units.status_id')
         ->orderBy('status')
-        ->pluck('unit_count');
+        ->limit(3);
 
-        $occupancyRateValues = join('", "', $occupancyRateValues->toArray());
+        $occupancyPieChartLabels = json_encode($occupancyPieChartValues->pluck('status'));
+        $occupancyPieChartValues = json_encode($occupancyPieChartValues->pluck('unit_count'));
+
+        if($totalUnits > 0){
+             $occupancyRate = number_format(($totalOccupiedUnits/$totalUnits)*100,2).'%';
+        }else{
+             $occupancyRate = 100;
+        }
+
         $totalGuests = app('App\Http\Controllers\Features\GuestController')->get();
         $averageNumberOfDaysGuestsStayed = app('App\Http\Controllers\Features\GuestController')->averageNumberOfDaysGuestsStayed();
 
@@ -59,11 +59,41 @@ class DashboardIndexComponent extends Component
         $totalPostedPaidBills =app('App\Http\Controllers\Features\BillController')->get(1, 'paid')->sum('bill');
         $totalPostedUnpaidBills =app('App\Http\Controllers\Features\BillController')->get(1, 'unpaid')->sum('bill');
 
+        $incomeBarValues = Collection::select(DB::raw('monthname(collections.created_at) as collection_month_name, sum(collections.collection) as total_collection,
+        monthname(account_payables.created_at) as ap_month_name, sum(amount) as total_amount'))
+        ->leftJoin('account_payables', DB::raw('monthname(collections.created_at)'), DB::raw('monthname(account_payables.created_at)'))
+        ->where('collections.property_uuid', Session::get('property_uuid'))
+        ->groupBy('collection_month_name')
+        ->where('collections.is_posted',1)
+        ->where('account_payables.status', 'completed')
+        ->limit(5)
+        // ->whereYear('collections.created_at', Carbon::now()->year)
+        ->orderBy(DB::raw('month(collections.created_at)'));
+
+        $incomeBarLabels = json_encode($incomeBarValues->pluck('ap_month_name'));
+        $collectionBarValues = json_encode($incomeBarValues->pluck('total_collection'));
+        $expenseBarValues = json_encode($incomeBarValues->pluck('total_amount'));
+
+        if($totalPostedUnpaidBills > 0){
+            $collectionRate = number_format(($totalPostedPaidBills/$totalPostedUnpaidBills)*100,2).'%';
+        }else{
+            $collectionRate = "NA";
+        }
+
+        $billPieChartValues = Unit::where('property_uuid', Session::get('property_uuid'))
+        ->select(DB::raw('count(*) as unit_count', 'status'))
+        ->join('statuses', 'units.status_id', 'statuses.id')
+        ->groupBy('units.status_id')
+        ->orderBy('status')
+        ->limit(3)
+        ->pluck('unit_count');
+
+
         $delinquentTenants =app('App\Http\Controllers\Features\BillController')->getDelinquentTenants();
 
         $totalWaterConsumption =app('App\Http\Controllers\Features\UtilityController')->get('water',1)->sum('current_consumption');
         $totalElectricConsumption =app('App\Http\Controllers\Features\UtilityController')->get('electric',1)->sum('current_consumption');
-        
+
         $totalConcerns =app('App\Http\Controllers\Features\ConcernController')->get()->count();
         $totalClosedConcerns =app('App\Http\Controllers\Features\ConcernController')->get('closed')->count();
         $totalActiveConcerns =app('App\Http\Controllers\Features\ConcernController')->get('active')->count();
@@ -78,15 +108,15 @@ class DashboardIndexComponent extends Component
            'totalUnits',
            'totalOccupiedUnits',
            'totalVacantUnits',
-           'totalMaintenanceUnits',
+           'totalReservedUnits',
            'totalOwners' ,
            'totalVerifiedOwners',
            'totalPersonnels',
            'totalActivePersonnels',
            'totalVerifiedPersonnels',
            'totalBuildings' ,
-           'occupancyRateLabels',
-           'occupancyRateValues' ,
+           'occupancyPieChartLabels',
+           'occupancyPieChartValues' ,
            'totalGuests' ,
            'averageNumberOfDaysGuestsStayed',
            'totalPostedCollections' ,
@@ -100,7 +130,12 @@ class DashboardIndexComponent extends Component
            'totalConcerns',
            'totalClosedConcerns',
            'totalActiveConcerns',
-           'totalApprovedBulletins')
+           'totalApprovedBulletins',
+           'occupancyRate',
+           'collectionRate',
+           'incomeBarLabels',
+           'collectionBarValues',
+           'expenseBarValues')
         );
     }
 }
