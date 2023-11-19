@@ -111,17 +111,17 @@
                                         </div>
 
                                         <ul class="divide-y divide-gray-200 dark:divide-gray-700 shadow p-3">
-                                           @foreach ($expiringContracts->take(5) as $expiringContract)
+                                            @foreach ($expiringContracts->take(5) as $item)
                                             <li class="pb-3 sm:pb-4">
                                                 <div class="flex items-center space-x-4">
 
                                                     <div class="flex-1 min-w-0">
                                                         <p
                                                             class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                            {{ $expiringContract->tenant->tenant }}
+                                                            {{ $item->tenant->tenant }}
                                                         </p>
                                                         <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                                            {{ Carbon\Carbon::parse($expiringContract->end)->format('M d, Y') }}
+                                                            {{ Carbon\Carbon::parse($item->end)->format('M d, Y') }}
                                                         </p>
                                                     </div>
                                                     <div
@@ -136,7 +136,8 @@
                                         </ul>
                                         <div class="flex justify-end items-center pt-5">
                                             <!-- Button -->
-                                            <button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/contract'"
+                                            <button
+                                                onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/contract'"
                                                 class="p-2 text-sm font-medium text-gray-500 border hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
                                                 type="button">
                                                 See all Contracts
@@ -150,28 +151,30 @@
                                             <h1 class="py-1 font-light text-sm">Total Pending Payments:</h1>
                                             <span
                                                 class="bg-red-100 text-red-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-red-900 dark:text-red-300">
-                                                {{ $paymentRequests->count() }}
+                                                {{ $pendingPaymentRequests->count() }}
 
                                             </span>
                                         </div>
 
                                         <ul class="divide-y divide-gray-200 dark:divide-gray-700 shadow p-3">
-                                            @foreach($paymentRequests->take(5) as $paymentRequest)
+                                            @foreach($pendingPaymentRequests->take(5) as $item)
                                             <li class="pb-3 sm:pb-4">
                                                 <div class="flex items-center space-x-4">
 
                                                     <div class="flex-1 min-w-0">
                                                         <p
                                                             class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                            {{$paymentRequest->tenant}}
+                                                            {{$item->tenant}}
                                                         </p>
                                                         <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                                            {{ number_format($paymentRequest->amount, 2) }}
+                                                            {{ number_format($item->amount, 2) }}
                                                         </p>
                                                     </div>
                                                     <div
                                                         class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                        <a href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $paymentRequest->tenant_uuid }}/payment_requests/{{ $paymentRequest->id }}"><img width="26" height="26"
+                                                        <a
+                                                            href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $item->tenant_uuid }}/payment_requests/{{ $item->id }}"><img
+                                                                width="26" height="26"
                                                                 src="https://img.icons8.com/metro/26/EBEBEB/forward.png"
                                                                 alt="forward" /></a>
                                                     </div>
@@ -181,7 +184,8 @@
                                         </ul>
                                         <div class="flex justify-end items-center pt-5">
                                             <!-- Button -->
-                                            <button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/pending'"
+                                            <button
+                                                onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/pending'"
                                                 class="p-2 text-sm font-medium text-gray-500 border hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
                                                 type="button">
                                                 See all Payment Requests
@@ -202,29 +206,35 @@
 
                                         <ul class="divide-y divide-gray-200 dark:divide-gray-700 shadow p-3">
                                             <!-- limit list to 5 -->
-                                           @foreach ($pendingMoveoutContracts->take(5) as $pendingMoveoutContract)
+                                            @foreach ($pendingMoveoutContracts->take(5) as $item)
                                             <li class="pb-3 sm:pb-4">
                                                 <div class="flex items-center space-x-4">
 
                                                     <div class="flex-1 min-w-0">
-                                                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                            {{$pendingMoveoutContract->tenant->tenant}}
+                                                        <p
+                                                            class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                                            {{$item->tenant->tenant}}
                                                         </p>
                                                         <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                                           {{Carbon\Carbon::parse($pendingMoveoutContract->end)->format('M d, Y')}}
+                                                            {{Carbon\Carbon::parse($item->end)->format('M d, Y')}}
                                                         </p>
                                                     </div>
-                                                    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                        <a href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $pendingMoveoutContract->tenant_uuid }}/contract/{{ $pendingMoveoutContract->uuid }}/moveout/step-1"><img width="26" height="26" src="https://img.icons8.com/metro/26/EBEBEB/forward.png"
+                                                    <div
+                                                        class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                                        <a
+                                                            href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $item->tenant_uuid }}/contract/{{ $item->uuid }}/moveout/step-1"><img
+                                                                width="26" height="26"
+                                                                src="https://img.icons8.com/metro/26/EBEBEB/forward.png"
                                                                 alt="forward" /></a>
                                                     </div>
                                                 </div>
                                             </li>
-                                           @endforeach
+                                            @endforeach
                                         </ul>
                                         <div class="flex justify-end items-center pt-5">
                                             <!-- Button -->
-                                            <button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/contract'"
+                                            <button
+                                                onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/contract'"
                                                 class="p-2 text-sm font-medium text-gray-500 border hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
                                                 type="button">
                                                 See all Moveout Requests
@@ -245,23 +255,28 @@
                                         <ul class="divide-y divide-gray-200 dark:divide-gray-700 shadow p-3">
                                             <!-- limit list to 5 -->
                                             @foreach ($pendingConcerns->take(5) as $totalPendingConcern)
-                                              <li class="pb-3 sm:pb-4">
+                                            <li class="pb-3 sm:pb-4">
                                                 <div class="flex items-center space-x-4">
 
                                                     <div class="flex-1 min-w-0">
-                                                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                                        <p
+                                                            class="text-sm font-medium text-gray-900 truncate dark:text-white">
                                                             @if($totalPendingConcern->tenant_uuid)
-                                                           {{$totalPendingConcern->tenant->tenant}}
-                                                           @else
-                                                           NA
-                                                           @endif
+                                                            {{$totalPendingConcern->tenant->tenant}}
+                                                            @else
+                                                            NA
+                                                            @endif
                                                         </p>
                                                         <p class="text-sm text-gray-500 truncate dark:text-gray-400">
                                                             {{ $totalPendingConcern->status }}
                                                         </p>
                                                     </div>
-                                                    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                        <a href="/property/{{ Session::get('property_uuid') }}/concern/{{ $totalPendingConcern->id }}/edit"><img width="26" height="26" src="https://img.icons8.com/metro/26/EBEBEB/forward.png"
+                                                    <div
+                                                        class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                                        <a
+                                                            href="/property/{{ Session::get('property_uuid') }}/concern/{{ $totalPendingConcern->id }}/edit"><img
+                                                                width="26" height="26"
+                                                                src="https://img.icons8.com/metro/26/EBEBEB/forward.png"
                                                                 alt="forward" /></a>
                                                     </div>
                                                 </div>
@@ -270,7 +285,8 @@
                                         </ul>
                                         <div class="flex justify-end items-center pt-5">
                                             <!-- Button -->
-                                            <button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/concern'"
+                                            <button
+                                                onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/concern'"
                                                 class="p-2 text-sm font-medium text-gray-500 border hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
                                                 type="button">
                                                 See all Concerns
@@ -329,7 +345,8 @@
                             alt="building" />
                     </div>
                     <div>
-                        <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">{{ $totalBuildings }}</h5>
+                        <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">{{ $allBuildings->count()
+                            }}</h5>
                         <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Number of Buildings</p>
                     </div>
                 </div>
@@ -344,19 +361,19 @@
                 <dl class=" rounded-lg flex flex-col items-center justify-center h-[78px]">
                     <dt
                         class="w-8 h-8 rounded-full bg-purple-400 text-sm font-medium flex items-center justify-center mb-1">
-                        {{ $totalPersonnels }}</dt>
+                        {{ $allPersonnels->count() }}</dt>
                     <dd class="text-sm font-medium">Personnels</dd>
                 </dl>
                 <dl class=" rounded-lg flex flex-col items-center justify-center h-[78px]">
                     <dt
                         class="w-8 h-8 rounded-full bg-purple-100 text-sm font-medium flex items-center justify-center mb-1">
-                        {{ $totalActivePersonnels }}</dt>
+                        {{ $activePersonnels->count() }}</dt>
                     <dd class="text-sm font-medium">Current</dd>
                 </dl>
                 <dl class=" rounded-lg flex flex-col items-center justify-center h-[78px]">
                     <dt
                         class="w-8 h-8 rounded-full bg-purple-200 text-sm font-medium flex items-center justify-center mb-1">
-                        {{ $totalVerifiedPersonnels }}</dt>
+                        {{ $verifiedPersonnels->count() }}</dt>
                     <dd class="text-sm font-medium ">Verified</dd>
                 </dl>
             </div>
@@ -378,7 +395,8 @@
                                     alt="paper" />
                             </div>
                             <div>
-                                <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">{{ $totalContracts }}</h5>
+                                <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">{{
+                                    $allContracts->count() }}</h5>
                                 <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Number of Contracts</p>
                             </div>
                         </div>
@@ -388,14 +406,16 @@
                     </div>
                     <div class="grid grid-cols-2 gap-3 mb-2">
                         <dl class=" rounded-lg flex flex-col items-center justify-center h-[78px]">
-                            <dt class="w-8 h-8 rounded-full bg-green-400 text-sm font-medium flex items-center justify-center mb-1">
-                                {{ $totalActiveGroupByTenantContracts }}
+                            <dt
+                                class="w-8 h-8 rounded-full bg-green-400 text-sm font-medium flex items-center justify-center mb-1">
+                                {{ $activeContracts->count() }}
                             </dt>
                             <dd class="text-sm font-medium">Current Tenants</dd>
                         </dl>
                         <dl class=" rounded-lg flex flex-col items-center justify-center h-[78px]">
-                            <dt class="w-8 h-8 rounded-full bg-green-100 text-sm font-medium flex items-center justify-center mb-1">
-                               {{ $totalContracts-$totalActiveGroupByTenantContracts }}
+                            <dt
+                                class="w-8 h-8 rounded-full bg-green-100 text-sm font-medium flex items-center justify-center mb-1">
+                                {{ $allContracts->count()-$activeContracts->count() }}
                             </dt>
                             <dd class="text-sm font-medium">Past Tenants</dd>
                         </dl>
@@ -417,7 +437,8 @@
                                     alt="name" />
                             </div>
                             <div>
-                                <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">{{ $totalTenants }}</h5>
+                                <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">{{
+                                    $allTenants->count() }}</h5>
                                 <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Number of Tenants</p>
                             </div>
 
@@ -439,13 +460,13 @@
                         <dl class=" rounded-lg flex flex-col items-center justify-center h-[78px]">
                             <dt
                                 class="w-8 h-8 rounded-full bg-yellow-400 text-sm font-medium flex items-center justify-center mb-1">
-                                {{ $totalVerifiedTenants }}</dt>
+                                {{ $allVerifiedTenants->count() }}</dt>
                             <dd class="text-sm font-medium">Verified</dd>
                         </dl>
                         <dl class=" rounded-lg flex flex-col items-center justify-center h-[78px]">
                             <dt
                                 class="w-8 h-8 rounded-full bg-yellow-100 text-sm font-medium flex items-center justify-center mb-1">
-                               {{ $totalTenants-$totalVerifiedTenants }}</dt>
+                                {{ $allTenants->count()-$allVerifiedTenants->count() }}</dt>
                             <dd class="text-sm font-medium">Unverified</dd>
                         </dl>
                     </div>
@@ -465,7 +486,8 @@
                                     alt="door" />
                             </div>
                             <div>
-                                <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">{{ $totalUnits }}</h5>
+                                <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">{{
+                                    $allUnits->count() }}</h5>
                                 <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Number of Units</p>
                             </div>
                         </div>
@@ -475,20 +497,21 @@
                     </div>
                     <div class="grid grid-cols-3 gap-3 mb-2">
                         <dl class=" rounded-lg flex flex-col items-center justify-center h-[78px]">
-                            <dt class="w-8 h-8 rounded-full bg-indigo-400 text-sm font-medium flex items-center justify-center mb-1">
-                             {{ $totalOccupiedUnits }}</dt>
+                            <dt
+                                class="w-8 h-8 rounded-full bg-indigo-400 text-sm font-medium flex items-center justify-center mb-1">
+                                {{ $occupiedUnits->count() }}</dt>
                             <dd class="text-sm font-medium">Occupied</dd>
                         </dl>
                         <dl class=" rounded-lg flex flex-col items-center justify-center h-[78px]">
                             <dt
                                 class="w-8 h-8 rounded-full bg-indigo-200 text-sm font-medium flex items-center justify-center mb-1">
-                              {{ $totalVacantUnits}}</dt>
+                                {{ $vacantUnits->count()}}</dt>
                             <dd class="text-sm font-medium">Vacant</dd>
                         </dl>
                         <dl class=" rounded-lg flex flex-col items-center justify-center h-[78px]">
                             <dt
                                 class="w-8 h-8 rounded-full bg-indigo-100 text-sm font-medium flex items-center justify-center mb-1">
-                                {{ $totalReservedUnits }}
+                                {{ $reservedUnits->count() }}
                             </dt>
                             <dd class="text-sm font-medium">Reserved</dd>
                         </dl>
@@ -509,7 +532,8 @@
                                     alt="caretaker" />
                             </div>
                             <div>
-                                <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">{{ $totalOwners }}</h5>
+                                <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">{{
+                                    $allOwners->count() }}</h5>
                                 <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Number of Owners</p>
                             </div>
                             <div>
@@ -530,13 +554,13 @@
                         <dl class=" rounded-lg flex flex-col items-center justify-center h-[78px]">
                             <dt
                                 class="w-8 h-8 rounded-full bg-gray-300 text-sm font-medium flex items-center justify-center mb-1">
-                               {{ $totalVerifiedOwners }} </dt>
+                                {{ $allVerifiedOwners->count() }} </dt>
                             <dd class="text-sm font-medium">Verified</dd>
                         </dl>
                         <dl class=" rounded-lg flex flex-col items-center justify-center h-[78px]">
                             <dt
                                 class="w-8 h-8 rounded-full bg-gray-100 text-sm font-medium flex items-center justify-center mb-1">
-                             {{ $totalOwners-$totalVerifiedOwners }}</dt>
+                                {{ $allOwners->count()-$allVerifiedOwners->count() }}</dt>
                             <dd class="text-sm font-medium">Unverified</dd>
                         </dl>
                     </div>
@@ -774,35 +798,36 @@
         <div class="col-span-4 lg:col-span-2 p-4">
             <div class="flex justify-between">
                 <h1 class="py-3 font-bold text-xl">Total Guests Welcomed</h1>
-                <p class="p-3 text-xl font-semibold">{{ $totalGuests->count() }}</p>
+                <p class="p-3 text-xl font-semibold">{{ $allGuests->count() }}</p>
             </div>
             <div class="flex justify-between py-2">
                 <h1 class="py-1 font-light text-sm">Average Number of Days Stayed:</h1>
                 <span
                     class="bg-green-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-green-900 dark:text-green-300">
 
-                   {{number_format($averageNumberOfDaysGuestsStayed, 2)}} day/s
+                    {{number_format($averageNumberOfDaysGuestsStayed, 2)}} day/s
                 </span>
             </div>
             <ul class="divide-y divide-gray-200 dark:divide-gray-700 shadow p-3">
-                @foreach ($totalGuests->take(5) as $guest)
-                    <li class="pb-3 sm:pb-4">
-                        <div class="flex items-center space-x-4">
+                @foreach ($allGuests->take(5) as $item)
+                <li class="pb-3 sm:pb-4">
+                    <div class="flex items-center space-x-4">
 
-                            <div class="flex-1 min-w-0">
-                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                    {{ $guest->guest }}
-                                </p>
-                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                    {{ $guest->email }}
-                                </p>
-                            </div>
-                            <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                <a href="/property/{{ Session::get('property_uuid') }}/guest/{{ $guest->uuid }}"><img width="26" height="26" src="https://img.icons8.com/metro/26/EBEBEB/forward.png"
-                                        alt="forward" /></a>
-                            </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                {{ $item->guest }}
+                            </p>
+                            <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                {{ $item->email }}
+                            </p>
                         </div>
-                    </li>
+                        <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                            <a href="/property/{{ Session::get('property_uuid') }}/guest/{{ $item->uuid }}"><img
+                                    width="26" height="26" src="https://img.icons8.com/metro/26/EBEBEB/forward.png"
+                                    alt="forward" /></a>
+                        </div>
+                    </div>
+                </li>
                 @endforeach
             </ul>
             <div class="flex justify-end items-center pt-5">
@@ -825,18 +850,21 @@
                 <div class="flex justify-between border-gray-200 border-b dark:border-gray-700 pb-3">
                     <dl>
                         <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Income</dt>
-                        <dd class="leading-none text-3xl font-bold text-gray-900 dark:text-white">₱{{ number_format($totalPostedCollections-$totalCompletedRFPs,2) }}</dd>
+                        <dd class="leading-none text-3xl font-bold text-gray-900 dark:text-white">₱{{
+                            number_format($postedCollections-$completedRFPs,2) }}</dd>
                     </dl>
                 </div>
 
                 <div class="grid grid-cols-2 py-3">
                     <dl>
                         <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Collection</dt>
-                        <dd class="leading-none text-xl font-bold text-green-500 dark:text-green-400">₱{{ number_format($totalPostedCollections,2) }}</dd>
+                        <dd class="leading-none text-xl font-bold text-green-500 dark:text-green-400">₱{{
+                            number_format($postedCollections,2) }}</dd>
                     </dl>
                     <dl>
                         <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Expense</dt>
-                        <dd class="leading-none text-xl font-bold text-red-600 dark:text-red-500">₱{{ number_format($totalCompletedRFPs,2) }}</dd>
+                        <dd class="leading-none text-xl font-bold text-red-600 dark:text-red-500">₱{{
+                            number_format($completedRFPs,2) }}</dd>
                     </dl>
                 </div>
 
@@ -1046,7 +1074,8 @@
                 <div class="grid grid-cols-2">
                     <dl class="flex items-center">
                         <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal mr-1">Total Billed:</dt>
-                        <dd class="text-gray-900 text-sm dark:text-white font-semibold">{{ number_format($totalPostedBills,2) }}</dd>
+                        <dd class="text-gray-900 text-sm dark:text-white font-semibold">{{
+                            number_format($postedBills,2) }}</dd>
                     </dl>
                     <dl class="flex items-center justify-end">
                         <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal mr-1">Total Unbilled:</dt>
@@ -1057,11 +1086,13 @@
                 <div class="grid grid-cols-2">
                     <dl class="flex items-center">
                         <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal mr-1">Total Collected:</dt>
-                        <dd class="text-gray-900 text-sm dark:text-white font-semibold">{{ number_format($totalPostedCollections,2) }}</dd>
+                        <dd class="text-gray-900 text-sm dark:text-white font-semibold">{{
+                            number_format($postedCollections,2) }}</dd>
                     </dl>
                     <dl class="flex items-center justify-end">
                         <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal mr-1">Total Uncollected:</dt>
-                        <dd class="text-gray-900 text-sm dark:text-white font-semibold">{{ number_format($totalPostedUnpaidBills, 2) }}</dd>
+                        <dd class="text-gray-900 text-sm dark:text-white font-semibold">{{
+                            number_format($postedUnpaidBills, 2) }}</dd>
                     </dl>
                 </div>
 
@@ -1370,7 +1401,7 @@
             window.addEventListener("load", function() {
             const getChartOptions = () => {
                 return {
-                    series: [{!! $totalPostedPaidBills !!}, {!! $totalPostedUnpaidBills !!}],
+                    series: [{!! $postedPaidBills !!}, {!! $postedUnpaidBills !!}],
                     colors: ["#E0CA3C", "#AB4B4B"],
                     chart: {
                     height: 420,
@@ -1447,20 +1478,20 @@
                 </span>
             </div>
             <ul class="divide-y divide-gray-200 dark:divide-gray-700 shadow p-3">
-                @foreach ($delinquentTenants->take(5) as $delinquent)
+                @foreach ($delinquentTenants->take(5) as $item)
                 <li class="pb-3 sm:pb-4">
                     <div class="flex items-center space-x-4">
 
                         <div class="flex-1 min-w-0">
                             <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                               {{$delinquent->tenant}}
+                                {{$item->tenant}}
                             </p>
                             <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                               {{$delinquent->email}}
+                                {{$item->email}}
                             </p>
                         </div>
                         <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                            {{number_format($delinquent->totalBill,2)}}
+                            {{number_format($item->totalBill,2)}}
                         </div>
                     </div>
                 </li>
@@ -1493,7 +1524,8 @@
             <div class="w-full bg-white rounded-lg shadow dark:bg-gray-800">
                 <div class="flex justify-between p-4 md:p-6 pb-0 md:pb-0">
                     <div>
-                        <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">{{ $totalElectricConsumption }}</h5>
+                        <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">{{
+                            $electricConsumption }}</h5>
                         <p class="text-base font-normal text-gray-500 dark:text-gray-400">Total Electric Consumption</p>
                     </div>
 
@@ -1678,7 +1710,8 @@
             <div class="w-full bg-white rounded-lg shadow dark:bg-gray-800">
                 <div class="flex justify-between p-4 md:p-6 pb-0 md:pb-0">
                     <div>
-                        <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">{{ $totalWaterConsumption }}</h5>
+                        <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">{{
+                            $waterConsumption }}</h5>
                         <p class="text-base font-normal text-gray-500 dark:text-gray-400">Total Water Consumption</p>
                     </div>
                 </div>
@@ -1868,20 +1901,23 @@
                 <div class="flex justify-between pb-4 mb-4 border-b border-gray-200 dark:border-gray-700">
                     <div class="flex items-center">
                         <div>
-                            <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">{{ $totalActiveConcerns }}</h5>
+                            <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">{{
+                                $activeConcerns->count() }}</h5>
                             <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Active Concerns</p>
                         </div>
 
                     </div>
                     <div>
 
-                        <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">{{ $totalClosedConcerns }}</h5>
-                        <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Concerns Resolved</p>
+                        <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">{{
+                            $closedConcerns->count() }}</h5>
+                        <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Resolved Concerns</p>
 
                     </div>
                     <div>
 
-                        <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">{{ $totalConcerns }}</h5>
+                        <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">{{ $allConcerns->count()
+                            }}</h5>
                         <p class="text-sm font-normal text-gray-500 dark:text-gray-400">All time Concerns</p>
 
                     </div>
@@ -1890,12 +1926,13 @@
                 <div class="grid grid-cols-2">
                     <dl class="flex items-center">
                         <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal mr-1">Resolved Concerns:</dt>
-                        <dd class="text-gray-900 text-sm dark:text-white font-semibold">{{ $totalClosedConcerns }}</dd>
+                        <dd class="text-gray-900 text-sm dark:text-white font-semibold">{{ $closedConcerns->count() }}</dd>
                     </dl>
                     <dl class="flex items-center justify-end">
                         <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal mr-1">Average days to be
                             resolved:</dt>
-                        <dd class="text-gray-900 text-sm dark:text-white font-semibold">{{ $averageNumberOfDaysForConcernsToBeResolved }}</dd>
+                        <dd class="text-gray-900 text-sm dark:text-white font-semibold">{{
+                            number_format($averageNumberOfDaysForConcernsToBeResolved,1) }} day/s</dd>
                     </dl>
                 </div>
 
@@ -2110,7 +2147,8 @@
                             </svg>
                         </div>
                         <div>
-                            <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">{{ $totalApprovedBulletins }}</h5>
+                            <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">{{
+                                $approvedBulletins->count() }}</h5>
                             <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Number of Memos</p>
                         </div>
                     </div>

@@ -11,11 +11,11 @@ class Wallet extends Model
     
     public function tenant()
     {
-        return $this->belongsTo(Tenant::class, 'tenant_uuid');
+        return $this->belongsTo(Tenant::class, 'tenant_uuid')->withDefault();
     }
 
     public function contract()
     {
-        return $this->belongsTo(Contract::class, 'contract_uuid');
+        return $this->belongsTo(Contract::class, 'contract_uuid')->withDefault();
     }
 }

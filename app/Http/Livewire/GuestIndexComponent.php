@@ -21,16 +21,18 @@ class GuestIndexComponent extends Component
 
     public function render()
     {
-        $propertyBookingsCount = Property::find(Session::get('property_uuid'))->bookings->count();
-
-        return view('livewire.features.guest.guest-index-component', [
-        'bookings' => Booking::where('property_uuid', Session::get('property_uuid'))
+        $bookings = Booking::where('property_uuid', Session::get('property_uuid'))
         ->where('uuid','like', '%'.$this->uuid.'%')
-         ->when($this->status, function($query){
-         $query->where('status',$this->status);
-         })
-        ->get(),
-        'propertyBookingsCount' => $propertyBookingsCount
-    ]);
+        ->when($this->status, function($query){
+            $query->where('status',$this->status);
+        })
+        ->get();
+
+        $propertyBookingsCount = app('App\Http\Controllers\Features\GuestController')->get()->count();
+
+        return view('livewire.features.guest.guest-index-component', compact (
+            'bookings',
+            'propertyBookingsCount' 
+        ));
     }
 }

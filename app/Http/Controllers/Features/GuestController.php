@@ -43,7 +43,7 @@ class GuestController extends Controller
         return Guest::getAll(Session::get('property_uuid'), $status, $groupBy);
       }
 
-      public function averageNumberOfDaysGuestsStayed(){
+      public function getAverageNumberOfDaysGuestsStayed(){
         return Booking::where('property_uuid', Session::get('property_uuid'))
         ->select(DB::raw('avg(DATEDIFF(moveout_at,movein_at)) as average_days_stayed, count(*) as guest_count'))
         ->where('property_uuid', Session::get('property_uuid'))

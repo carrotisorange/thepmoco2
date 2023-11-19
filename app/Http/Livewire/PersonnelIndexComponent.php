@@ -13,7 +13,6 @@ class PersonnelIndexComponent extends Component
     use WithPagination;
 
     public $search;
-    public $status;
 
    public function submitForm(){
       return redirect('/property/'.Session::get('property_uuid').'/user/'.Str::random(8).'/create');
@@ -28,14 +27,11 @@ class PersonnelIndexComponent extends Component
 
     $propertyPersonnelsCount = UserProperty::where('property_uuid', Session::get('property_uuid'))->where('role_id','!=', 5)->count();
 
-    $stepper = Type::where('id', Session::get('property_type_id'))->pluck('stepper')->first();
-
-    $steps = explode(",", $stepper);
+    $steps = app('App\Http\Controllers\Utilities\TypeController')->getSteppers();
 
      return view('livewire.features.personnel.personnel-index-component', [
         'personnels' => $personnels,
         'propertyPersonnelsCount' => $propertyPersonnelsCount,
-        'statuses' => app('App\Http\Controllers\Utilities\UserPropertyController')->get_user_statuses(Session::get('property_uuid')),
         'steps' => $steps
       ]);
    }

@@ -48,7 +48,7 @@
                         <x-form-select name="building_id" id="building_id" wire:model="building_id">
                             <option value="">Filter building</option>
                             @foreach ($buildings as $item)
-                            <option value="{{ $item->building_id }}">{{ $item->building }}</option>
+                            <option value="{{ $item->building_id }}">{{ $item->building->building}}</option>
                             @endforeach
                         </x-form-select>
                     </div>
@@ -56,7 +56,7 @@
                         <x-form-select name="category_id" id="category_id" wire:model="category_id">
                             <option value="">Filter category</option>
                             @foreach ($categories as $item)
-                            <option value="{{ $item->id }}">{{ $item->category }}</option>
+                            <option value="{{ $item->category_id }}">{{ $item->category->category }}</option>
                             @endforeach
                         </x-form-select>
                     </div>
@@ -64,7 +64,7 @@
                         <x-form-select name="status_id" id="status_id" wire:model="status_id"> \
                             <option value="">Filter status</option>
                             @foreach ($statuses as $item)
-                            <option value="{{ $item->status_id }}">{{ $item->status }}</option>
+                            <option value="{{ $item->status_id }}">{{ $item->status->status }}</option>
                             @endforeach
                         </x-form-select>
                     </div>
@@ -85,20 +85,9 @@
                             <option value="desc">descending</option>
                         </x-form-select>
                     </div>
-                    {{-- <div class="sm:col-span-1">
-                        <x-form-select name="limitDisplayTo" id="small" wire:model="limitDisplayTo">
-                            <option value="" selected>Limit display to</option>
-                            @for ($i = 1; $i <= $totalUnitsCount; $i++) @if($i%10==0 || $i==$totalUnitsCount) <option
-                                value="{{ $i }}">{{ $i }} </option>
-                                @endif
-                                @endfor
-                        </x-form-select>
-                    </div> --}}
+                 
                 </div>
-                {{-- <div class="mt-5">
-                    {{ $units->links() }}
-                </div> --}}
-
+              
             </div>
             @endif
         </div>

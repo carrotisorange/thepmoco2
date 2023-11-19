@@ -16,22 +16,22 @@ class Concern extends Model
 
     public function property()
     {
-    return $this->belongsTo(Property::class);
+    return $this->belongsTo(Property::class)->withDefault();
     }
 
     public function tenant()
     {
-        return $this->belongsTo(Tenant::class);
+        return $this->belongsTo(Tenant::class)->withDefault();
     }
 
     public function unit()
     {
-        return $this->belongsTo(Unit::class);
+        return $this->belongsTo(Unit::class)->withDefault();
     }
 
     public function category()
     {
-        return $this->belongsTo(ConcernCategory::class);
+        return $this->belongsTo(ConcernCategory::class)->withDefault();
     }
 
     public static function search($property_uuid)

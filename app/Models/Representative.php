@@ -11,11 +11,11 @@ class Representative extends Model
 
     public function owner()
     {
-    return $this->belongsTo(Owner::class, 'owner_uuid');
+    return $this->belongsTo(Owner::class, 'owner_uuid')->withDefault();
     }
 
     public function relationship()
     {
-        return $this->belongsTo(Relationship::class);
+        return $this->belongsTo(Relationship::class)->withDefault();
     }
 }

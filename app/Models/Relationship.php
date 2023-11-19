@@ -11,11 +11,11 @@ class Relationship extends Model
 
     public function guardian()
     {
-        return $this->belongsTo(Guardian::class, 'relationship_id');
+        return $this->belongsTo(Guardian::class, 'relationship_id')->withDefault();
     }
 
         public function representative()
         {
-        return $this->belongsTo(Representative::class, 'relationship_id');
+        return $this->belongsTo(Representative::class, 'relationship_id')->withDefault();
         }
 }

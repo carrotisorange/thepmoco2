@@ -14,10 +14,10 @@ class Province extends Model
         return $this->hasMany(Tenant::class);
     }
 
-public function properties()
-{
-return $this->hasMany(Property::class);
-}
+    public function properties()
+    {
+    return $this->hasMany(Property::class);
+    }
 
     public function owners()
     {

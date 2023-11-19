@@ -6,8 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use DB;
+use Illuminate\Support\Str;
 use Session;
-use App\Models\{Unit,Property,Floor,Owner,Collection};
+use App\Models\{Unit,Property,Floor,Owner,Collection, Plan};
 
 class UnitController extends Controller
 {
@@ -38,6 +39,54 @@ class UnitController extends Controller
             'property' => $property,
             'batch_no' => $batch_no,
         ]);
+    }
+
+    public function store($numberOfUnitsToBeCreated){
+
+        if(($numberOfUnitsToBeCreated <= 0 || !$numberOfUnitsToBeCreated)){
+        return redirect(url()->previous())->with('error', 'Cannot accept value less than 0 or null.');
+        }
+
+        $batch_no = Str::random(8);
+
+        $plan_unit_limit =  Plan::find(auth()->user()->plan_id)->description;
+
+        $total_unit_created = Property::find(Session::get('property_uuid'))->units()->count() + 1;
+
+        if($plan_unit_limit <= $total_unit_created){
+           return redirect(url()->previous())->with('error', 'You have reached your plan unit limit.');
+        }
+
+        for($i=$numberOfUnitsToBeCreated; $i>=1; $i--){
+            Unit::create([
+                'uuid' => Str::uuid(),
+                'unit' => 'Unit '.$total_unit_created++,
+                'building_id' => '1',
+                'floor_id' => '1',
+                'property_uuid' => Session::get('property_uuid'),
+                'user_id' => auth()->user()->id,
+                'batch_no' => $batch_no
+            ]);
+        }
+    }
+
+    public function getOccupancyPieChartValues(){
+        return Unit::where('property_uuid', Session::get('property_uuid'))
+        ->select(DB::raw('count(*) as unit_count, status'))
+        ->join('statuses', 'units.status_id', 'statuses.id')
+        ->groupBy('units.status_id')
+        ->orderBy('status')
+        ->limit(3);
+    }
+
+    public function getBillPieChartValues(){
+        return Unit::where('property_uuid', Session::get('property_uuid'))
+        ->select(DB::raw('count(*) as unit_count', 'status'))
+        ->join('statuses', 'units.status_id', 'statuses.id')
+        ->groupBy('units.status_id')
+        ->orderBy('status')
+        ->limit(3)
+        ->pluck('unit_count');
     }
 
       public function show(Property $property, Unit $unit, $action=null)

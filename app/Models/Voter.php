@@ -16,12 +16,12 @@ class Voter extends Model
 
     public function houseOwner()
     {
-        return $this->belongsTo(HouseOwner::class, 'house_owner_id');
+        return $this->belongsTo(HouseOwner::class, 'house_owner_id')->withDefault();
     }
 
     public function house()
     {
-        return $this->belongsTo(House::class, 'house_id');
+        return $this->belongsTo(House::class, 'house_id')->withDefault();
     }
 
 

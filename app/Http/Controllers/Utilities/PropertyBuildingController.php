@@ -16,7 +16,8 @@ class PropertyBuildingController extends Controller
         ->get();
     }
 
-    public function getBuildings(){
-        return PropertyBuilding::where('property_uuid', Session::get('property_uuid'));
+    public function get()
+    {
+        return PropertyBuilding::getAll(Session::get('property_uuid'));
     }
 }

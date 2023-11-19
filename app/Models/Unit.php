@@ -4,8 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
-use Session;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Unit extends Model
@@ -39,22 +37,22 @@ class Unit extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo(Category::class, 'category_id')->withDefault();
     }
 
     public function building()
     {
-        return $this->belongsTo(Building::class, 'building_id');
+        return $this->belongsTo(Building::class, 'building_id')->withDefault();
     }
 
     public function floor()
     {
-        return $this->belongsTo(Floor::class, 'floor_id');
+        return $this->belongsTo(Floor::class, 'floor_id')->withDefault();
     }
 
     public function property()
     {
-        return $this->belongsTo(Property::class, 'property_uuid');
+        return $this->belongsTo(Property::class, 'property_uuid')->withDefault();
     }
 
     public function paymentrequests()
@@ -64,13 +62,13 @@ class Unit extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id')->withDefault();
     }
 
 
     public function status()
     {
-        return $this->belongsTo(Status::class, 'status_id');
+        return $this->belongsTo(Status::class, 'status_id')->withDefault();
     }
 
     public function contracts()

@@ -3,74 +3,55 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use Carbon\Carbon;
-use Session;
-use App\Models\{Unit,Collection, Concern, Contract, PaymentRequest};
-use DB;
 
 class DashboardIndexComponent extends Component
 {
     public function render()
     {
-        $totalBuildings = app('App\Http\Controllers\Utilities\PropertyBuildingController')->getBuildings()->count();
+        $allBuildings = app('App\Http\Controllers\Utilities\PropertyBuildingController')->get();
 
-        $totalContracts = app('App\Http\Controllers\Features\ContractController')->get()->count();
-        $totalActiveGroupByTenantContracts = app('App\Http\Controllers\Features\ContractController')->get('active', 'tenant_uuid')->count();
-
-        $expiringContracts = Contract::where('property_uuid', Session::get('property_uuid'))
-        ->where('status', 'active')
-        ->whereMonth('end','<=', Carbon::now()->subMonth()->month)
-        ->orderBy('start')
-        ->get();
-
+        $allContracts = app('App\Http\Controllers\Features\ContractController')->get();
+        $activeContracts = app('App\Http\Controllers\Features\ContractController')->get('active');
         $pendingMoveoutContracts = app('App\Http\Controllers\Features\ContractController')->get('pendingmoveout');
+        $pendingPaymentRequests = app('App\Http\Controllers\Utilities\PaymentRequestController')->get('pending');
+        $expiringContracts = app('App\Http\Controllers\Features\ContractController')->getExpiringContracts();
 
-        $paymentRequests = PaymentRequest::join('tenants', 'payment_requests.tenant_uuid', 'tenants.uuid')
-        ->where('tenants.property_uuid', Session::get('property_uuid'))
-        ->where('payment_requests.status', 'pending')
-        ->get();
+        $allTenants = app('App\Http\Controllers\Features\TenantController')->get();
+        $allVerifiedTenants = app('App\Http\Controllers\Features\TenantController')->getVerifiedTenants()->whereNotNull('email_verified_at');
 
-        $totalTenants = app('App\Http\Controllers\Features\TenantController')->get()->count();
-        $totalVerifiedTenants = app('App\Http\Controllers\Features\TenantController')->getVerifiedTenants()->whereNotNull('email_verified_at')->count();
+        $allUnits = app('App\Http\Controllers\Features\UnitController')->get();
+        $occupiedUnits = app('App\Http\Controllers\Features\UnitController')->get(2); //2 means occupied
+        $vacantUnits = app('App\Http\Controllers\Features\UnitController')->get(1); //1 means vacant
+        $reservedUnits = app('App\Http\Controllers\Features\UnitController')->get(4); //4 means reserved
 
-        $totalUnits = app('App\Http\Controllers\Features\UnitController')->get()->count();
-        $totalOccupiedUnits = app('App\Http\Controllers\Features\UnitController')->get(2)->count();
-        $totalVacantUnits = app('App\Http\Controllers\Features\UnitController')->get(1)->count();
-        $totalReservedUnits = app('App\Http\Controllers\Features\UnitController')->get(4)->count();
+        $allOwners = app('App\Http\Controllers\Features\OwnerController')->get();
+        $allVerifiedOwners = app('App\Http\Controllers\Features\OwnerController')->getVerifiedOwners()->whereNotNull('email_verified_at');
 
-        $totalOwners = app('App\Http\Controllers\Features\OwnerController')->get()->count();
-        $totalVerifiedOwners = app('App\Http\Controllers\Features\OwnerController')->getVerifiedOwners()->whereNotNull('email_verified_at')->count();
+        $allPersonnels = app('App\Http\Controllers\Features\PersonnelController')->get();
+        $activePersonnels = app('App\Http\Controllers\Features\PersonnelController')->get(1); 
+        $verifiedPersonnels = app('App\Http\Controllers\Features\PersonnelController')->get();
 
-        $totalPersonnels =app('App\Http\Controllers\Features\PersonnelController')->get()->count();
-        $totalActivePersonnels =app('App\Http\Controllers\Features\PersonnelController')->get(1)->count();
-        $totalVerifiedPersonnels =app('App\Http\Controllers\Features\PersonnelController')->get()->count();
-
-        $occupancyPieChartValues = Unit::where('property_uuid', Session::get('property_uuid'))
-        ->select(DB::raw('count(*) as unit_count, status'))
-        ->join('statuses', 'units.status_id', 'statuses.id')
-        ->groupBy('units.status_id')
-        ->orderBy('status')
-        ->limit(3);
+        $occupancyPieChartValues = app('App\Http\Controllers\Features\UnitController')->getOccupancyPieChartValues();
 
         $occupancyPieChartLabels = json_encode($occupancyPieChartValues->pluck('status'));
         $occupancyPieChartValues = json_encode($occupancyPieChartValues->pluck('unit_count'));
 
-        if($totalUnits > 0){
-             $occupancyRate = number_format(($totalOccupiedUnits/$totalUnits)*100,2).'%';
+        if($allUnits->count() > 0){
+             $occupancyRate = number_format(($occupiedUnits->count()/$allUnits->count())*100,2).'%';
         }else{
              $occupancyRate = 100;
         }
 
-        $totalGuests = app('App\Http\Controllers\Features\GuestController')->get();
-        $averageNumberOfDaysGuestsStayed = app('App\Http\Controllers\Features\GuestController')->averageNumberOfDaysGuestsStayed();
+        $allGuests = app('App\Http\Controllers\Features\GuestController')->get();
+        $averageNumberOfDaysGuestsStayed = app('App\Http\Controllers\Features\GuestController')->getAverageNumberOfDaysGuestsStayed();
 
-        $totalPostedCollections =app('App\Http\Controllers\Features\CollectionController')->get(1)->sum('collection');
+        $postedCollections =app('App\Http\Controllers\Features\CollectionController')->get(1)->sum('collection');
 
-        $totalCompletedRFPs =app('App\Http\Controllers\Features\RFPController')->get('completed')->sum('amount');
+        $completedRFPs =app('App\Http\Controllers\Features\RFPController')->get('completed')->sum('amount');
 
-        $totalPostedBills =app('App\Http\Controllers\Features\BillController')->get(1)->sum('bill');
-        $totalPostedPaidBills =app('App\Http\Controllers\Features\BillController')->get(1, 'paid')->sum('bill');
-        $totalPostedUnpaidBills =app('App\Http\Controllers\Features\BillController')->get(1, 'unpaid')->sum('bill');
+        $postedBills = app('App\Http\Controllers\Features\BillController')->get(1)->sum('bill');
+        $postedPaidBills =app('App\Http\Controllers\Features\BillController')->get(1, 'paid')->sum('bill');
+        $postedUnpaidBills =app('App\Http\Controllers\Features\BillController')->get(1, 'unpaid')->sum('bill');
 
         $billedBillBarValues = app('App\Http\Controllers\Features\BillController')->getJsonEncodedBillForDashboard();
         $uncollectedBillBarValues = app('App\Http\Controllers\Features\BillController')->getJsonEncodedBillForDashboard('unpaid');
@@ -87,92 +68,68 @@ class DashboardIndexComponent extends Component
         // ->whereYear('collections.created_at', Carbon::now()->year)
         // ->orderBy(DB::raw('month(collections.created_at)'));
 
-        $incomeBarValues = Collection::select(DB::raw('monthname(created_at) as month_name, sum(collection) as total_collection'))
-        ->where('collections.property_uuid', Session::get('property_uuid'))
-        ->groupBy(DB::raw('month(created_at)'))
-        ->posted()
-        ->limit(5)
-        ->whereYear('created_at', Carbon::now()->year)
-        ->groupBy(DB::raw('month(created_at)'));
-
+        $incomeBarValues = app('App\Http\Controllers\Features\CollectionController')->getIncomeBarValues();
         $incomeBarLabels = json_encode($incomeBarValues->pluck('month_name'));
         $collectionBarValues = json_encode($incomeBarValues->pluck('total_collection'));
-        // ddd($collectionBarValues);
-        // $expenseBarValues = json_encode($incomeBarValues->pluck('total_amount'));
 
-        if($totalPostedUnpaidBills > 0){
-            $collectionRate = number_format(($totalPostedPaidBills/$totalPostedUnpaidBills)*100,2).'%';
+        if($postedUnpaidBills > 0){
+            $collectionRate = number_format(($postedPaidBills/$postedUnpaidBills)*100,2).'%';
         }else{
             $collectionRate = "NA";
         }
 
-        $billPieChartValues = Unit::where('property_uuid', Session::get('property_uuid'))
-        ->select(DB::raw('count(*) as unit_count', 'status'))
-        ->join('statuses', 'units.status_id', 'statuses.id')
-        ->groupBy('units.status_id')
-        ->orderBy('status')
-        ->limit(3)
-        ->pluck('unit_count');
+        $billPieChartValues = app('App\Http\Controllers\Features\UnitController')->getBillPieChartValues();
 
         $delinquentTenants =app('App\Http\Controllers\Features\BillController')->getDelinquentTenants();
 
-        $totalWaterConsumption = app('App\Http\Controllers\Features\UtilityController')->get('water',1)->sum('current_consumption');
-        $totalElectricConsumption =app('App\Http\Controllers\Features\UtilityController')->get('electric',1)->sum('current_consumption');
+        $waterConsumption = app('App\Http\Controllers\Features\UtilityController')->get('water',1)->sum('current_consumption');
+        $electricConsumption =app('App\Http\Controllers\Features\UtilityController')->get('electric',1)->sum('current_consumption');
 
         $utilityWaterConsumptionChartLabels = app('App\Http\Controllers\Features\UtilityController')->getJsonEncodedUtilityForDashboard('water')->pluck('month_name');
         $utilityWaterConsumptionChartValues = app('App\Http\Controllers\Features\UtilityController')->getJsonEncodedUtilityForDashboard('water')->pluck('total_consumption');
         $utilityElectricConsumptionChartLabels = app('App\Http\Controllers\Features\UtilityController')->getJsonEncodedUtilityForDashboard('electric')->pluck('month_name');
         $utilityElectricConsumptionChartValues = app('App\Http\Controllers\Features\UtilityController')->getJsonEncodedUtilityForDashboard('electric')->pluck('total_consumption');
 
-        $totalConcerns =app('App\Http\Controllers\Features\ConcernController')->get()->count();
-        $totalClosedConcerns =app('App\Http\Controllers\Features\ConcernController')->get('closed')->count();
+        $allConcerns =app('App\Http\Controllers\Features\ConcernController')->get();
+        $closedConcerns =app('App\Http\Controllers\Features\ConcernController')->get('closed');
         $pendingConcerns =app('App\Http\Controllers\Features\ConcernController')->get('pending');
-        $totalActiveConcerns =app('App\Http\Controllers\Features\ConcernController')->get('active')->count();
+        $activeConcerns =app('App\Http\Controllers\Features\ConcernController')->get('active');
 
-        $totalApprovedBulletins =app('App\Http\Controllers\Features\BulletinController')->get(1)->count();
+        $approvedBulletins = app('App\Http\Controllers\Features\BulletinController')->get(1);
 
-         $totalNumberOfDaysForConcernsToBeResolved = Concern::where('property_uuid', Session::get('property_uuid'))
-         ->select(DB::raw('sum(DATEDIFF(updated_at,created_at)) as total_number_of_days_to_be_resolved'))
-         ->where('status', 'closed')
-         ->value('total_number_of_days_to_be_resolved');
-
-        if($totalClosedConcerns > 0){
-              $averageNumberOfDaysForConcernsToBeResolved = $totalNumberOfDaysForConcernsToBeResolved/$totalClosedConcerns.' day/s';
-        }else{
-              $averageNumberOfDaysForConcernsToBeResolved = "NA";
-        }
+        $averageNumberOfDaysForConcernsToBeResolved = app('App\Http\Controllers\Features\ConcernController')->getAverageNumberOfDaysForConcernsToBeResolved();
 
         return view('livewire.features.dashboard.dashboard-index-component',compact(
-           'totalContracts',
-           'totalActiveGroupByTenantContracts',
-           'totalTenants',
-           'totalVerifiedTenants' ,
-           'totalUnits',
-           'totalOccupiedUnits',
-           'totalVacantUnits',
-           'totalReservedUnits',
-           'totalOwners' ,
-           'totalVerifiedOwners',
-           'totalPersonnels',
-           'totalActivePersonnels',
-           'totalVerifiedPersonnels',
-           'totalBuildings' ,
+           'allContracts',
+           'activeContracts',
+           'allTenants',
+           'allVerifiedTenants' ,
+           'allUnits',
+           'occupiedUnits',
+           'vacantUnits',
+           'reservedUnits',
+           'allOwners' ,
+           'allVerifiedOwners',
+           'allPersonnels',
+           'activePersonnels',
+           'verifiedPersonnels',
+           'allBuildings' ,
            'occupancyPieChartLabels',
            'occupancyPieChartValues' ,
-           'totalGuests' ,
+           'allGuests' ,
            'averageNumberOfDaysGuestsStayed',
-           'totalPostedCollections' ,
-           'totalCompletedRFPs',
-           'totalPostedPaidBills',
-           'totalPostedUnpaidBills' ,
-           'totalPostedBills',
+           'postedCollections' ,
+           'completedRFPs',
+           'postedPaidBills',
+           'postedUnpaidBills' ,
+           'postedBills',
            'delinquentTenants',
-           'totalWaterConsumption',
-           'totalElectricConsumption',
-           'totalConcerns',
-           'totalClosedConcerns',
-           'totalActiveConcerns',
-           'totalApprovedBulletins',
+           'waterConsumption',
+           'electricConsumption',
+           'allConcerns',
+           'closedConcerns',
+           'activeConcerns',
+           'approvedBulletins',
            'occupancyRate',
            'collectionRate',
            'incomeBarLabels',
@@ -187,7 +144,7 @@ class DashboardIndexComponent extends Component
            'utilityElectricConsumptionChartValues',
            'averageNumberOfDaysForConcernsToBeResolved',
            'expiringContracts',
-           'paymentRequests',
+           'pendingPaymentRequests',
            'pendingMoveoutContracts',
            'pendingConcerns')
         );

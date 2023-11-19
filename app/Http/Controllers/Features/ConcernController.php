@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Features;
 
 use App\Http\Controllers\Controller;
 use Session;
+use DB;
 use App\Models\{Concern, Property};
 
 class ConcernController extends Controller
@@ -34,6 +35,13 @@ class ConcernController extends Controller
     public function get($status=null, $groupBy=null)
     {
         return Concern::getAll(Session::get('property_uuid'), $status, $groupBy);
+    }
+
+    public function getAverageNumberOfDaysForConcernsToBeResolved(){
+        return Concern::where('property_uuid', Session::get('property_uuid'))
+        ->select(DB::raw('avg(DATEDIFF(updated_at,created_at)) as total_number_of_days_to_be_resolved'))
+        ->where('status', 'closed')
+        ->value('total_number_of_days_to_be_resolved');
     }
 
     public function destroy($unit_uuid){

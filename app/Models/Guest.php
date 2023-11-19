@@ -21,17 +21,12 @@ class Guest extends Model
         'status' => 'reserved'
     ];
 
-    // public function searchableAs()
-    // {
-    //     return 'guest';
-    // }
-
     public function unit(){
-        return $this->belongsTo(Unit::class, 'unit_uuid');
+        return $this->belongsTo(Unit::class, 'unit_uuid')->withDefault();
     }
 
     public function property(){
-        return $this->belongsTo(Property::class, 'property_uuid');
+        return $this->belongsTo(Property::class, 'property_uuid')->withDefault();
     }
 
     public function bills(){

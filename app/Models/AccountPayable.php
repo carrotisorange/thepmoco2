@@ -17,32 +17,32 @@ class AccountPayable extends Model
 
     public function property()
     {
-        return $this->belongsTo(Property::class, 'property_uuid');
+        return $this->belongsTo(Property::class, 'property_uuid')->withDefault();
     }
 
     public function particular()
     {
-        return $this->belongsTo(Particular::class, 'particular_id');
+        return $this->belongsTo(Particular::class, 'particular_id')->withDefault();
     }
 
     public function requester()
     {
-        return $this->belongsTo(User::class, 'requester_id');
+        return $this->belongsTo(User::class, 'requester_id')->withDefault();
     }
 
     public function approver_1()
     {
-        return $this->belongsTo(User::class, 'approver_id');
+        return $this->belongsTo(User::class, 'approver_id')->withDefault();
     }
 
     public function approver_2()
     {
-        return $this->belongsTo(User::class, 'approver2_id');
+        return $this->belongsTo(User::class, 'approver2_id')->withDefault();
     }
 
     public function biller()
     {
-        return $this->belongsTo(PropertyBiller::class, 'biller_id');
+        return $this->belongsTo(PropertyBiller::class, 'biller_id')->withDefault();
     }
 
     public function particulars(){

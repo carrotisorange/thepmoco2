@@ -11,11 +11,11 @@ class Role extends Model
 
     public function user_property()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id')->withDefault();
     }
 
     public function property(){
-        return $this->belongsTo(Property::class, 'property_id');
+        return $this->belongsTo(Property::class, 'property_id')->withDefault();
     }
 
     public function scopeEndUser($query){

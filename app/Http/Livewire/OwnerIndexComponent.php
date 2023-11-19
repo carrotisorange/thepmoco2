@@ -20,19 +20,19 @@ class OwnerIndexComponent extends Component
 
     public function render()
     {
-        $propertyOwnersCount =Property::find(Session::get('property_uuid'))->owners()->count();
-
-        $stepper = Type::where('id', Session::get('property_type_id'))->pluck('stepper')->first();
-
-        $steps = explode(",", $stepper);
-
-        return view('livewire.features.owner.owner-index-component', [
-        'owners' => Owner::search($this->search)
+        $owners = Owner::search($this->search)
         ->where('property_uuid', Session::get('property_uuid'))
         ->orderBy('created_at', 'asc')
-        ->paginate(10),
-        'propertyOwnersCount' => $propertyOwnersCount,
-        'steps' => $steps
-    ]);
+        ->paginate(10);
+
+        $propertyOwnersCount = app('App\Http\Controllers\Features\OwnerController')->get()->count();
+
+        $steps = app('App\Http\Controllers\Utilities\TypeController')->getSteppers();
+
+        return view('livewire.features.owner.owner-index-component', compact(
+            'owners',
+            'propertyOwnersCount',
+            'steps'
+        ));
     }
 }

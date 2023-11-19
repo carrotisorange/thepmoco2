@@ -18,18 +18,18 @@ class Booking extends Model
     ];
 
     public function unit(){
-        return $this->belongsTo(Unit::class, 'unit_uuid');
+        return $this->belongsTo(Unit::class, 'unit_uuid')->withDefault();
     }
 
     public function guest(){
-        return $this->belongsTo(Guest::class, 'guest_uuid');
+        return $this->belongsTo(Guest::class, 'guest_uuid')->withDefault();
     }
 
     public function property(){
-        return $this->belongsTo(Property::class, 'property_uuid');
+        return $this->belongsTo(Property::class, 'property_uuid')->withDefault();
     }
 
     public function agent(){
-        return $this->belongsTo(Agent::class, 'agent_id');
+        return $this->belongsTo(Agent::class, 'agent_id')->withDefault();
     }
 }

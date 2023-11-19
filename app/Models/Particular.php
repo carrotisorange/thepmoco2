@@ -11,8 +11,8 @@ class Particular extends Model
 
     public function bills()
     {
-        return $this->belongsTo(Bill::class);
+        return $this->belongsTo(Bill::class)->withDefault();
     }
 
-  
+
 }

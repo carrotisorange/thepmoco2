@@ -11,25 +11,25 @@ class Remittance extends Model
 
     public function unit()
     {
-        return $this->belongsTo(Unit::class);
+        return $this->belongsTo(Unit::class)->withDefault();
     }
 
     public function particular()
     {
-        return $this->belongsTo(Particular::class);
+        return $this->belongsTo(Particular::class)->withDefault();
     }
 
     public function owner()
     {
-        return $this->belongsTo(Owner::class);
+        return $this->belongsTo(Owner::class)->withDefault();
     }
 
     public function payee()
     {
-        return $this->belongsTo(Tenant::class);
+        return $this->belongsTo(Tenant::class)->withDefault();
     }
 
     public function remittance(){
-        return $this->belongsTo(Remittance::class);
+        return $this->belongsTo(Remittance::class)->withDefault();
     }
 }

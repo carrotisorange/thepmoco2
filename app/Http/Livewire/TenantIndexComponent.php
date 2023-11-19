@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Session;
 use Livewire\WithPagination;
-use App\Models\{Type,Property,Tenant};
+use App\Models\{Type,Tenant};
 
 class TenantIndexComponent extends Component
 {
@@ -21,49 +21,33 @@ class TenantIndexComponent extends Component
         return redirect('/property/'.Session::get('property_uuid').'/unit/');
     }
 
-    public function clearFilters(){
-        $this->search = null;
-        $this->status = null;
-        $this->category = null;
-    }
-
     public function render()
     {
-        $statuses =  Tenant::where('property_uuid', Session::get('property_uuid'))
-        ->select('status')
-        ->whereNotNull('status')
-        ->groupBy('status')
-        ->get();
+        $statuses = app('App\Http\Controllers\Features\TenantController')->get('','status');
 
-       $categories = Tenant::where('property_uuid', Session::get('property_uuid'))
-        ->select('category')
-        ->whereNotNull('category')
-        ->groupBy('category')
-        ->get();
+        $categories = app('App\Http\Controllers\Features\TenantController')->get('','category');
 
         $tenants = Tenant::search($this->search)
         ->where('property_uuid', Session::get('property_uuid'))
         ->when($this->status, function($query){
-          $query->where('status',$this->status);
-        })
+            $query->where('status',$this->status);
+         })
          ->when($this->category, function($query){
-         $query->where('category',$this->category);
+            $query->where('category',$this->category);
          })
         ->orderBy('created_at', 'desc')
         ->paginate(10);
 
-        $propertyTenantsCount =Property::find(Session::get('property_uuid'))->tenants()->count();
+        $propertyTenantsCount = app('App\Http\Controllers\Features\TenantController')->get()->count();
 
-        $stepper = Type::where('id', Session::get('property_type_id'))->pluck('stepper')->first();
+        $steps = app('App\Http\Controllers\Utilities\TypeController')->getSteppers();
 
-        $steps = explode(",", $stepper);
-
-        return view('livewire.features.tenant.tenant-index-component', [
-            'tenants' => $tenants,
-            'statuses' => $statuses,
-            'categories' => $categories,
-            'propertyTenantsCount' => $propertyTenantsCount,
-            'steps' => $steps
-        ]);
+        return view('livewire.features.tenant.tenant-index-component', compact(
+            'tenants',
+            'statuses',
+            'categories',
+            'propertyTenantsCount',
+            'steps'
+        ));
     }
 }

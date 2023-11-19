@@ -33,6 +33,14 @@ class ContractController extends Controller
         ]);
     }
 
+    public function getExpiringContracts(){
+        return Contract::where('property_uuid', Session::get('property_uuid'))
+        ->where('status', 'active')
+        ->whereMonth('end','<=', Carbon::now()->subMonth()->month)
+        ->orderBy('start')
+        ->get();
+    }
+
     public function destroy($unit_uuid, $tenant_uuid){
         Contract::where('unit_uuid', $unit_uuid)
         ->orWhere('tenant_uuid', $tenant_uuid)->delete();

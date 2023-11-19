@@ -15,6 +15,6 @@ class Type extends Model
     }
 
     public function landing_page_feature_id(){
-        return $this->belongsTo(Type::class);
+        return $this->belongsTo(Type::class)->withDefault();
     }
 }

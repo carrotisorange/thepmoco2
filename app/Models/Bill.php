@@ -19,41 +19,40 @@ class Bill extends Model
 
     public function property()
     {
-        return $this->belongsTo(Property::class, 'property_uuid');
+        return $this->belongsTo(Property::class, 'property_uuid')->withDefault();
     }
 
     public function unit(){
-        return $this->belongsTo(Unit::class, 'unit_uuid');
+        return $this->belongsTo(Unit::class, 'unit_uuid')->withDefault();
     }
 
      public function collection(){
-        return $this->belongsTo(Collection::class, 'bill_id');
+        return $this->belongsTo(Collection::class, 'bill_id')->withDefault();
      }
-
 
 
     public function tenant()
     {
-        return $this->belongsTo(Tenant::class, 'tenant_uuid');
+        return $this->belongsTo(Tenant::class, 'tenant_uuid')->withDefault();
     }
 
     public function owner()
     {
-        return $this->belongsTo(Owner::class, 'owner_uuid');
+        return $this->belongsTo(Owner::class, 'owner_uuid')->withDefault();
     }
 
     public function houseOwner(){
-        return $this->belongsTo(HouseOwner::class,'house_owner_id');
+        return $this->belongsTo(HouseOwner::class,'house_owner_id')->withDefault();
     }
 
     public function guest(){
-        return $this->belongsTo(Guest::class, 'guest_uuid');
+        return $this->belongsTo(Guest::class, 'guest_uuid')->withDefault();
     }
 
 
     public function particular()
     {
-        return $this->belongsTo(Particular::class, 'particular_id');
+        return $this->belongsTo(Particular::class, 'particular_id')->withDefault();
     }
 
     public function scopePosted($query)

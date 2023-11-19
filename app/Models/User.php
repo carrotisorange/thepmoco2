@@ -46,17 +46,14 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $attributes = [
         //'avatar' => 'avatars/avatar.png',
         'status' => 'pending',
-
         'plan_id' => 1,
-
-        'is_portfolio_unlocked' => 1, 
+        'is_portfolio_unlocked' => 1,
         'is_contract_unlocked' => 1,
         'is_concern_unlocked' => 1,
         'is_tenantportal_unlocked' => 1,
         'is_ownerportal_unlocked' => 1,
         'is_accountpayable_unlocked' => 1,
         'is_accountreceivable_unlocked' => 1,
-
         'checkoutoption_id' => 1
     ];
 
@@ -77,17 +74,17 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function plan()
     {
-        return $this->belongsTo(Plan::class, 'plan_id');
+        return $this->belongsTo(Plan::class, 'plan_id')->withDefault();
     }
 
     public function discountcode()
     {
-        return $this->belongsTo(DiscountCode::class, 'discount_code');
+        return $this->belongsTo(DiscountCode::class, 'discount_code')->withDefault();
     }
 
     public function checkoutoption()
     {
-        return $this->belongsTo(CheckoutOption::class, 'checkoutoption_id');
+        return $this->belongsTo(CheckoutOption::class, 'checkoutoption_id')->withDefault();
     }
 
     public function units()
@@ -107,12 +104,12 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function refferer()
     {
-        return $this->belongsTo(Referrer::class, 'referrer_id');
+        return $this->belongsTo(Referrer::class, 'referrer_id')->withDefault();
     }
 
     public function role()
     {
-        return $this->belongsTo(Role::class, 'role_id');
+        return $this->belongsTo(Role::class, 'role_id')->withDefault();
     }
 
     public function points()

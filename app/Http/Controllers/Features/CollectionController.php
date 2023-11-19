@@ -43,6 +43,16 @@ class CollectionController extends Controller
         return Collection::getAll(Session::get('property_uuid'), $status,$groupBy);
     }
 
+    public function getIncomeBarValues(){
+        return Collection::select(DB::raw('monthname(created_at) as month_name, sum(collection) as total_collection'))
+        ->where('collections.property_uuid', Session::get('property_uuid'))
+        ->groupBy(DB::raw('month(created_at)'))
+        ->posted()
+        ->limit(5)
+        ->whereYear('created_at', Carbon::now()->year)
+        ->groupBy(DB::raw('month(created_at)'));
+    }
+
     public function getLatestAr()
     {
         return Property::find(Session::get('property_uuid'))->collections()->posted()->withTrashed()->max('ar_no')+1;
