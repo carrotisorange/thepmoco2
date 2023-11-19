@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Carbon\Carbon;
 use Session;
-use App\Models\{Unit,Collection, Utility};
+use App\Models\{Unit,Collection, Concern, Contract, PaymentRequest};
 use DB;
 
 class DashboardIndexComponent extends Component
@@ -16,6 +16,19 @@ class DashboardIndexComponent extends Component
 
         $totalContracts = app('App\Http\Controllers\Features\ContractController')->get()->count();
         $totalActiveGroupByTenantContracts = app('App\Http\Controllers\Features\ContractController')->get('active', 'tenant_uuid')->count();
+
+        $expiringContracts = Contract::where('property_uuid', Session::get('property_uuid'))
+        ->where('status', 'active')
+        ->whereMonth('end','<=', Carbon::now()->subMonth()->month)
+        ->orderBy('start')
+        ->get();
+
+        $pendingMoveoutContracts = app('App\Http\Controllers\Features\ContractController')->get('pendingmoveout');
+
+        $paymentRequests = PaymentRequest::join('tenants', 'payment_requests.tenant_uuid', 'tenants.uuid')
+        ->where('tenants.property_uuid', Session::get('property_uuid'))
+        ->where('payment_requests.status', 'pending')
+        ->get();
 
         $totalTenants = app('App\Http\Controllers\Features\TenantController')->get()->count();
         $totalVerifiedTenants = app('App\Http\Controllers\Features\TenantController')->getVerifiedTenants()->whereNotNull('email_verified_at')->count();
@@ -101,12 +114,10 @@ class DashboardIndexComponent extends Component
         ->limit(3)
         ->pluck('unit_count');
 
-
         $delinquentTenants =app('App\Http\Controllers\Features\BillController')->getDelinquentTenants();
 
         $totalWaterConsumption = app('App\Http\Controllers\Features\UtilityController')->get('water',1)->sum('current_consumption');
         $totalElectricConsumption =app('App\Http\Controllers\Features\UtilityController')->get('electric',1)->sum('current_consumption');
-
 
         $utilityWaterConsumptionChartLabels = app('App\Http\Controllers\Features\UtilityController')->getJsonEncodedUtilityForDashboard('water')->pluck('month_name');
         $utilityWaterConsumptionChartValues = app('App\Http\Controllers\Features\UtilityController')->getJsonEncodedUtilityForDashboard('water')->pluck('total_consumption');
@@ -115,9 +126,21 @@ class DashboardIndexComponent extends Component
 
         $totalConcerns =app('App\Http\Controllers\Features\ConcernController')->get()->count();
         $totalClosedConcerns =app('App\Http\Controllers\Features\ConcernController')->get('closed')->count();
+        $pendingConcerns =app('App\Http\Controllers\Features\ConcernController')->get('pending');
         $totalActiveConcerns =app('App\Http\Controllers\Features\ConcernController')->get('active')->count();
 
         $totalApprovedBulletins =app('App\Http\Controllers\Features\BulletinController')->get(1)->count();
+
+         $totalNumberOfDaysForConcernsToBeResolved = Concern::where('property_uuid', Session::get('property_uuid'))
+         ->select(DB::raw('sum(DATEDIFF(updated_at,created_at)) as total_number_of_days_to_be_resolved'))
+         ->where('status', 'closed')
+         ->value('total_number_of_days_to_be_resolved');
+
+        if($totalClosedConcerns > 0){
+              $averageNumberOfDaysForConcernsToBeResolved = $totalNumberOfDaysForConcernsToBeResolved/$totalClosedConcerns.' day/s';
+        }else{
+              $averageNumberOfDaysForConcernsToBeResolved = "NA";
+        }
 
         return view('livewire.features.dashboard.dashboard-index-component',compact(
            'totalContracts',
@@ -161,7 +184,12 @@ class DashboardIndexComponent extends Component
            'utilityWaterConsumptionChartLabels',
            'utilityWaterConsumptionChartValues',
            'utilityElectricConsumptionChartLabels',
-           'utilityElectricConsumptionChartValues')
+           'utilityElectricConsumptionChartValues',
+           'averageNumberOfDaysForConcernsToBeResolved',
+           'expiringContracts',
+           'paymentRequests',
+           'pendingMoveoutContracts',
+           'pendingConcerns')
         );
     }
 }

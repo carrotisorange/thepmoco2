@@ -551,7 +551,7 @@ class PropertyController extends Controller
 
         Session::put('property_thumbnail', Property::find($property_uuid)->thumbnail);
 
-        app('App\Http\Controllers\Utilities\UserRestrictionController')->store($property_uuid, auth()->user()->id);
+        app('App\Http\Controllers\Utilities\UserRestrictionController')->storeOrUpdateFeatureRestrictions($property_uuid);
 
     }
 

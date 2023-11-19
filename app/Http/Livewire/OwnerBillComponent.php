@@ -92,7 +92,7 @@ class OwnerBillComponent extends Component
         'is_posted' => true
      ]);
 
-      app('App\Http\Controllers\Utilities\PointController')->store(Session::get('property_uuid'), auth()->user()->id, 1, 3);
+      app('App\Http\Controllers\Utilities\PointController')->store(1, 3);
 
       return redirect(url()->previous())->with('success', 'Changes Saved!');
       }

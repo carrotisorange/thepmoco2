@@ -39,9 +39,12 @@
                                     <h1 class="text-3xl font-bold text-gray-500" wire:ignore>
                                         Other Announcements
                                     </h1>
+                                </div>
+                                <div class="mt-10">
+
                                      @include('tables.bulletins')
                                 </div>
-                                        @else
+                                @else
                             <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8 mt-10 mb-10">
                                 <div class="text-center mb-10">
                                     <sv class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24"
@@ -54,7 +57,7 @@
                                     <p class="mt-1 text-sm text-gray-500">Get started by creating a new bulletin</p>
                                                 <div class="mt-6">
                                                     <div class="group inline-block">
-                                            <x-button 
+                                            <x-button
                                                             data-modal-toggle="create-bulletin-modal"> New
                                                 Bulletin
                                                         </x-button>

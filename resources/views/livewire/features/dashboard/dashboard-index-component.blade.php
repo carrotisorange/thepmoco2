@@ -106,23 +106,22 @@
                                             <h1 class="py-1 font-light text-sm">Total Expiring Contracts:</h1>
                                             <span
                                                 class="bg-red-100 text-red-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-red-900 dark:text-red-300">
-                                                12
-
+                                                {{ $expiringContracts->count() }}
                                             </span>
                                         </div>
 
                                         <ul class="divide-y divide-gray-200 dark:divide-gray-700 shadow p-3">
-                                            <!-- limit list to 5 -->
+                                           @foreach ($expiringContracts->take(5) as $expiringContract)
                                             <li class="pb-3 sm:pb-4">
                                                 <div class="flex items-center space-x-4">
 
                                                     <div class="flex-1 min-w-0">
                                                         <p
                                                             class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                            Tenant Name
+                                                            {{ $expiringContract->tenant->tenant }}
                                                         </p>
                                                         <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                                            November 14, 2023
+                                                            {{ Carbon\Carbon::parse($expiringContract->end)->format('M d, Y') }}
                                                         </p>
                                                     </div>
                                                     <div
@@ -133,90 +132,11 @@
                                                     </div>
                                                 </div>
                                             </li>
-                                            <li class="pb-3 sm:pb-4">
-                                                <div class="flex items-center space-x-4">
-
-                                                    <div class="flex-1 min-w-0">
-                                                        <p
-                                                            class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                            Tenant Name
-                                                        </p>
-                                                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                                            November 14, 2023
-                                                        </p>
-                                                    </div>
-                                                    <div
-                                                        class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                        <a href=""><img width="26" height="26"
-                                                                src="https://img.icons8.com/metro/26/EBEBEB/forward.png"
-                                                                alt="forward" /></a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="pb-3 sm:pb-4">
-                                                <div class="flex items-center space-x-4">
-
-                                                    <div class="flex-1 min-w-0">
-                                                        <p
-                                                            class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                            Tenant Name
-                                                        </p>
-                                                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                                            November 14, 2023
-                                                        </p>
-                                                    </div>
-                                                    <div
-                                                        class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                        <a href=""><img width="26" height="26"
-                                                                src="https://img.icons8.com/metro/26/EBEBEB/forward.png"
-                                                                alt="forward" /></a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="pb-3 sm:pb-4">
-                                                <div class="flex items-center space-x-4">
-
-                                                    <div class="flex-1 min-w-0">
-                                                        <p
-                                                            class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                            Tenant Name
-                                                        </p>
-                                                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                                            November 14, 2023
-                                                        </p>
-                                                    </div>
-                                                    <div
-                                                        class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                        <a href=""><img width="26" height="26"
-                                                                src="https://img.icons8.com/metro/26/EBEBEB/forward.png"
-                                                                alt="forward" /></a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="pb-3 sm:pb-4">
-                                                <div class="flex items-center space-x-4">
-
-                                                    <div class="flex-1 min-w-0">
-                                                        <p
-                                                            class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                            Tenant Name
-                                                        </p>
-                                                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                                            November 14, 2023
-                                                        </p>
-                                                    </div>
-                                                    <div
-                                                        class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                        <a href=""><img width="26" height="26"
-                                                                src="https://img.icons8.com/metro/26/EBEBEB/forward.png"
-                                                                alt="forward" /></a>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                            @endforeach
                                         </ul>
                                         <div class="flex justify-end items-center pt-5">
                                             <!-- Button -->
-                                            <button
+                                            <button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/contract'"
                                                 class="p-2 text-sm font-medium text-gray-500 border hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
                                                 type="button">
                                                 See all Contracts
@@ -230,117 +150,38 @@
                                             <h1 class="py-1 font-light text-sm">Total Pending Payments:</h1>
                                             <span
                                                 class="bg-red-100 text-red-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-red-900 dark:text-red-300">
-                                                12
+                                                {{ $paymentRequests->count() }}
 
                                             </span>
                                         </div>
 
                                         <ul class="divide-y divide-gray-200 dark:divide-gray-700 shadow p-3">
-                                            <!-- limit list to 5 -->
+                                            @foreach($paymentRequests as $paymentRequest)
                                             <li class="pb-3 sm:pb-4">
                                                 <div class="flex items-center space-x-4">
 
                                                     <div class="flex-1 min-w-0">
                                                         <p
                                                             class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                            Tenant Name
+                                                            {{$paymentRequest->tenant}}
                                                         </p>
                                                         <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                                            Payment Amount: 5678
+                                                            {{ number_format($paymentRequest->amount, 2) }}
                                                         </p>
                                                     </div>
                                                     <div
                                                         class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                        <a href=""><img width="26" height="26"
+                                                        <a href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $paymentRequest->tenant_uuid }}/payment_requests/{{ $paymentRequest->id }}"><img width="26" height="26"
                                                                 src="https://img.icons8.com/metro/26/EBEBEB/forward.png"
                                                                 alt="forward" /></a>
                                                     </div>
                                                 </div>
                                             </li>
-                                            <li class="pb-3 sm:pb-4">
-                                                <div class="flex items-center space-x-4">
-
-                                                    <div class="flex-1 min-w-0">
-                                                        <p
-                                                            class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                            Tenant Name
-                                                        </p>
-                                                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                                            Payment Amount: 5678
-                                                        </p>
-                                                    </div>
-                                                    <div
-                                                        class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                        <a href=""><img width="26" height="26"
-                                                                src="https://img.icons8.com/metro/26/EBEBEB/forward.png"
-                                                                alt="forward" /></a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="pb-3 sm:pb-4">
-                                                <div class="flex items-center space-x-4">
-
-                                                    <div class="flex-1 min-w-0">
-                                                        <p
-                                                            class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                            Tenant Name
-                                                        </p>
-                                                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                                            Payment Amount: 5678
-                                                        </p>
-                                                    </div>
-                                                    <div
-                                                        class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                        <a href=""><img width="26" height="26"
-                                                                src="https://img.icons8.com/metro/26/EBEBEB/forward.png"
-                                                                alt="forward" /></a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="pb-3 sm:pb-4">
-                                                <div class="flex items-center space-x-4">
-
-                                                    <div class="flex-1 min-w-0">
-                                                        <p
-                                                            class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                            Tenant Name
-                                                        </p>
-                                                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                                            Payment Amount: 5678
-                                                        </p>
-                                                    </div>
-                                                    <div
-                                                        class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                        <a href=""><img width="26" height="26"
-                                                                src="https://img.icons8.com/metro/26/EBEBEB/forward.png"
-                                                                alt="forward" /></a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="pb-3 sm:pb-4">
-                                                <div class="flex items-center space-x-4">
-
-                                                    <div class="flex-1 min-w-0">
-                                                        <p
-                                                            class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                            Tenant Name
-                                                        </p>
-                                                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                                            Payment Amount: 5678
-                                                        </p>
-                                                    </div>
-                                                    <div
-                                                        class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                        <a href=""><img width="26" height="26"
-                                                                src="https://img.icons8.com/metro/26/EBEBEB/forward.png"
-                                                                alt="forward" /></a>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                            @endforeach
                                         </ul>
                                         <div class="flex justify-end items-center pt-5">
                                             <!-- Button -->
-                                            <button
+                                            <button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/pending'"
                                                 class="p-2 text-sm font-medium text-gray-500 border hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
                                                 type="button">
                                                 See all Payment Requests
@@ -354,117 +195,36 @@
                                             <h1 class="py-1 font-light text-sm">Total Moveout Requests:</h1>
                                             <span
                                                 class="bg-red-100 text-red-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-red-900 dark:text-red-300">
-                                                18
+                                                {{ $pendingMoveoutContracts->count() }}
 
                                             </span>
                                         </div>
 
                                         <ul class="divide-y divide-gray-200 dark:divide-gray-700 shadow p-3">
                                             <!-- limit list to 5 -->
+                                           @foreach ($pendingMoveoutContracts as $pendingMoveoutContract)
                                             <li class="pb-3 sm:pb-4">
                                                 <div class="flex items-center space-x-4">
 
                                                     <div class="flex-1 min-w-0">
-                                                        <p
-                                                            class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                            Neil Sims
+                                                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                                            {{$pendingMoveoutContract->tenant->tenant}}
                                                         </p>
                                                         <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                                            Contract Duration:
+                                                           {{Carbon\Carbon::parse($pendingMoveoutContract->end)->format('M d, Y')}}
                                                         </p>
                                                     </div>
-                                                    <div
-                                                        class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                        <a href=""><img width="26" height="26"
-                                                                src="https://img.icons8.com/metro/26/EBEBEB/forward.png"
+                                                    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                                        <a href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $pendingMoveoutContract->tenant_uuid }}/contract/{{ $pendingMoveoutContract->uuid }}/moveout/step-1"><img width="26" height="26" src="https://img.icons8.com/metro/26/EBEBEB/forward.png"
                                                                 alt="forward" /></a>
                                                     </div>
                                                 </div>
                                             </li>
-                                            <li class="pb-3 sm:pb-4">
-                                                <div class="flex items-center space-x-4">
-
-                                                    <div class="flex-1 min-w-0">
-                                                        <p
-                                                            class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                            Neil Sims
-                                                        </p>
-                                                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                                            Contract Duration:
-                                                        </p>
-                                                    </div>
-                                                    <div
-                                                        class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                        <a href=""><img width="26" height="26"
-                                                                src="https://img.icons8.com/metro/26/EBEBEB/forward.png"
-                                                                alt="forward" /></a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="pb-3 sm:pb-4">
-                                                <div class="flex items-center space-x-4">
-
-                                                    <div class="flex-1 min-w-0">
-                                                        <p
-                                                            class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                            Neil Sims
-                                                        </p>
-                                                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                                            Contract Duration:
-                                                        </p>
-                                                    </div>
-                                                    <div
-                                                        class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                        <a href=""><img width="26" height="26"
-                                                                src="https://img.icons8.com/metro/26/EBEBEB/forward.png"
-                                                                alt="forward" /></a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="pb-3 sm:pb-4">
-                                                <div class="flex items-center space-x-4">
-
-                                                    <div class="flex-1 min-w-0">
-                                                        <p
-                                                            class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                            Neil Sims
-                                                        </p>
-                                                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                                            Contract Duration:
-                                                        </p>
-                                                    </div>
-                                                    <div
-                                                        class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                        <a href=""><img width="26" height="26"
-                                                                src="https://img.icons8.com/metro/26/EBEBEB/forward.png"
-                                                                alt="forward" /></a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="pb-3 sm:pb-4">
-                                                <div class="flex items-center space-x-4">
-
-                                                    <div class="flex-1 min-w-0">
-                                                        <p
-                                                            class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                            Neil Sims
-                                                        </p>
-                                                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                                            Contract Duration:
-                                                        </p>
-                                                    </div>
-                                                    <div
-                                                        class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                        <a href=""><img width="26" height="26"
-                                                                src="https://img.icons8.com/metro/26/EBEBEB/forward.png"
-                                                                alt="forward" /></a>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                           @endforeach
                                         </ul>
                                         <div class="flex justify-end items-center pt-5">
                                             <!-- Button -->
-                                            <button
+                                            <button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/contract'"
                                                 class="p-2 text-sm font-medium text-gray-500 border hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
                                                 type="button">
                                                 See all Moveout Requests
@@ -478,117 +238,39 @@
                                             <h1 class="py-1 font-light text-sm">Total Pending Concerns:</h1>
                                             <span
                                                 class="bg-red-100 text-red-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-red-900 dark:text-red-300">
-                                                12
-
+                                                {{ $pendingConcerns->count() }}
                                             </span>
                                         </div>
 
                                         <ul class="divide-y divide-gray-200 dark:divide-gray-700 shadow p-3">
                                             <!-- limit list to 5 -->
-                                            <li class="pb-3 sm:pb-4">
+                                            @foreach ($pendingConcerns as $totalPendingConcern)
+                                              <li class="pb-3 sm:pb-4">
                                                 <div class="flex items-center space-x-4">
 
                                                     <div class="flex-1 min-w-0">
-                                                        <p
-                                                            class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                            Neil Sims
+                                                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                                            @if($totalPendingConcern->tenant_uuid)
+                                                           {{$totalPendingConcern->tenant->tenant}}
+                                                           @else
+                                                           NA
+                                                           @endif
                                                         </p>
                                                         <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                                            Concern Category:
+                                                            {{ $totalPendingConcern->status }}
                                                         </p>
                                                     </div>
-                                                    <div
-                                                        class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                        <a href=""><img width="26" height="26"
-                                                                src="https://img.icons8.com/metro/26/EBEBEB/forward.png"
+                                                    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                                        <a href="/property/{{ Session::get('property_uuid') }}/concern/{{ $totalPendingConcern->id }}/edit"><img width="26" height="26" src="https://img.icons8.com/metro/26/EBEBEB/forward.png"
                                                                 alt="forward" /></a>
                                                     </div>
                                                 </div>
                                             </li>
-                                            <li class="pb-3 sm:pb-4">
-                                                <div class="flex items-center space-x-4">
-
-                                                    <div class="flex-1 min-w-0">
-                                                        <p
-                                                            class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                            Neil Sims
-                                                        </p>
-                                                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                                            Concern Category:
-                                                        </p>
-                                                    </div>
-                                                    <div
-                                                        class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                        <a href=""><img width="26" height="26"
-                                                                src="https://img.icons8.com/metro/26/EBEBEB/forward.png"
-                                                                alt="forward" /></a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="pb-3 sm:pb-4">
-                                                <div class="flex items-center space-x-4">
-
-                                                    <div class="flex-1 min-w-0">
-                                                        <p
-                                                            class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                            Neil Sims
-                                                        </p>
-                                                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                                            Concern Category:
-                                                        </p>
-                                                    </div>
-                                                    <div
-                                                        class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                        <a href=""><img width="26" height="26"
-                                                                src="https://img.icons8.com/metro/26/EBEBEB/forward.png"
-                                                                alt="forward" /></a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="pb-3 sm:pb-4">
-                                                <div class="flex items-center space-x-4">
-
-                                                    <div class="flex-1 min-w-0">
-                                                        <p
-                                                            class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                            Neil Sims
-                                                        </p>
-                                                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                                            Concern Category:
-                                                        </p>
-                                                    </div>
-                                                    <div
-                                                        class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                        <a href=""><img width="26" height="26"
-                                                                src="https://img.icons8.com/metro/26/EBEBEB/forward.png"
-                                                                alt="forward" /></a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="pb-3 sm:pb-4">
-                                                <div class="flex items-center space-x-4">
-
-                                                    <div class="flex-1 min-w-0">
-                                                        <p
-                                                            class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                            Neil Sims
-                                                        </p>
-                                                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                                            Concern Category:
-                                                        </p>
-                                                    </div>
-                                                    <div
-                                                        class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                                                        <a href=""><img width="26" height="26"
-                                                                src="https://img.icons8.com/metro/26/EBEBEB/forward.png"
-                                                                alt="forward" /></a>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                            @endforeach
                                         </ul>
                                         <div class="flex justify-end items-center pt-5">
                                             <!-- Button -->
-                                            <button
+                                            <button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/concern'"
                                                 class="p-2 text-sm font-medium text-gray-500 border hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
                                                 type="button">
                                                 See all Concerns
@@ -2187,7 +1869,7 @@
                     <div class="flex items-center">
                         <div>
                             <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">{{ $totalActiveConcerns }}</h5>
-                            <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Concerns</p>
+                            <p class="text-sm font-normal text-gray-500 dark:text-gray-400">Active Concerns</p>
                         </div>
 
                     </div>
@@ -2213,7 +1895,7 @@
                     <dl class="flex items-center justify-end">
                         <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal mr-1">Average days to be
                             resolved:</dt>
-                        <dd class="text-gray-900 text-sm dark:text-white font-semibold">1 day/s</dd>
+                        <dd class="text-gray-900 text-sm dark:text-white font-semibold">{{ $averageNumberOfDaysForConcernsToBeResolved }}</dd>
                     </dl>
                 </div>
 

@@ -142,8 +142,7 @@ class OwnerCollectionController extends Controller
                   $request->proof_of_payment,
          );
 
-         app('App\Http\Controllers\Utilities\PointController')->store($property->uuid, auth()->user()->id,
-         Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);
+         app('App\Http\Controllers\Utilities\PointController')->store(Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);
 
          return redirect('/property/'.$property->uuid.'/owner/'.$owner->uuid)->with('success','Changes Saved!');
 

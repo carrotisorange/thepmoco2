@@ -6,8 +6,8 @@
    <div class="p-5">
     <form wire:submit.prevent="storeUnit">
     <div class="mt-2 sm:mt-6">
-            <x-input type="text" wire:model="numberOfUnits" name="numberOfUnits" />
-            <small>Your plan is limited to {{ $unitLimits }} units only.</small>
+            <x-form-input type="number" wire:model="numberOfUnits" name="numberOfUnits" min="1" max="1000"/>
+            <small>Your plan is limited to <b>{{ $unitLimits }}</b> units only.</small>
         </div>
         <div class="mt-5 sm:mt-6">
             <p class="text-center">

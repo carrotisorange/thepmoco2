@@ -65,7 +65,7 @@ class UnitIndexComponent extends Component
             ]);
        }
 
-        app('App\Http\Controllers\Utilities\PointController')->store(Session::get('property_uuid'), auth()->user()->id, $this->numberOfUnits, 5);
+        app('App\Http\Controllers\Utilities\PointController')->store($this->numberOfUnits, 5);
 
         $propertyTenantsCount = Property::find(Session::get('property_uuid'))->tenants->count();
 
@@ -143,7 +143,7 @@ class UnitIndexComponent extends Component
     ->when($this->batch_no, function($query){
       $query->where('batch_no', $this->batch_no);
       })
-      ->get();
+      ->paginate(100);
     }
 
     public function editUnits(){

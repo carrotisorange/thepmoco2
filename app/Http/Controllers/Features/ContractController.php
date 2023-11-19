@@ -155,7 +155,7 @@ class ContractController extends Controller
           app('App\Http\Controllers\Features\TenantController')->update_tenant_status($tenant_uuid, $tenant_status);
 
           //store new point
-          app('App\Http\Controllers\Utilities\PointController')->store($property_uuid, $user_id ,$point, $action_id);
+          app('App\Http\Controllers\Utilities\PointController')->store($point, $action_id);
 
           //store new referral
           if($referral)

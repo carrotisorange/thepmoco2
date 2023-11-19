@@ -8,7 +8,7 @@ use App\Models\{Property,Type,Restriction,UserRestriction};
 
 class UserRestrictionController extends Controller
 {
-    public function store($propertyUuid, $userId){
+    public function storeOrUpdateFeatureRestrictions($propertyUuid){
 
         $propertyTypeId = Property::find($propertyUuid)->type_id;
 
@@ -21,13 +21,13 @@ class UserRestrictionController extends Controller
                 UserRestriction::firstOrCreate(
                 [
                  'feature_id' => (int) $feature,
-                 'user_id' => $userId,
+                 'user_id' => auth()->user()->id,
                  'property_uuid' => $propertyUuid,
                  'restriction_id' => $restrictionId
-            ],
+                ],
                 [
                  'feature_id' => (int) $feature,
-                 'user_id' => $userId,
+                 'user_id' => auth()->user()->id,
                  'property_uuid' => $propertyUuid,
                  'restriction_id' => $restrictionId,
                  'is_approved' => 1,

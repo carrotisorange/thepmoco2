@@ -79,8 +79,7 @@ class CreatePersonnelComponent extends Component
             ]);
 
         }else{
-            app('App\Http\Controllers\Utilities\UserRestrictionController')->store(Session::get('property_uuid'),
-            $user->id);
+            app('App\Http\Controllers\Utilities\UserRestrictionController')->storeOrUpdateFeatureRestrictions(Session::get('property_uuid'));
             app('App\Http\Controllers\Auth\UserController')->send_email($this->role_id, $this->email, $this->email, $password);
     }
 

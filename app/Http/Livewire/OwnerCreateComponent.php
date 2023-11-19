@@ -121,7 +121,7 @@ class OwnerCreateComponent extends Component
                 }
 
                 //method to create a new point
-                app('App\Http\Controllers\Utilities\PointController')->store(Session::get('property_uuid'), auth()->user()->id,4, 1);
+                app('App\Http\Controllers\Utilities\PointController')->store(4, 1);
 
                 return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/owner/'.$owner_uuid.'/deed_of_sale/create')
                 ->with('success', 'Changes Saved!');

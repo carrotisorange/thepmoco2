@@ -102,6 +102,7 @@
             </div>
             @endif
         </div>
+
         <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                 <div class="mb-5 mt-2 relative overflow-hidden ring-opacity-5">
@@ -190,6 +191,7 @@
                         </div>
                     </div>
                     @else
+                    {{ $units->links() }}
                         @if($view === 'thumbnail')
                         <div class="max-w-2xl mx-auto py-8 px-4 sm:px-6 lg:max-w-7xl lg:px-8 mb-24">
                             <div class="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-6">

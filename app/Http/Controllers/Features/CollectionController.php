@@ -42,7 +42,7 @@ class CollectionController extends Controller
     {
         return Collection::getAll(Session::get('property_uuid'), $status,$groupBy);
     }
-    
+
     public function getLatestAr()
     {
         return Property::find(Session::get('property_uuid'))->collections()->posted()->withTrashed()->max('ar_no')+1;
@@ -254,7 +254,7 @@ class CollectionController extends Controller
          );
 
 
-         app('App\Http\Controllers\Utilities\PointController')->store($property->uuid, auth()->user()->id, Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);
+         app('App\Http\Controllers\Utilities\PointController')->store(Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);
 
          $contract_status = Tenant::find($tenant->uuid)->bills->where('status', '!=','paid')->where('description','movein charges');
 

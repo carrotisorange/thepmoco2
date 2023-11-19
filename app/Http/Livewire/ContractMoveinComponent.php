@@ -74,7 +74,7 @@ class ContractMoveinComponent extends Component
             app('App\Http\Controllers\Features\TenantController')->update_tenant_status($this->contract_details->tenant->uuid,'active');
 
             //store new point
-            app('App\Http\Controllers\Utilities\PointController')->store(Session::get('property_uuid'), auth()->user()->id,4, 1);
+            app('App\Http\Controllers\Utilities\PointController')->store(4, 1);
 
             if($this->sendContractToTenant)
             {

@@ -6,6 +6,7 @@ use Livewire\Component;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 use DB;
+use Session;
 
 class PropertyCreateComponent extends Component
 {
@@ -65,18 +66,19 @@ class PropertyCreateComponent extends Component
 
             DB::transaction(function () use ($validatedData){
 
-
                $new_property = app('App\Http\Controllers\PropertyController')->store($validatedData, $this->type_id);
 
                app('App\Http\Controllers\Utilities\UserPropertyController')->store($new_property->uuid->toString(), auth()->user()->id, 0, 1, 5);
 
-               app('App\Http\Controllers\Utilities\UserRestrictionController')->store($new_property->uuid->toString(), auth()->user()->id);
+               app('App\Http\Controllers\Utilities\UserRestrictionController')->storeOrUpdateFeatureRestrictions($new_property->uuid->toString());
 
                app('App\Http\Controllers\Utilities\PropertyParticularController')->store($new_property->uuid->toString());
 
                app('App\Http\Controllers\Utilities\RoleController')->store($new_property->uuid->toString());
 
-               app('App\Http\Controllers\Utilities\PointController')->store($new_property->uuid->toString(), auth()->user()->id, 50, 6);
+               Session::put('property_uuid',$new_property->uuid->toString());
+
+               app('App\Http\Controllers\Utilities\PointController')->store(50, 6);
 
                app('App\Http\Controllers\PropertyController')->storePropertySession($new_property->uuid->toString());
 

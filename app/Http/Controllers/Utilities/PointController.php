@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Utilities;
 
 use App\Http\Controllers\Controller;
 use App\Models\{Point,User};
+use Session;
 
 class PointController extends Controller
 {
@@ -16,13 +17,13 @@ class PointController extends Controller
         ]);
     }
 
-    public function store($property_uuid, $user_id, $point, $action_id)
+    public function store($point, $action_id)
     {
           Point::create([
-          'user_id' => $user_id,
-          'point' => $point,
-          'action_id' => $action_id,
-          'property_uuid' => $property_uuid
+            'user_id' => auth()->user()->id,
+            'point' => $point,
+            'action_id' => $action_id,
+            'property_uuid' => Session::get('property_uuid')
           ]);
     }
 }
