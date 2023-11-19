@@ -156,7 +156,7 @@
                                         </div>
 
                                         <ul class="divide-y divide-gray-200 dark:divide-gray-700 shadow p-3">
-                                            @foreach($paymentRequests as $paymentRequest)
+                                            @foreach($paymentRequests->take(5) as $paymentRequest)
                                             <li class="pb-3 sm:pb-4">
                                                 <div class="flex items-center space-x-4">
 
@@ -202,7 +202,7 @@
 
                                         <ul class="divide-y divide-gray-200 dark:divide-gray-700 shadow p-3">
                                             <!-- limit list to 5 -->
-                                           @foreach ($pendingMoveoutContracts as $pendingMoveoutContract)
+                                           @foreach ($pendingMoveoutContracts->take(5) as $pendingMoveoutContract)
                                             <li class="pb-3 sm:pb-4">
                                                 <div class="flex items-center space-x-4">
 
@@ -244,7 +244,7 @@
 
                                         <ul class="divide-y divide-gray-200 dark:divide-gray-700 shadow p-3">
                                             <!-- limit list to 5 -->
-                                            @foreach ($pendingConcerns as $totalPendingConcern)
+                                            @foreach ($pendingConcerns->take(5) as $totalPendingConcern)
                                               <li class="pb-3 sm:pb-4">
                                                 <div class="flex items-center space-x-4">
 
