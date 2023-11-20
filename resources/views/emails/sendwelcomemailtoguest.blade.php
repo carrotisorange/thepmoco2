@@ -2,13 +2,11 @@
 
 <b>{{ Session::get('property') }}</b>
 <br>
-{{-- # Dear Mr / Mrs {{ $details['guest'] }}, --}}
 {{ Carbon\Carbon::now()->format('M d, Y') }}
 <br>
 <h1 style="text-align: center">Booking Voucher</h1>
 <br>
-Thank you for choosing {{ Session::get('property') }}. It is our pleasure to confirm
-the following reservation.
+Thank you for choosing {{ Session::get('property') }}. It is our pleasure to confirm the following reservation.
 
 <br><br>
 

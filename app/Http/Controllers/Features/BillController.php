@@ -72,9 +72,16 @@ class BillController extends Controller
        return json_encode($newFormatData);
     }
 
+    public function showDelinquents(){
+
+        return view('features.bills.delinquents',[
+            'delinquents' => $this->getDelinquentTenants()
+        ]);
+    }
+
     public function getDelinquentTenants(){
         return Bill::join('tenants', 'bills.tenant_uuid', 'tenants.uuid')
-        ->select(DB::raw('sum(bill) as totalBill, tenant, email'))
+        ->select(DB::raw('sum(bill) as totalBill, tenant, email', 'tenant_uuid'))
         ->where('bills.property_uuid',Session::get('property_uuid'))
         ->whereMonth('bills.start','<=', Carbon::now()->subMonth()->month)
         ->where('bills.status', 'unpaid')

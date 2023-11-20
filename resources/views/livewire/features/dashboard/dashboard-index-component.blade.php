@@ -1500,10 +1500,10 @@
 
             <div class="flex justify-end items-center pt-5">
                 <!-- Button -->
-                <button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/bill'"
+                <button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/bill/delinquents'"
                     class="p-2 text-sm font-medium text-gray-500 border hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
                     type="button">
-                    See all Bills
+                    See all delinquents
                 </button>
             </div>
 

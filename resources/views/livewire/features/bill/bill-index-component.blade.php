@@ -20,20 +20,16 @@
                         </li>
                     </ul>
                 </div>
-                <x-button wire:click="viewDelinquents" wire.loading.remove type="button">
-                    @if($filter_bill_to === 'delinquent')
-                    View All
-                    @else
+                <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/bill/delinquents'">
                     View Delinquents
-                    @endif
                 </x-button>
 
                 @if($view === 'listView')
-                <x-button wire:click="changeView('agingSummaryView')" wire.loading.remove type="button"> View Aging
+                <x-button wire:click="changeView('agingSummaryView')"> View Aging
                     Summary
                 </x-button>
                 @else
-                <x-button wire:click="changeView('listView')" wire.loading.remove type="button"> View List
+                <x-button wire:click="changeView('listView')"> View List
                 </x-button>
                 @endif
             </div>
