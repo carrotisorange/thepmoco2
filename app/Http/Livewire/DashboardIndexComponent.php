@@ -73,7 +73,7 @@ class DashboardIndexComponent extends Component
         $collectionBarValues = json_encode($incomeBarValues->pluck('total_collection'));
 
         if($postedUnpaidBills > 0){
-            $collectionRate = number_format(($postedPaidBills/$postedUnpaidBills)*100,2).'%';
+            $collectionRate = number_format(($postedPaidBills/$postedBills)*100,2).'%';
         }else{
             $collectionRate = "NA";
         }
