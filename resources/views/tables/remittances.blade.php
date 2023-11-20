@@ -90,7 +90,7 @@
             <td class="sticky-col first-col">
                 @if($remittance->unit_uuid)
                     <x-link-component link="/property/{{ $remittance->property_uuid }}/unit/{{ $remittance->unit_uuid }}/remittances">
-                        {{ Str::limit(App\Models\Unit::find($remittance->unit_uuid)->unit,20) }}
+                        {{ Str::limit($remittance->unit->unit,20) }}
                     </x-link-component>
                 @endif
             </td>
@@ -101,7 +101,7 @@
             <td class="sticky-col fifth-col">
                 @if($remittance->owner_uuid)
                     <x-link-component link="/property/{{ $remittance->property_uuid }}/owner/{{ $remittance->owner_uuid }}">
-                        {{ Str::limit(App\Models\Owner::find($remittance->owner_uuid)->owner,20) }}
+                        {{ Str::limit($remittance->owner->owner,20) }}
                     </x-link-component>
                 @else
                     NA
@@ -114,7 +114,7 @@
                 @if($remittance->tenant_uuid)
                <a target="_blank" title="tenant" class="text-blue-500 text-decoration-line: underline"
                     href="/property/{{ $remittance->property_uuid }}/tenant/{{ $remittance->tenant_uuid }}">
-                  {{ Str::limit(App\Models\Tenant::find($remittance->tenant_uuid)->tenant,20) }} </a>
+                  {{ Str::limit($remittance->payee->tenant,20) }} </a>
                 @else
                 NA
                 @endif
@@ -122,7 +122,7 @@
             <td class="sticky-col tenth-col">
                 @if($remittance->guest_uuid)
                     <x-link-component link="/property/{{ $remittance->property_uuid }}/guest/{{ $remittance->guest_uuid }}">
-                       {{ Str::limit(App\Models\Guest::find($remittance->guest_uuid)->guest,20) }}
+                       {{ Str::limit($remittance->guest->guest,20) }}
                     </x-link-component>
                 @else
                     NA

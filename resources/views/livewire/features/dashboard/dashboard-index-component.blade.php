@@ -1,6 +1,3 @@
-@section('scripts')
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-@endsection
 @section('styles')
 <style>
     .animated {
@@ -45,6 +42,9 @@
         }
     }
 </style>
+@endsection
+@section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 @endsection
 <div class="px-10">
     <div class="pt-10 block lg:flex justify-between">
