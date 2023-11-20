@@ -24,9 +24,13 @@ class Remittance extends Model
         return $this->belongsTo(Owner::class)->withDefault();
     }
 
-    public function payee()
+    public function tenant()
     {
         return $this->belongsTo(Tenant::class)->withDefault();
+    }
+
+    public function guest(){
+        return $this->belongsTo(Guest::class)->withDefault();
     }
 
     public function remittance(){

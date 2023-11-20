@@ -43,15 +43,15 @@
             <x-td>
                 @if($collection->tenant_uuid)
                     <x-link-component link="/property/{{ $collection->property_uuid }}/tenant/{{ $collection->tenant_uuid }}">
-                    {{ Str::limit($collection->tenant->tenant,20) }} (T)
+                    {{ $collection->tenant->tenant }}
                     </x-link-component>
                 @elseif($collection->owner_uuid)
                     <x-link-component link="/property/{{ $collection->property_uuid }}/owner/{{ $collection->owner_uuid }}">
-                        {{ Str::limit($collection->owner->owner,20) }} (O)
+                       {{ $bill->owner->owner }}
                     </x-link-component>
                 @elseif($collection->guest_uuid)
                     <x-link-component link="/property/{{ $collection->property_uuid }}/guest/{{ $collection->guest_uuid }}">
-                        {{ Str::limit($collection->guest->guest,20) }} (G)
+                        {{ $bill->guest->guest }}
                     </x-link-component>
                 @else
                     NA

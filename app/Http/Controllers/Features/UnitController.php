@@ -43,29 +43,31 @@ class UnitController extends Controller
 
     public function store($numberOfUnitsToBeCreated){
 
-        if(($numberOfUnitsToBeCreated <= 0 || !$numberOfUnitsToBeCreated)){
-        return redirect(url()->previous())->with('error', 'Cannot accept value less than 0 or null.');
-        }
+        $batchNo = Str::random(8);
 
-        $batch_no = Str::random(8);
+        $planUnitLimit =  Plan::find(auth()->user()->plan_id)->description;
 
-        $plan_unit_limit =  Plan::find(auth()->user()->plan_id)->description;
+        $propertyUnitCount = app('App\Http\Controllers\Features\UnitController')->get()->count() + 1;
 
-        $total_unit_created = Property::find(Session::get('property_uuid'))->units()->count() + 1;
-
-        if($plan_unit_limit <= $total_unit_created){
-           return redirect(url()->previous())->with('error', 'You have reached your plan unit limit.');
+        if($planUnitLimit <= $propertyUnitCount)
+        {
+            return redirect(url()->previous())->with('error', 'You have reached your plan unit limit.');
         }
 
         for($i=$numberOfUnitsToBeCreated; $i>=1; $i--){
+
+            if($planUnitLimit < $propertyUnitCount) {
+                return;
+            }
+
             Unit::create([
                 'uuid' => Str::uuid(),
-                'unit' => 'Unit '.$total_unit_created++,
+                'unit' => 'Unit '.$propertyUnitCount++,
                 'building_id' => '1',
                 'floor_id' => '1',
                 'property_uuid' => Session::get('property_uuid'),
                 'user_id' => auth()->user()->id,
-                'batch_no' => $batch_no
+                'batch_no' => $batchNo
             ]);
         }
     }
@@ -89,7 +91,7 @@ class UnitController extends Controller
         ->pluck('unit_count');
     }
 
-      public function show(Property $property, Unit $unit, $action=null)
+    public function show(Property $property, Unit $unit, $action=null)
     {
         $featureId = 3;
 

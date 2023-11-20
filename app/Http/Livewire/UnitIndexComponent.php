@@ -21,24 +21,6 @@ class UnitIndexComponent extends Component
     public $sortBy;
     public $orderBy;
 
-    public $numberOfUnitsToBeCreated = 1;
-
-    public function storeUnit(){
-
-        app('App\Http\Controllers\Features\UnitController')->store($this->numberOfUnitsToBeCreated);
-
-        app('App\Http\Controllers\Utilities\PointController')->store($this->numberOfUnitsToBeCreated, 5);
-
-        $propertyTenantsCount = app('App\Http\Controllers\Features\TenantController')->get()->count();
-
-        if($propertyTenantsCount == 0){
-            return redirect('/property/'.Session::get('property_uuid').'/tenant/')->with('success', 'Changes Saved!');
-        }else{
-            return redirect('/property/'.Session::get('property_uuid').'/unit/')->with('success', 'Changes Saved!');
-        }
-
-    }
-
     public function changeView($value)
     {
         $this->view = $value;
@@ -82,7 +64,6 @@ class UnitIndexComponent extends Component
         $statuses = app('App\Http\Controllers\Features\UnitController')->get('','status_id');
         $categories = app('App\Http\Controllers\Features\UnitController')->get('','category_id');
         $buildings = app('App\Http\Controllers\Features\UnitController')->get('','building_id');
-        $unitLimits = Plan::find(auth()->user()->plan_id)->description;
 
         return view('livewire.features.unit.unit-index-component', compact(
             'units',
@@ -91,7 +72,6 @@ class UnitIndexComponent extends Component
             'buildings',
             'steps',
             'propertyUnitCount',
-            'unitLimits'
         ));
     }
 }

@@ -88,45 +88,31 @@
         <div wire:key="remittance-field-{{ $remittance->id }}">
         <tr>
             <td class="sticky-col first-col">
-                @if($remittance->unit_uuid)
-                    <x-link-component link="/property/{{ $remittance->property_uuid }}/unit/{{ $remittance->unit_uuid }}/remittances">
-                        {{ Str::limit($remittance->unit->unit,20) }}
-                    </x-link-component>
-                @endif
+                <x-link-component link="/property/{{ $remittance->property_uuid }}/unit/{{ $remittance->unit_uuid }}/remittances">
+                   {{ $remittance->unit->unit }}
+                </x-link-component>
             </td>
             <td class="sticky-col second-col">{{ Carbon\Carbon::parse($remittance->created_at)->format('M d, Y') }}</td>
             <td class="sticky-col third-col">{{ $remittance->ar_no }}</td>
             <td class="sticky-col fourth-col">{{ $remittance->particular->particular }}</td>
 
             <td class="sticky-col fifth-col">
-                @if($remittance->owner_uuid)
-                    <x-link-component link="/property/{{ $remittance->property_uuid }}/owner/{{ $remittance->owner_uuid }}">
-                        {{ Str::limit($remittance->owner->owner,20) }}
-                    </x-link-component>
-                @else
-                    NA
-                @endif
+                <x-link-component link="/property/{{ $remittance->property_uuid }}/owner/{{ $remittance->owner_uuid }}">
+                    {{ $remittance->owner->owner }}
+                </x-link-component>
             </td>
             <td class="sticky-col sixth-col"> {{ $remittance->bank_name }}</td>
             <td class="sticky-col seventh-col"> {{ $remittance->account_name }}</td>
             <td class="sticky-col eight-col"> {{ $remittance->account_number }}</td>
             <td class="sticky-col ninth-col">
-                @if($remittance->tenant_uuid)
-               <a target="_blank" title="tenant" class="text-blue-500 text-decoration-line: underline"
-                    href="/property/{{ $remittance->property_uuid }}/tenant/{{ $remittance->tenant_uuid }}">
-                  {{ Str::limit($remittance->payee->tenant,20) }} </a>
-                @else
-                NA
-                @endif
+                <x-link-component link="/property/{{ $remittance->property_uuid }}/tenant/{{ $remittance->tenant_uuid }}">
+                    {{ $remittance->tenant->tenant }}
+                </x-link-component>
             </td>
             <td class="sticky-col tenth-col">
-                @if($remittance->guest_uuid)
-                    <x-link-component link="/property/{{ $remittance->property_uuid }}/guest/{{ $remittance->guest_uuid }}">
-                       {{ Str::limit($remittance->guest->guest,20) }}
-                    </x-link-component>
-                @else
-                    NA
-                @endif
+                <x-link-component link="/property/{{ $remittance->property_uuid }}/guest/{{ $remittance->guest_uuid }}">
+                   {{ $remittance->guest->guest }}
+                </x-link-component>
             </td>
             <td>{{ number_format($remittance->monthly_rent, 2) }}</td>
             <td>{{ number_format($remittance->net_rent, 2) }}</td>

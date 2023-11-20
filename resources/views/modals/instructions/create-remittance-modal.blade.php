@@ -45,7 +45,7 @@
                 </x-button>
 
                 @else
-                <x-button class="w-full" type="button" wire:click="redirectToOwnerPage">
+                <x-button class="w-full" wire:click="redirectToOwnerPage">
                     Add a collection
                 </x-button>
                 @endif

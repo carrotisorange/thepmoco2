@@ -8,7 +8,7 @@
             </div>
             @if($propertyUnitCount)
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <x-button data-modal-toggle="instructions-create-unit-modal">New unit </x-button>
+                <x-button data-modal-toggle="create-unit-modal">New unit </x-button>
                 @if($view === 'list')
                 <x-button wire:click="changeView('thumbnail')">
                     View as Thumbnail
@@ -85,9 +85,9 @@
                             <option value="desc">descending</option>
                         </x-form-select>
                     </div>
-                 
+
                 </div>
-              
+
             </div>
             @endif
         </div>
@@ -174,7 +174,7 @@
                         </h3>
                         <p class="mt-1 text-sm text-gray-500">1 down, 3 more to go...</p>
                         <div class="mt-6">
-                            <x-button data-modal-toggle="instructions-create-unit-modal">
+                            <x-button data-modal-toggle="create-unit-modal">
                                 New {{ucfirst(Route::current()->getName())}}
                             </x-button>
                         </div>
@@ -218,6 +218,6 @@
                 </div>
             </div>
         </div>
-        @include('modals.instructions.create-unit-modal')
+        @livewire('unit-create-component')
     </div>
 </div>
