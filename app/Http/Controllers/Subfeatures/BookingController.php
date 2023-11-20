@@ -46,4 +46,3 @@ class BookingController extends Controller
        return Mail::to($email)->send(new SendWelcomeMailToGuest($details));
     }
 }
-
