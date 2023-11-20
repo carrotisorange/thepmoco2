@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+
+namespace App\Http\Controllers\Subfeatures;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -19,14 +21,13 @@ class BookingController extends Controller
              'status' => 'required'
         ]);
 
-       Booking::where('uuid', $booking->uuid)->update($validated);
+        Booking::where('uuid', $booking->uuid)->update($validated);
 
         return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 
-    public function sendWelcomeMailToGuest($uuid, $guest,$movein_at,
-    $moveout_at,$unit,$price,$email,$no_of_children,$no_of_senior_citizens,$no_of_pwd,$remarks, $no_of_guests)
-      {
+    public function sendWelcomeMailToGuest($uuid, $guest,$movein_at, $moveout_at,$unit,$price,$email,$no_of_children,$no_of_senior_citizens,$no_of_pwd,$remarks, $no_of_guests)
+    {
         $details =[
           'uuid' => $uuid,
           'guest' => $guest,
@@ -42,6 +43,6 @@ class BookingController extends Controller
           'no_of_guests' => $no_of_guests
         ];
 
-         Mail::to($email)->send(new SendWelcomeMailToGuest($details));
+       return Mail::to($email)->send(new SendWelcomeMailToGuest($details));
     }
 }
