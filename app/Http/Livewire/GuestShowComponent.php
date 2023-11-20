@@ -5,7 +5,9 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Illuminate\Validation\Rule;
 use DB;
+use App\Mail\SendWelcomeMailToGuest;
 use Session;
+use Illuminate\Support\Facades\Mail;
 use App\Models\{Guest,Property,AcknowledgementReceipt,AdditionalGuest,Bill,Collection,Booking,Unit,Feature};
 
 class GuestShowComponent extends Component
@@ -118,26 +120,26 @@ class GuestShowComponent extends Component
             'price' => 'nullable'
         ]);
 
-        $validated['uuid'] = app('App\Http\Controllers\Features\PropertyController')->generate_uuid();
+        $validated['uuid'] = app('App\Http\Controllers\PropertyController')->generate_uuid();
         $validated['property_uuid'] = Session::get('property_uuid');
         $validated['guest_uuid'] = $this->guest_details->uuid;
 
         $booking = Booking::create($validated);
 
-        app('App\Http\Controllers\BookingController')->sendWelcomeMailToGuest(
-            $booking->uuid,
-            $booking->guest,
-            $booking->movein_at,
-            $booking->moveout_at,
-            $booking->unit->unit,
-            $booking->price,
-            $booking->email,
-            $booking->no_of_children,
-            $booking->no_of_senior_citizens,
-            $booking->no_of_pwd,
-            $booking->remarks,
-            $booking->no_of_guests
-        );
+        app('App\Http\Controllers\Subfeatures\BookingController')->sendWelcomeMailToGuest(
+          $booking->uuid,
+          $booking->guest->guest,
+          $booking->movein_at,
+          $booking->moveout_at,
+          $booking->unit->unit,
+          $booking->price,
+          $booking->email,
+          $booking->no_of_children,
+          $booking->no_of_senior_citizens,
+          $booking->no_of_pwd,
+          $booking->remarks,
+          $booking->no_of_guests
+          );
 
         return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
@@ -169,7 +171,7 @@ class GuestShowComponent extends Component
           ->orderBy('ar_no', 'desc')
           ->get();
 
-        return view('livewire.guest-show-component',[
+        return view('livewire.features.guest.guest-show-component',[
             'units' => Property::find(Session::get('property_uuid'))->units->where('rent_duration', 'daily'),
             'bills' => Guest::find($this->guest_details->uuid)->bills()->orderBy('created_at', 'desc')->get(),
             'collections' => $collections,
