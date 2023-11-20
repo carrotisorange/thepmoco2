@@ -12,7 +12,7 @@ Thank you for choosing {{ Session::get('property') }}. It is our pleasure to con
 @component('mail::table')
 | Reservation Details | | Policies | | |
 | --------------------|-------------|--------------|-----------|----------|
-| Confirmation Number | {{ Str::limit($details['uuid'], 8) }} | Room | {{ $details['unit'] }}
+| Confirmation Number | {{ Str::limit($details['uuid'], 8) }} | Unit | {{ $details['unit'] }}
 | Check-in date | {{ Carbon\Carbon::parse($details['checkin_date'])->format('M d, Y') }} | Check-In Time | 2pm |
 | Check-out date | {{ Carbon\Carbon::parse($details['checkout_date'])->format('M d, Y') }} | Check-Out Time | 12NN |
 | Guest Name | Lead Guest: {{ $details['guest'] }} |
