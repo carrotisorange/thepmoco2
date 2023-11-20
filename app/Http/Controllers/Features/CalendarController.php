@@ -7,46 +7,45 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Carbon\Carbon;
 use App\Models\{Property, Bill, Guest, Unit, Booking};
-
+use App\Mail\SendWelcomeMailToGuest;
+use Illuminate\Support\Facades\Mail;
 
 class CalendarController extends Controller
 {
     public function index(Property $property){
 
-        $featureId = 4;
+        $featureId = 4; //refer to the features table
 
-        $restrictionId = 2;
+        $restrictionId = 2; //refer to the restrictions table
 
-        app('App\Http\Controllers\Features\PropertyController')->store_property_session($property->uuid);
+        app('App\Http\Controllers\PropertyController')->storePropertySession($property->uuid);
 
-        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
+        app('App\Http\Controllers\Utilities\UserPropertyController')->isUserAuthorized();
+
+        if(!app('App\Http\Controllers\Utilities\UserRestrictionController')->isFeatureAuthorized($featureId, $restrictionId)){
             return abort(403);
         }
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,$restrictionId,$featureId);
+        app('App\Http\Controllers\PropertyController')->storeUnitStatistics();
 
-        app('App\Http\Controllers\Features\PropertyController')->save_unit_stats($property->uuid);
-
-        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($featureId,$restrictionId);
 
         $events = array();
 
-
-        $bookings = Booking::where('property_uuid',$property->uuid)->where('status', '!=', 'cancelled')->get();
+        $bookings = Property::find($property->uuid)->bookings->where('status', '!=','cancelled');
 
 
         foreach($bookings as $booking){
             $events[] = [
-                'id' => $booking->guest_uuid,
-                'title' => Guest::where('uuid',$booking->guest_uuid)->value('guest').' @ '.Unit::where('uuid',$booking->unit_uuid)->value('unit'),
-                // 'unit' => $booking->unit->unit,
+                'id' => $booking->guest->uuid,
+                'title' => $booking->guest->guest.' @ '.$booking->unit->unit,
                 'start' => $booking->movein_at,
                 'end' => $booking->moveout_at,
                 'status' => $booking->status
             ];
         }
 
-        return view('properties.calendars.index',[
+        return view('features.calendars.index',[
             'property' => $property,
             'units' => Property::find($property->uuid)->units,
             'events' => $events,
@@ -73,15 +72,14 @@ class CalendarController extends Controller
 
         // try{
 
-        //     DB::transaction(function () use ($request, $validatedData){
+            // DB::transaction(function () use ($request, $validatedData){
 
             $start = strtotime($request->movein_at); // convert to timestamps
             $end = strtotime($request->moveout_at); // convert to timestamps
             $days = (int)(($end - $start)/86400);
             $price = (Unit::find($request->unit_uuid)->transient_rent * $days) - Unit::find($request->unit_uuid)->transient_discount;
-            $guest_uuid = app('App\Http\Controllers\Features\PropertyController')->generate_uuid();
-            $booking_uuid = app('App\Http\Controllers\Features\PropertyController')->generate_uuid();
-
+            $guest_uuid = app('App\Http\Controllers\PropertyController')->generate_uuid();
+            $booking_uuid = app('App\Http\Controllers\PropertyController')->generate_uuid();
             $guest = $this->store_guest(
                 $guest_uuid,
                 $request->guest,
@@ -109,25 +107,18 @@ class CalendarController extends Controller
                 $request->no_of_pwd,
                 $request->remarks
             );
-
             $particular_id = 1; //rent
 
-            $this->store_bill($request->property_uuid, $request->unit_uuid, $particular_id, $request->movein_at, $request->moveout_at, $price, $guest->uuid);
+            $this->store_bill(
+                $request->property_uuid,
+                $request->unit_uuid,
+                $particular_id, $request->movein_at,
+                $request->moveout_at,
+                $price,
+                $guest->uuid
+            );
 
-        app('App\Http\Controllers\BookingController')->sendWelcomeMailToGuest(
-            $booking->uuid,
-            $booking->guest->guest,
-            $booking->movein_at,
-            $booking->moveout_at,
-            $booking->unit->unit,
-            $booking->price,
-            $booking->email,
-            $booking->no_of_children,
-            $booking->no_of_senior_citizens,
-            $booking->no_of_pwd,
-            $booking->remarks,
-            $booking->no_of_guests
-        );
+            $this->send_mail_to_guest($guest, $booking);
 
             $this->update_unit($request->unit_uuid);
 
@@ -188,9 +179,29 @@ class CalendarController extends Controller
         return $guest;
     }
 
+                 public function send_mail_to_guest($guest, $booking)
+                 {
+                 $details =[
+                 'uuid' => $guest->uuid,
+                 'guest' => $guest->guest,
+                 'checkin_date' => $guest->movein_at,
+                 'checkout_date' => $guest->moveout_at,
+                 'unit' => $guest->unit->unit,
+                 'price' => $guest->price,
+                 'email' => $guest->email,
+                 'no_of_children' => $booking->no_of_children,
+                 'no_of_senior_citizens' => $booking->no_of_senior_citizens,
+                 'no_of_pwd' => $booking->no_of_pwd,
+                 'remarks' => $booking->remarks,
+                 'no_of_guests' => $booking->no_of_guests
+                 ];
+
+                 Mail::to($guest->email)->send(new SendWelcomeMailToGuest($details));
+                 }
+
     public function store_bill($property_uuid, $unit_uuid, $particular_id, $start, $end, $bill, $guest_uuid){
          Bill::create([
-            'bill_no' => app('App\Http\Controllers\Features\BillController')->getLatestBillNo($property_uuid),
+            'bill_no' => app('App\Http\Controllers\Features\BillController')->getLatestBillNo(),
             'unit_uuid' => $unit_uuid,
             'particular_id' => $particular_id,
             'start' => $start,
