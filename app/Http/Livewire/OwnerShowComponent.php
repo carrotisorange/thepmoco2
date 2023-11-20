@@ -2,13 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use Livewire\Component;
 use Illuminate\Support\Facades\Hash;
 use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
 use DB;
 use Session;
 use Carbon\Carbon;
-use Livewire\Component;
 use App\Models\{AcknowledgementReceipt,User,Representative,Owner,Bill,DeedOfSale,Spouse,Collection,Feature};
 
 class OwnerShowComponent extends Component
@@ -126,7 +126,7 @@ class OwnerShowComponent extends Component
             return redirect(url()->previous())->with('error', 'Access already exists!');
         }
 
-        $temporary_password =  app('App\Http\Controllers\UserController')->generate_temporary_username();
+        $temporary_password =  app('App\Http\Controllers\Auth\UserController')->generate_temporary_username();
 
         $user_id = User::updateOrCreate(
             [
@@ -162,14 +162,14 @@ class OwnerShowComponent extends Component
                 'account_owner_id' => $user_id,
             ]);
         }else{
-            app('App\Http\Controllers\UserController')->send_email($user_id->role_id, $user_id->email, $user_id->username, $temporary_password);
+            app('App\Http\Controllers\Auth\UserController')->send_email($user_id->role_id, $user_id->email, $user_id->username, $temporary_password);
         }
 
         $featureId = 8;
 
         $restrictionId = 3;
 
-        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,$restrictionId ,$featureId);
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($restrictionId ,$featureId);
 
 
         return redirect('/property/'.Session::get('property_uuid').'/owner/'.$this->owner_details->uuid)->with('success', 'Changes Saved!');
@@ -177,8 +177,6 @@ class OwnerShowComponent extends Component
 
     public function removeCredentials()
     {
-
-
         User::where('email', $this->owner_details->email)
         ->delete();
 
@@ -186,7 +184,7 @@ class OwnerShowComponent extends Component
 
         $restrictionId = 4;
 
-        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,$restrictionId, $featureId);
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($restrictionId, $featureId);
 
         session()->flash('success', 'Changes Saved!');
     }
@@ -215,7 +213,7 @@ class OwnerShowComponent extends Component
     {
 
 
-        $new_password = app('App\Http\Controllers\UserController')->generate_temporary_username();
+        $new_password = app('App\Http\Controllers\Auth\UserController')->generate_temporary_username();
 
         $user_id = User::where('owner_uuid',$this->owner_details->uuid)->pluck('id')[0];
 
@@ -226,7 +224,7 @@ class OwnerShowComponent extends Component
             'password' => Hash::make($new_password)
         ]);
 
-        app('App\Http\Controllers\UserController')->send_email($user->role_id,$user->email, $user->username, $new_password);
+        app('App\Http\Controllers\Auth\UserController')->send_email($user->role_id,$user->email, $user->username, $new_password);
 
         session()->flash('success','Changes Saved!');
     }
@@ -261,10 +259,10 @@ class OwnerShowComponent extends Component
 
         $ownerSubfeaturesArray = explode(",", $ownerSubfeatures);
 
-        return view('livewire.owner-show-component',[
-           'cities' => app('App\Http\Controllers\CityController')->index($this->province_id),
-           'provinces' => app('App\Http\Controllers\ProvinceController')->index($this->country_id),
-           'countries' => app('App\Http\Controllers\CountryController')->index(),
+        return view('livewire.features.owner.owner-show-component',[
+           'cities' => app('App\Http\Controllers\Utilities\CityController')->index($this->province_id),
+           'provinces' => app('App\Http\Controllers\Utilities\ProvinceController')->index($this->country_id),
+           'countries' => app('App\Http\Controllers\Utilities\CountryController')->index(),
             'representatives' => app('App\Http\Controllers\Features\OwnerController')->show_owner_representatives($this->owner_details->uuid),
             'banks' => app('App\Http\Controllers\Features\OwnerController')->show_owner_banks($this->owner_details->uuid),
             'spouses' => app('App\Http\Controllers\Features\OwnerController')->show_owner_spouses($this->owner_details->uuid),

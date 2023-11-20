@@ -18,7 +18,7 @@ class UserCreateComponent extends Component
    use WithFileUploads;
 
    use WithPagination;
-   
+
    //personnel fields
    public $role_id;
    public $name;
@@ -114,57 +114,10 @@ class UserCreateComponent extends Component
                 'account_owner_id' => auth()->user()->id,
             ]);
         }else{
-            app('App\Http\Controllers\UserController')->send_email($this->role_id, $this->email, $this->email, $password);
+            app('App\Http\Controllers\Auth\UserController')->send_email($this->role_id, $this->email, $this->email, $password);
         }
 
       return redirect('/property/'.Session::get('property_uuid').'/user');
-
-      // if (User::where('email', $this->email)->exists()) {
-
-      //     $user = User::where('email', $this->email);
-
-      //     if(!$this->isUserExists($user)){
-      //        UserProperty::firstOrCreate([
-      //        'property_uuid' => Session::get('property_uuid'),
-      //        'user_id' => $user->get()->toArray()[0]['id'],
-      //        ]);
-      //     }else{
-      //        session()->flash('error', 'Email is already assigned to this property');
-      //     }
-      // }else{
-      //    try{
-      //       DB::transaction(function (){
-      //          //store a new user
-      //          $user_id =  app('App\Http\Controllers\UserController')->store(
-      //          'unnamed',
-      //          $this->email,
-      //          Str::random(8),
-      //          auth()->user()->id,
-      //          $this->email,
-      //          $this->role_id,
-      //          $this->mobile_number,
-      //          auth()->user()->discount_code,
-      //          auth()->user()->checkout_option,
-      //          auth()->user()->plan_id
-      //    );
-
-      //       $this->set_user_restrictions($user_id);
-
-      //       //store a new user and user property
-      //       app('App\Http\Controllers\UserPropertyController')->store(
-      //          Session::get('property_uuid'),
-      //          $user_id,
-      //          false,
-      //          true
-      //       );
-
-      //    });
-
-      //    }catch(\Exception $e)
-      //    {
-      //       session()->flash('error', $e);
-      //    }
-      // }
 
         if($this->createAnotherPersonnel)
         {
@@ -189,7 +142,7 @@ class UserCreateComponent extends Component
      public function render()
      {
         return view('livewire.user-create-component',[
-         'roles' =>  app('App\Http\Controllers\RoleController')->get_roles(Session::get('property_uuid')),
+         'roles' => app('App\Http\Controllers\Utilities\RoleController')->get_roles(Session::get('property_uuid')),
          'features' => Feature::all(),
         ]);
      }
@@ -198,8 +151,6 @@ class UserCreateComponent extends Component
 
      public function removeUser($id)
      {
-
-
          User::destroy($id);
 
          UserProperty::where('user_id', $id)->delete();

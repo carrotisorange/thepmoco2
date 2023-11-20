@@ -50,7 +50,7 @@ class EditGuardianComponent extends Component
     public function render()
     {
         return view('livewire.edit-guardian-component',[
-            'relationships' => app('App\Http\Controllers\RelationshipController')->index(),
+            'relationships' => app('App\Http\Controllers\Utilities\RelationshipController')->index(),
         ]);
     }
 }

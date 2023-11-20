@@ -26,7 +26,8 @@
                         {{ $contract->tenant->tenant }}
                         @else
                         <x-link-component link="/property/{{ Session::get('property_uuid') }}/tenant/{{ $contract->tenant->uuid }}">
-                          {{ $contract->tenant->tenant }} @if($contract->status === 'active')
+                          {{ $contract->tenant->tenant }}
+                        @if($contract->status === 'active')
                         <span class="px-2 text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                             <i class="fa-solid fa-circle-check"></i>
                         </span>

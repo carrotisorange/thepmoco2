@@ -13,6 +13,19 @@
         </tr>
     </x-table-head-component>
     <x-table-body-component>
+        <tr>
+            <x-td></x-td>
+            <x-td></x-td>
+            <x-td></x-td>
+            <x-td>{{ $utilities->sum('previous_reading') }}/{{ $utilities->sum('current_reading') }}/{{ $utilities->sum('current_consumption') }}</x-td>
+            <x-td></x-td>
+            <x-td>{{ $utilities->sum('min_charge') }}</x-td>
+            <x-td>{{ $utilities->sum('total_amount_due') }}</x-td>
+            <x-td></x-td>
+            <x-td></x-td>
+        </tr>
+    </x-table-body-component>
+    <x-table-body-component>
         @foreach ($utilities as $index => $utility)
         <tr>
             <x-td>{{ $index+1 }}</x-td>
@@ -26,8 +39,7 @@
                 Carbon\Carbon::parse($utility->end_date)->format('M d, y') }}
             </x-td>
             <x-td>
-                {{ number_format($utility->previous_reading, 2) }}/{{ number_format($utility->current_reading, 2) }}/{{
-                number_format($utility->current_consumption, 2) }}
+                {{ number_format($utility->previous_reading, 2) }}/{{ number_format($utility->current_reading, 2) }}/{{ number_format($utility->current_consumption, 2) }}
             </x-td>
             <x-td>
                 {{ number_format($utility->kwh, 2) }}

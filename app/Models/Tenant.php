@@ -37,27 +37,27 @@ class Tenant extends Model
 
     public function barangay()
     {
-        return $this->belongsTo(Barangay::class, 'barangay_id');
+        return $this->belongsTo(Barangay::class, 'barangay_id')->withDefault();
     }
 
     public function city()
     {
-        return $this->belongsTo(City::class, 'city_id');
+        return $this->belongsTo(City::class, 'city_id')->withDefault();
     }
 
     public function province()
     {
-        return $this->belongsTo(Province::class, 'province_id');
+        return $this->belongsTo(Province::class, 'province_id')->withDefault();
     }
 
     public function country()
     {
-        return $this->belongsTo(Country::class, 'country_id');
+        return $this->belongsTo(Country::class, 'country_id')->withDefault();
     }
 
     public function property()
     {
-        return $this->belongsTo(Property::class, 'property_uuid');
+        return $this->belongsTo(Property::class, 'property_uuid')->withDefault();
     }
 
     public function paymentrequests()
@@ -108,4 +108,18 @@ class Tenant extends Model
         // ->orWhere('email','like', '%'.$search.'%')
         // ->orWhere('bill_reference_no','like', '%'.$search.'%');
       }
+
+     public function scopeGetAll($query, $propertyUuid, $status, $groupBy){
+       $results = $query->when($propertyUuid, function($query, $propertyUuid){
+                $query->where('property_uuid', $propertyUuid);
+            })
+            ->when($status, function($query, $status){
+                $query->where('status', $status);
+            })
+            ->when($groupBy, function($query, $groupBy){
+                $query->groupBy($groupBy);
+            })->get();
+
+        return $results;
+    }
 }

@@ -4,6 +4,5 @@
             @livewire('unit-edit-bulk-component', ['property'=> $property, 'batch_no' => $batch_no])
         </div>
     </div>
-    @include('modals.create-unit')
     @include('modals.create-building')
 </x-new-layout>

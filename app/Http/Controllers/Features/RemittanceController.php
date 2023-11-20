@@ -9,17 +9,23 @@ class RemittanceController extends Controller
 {
     public function index(Property $property){
 
-        $featureId = 16;
+        $featureId = 16; //refer to the features table
 
-        $restrictionId = 2;
+        $restrictionId = 2; //refer to the restrictions table
 
-        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
+        app('App\Http\Controllers\PropertyController')->storePropertySession($property->uuid);
+
+        app('App\Http\Controllers\Utilities\UserPropertyController')->isUserAuthorized();
+
+        if(!app('App\Http\Controllers\Utilities\UserRestrictionController')->isFeatureAuthorized($featureId, $restrictionId)){
             return abort(403);
         }
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,$restrictionId,$featureId);
+        app('App\Http\Controllers\PropertyController')->storeUnitStatistics();
 
-        return view('properties.remittances.index',[
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($featureId,$restrictionId);
+
+        return view('features.remittances.index',[
             'property' => $property,
         ]);
     }

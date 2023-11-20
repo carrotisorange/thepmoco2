@@ -6,13 +6,13 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UnitContractController;
 use App\Http\Controllers\UnitDeedOfSalesController;
-use App\Http\Controllers\DeedOfSaleController;
+use App\Http\Controllers\Subfeatures\DeedOfSaleController;
 use App\Http\Controllers\UnitEnrolleeController;
-use App\Http\Controllers\BankController;
+use App\Http\Controllers\Subfeatures\BankController;
 use App\Http\Controllers\UnitConcernController;
 use App\Http\Controllers\UnitInventoryController;
-use App\Http\Controllers\GuardianController;
-use App\Http\Controllers\ReferenceController;
+use App\Http\Controllers\Subfeatures\GuardianController;
+use App\Http\Controllers\Subfeatures\ReferenceController;
 
 use App\Http\Controllers\Features\UnitController;
 use App\Http\Controllers\Features\RemittanceController;

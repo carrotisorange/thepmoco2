@@ -39,7 +39,7 @@ class CreateBillComponent extends Component
       $this->validateOnly($propertyName);
     }
 
-    public function submitButton(){
+    public function storeBill(){
 
         $validated = $this->validate();
 
@@ -47,7 +47,7 @@ class CreateBillComponent extends Component
             $this->bill *=-1;
         }
 
-        $bill_no = app('App\Http\Controllers\Features\BillController')->getLatestBillNo(Session::get('property_uuid'));
+        $bill_no = app('App\Http\Controllers\Features\BillController')->getLatestBillNo();
 
         $validated['bill_no'] = $bill_no;
         $validated['bill'] = $this->bill;
@@ -79,7 +79,7 @@ class CreateBillComponent extends Component
       }
         return view('livewire.create-bill-component',[
             'units' => $units,
-            'particulars' => app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid')),
+            'particulars' => app('App\Http\Controllers\Utilities\PropertyParticularController')->index(Session::get('property_uuid')),
         ]);
     }
 }

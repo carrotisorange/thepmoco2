@@ -54,7 +54,7 @@ class GuestComponent extends Component
        try{
             DB::transaction(function () use ($validatedData){
 
-            $guest_uuid = app('App\Http\Controllers\Features\PropertyController')->generate_uuid();
+            $guest_uuid = app('App\Http\Controllers\PropertyController')->generate_uuid();
 
             app('App\Http\Controllers\Features\GuestController')->store($guest_uuid, $this->unit_uuid, $this->guest, $this->email, $this->mobile_number, $this->movein_at, $this->moveout_at, $this->vehicle_details, $this->plate_number);
 

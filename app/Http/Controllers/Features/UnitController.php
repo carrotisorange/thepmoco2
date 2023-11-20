@@ -6,28 +6,103 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use DB;
+use Illuminate\Support\Str;
 use Session;
-use App\Models\{Unit,Property,Floor,Owner};
-
-
-
-use App\Models\Collection;
+use App\Models\{Unit,Property,Floor,Owner,Collection, Plan};
 
 class UnitController extends Controller
 {
 
-      public function show(Property $property, Unit $unit, $action=null)
+    public function index(Property $property, $batch_no=null, $action=null)
+    {
+        $featureId = 3; //refer to the features table
+
+        $restrictionId = 2; //refer to the restrictions table
+
+        app('App\Http\Controllers\PropertyController')->storePropertySession($property->uuid);
+
+        app('App\Http\Controllers\Utilities\UserPropertyController')->isUserAuthorized();
+
+        if(!app('App\Http\Controllers\Utilities\UserRestrictionController')->isFeatureAuthorized($featureId, $restrictionId)){
+            return abort(403);
+        }
+
+        Session::forget('tenant_uuid');
+
+        Session::forget('owner_uuid');
+
+        app('App\Http\Controllers\PropertyController')->storeUnitStatistics();
+
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($featureId,$restrictionId);
+
+        return view('features.units.index',[
+            'property' => $property,
+            'batch_no' => $batch_no,
+        ]);
+    }
+
+    public function store($numberOfUnitsToBeCreated){
+
+        $batchNo = Str::random(8);
+
+        $planUnitLimit =  Plan::find(auth()->user()->plan_id)->description;
+
+        $propertyUnitCount = app('App\Http\Controllers\Features\UnitController')->get()->count() + 1;
+
+        if($planUnitLimit <= $propertyUnitCount)
+        {
+            return redirect(url()->previous())->with('error', 'You have reached your plan unit limit.');
+        }
+
+        for($i=$numberOfUnitsToBeCreated; $i>=1; $i--){
+
+            if($planUnitLimit < $propertyUnitCount) {
+                return;
+            }
+
+            Unit::create([
+                'uuid' => Str::uuid(),
+                'unit' => 'Unit '.$propertyUnitCount++,
+                'building_id' => '1',
+                'floor_id' => '1',
+                'property_uuid' => Session::get('property_uuid'),
+                'user_id' => auth()->user()->id,
+                'batch_no' => $batchNo
+            ]);
+        }
+    }
+
+    public function getOccupancyPieChartValues(){
+        return Unit::where('property_uuid', Session::get('property_uuid'))
+        ->select(DB::raw('count(*) as unit_count, status'))
+        ->join('statuses', 'units.status_id', 'statuses.id')
+        ->groupBy('units.status_id')
+        ->orderBy('status')
+        ->limit(3);
+    }
+
+    public function getBillPieChartValues(){
+        return Unit::where('property_uuid', Session::get('property_uuid'))
+        ->select(DB::raw('count(*) as unit_count', 'status'))
+        ->join('statuses', 'units.status_id', 'statuses.id')
+        ->groupBy('units.status_id')
+        ->orderBy('status')
+        ->limit(3)
+        ->pluck('unit_count');
+    }
+
+    public function show(Property $property, Unit $unit, $action=null)
     {
         $featureId = 3;
 
         $restrictionId = 2;
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,$featureId,$restrictionId);
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($featureId,$restrictionId);
 
         return view('features.units.show',[
             'property' => $property,
             'unit_details' => $unit,
-            'deed_of_sales' => app('App\Http\Controllers\DeedOfSaleController')->show_unit_deed_of_sales($unit->uuid),
+            'deed_of_sales' => app('App\Http\Controllers\Subfeatures\DeedOfSaleController')->show_unit_deed_of_sales($unit->uuid),
         ]);
 
     }
@@ -44,32 +119,6 @@ class UnitController extends Controller
      public function edit(Property $property, $batch_no)
     {
         return view('features.units.edit-bulk',[
-            'property' => $property,
-            'batch_no' => $batch_no,
-        ]);
-    }
-
-    public function index(Property $property, $batch_no=null, $action=null)
-    {
-        $featureId = 3;
-
-        $restrictionId = 2;
-
-        app('App\Http\Controllers\Features\PropertyController')->store_property_session($property->uuid);
-
-        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
-            return abort(403);
-         }
-
-        Session::forget('tenant_uuid');
-
-        Session::forget('owner_uuid');
-
-        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
-
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,$restrictionId,$featureId);
-
-        return view('properties.units.index',[
             'property' => $property,
             'batch_no' => $batch_no,
         ]);
@@ -148,26 +197,10 @@ class UnitController extends Controller
         ->get();
     }
 
-    public function getUnits($property_uuid)
+    public function get($status=null, $groupBy=null)
     {
-        return Property::find($property_uuid)->units();
-
+        return Unit::getAll(Session::get('property_uuid'), $status, $groupBy);
     }
-
-
-    // public function getUnits($property_uuid, $status, $duration, $unlisted)
-    // {
-    //     return Unit::where('property_uuid', $property_uuid)
-    //      ->when($status, function ($query) use ($status) {
-    //      $query->where('status_id', $status);
-    //      })
-    //     ->when($duration, function ($query) use ($duration) {
-    //       $query->whereMonth('updated_at', $duration);
-    //       })
-    //     ->when($unlisted, function ($query) use ($unlisted) {
-    //        $query->whereMonth('is_the_unit_for_rent_to_tenant', $unlisted);
-    //        });
-    // }
 
     public function update(Request $request, Property $property, Unit $unit)
     {

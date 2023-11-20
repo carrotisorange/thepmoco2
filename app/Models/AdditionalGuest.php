@@ -10,6 +10,6 @@ class AdditionalGuest extends Model
     use HasFactory;
 
     public function guest(){
-        return $this->belongsTo(Guest::class, 'guest_uuid');
+        return $this->belongsTo(Guest::class, 'guest_uuid')->withDefault();
     }
 }

@@ -4,28 +4,44 @@ namespace App\Http\Controllers\Features;
 
 use App\Http\Controllers\Controller;
 use Session;
+use DB;
 use App\Models\{Concern, Property};
 
 class ConcernController extends Controller
 {
-
     public function index(Property $property)
     {
-        $featureId = 10;
+        $featureId = 10; //refer to the features table
 
-        $restrictionId = 2;
+        $restrictionId = 2; //refer to the restrictions table
 
-        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
+        app('App\Http\Controllers\PropertyController')->storePropertySession($property->uuid);
+
+        app('App\Http\Controllers\Utilities\UserPropertyController')->isUserAuthorized();
+
+        if(!app('App\Http\Controllers\Utilities\UserRestrictionController')->isFeatureAuthorized($featureId, $restrictionId)){
             return abort(403);
         }
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,$restrictionId,$featureId);
+        app('App\Http\Controllers\PropertyController')->storeUnitStatistics();
 
-        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($featureId,$restrictionId);
 
-        return view('properties.concerns.index',[
+        return view('features.concerns.index',[
             'property' => $property
         ]);
+    }
+
+    public function get($status=null, $groupBy=null)
+    {
+        return Concern::getAll(Session::get('property_uuid'), $status, $groupBy);
+    }
+
+    public function getAverageNumberOfDaysForConcernsToBeResolved(){
+        return Concern::where('property_uuid', Session::get('property_uuid'))
+        ->select(DB::raw('avg(DATEDIFF(updated_at,created_at)) as total_number_of_days_to_be_resolved'))
+        ->where('status', 'closed')
+        ->value('total_number_of_days_to_be_resolved');
     }
 
     public function destroy($unit_uuid){
@@ -52,7 +68,7 @@ class ConcernController extends Controller
 
         //$this->authorize('is_concern_update_allowed');
 
-        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'opens one',13);
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity('opens one',13);
 
         return view('features.concerns.show',[
             'concern' => $concern
@@ -61,7 +77,7 @@ class ConcernController extends Controller
 
     public function edit(Property $property, Concern $concern)
     {
-        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'opens one',13);
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity('opens one',13);
 
         return view('features.tenants.concerns.edit',[
             'concern' => $concern,

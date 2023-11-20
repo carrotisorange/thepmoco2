@@ -11,17 +11,17 @@ class Activity extends Model
 
     public function property()
     {
-        return $this->belongsTo(Property::class, 'property_uuid');
+        return $this->belongsTo(Property::class, 'property_uuid')->withDefault();
     }
 
     public function activity_type()
     {
-        return $this->belongsTo(ActivityType::class, 'activity_type_id');
+        return $this->belongsTo(ActivityType::class, 'activity_type_id')->withDefault();
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id')->withDefault();
     }
-    
+
 }

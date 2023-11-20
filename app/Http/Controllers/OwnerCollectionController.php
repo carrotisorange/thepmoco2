@@ -51,7 +51,7 @@ class OwnerCollectionController extends Controller
 
      $folder_path = 'features.owners.collections.export';
 
-     $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
+     $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data);
 
     $pdf_name = str_replace(' ', '_', $property->property).'_AR_'.$collection->ar_no.'.pdf';
 
@@ -92,7 +92,7 @@ class OwnerCollectionController extends Controller
     {
         Property::find($property->uuid)->collections()->where('owner_uuid', $owner->uuid)->where('is_posted', 0)->where('batch_no', '!=', $batch_no)->forceDelete();
 
-         $ar_no = app('App\Http\Controllers\Features\CollectionController')->getLatestAr($property->uuid);
+         $ar_no = app('App\Http\Controllers\Features\CollectionController')->getLatestAr();
 
          $counter = $this->get_selected_bills_count($batch_no);
 
@@ -142,8 +142,7 @@ class OwnerCollectionController extends Controller
                   $request->proof_of_payment,
          );
 
-         app('App\Http\Controllers\PointController')->store($property->uuid, auth()->user()->id,
-         Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);
+         app('App\Http\Controllers\Utilities\PointController')->store(Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);
 
          return redirect('/property/'.$property->uuid.'/owner/'.$owner->uuid)->with('success','Changes Saved!');
 

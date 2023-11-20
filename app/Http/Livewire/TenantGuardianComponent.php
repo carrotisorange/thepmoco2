@@ -72,7 +72,7 @@ class TenantGuardianComponent extends Component
     public function render()
     {
         return view('livewire.tenant-guardian-component',[
-            'relationships' => app('App\Http\Controllers\RelationshipController')->index(),
+            'relationships' => app('App\Http\Controllers\Utilities\RelationshipController')->index(),
         ]);
     }
 }

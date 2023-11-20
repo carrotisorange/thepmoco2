@@ -4,8 +4,8 @@
     use App\Http\Controllers\OwnerDeedOfSalesController;
     use App\Http\Controllers\OwnerBillController;
     use App\Http\Controllers\OwnerCollectionController;
-    use App\Http\Controllers\BankController;
-    use App\Http\Controllers\RepresentativeController;
+    use App\Http\Controllers\Subfeatures\BankController;
+    use App\Http\Controllers\Subfeatures\RepresentativeController;
 
     use App\Http\Controllers\Features\OwnerController;
     use App\Http\Controllers\Features\BillController;

@@ -99,7 +99,7 @@
                 <th>
                     Personnels</td>
                 <td> {{
-                    App\Http\Controllers\UserPropertyController::getPersonnels($data->uuid,auth()->user()->id)->count()}}
+                    App\Http\Controllers\Utilities\UserPropertyController::getPersonnels($data->uuid,auth()->user()->id)->count()}}
                 </td>
             </tr>
             <tr>

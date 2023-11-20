@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PortalTenantController;
+use App\Http\Controllers\Portals\PortalTenantController;
 use App\Http\Controllers\TenantCollectionController;
 
 Route::prefix('{role_id}/tenant/{user:username}')->group(function(){

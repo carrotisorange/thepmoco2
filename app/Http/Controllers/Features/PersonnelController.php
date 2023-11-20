@@ -10,36 +10,39 @@ class PersonnelController extends Controller
 {
     public function index(Property $property)
     {
-        $featureId = 9;
+        $featureId = 9; //refer to the features table
 
-        $restrictionId = 2;
+        $restrictionId = 2; //refer to the restrictions table
 
-        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
+        app('App\Http\Controllers\PropertyController')->storePropertySession($property->uuid);
+
+        app('App\Http\Controllers\Utilities\UserPropertyController')->isUserAuthorized();
+
+        if(!app('App\Http\Controllers\Utilities\UserRestrictionController')->isFeatureAuthorized($featureId,
+        $restrictionId)){
             return abort(403);
         }
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id, $restrictionId, $featureId);
+        app('App\Http\Controllers\PropertyController')->storeUnitStatistics();
 
-        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($restrictionId, $featureId);
 
-        $propertyVerifiedPersonnelsCount = UserProperty::where('property_uuid',Session::get('property_uuid'))
-        ->join('users','user_properties.user_id', 'users.id')
-        ->where('users.email_verified_at', false)
-        ->where('user_properties.role_id','!=', 5)
-        ->count();
-
-        return view('properties.personnels.index',[
-            'users' => app('App\Http\Controllers\UserPropertyController')->getPersonnels($property->uuid,auth()->user()->id),
-            'properties' => app('App\Http\Controllers\UserPropertyController')->get_user_properties($property->uuid,auth()->user()->id),
+        return view('features.personnels.index',[
+            'users' => app('App\Http\Controllers\Utilities\UserPropertyController')->getPersonnels($property->uuid,auth()->user()->id),
+            'properties' => app('App\Http\Controllers\Utilities\UserPropertyController')->get_user_properties($property->uuid,auth()->user()->id),
             'property' => $property
         ]);
-
-
     }
 
-    public function getPersonnels($property_uuid)
+     public function get($isApproved=null, $groupBy=null)
     {
-        return Property::find($property_uuid)->property_users()->get();
+        return UserProperty::getAll(Session::get('property_uuid'), $isApproved, $groupBy);
+    }
+
+    public function getVerifiedPersonnels(){
+        return UserProperty::join('users', 'user_properties.user_id', 'users.id')
+        ->where('property_uuid', Session::get('property_uuid'))
+        ->whereNotNull('email_verified_at');
     }
 
     public function create(Property $property, $random_str)
@@ -53,9 +56,8 @@ class PersonnelController extends Controller
 
     public function delegate(Property $property, $user_id, $property_uuid)
     {
-        app('App\Http\Controllers\UserPropertyController')->store($property_uuid,$user_id,false,false);
+        app('App\Http\Controllers\Utilities\UserPropertyController')->store($property_uuid,$user_id,false,false);
 
         return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 }
-

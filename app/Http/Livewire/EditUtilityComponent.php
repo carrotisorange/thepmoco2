@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\{Utility,Contract,DeedOfSale,Tenant,Owner};
+use Session;
 
 class EditUtilityComponent extends Component
 {
@@ -85,7 +86,18 @@ class EditUtilityComponent extends Component
          'min_charge' => $this->min_charge
         ]);
 
-        app('App\Http\Controllers\Features\BillController')->store($this->utility->property_uuid, $this->utility->unit_uuid, $tenant_uuid, $owner_uuid, $particular_id, $this->utility->start_date, $this->utility->end_date, $this->total_amount_due, $this->utility->batch_no, 1);
+        app('App\Http\Controllers\Features\BillController')->store(
+            Session::get('property_uuid'),
+            $this->utility->unit_uuid,
+            $tenant_uuid,
+            $owner_uuid,
+            $particular_id,
+            $this->utility->start_date,
+            $this->utility->end_date,
+            $this->total_amount_due,
+            $this->utility->batch_no,
+            1
+        );
 
         return redirect(url()->previous())->with('success', 'Changes Saved!');
     }

@@ -45,6 +45,6 @@ class BankEditComponent extends Component
 
     public function render()
     {
-        return view('livewire.bank-edit-component');
+        return view('livewire.subfeatures.banks.bank-edit-component');
     }
 }

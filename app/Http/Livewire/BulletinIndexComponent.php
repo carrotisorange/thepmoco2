@@ -12,7 +12,7 @@ class BulletinIndexComponent extends Component
     {
         $bulletins = Bulletin::where('property_uuid', Session::get('property_uuid'))->where('is_approved',1)->orderBy('id','desc')->get();
 
-        return view('livewire.bulletin-index-component',[
+        return view('livewire.features.bulletin.bulletin-index-component',[
             'bulletins' => $bulletins
         ]);
     }

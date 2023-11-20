@@ -17,29 +17,25 @@ class ConcernIndexComponent extends Component
 
     public function render()
     {
-        $propertyConcernsCount = Property::find(Session::get('property_uuid'))->concerns->count();
+        $propertyConcernsCount = app('App\Http\Controllers\Features\ConcernController')->get()->count();
 
         $concerns = Concern::search(Session::get('property_uuid'))
         ->orderBy('created_at', 'desc')
         ->where('property_uuid', Session::get('property_uuid'))
         ->when($this->status, function($query){
-        $query->whereIn('status',[ $this->status]);
+            $query->whereIn('status',[ $this->status]);
         })
         ->when($this->search, function($query){
-        $query->where('reference_no','like', '%'.$this->search.'%');
-
+            $query->where('reference_no','like', '%'.$this->search.'%');
         })
         ->paginate(10);
 
-        $statuses= Concern::where('property_uuid', Session::get('property_uuid'))
-            ->select('status', DB::raw('count(*) as count'))
-            ->groupBy('status')
-            ->get();
+        $statuses = app('App\Http\Controllers\Features\ConcernController')->get('','status');
 
-        return view('livewire.concern-index-component',[
-            'concerns' => $concerns,
-            'statuses' => $statuses,
-            'propertyConcernsCount' => $propertyConcernsCount
-        ]);
+        return view('livewire.features.concern.concern-index-component', compact(
+            'concerns',
+            'statuses',
+            'propertyConcernsCount'
+        ));
     }
 }

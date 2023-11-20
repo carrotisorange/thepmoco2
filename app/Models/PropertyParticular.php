@@ -11,6 +11,6 @@ class PropertyParticular extends Model
 
       public function property()
       {
-        return $this->belongsTo(Property::class, 'property_uuid');
+        return $this->belongsTo(Property::class, 'property_uuid')->withDefault();
       }
 }

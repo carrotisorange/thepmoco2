@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use Livewire\Component;
 use DB;
 use Illuminate\Validation\Rule;
 use Session;
 use Str;
-use Livewire\Component;
 use App\Models\Reference;
 
 class ReferenceComponent extends Component
@@ -75,7 +75,7 @@ class ReferenceComponent extends Component
 
     public function removeReference($reference_id)
     {
-        app('App\Http\Controllers\ReferenceController')->destroy($reference_id);
+        app('App\Http\Controllers\Subfeatures\ReferenceController')->destroy($reference_id);
 
         return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
@@ -83,7 +83,7 @@ class ReferenceComponent extends Component
     public function render()
     {
         return view('livewire.reference-component',[
-            'relationships' => app('App\Http\Controllers\RelationshipController')->index(),
+            'relationships' => app('App\Http\Controllers\Utilities\RelationshipController')->index(),
             'references' => app('App\Http\Controllers\Features\TenantController')->get_tenant_references($this->tenant->uuid),
         ]);
     }

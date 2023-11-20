@@ -169,7 +169,7 @@ class AccountPayableCreateStep1Component extends Component
 
     public function addNewParticular(){
 
-        app('App\Http\Controllers\AccountPayableParticularController')->store($this->batch_no);
+        app('App\Http\Controllers\Subfeatures\AccountPayableParticularController')->store($this->batch_no);
 
         $this->particulars = $this->get_particulars();
 

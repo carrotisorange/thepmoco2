@@ -4,7 +4,6 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Illuminate\Validation\Rule;
-use Session;
 use App\Models\Reference;
 
 class EditReferenceComponent extends Component
@@ -51,7 +50,7 @@ class EditReferenceComponent extends Component
     public function render()
     {
         return view('livewire.edit-reference-component',[
-            'relationships' => app('App\Http\Controllers\RelationshipController')->index(),
+            'relationships' => app('App\Http\Controllers\Utilities\RelationshipController')->index(),
         ]);
     }
 }

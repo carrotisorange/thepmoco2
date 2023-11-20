@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="mt-5 sm:mt-6">
-                <x-button class="w-full" type="button"  onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/unit'">
+                <x-button class="w-full" onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/unit'">
                     Select a unit
                 </x-button>
 

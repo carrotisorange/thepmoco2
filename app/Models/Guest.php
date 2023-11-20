@@ -16,22 +16,17 @@ class Guest extends Model
     public $incrementing = false;
 
     protected $primaryKey = 'uuid';
-    
+
     protected $attributes = [
         'status' => 'reserved'
     ];
 
-    // public function searchableAs()
-    // {
-    //     return 'guest';
-    // }
-
     public function unit(){
-        return $this->belongsTo(Unit::class, 'unit_uuid');
+        return $this->belongsTo(Unit::class, 'unit_uuid')->withDefault();
     }
 
     public function property(){
-        return $this->belongsTo(Property::class, 'property_uuid');
+        return $this->belongsTo(Property::class, 'property_uuid')->withDefault();
     }
 
     public function bills(){
@@ -48,5 +43,19 @@ class Guest extends Model
 
     public function bookings(){
         return $this->hasMany(Booking::class);
+    }
+
+    public function scopeGetAll($query, $propertyUuid, $status, $groupBy){
+       $results = $query->when($propertyUuid, function($query, $propertyUuid){
+                $query->where('property_uuid', $propertyUuid);
+            })
+            ->when($status, function($query, $status){
+                $query->where('status', $status);
+            })
+            ->when($groupBy, function($query, $groupBy){
+                $query->groupBy($groupBy);
+            })->get();
+
+        return $results;
     }
 }

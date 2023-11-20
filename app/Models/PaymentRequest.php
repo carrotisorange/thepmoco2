@@ -11,13 +11,27 @@ class PaymentRequest extends Model
 
     public function tenant()
     {
-        return $this->belongsTo(Tenant::class, 'tenant_uuid');
+        return $this->belongsTo(Tenant::class, 'tenant_uuid')->withDefault();
     }
 
     public function unit()
     {
-        return $this->belongsTo(Unit::class, 'unit_uuid');
+        return $this->belongsTo(Unit::class, 'unit_uuid')->withDefault();
     }
 
-       
+    public function scopeGetAll($query, $propertyUuid, $status, $groupBy){
+       $results = $query->when($propertyUuid, function($query, $propertyUuid){
+                $query->where('property_uuid', $propertyUuid);
+            })
+            ->when($status, function($query, $status){
+                $query->where('payment_requests.status', $status);
+            })
+            ->when($groupBy, function($query, $groupBy){
+                $query->groupBy($groupBy);
+            })->get();
+
+        return $results;
+    }
+
+
 }

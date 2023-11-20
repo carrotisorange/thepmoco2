@@ -18,8 +18,6 @@
                 </div>
             </div>
             <form wire:submmit.prevent="closeView()">
-
-
                 <div class="mt-5 sm:mt-6">
                     <label class="text-md" for="start">Particulars</label>
                     <br>

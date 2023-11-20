@@ -39,26 +39,26 @@ class RemittanceShowComponent extends Component
 
 
     public function mount(){
-        $this->miscellaneousFeeDescription = Remittance::find($this->getRemittanceId())->miscellaneous_fee_description;
-        $this->membershipFeeDescription = Remittance::find($this->getRemittanceId())->membership_fee_description;
-        $this->condoDuesDescription = Remittance::find($this->getRemittanceId())->condo_dues_description;
-        $this->parkingDuesDescription = Remittance::find($this->getRemittanceId())->parking_dues_description;
-        $this->waterDescription = Remittance::find($this->getRemittanceId())->water_description;
-        $this->electricityDescription = Remittance::find($this->getRemittanceId())->electricity_description;
-        $this->generatorShareDescription = Remittance::find($this->getRemittanceId())->generator_share_description;
-        $this->surchargesDescription = Remittance::find($this->getRemittanceId())->surcharges_description;
-        $this->buildingInsuranceDescription = Remittance::find($this->getRemittanceId())->building_insurance_description;
-        $this->realPropertyTaxDescription = Remittance::find($this->getRemittanceId())->real_property_tax_description;
-        $this->housekeepingFeeDescription = Remittance::find($this->getRemittanceId())->housekeeping_fee_description;
-        $this->laundryFeeDescription = Remittance::find($this->getRemittanceId())->laundry_fee_description;
-        $this->complimentaryDescription = Remittance::find($this->getRemittanceId())->complimentary_description;
-        $this->internetDescription = Remittance::find($this->getRemittanceId())->internet_description;
-        $this->specialAssessmentDescription = Remittance::find($this->getRemittanceId())->special_assessment_description;
-        $this->materialRecoveryFacilityDescription = Remittance::find($this->getRemittanceId())->materials_recovery_facility_description;
-        $this->rechargeOfFireExtinguisherDescription = Remittance::find($this->getRemittanceId())->recharge_of_fire_extinguisher_description;
-        $this->environmentalFeeDescription = Remittance::find($this->getRemittanceId())->environmental_fee_description;
-        $this->bladderTankDescription = Remittance::find($this->getRemittanceId())->bladder_tank_description;
-        $this->causeOfMagnetDescription = Remittance::find($this->getRemittanceId())->cause_of_magnet_description;
+        $this->miscellaneousFeeDescription = Remittance::where('id',$this->getRemittanceId())->value('miscellaneous_fee_description');
+        $this->membershipFeeDescription = Remittance::where('id',$this->getRemittanceId())->value('membership_fee_description');
+        $this->condoDuesDescription = Remittance::where('id',$this->getRemittanceId())->value('condo_dues_description');
+        $this->parkingDuesDescription = Remittance::where('id',$this->getRemittanceId())->value('parking_dues_description');
+        $this->waterDescription = Remittance::where('id',$this->getRemittanceId())->value('water_description');
+        $this->electricityDescription = Remittance::where('id',$this->getRemittanceId())->value('electricity_description');
+        $this->generatorShareDescription = Remittance::where('id',$this->getRemittanceId())->value('generator_share_description');
+        $this->surchargesDescription = Remittance::where('id',$this->getRemittanceId())->value('surcharges_description');
+        $this->buildingInsuranceDescription = Remittance::where('id',$this->getRemittanceId())->value('building_insurance_description');
+        $this->realPropertyTaxDescription = Remittance::where('id',$this->getRemittanceId())->value('real_property_tax_description');
+        $this->housekeepingFeeDescription = Remittance::where('id',$this->getRemittanceId())->value('housekeeping_fee_description');
+        $this->laundryFeeDescription = Remittance::where('id',$this->getRemittanceId())->value('laundry_fee_description');
+        $this->complimentaryDescription = Remittance::where('id',$this->getRemittanceId())->value('complimentary_description');
+        $this->internetDescription = Remittance::where('id',$this->getRemittanceId())->value('internet_description');
+        $this->specialAssessmentDescription = Remittance::where('id',$this->getRemittanceId())->value('special_assessment_description');
+        $this->materialRecoveryFacilityDescription = Remittance::where('id',$this->getRemittanceId())->value('materials_recovery_facility_description');
+        $this->rechargeOfFireExtinguisherDescription = Remittance::where('id',$this->getRemittanceId())->value('recharge_of_fire_extinguisher_description');
+        $this->environmentalFeeDescription = Remittance::where('id',$this->getRemittanceId())->value('environmental_fee_description');
+        $this->bladderTankDescription = Remittance::where('id',$this->getRemittanceId())->value('bladder_tank_description');
+        $this->causeOfMagnetDescription = Remittance::where('id',$this->getRemittanceId())->value('cause_of_magnet_description');
     }
 
     public function updateRemittance($id){
@@ -99,34 +99,33 @@ class RemittanceShowComponent extends Component
         ->pluck('id')->first();
     }
 
-
     function updatedRemittanceDate(){
-        $this->miscellaneousFeeDescription = Remittance::find($this->getRemittanceId())->miscellaneous_fee_description;
-        $this->membershipFeeDescription = Remittance::find($this->getRemittanceId())->membership_fee_description;
-        $this->condoDuesDescription = Remittance::find($this->getRemittanceId())->condo_dues_description;
-        $this->parkingDuesDescription = Remittance::find($this->getRemittanceId())->parking_dues_description;
-        $this->waterDescription = Remittance::find($this->getRemittanceId())->water_description;
-        $this->electricityDescription = Remittance::find($this->getRemittanceId())->electricity_description;
-        $this->generatorShareDescription = Remittance::find($this->getRemittanceId())->generator_share_description;
-        $this->surchargesDescription = Remittance::find($this->getRemittanceId())->surcharges_description;
-        $this->buildingInsuranceDescription = Remittance::find($this->getRemittanceId())->building_insurance_description;
-        $this->realPropertyTaxDescription = Remittance::find($this->getRemittanceId())->real_property_tax_description;
-        $this->housekeepingFeeDescription = Remittance::find($this->getRemittanceId())->housekeeping_fee_description;
-        $this->laundryFeeDescription = Remittance::find($this->getRemittanceId())->laundry_fee_description;
-        $this->complimentaryDescription = Remittance::find($this->getRemittanceId())->complimentary_description;
-        $this->internetDescription = Remittance::find($this->getRemittanceId())->internet_description;
-        $this->specialAssessmentDescription = Remittance::find($this->getRemittanceId())->special_assessment_description;
-        $this->materialRecoveryFacilityDescription = Remittance::find($this->getRemittanceId())->materials_recovery_facility_description;
-        $this->rechargeOfFireExtinguisherDescription = Remittance::find($this->getRemittanceId())->recharge_of_fire_extinguisher_description;
-        $this->environmentalFeeDescription = Remittance::find($this->getRemittanceId())->environmental_fee_description;
-        $this->bladderTankDescription = Remittance::find($this->getRemittanceId())->bladder_tank_description;
-        $this->causeOfMagnetDescription = Remittance::find($this->getRemittanceId())->cause_of_magnet_description;
+        $this->miscellaneousFeeDescription = Remittance::where('id',$this->getRemittanceId())->value('miscellaneous_fee_description');
+        $this->membershipFeeDescription = Remittance::where('id',$this->getRemittanceId())->value('membership_fee_description');
+        $this->condoDuesDescription = Remittance::where('id',$this->getRemittanceId())->value('condo_dues_description');
+        $this->parkingDuesDescription = Remittance::where('id',$this->getRemittanceId())->value('parking_dues_description');
+        $this->waterDescription = Remittance::where('id',$this->getRemittanceId())->value('water_description');
+        $this->electricityDescription = Remittance::where('id',$this->getRemittanceId())->value('electricity_description');
+        $this->generatorShareDescription = Remittance::where('id',$this->getRemittanceId())->value('generator_share_description');
+        $this->surchargesDescription = Remittance::where('id',$this->getRemittanceId())->value('surcharges_description');
+        $this->buildingInsuranceDescription = Remittance::where('id',$this->getRemittanceId())->value('building_insurance_description');
+        $this->realPropertyTaxDescription = Remittance::where('id',$this->getRemittanceId())->value('real_property_tax_description');
+        $this->housekeepingFeeDescription = Remittance::where('id',$this->getRemittanceId())->value('housekeeping_fee_description');
+        $this->laundryFeeDescription = Remittance::where('id',$this->getRemittanceId())->value('laundry_fee_description');
+        $this->complimentaryDescription = Remittance::where('id',$this->getRemittanceId())->value('complimentary_description');
+        $this->internetDescription = Remittance::where('id',$this->getRemittanceId())->value('internet_description');
+        $this->specialAssessmentDescription = Remittance::where('id',$this->getRemittanceId())->value('special_assessment_description');
+        $this->materialRecoveryFacilityDescription = Remittance::where('id',$this->getRemittanceId())->value('materials_recovery_facility_description');
+        $this->rechargeOfFireExtinguisherDescription = Remittance::where('id',$this->getRemittanceId())->value('recharge_of_fire_extinguisher_description');
+        $this->environmentalFeeDescription = Remittance::where('id',$this->getRemittanceId())->value('environmental_fee_description');
+        $this->bladderTankDescription = Remittance::where('id',$this->getRemittanceId())->value('bladder_tank_description');
+        $this->causeOfMagnetDescription = Remittance::where('id',$this->getRemittanceId())->value('cause_of_magnet_description');
     }
 
     function sendRemittanceToOwner(){
         sleep(2);
 
-        $owner_uuid = Remittance::find($this->getRemittanceId())->owner_uuid;
+        $owner_uuid = Remittance::where('id',$this->getRemittanceId())->value('owner_uuid');
         $owner = Owner::find($owner_uuid);
 
         if(!$owner_uuid || !$owner->email){
@@ -136,59 +135,56 @@ class RemittanceShowComponent extends Component
             $data = [
                 'owner' => $owner->owner,
                 'unit' => $this->unit->unit,
-                'date' => Remittance::find( $this->getRemittanceId())->created_at,
-                'amountCollected' => Remittance::find($this->getRemittanceId())->monthly_rent +
-                Remittance::find($this->getRemittanceId())->marketing_fee +
-                Remittance::find($this->getRemittanceId())->management_fee ,
-                'rent' => Remittance::find($this->getRemittanceId())->monthly_rent,
-                'deductions' => Remittance::find($this->getRemittanceId())->total_deductions,
-                'bankTransferFee' => Remittance::find($this->getRemittanceId())->bank_transfer_fee,
-                'managementFee' => Remittance::find($this->getRemittanceId())->management_fee,
-                'marketingFee' => Remittance::find($this->getRemittanceId())->marketing_fee,
-
-                'miscellaneousFee' => Remittance::find($this->getRemittanceId())->miscellaneous_fee,
-                'miscellaneousFeeDescription' => Remittance::find($this->getRemittanceId())->miscellaneous_fee_description,
-                'membershipFee' => Remittance::find($this->getRemittanceId())->membership_fee,
-                'membershipFeeDescription' => Remittance::find($this->getRemittanceId())->membership_fee_description,
-                'condoDues' => Remittance::find($this->getRemittanceId())->condo_dues,
-                'condoDuesDescription' => Remittance::find($this->getRemittanceId())->condo_dues_description,
-                'parkingDues' => Remittance::find($this->getRemittanceId())->parking_dues,
-                'parkingDuesDescription' => Remittance::find($this->getRemittanceId())->parking_dues_description,
-                'water' => Remittance::find($this->getRemittanceId())->water,
-                'waterDescription' => Remittance::find($this->getRemittanceId())->water_description,
-                'electricity' => Remittance::find($this->getRemittanceId())->electricity,
-                'electricityDescription' => Remittance::find($this->getRemittanceId())->electricity_description,
-                'generatorShare' => Remittance::find($this->getRemittanceId())->generator_share,
-                'generatorShareDescription' => Remittance::find($this->getRemittanceId())->generator_share_description,
-                'surcharges' => Remittance::find($this->getRemittanceId())->surcharges,
-                'surchargesDescription' => Remittance::find($this->getRemittanceId())->surcharges_description,
-                'buildingInsurance' => Remittance::find($this->getRemittanceId())->building_insurance,
-                'buildingInsuranceDescription' => Remittance::find($this->getRemittanceId())->building_insurance_description,
-                'realPropertyTax' => Remittance::find($this->getRemittanceId())->real_property_tax,
-                'realPropertyTaxDescription' => Remittance::find($this->getRemittanceId())->real_property_tax_description,
-                'housekeepingFee' => Remittance::find($this->getRemittanceId())->housekeeping_fee,
-                'housekeepingFeeDescription' => Remittance::find($this->getRemittanceId())->housekeeping_fee_description,
-                'laundryFee' => Remittance::find($this->getRemittanceId())->laundry_fee,
-                'laundryFeeDescription' => Remittance::find($this->getRemittanceId())->laundry_fee_description,
-                'complimentary' => Remittance::find($this->getRemittanceId())->complimentary,
-                'complimentaryDescription' => Remittance::find($this->getRemittanceId())->complimentary_description,
-                'internet' => Remittance::find($this->getRemittanceId())->internet,
-                'internetDescription' => Remittance::find($this->getRemittanceId())->internet_description,
-                'specialAssessment' => Remittance::find($this->getRemittanceId())->special_assessment,
-                'specialAssessmentDescription' => Remittance::find($this->getRemittanceId())->special_assessment_description,
-                'materialRecoveryFacility' => Remittance::find($this->getRemittanceId())->materials_recovery_facility,
-                'materialRecoveryFacilityDescription' => Remittance::find($this->getRemittanceId())->materials_recovery_facility_description,
-                'rechargeOfFireExtinguisher' => Remittance::find($this->getRemittanceId())->recharge_of_fire_extinguisher,
-                'rechargeOfFireExtinguisherDescription' => Remittance::find($this->getRemittanceId())->recharge_of_fire_extinguisher_description,
-                'environmentalFee' => Remittance::find($this->getRemittanceId())->environmental_fee,
-                'environmentalFeeDescription' => Remittance::find($this->getRemittanceId())->environmental_fee_description,
-                'bladderTank' => Remittance::find($this->getRemittanceId())->bladder_tank,
-                'bladderTankDescription' => Remittance::find($this->getRemittanceId())->bladder_tank_description,
-                'causeOfMagnet' => Remittance::find($this->getRemittanceId())->cause_of_magnet,
-                'causeOfMagnetDescription' => Remittance::find($this->getRemittanceId())->cause_of_magnet_description,
-                'remittance' => Remittance::find($this->getRemittanceId())->remittance,
-                'cv_no' => Remittance::find($this->getRemittanceId())->cv_no,
-                'check_no' => Remittance::find($this->getRemittanceId())->check_no,
+                'date' => Remittance::find( $this->getRemittanceId())->value('created_at'),
+                'amountCollected' => Remittance::where('id',$this->getRemittanceId())->value('monthly_rent') +Remittance::where('id',$this->getRemittanceId())->value('marketing_fee') +Remittance::where('id',$this->getRemittanceId())->value('management_fee'),
+                'rent' => Remittance::where('id',$this->getRemittanceId())->value('monthly_rent'),
+                'deductions' => Remittance::where('id',$this->getRemittanceId())->value('total_deductions'),
+                'bankTransferFee' => Remittance::where('id',$this->getRemittanceId())->value('bank_transfer_fee'),
+                'managementFee' => Remittance::where('id',$this->getRemittanceId())->value('management_fee'),
+                'marketingFee' => Remittance::where('id',$this->getRemittanceId())->value('marketing_fee'),
+                'miscellaneousFee' => Remittance::where('id',$this->getRemittanceId())->value('miscellaneous_fee'),
+                'miscellaneousFeeDescription' => Remittance::where('id',$this->getRemittanceId())->value('miscellaneous_fee_description'),
+                'membershipFee' => Remittance::where('id',$this->getRemittanceId())->value('membership_fee'),
+                'membershipFeeDescription' => Remittance::where('id',$this->getRemittanceId())->value('membership_fee_description'),
+                'condoDues' => Remittance::where('id',$this->getRemittanceId())->value('condo_dues'),
+                'condoDuesDescription' => Remittance::where('id',$this->getRemittanceId())->value('condo_dues_description'),
+                'parkingDues' => Remittance::where('id',$this->getRemittanceId())->value('parking_dues'),
+                'parkingDuesDescription' => Remittance::where('id',$this->getRemittanceId())->value('parking_dues_description'),
+                'water' => Remittance::where('id',$this->getRemittanceId())->value('water'),
+                'waterDescription' => Remittance::where('id',$this->getRemittanceId())->value('water_description'),
+                'electricity' => Remittance::where('id',$this->getRemittanceId())->value('electricity'),
+                'electricityDescription' => Remittance::where('id',$this->getRemittanceId())->value('electricity_description'),
+                'generatorShare' => Remittance::where('id',$this->getRemittanceId())->value('generator_share'),
+                'generatorShareDescription' => Remittance::where('id',$this->getRemittanceId())->value('generator_share_description'),
+                'surcharges' => Remittance::where('id',$this->getRemittanceId())->value('surcharges'),
+                'surchargesDescription' => Remittance::where('id',$this->getRemittanceId())->value('surcharges_description'),
+                'buildingInsurance' => Remittance::where('id',$this->getRemittanceId())->value('building_insurance'),
+                'buildingInsuranceDescription' => Remittance::where('id',$this->getRemittanceId())->value('building_insurance_description'),
+                'realPropertyTax' => Remittance::where('id',$this->getRemittanceId())->value('real_property_tax'),
+                'realPropertyTaxDescription' => Remittance::where('id',$this->getRemittanceId())->value('real_property_tax_description'),
+                'housekeepingFee' => Remittance::where('id',$this->getRemittanceId())->value('housekeeping_fee'),
+                'housekeepingFeeDescription' => Remittance::where('id',$this->getRemittanceId())->value('housekeeping_fee_description'),
+                'laundryFee' => Remittance::where('id',$this->getRemittanceId())->value('laundry_fee'),
+                'laundryFeeDescription' => Remittance::where('id',$this->getRemittanceId())->value('laundry_fee_description'),
+                'complimentary' => Remittance::where('id',$this->getRemittanceId())->value('complimentary'),
+                'complimentaryDescription' => Remittance::where('id',$this->getRemittanceId())->value('complimentary_description'),
+                'internet' => Remittance::where('id',$this->getRemittanceId())->value('internet'),
+                'internetDescription' => Remittance::where('id',$this->getRemittanceId())->value('internet_description'),
+                'specialAssessment' => Remittance::where('id',$this->getRemittanceId())->value('special_assessment'),
+                'specialAssessmentDescription' => Remittance::where('id',$this->getRemittanceId())->value('special_assessment_description'),
+                'materialRecoveryFacility' => Remittance::where('id',$this->getRemittanceId())->value('materials_recovery_facility'),
+                'materialRecoveryFacilityDescription' => Remittance::where('id',$this->getRemittanceId())->value('materials_recovery_facility_description'),
+                'rechargeOfFireExtinguisher' => Remittance::where('id',$this->getRemittanceId())->value('recharge_of_fire_extinguisher'),
+                'rechargeOfFireExtinguisherDescription' => Remittance::where('id',$this->getRemittanceId())->value('recharge_of_fire_extinguisher_description'),
+                'environmentalFee' => Remittance::where('id',$this->getRemittanceId())->value('environmental_fee'),
+                'environmentalFeeDescription' => Remittance::where('id',$this->getRemittanceId())->value('environmental_fee_description'),
+                'bladderTank' => Remittance::where('id',$this->getRemittanceId())->value('bladder_tank'),
+                'bladderTankDescription' => Remittance::where('id',$this->getRemittanceId())->value('bladder_tank_description'),
+                'causeOfMagnet' => Remittance::where('id',$this->getRemittanceId())->value('cause_of_magnet'),
+                'causeOfMagnetDescription' => Remittance::where('id',$this->getRemittanceId())->value('cause_of_magnet_description'),
+                'remittance' => Remittance::where('id',$this->getRemittanceId())->value('remittance'),
+                'cv_no' => Remittance::where('id',$this->getRemittanceId())->value('cv_no'),
+                'check_no' => Remittance::where('id',$this->getRemittanceId())->value('condo_dues_description'),
             ];
 
             Mail::to($owner->email)->send(new SendRemittanceToOwner($data));
@@ -201,9 +197,10 @@ class RemittanceShowComponent extends Component
 
     public function render()
     {
-        return view('livewire.remittance-show-component',[
-            'remittance' => Remittance::find($this->getRemittanceId()),
+        $remittance = Remittance::find($this->getRemittanceId());
 
+        return view('livewire.features.remittance.remittance-show-component',[
+            'remittance' => $remittance,
             'dates' => Remittance::where('property_uuid', $this->unit->property_uuid)
             ->where('unit_uuid', $this->unit->uuid)
             ->groupBy('created_at')

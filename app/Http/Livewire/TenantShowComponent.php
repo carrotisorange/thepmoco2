@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use Livewire\Component;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
-use Livewire\Component;
 use Livewire\WithFileUploads;
 use DB;
 use Illuminate\Validation\Rule;
@@ -126,7 +126,7 @@ class TenantShowComponent extends Component
 
                 $restrictionId = 3;
 
-                app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,$restrictionId,$featureId);
+                app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($featureId,$restrictionId);
 
                 return redirect(url()->previous())->with('success', 'Changes Saved!');
             });
@@ -150,7 +150,7 @@ class TenantShowComponent extends Component
             return redirect(url()->previous())->with('error', 'Access already exists!');
         }
 
-        $temporary_password =  app('App\Http\Controllers\UserController')->generate_temporary_username();
+        $temporary_password =  app('App\Http\Controllers\Auth\UserController')->generate_temporary_username();
 
         $user_id = User::updateOrCreate(
             [
@@ -186,10 +186,8 @@ class TenantShowComponent extends Component
                 'account_owner_id' => $user_id,
             ]);
         }else{
-            app('App\Http\Controllers\UserController')->send_email($user_id->role_id, $user_id->email, $user_id->username, $temporary_password);
+            app('App\Http\Controllers\Auth\UserController')->send_email($user_id->role_id, $user_id->email, $user_id->username, $temporary_password);
         }
-
-        // app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,'sends',18);
 
 
        return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant_details->uuid)->with('success', 'Changes Saved!');
@@ -206,7 +204,7 @@ class TenantShowComponent extends Component
 
         $restrictionId = 4;
 
-        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'), auth()->user()->id,$restrictionId, $featureId);
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($restrictionId, $featureId);
 
         session()->flash('success', 'Changes Saved!');
     }
@@ -236,11 +234,11 @@ class TenantShowComponent extends Component
 
         $tenantSubfeaturesArray = explode(",", $tenantSubfeatures);
 
-            return view('livewire.tenant-show-component',[
-            'cities' => app('App\Http\Controllers\CityController')->index($this->province_id),
-            'provinces' => app('App\Http\Controllers\ProvinceController')->index($this->country_id),
-            'countries' =>  app('App\Http\Controllers\CountryController')->index(),
-            'relationships' => app('App\Http\Controllers\RelationshipController')->index(),
+            return view('livewire.features.tenant.tenant-show-component',[
+            'cities' => app('App\Http\Controllers\Utilities\CityController')->index($this->province_id),
+            'provinces' => app('App\Http\Controllers\Utilities\ProvinceController')->index($this->country_id),
+            'countries' => app('App\Http\Controllers\Utilities\CountryController')->index(),
+            'relationships' => app('App\Http\Controllers\Utilities\RelationshipController')->index(),
             'references' => app('App\Http\Controllers\Features\TenantController')->get_tenant_references($this->tenant_details->uuid),
             'guardians' => app('App\Http\Controllers\Features\TenantController')->show_tenant_guardians($this->tenant_details->uuid),
             'contracts' => app('App\Http\Controllers\Features\TenantController')->show_tenant_contracts($this->tenant_details->uuid),

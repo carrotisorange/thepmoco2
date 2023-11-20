@@ -110,30 +110,11 @@ Route::get('/profile-setup', function(){
 });
 
 Route::get('/propsuite', function(){
-    return view('landing.propsuite.propsuite');
+    return view('propsuite.propsuite');
 });
 
-Route::get('/propsuite-lite', function(){
-    return view('landing.propsuite.propsuite-lite');
-});
-
-Route::get('/propsuite-daily', function(){
-    return view('landing.propsuite.propsuite-daily');
-});
-
-Route::get('/propsuite-hoa', function(){
-    return view('landing.propsuite.propsuite-hoa');
-});
-
-Route::get('/propsuite-condo', function(){
-    return view('landing.propsuite.propsuite-condo');
-});
-Route::get('/resources', function(){
-    return view('landing.resources');
-});
-
-Route::get('/pricing', function(){
-    return view('landing.pricing');
+Route::get('/propsuite2', function(){
+    return view('propsuite.propsuite2');
 });
 
 Route::get('/proprent', function(){

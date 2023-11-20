@@ -2,11 +2,10 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\CheckoutOption;
 use Livewire\Component;
 use DB;
 use Str;
-use App\Models\{DiscountCode,Plan};
+use App\Models\{DiscountCode,Plan,CheckoutOption};
 
 class CheckoutComponent extends Component
 {
@@ -61,7 +60,7 @@ class CheckoutComponent extends Component
             DB::beginTransaction();
             if($this->checkout_option == '1')
             {
-                $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')->charge_user_account(
+                $last_created_invoice_url = app('App\Http\Controllers\Subfeatures\CheckoutController')->charge_user_account(
                 $this->plan_id,
                 $external_id,
                 Plan::find($this->plan_id)->description,
@@ -73,7 +72,7 @@ class CheckoutComponent extends Component
             );
 
             }elseif($this->checkout_option == '2'){
-                $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')->charge_user_account(
+                $last_created_invoice_url = app('App\Http\Controllers\Subfeatures\CheckoutController')->charge_user_account(
                 $this->plan_id,
                 $external_id,
                 Plan::find($this->plan_id)->description,
@@ -85,7 +84,7 @@ class CheckoutComponent extends Component
             );
             }
             elseif($this->checkout_option == '3'){
-                $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')->charge_user_account(
+                $last_created_invoice_url = app('App\Http\Controllers\Subfeatures\CheckoutController')->charge_user_account(
                $this->plan_id,
                 $external_id,
                 Plan::find($this->plan_id)->description,
@@ -97,7 +96,7 @@ class CheckoutComponent extends Component
             );
             }
             elseif($this->checkout_option == '4'){
-                $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')->charge_user_account(
+                $last_created_invoice_url = app('App\Http\Controllers\Subfeatures\CheckoutController')->charge_user_account(
                 $this->plan_id,
                 $external_id,
                 Plan::find($this->plan_id)->description,
@@ -109,7 +108,7 @@ class CheckoutComponent extends Component
              );
             }
              else{
-                $last_created_invoice_url = app('App\Http\Controllers\CheckoutController')->charge_user_account(
+                $last_created_invoice_url = app('App\Http\Controllers\Subfeatures\CheckoutController')->charge_user_account(
              $this->plan_id,
                 $external_id,
                 Plan::find($this->plan_id)->description,

@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use Livewire\Component;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 use DB;
-use Livewire\Component;
-use App\Models\{Country,Province,City,Type,PropertyDocument};
+use App\Models\{Country,Province,City,Type};
 
 class PropertyEditComponent extends Component
 {
@@ -105,7 +105,7 @@ class PropertyEditComponent extends Component
 
             $restrictionId = 3;
 
-            app('App\Http\Controllers\ActivityController')->store($this->property_details->uuid, auth()->user()->id,$restrictionId,$featureId);
+            app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($featureId,$restrictionId);
 
          return redirect(url()->previous())->with('success', 'Changes Saved!');
 
@@ -179,14 +179,11 @@ class PropertyEditComponent extends Component
 
     public function render()
     {
-        $propertyDocuments = PropertyDocument::where('property_uuid', $this->property_details->uuid)->get();
-
         return view('livewire.property-edit-component',[
             'types' => Type::all(),
             'cities' => City::orderBy('city', 'ASC')->where('province_id', $this->province_id)->get(),
             'provinces' => Province::orderBy('province', 'ASC')->where('country_id', $this->country_id)->get(),
             'countries' => Country::orderBy('country', 'ASC')->where('id', '!=', 247)->get(),
-            'propertyDocuments' => $propertyDocuments
         ]);
     }
 }

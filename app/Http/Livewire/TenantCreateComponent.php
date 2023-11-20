@@ -2,12 +2,12 @@
 
 namespace App\Http\Livewire;
 
+use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use DB;
 use Illuminate\Validation\Rule;
 use Session;
-use Livewire\Component;
 use App\Models\Tenant;
 
 class TenantCreateComponent extends Component
@@ -107,10 +107,10 @@ class TenantCreateComponent extends Component
 
     public function store_user()
     {
-        return app('App\Http\Controllers\UserController')->store(
+        return app('App\Http\Controllers\Auth\UserController')->store(
             $this->tenant,
             $this->email,
-            app('App\Http\Controllers\UserController')->generate_temporary_username(),
+            app('App\Http\Controllers\Auth\UserController')->generate_temporary_username(),
             auth()->user()->external_id,
             $this->email,
             8, //tenant
@@ -125,7 +125,7 @@ class TenantCreateComponent extends Component
     {
         $validatedData['uuid'] = Str::uuid();
 
-        $bill_no = app('App\Http\Controllers\Features\BillController')->getLatestBillNo(Session::get('property_uuid'));
+        $bill_no = app('App\Http\Controllers\Features\BillController')->getLatestBillNo();
 
         $bill_reference_no = app('App\Http\Controllers\Features\BillController')->generate_bill_reference_no('t', $bill_no);
 
@@ -171,9 +171,9 @@ class TenantCreateComponent extends Component
     public function render()
     {
         return view('livewire.tenant-create-component',[
-            'cities' => app('App\Http\Controllers\CityController')->index($this->province_id),
-            'provinces' => app('App\Http\Controllers\ProvinceController')->index($this->country_id),
-            'countries' => app('App\Http\Controllers\CountryController')->index(),
+            'cities' => app('App\Http\Controllers\Utilities\CityController')->index($this->province_id),
+            'provinces' => app('App\Http\Controllers\Utilities\ProvinceController')->index($this->country_id),
+            'countries' => app('App\Http\Controllers\Utilities\CountryController')->index(),
         ]);
     }
 }

@@ -62,7 +62,7 @@ class OwnerBillController extends Controller
 
             Bill::create($attributes);
 
-            app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id, 1, 3);
+            app('App\Http\Controllers\Utilities\PointController')->store(1, 3);
 
         });
 
@@ -76,26 +76,26 @@ class OwnerBillController extends Controller
 
     public function export(Request $request, Property $property, Owner $owner)
     {
-       app('App\Http\Controllers\Features\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
+       app('App\Http\Controllers\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
 
        $data = $this->get_bill_data($owner, $request->due_date, $request->penalty, $request->note_to_bill);
 
        $folder_path = 'features.owners.bills.export';
 
-       $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
+       $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data);
 
        return $pdf->stream(Carbon::now()->format('M d, Y').'-'.$owner->owner.'-soa.pdf');
     }
 
     public function send(Request $request, Property $property, Owner $owner)
     {
-        app('App\Http\Controllers\Features\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
+        app('App\Http\Controllers\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
 
         $data = $this->get_bill_data($owner, $request->due_date, $request->penalty, $request->note_to_bill);
 
         Mail::to($request->email)->send(new SendBillToOwner($data));
 
-       return redirect(url()->previous())->with('success', 'Changes Saved!');
+        return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
 
     public function get_bill_data($owner, $due_date, $penalty, $note)

@@ -11,6 +11,6 @@ class Bank extends Model
 
     public function owner()
     {
-        return $this->belongsTo(Owner::class);
+        return $this->belongsTo(Owner::class)->withDefault();
     }
 }

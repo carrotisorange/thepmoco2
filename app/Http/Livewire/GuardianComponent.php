@@ -2,12 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use Livewire\Component;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
 use Session;
 use App\Models\Guardian;
-
-use Livewire\Component;
 
 class GuardianComponent extends Component
 {
@@ -84,14 +83,14 @@ class GuardianComponent extends Component
     {
 
 
-        return app('App\Http\Controllers\GuardianController')->destroy($guardian_id);
+        return app('App\Http\Controllers\Subfeatures\GuardianController')->destroy($guardian_id);
 
     }
 
     public function render()
     {
         return view('livewire.guardian-component',[
-            'relationships' => app('App\Http\Controllers\RelationshipController')->index(),
+            'relationships' => app('App\Http\Controllers\Utilities\RelationshipController')->index(),
             'guardians' => app('App\Http\Controllers\Features\TenantController')->show_tenant_guardians($this->tenant->uuid)
         ]);
     }

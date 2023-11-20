@@ -120,15 +120,15 @@
             <x-td>
                 @if($bill->tenant_uuid)
                 <x-link-component link="/property/{{ $bill->property_uuid }}/tenant/{{ $bill->tenant_uuid }}">
-                    {{ Str::limit($bill->tenant->tenant,20) }} (T)
+                   {{ $bill->tenant->tenant }}
                 </x-link-component>
                 @elseif($bill->owner_uuid)
               <x-link-component link="/property/{{ $bill->property_uuid }}/owner/{{ $bill->owner_uuid }}">
-                    {{ Str::limit($bill->owner->owner,20) }} (O)
+                   {{ $bill->owner->owner }}
                 </x-link-component>
                 @elseif($bill->guest_uuid)
               <x-link-component link="/property/{{ $bill->property_uuid }}/guest/{{ $bill->guest_uuid }}">
-                    {{ Str::limit($bill->guest->guest,20) }} (G)
+                    {{ $bill->guest->guest }}
                 </x-link-component>
                 @else
                 NA
@@ -136,12 +136,11 @@
             </x-td>
             <x-td>
                <x-link-component link="/property/{{ $bill->property_uuid }}/unit/{{ $bill->unit_uuid }}">
-                    {{ Str::limit($bill->unit->unit,20) }}
+                   {{ $bill->unit->unit }}
                 </x-link-component>
             </x-td>
             <x-td>
-                {{ Carbon\Carbon::parse($bill->start)->format('M d, Y').'-'.Carbon\Carbon::parse($bill->end)->format('M
-                d, Y') }}
+                {{ Carbon\Carbon::parse($bill->start)->format('M d, Y').'-'.Carbon\Carbon::parse($bill->end)->format('M d, Y') }}
             </x-td>
             <x-td>
                 {{ Str::limit($bill->particular->particular,15) }} </a>

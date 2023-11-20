@@ -11,16 +11,16 @@ class Point extends Model
 
     public function action()
     {
-        return $this->belongsTo(Action::class, 'action_id');
+        return $this->belongsTo(Action::class, 'action_id')->withDefault();
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)->withDefault();
     }
 
       public function property()
       {
-      return $this->belongsTo(Property::class);
+      return $this->belongsTo(Property::class)->withDefault();
       }
 }

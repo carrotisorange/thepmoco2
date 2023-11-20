@@ -13,8 +13,6 @@ class BookingEditComponent extends Component
     public $guest_details;
     public $booking_details;
 
-    //guest input fields
-
     public $status;
     public $unit_uuid;
     public $movein_at;

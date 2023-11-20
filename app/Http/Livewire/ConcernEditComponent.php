@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire;
 
-use Session;
 use Livewire\Component;
+use Session;
 use Livewire\WithFileUploads;
 use Carbon\Carbon;
 use DB;
@@ -102,7 +102,7 @@ class ConcernEditComponent extends Component
 
         $restrictionId = 3;
 
-        app('App\Http\Controllers\ActivityController')->store(Session::get('property_uuid'),auth()->user()->id,$restrictionId, $featureId);
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($restrictionId, $featureId);
 
         return redirect(url()->previous())->with('success', 'Changes Saved!');
 
@@ -116,10 +116,10 @@ class ConcernEditComponent extends Component
         if(auth()->user()->role_id === 8){
             $users = '';
         }else{
-            $users = app('App\Http\Controllers\UserPropertyController')->getPersonnels(Session::get('property_uuid'));
+            $users = app('App\Http\Controllers\Utilities\UserPropertyController')->getPersonnels(Session::get('property_uuid'));
         }
 
-        return view('livewire.concern-edit-component',[
+        return view('livewire.features.concern.concern-edit-component',[
             'categories' => ConcernCategory::all(),
             'users' => $users
         ]);

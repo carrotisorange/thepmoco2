@@ -55,9 +55,6 @@ class ContractMoveinComponent extends Component
 
     public function submitForm()
     {
-
-
-        //validate inputs
         $validatedData = $this->validate();
 
         try {
@@ -70,14 +67,14 @@ class ContractMoveinComponent extends Component
             //store new referral
             if($this->referral)
             {
-              app('App\Http\Controllers\ReferralController')->update($this->referral, $this->contract_details->uuid,  Session::get('property_uuid'));
+              app('App\Http\Controllers\Subfeatures\ReferralController')->update($this->referral, $this->contract_details->uuid,  Session::get('property_uuid'));
             }
 
             //update status of the tenant
             app('App\Http\Controllers\Features\TenantController')->update_tenant_status($this->contract_details->tenant->uuid,'active');
 
             //store new point
-            app('App\Http\Controllers\PointController')->store(Session::get('property_uuid'), auth()->user()->id,4, 1);
+            app('App\Http\Controllers\Utilities\PointController')->store(4, 1);
 
             if($this->sendContractToTenant)
             {
@@ -109,7 +106,7 @@ class ContractMoveinComponent extends Component
     {
         return view('livewire.contract-movein-component',[
             'unit' => Unit::find($this->contract_details->unit->uuid),
-            'interactions' => app('App\Http\Controllers\InteractionController')->index(),
+            'interactions' => app('App\Http\Controllers\Utilities\InteractionController')->index(),
         ]);
     }
 }

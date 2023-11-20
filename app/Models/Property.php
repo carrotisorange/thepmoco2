@@ -27,22 +27,22 @@ class Property extends Model
 
     public function type()
     {
-        return $this->belongsTo(Type::class, 'type_id');
+        return $this->belongsTo(Type::class, 'type_id')->withDefault();
     }
 
     public function country()
     {
-        return $this->belongsTo(Country::class, 'country_id');
+        return $this->belongsTo(Country::class, 'country_id')->withDefault();
     }
 
     public function province()
     {
-      return $this->belongsTo(Province::class, 'province_id');
+      return $this->belongsTo(Province::class, 'province_id')->withDefault();
     }
 
     public function city()
     {
-      return $this->belongsTo(City::class, 'city_id');
+      return $this->belongsTo(City::class, 'city_id')->withDefault();
     }
 
     public function units()

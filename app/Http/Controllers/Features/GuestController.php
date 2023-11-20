@@ -9,11 +9,47 @@ use Carbon\Carbon;
 use Session;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendPaymentToTenant;
-
+use DB;
 use App\Models\{Property,Guest,Unit,Bill,Collection,AdditionalGuest,Booking,AcknowledgementReceipt, User};
 
 class GuestController extends Controller
 {
+    public function index(Property $property){
+
+        $featureId = 7; //refer to the features table
+
+        $restrictionId = 2; //refer to the restrictions table
+
+        app('App\Http\Controllers\PropertyController')->storePropertySession($property->uuid);
+
+        app('App\Http\Controllers\Utilities\UserPropertyController')->isUserAuthorized();
+
+        if(!app('App\Http\Controllers\Utilities\UserRestrictionController')->isFeatureAuthorized($featureId, $restrictionId)){
+            return abort(403);
+        }
+
+        app('App\Http\Controllers\PropertyController')->storeUnitStatistics();
+
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($featureId,$restrictionId);
+
+        return view('features.guests.index',[
+            'property' => $property
+        ]);
+    }
+
+
+      public function get($status=null, $groupBy=null)
+      {
+        return Guest::getAll(Session::get('property_uuid'), $status, $groupBy);
+      }
+
+      public function getAverageNumberOfDaysGuestsStayed(){
+        return Booking::where('property_uuid', Session::get('property_uuid'))
+        ->select(DB::raw('avg(DATEDIFF(moveout_at,movein_at)) as average_days_stayed, count(*) as guest_count'))
+        ->where('property_uuid', Session::get('property_uuid'))
+        ->value('average_days_stayed');
+      }
+
     public function show_unit_guests($unit_uuid)
     {
        return Booking::where('unit_uuid', $unit_uuid)->get();
@@ -39,23 +75,6 @@ class GuestController extends Controller
             'property_uuid' => Session::get('property_uuid'),
             'vehicle_details' => $vehicle_details,
             'plate_number' => $plate_number
-        ]);
-    }
-    public function index(Property $property){
-        $featureId = 7;
-
-        $restrictionId = 2;
-
-        if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
-            return abort(403);
-         }
-
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,$restrictionId,$featureId);
-
-        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
-
-        return view('properties.guests.index',[
-            'property' => $property
         ]);
     }
 
@@ -97,9 +116,9 @@ class GuestController extends Controller
 
     public function update_collections(Request $request, Property $property, Guest $guest, $batch_no)
      {
-          Property::find($property->uuid)->collections()->where('guest_uuid', $guest->uuid)->where('is_posted', 0)->where('batch_no', '!=', $batch_no)->forceDelete();
+        Property::find($property->uuid)->collections()->where('guest_uuid', $guest->uuid)->where('is_posted', 0)->where('batch_no', '!=', $batch_no)->forceDelete();
 
-         $ar_no = app('App\Http\Controllers\Features\CollectionController')->getLatestAr($property->uuid);
+         $ar_no = app('App\Http\Controllers\Features\CollectionController')->getLatestAr();
 
          $counter = $this->get_selected_bills_count($batch_no, $guest->uuid);
 
@@ -164,7 +183,7 @@ class GuestController extends Controller
             ]);
         }
 
-         app('App\Http\Controllers\PointController')->store($property->uuid, auth()->user()->id, Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);
+         app('App\Http\Controllers\Utilities\PointController')->store(Collection::where('ar_no', $ar_no)->where('batch_no', $batch_no)->count(), 6);
 
         //  $this->send_payment_to_guest($guest, $ar_no, $request->form, $request->created_at, User::find(auth()->user()->id)->name, User::find(auth()->user()->id)->role->role, Collection::where('guest_uuid',$guest->uuid)->where('batch_no', $batch_no)->get());
 
@@ -231,7 +250,7 @@ class GuestController extends Controller
 
         $folder_path = 'properties.guests.export-collections';
 
-        $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
+        $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data);
 
         $pdf_name = str_replace(' ', '_', $property->property).'_AR_'.$collection->ar_no.'.pdf';
 
@@ -342,13 +361,13 @@ class GuestController extends Controller
 
     public function export_bill(Request $request, Property $property, Guest $guest){
 
-        app('App\Http\Controllers\Features\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
+        app('App\Http\Controllers\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
 
         $data = $this->get_bill_data($guest, $request->due_date, $request->penalty, $request->note_to_bill);
 
         $folder_path = 'properties.guests.export-bills';
 
-        $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
+        $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data);
 
         return $pdf->stream(Carbon::now()->format('M d, Y').'-'.$guest->guest.'-soa.pdf');
     }

@@ -12,11 +12,11 @@ class Reference extends Model
 
     public function tenant()
     {
-        return $this->belongsTo(Tenant::class,'tenant_uuid');
+        return $this->belongsTo(Tenant::class,'tenant_uuid')->withDefault();
     }
 
      public function relationship()
      {
-        return $this->belongsTo(Relationship::class);
+        return $this->belongsTo(Relationship::class)->withDefault();
      }
 }

@@ -8,38 +8,91 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Mail\SendBillToTenant;
 use Illuminate\Support\Facades\Mail;
+use DB;
 use App\Models\{Bill, Property, Unit, Tenant, Contract, Collection, User, Owner, Guest, Particular};
 
 class BillController extends Controller
 {
-
      public function index(Property $property, $batch_no=null, $drafts=0){
 
-        $featureId = 11;
+        $featureId = 11; //refer to the features table
 
-        $restrictionId = 2;
+        $restrictionId = 2; //refer to the restrictions table
 
-         if(!app('App\Http\Controllers\UserRestrictionController')->isFeatureRestricted($featureId, auth()->user()->id)){
+        app('App\Http\Controllers\PropertyController')->storePropertySession($property->uuid);
+
+        app('App\Http\Controllers\Utilities\UserPropertyController')->isUserAuthorized();
+
+        if(!app('App\Http\Controllers\Utilities\UserRestrictionController')->isFeatureAuthorized($featureId, $restrictionId)){
             return abort(403);
-         }
+        }
 
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,$restrictionId,$featureId);
+        app('App\Http\Controllers\PropertyController')->storeUnitStatistics();
 
-        app('App\Http\Controllers\UserPropertyController')->isUserApproved(auth()->user()->id, $property->uuid);
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($featureId,$restrictionId);
 
-        return view('properties.bills.index',[
+        return view('features.bills.index',[
             'active_contracts' => Contract::where('property_uuid', $property->uuid)->where('status', 'active')->get(),
             'active_tenants' => Contract::where('property_uuid', $property->uuid)->where('contracts.status','active')->distinct()->pluck('tenant_uuid'),
-            'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($property->uuid),
+            'particulars' => app('App\Http\Controllers\Utilities\PropertyParticularController')->index($property->uuid),
             'batch_no' => $batch_no,
             'drafts' => $drafts,
-            'property' => $property,
         ]);
+    }
+
+    public function get($isPosted=null, $status=null, $groupBy=null)
+    {
+        return Bill::getAll(Session::get('property_uuid'), $isPosted, $status, $groupBy);
+    }
+
+    public function getJsonEncodedBillForDashboard($status=null){
+
+        $data = Bill::where('property_uuid', Session::get('property_uuid'))
+        ->select(DB::raw('monthname(created_at) as month_name, sum(bill) as total'))
+        ->posted()
+          ->when($status, function($query, $status){
+            $query->where('status', $status);
+        })
+        ->whereYear('created_at', Carbon::now()->year)
+        ->groupBy(DB::raw('month(created_at)'))
+        ->orderBy(DB::raw('month(created_at)'))
+        ->limit(6);
+
+        $jsonString = $data->get('month_name','total');
+
+        $newFormatData = [];
+
+        foreach ($jsonString as $dataPoint) {
+            $newFormatData[] = [
+                "x" => $dataPoint["month_name"],
+                "y" => $dataPoint["total"],
+            ];
+        }
+
+       return json_encode($newFormatData);
+    }
+
+    public function showDelinquents(){
+
+        return view('features.bills.delinquents',[
+            'delinquents' => $this->getDelinquentTenants()
+        ]);
+    }
+
+    public function getDelinquentTenants(){
+        return Bill::join('tenants', 'bills.tenant_uuid', 'tenants.uuid')
+        ->select(DB::raw('sum(bill) as totalBill, tenant, email', 'tenant_uuid'))
+        ->where('bills.property_uuid',Session::get('property_uuid'))
+        ->whereMonth('bills.start','<=', Carbon::now()->subMonth()->month)
+        ->where('bills.status', 'unpaid')
+        ->groupBy('bills.tenant_uuid')
+        ->orderBy('totalBill', 'desc')
+        ->get();
     }
 
     public function tenant_index(Property $property, Tenant $tenant)
     {
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens', 10);
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity('opens',10);
 
         return view('features.tenants.bills.index',[
         'tenant' => $tenant,
@@ -63,7 +116,7 @@ class BillController extends Controller
 
     public function owner_index(Property $property, Owner $owner)
     {
-        app('App\Http\Controllers\ActivityController')->store($property->uuid, auth()->user()->id,'opens', 10);
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity('opens',10);
 
         return view('features.owners.bills.index',[
         'owner' => $owner,
@@ -78,7 +131,7 @@ class BillController extends Controller
 
   public function send_bills(Request $request, Property $property, Tenant $tenant)
     {
-        app('App\Http\Controllers\Features\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
+        app('App\Http\Controllers\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
 
         $data = $this->get_bill_data($tenant, $request->due_date, $request->penalty, $request->note_to_bill);
 
@@ -86,8 +139,6 @@ class BillController extends Controller
 
         return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
-
-
 
     public function store($property_uuid, $unit_uuid, $tenant_uuid, $owner_uuid, $particular_id, $start_date, $end_date, $total_amount_due, $batch_no, $posted){
         Bill::create(
@@ -99,7 +150,7 @@ class BillController extends Controller
             'bill' => $total_amount_due,
             'batch_no' => $batch_no,
             'property_uuid' => $property_uuid,
-            'bill_no'=> $this->getLatestBillNo($property_uuid),
+            'bill_no'=> $this->getLatestBillNo(),
             'user_id' => auth()->user()->id,
             'due_date' => Carbon::parse($start_date)->addDays(7),
             'is_posted' => $posted,
@@ -119,13 +170,13 @@ class BillController extends Controller
 
     public function export_soa(Request $request, Property $property, Tenant $tenant)
     {
-        app('App\Http\Controllers\Features\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
+        app('App\Http\Controllers\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
 
         $data = $this->get_bill_data($tenant, $request->due_date, $request->penalty, $request->note_to_bill);
 
         $folder_path = 'features.tenants.bills.export';
 
-        $pdf = app('App\Http\Controllers\ExportController')->generatePDF($folder_path, $data);
+        $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data);
 
         $pdf_name = str_replace(' ', '_', $property->property).'_SOA.pdf';
 
@@ -149,7 +200,7 @@ class BillController extends Controller
             'due_date' => $due_date,
             'user' => User::find(auth()->user()->id)->name,
             'role' => User::find(auth()->user()->id)->role->role,
-            'bills' => Bill::where('tenant_uuid', $tenant->uuid)->posted()->where('status','unpaid')->orderBy('bill_no', 'desc')->get(),
+            'bills' => Bill::where('tenant_uuid', $tenant->uuid)->posted()->where('status','unppaid')->orderBy('bill_no', 'desc')->get(),
             'balance' => $balance,
             'balance_after_due_date' => $balance + $penalty,
             'note_to_bill' => $note,
@@ -161,7 +212,7 @@ class BillController extends Controller
             'property' => $property,
           'unit' => Unit::find($unit->uuid),
           'tenant' => $tenant,
-          'particulars' => app('App\Http\Controllers\PropertyParticularController')->index($property->uuid),
+          'particulars' => app('App\Http\Controllers\Utilities\PropertyParticularController')->index($property->uuid),
             'units' => app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($tenant->uuid),
             'bills' => app('App\Http\Controllers\Features\BillController')->show_tenant_bills($tenant->uuid),
             'contract' => $contract
@@ -250,9 +301,9 @@ class BillController extends Controller
 
     }
 
-    public function getLatestBillNo($property_uuid)
+    public function getLatestBillNo()
     {
-        return sprintf('%08d',Property::find($property_uuid)->bills()->withTrashed()->max('bill_no')+1);
+        return sprintf('%08d',Property::find(Session::get('property_uuid'))->bills()->withTrashed()->max('bill_no')+1);
     }
 
     public function generate_bill_reference_no($type, $bill_no)
@@ -271,7 +322,7 @@ class BillController extends Controller
 
         $bills = Tenant::find($tenant->uuid)->bills;
 
-        $particulars = app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid'));
+        $particulars = app('App\Http\Controllers\Utilities\PropertyParticularController')->index(Session::get('property_uuid'));
 
         return view('features.bills.create',[
             'unit' => $unit,

@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire;
 
-use App\Mail\SendContractToTenant;
 use Livewire\Component;
+use App\Mail\SendContractToTenant;
 use Livewire\WithFileUploads;
 use Carbon\Carbon;
 use Session;
@@ -99,7 +99,7 @@ class TransferContractComponent extends Component
     {
         $contract_uuid = Str::uuid();
 
-        $bill_no = app('App\Http\Controllers\Features\BillController')->getLatestBillNo(Session::get('property_uuid'));
+        $bill_no = app('App\Http\Controllers\Features\BillController')->getLatestBillNo();
 
         $reference_no = Carbon::now()->timestamp.''.$bill_no;
 

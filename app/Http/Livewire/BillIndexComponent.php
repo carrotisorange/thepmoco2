@@ -112,26 +112,9 @@ class BillIndexComponent extends Component
             ->paginate(10);
    }
 
-   public function get_delinquents(){
-      return Bill::selectRaw('sum(bill-initial_payment) as balance, tenant_uuid, owner_uuid, guest_uuid, particular_id, bill,
-      initial_payment, created_at, unit_uuid')
-      ->where('property_uuid', Session::get('property_uuid'))
-      ->where('bill', '>','initial_payment')
-      ->whereNotNull('tenant_uuid')
-      ->where('start', '>', Carbon::now()->subMonth()->toDateTimeString())
-      ->groupBy('tenant_uuid')
-      ->orderBy('balance', 'desc')
-      ->paginate(10);
-   }
-
    public function get_bills()
    {
       $bills = '';
-
-      if($this->filter_bill_to === 'delinquent')
-      {
-         $bills = $this->get_delinquents();
-      }else{
          if($this->posted_dates === 'monthly'){
             $bills = $this->get_bills_per_period(now()->subdays(30));
          }elseif($this->posted_dates === 'quarterly'){
@@ -139,7 +122,6 @@ class BillIndexComponent extends Component
          }else{
             $bills = $this->get_bills_per_period('');
          }
-      }
        return $bills;
    }
 
@@ -147,15 +129,6 @@ class BillIndexComponent extends Component
     {
         $this->view = $view;
     }
-
-    public function viewDelinquents(){
-      if($this->filter_bill_to === 'delinquent'){
-         $this->filter_bill_to = '';
-      }else{
-         $this->filter_bill_to = 'delinquent';
-      }
-    }
-
 
    public function storeParticular(){
 
@@ -207,7 +180,7 @@ class BillIndexComponent extends Component
       ->where('contracts.status','active')
       ->pluck('tenant_uuid');
 
-      $bill_no = app('App\Http\Controllers\Features\BillController')->getLatestBillNo(Session::get('property_uuid'));
+      $bill_no = app('App\Http\Controllers\Features\BillController')->getLatestBillNo();
 
       $batch_no = app('App\Http\Controllers\Features\BillController')->generate_bill_batch_no($bill_no);
 
@@ -223,7 +196,7 @@ class BillIndexComponent extends Component
             $reference_no = Tenant::find($tenant_uuid[$i]);
 
             $unit_uuid = $unit_uuid[0];
-            $rent = Unit::find($unit_uuid)->rent;
+            $rent = Unit::where('uuid',$unit_uuid)->value('rent');
 
             $attributes['unit_uuid']= $unit_uuid;
             $attributes['tenant_uuid'] = $tenant_uuid[$i];
@@ -231,7 +204,7 @@ class BillIndexComponent extends Component
                if($this->particular_id === '8'){
                     $attributes['bill'] = -($this->bill);
                }else{
-                    $attributes['bill'] = $rent;
+                    $attributes['bill'] = $rent?$rent:0;
                }
 
                 $attributes['bill_no'] = $bill_no++;
@@ -251,6 +224,7 @@ class BillIndexComponent extends Component
 
             }catch(\Exception $e)
             {
+                ddd($e);
                 return redirect(url()->previous())->with('error', $e);
             }
    }
@@ -267,30 +241,6 @@ class BillIndexComponent extends Component
       'status' => 'unpaid',
       'initial_payment' => 0
       ]);
-   }
-
-   public function render()
-   {
-      $particulars = app('App\Http\Controllers\PropertyParticularController')->index(Session::get('property_uuid'));
-
-      $dates_posted = $this->get_posted_dates();
-
-      $period_covered_starts = $this->get_period_covered_starts();
-
-      $period_covered_ends = $this->get_period_covered_ends();
-
-      $propertyBillsCount = Property::find(Session::get('property_uuid'))->bills->count();
-
-      return view('livewire.bill-index-component', [
-         'bills' => $this->get_bills(),
-         'collections' => Collection::where('property_uuid', Session::get('property_uuid'))->posted()->get(),
-         'statuses' =>  $this->get_statuses(),
-         'particulars' => $particulars,
-         'dates_posted' => $dates_posted,
-         'period_covered_starts' => $period_covered_starts,
-         'period_covered_ends' => $period_covered_ends,
-         'propertyBillsCount' => $propertyBillsCount
-        ]);
    }
 
    public function get_statuses()
@@ -330,6 +280,30 @@ class BillIndexComponent extends Component
    public function exportBills(){
 
       return redirect('/property/'.Session::get('property_uuid').'/bill/export/status/'.$this->status.'/particular/'.$this->particular.'/date/'.$this->posted_dates);
+   }
+
+    public function render()
+   {
+      $particulars = app('App\Http\Controllers\Utilities\PropertyParticularController')->index(Session::get('property_uuid'));
+
+      $dates_posted = $this->get_posted_dates();
+
+      $period_covered_starts = $this->get_period_covered_starts();
+
+      $period_covered_ends = $this->get_period_covered_ends();
+
+      $propertyBillsCount = Property::find(Session::get('property_uuid'))->bills->count();
+
+      return view('livewire.features.bill.bill-index-component', [
+         'bills' => $this->get_bills(),
+         'collections' => Collection::where('property_uuid', Session::get('property_uuid'))->posted()->get(),
+         'statuses' =>  $this->get_statuses(),
+         'particulars' => $particulars,
+         'dates_posted' => $dates_posted,
+         'period_covered_starts' => $period_covered_starts,
+         'period_covered_ends' => $period_covered_ends,
+         'propertyBillsCount' => $propertyBillsCount
+     ]);
    }
 
 }

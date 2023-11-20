@@ -118,8 +118,7 @@ class UtilityEditComponent extends Component
         ]);
 
         //store utility parameters
-         app('App\Http\Controllers\UtilityParameterController')->store($this->batch_no, Session::get('property_uuid'),
-         $this->start_date, $this->end_date, $this->option, $this->kwh, $this->min_charge);
+         app('App\Http\Controllers\Utilities\UtilityParameterController')->store($this->batch_no, Session::get('property_uuid'), $this->start_date, $this->end_date, $this->option, $this->kwh, $this->min_charge);
 
         //store the previous utility reading to unit
          foreach ($this->utilities as $utility) {
@@ -132,10 +131,29 @@ class UtilityEditComponent extends Component
 
     public function store_bill($unit_uuid, $option, $start_date, $end_date, $total_amount_due, $batch_no){
         if($option === 'electric'){
-            app('App\Http\Controllers\Features\BillController')->store(Session::get('property_uuid'), $unit_uuid, '',6, $start_date, $end_date, $total_amount_due, $batch_no, 0);
+            app('App\Http\Controllers\Features\BillController')->store(
+                Session::get('property_uuid'),
+                $unit_uuid,
+                '',
+                6,
+                $start_date,
+                $end_date,
+                $total_amount_due,
+                $batch_no,
+                0
+            );
         }else{
-           app('App\Http\Controllers\Features\BillController')->store(Session::get('property_uuid'), $unit_uuid, '' ,5,
-           $start_date, $end_date, $total_amount_due, $batch_no, 0);
+           app('App\Http\Controllers\Features\BillController')->store(
+            Session::get('property_uuid'),
+            $unit_uuid,
+            '',
+            5,
+            $start_date,
+            $end_date,
+            $total_amount_due,
+            $batch_no,
+            0
+        );
         }
     }
 
@@ -156,6 +174,6 @@ class UtilityEditComponent extends Component
 
     public function render()
     {
-        return view('livewire.utility-edit-component');
+        return view('livewire.features.utility.utility-edit-component');
     }
 }

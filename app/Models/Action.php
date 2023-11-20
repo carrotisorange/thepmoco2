@@ -11,6 +11,6 @@ class Action extends Model
 
     public function points()
     {
-        return $this->belongsTo(Point::class);
+        return $this->belongsTo(Point::class)->withDefault();
     }
 }

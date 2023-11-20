@@ -81,15 +81,6 @@
                 View as List
             </x-button>
             @endif
-            @if($userPropertyCount)
-            <x-button onclick="window.location.href='/portfolio'">
-                View Portfolio
-            </x-button>
-            @endif
-
-            {{-- <x-button onclick="window.location.href='/user/{{ auth()->user()->id }}/export/portfolio'">Export
-                Portfolio</x-button> --}}
-
 
             <x-button onclick="window.location.href='/property/{{Str::random(8)}}/create'">New Property</x-button>
 

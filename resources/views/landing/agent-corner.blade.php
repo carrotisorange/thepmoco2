@@ -158,7 +158,7 @@
                             <div
                                 class="mx-auto max-w-4xl  px-4 sm:px-6 py-8 lg:flex lg:max-w-7xl lg:items-center lg:justify-between lg:px-8">
                                 <h2 class="text-lg font-bold tracking-tight text-gray-900 sm:text-2xl">
-                                    
+                                    <span class="block">Includes Site Seal</span>
                                     <span
                                         class="max-w-lg py-5 -mb-1 block  bg-clip-text pb-1 text-gray-700 text-base font-light">Your data security and privacy is important to us. With Comodo SSL, communication exchanged between our servers and our users are encrypted. This effectively protects against data theft and bolsters overall trust and security in our website.</span>
                                 </h2>
