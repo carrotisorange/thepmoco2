@@ -38,7 +38,7 @@ class CalendarController extends Controller
                 'id' => $booking->guest->uuid,
                 'title' => $booking->guest->guest.' @ '.$booking->unit->unit,
                 'start' => $booking->movein_at,
-                'end' => Carbon::parse($booking->moveout_at)->addDay(),
+                'end' => $booking->moveout_at,
                 'status' => $booking->status
             ];
         }

@@ -21,7 +21,7 @@ class BookingController extends Controller
              'status' => 'required'
         ]);
 
-       Booking::where('uuid', $booking->uuid)->update($validated);
+        Booking::where('uuid', $booking->uuid)->update($validated);
 
         return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
@@ -43,6 +43,6 @@ class BookingController extends Controller
           'no_of_guests' => $no_of_guests
         ];
 
-        Mail::to($email)->send(new SendWelcomeMailToGuest($details));
+       return Mail::to($email)->send(new SendWelcomeMailToGuest($details));
     }
 }
