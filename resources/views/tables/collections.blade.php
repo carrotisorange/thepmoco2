@@ -30,86 +30,86 @@
         </tr>
     </x-table-head-component>
     <x-table-body-component>
-        @foreach($collections as $index => $collection)
+        @foreach($collections as $index => $item)
         <tr>
             <x-td><b>{{ $index+1 }}</b></x-td>
-            <x-td>{{ $collection->ar_no }}</x-td>
+            <x-td>{{ $item->ar_no }}</x-td>
             <x-td>
-                <?php $bill_nos = App\Models\Collection::where('property_uuid', $collection->property_uuid)->posted()->where('ar_no', $collection->ar_no)->get();?>
+                <?php $bill_nos = App\Models\Collection::where('property_uuid', $item->property_uuid)->posted()->where('ar_no', $item->ar_no)->get();?>
                 @foreach ($bill_nos as $bill_no)
                 {{ $bill_no->bill->bill_no }},
                 @endforeach
             </x-td>
             <x-td>
-                @if($collection->tenant_uuid)
-                    <x-link-component link="/property/{{ $collection->property_uuid }}/tenant/{{ $collection->tenant_uuid }}">
-                    {{ $collection->tenant->tenant }}
+                @if($item->tenant_uuid)
+                    <x-link-component link="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}">
+                    {{ $item->tenant->tenant }}
                     </x-link-component>
-                @elseif($collection->owner_uuid)
-                    <x-link-component link="/property/{{ $collection->property_uuid }}/owner/{{ $collection->owner_uuid }}">
-                       {{ $bill->owner->owner }}
+                @elseif($item->owner_uuid)
+                    <x-link-component link="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}">
+                       {{ $item->owner->owner }}
                     </x-link-component>
-                @elseif($collection->guest_uuid)
-                    <x-link-component link="/property/{{ $collection->property_uuid }}/guest/{{ $collection->guest_uuid }}">
-                        {{ $bill->guest->guest }}
+                @elseif($item->guest_uuid)
+                    <x-link-component link="/property/{{ $item->property_uuid }}/guest/{{ $item->guest_uuid }}">
+                        {{ $item->guest->guest }}
                     </x-link-component>
                 @else
                     NA
                 @endif
             </x-td>
-            <x-td> {{ Carbon\Carbon::parse($collection->created_at)->format('M d, Y') }} </x-td>
-            <x-td> {{ $collection->form }} </x-td>
+            <x-td> {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }} </x-td>
+            <x-td> {{ $item->form }} </x-td>
             <x-td>
-                @if($collection->cheque_no)
-                {{ Str::limit($collection->cheque_no,15) }}
+                @if($item->cheque_no)
+                {{ Str::limit($item->cheque_no,15) }}
                 @else
                 NA
                 @endif
             </x-td>
             <x-td>
-                @if($collection->bank)
-                {{ Str::limit($collection->bank,15) }}
+                @if($item->bank)
+                {{ Str::limit($item->bank,15) }}
                 @else
                 NA
                 @endif
             </x-td>
             <?php
-                $collections_count = App\Models\Collection::where('batch_no', $collection->collection_batch_no)->posted()->count();
+                $items_count = App\Models\Collection::where('batch_no', $item->collection_batch_no)->posted()->count();
             ?>
             <x-td>
-                {{ number_format(App\Models\Collection::where('property_uuid', $collection->property_uuid)->posted()->where('ar_no', $collection->ar_no)->sum('collection'),2) }} ({{ $collection->count }})
+                {{ number_format(App\Models\Collection::where('property_uuid', $item->property_uuid)->posted()->where('ar_no', $item->ar_no)->sum('collection'),2) }} ({{ $item->count }})
             </x-td>
             <x-td>
-                <x-button id="dropdownDefaultButton({{ $collection->id }})" data-dropdown-placement="left-end"
-                    data-dropdown-toggle="dropdown({{ $collection->id }})">View
+                <x-button id="dropdownDefaultButton({{ $item->id }})" data-dropdown-placement="left-end"
+                    data-dropdown-toggle="dropdown({{ $item->id }})">View
                   &nbsp; <i class="fa-solid fa-caret-down"></i>
                 </x-button>
 
-                <div id="dropdown({{ $collection->id }})"
+                <div id="dropdown({{ $item->id }})"
                     class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
                     <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
                         <li>
-                            @if($collection->tenant_uuid)
-                            <a href="/property/{{ $collection->property_uuid }}/tenant/{{ $collection->tenant_uuid }}/collection/{{ $collection->id }}/view"
+                            @if($item->tenant_uuid)
+                            <a href="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}/collection/{{ $item->id }}/view"
                                 target="_blank"
                                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Acknowledgment
                                 Receipt</a>
 
-                            @elseif($collection->owner_uuid)
-                            <a href="/property/{{ $collection->property_uuid }}/owner/{{ $collection->owner_uuid }}/collection/{{ $collection->id }}/view"
+                            @elseif($item->owner_uuid)
+                            <a href="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}/collection/{{ $item->id }}/view"
                                 target="_blank"
                                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Acknowledgment
                                 Receipt</a>
-                            @elseif($collection->guest_uuid)
-                            <a href="/property/{{ $collection->property_uuid }}/guest/{{ $collection->guest_uuid }}/collection/{{ $collection->id }}/view"
+                            @elseif($item->guest_uuid)
+                            <a href="/property/{{ $item->property_uuid }}/guest/{{ $item->guest_uuid }}/collection/{{ $item->id }}/view"
                                 target="_blank"
                                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Acknowledgment
                                 Receipt</a>
                             @endif
 
                         </li>
-                        <?php $proof_of_payment = App\Models\AcknowledgementReceipt::where('property_uuid', $collection->property_uuid)
-                            ->where('ar_no', $collection->ar_no); ?>
+                        <?php $proof_of_payment = App\Models\AcknowledgementReceipt::where('property_uuid', $item->property_uuid)
+                            ->where('ar_no', $item->ar_no); ?>
                         <li>
                             @if($proof_of_payment->pluck('attachment')->first())
                             <a href="{{ asset('/storage/'.$proof_of_payment->pluck('attachment')->first()) }}"
@@ -130,14 +130,14 @@
                     </ul>
                 </div>
                 @cannot('tenant')
-                <x-button class="bg-red-500" data-modal-target="delete-collection-modal-{{$collection->id}}" data-modal-toggle="delete-collection-modal-{{$collection->id}}"
+                <x-button class="bg-red-500" data-modal-target="delete-collection-modal-{{$item->id}}" data-modal-toggle="delete-collection-modal-{{$item->id}}"
                     type="button">
                     Delete
                 </x-button>
                  @endcannot
             </x-td>
         </tr>
-        @livewire('delete-collection-component', ['collection' => $collection], key(Carbon\Carbon::now()->timestamp.''.$collection->id))
+        @livewire('delete-collection-component', ['collection' => $item], key(Carbon\Carbon::now()->timestamp.''.$item->id))
         @endforeach
     </x-table-body-component>
 </x-table-component>

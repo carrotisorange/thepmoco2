@@ -311,7 +311,7 @@ class BillController extends Controller
         return $type.Carbon::now()->timestamp.''.$bill_no;
     }
 
-    public function generate_bill_batch_no($bill_no)
+    public function generateBillBatchNo($bill_no)
     {
         return Carbon::now()->timestamp.''.$bill_no;
     }

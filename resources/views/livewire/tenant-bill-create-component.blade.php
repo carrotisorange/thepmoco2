@@ -13,7 +13,7 @@
                             </svg>
                             <button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant->uuid }}'"
                                 class="ml-4 text-lg font-medium text-gray-500 hover:text-gray-700 ">
-                                {{ $tenant->tenant }} 
+                                {{ $tenant->tenant }}
                             </button>
                         </div>
                     </li>
@@ -111,6 +111,5 @@
     @include('modals.create-bill-modal')
     @include('modals.export-tenant-bill')
     @include('modals.send-tenant-bill')
-    @include('modals.instructions.create-particular-modal')
-    @include('modals.create-particular')
+    @livewire('create-particular-component')
 </div>

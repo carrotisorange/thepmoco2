@@ -28,7 +28,7 @@ class DashboardIndexComponent extends Component
         $allVerifiedOwners = app('App\Http\Controllers\Features\OwnerController')->getVerifiedOwners()->whereNotNull('email_verified_at');
 
         $allPersonnels = app('App\Http\Controllers\Features\PersonnelController')->get();
-        $activePersonnels = app('App\Http\Controllers\Features\PersonnelController')->get(1); 
+        $activePersonnels = app('App\Http\Controllers\Features\PersonnelController')->get(1);
         $verifiedPersonnels = app('App\Http\Controllers\Features\PersonnelController')->get();
 
         $occupancyPieChartValues = app('App\Http\Controllers\Features\UnitController')->getOccupancyPieChartValues();
@@ -45,7 +45,7 @@ class DashboardIndexComponent extends Component
         $allGuests = app('App\Http\Controllers\Features\GuestController')->get();
         $averageNumberOfDaysGuestsStayed = app('App\Http\Controllers\Features\GuestController')->getAverageNumberOfDaysGuestsStayed();
 
-        $postedCollections =app('App\Http\Controllers\Features\CollectionController')->get(1)->sum('collection');
+        $postedCollections = app('App\Http\Controllers\Features\CollectionController')->get(1)->sum('collection');
 
         $completedRFPs =app('App\Http\Controllers\Features\RFPController')->get('completed')->sum('amount');
 

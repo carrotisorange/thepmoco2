@@ -14,7 +14,7 @@
                     </x-button>
                     <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute transition duration-150 ease-in-out origin-top min-w-32">
                         <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
-                            <a href="#/" type="button" data-modal-toggle="instructions-create-bill-modal">
+                            <a href="#/" type="button" data-modal-toggle="create-bulk-bill-modal">
                                 Tenant
                             </a>
                         </li>
@@ -23,6 +23,9 @@
                 <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/bill/delinquents'">
                     View Delinquents
                 </x-button>
+
+                {{-- <x-button wire:click="exportBills"> Export
+                </x-button> --}}
 
                 @if($view === 'listView')
                 <x-button wire:click="changeView('agingSummaryView')"> View Aging
@@ -54,7 +57,7 @@
                 </x-form-select>
             </div>
             <div class="sm:col-span-3">
-                <x-form-select name="particular" wire:model="particular">
+                <x-form-select name="particular_id" wire:model="particular_id">
                     <option value="">Filter bill particulars</option>
                     @foreach ($particulars as $item)
                     <option value="{{ $item->particular_id }}">{{ $item->particular }}</option>
@@ -98,7 +101,7 @@
                                     <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
                                               transition duration-150 ease-in-out origin-top min-w-32">
                                         <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
-                                            <a href="#/" data-modal-toggle="instructions-create-bill-modal">
+                                            <a href="#/" data-modal-toggle="create-bulk-bill-modal">
                                                 Tenant
                                             </a>
                                         </li>
@@ -113,7 +116,7 @@
                 </div>
             </div>
         </div>
-        @include('modals.instructions.create-bill-modal')
-        @include('modals.instructions.create-particular-modal')
+        @livewire('create-bulk-bill-component')
+        @livewire('create-particular-component')
     </div>
 </div>
