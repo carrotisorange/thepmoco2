@@ -1,4 +1,5 @@
 @component('mail::message')
+
 <b>{{ Session::get('property') }}</b>
 <br>
 {{ Carbon\Carbon::now()->format('M d, Y') }}
@@ -29,9 +30,9 @@ Thank you for choosing {{ Session::get('property') }}. It is our pleasure to con
     <br>
     Remarks: {{ $details['remarks'] }}
     <br>
-    <br>
     Sincerely,
     <br>
     {{ auth()->user()->name }}
     <br>
+
 @endcomponent
