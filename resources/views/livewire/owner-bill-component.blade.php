@@ -172,6 +172,5 @@
     @include('modals.create-bill-modal')
     @include('modals.export-owner-bill')
     @include('modals.send-owner-bill')
-    @include('modals.instructions.create-particular-modal')
-    @include('modals.create-particular')
+@livewire('create-particular-component')
 </div>

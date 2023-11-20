@@ -131,8 +131,7 @@
     @include('modals.create-bill-modal')
     @include('modals.export-guest-bill')
     @include('modals.send-guest-bill')
-    @include('modals.instructions.create-particular-modal')
-    @include('modals.create-particular')
+    @livewire('create-particular-component')
 </div>
 <div>
 </div>

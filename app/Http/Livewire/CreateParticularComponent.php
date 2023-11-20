@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Session;
 use Livewire\Component;
 use App\Models\{PropertyParticular,Particular};
 
@@ -9,7 +10,6 @@ class CreateParticularComponent extends Component
 {
     public $guest;
 
-    //input variables
     public $particular;
 
     protected function rules()
