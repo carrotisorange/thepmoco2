@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Carbon\Carbon;
 use App\Models\{Property, Bill, Guest, Unit, Booking};
+use App\Mail\SendWelcomeMailToGuest;
+use Illuminate\Support\Facades\Mail;
 
 class CalendarController extends Controller
 {
@@ -116,20 +118,7 @@ class CalendarController extends Controller
                 $guest->uuid
             );
 
-            app('App\Http\Controllers\Subfeatures\BookingController')->sendWelcomeMailToGuest(
-                $booking->uuid,
-                $booking->guest->guest,
-                $booking->movein_at,
-                $booking->moveout_at,
-                $booking->unit->unit,
-                $booking->price,
-                $booking->email,
-                $booking->no_of_children,
-                $booking->no_of_senior_citizens,
-                $booking->no_of_pwd,
-                $booking->remarks,
-                $booking->no_of_guests
-            );
+            $this->send_mail_to_guest($guest, $booking);
 
             $this->update_unit($request->unit_uuid);
 
@@ -189,6 +178,26 @@ class CalendarController extends Controller
 
         return $guest;
     }
+
+                 public function send_mail_to_guest($guest, $booking)
+                 {
+                 $details =[
+                 'uuid' => $guest->uuid,
+                 'guest' => $guest->guest,
+                 'checkin_date' => $guest->movein_at,
+                 'checkout_date' => $guest->moveout_at,
+                 'unit' => $guest->unit->unit,
+                 'price' => $guest->price,
+                 'email' => $guest->email,
+                 'no_of_children' => $booking->no_of_children,
+                 'no_of_senior_citizens' => $booking->no_of_senior_citizens,
+                 'no_of_pwd' => $booking->no_of_pwd,
+                 'remarks' => $booking->remarks,
+                 'no_of_guests' => $booking->no_of_guests
+                 ];
+
+                 Mail::to($guest->email)->send(new SendWelcomeMailToGuest($details));
+                 }
 
     public function store_bill($property_uuid, $unit_uuid, $particular_id, $start, $end, $bill, $guest_uuid){
          Bill::create([
