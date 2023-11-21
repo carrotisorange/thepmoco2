@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Models\Feature;
 use Spatie\Browsershot\Browsershot;
 use Session;
+use DB;
 use App\Models\{Property,AccountPayable,AccountPayableParticular};
 
 class RFPController extends Controller
@@ -41,6 +42,16 @@ class RFPController extends Controller
     public function get($status=null, $groupBy=null)
     {
         return AccountPayable::getAll(Session::get('property_uuid'), $status, $groupBy);
+    }
+
+    public function getExpenseBar(){
+        return AccountPayable::select(DB::raw('monthname(created_at) as month_name, sum(amount) as total_expense'))
+        ->where('account_payables.property_uuid', Session::get('property_uuid'))
+        ->groupBy(DB::raw('month(created_at)'))
+        ->where('status', 'completed')
+        ->limit(5)
+        ->whereYear('created_at', Carbon::now()->year)
+        ->groupBy(DB::raw('month(created_at)'));
     }
 
     public function getAccountPayables($property_uuid){

@@ -57,26 +57,20 @@ class DashboardIndexComponent extends Component
         $uncollectedBillBarValues = app('App\Http\Controllers\Features\BillController')->getJsonEncodedBillForDashboard('unpaid');
         $collectedBillBarValues = app('App\Http\Controllers\Features\BillController')->getJsonEncodedBillForDashboard('paid');
 
-        // $incomeBarValues = Collection::select(DB::raw('monthname(collections.created_at) as collection_month_name, sum(collections.collection) as total_collection,
-        // monthname(account_payables.created_at) as ap_month_name, sum(amount) as total_amount'))
-        // ->leftJoin('account_payables', DB::raw('monthname(collections.created_at)'), DB::raw('monthname(account_payables.created_at)'))
-        // ->where('collections.property_uuid', Session::get('property_uuid'))
-        // ->groupBy('collection_month_name')
-        // ->where('collections.is_posted',1)
-        // ->where('account_payables.status', 'completed')
-        // ->limit(5)
-        // ->whereYear('collections.created_at', Carbon::now()->year)
-        // ->orderBy(DB::raw('month(collections.created_at)'));
+        $collectionBar = app('App\Http\Controllers\Features\CollectionController')->getCollectionBar();
+        $collectionBarLabels = json_encode($collectionBar->pluck('month_name'));
+        $collectionBarValues = json_encode($collectionBar->pluck('total_collection'));
 
-        $incomeBarValues = app('App\Http\Controllers\Features\CollectionController')->getIncomeBarValues();
-        $incomeBarLabels = json_encode($incomeBarValues->pluck('month_name'));
-        $collectionBarValues = json_encode($incomeBarValues->pluck('total_collection'));
+        $expenseBar = app('App\Http\Controllers\Features\RFPController')->getExpenseBar();
+        $expenseBarLabels = json_encode($expenseBar->pluck('month_name'));
+        $expenseBarValues = json_encode($expenseBar->pluck('total_expense'));
 
         if($postedUnpaidBills > 0){
             $collectionRate = number_format(($postedPaidBills/$postedBills)*100,2).'%';
         }else{
             $collectionRate = "NA";
         }
+
 
         $billPieChartValues = app('App\Http\Controllers\Features\UnitController')->getBillPieChartValues();
 
@@ -132,9 +126,10 @@ class DashboardIndexComponent extends Component
            'approvedBulletins',
            'occupancyRate',
            'collectionRate',
-           'incomeBarLabels',
+           'collectionBarLabels',
            'collectionBarValues',
-        //    'expenseBarValues',
+            'expenseBarLabels',
+            'expenseBarValues',
            'billedBillBarValues',
            'uncollectedBillBarValues',
            'collectedBillBarValues',

@@ -861,11 +861,7 @@
                         <dd class="leading-none text-xl font-bold text-green-500 dark:text-green-400">₱{{
                             number_format($postedCollections,2) }}</dd>
                     </dl>
-                    <!-- <dl>
-                        <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Expense</dt>
-                        <dd class="leading-none text-xl font-bold text-red-600 dark:text-red-500">₱{{
-                            number_format($completedRFPs,2) }}</dd>
-                    </dl> -->
+
                 </div>
 
                 <div id="bar-chart"></div>
@@ -1008,7 +1004,7 @@
                         return "₱" + value
                     }
                     },
-                    categories: {!! $incomeBarLabels !!},
+                    categories: {!! $collectionBarLabels !!},
                     axisTicks: {
                     show: false,
                     },
@@ -1055,7 +1051,8 @@
                     <dl>
                         <!-- all time expense -->
                         <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Expense</dt>
-                        <dd class="leading-none text-3xl font-bold text-gray-900 dark:text-white">₱0</dd>
+                        <dd class="leading-none text-3xl font-bold text-gray-900 dark:text-white">₱ -{{
+                            number_format($completedRFPs,2) }}</dd>
                     </dl>
                 </div>
 
@@ -1063,7 +1060,8 @@
                     <dl>
                         <!-- filtered expense -->
                         <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Expense</dt>
-                        <dd class="leading-none text-xl font-bold text-red-600 dark:text-red-500">-₱18,230</dd>
+                        <dd class="leading-none text-xl font-bold text-red-600 dark:text-red-500">₱ -{{
+                        number_format($completedRFPs,2) }}</dd>
                     </dl>
                 </div>
 
@@ -1072,7 +1070,7 @@
                     class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
                     <div class="flex justify-between items-center pt-5">
                         <!-- Button -->
-                        <button id="dropdownDefaultButton" data-dropdown-toggle="lastDaysdropdown"
+                        {{-- <button id="dropdownDefaultButton" data-dropdown-toggle="lastDaysdropdown"
                             data-dropdown-placement="bottom"
                             class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
                             type="button">
@@ -1082,7 +1080,7 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="m1 1 4 4 4-4" />
                             </svg>
-                        </button>
+                        </button> --}}
                         <!-- Dropdown menu -->
                         <div id="lastDaysdropdown"
                             class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
@@ -1150,10 +1148,10 @@
             window.addEventListener("load", function() {
                 var options = {
                 series: [
-                   
+
                     {
                     name: "Expense",
-                    data: ["788", "810", "866", "788", "1100", "1200"],
+                    data: {!! $expenseBarValues !!},
                     color: "#93B7BE",
                     }
                 ],
@@ -1207,7 +1205,7 @@
                         return "₱" + value
                     }
                     },
-                    categories: ["Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                    categories: {!! $expenseBarLabels !!},
                     axisTicks: {
                     show: false,
                     },
@@ -1276,10 +1274,11 @@
                         <dd class="text-gray-900 text-sm dark:text-white font-semibold">{{
                             number_format($postedBills,2) }}</dd>
                     </dl>
-                    <dl class="flex items-center justify-end">
-                        <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal mr-1">Total Unbilled:</dt>
-                        <dd class="text-gray-900 text-sm dark:text-white font-semibold">NA</dd>
-                    </dl>
+                  <dl class="flex items-center justify-end">
+                    <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal mr-1">Total Uncollected:</dt>
+                    <dd class="text-gray-900 text-sm dark:text-white font-semibold">{{
+                        number_format($postedUnpaidBills, 2) }}</dd>
+                </dl>
                 </div>
 
                 <div class="grid grid-cols-2">
@@ -1288,11 +1287,7 @@
                         <dd class="text-gray-900 text-sm dark:text-white font-semibold">{{
                             number_format($postedCollections,2) }}</dd>
                     </dl>
-                    <dl class="flex items-center justify-end">
-                        <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal mr-1">Total Uncollected:</dt>
-                        <dd class="text-gray-900 text-sm dark:text-white font-semibold">{{
-                            number_format($postedUnpaidBills, 2) }}</dd>
-                    </dl>
+
                 </div>
 
                 <div id="collection-chart"></div>
@@ -1478,7 +1473,7 @@
             </script>
 
         </div>
-       
+
 
         <!-- bills -->
         <div class="mt-5 col-span-4 lg:col-span-2">
