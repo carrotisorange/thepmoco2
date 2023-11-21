@@ -82,7 +82,7 @@ class CollectionController extends Controller
         // $paymentRequests = PaymentRequest::where('property_uuid', Session::get('property_uuid'))->get();
 
         return view('payment_requests.index',[
-        'requests' => $paymentRequests
+            'requests' => $paymentRequests
         ]);
     }
 
