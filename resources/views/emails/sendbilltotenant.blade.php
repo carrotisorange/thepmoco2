@@ -8,13 +8,13 @@ Bills to be Paid After Due Date: {{ number_format($data['balance_after_due_date'
 Bills Breakdown
 
 @component('mail::table')
-| Bill # | Date Posted | Unit | Particular | Period Covered | Amount |
-| ------------- |------------- |------------- |------------- |-------|
-@foreach ($data['bills'] as $item)
-| {{ $item->bill_no }} | {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }} | {{ $item->unit->unit }} |  {{ $item->particular->particular }} | {{Carbon\Carbon::parse($item->start)->format('M d, Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }} | {{number_format((($item->bill)-App\Models\Collection::where('bill_id', $item->id)->sum('collection')),2) }}|
-@endforeach
-| ------------- |------------- |------------- |------------- |-------|
-|  Total        |              |              |              |{{ number_format($data['balance'], 2) }}|
+    | Bill # | Date Posted | Unit | Particular | Period Covered | Amount |
+    | ------------- |------------- |------------- |------------- |-------|
+    @foreach ($data['bills'] as $item)
+    | {{ $item->bill_no }} | {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }} | {{ $item->unit->unit }} |  {{ $item->particular->particular }} | {{Carbon\Carbon::parse($item->start)->format('M d, Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }} | {{number_format((($item->bill)-App\Models\Collection::where('bill_id', $item->id)->sum('collection')),2) }}|
+    @endforeach
+    | ------------- |------------- |------------- |------------- |-------|
+    |  Total        |              |              |              |{{ number_format($data['balance'], 2) }}|
 @endcomponent
 @if($data['note_to_bill'])
 {{ $data['note_to_bill'] }}
