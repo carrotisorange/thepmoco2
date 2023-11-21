@@ -43,7 +43,7 @@ class CollectionController extends Controller
         return Collection::getAll(Session::get('property_uuid'), $status,$groupBy);
     }
 
-    public function getIncomeBarValues(){
+    public function getCollectionBar(){
         return Collection::select(DB::raw('monthname(created_at) as month_name, sum(collection) as total_collection'))
         ->where('collections.property_uuid', Session::get('property_uuid'))
         ->groupBy(DB::raw('month(created_at)'))
