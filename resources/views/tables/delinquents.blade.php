@@ -3,7 +3,7 @@
         <tr>
             <x-th>#</x-th>
             <x-th>Tenant</x-th>
-            <x-th>UNIT</x-th>
+       
             <x-th>AMOUNT</x-th>
 
         </tr>
@@ -17,17 +17,7 @@
                     {{ $item->tenant }}
                 </x-link-component>
             </x-td>
-            <x-td>
-              {{-- @if($item->tenant->uuid)
-                    @foreach ($unit->contracts->where('status','!=','inactive')->take(1) as $tenant)
-                    <x-link-component link="/property/{{ $unit->property_uuid }}/tenant/{{ $tenant->tenant->uuid }}">
-                       {{ $tenant->tenant->tenant }}
-                    </x-link-component>
-                    @endforeach
-                @else
-                    NA
-                @endif --}}
-            </x-td>
+
             <x-td>
                 {{number_format($item->totalBill,2)}}
             </x-td>

@@ -106,7 +106,8 @@
                                     @include('tables.properties')
                                     @elseif($subfeature === 'session')
                                     @include('tables.sessions')
-                                    @elseif($subfeature === 'document')
+                                    @elseif($subfeature === 'referral')
+                                        @include("tables.referrals")
                                     @endif
                                 </div>
                             </div>

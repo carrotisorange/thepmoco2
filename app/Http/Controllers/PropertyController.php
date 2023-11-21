@@ -598,24 +598,12 @@ class PropertyController extends Controller
         }
     }
 
-    public function get_property_types($user_id){
-        return UserProperty::join('users', 'user_id', 'users.id')
-        ->join('properties', 'property_uuid', 'properties.uuid')
-        ->join('types', 'properties.type_id', 'types.id')
-        ->select('*', DB::raw('count(*) as count'))
-        ->where('user_id', $user_id)
-        ->where('properties.status', 'active')
-        ->groupBy('type_id')
-        ->get();
-    }
-
-    public function get_properties($user_id, $search, $sortBy, $filterByPropertyType, $limitDisplayTo)
+    public function getPersonnelProperties($search, $sortBy, $filterByPropertyType, $limitDisplayTo)
     {
         return UserProperty::join('users', 'user_id', 'users.id')
         ->join('properties', 'property_uuid', 'properties.uuid')
         ->join('types', 'type_id', 'types.id')
-        ->select('*')
-        ->where('user_id', $user_id)
+        ->where('user_id', auth()->user()->id)
         ->where('user_properties.is_approved',1)
         ->when($search, function($query, $search){
         $query->where('property','like', '%'.$search.'%');

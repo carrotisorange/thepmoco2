@@ -53,8 +53,7 @@ class BillController extends Controller
           ->when($status, function($query, $status){
             $query->where('status', $status);
         })
-        ->whereYear('created_at', Carbon::now()->year)
-        ->groupBy(DB::raw('month(created_at)'))
+        ->groupBy(DB::raw('month(created_at)+"-"+year(created_at)'))
         ->orderBy(DB::raw('month(created_at)'))
         ->limit(6);
 
@@ -73,7 +72,6 @@ class BillController extends Controller
     }
 
     public function showDelinquents(){
-
         return view('features.bills.delinquents',[
             'delinquents' => $this->getDelinquentTenants()
         ]);
@@ -81,13 +79,28 @@ class BillController extends Controller
 
     public function getDelinquentTenants(){
         return Bill::join('tenants', 'bills.tenant_uuid', 'tenants.uuid')
-        ->select(DB::raw('sum(bill) as totalBill, tenant, email', 'tenant_uuid'))
+        ->select(DB::raw('sum(bill) as totalBill, tenant, email, tenant_uuid'))
         ->where('bills.property_uuid',Session::get('property_uuid'))
         ->whereMonth('bills.start','<=', Carbon::now()->subMonth()->month)
         ->where('bills.status', 'unpaid')
         ->groupBy('bills.tenant_uuid')
         ->orderBy('totalBill', 'desc')
         ->get();
+    }
+
+    public function export(){
+
+         $data = [
+            'bills' => app('App\Http\Controllers\Features\BillController')->get(1, 'unpaid')
+         ];
+
+         $folder_path = 'features.bills.export';
+
+         $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data);
+
+         $pdf_name = str_replace(' ', '_', Session::get('property')).'_bills.pdf';
+
+         return $pdf->stream($pdf_name);
     }
 
     public function tenant_index(Property $property, Tenant $tenant)

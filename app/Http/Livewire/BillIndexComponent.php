@@ -105,11 +105,6 @@ class BillIndexComponent extends Component
       ->get();
    }
 
-//    public function exportBills(){
-
-//       return redirect('/property/'.Session::get('property_uuid').'/bill/export/status/'.$this->status.'/particular/'.$this->particular.'/date/'.$this->posted_dates);
-//    }
-
     public function render()
    {
         $bills = $this->get_bills();

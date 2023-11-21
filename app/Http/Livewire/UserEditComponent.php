@@ -7,7 +7,7 @@ use DB;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\{User,Feature};
+use App\Models\{User,Feature,Booking};
 
 class UserEditComponent extends Component
 {
@@ -84,12 +84,17 @@ class UserEditComponent extends Component
 
         $userSubfeaturesArray = explode(",", $userSubfeatures);
 
+        $referrals = Booking::join('agents','agent_id', 'agents.id')
+        ->where('user_id', auth()->user()->id)
+        ->get();
+
         return view('livewire.user-edit-component',[
             'properties' => User::find($this->user->id)->user_properties()->get(),
             'all_properties' => User::find(auth()->user()->id)->user_properties()->get(),
             'roles' => app('App\Http\Controllers\Utilities\UserPropertyController')->get_personnel_positions(),
             'sessions' => User::find($this->user->id)->sessions()->orderBy('created_at', 'desc')->get(),
-            'userSubfeaturesArray' => $userSubfeaturesArray
+            'userSubfeaturesArray' => $userSubfeaturesArray,
+            'referrals' => $referrals
         ]);
     }
 }
