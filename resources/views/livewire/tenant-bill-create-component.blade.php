@@ -22,23 +22,20 @@
             </nav>
             <div class="col-span-3 flex sm:justify-center lg:justify-end items-end">
                 <div class="sm:my-10 md:my-5 lg:my-0">
-
                     @if($total_unpaid_bills->count())
                     <x-button data-modal-toggle="export-tenant-bill">Export
                         Bill ({{
                         App\Models\Tenant::find($tenant->uuid)->bills()->posted()->where('status', '!=','paid')->count()
                         }})</a></x-button>
 
-                    <x-button data-modal-toggle="send-tenant-bill">Send
+                    <x-button data-modal-toggle="send-bill-modal">Send
                         Bill ({{ App\Models\Tenant::find($tenant->uuid)->bills()->posted()->where('status',
                         '!=', 'paid')->count() }})</a></x-button>
                     @endif
 
-                    <x-button data-modal-toggle="create-bill-modal">
-                        Create Bill</a></x-button>
+                    <x-button data-modal-toggle="create-bill-modal">Create Bill</a></x-button>
 
-                    <x-button data-modal-toggle="create-particular-modal">
-                        Create Particular</a></x-button>
+                    <x-button data-modal-toggle="create-particular-modal">Create Particular</a></x-button>
                 </div>
             </div>
         </div>
@@ -110,6 +107,6 @@
     </div>
     @include('modals.create-bill-modal')
     @include('modals.export-tenant-bill')
-    @include('modals.send-tenant-bill')
+    @livewire('send-bill-component',['tenant' => $tenant])
     @livewire('create-particular-component')
 </div>

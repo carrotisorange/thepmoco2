@@ -76,7 +76,7 @@ class OwnerBillController extends Controller
 
     public function export(Request $request, Property $property, Owner $owner)
     {
-       app('App\Http\Controllers\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
+       app('App\Http\Controllers\PropertyController')->updateNoteToBill($request->note_to_bill);
 
        $data = $this->get_bill_data($owner, $request->due_date, $request->penalty, $request->note_to_bill);
 
@@ -89,7 +89,7 @@ class OwnerBillController extends Controller
 
     public function send(Request $request, Property $property, Owner $owner)
     {
-        app('App\Http\Controllers\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
+        app('App\Http\Controllers\PropertyController')->updateNoteToBill($request->note_to_bill);
 
         $data = $this->get_bill_data($owner, $request->due_date, $request->penalty, $request->note_to_bill);
 
