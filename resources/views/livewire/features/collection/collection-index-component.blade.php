@@ -6,8 +6,12 @@
                     {{ucfirst(Route::current()->getName())}}
                 </h1>
             </div>
-            @if($propertyCollectionsCount)
+
             <div class="sm:col-span-6">
+                <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/pending'">
+                    Verify Payments
+                </x-button>
+                @if($propertyCollectionsCount)
                 <div class="group inline-block">
                     <x-button>Export  &nbsp; <i class="fa-solid fa-caret-down"></i></x-button>
                     <ul  class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute  transition duration-150 ease-in-out origin-top min-w-32">
@@ -19,10 +23,7 @@
                         </li>
                     </ul>
                 </div>
-                <x-button
-                    onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/collection/pending'">
-                    Verify Payments
-                </x-button>
+
                 <div class="group inline-block">
                     <x-button> New
                         collection</span>
@@ -37,8 +38,9 @@
                         </li>
                     </ul>
                 </div>
+                @endif
             </div>
-            @endif
+
         </div>
 
         @if($propertyCollectionsCount)
