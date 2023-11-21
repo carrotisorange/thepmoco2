@@ -5,17 +5,16 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Carbon\Carbon;
 use Session;
+use DB;
 use App\Models\{Collection,Remittance};
 
 class RemittanceIndexComponent extends Component
 {
     public $remittances;
     public $created_at;
-    public $date;
 
     public function mount(){
         $this->created_at = Carbon::parse(Remittance::where('property_uuid', Session::get('property_uuid'))->orderBy('id', 'desc')->pluck('created_at')->first());
-        $this->date = Carbon::now()->format('Y-m-d');
         $this->remittances = $this->get_remittances();
     }
 
@@ -108,37 +107,6 @@ class RemittanceIndexComponent extends Component
        }
     }
 
-    public function storeRemittance(){
-        sleep(2);
-
-        $this->validate([
-            'date' => 'required|date'
-        ]);
-
-        $collections = Collection::where('property_uuid', Session::get('property_uuid'))
-           ->whereMonth('created_at', Carbon::parse($this->date)->month)
-           ->get();
-
-        foreach($collections as $collection){
-             if($collection->bill->particular_id === 1){
-                app('App\Http\Controllers\Features\RemittanceController')->store(
-                    $collection->property_uuid,
-                    $collection->unit->uuid,
-                    $collection->ar_no,
-                    $collection->bill->particular_id,
-                    $collection->tenant_uuid,
-                    $collection->guest_uuid,
-                    $this->date,
-                    $collection->collection
-                );
-            }
-            continue;
-        }
-
-        return redirect('/property/'.Session::get('property_uuid').'/remittance')->with('success', 'Changes Saved!');
-
-    }
-
     public function redirectToOwnerPage(){
         return redirect('/property/'.Session::get('property_uuid').'/collection/');
     }
@@ -157,16 +125,9 @@ class RemittanceIndexComponent extends Component
     {
         return view('livewire.features.remittance.remittance-index-component',[
 
-            'dates' => Remittance::where('property_uuid', Session::get('property_uuid'))
-            ->groupBy('created_at')
+            'filterDates' => Remittance::where('property_uuid', Session::get('property_uuid'))
+            ->groupBy(DB::raw('month(created_at)+"-"+year(created_at)'))
             ->get(),
-
-            'collectionsCount' => Collection::where('collections.property_uuid', Session::get('property_uuid'))
-            ->whereNotNull('collections.tenant_uuid')
-            ->join('bills', 'collections.bill_id', 'bills.id')
-            ->where('bills.particular_id', 1)
-            ->whereMonth('collections.created_at', Carbon::parse($this->date)->month)
-            ->count(),
 
         ]);
     }

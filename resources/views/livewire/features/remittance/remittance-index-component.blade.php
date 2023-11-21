@@ -7,18 +7,16 @@
                 </h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <x-button data-modal-toggle="instructions-create-remittance-modal" type="button">Create
-                    remittance
+                {{-- <x-button data-modal-toggle="instructions-create-remittance-modal">Export
+                </x-button> --}}
+                <x-button data-modal-toggle="instructions-create-remittance-modal">Create
                 </x-button>
             </div>
         </div>
         <div class="mt-5">
-            <x-form-select id="small" wire:model="created_at">
-                <option value="{{ $created_at }}">{{ Carbon\Carbon::parse($created_at)->format('M, Y') }}</option>
-                @foreach ($dates as $date)
-                    @if(Carbon\Carbon::parse($date->created_at)->format('M, Y') != Carbon\Carbon::parse($created_at)->format('M, Y'))
+            <x-form-select wire:model="created_at">
+                @foreach ($filterDates as $date)
                     <option value="{{ $date->created_at }}">{{ Carbon\Carbon::parse($date->created_at)->format('M, Y')}}</option>
-                @endif
                 @endforeach
             </x-form-select>
         </div>
@@ -52,5 +50,5 @@
             </div>
         </div>
     </div>
-    @include('modals.instructions.create-remittance-modal')
+    @livewire('remittance-create-component')
 </div>

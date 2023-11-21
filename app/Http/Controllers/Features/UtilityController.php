@@ -40,12 +40,11 @@ class UtilityController extends Controller
         return Utility::select(DB::raw('monthname(created_at) as month_name, sum(current_consumption) as
         total_consumption'))
         ->where('property_uuid', Session::get('property_uuid'))
-        ->groupBy(DB::raw('month(created_at)'))
+        ->groupBy(DB::raw('month(created_at)+"-"+year(created_at)'))
         ->where('is_posted',1)
         ->limit(7)
         ->where('type', $type)
-        ->whereYear('created_at', Carbon::now()->year)
-        ->groupBy(DB::raw('month(created_at)'));
+        ->whereYear('created_at', Carbon::now()->year);
     }
 
     public function destroy($unit_uuid){

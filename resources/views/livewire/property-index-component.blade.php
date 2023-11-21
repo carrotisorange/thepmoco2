@@ -4,52 +4,28 @@
 <div>
     @if(!$userPropertyCount)
     <div class="mt-10">
-        <nav aria-label="Progress">
-            <ol role="list" class="divide-y divide-gray-300 rounded-md border border-gray-300 md:flex md:divide-y-0">
-                @foreach($propertySubfeaturesArray as $index => $subfeature)
-                @if($subfeature === 'property')
-                <li class="relative md:flex md:flex-1">
-                    <!-- Completed Step -->
-                    <a href="#" class="flex items-center px-6 py-4 text-sm font-medium"
-                        aria-current="{{ $subfeature }}">
-                        <span
-                            class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-indigo-600">
-                            <span class="text-purple-500">{{ $index+1 }}</span>
-                        </span>
-                        <span class="ml-4 text-sm font-medium text-purple-500">Add a {{ $subfeature }}</span>
-                    </a>
-
-                    <!-- Arrow separator for lg screens and up -->
-                    <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
-                       @include('layouts.separator')
+        <nav class="mx-auto max-w-9xl px-4 sm:px-6 lg:px-8" aria-label="Progress">
+            <ol role="list"
+                class="overflow-hidden rounded-md lg:flex lg:rounded-none lg:border-l lg:border-r lg:border-gray-200">
+                @foreach($steps as $index => $item)
+                <li class="relative overflow-hidden lg:flex-1">
+                    <div class="border border-gray-200 overflow-hidden border-b-0 rounded-t-md lg:border-0">
+                        @if($item == 'property')
+                        <x-current-step-stepper-component index="{{ $index+1 }}"
+                            link="/property/"
+                            subfeature="{{ $item }}" />
+                        @else
+                        <x-next-step-stepper-component index="{{ $index+1 }}"
+                            link="#/"
+                            subfeature="{{ $item }}" />
+                        @include('layouts.separator')
+                        @endif
                     </div>
                 </li>
-                @else
-                <li class="relative md:flex md:flex-1">
-                    <!-- Current Step -->
-                    <a href="#" class="group flex items-center">
-                        <span class="flex items-center px-6 py-4 text-sm font-medium">
-                            <span
-                                class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-gray-300 group-hover:border-gray-400">
-                                <span class="text-gray-500 group-hover:text-gray-900">{{ $index+1 }}</span>
-                            </span>
-                            <span class="ml-4 text-sm font-medium text-gray-500 group-hover:text-gray-900">Add a {{
-                                $subfeature }}
-                            </span>
-                        </span>
-                    </a>
-
-                    <!-- Arrow separator for lg screens and up -->
-                    <div class="absolute top-0 right-0 hidden h-full w-5 md:block" aria-hidden="true">
-                       @include('layouts.separator')
-                    </div>
-                </li>
-                @endif
                 @endforeach
             </ol>
         </nav>
     </div>
-
     <div class="mt-32 text-center">
         <i class="fa-solid fa-circle-plus"></i>
         <h3 class="mt-2 text-sm font-medium text-gray-900">No properties</h3>
@@ -61,7 +37,6 @@
         </div>
     </div>
     @else
-
     <div class="sm:flex sm:items-center mt-5">
         <div class="sm:flex-auto">
             <h1 class="text-left text-xl font-bold tracking-tight sm:text-xl lg:text-2xl">
@@ -70,22 +45,16 @@
             </h1>
         </div>
         <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-
             @if($propertyView === 'list')
             <x-button wire:click="changePropertyView('thumbnail')">
                 View as Thumbnail
-
             </x-button>
             @else
             <x-button wire:click="changePropertyView('list')">
                 View as List
             </x-button>
             @endif
-
             <x-button onclick="window.location.href='/property/{{Str::random(8)}}/create'">New Property</x-button>
-
-
-
         </div>
     </div>
 
@@ -123,16 +92,6 @@
                 <option value="created_at">date created</option>
             </x-form-select>
         </div>
-
-        {{-- <div class="sm:col-span-2">
-            <x-form-select name="limitDisplayTo" wire:model="limitDisplayTo">
-                <option value="" selected>Limit display to</option>
-                @for ($i = 1; $i <= $userPropertyCount; $i++) @if($i%4==0 || $i==$userPropertyCount) <option
-                    value="{{ $i }}">{{ $i }}</option>
-                    @endif
-                    @endfor
-            </x-form-select>
-        </div> --}}
     </div>
 
     <div class="mt-5 mb-5">
@@ -164,7 +123,6 @@
             @endforeach
         </div>
     </div>
-
     @else
     <div class="mt-8 flex flex-col">
         <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-9">

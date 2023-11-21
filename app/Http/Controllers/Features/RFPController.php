@@ -47,11 +47,10 @@ class RFPController extends Controller
     public function getExpenseBar(){
         return AccountPayable::select(DB::raw('monthname(created_at) as month_name, sum(amount) as total_expense'))
         ->where('account_payables.property_uuid', Session::get('property_uuid'))
-        ->groupBy(DB::raw('month(created_at)'))
         ->where('status', 'completed')
-        ->limit(5)
-        ->whereYear('created_at', Carbon::now()->year)
-        ->groupBy(DB::raw('month(created_at)'));
+        ->groupBy(DB::raw('month(created_at)+"-"+year(created_at)'))
+        ->limit(5);
+
     }
 
     public function getAccountPayables($property_uuid){

@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\{Feature,UserProperty};
+use App\Models\UserProperty;
 
 class PropertyIndexComponent extends Component
 {
@@ -27,22 +27,19 @@ class PropertyIndexComponent extends Component
 
     public function render()
     {
-        $userId = auth()->user()->id;
-        $properties  = app('App\Http\Controllers\PropertyController')->get_properties($userId, $this->search,$this->sortBy, $this->filterByPropertyType, $this->limitDisplayTo);
-        $propertyTypes = app('App\Http\Controllers\PropertyController')->get_property_types(auth()->user()->id);
-        $userPropertyCount = UserProperty::where('user_id', $userId)->count();
+        $properties  = app('App\Http\Controllers\PropertyController')->getPersonnelProperties($this->search,$this->sortBy, $this->filterByPropertyType, $this->limitDisplayTo);
+        $propertyTypes = app('App\Http\Controllers\Utilities\TypeController')->getPropertyTypes();
+        $userPropertyCount = UserProperty::where('user_id', auth()->user()->id)->count();
 
-        $featureId = 19;
+        $featureId = 19; //pleaser refer to the features table
 
-        $propertySubFeatures = Feature::where('id', $featureId)->pluck('subfeatures')->first();
-
-        $propertySubfeaturesArray = explode(",", $propertySubFeatures);
+        $steps = app('App\Http\Controllers\FeatureController')->getSubfeatures($featureId);
 
         return view('livewire.property-index-component',[
             'properties' => $properties,
             'propertyTypes' => $propertyTypes,
             'userPropertyCount' => $userPropertyCount,
-            'propertySubfeaturesArray' => $propertySubfeaturesArray,
+            'steps' => $steps,
         ]);
     }
 

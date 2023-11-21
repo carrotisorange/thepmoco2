@@ -24,8 +24,9 @@
                     View Delinquents
                 </x-button>
 
-                {{-- <x-button wire:click="exportBills"> Export
-                </x-button> --}}
+                <x-button >
+                   <a href="/property/{{ Session::get('property_uuid') }}/bill/export" target="_blank">Export</a>
+                </x-button>
 
                 @if($view === 'listView')
                 <x-button wire:click="changeView('agingSummaryView')"> View Aging

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Utilities;
 
 use App\Http\Controllers\Controller;
-use App\Models\Type;
 use Session;
+use DB;
+use App\Models\{Type,UserProperty};
 
 class TypeController extends Controller
 {
@@ -13,7 +14,18 @@ class TypeController extends Controller
     }
 
     public function getSteppers(){
-        $steppers = Type::where('id', Session::get('property_type_id'))->pluck('stepper')->first();
+        $steppers = Type::where('id', Session::get('property_type_id')?Session::get('property_type_id'):2)->pluck('stepper')->first();
         return explode(",", $steppers);
+    }
+
+     public function getPropertyTypes(){
+        return UserProperty::join('users', 'user_id', 'users.id')
+        ->join('properties', 'property_uuid', 'properties.uuid')
+        ->join('types', 'properties.type_id', 'types.id')
+        ->select('*', DB::raw('count(*) as count'))
+        ->where('user_id', auth()->user()->id)
+        ->where('properties.status', 'active')
+        ->groupBy('type_id')
+        ->get();
     }
 }

@@ -12,7 +12,7 @@
                             $activeContracts->count() }}</b> bills for <b class="font-bold text-lg text-red-500">{{
                             $activeContracts->count('tenant_uuid') }}</b>
                         active tenants <b class="font-bold text-lg text-red-500">ONLY.</b> You may still modify
-                        these bills when you click
+                        the created bills when you click
                         <b>CONFIRM
                     </p>
                     @else

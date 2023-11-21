@@ -71,7 +71,6 @@ class DashboardIndexComponent extends Component
             $collectionRate = "NA";
         }
 
-
         $billPieChartValues = app('App\Http\Controllers\Features\UnitController')->getBillPieChartValues();
 
         $delinquentTenants =app('App\Http\Controllers\Features\BillController')->getDelinquentTenants();
