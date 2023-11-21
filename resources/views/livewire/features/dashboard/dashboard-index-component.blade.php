@@ -843,9 +843,9 @@
 
 
     </div>
-    <div class="mt-7 grid grid-cols-6">
+    <div class="mt-7 grid grid-cols-4">
         <!-- income rate -->
-        <div class="col-span-6 lg:col-span-2">
+        <div class="col-span-4 lg:col-span-2">
             <div class="w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
                 <div class="flex justify-between border-gray-200 border-b dark:border-gray-700 pb-3">
                     <dl>
@@ -861,11 +861,11 @@
                         <dd class="leading-none text-xl font-bold text-green-500 dark:text-green-400">₱{{
                             number_format($postedCollections,2) }}</dd>
                     </dl>
-                    <dl>
+                    <!-- <dl>
                         <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Expense</dt>
                         <dd class="leading-none text-xl font-bold text-red-600 dark:text-red-500">₱{{
                             number_format($completedRFPs,2) }}</dd>
-                    </dl>
+                    </dl> -->
                 </div>
 
                 <div id="bar-chart"></div>
@@ -1048,8 +1048,207 @@
 
         </div>
 
+        <!-- expense graph -->
+        <div class="col-span-4 lg:col-span-2">
+            <div class="w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+                <div class="flex justify-between border-gray-200 border-b dark:border-gray-700 pb-3">
+                    <dl>
+                        <!-- all time expense -->
+                        <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Expense</dt>
+                        <dd class="leading-none text-3xl font-bold text-gray-900 dark:text-white">₱0</dd>
+                    </dl>
+                </div>
+
+                <div class="grid grid-cols-2 py-3">
+                    <dl>
+                        <!-- filtered expense -->
+                        <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Expense</dt>
+                        <dd class="leading-none text-xl font-bold text-red-600 dark:text-red-500">-₱18,230</dd>
+                    </dl>
+                </div>
+
+                <div id="expense-chart"></div>
+                <div
+                    class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
+                    <div class="flex justify-between items-center pt-5">
+                        <!-- Button -->
+                        <button id="dropdownDefaultButton" data-dropdown-toggle="lastDaysdropdown"
+                            data-dropdown-placement="bottom"
+                            class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
+                            type="button">
+                            This Month
+                            <svg class="w-2.5 m-2.5 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 4 4 4-4" />
+                            </svg>
+                        </button>
+                        <!-- Dropdown menu -->
+                        <div id="lastDaysdropdown"
+                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                aria-labelledby="dropdownDefaultButton">
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">January</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">February</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">March</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">April</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">May</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">June</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">July</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">August</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">September</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">October</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">November</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">December</a>
+                                </li>
+
+
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                // ApexCharts options and config
+            window.addEventListener("load", function() {
+                var options = {
+                series: [
+                   
+                    {
+                    name: "Expense",
+                    data: ["788", "810", "866", "788", "1100", "1200"],
+                    color: "#93B7BE",
+                    }
+                ],
+                chart: {
+                    sparkline: {
+                    enabled: false,
+                    },
+                    type: "bar",
+                    width: "100%",
+                    height: 400,
+                    toolbar: {
+                    show: false,
+                    }
+                },
+                fill: {
+                    opacity: 1,
+                },
+                plotOptions: {
+                    bar: {
+                    horizontal: true,
+                    columnWidth: "100%",
+                    borderRadiusApplication: "end",
+                    borderRadius: 6,
+                    dataLabels: {
+                        position: "top",
+                    },
+                    },
+                },
+                legend: {
+                    show: true,
+                    position: "bottom",
+                },
+                dataLabels: {
+                    enabled: false,
+                },
+                tooltip: {
+                    shared: true,
+                    intersect: false,
+                    formatter: function (value) {
+                    return "₱" + value
+                    }
+                },
+                xaxis: {
+                    labels: {
+                    show: true,
+                    style: {
+                        fontFamily: "Inter, sans-serif",
+                        cssClass: 'text-xs font-normal fill-gray-500 dark:fill-gray-400'
+                    },
+                    formatter: function(value) {
+                        return "₱" + value
+                    }
+                    },
+                    categories: ["Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                    axisTicks: {
+                    show: false,
+                    },
+                    axisBorder: {
+                    show: false,
+                    },
+                },
+                yaxis: {
+                    labels: {
+                    show: true,
+                    style: {
+                        fontFamily: "Inter, sans-serif",
+                        cssClass: 'text-xs font-normal fill-gray-500 dark:fill-gray-400'
+                    }
+                    }
+                },
+                grid: {
+                    show: true,
+                    strokeDashArray: 4,
+                    padding: {
+                    left: 2,
+                    right: 2,
+                    top: -20
+                    },
+                },
+                fill: {
+                    opacity: 1,
+                }
+                }
+
+                if(document.getElementById("expense-chart") && typeof ApexCharts !== 'undefined') {
+                const chart = new ApexCharts(document.getElementById("expense-chart"), options);
+                chart.render();
+                }
+            });
+            </script>
+
+        </div>
+
         <!-- collection rate -->
-        <div class="col-span-6 lg:col-span-4">
+        <div class="col-span-4 lg:col-span-4">
 
             <div class="w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
                 <div class="flex justify-between pb-4 mb-4 border-b border-gray-200 dark:border-gray-700">
@@ -1279,9 +1478,10 @@
             </script>
 
         </div>
+       
 
         <!-- bills -->
-        <div class="mt-5 col-span-6 lg:col-span-3">
+        <div class="mt-5 col-span-4 lg:col-span-2">
 
             <div class="w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
 
@@ -1468,7 +1668,7 @@
         </div>
 
         <!-- delinquents -->
-        <div class="col-span-6 lg:col-span-3 p-4">
+        <div class="col-span-4 lg:col-span-2 p-4">
             <div class="flex justify-between">
                 <h1 class="py-3 font-bold text-2xl">Delinquents</h1>
                 <span

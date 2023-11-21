@@ -131,7 +131,7 @@ class BillController extends Controller
 
   public function send_bills(Request $request, Property $property, Tenant $tenant)
     {
-        app('App\Http\Controllers\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
+        app('App\Http\Controllers\PropertyController')->updateNoteToBill($request->note_to_bill);
 
         $data = $this->get_bill_data($tenant, $request->due_date, $request->penalty, $request->note_to_bill);
 
@@ -170,7 +170,7 @@ class BillController extends Controller
 
     public function export_soa(Request $request, Property $property, Tenant $tenant)
     {
-        app('App\Http\Controllers\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
+        app('App\Http\Controllers\PropertyController')->updateNoteToBill($request->note_to_bill);
 
         $data = $this->get_bill_data($tenant, $request->due_date, $request->penalty, $request->note_to_bill);
 
@@ -191,16 +191,14 @@ class BillController extends Controller
         if($unpaid_bills<=0){
             $balance=0;
         }else{
-            $balance=$unpaid_bills - $paid_bills;
+            $balance = $unpaid_bills - $paid_bills;
         }
 
         return $data = [
             'tenant' => $tenant->tenant,
             'reference_no' => $tenant->bill_reference_no,
             'due_date' => $due_date,
-            'user' => User::find(auth()->user()->id)->name,
-            'role' => User::find(auth()->user()->id)->role->role,
-            'bills' => Bill::where('tenant_uuid', $tenant->uuid)->posted()->where('status','unppaid')->orderBy('bill_no', 'desc')->get(),
+            'bills' => Bill::where('tenant_uuid', $tenant->uuid)->posted()->where('status','unpaid')->orderBy('bill_no', 'desc')->get(),
             'balance' => $balance,
             'balance_after_due_date' => $balance + $penalty,
             'note_to_bill' => $note,
