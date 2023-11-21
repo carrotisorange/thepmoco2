@@ -439,9 +439,9 @@ class PropertyController extends Controller
         }
     }
 
-    public function update_property_note_to_bill($property_uuid, $note)
+    public function updateNoteToBill($note)
     {
-        return Property::where('uuid',$property_uuid)->update([
+        return Property::where('uuid',Session::get('property_uuid'))->update([
             'note_to_bill' => $note,
         ]);
     }

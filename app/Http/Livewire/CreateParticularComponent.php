@@ -25,7 +25,6 @@ class CreateParticularComponent extends Component
     }
 
     public function submitButton(){
-
         $validated = $this->validate();
 
         $is_particular_exists = Particular::where('particular', $this->particular)->pluck('id')->first();

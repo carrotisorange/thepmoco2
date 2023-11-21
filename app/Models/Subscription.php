@@ -22,4 +22,4 @@ class Subscription extends Model
     {
         return $this->belongsTo(Feature::class, 'plan_id')->withDefault();
     }
-
+}

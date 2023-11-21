@@ -14,11 +14,9 @@
                 </div>
             </div>
             <div class="mt-5 sm:mt-6">
-                <label class="text-sm" for="kwh">Name your particular</label>
-                <input type="text" id="new_particular" wire:model="new_particular"
-                    class="bg-white block p-4  w-full text-sm h-5 text-gray-90 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="" required>
-              <x-validation-error-component name='new_particular' />
+                <x-label class="text-sm" for="kwh">Name your particular</x-label>
+                <x-form-input type="text" id="new_particular" wire:model="new_particular" />
+                <x-validation-error-component name='new_particular' />
             </div>
             @if(session()->has('success'))
             <div class="mt-1 bg-green-500 text-white py-1 px-1 rounded-xl bottom-3 right-3 text-sm">

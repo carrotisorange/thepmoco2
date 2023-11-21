@@ -361,7 +361,7 @@ class GuestController extends Controller
 
     public function export_bill(Request $request, Property $property, Guest $guest){
 
-        app('App\Http\Controllers\PropertyController')->update_property_note_to_bill($property->uuid, $request->note_to_bill);
+        app('App\Http\Controllers\PropertyController')->updateNoteToBill($request->note_to_bill);
 
         $data = $this->get_bill_data($guest, $request->due_date, $request->penalty, $request->note_to_bill);
 
