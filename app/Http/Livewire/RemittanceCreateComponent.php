@@ -46,10 +46,12 @@ class RemittanceCreateComponent extends Component
     {
 
         return view('livewire.remittance-create-component',[
-        'collectionsCount' => Collection::where('property_uuid', Session::get('property_uuid'))
+        'collectionsCount' => Collection::where('collections.property_uuid', Session::get('property_uuid'))
+            ->join('bills', 'collections.bill_id', 'bills.id')
             ->whereNotNull('collections.tenant_uuid')
-            ->posted()
-            ->whereMonth('created_at', Carbon::parse($this->date)->month)
+            ->where('particular_id',1)
+            ->where('collections.is_posted',1)
+            ->whereMonth('collections.created_at', Carbon::parse($this->date)->month)
             ->count(),
 
         'dates' => Collection::where('property_uuid', Session::get('property_uuid'))
