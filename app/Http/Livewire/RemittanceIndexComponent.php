@@ -107,10 +107,6 @@ class RemittanceIndexComponent extends Component
        }
     }
 
-    public function redirectToOwnerPage(){
-        return redirect('/property/'.Session::get('property_uuid').'/collection/');
-    }
-
     public function get_remittances(){
         return Remittance::where('property_uuid', Session::get('property_uuid'))
         ->whereMonth('created_at', Carbon::parse($this->created_at)->month)

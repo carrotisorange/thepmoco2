@@ -157,6 +157,7 @@ class CollectionController extends Controller
 
             ob_end_clean(); // this
             ob_start(); // and this
+            
             return Excel::download(new ExportCollection(), $fileName);
         }
 
