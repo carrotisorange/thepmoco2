@@ -38,7 +38,6 @@ class AccountPayableCreateStep3Component extends Component
 
     public function downloadInternalDocument(){
 
-
         return
         redirect('/property/'.Session::get('property_uuid').'/rfp/'.$this->accountpayable->id.'/step1/export');
 

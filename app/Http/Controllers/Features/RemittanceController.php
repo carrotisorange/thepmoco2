@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Features;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use Session;
 use App\Models\{Property,Remittance,DeedOfSale,Unit,Bank};
 
 class RemittanceController extends Controller
@@ -71,5 +73,24 @@ class RemittanceController extends Controller
         return view('properties.remittances.show', [
             'unit' => $unit
         ]);
+    }
+
+    public function export($propertyUuid, $date){
+       $data = [
+                'remittances' => Remittance::where('property_uuid', Session::get('property_uuid'))
+                ->whereMonth('created_at', Carbon::parse($date)->month)
+                ->whereYear('created_at', Carbon::parse($date)->year)
+                ->get(),
+
+                'date' => $date
+            ];
+
+            $folder_path = 'features.remittances.export';
+
+            $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data);
+
+            $pdf_name = str_replace(' ', '_', Session::get('property')).'_'.str_replace(' ', '_', Carbon::parse($date)->format('M Y')).'_remittances.pdf';
+
+            return $pdf->stream($pdf_name);
     }
 }

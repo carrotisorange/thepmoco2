@@ -7,8 +7,10 @@
                 </h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                {{-- <x-button data-modal-toggle="instructions-create-remittance-modal">Export
-                </x-button> --}}
+                <x-button >
+                    <a target="_blank" href="/property/{{ Session::get('property_uuid') }}/remittance/export/date/{{ $created_at }}">Export</a>
+
+                </x-button>
                 <x-button data-modal-toggle="instructions-create-remittance-modal">Create
                 </x-button>
             </div>

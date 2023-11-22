@@ -110,6 +110,7 @@ class RemittanceIndexComponent extends Component
     public function get_remittances(){
         return Remittance::where('property_uuid', Session::get('property_uuid'))
         ->whereMonth('created_at', Carbon::parse($this->created_at)->month)
+        ->whereYear('created_at', Carbon::parse($this->created_at)->year)
         ->get();
     }
 
