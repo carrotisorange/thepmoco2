@@ -163,3 +163,36 @@ Route::get('/liquidation', function(){
 Route::get('/soa', function(){
     return view('export.soa');
 });
+
+Route::get('/server-maintenance', function(){
+    return view('properties.server-maintenance');
+});    
+
+Route::get('/unit-calendar', function(){
+    return view('features.calendar.unit-calendar');
+});
+
+
+Route::get('proprent/results', function(){
+    return view('proprent.results');
+});
+
+Route::get('proprent/room', function(){
+    return view('proprent.room');
+});
+
+Route::get('proprent/reservation', function(){
+    return view('proprent.reservation');
+});
+
+Route::get('proprent/profile', function(){
+    return view('proprent.profile');
+});
+
+Route::get('proprent/all-listings', function(){
+    return view('proprent.all-listings');
+});
+
+Route::get('proprent/upload-listing', function(){
+    return view('proprent.upload-listing');
+});
