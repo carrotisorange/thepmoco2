@@ -72,8 +72,7 @@ class AccountPayableCreateStep3Component extends Component
 
         $this->validate();
 
-        app('App\Http\Controllers\RFPController')->update_approval($this->accountpayable->id, 'rejected
-        by ap', $this->comment, $this->vendor);
+        app('App\Http\Controllers\Features\RFPController')->update_approval($this->accountpayable->id, 'rejected by ap', $this->comment, $this->vendor);
 
         $content = $this->accountpayable;
 
