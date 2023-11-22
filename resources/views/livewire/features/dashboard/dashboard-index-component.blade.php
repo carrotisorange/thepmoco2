@@ -2120,8 +2120,8 @@
 
                 <div class="grid grid-cols-2">
                     <dl class="flex items-center">
-                        <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal mr-1">Resolved Concerns:</dt>
-                        <dd class="text-gray-900 text-sm dark:text-white font-semibold">{{ $closedConcerns->count() }}</dd>
+                        <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal mr-1">Pending Concerns:</dt>
+                        <dd class="text-gray-900 text-sm dark:text-white font-semibold">{{ $pendingConcerns->count() }}</dd>
                     </dl>
                     <dl class="flex items-center justify-end">
                         <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal mr-1">Average days to be
@@ -2131,7 +2131,7 @@
                     </dl>
                 </div>
 
-                {{-- <div id="column-chart"></div> --}}
+                <div id="column-chart"></div>
                 <div
                     class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
                     <div class="flex justify-between items-center pt-5">
@@ -2216,30 +2216,22 @@
                     colors: ["#1A56DB", "#FDBA8C"],
                     series: [
                         {
-                        name: "Concern",
-                        color: "#93C6D6",
-                        data: [
-                            { x: "Mon", y: 231 },
-                            { x: "Tue", y: 122 },
-                            { x: "Wed", y: 63 },
-                            { x: "Thu", y: 421 },
-                            { x: "Fri", y: 122 },
-                            { x: "Sat", y: 323 },
-                            { x: "Sun", y: 111 },
-                        ],
-                        },
-                        {
-                        name: "Resolved",
-                        color: "#9E8FB2",
-                        data: [
-                            { x: "Mon", y: 232 },
-                            { x: "Tue", y: 113 },
-                            { x: "Wed", y: 341 },
-                            { x: "Thu", y: 224 },
-                            { x: "Fri", y: 522 },
-                            { x: "Sat", y: 411 },
-                            { x: "Sun", y: 243 },
-                        ],
+                        name: "Resolved Concerns",
+                        color: "#2D3047",
+                        data: {!! $concernBarValues !!},
+                        // },
+                        // {
+                        // name: "Resolved",
+                        // color: "#9E8FB2",
+                        // data: [
+                        //     { x: "Mon", y: 232 },
+                        //     { x: "Tue", y: 113 },
+                        //     { x: "Wed", y: 341 },
+                        //     { x: "Thu", y: 224 },
+                        //     { x: "Fri", y: 522 },
+                        //     { x: "Sat", y: 411 },
+                        //     { x: "Sun", y: 243 },
+                        // ],
                         },
                     ],
                     chart: {
@@ -2293,22 +2285,25 @@
                     legend: {
                         show: false,
                     },
-                    xaxis: {
-                        floating: false,
-                        labels: {
-                        show: true,
-                        style: {
-                            fontFamily: "Inter, sans-serif",
-                            cssClass: 'text-xs font-normal fill-gray-500 dark:fill-gray-400'
-                        }
-                        },
-                        axisBorder: {
-                        show: false,
-                        },
-                        axisTicks: {
-                        show: false,
-                        },
-                    },
+                   xaxis: {
+                labels: {
+                show: true,
+                style: {
+                fontFamily: "Inter, sans-serif",
+                cssClass: 'text-xs font-normal fill-gray-500 dark:fill-gray-400'
+                },
+                formatter: function(value) {
+                return  value
+                }
+                },
+                categories: {!! $concernBarLabels !!},
+                axisTicks: {
+                show: false,
+                },
+                axisBorder: {
+                show: false,
+                },
+                },
                     yaxis: {
                         show: false,
                     },

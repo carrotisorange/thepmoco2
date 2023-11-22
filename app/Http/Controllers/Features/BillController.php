@@ -8,6 +8,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Mail\SendBillToTenant;
 use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ExportBill;
 use DB;
 use App\Models\{Bill, Property, Unit, Tenant, Contract, Collection, User, Owner, Guest, Particular};
 
@@ -88,19 +90,32 @@ class BillController extends Controller
         ->get();
     }
 
-    public function export(){
+    public function export($property_uuid, $format){
 
-         $data = [
-            'bills' => app('App\Http\Controllers\Features\BillController')->get(1, 'unpaid')
-         ];
+        if($format == 'pdf'){
+            $data = [
+                'bills' => app('App\Http\Controllers\Features\BillController')->get(1, 'unpaid')
+            ];
 
-         $folder_path = 'features.bills.export';
+            $folder_path = 'features.bills.export';
 
-         $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data);
+            $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data);
 
-         $pdf_name = str_replace(' ', '_', Session::get('property')).'_bills.pdf';
+            $pdf_name = str_replace(' ', '_', Session::get('property')).'_bills.pdf';
 
-         return $pdf->stream($pdf_name);
+            return $pdf->stream($pdf_name);
+
+        }elseif($format == 'excel'){
+
+            $fileName = str_replace(' ', '_', Session::get('property')).'_bills_'.str_replace(' ', '_',Carbon::now()->format('M d, Y')).'.xlsx';
+
+            ob_end_clean(); // this
+            ob_start(); // and this
+
+            return Excel::download(new ExportBill(), $fileName);
+        }
+
+
     }
 
     public function tenant_index(Property $property, Tenant $tenant)

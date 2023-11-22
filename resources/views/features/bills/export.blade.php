@@ -14,7 +14,9 @@
 <table class="">
     <tr>
         <x-th>#</x-th>
+
         <x-th>Bill #</x-th>
+        <x-th>Date Posted</x-th>
         <x-th>Bill to</x-th>
         <x-th>Unit</x-th>
         <x-th>Particular</x-th>
@@ -23,8 +25,10 @@
     </tr>
     @foreach($bills as $index=> $item)
     <tr>
-        <x-td>{{ $index+1 }}</x-td>
+        <x-td>{{ $index+1 }}</x-td>\
+
         <x-td>{{ $item->bill_no}}</x-td>
+        <x-td>{{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}</x-td>
         <x-td>{{ Str::limit($item->tenant->tenant, 20) }}</x-td>
         <x-td>{{ Str::limit($item->unit->unit, 20) }}</x-td>
         <x-td>

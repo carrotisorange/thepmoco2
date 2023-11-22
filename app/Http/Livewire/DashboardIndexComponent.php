@@ -3,6 +3,9 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use DB;
+use Session;
+use App\Models\Concern;
 
 class DashboardIndexComponent extends Component
 {
@@ -88,6 +91,15 @@ class DashboardIndexComponent extends Component
         $pendingConcerns =app('App\Http\Controllers\Features\ConcernController')->get('pending');
         $activeConcerns =app('App\Http\Controllers\Features\ConcernController')->get('active');
 
+        $concernBar = Concern::select(DB::raw('monthname(created_at) as month_name, count(*) as total_concern'))
+        ->where('property_uuid', Session::get('property_uuid'))
+        // ->where('status', 'closed')
+        ->groupBy(DB::raw('month(created_at)+"-"+year(created_at)'))
+        ->limit(5);
+
+        $concernBarLabels = json_encode($concernBar->pluck('month_name'));
+        $concernBarValues = json_encode($concernBar->pluck('total_concern'));
+
         $approvedBulletins = app('App\Http\Controllers\Features\BulletinController')->get(1);
 
         $averageNumberOfDaysForConcernsToBeResolved = app('App\Http\Controllers\Features\ConcernController')->getAverageNumberOfDaysForConcernsToBeResolved();
@@ -140,7 +152,9 @@ class DashboardIndexComponent extends Component
            'expiringContracts',
            'pendingPaymentRequests',
            'pendingMoveoutContracts',
-           'pendingConcerns')
+           'pendingConcerns',
+           'concernBarLabels',
+           'concernBarValues')
         );
     }
 }

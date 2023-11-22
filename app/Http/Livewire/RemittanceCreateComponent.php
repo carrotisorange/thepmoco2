@@ -42,6 +42,10 @@ class RemittanceCreateComponent extends Component
         return redirect('/property/'.Session::get('property_uuid').'/remittance')->with('success', 'Changes Saved!');
 
     }
+
+    public function redirectToCollectionPage(){
+        return redirect('/property/'.Session::get('property_uuid').'/collection/');
+    }
     public function render()
     {
 

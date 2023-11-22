@@ -27,9 +27,7 @@ class ConcernController extends Controller
 
         app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($featureId,$restrictionId);
 
-        return view('features.concerns.index',[
-            'property' => $property
-        ]);
+        return view('features.concerns.index');
     }
 
     public function get($status=null, $groupBy=null)
