@@ -236,9 +236,9 @@
                         <script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
                     </li>
 
-                    <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="about">About</a></li>
+                    <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="/about">About</a></li>
 
-                    <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="faq">FAQs</a></li>
+                    <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="/faq">FAQs</a></li>
 
                     <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="/articles">Articles</a>
                     </li>
@@ -289,11 +289,11 @@
                         </li>
                         <li class="mb-1" tabindex="0">
                             <a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded"
-                                href="about">About Us</a>
+                                href="/about">About Us</a>
                         </li>
                         <li class="mb-1" tabindex="0">
                             <a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded"
-                                href="faq">FAQs</a>
+                                href="/faq">FAQs</a>
                         </li>
                         <li class="mb-1" tabindex="0">
                             <a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded"
@@ -348,23 +348,23 @@
                         </li>
                         <li class="mb-1" tabindex="0">
                             <a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded"
-                                href="propman">Propman</a>
+                                href="/propman">Propman</a>
                         </li>
                         <li class="mb-1" tabindex="0">
                             <a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded"
-                                href="proprent">Proprent</a>
+                                href="/proprent">Proprent</a>
                         </li>
                         <li class="mb-1" tabindex="0">
                             <a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded"
-                                href="propbiz">Propbiz</a>
+                                href="/propbiz">Propbiz</a>
                         </li>
                         <li class="mb-1" tabindex="0">
                             <a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded"
-                                href="about">About Us</a>
+                                href="/about">About Us</a>
                         </li>
                         <li class="mb-1" tabindex="0">
                             <a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded"
-                                href="faq">FAQs</a>
+                                href="/faq">FAQs</a>
                         </li>
                         <li class="mb-1" tabindex="0">
                             <a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded"

@@ -37,18 +37,18 @@
             </div>
 
             <!-- Article 22 -->
-            @foreach($articles as $article)
+            @foreach($articles as $item)
             <div class="my-5">
-                <a href="/article/{{ $article->id }}" class="grid grid-cols-4 rounded-sm">
+                <a href="/article/{{ $item->id }}" class="grid grid-cols-4 rounded-sm">
 
                     <!-- Icon -->
                     <div class="col-span-1">
-                        <img src="{{ asset('/brands/landing/'.$article->image) }}" class="h-full w-full">
+                        <img src="{{ asset('/brands/landing/'.$item->image) }}" class="h-full w-full">
                     </div>
 
                     <!-- Title -->
                     <div class="col-span-3">
-                        <p class="ml-1 underline text-gray-700 text-xs">{{$article->title}}
+                        <p class="ml-1 underline text-gray-700 text-xs">{{$item->title}}
                     </div>
 
 
