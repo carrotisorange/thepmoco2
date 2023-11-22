@@ -203,7 +203,7 @@
 
                 <ul
                     class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-10">
-              
+
                     <li>
                         <button
                             class="text-gray-200 hover:text-gray-400 font-medium rounded-lg text-base text-center inline-flex items-center"
@@ -235,7 +235,7 @@
                         </div>
 
 
-                 
+
                     </li>
                     <li>
                         <button
@@ -262,7 +262,7 @@
                         </div>
 
 
-                        
+
                     </li>
 
                     <li>
@@ -293,17 +293,17 @@
                         </div>
 
 
-                        
+
                     </li>
 
-                   
+
 
                     <script src="https://unpkg.com/@themesberg/flowbite@latest/dist/flowbite.bundle.js"></script>
 
 
                     <li><a class="text-base font-medium text-gray-200 hover:text-gray-400" href="pricing">Pricing</a></li>
 
-                  
+
                     </li>
 
 
@@ -360,19 +360,19 @@
                         </li>
                         <li class="mb-1" tabindex="0">
                             <a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded"
-                                href="about">About Us</a>
+                                href="/about">About Us</a>
                         </li>
                         <li class="mb-1" tabindex="0">
                             <a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded"
-                                href="faq">FAQs</a>
+                                href="/faq">FAQs</a>
                         </li>
                         <li class="mb-1" tabindex="0">
                             <a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded"
-                                href="articles">Articles</a>
+                                href="/articles">Articles</a>
                         </li>
                         <li class="mb-1" tabindex="0">
                             <a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded"
-                                href="owner-corner">Property Owners Corner</a>
+                                href="/owner-corner">Property Owners Corner</a>
                         </li>
 
                     </ul>
@@ -419,14 +419,14 @@
                         </li>
 
 
-    
+
                         <button class="w-full block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 roundedtext-center inline-flex items-center" type="button" data-dropdown-toggle="prod-mobile">Products
                             <svg class="justify-end w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        
+
                         </button>
 
                         <div class="w-full hidden bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4 p-4" id="prod-mobile">
-                            
+
                             <ul class="py-1" aria-labelledby="prod-mobile">
                             <li>
                                 <a href="/propsuite" class="w-full text-sm hover:bg-gray-100 text-gray-700 block p-4">PropSuite</a>
@@ -448,11 +448,11 @@
 
                         <button class="w-full block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 roundedtext-center inline-flex items-center" type="button" data-dropdown-toggle="serv-mobile">Services
                             <svg class="justify-end w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        
+
                         </button>
 
                         <div class="w-full hidden bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4 p-4" id="serv-mobile">
-                            
+
                             <ul class="py-1" aria-labelledby="serv-mobile">
                             <li>
                                 <a href="/propsuite" class="w-full text-sm hover:bg-gray-100 text-gray-700 block p-4">PropSuite</a>
@@ -463,22 +463,22 @@
                             <li>
                                 <a href="/proprent" class="w-full text-sm hover:bg-gray-100 text-gray-700 block p-4">PropRent</a>
                             </li>
-                       
+
                             </ul>
                         </div>
-                        
+
                         <button class="w-full block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 roundedtext-center inline-flex items-center" type="button" data-dropdown-toggle="res-mobile">Resources
                             <svg class="justify-end w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                        
+
                         </button>
 
                         <div class="w-full hidden bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4 p-4" id="res-mobile">
-                            
+
                             <ul class="py-1" aria-labelledby="res-mobile">
                             <li>
                                 <a href="/resources" class="w-full text-sm hover:bg-gray-100 text-gray-700 block p-4">Resources</a>
                             </li>
-                       
+
                             <li>
                                 <a href="/articles" class="w-full text-sm hover:bg-gray-100 text-gray-700 block p-4">Articles</a>
                             </li>
@@ -488,13 +488,13 @@
                             <li>
                                 <a href="/faq" class="w-full text-sm hover:bg-gray-100 text-gray-700 block p-4">FAQs</a>
                             </li>
-                       
+
                             </ul>
                         </div>
-                        
 
 
-                        
+
+
                         <li class="mb-1" tabindex="0">
                             <a class="block p-4 text-sm font-medium text-gray-400 hover:bg-purple-100 hover:text-purple-500 rounded"
                                 href="/pricing">Pricing</a>
@@ -627,15 +627,15 @@
 
                         <ul role="list" class="mt-4 space-y-4">
                             <li>
-                                <a href="about" class="text-base text-gray-500 hover:text-gray-900">About Us</a>
+                                <a href="/about" class="text-base text-gray-500 hover:text-gray-900">About Us</a>
                             </li>
 
                             <li>
-                                <a href="faq" class="text-base text-gray-500 hover:text-gray-900">FAQs</a>
+                                <a href="/faq" class="text-base text-gray-500 hover:text-gray-900">FAQs</a>
                             </li>
 
                             <li>
-                                <a href="propbiz" class="text-base text-gray-500 hover:text-gray-900">Propbiz</a>
+                                <a href="/propbiz" class="text-base text-gray-500 hover:text-gray-900">Propbiz</a>
                             </li>
 
 
