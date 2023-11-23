@@ -23,9 +23,13 @@ class UnitContractController extends Controller
 
     public function export(Property $property, Unit $unit)
     {
-          $folder_path = 'features.tenants.export';
+        $folder_path = 'features.tenants.export';
 
-          $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, null);
+        $data = null;
+
+        $perspective = 'portrait';
+
+        $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data, $perspective);
 
           $pdf_name = 'tenant_information_sheet.pdf';
 

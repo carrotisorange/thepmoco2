@@ -5,6 +5,6 @@
     Route::controller(RemittanceController::class)->group(function(){
         Route::prefix('remittance')->group(function(){
             Route::get('/', 'index')->name('remittance');
-            Route::get('export/date/{date}', 'export');
+            Route::get('export/date/{date}/{bank_transfer_fee?}', 'export');
         });
     });

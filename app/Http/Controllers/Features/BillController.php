@@ -99,7 +99,9 @@ class BillController extends Controller
 
             $folder_path = 'features.bills.export';
 
-            $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data);
+            $perspective = 'portrait';
+
+            $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data, $perspective);
 
             $pdf_name = str_replace(' ', '_', Session::get('property')).'_bills.pdf';
 
@@ -204,7 +206,9 @@ class BillController extends Controller
 
         $folder_path = 'features.tenants.bills.export';
 
-        $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data);
+        $perspective = 'portrait';
+
+        $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data, $perspective);
 
         $pdf_name = str_replace(' ', '_', $property->property).'_SOA.pdf';
 

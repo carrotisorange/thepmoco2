@@ -250,7 +250,9 @@ class GuestController extends Controller
 
         $folder_path = 'properties.guests.export-collections';
 
-        $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data);
+        $perspective = 'portrait';
+
+        $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data, $perspective);
 
         $pdf_name = str_replace(' ', '_', $property->property).'_AR_'.$collection->ar_no.'.pdf';
 
@@ -367,7 +369,9 @@ class GuestController extends Controller
 
         $folder_path = 'properties.guests.export-bills';
 
-        $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data);
+        $perspective = 'portrait';
+
+        $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data, $perspective);
 
         return $pdf->stream(Carbon::now()->format('M d, Y').'-'.$guest->guest.'-soa.pdf');
     }

@@ -28,7 +28,9 @@ class UserController extends Controller
 
             $folder_path = 'features.personnels.exports.portfolio';
 
-            $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data);
+            $perspective = 'portrait';
+
+            $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data, $perspective);
 
             $pdf_name = str_replace(' ', '_', auth()->user()->name).'-properties.pdf';
 
