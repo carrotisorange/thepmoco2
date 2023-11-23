@@ -8,6 +8,7 @@ use App\Models\Property;
 class ViolationController extends Controller
 {
     public function index(Property $property){
+
         return view('features.violations.index');
     }
 }

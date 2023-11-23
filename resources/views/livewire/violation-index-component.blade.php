@@ -11,8 +11,8 @@
             </div>
         </div>
         <div class="mt-3">
-
-                    @include('tables.violations')
+                @include('layouts.under-construction-general')
+                    {{-- @include('tables.violations') --}}
 
             </div>
         </div>
