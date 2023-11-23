@@ -41,22 +41,24 @@ class OwnerCollectionController extends Controller
 
 
 
-     public function view(Property $property, Owner $owner, Collection $collection)
-     {
+    public function view(Property $property, Owner $owner, Collection $collection)
+    {
 
-     $data = $this->get_collection_data(
+    $data = $this->get_collection_data(
         $owner,
         $collection,
      );
 
-     $folder_path = 'features.owners.collections.export';
+    $folder_path = 'features.owners.collections.export';
 
-     $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data);
+    $perspective = 'portrait';
+
+    $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data, $perspective);
 
     $pdf_name = str_replace(' ', '_', $property->property).'_AR_'.$collection->ar_no.'.pdf';
 
-     return $pdf->stream($pdf_name);
-     }
+        return $pdf->stream($pdf_name);
+    }
 
      public function get_collection_data($owner, $collection)
      {

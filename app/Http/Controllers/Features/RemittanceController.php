@@ -75,19 +75,23 @@ class RemittanceController extends Controller
         ]);
     }
 
-    public function export($propertyUuid, $date){
+    public function export($propertyUuid, $date, $bank_transfer_fee=null){
+
        $data = [
                 'remittances' => Remittance::where('property_uuid', Session::get('property_uuid'))
                 ->whereMonth('created_at', Carbon::parse($date)->month)
                 ->whereYear('created_at', Carbon::parse($date)->year)
                 ->get(),
 
-                'date' => $date
+                'date' => $date,
+                'bank_transfer_fee' => $bank_transfer_fee
             ];
 
             $folder_path = 'features.remittances.export';
 
-            $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data);
+            $perspective = 'landscape';
+
+            $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data, $perspective);            ;
 
             $pdf_name = str_replace(' ', '_', Session::get('property')).'_'.str_replace(' ', '_', Carbon::parse($date)->format('M Y')).'_remittances.pdf';
 

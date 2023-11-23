@@ -112,7 +112,9 @@ class FinancialController extends Controller
 
         $folder_path = 'features.financials.export';
 
-        $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data);
+        $perspective = 'portrait';
+
+        $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data, $perspective);
 
         $pdf_name = str_replace(' ', '_', $property->property).'_financials_'.str_replace(' ', '_', $startDate.'_'.$endDate).'.pdf';
 

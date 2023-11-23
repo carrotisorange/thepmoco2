@@ -142,7 +142,9 @@ class CollectionController extends Controller
 
             $folder_path = 'properties.collections.export_dcr';
 
-            $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data);
+            $perspective = 'portrait';
+
+            $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data, $perspective);
 
             $fileName = str_replace(' ', '_', $property->property).'_DCR_'.str_replace(' ', '_', $start_date.'_'.$end_date).'.pdf';
 
@@ -157,7 +159,7 @@ class CollectionController extends Controller
 
             ob_end_clean(); // this
             ob_start(); // and this
-            
+
             return Excel::download(new ExportCollection(), $fileName);
         }
 
@@ -370,7 +372,9 @@ class CollectionController extends Controller
 
         $folder_path = 'features.tenants.collections.export';
 
-        $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data);
+        $perspective = 'portrait';
+
+        $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data, $perspective);
 
         $pdf_name = str_replace(' ', '_', $property->property).'_AR_'.$collection->ar_no.'.pdf';
 

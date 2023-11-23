@@ -21,8 +21,24 @@
         <x-th>Net Rent</x-th>
         <x-th>Mgmt Fee</x-th>
         <x-th>Marketing Fee</x-th>
-        <x-th>Other Deductions</x-th>
+        @if($bank_transfer_fee)
+        <x-th>Bank Transfer Fee</x-th>
+        @endif
         <x-th>Remittance</x-th>
+    </tr>
+    <tr>
+        <x-th>Total</x-th>
+        <x-th></x-th>
+        <x-th></x-th>
+        <x-th></x-th>
+        <x-td>{{ number_format($remittances->sum('monthly_rent'), 2) }}</x-td>
+        <x-td>{{ number_format($remittances->sum('net_rent'), 2) }}</x-td>
+        <x-td>{{ number_format($remittances->sum('management_fee'), 2) }}</x-td>
+        <x-td>{{ number_format($remittances->sum('marketing_fee'), 2) }}</x-td>
+        @if($bank_transfer_fee)
+        <x-td>{{ number_format($remittances->sum('bank_transfer_fee'), 2) }}</x-td>
+        @endif
+        <x-td>{{ number_format($remittances->sum('remittance'), 2) }}</x-td>
     </tr>
     @foreach($remittances as $index=> $item)
     <tr>
@@ -34,8 +50,10 @@
         <x-td>{{ number_format($item->net_rent, 2) }}</x-td>
         <x-td>{{ number_format($item->management_fee, 2) }}</x-td>
         <x-td>{{ number_format($item->marketing_fee, 2) }}</x-td>
-       <x-td>{{ number_format($item->total_deductions, 2) }}</x-td>
-      <x-td>{{ number_format($item->remittance, 2) }}</x-td>
+        @if($bank_transfer_fee)
+        <x-td>{{ number_format($item->bank_transfer_fee, 2) }}</x-td>
+        @endif
+        <x-td>{{ number_format($item->remittance, 2) }}</x-td>
     </tr>
     @endforeach
 </table>

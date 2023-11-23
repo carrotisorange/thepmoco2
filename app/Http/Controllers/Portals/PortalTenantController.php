@@ -67,7 +67,9 @@ class PortalTenantController extends Controller
 
         $folder_path = 'portals.tenants.exports.bills';
 
-        $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data);
+        $perspective = 'portrait';
+
+        $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data, $perspective);
 
         return $pdf->stream($tenant->tenant.'-soa.pdf');
     }

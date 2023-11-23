@@ -9,16 +9,16 @@ use Session;
 
 class ExportController extends Controller
 {
-     public function generatePDF($folder_path, $data)
+     public function generatePDF($folder_path, $data, $perspective)
      {
-        $pdf = PDF::loadView($folder_path, $data);
+        $pdf = PDF::loadView($folder_path, $data)->setPaper('a4', $perspective);
 
         $pdf->output();
-               
+
         $canvas = $pdf->getDomPDF()->getCanvas();
 
         $height = $canvas->get_height();
-         
+
         $width = $canvas->get_width();
 
         $canvas->set_opacity(.2,"Multiply");

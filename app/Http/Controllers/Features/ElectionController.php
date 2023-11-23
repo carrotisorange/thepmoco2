@@ -11,7 +11,7 @@ use App\Models\{Property,Feature,Election,Voter};
 class ElectionController extends Controller
 {
     public function index(Property $property){
-           
+
         $featureId = 20; //refer to the features table
 
         $restrictionId = 2; //refer to the restrictions table
@@ -64,7 +64,9 @@ class ElectionController extends Controller
         ];
 
 
-        $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data);
+        $perspective = 'portrait';
+
+        $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data, $perspective);
 
         $pdf_name = str_replace(' ', '_', $property->property).'_'.Carbon::parse($election->date_of_election)->format('Y').'_Election_Voters.pdf';
 
@@ -89,8 +91,9 @@ class ElectionController extends Controller
             'candidates' => $candidates,
         ];
 
+        $perspective = 'portrait';
 
-        $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data);
+        $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data, $perspective);
 
         $pdf_name = str_replace(' ', '_', $property->property).'_'.Carbon::parse($election->date_of_election)->format('Y').'_Election_Candidates_.pdf';
 

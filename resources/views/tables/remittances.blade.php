@@ -63,7 +63,7 @@
         <th class="bg-yellow-300">CONDO DUES</th>
         <th class="bg-yellow-300">PARKING DUES</th>
         <th class="bg-yellow-300">WATER</th>
-        <th class="bg-yellow-300">ELECTRICITY</th>
+        <th class="bg-yellow-300">ELECTRIC</th>
         <th class="bg-yellow-300">GENERATOR SHARE</th>
         <th class="bg-yellow-300">SURCHARGES OF UNIT OWNER</th>
         <th class="bg-yellow-300">BUILDING INSURANCE</th>

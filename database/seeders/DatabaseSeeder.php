@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             // RoleSeeder::class,
             //UserSeeder::class,
             //BuildingSeeder::class,
-            FloorSeeder::class,
+            // FloorSeeder::class,
             //PropertySeeder::class,
             //PropertyBuildingSeeder::class,
             //PropertySeeder::class,
@@ -47,7 +47,8 @@ class DatabaseSeeder extends Seeder
             //CollectionSeeder::class,
             //PropertyRoleSeeder::class,
             //ActionSeeder::class,
-           
+
+            ViolationSeeder::class
         ]);
     }
 }
