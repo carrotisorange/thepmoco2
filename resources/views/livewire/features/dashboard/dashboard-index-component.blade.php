@@ -2321,6 +2321,175 @@
 
         </div>
 
+        <!-- concern category -->
+        <div class="mt-5 col-span-6 lg:col-span-3">
+        
+            <div class="flex justify-between items-start w-full">
+                <div class="flex-col items-center">
+                <div class="flex items-center mb-1">
+                    <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white me-1">Concerns by type:</h5>
+                   
+                    <div data-popover id="chart-info" role="tooltip" class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
+                        
+                    <div data-popper-arrow></div>
+                </div>
+                </div>    
+            </div>
+          
+            </div>
+
+            <!-- Line Chart -->
+            <div class="py-6" id="concern-pie"></div>
+
+            <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
+            <div class="flex justify-between items-center pt-5">
+                <!-- Button -->
+                <button
+                id="dropdownDefaultButton"
+                data-dropdown-toggle="lastDaysdropdown"
+                data-dropdown-placement="bottom"
+                class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
+                type="button">
+                This Month
+                <svg class="w-2.5 m-2.5 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                </svg>
+                </button>
+                <div id="lastDaysdropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                aria-labelledby="dropdownDefaultButton">
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">January</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">February</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">March</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">April</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">May</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">June</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">July</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">August</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">September</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">October</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">November</a>
+                                </li>
+                                <li>
+                                    <a href="#"
+                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">December</a>
+                                </li>
+
+
+                            </ul>
+                    
+                </div>
+                
+            </div>
+            </div>
+
+
+            <script>
+            // ApexCharts options and config
+            window.addEventListener("load", function() {
+            const getChartOptions = () => {
+                return {
+                    series: [50, 26, 20, 14, 10, 4],
+                    colors: ["#593F62", "#7B6D8D", "#8499B1", "#A5C4D4", "#CCCCCC", "#493B2A"],
+                    chart: {
+                    height: 420,
+                    width: "100%",
+                    type: "pie",
+                    },
+                    stroke: {
+                    colors: ["white"],
+                    lineCap: "",
+                    },
+                    plotOptions: {
+                    pie: {
+                        labels: {
+                        show: true,
+                        },
+                        size: "100%",
+                        dataLabels: {
+                        offset: -25
+                        }
+                    },
+                    },
+                    labels: ["Billing", "Payment", "Contract", "Maintenance", "Housekeeping", "Others"],
+                    dataLabels: {
+                    enabled: true,
+                    style: {
+                        fontFamily: "Inter, sans-serif",
+                    },
+                    },
+                    legend: {
+                    position: "bottom",
+                    fontFamily: "Inter, sans-serif",
+                    },
+                    yaxis: {
+                    labels: {
+                        formatter: function (value) {
+                        return value + "%"
+                        },
+                    },
+                    },
+                    xaxis: {
+                    labels: {
+                        formatter: function (value) {
+                        return value  + "%"
+                        },
+                    },
+                    axisTicks: {
+                        show: false,
+                    },
+                    axisBorder: {
+                        show: false,
+                    },
+                    },
+                }
+                }
+
+                if (document.getElementById("concern-pie") && typeof ApexCharts !== 'undefined') {
+                const chart = new ApexCharts(document.getElementById("concern-pie"), getChartOptions());
+                chart.render();
+                }
+            });
+            </script>
+
+
+            
+
+
+        </div>
+
         <!-- election -->
         <div class="col-span-6 lg:col-span-3 p-4">
             <!-- memos -->
