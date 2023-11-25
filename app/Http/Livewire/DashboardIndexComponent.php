@@ -45,7 +45,7 @@ class DashboardIndexComponent extends Component
              $occupancyRate = 100;
         }
 
-        $allGuests = app('App\Http\Controllers\Features\GuestController')->get();
+        $allGuests = app('App\Http\Controllers\Features\GuestController')->get('checked-out');
         $averageNumberOfDaysGuestsStayed = app('App\Http\Controllers\Features\GuestController')->getAverageNumberOfDaysGuestsStayed();
 
         $postedCollections = app('App\Http\Controllers\Features\CollectionController')->get(1)->sum('collection');
@@ -91,6 +91,7 @@ class DashboardIndexComponent extends Component
         $pendingConcerns =app('App\Http\Controllers\Features\ConcernController')->get('pending');
         $activeConcerns =app('App\Http\Controllers\Features\ConcernController')->get('active');
 
+
         $concernBar = Concern::select(DB::raw('monthname(created_at) as month_name, count(*) as total_concern'))
         ->where('property_uuid', Session::get('property_uuid'))
         // ->where('status', 'closed')
@@ -103,6 +104,15 @@ class DashboardIndexComponent extends Component
         $approvedBulletins = app('App\Http\Controllers\Features\BulletinController')->get(1);
 
         $averageNumberOfDaysForConcernsToBeResolved = app('App\Http\Controllers\Features\ConcernController')->getAverageNumberOfDaysForConcernsToBeResolved();
+
+        $concernPie = Concern::select(DB::raw('category, count(*) as total_concern'))
+        ->join('concern_categories', 'concerns.category_id', 'concern_categories.id')
+        ->where('property_uuid', Session::get('property_uuid'))
+        ->groupBy('category')
+        ->get();
+
+        $concernPieLabels = $concernPie->pluck('category');
+        $concernPieValues = $concernPie->pluck('total_concern');
 
         return view('livewire.features.dashboard.dashboard-index-component',compact(
            'allContracts',
@@ -154,7 +164,9 @@ class DashboardIndexComponent extends Component
            'pendingMoveoutContracts',
            'pendingConcerns',
            'concernBarLabels',
-           'concernBarValues')
+           'concernBarValues',
+           'concernPieLabels',
+           'concernPieValues')
         );
     }
 }
