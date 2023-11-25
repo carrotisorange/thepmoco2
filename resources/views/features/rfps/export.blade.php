@@ -11,7 +11,7 @@
             <x-th>REQUESTED ON</x-th>
             <x-th>REQUESTED BY</x-th>
             {{-- <x-th>REQUEST FOR</x-th> --}}
-            <x-th>PARTICULARS</x-th>
+            <x-th>PARTICULAR</x-th>
             <x-th>STATUS</x-th>
             <x-th>AMOUNT</x-th>
             <x-th></x-th>

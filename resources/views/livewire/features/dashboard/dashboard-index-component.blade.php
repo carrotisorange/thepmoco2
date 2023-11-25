@@ -1,4 +1,4 @@
-@section('styles')
+ @section('styles')
 <style>
     .animated {
         -webkit-animation-duration: 1s;
@@ -2323,19 +2323,19 @@
 
         <!-- concern category -->
         <div class="mt-5 col-span-6 lg:col-span-3">
-        
+
             <div class="flex justify-between items-start w-full">
                 <div class="flex-col items-center">
                 <div class="flex items-center mb-1">
-                    <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white me-1">Concerns by type:</h5>
-                   
+                    <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white me-1">Concerns by category:</h5>
+
                     <div data-popover id="chart-info" role="tooltip" class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-72 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
-                        
+
                     <div data-popper-arrow></div>
                 </div>
-                </div>    
+                </div>
             </div>
-          
+
             </div>
 
             <!-- Line Chart -->
@@ -2344,7 +2344,7 @@
             <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
             <div class="flex justify-between items-center pt-5">
                 <!-- Button -->
-                <button
+                {{-- <button
                 id="dropdownDefaultButton"
                 data-dropdown-toggle="lastDaysdropdown"
                 data-dropdown-placement="bottom"
@@ -2354,7 +2354,7 @@
                 <svg class="w-2.5 m-2.5 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                 </svg>
-                </button>
+                </button> --}}
                 <div id="lastDaysdropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
                 <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
                                 aria-labelledby="dropdownDefaultButton">
@@ -2409,9 +2409,9 @@
 
 
                             </ul>
-                    
+
                 </div>
-                
+
             </div>
             </div>
 
@@ -2421,7 +2421,7 @@
             window.addEventListener("load", function() {
             const getChartOptions = () => {
                 return {
-                    series: [50, 26, 20, 14, 10, 4],
+                    series: {!! $concernPieValues !!},
                     colors: ["#593F62", "#7B6D8D", "#8499B1", "#A5C4D4", "#CCCCCC", "#493B2A"],
                     chart: {
                     height: 420,
@@ -2443,7 +2443,7 @@
                         }
                     },
                     },
-                    labels: ["Billing", "Payment", "Contract", "Maintenance", "Housekeeping", "Others"],
+                    labels: {!! $concernPieLabels !!},
                     dataLabels: {
                     enabled: true,
                     style: {
@@ -2457,14 +2457,14 @@
                     yaxis: {
                     labels: {
                         formatter: function (value) {
-                        return value + "%"
+                        return value 
                         },
                     },
                     },
                     xaxis: {
                     labels: {
                         formatter: function (value) {
-                        return value  + "%"
+                        return value
                         },
                     },
                     axisTicks: {
@@ -2485,7 +2485,7 @@
             </script>
 
 
-            
+
 
 
         </div>

@@ -34,6 +34,11 @@ class CreateBulkBillComponent extends Component
       ];
     }
 
+    public function updated($propertyName)
+    {
+      $this->validateOnly($propertyName);
+    }
+
     public function storeBills(){
       $validatedInputs = $this->validate();
       $billNo = app('App\Http\Controllers\Features\BillController')->getLatestBillNo();

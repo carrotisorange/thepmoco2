@@ -12,7 +12,7 @@
                 <x-th>Unit</x-th>
                 {{-- <x-th>Date</x-th> --}}
                 <x-th>Bill To</x-th>
-                <x-th>Particulars</x-th>
+                <x-th>Particular</x-th>
                 <x-th>Period Covered</x-th>
                 <x-th>Amount</x-th>
             </tr>
