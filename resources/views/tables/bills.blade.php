@@ -165,8 +165,6 @@
                 </x-status-component>
                 @endif
             </div>
-
-
             </x-td>
 
             <x-td>

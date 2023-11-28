@@ -23,6 +23,7 @@ class BillController extends Controller
 
         app('App\Http\Controllers\PropertyController')->storePropertySession($property->uuid);
 
+
         app('App\Http\Controllers\Utilities\UserPropertyController')->isUserAuthorized();
 
         if(!app('App\Http\Controllers\Utilities\UserRestrictionController')->isFeatureAuthorized($featureId, $restrictionId)){

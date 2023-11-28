@@ -9,16 +9,7 @@
             @if($propertyBillsCount)
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 <div class="group inline-block">
-                    <x-button wire.loading.remove> New bill
-                        &nbsp; <i class="fa-solid fa-caret-down"></i>
-                    </x-button>
-                    <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute transition duration-150 ease-in-out origin-top min-w-32">
-                        <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
-                            <a href="#/" type="button" data-modal-toggle="create-bulk-bill-modal">
-                                Tenant
-                            </a>
-                        </li>
-                    </ul>
+                    <x-button data-modal-toggle="create-bulk-bill-modal"> Bulk bill </x-button>
                 </div>
                 <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/bill/delinquents'">
                     View Delinquents
@@ -106,20 +97,7 @@
                             <h3 class="mt-2 text-sm font-medium text-gray-900">No bills</h3>
                             <p class="mt-1 text-sm text-gray-500">Get started by creating a new bill</p>
                             <div class="mt-6">
-                                <div class="group inline-block">
-                                    <x-button id="dropdownButton" data-dropdown-toggle="unitCreateDropdown">New Bill
-                                        &nbsp; <i class="fa-solid fa-caret-down"></i>
-                                    </x-button>
-                                    <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
-                                              transition duration-150 ease-in-out origin-top min-w-32">
-                                        <li class="rounded-sm relative px-3 py-1 hover:bg-gray-100">
-                                            <a href="#/" data-modal-toggle="create-bulk-bill-modal">
-                                                Tenant
-                                            </a>
-                                        </li>
-                                    </ul>
-
-                                </div>
+                               <x-button data-modal-toggle="create-bulk-bill-modal"> Bulk bill </x-button>
 
                             </div>
                         </div>

@@ -17,15 +17,17 @@ class BookingFactory extends Factory
      */
     public function definition()
     {
+        $propertyUuid = 'b9771339-f8b1-4fcf-bca6-cc00087929b0';
+
         return [
             'uuid' => Str::uuid(),
-            'unit_uuid' => Unit::all()->random()->uuid,
-            'guest_uuid' => Guest::all()->random()->uuid,
-            'property_uuid' => 'f553a604-3481-4fea-8fde-8e6a8425dcc3',
+            'unit_uuid'=> Unit::where('property_uuid', $propertyUuid)->get()->random()->uuid,
+            'guest_uuid'=> Guest::where('property_uuid', $propertyUuid)->get()->random()->uuid,
+            'property_uuid' => $propertyUuid,
             'status' => $this->faker->randomElement(['reserved', 'checked-in', 'checked-out', 'cancelled']),
-            'movein_at' => Carbon::now(),
-            'movein_at' => Carbon::now()->addDay(rand(1,10)),
-            'price' => rand(0,100000)
+            'movein_at' => $this->faker->dateTimeThisYear($max = 'now', $timezone = null),
+            'moveout_at' =>$this->faker->dateTimeThisYear($max = 'now', $timezone = null),
+            'price' => rand(100,10000)
         ];
     }
 }

@@ -2457,14 +2457,14 @@
                     yaxis: {
                     labels: {
                         formatter: function (value) {
-                        return value 
+                        return value + "%"
                         },
                     },
                     },
                     xaxis: {
                     labels: {
                         formatter: function (value) {
-                        return value
+                        return value  + "%"
                         },
                     },
                     axisTicks: {

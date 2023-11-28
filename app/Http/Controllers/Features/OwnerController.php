@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Features;
 
 use App\Http\Controllers\Controller;
 
-use App\Models\{Owner,Unit,Property,User,AcknowledgementReceipt};
+use App\Models\{DeedOfSale,Unit,Property,User,AcknowledgementReceipt, Owner};
 use Illuminate\Support\Str;
 use Session;
 
@@ -31,9 +31,9 @@ class OwnerController extends Controller
         return view('features.owners.index');
     }
 
-    public function get($groupBy=null)
+    public function get($status=null, $groupBy=null)
     {
-        return Owner::getAll(Session::get('property_uuid'), $groupBy);
+        return DeedOfSale::getAll(Session::get('property_uuid'), $status, $groupBy);
     }
 
     public function getVerifiedOwners(){

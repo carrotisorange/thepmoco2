@@ -12,7 +12,7 @@
                     </x-label>
                     <x-form-input wire:model="created_at" type="date" />
 
-                  <x-validation-error-component name='created_at' />
+                    <x-validation-error-component name='created_at' />
                 </div>
             </div>
             <div class="overflow-auto mt-5 flex flex-wrap -mx-3 mb-6">
@@ -35,11 +35,11 @@
                             <x-td>{{Carbon\Carbon::parse($item->start)->format('M d,
                                 Y').'-'.Carbon\Carbon::parse($item->end)->format('M d, Y') }}</x-td>
                             <x-td>
-                                <x-table-input form="create-form" wire:model.lazy="amount.{{ $index }}" type="number"
+                                <x-table-input form="create-form" wire:model="amount.{{ $index }}" type="number"
                                     step="0.001" required readonly />
                             </x-td>
                             <x-td>
-                                <x-table-input form="create-form" wire:model.lazy="bill.{{ $index }}" type="number"
+                                <x-table-input form="create-form" wire:model="bill.{{ $index }}" type="number"
                                     step="0.001" required />
                             </x-td>
                             @endforeach
@@ -62,7 +62,7 @@
                         </option>
                     </x-form-select>
 
-                 <x-validation-error-component name='form' />
+                    <x-validation-error-component name='form' />
                 </div>
 
             </div>
@@ -75,7 +75,7 @@
                     </x-label>
                     <x-form-input wire:model="bank" type="text" />
 
-                  <x-validation-error-component name='bank' />
+                    <x-validation-error-component name='bank' />
                 </div>
 
                 <div class="w-full md:w-1/2 px-3">
@@ -84,7 +84,7 @@
                     </x-label>
                     <x-form-input wire:model="date_deposited" type="date" />
 
-                  <x-validation-error-component name='date_deposited' />
+                    <x-validation-error-component name='date_deposited' />
                 </div>
             </div>
 
@@ -95,7 +95,7 @@
                     </x-label>
                     <x-form-input wire:model="attachment" type="file" />
 
-                   <x-validation-error-component name='attachment' />
+                    <x-validation-error-component name='attachment' />
                 </div>
             </div>
             @endif
@@ -108,7 +108,7 @@
                     </x-label>
                     <x-form-input wire:model="check_no" type="text" />
 
-                   <x-validation-error-component name='check_no' />
+                    <x-validation-error-component name='check_no' />
                 </div>
             </div>
 
@@ -119,7 +119,7 @@
                     </x-label>
                     <x-form-input wire:model="attachment" type="file" />
 
-                  <x-validation-error-component name='attachment' />
+                    <x-validation-error-component name='attachment' />
                 </div>
             </div>
             @endif

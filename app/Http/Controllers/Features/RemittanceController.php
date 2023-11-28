@@ -84,7 +84,7 @@ class RemittanceController extends Controller
                 ->get(),
 
                 'date' => $date,
-                'bank_transfer_fee' => $bank_transfer_fee
+
             ];
 
             $folder_path = 'features.remittances.export';

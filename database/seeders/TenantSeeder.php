@@ -13,6 +13,6 @@ class TenantSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Tenant::factory(10)->create();
+        \App\Models\Tenant::factory(100)->create();
     }
 }

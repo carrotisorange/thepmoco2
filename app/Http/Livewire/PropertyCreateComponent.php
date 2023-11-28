@@ -68,6 +68,8 @@ class PropertyCreateComponent extends Component
 
                $new_property = app('App\Http\Controllers\PropertyController')->store($validatedData, $this->type_id);
 
+               Session::put('property_uuid',$new_property->uuid->toString());
+
                app('App\Http\Controllers\Utilities\UserPropertyController')->store($new_property->uuid->toString(), auth()->user()->id, 0, 1, 5);
 
                app('App\Http\Controllers\Utilities\UserRestrictionController')->storeOrUpdateFeatureRestrictions($new_property->uuid->toString());
@@ -75,8 +77,6 @@ class PropertyCreateComponent extends Component
                app('App\Http\Controllers\Utilities\PropertyParticularController')->store($new_property->uuid->toString());
 
                app('App\Http\Controllers\Utilities\RoleController')->store($new_property->uuid->toString());
-
-               Session::put('property_uuid',$new_property->uuid->toString());
 
                app('App\Http\Controllers\Utilities\PointController')->store(50, 6);
 

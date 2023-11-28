@@ -16,6 +16,8 @@ class TenantFactory extends Factory
      */
     public function definition()
     {
+        $propertyUuid = '337f54e6-d6a4-4247-9b04-7626753e1825';
+
         return [
             'uuid' => Str::uuid(),
             'tenant' => $this->faker->name,
@@ -24,9 +26,10 @@ class TenantFactory extends Factory
             'birthdate' =>$this->faker->date(),
             'civil_status' => Arr::random(['single', 'married', 'widowed', 'divorced']),
             'gender' => Arr::random(['male','female']),
+            'status' => 'active',
             'type' => Arr::random(['working','studying']),
-            'property_uuid' => Property::all()->random()->uuid,
-            'barangay_id' => rand(1,1000),
+            'property_uuid' => $propertyUuid,
+            'barangay' => Str::random(10).' city',
             'city_id' => rand(1,135),
             'province_id' => rand(1,80),
             'country_id' => rand(1,17)

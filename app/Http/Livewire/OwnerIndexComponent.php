@@ -22,8 +22,8 @@ class OwnerIndexComponent extends Component
     {
         $owners = Owner::search($this->search)
         ->where('property_uuid', Session::get('property_uuid'))
-        ->orderBy('created_at', 'asc')
-        ->paginate(10);
+        ->orderBy('created_at')
+        ->get();
 
         $propertyOwnersCount = app('App\Http\Controllers\Features\OwnerController')->get()->count();
 

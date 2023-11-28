@@ -25,10 +25,6 @@ class BillIndexComponent extends Component
    public $bill_type;
    public $isIndividualView = false;
 
-   public function redirectToUnitsPage(){
-      return redirect('/property/'.Session::get('property_uuid').'/unit/');
-   }
-
    public function updatedSelectAllBills($value)
    {
       if($value)
