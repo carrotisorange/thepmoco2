@@ -80,20 +80,17 @@ class CreateBulkBillComponent extends Component
                   Bill::create($validatedInputs);
                 }
         }else{
-            for($i=0; $i<$this->activeOwnersDeedOfSales->count(); $i++){
-                $ownerUuid = $this->activeOwnersDeedOfSales->pluck('owner_uuid')[$i];
-                $unitUuid = $this->activeOwnersDeedOfSales->pluck('unit_uuid')[$i];
-                $rent = Unit::where('uuid',$unitUuid)->value('rent');
+            foreach($this->activeOwnersDeedOfSales as $item){
 
                 if($this->particular_id == '8'){ //check if particular is discount and convert it to negative
                         $validatedInputs['bill'] = -($this->bill);
                 }elseif($this->particular_id == '1'){
-                        $validatedInputs['bill'] = $rent?$rent:0;
+                         $validatedInputs['bill'] = $item->unit->rent?$item->unit->rent:0;
                 }else{
                         $validatedInputs['bill'] = $this->bill;
                 }
-                    $validatedInputs['unit_uuid']= $unitUuid;
-                    $validatedInputs['owner_uuid'] = $ownerUuid;
+                    $validatedInputs['unit_uuid']= $item->unit_uuid;
+                    $validatedInputs['owner_uuid'] = $item->owner_uuid;
                     $validatedInputs['bill_no'] = $billNo++;
                     $validatedInputs['user_id'] = auth()->user()->id;
                     $validatedInputs['due_date'] = Carbon::parse($this->start)->addDays(7);
@@ -101,15 +98,13 @@ class CreateBulkBillComponent extends Component
                     $validatedInputs['batch_no'] = $billBatchNo;
                     $validatedInputs['status'] = 'unpaid';
                     $validatedInputs['created_at'] = Carbon::now();
-                    $validatedInputs['is_posted'] = 1;
+                    $validatedInputs['is_posted'] = 0;
 
                     Bill::create($validatedInputs);
             }
         }
 
             return redirect('/property/'.Session::get('property_uuid').'/bill/'.'customized'.'/'.$billBatchNo)->with('success', 'Changes Saved!');
-
-            // return redirect('/property/'.Session::get('property_uuid').'/bill/')->with('success', 'Changes Saved!');
 
         }catch(\Exception $e)
         {
