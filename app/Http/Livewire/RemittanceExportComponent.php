@@ -32,7 +32,30 @@ class RemittanceExportComponent extends Component
     public $cause_of_magnet;
 
     public function exportRemittance(){
-         return redirect('/property/'.Session::get('property_uuid').'/remittance/export/date/'.$this->date.'/'.$this->bank_transfer_fee);
+        Session::put('bank_transfer_fee', $this->bank_transfer_fee);
+        Session::put('miscellaneous_fee', $this->miscellaneous_fee);
+        Session::put('membership_fee', $this->membership_fee);
+        Session::put('condo_dues', $this->condo_dues);
+        Session::put('parking_dues', $this->parking_dues);
+        Session::put('water', $this->water);
+        Session::put('electricity', $this->electricity);
+        Session::put('generator_share', $this->generator_share);
+        Session::put('surcharges', $this->surcharges);
+        Session::put('building_insurance', $this->building_insurance);
+        Session::put('real_property_tax', $this->real_property_tax);
+        Session::put('housekeeping_fee', $this->housekeeping_fee);
+        Session::put('laundry_fee', $this->laundry_fee);
+        Session::put('complimentary', $this->complimentary);
+        Session::put('internet', $this->internet);
+        Session::put('special_assessment', $this->special_assessment);
+        Session::put('materials_recovery_facility', $this->materials_recovery_facility);
+        Session::put('recharge_of_fire_extinguisher', $this->recharge_of_fire_extinguisher);
+        Session::put('environmental_fee', $this->environmental_fee);
+        Session::put('bladder_tank', $this->bladder_tank);
+        Session::put('cause_of_magnet', $this->cause_of_magnet);
+
+        return redirect('/property/'.Session::get('property_uuid').'/remittance/export/date/'.$this->date);
+
     }
     public function render()
     {
