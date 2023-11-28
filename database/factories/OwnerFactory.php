@@ -15,6 +15,8 @@ class OwnerFactory extends Factory
      */
     public function definition()
     {
+        $propertyUuid = 'b9771339-f8b1-4fcf-bca6-cc00087929b0';
+
         return [
         'uuid' => Str::uuid(),
         'owner' => $this->faker->name,
@@ -26,11 +28,11 @@ class OwnerFactory extends Factory
         'bank_id' => rand(1,10),
         'occupation' => $this->faker->word,
 
-        'barangay_id' => rand(1,1000),
+        'barangay' => $this->faker->city,
         'city_id' => rand(1,135),
         'province_id' => rand(1,80),
         'country_id' => rand(1,17),
-
+        'property_uuid' => $propertyUuid,
         'occupation' => $this->faker->word(),
         'employer' => $this->faker->word(),
         'employer_address' => $this->faker->word(),

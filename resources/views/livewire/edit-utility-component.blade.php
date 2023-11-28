@@ -1,5 +1,4 @@
 <x-modal-component>
-
     <x-slot name="id">
         edit-utility-modal-{{$utility->id}}
     </x-slot>

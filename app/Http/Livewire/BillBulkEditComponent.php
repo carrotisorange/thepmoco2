@@ -39,18 +39,18 @@ class BillBulkEditComponent extends Component
 
         try{
 
-            Bill::where('is_posted', false)
-            ->where('property_uuid', Session::get('property_uuid'))
+            Bill::where('property_uuid', Session::get('property_uuid'))
+            ->where('is_posted', false)
+            ->where('batch_no', $this->batch_no)
             ->update([
-             'is_posted' => true,
+                'is_posted' => true,
             ]);
 
             return redirect('/property/'.Session::get('property_uuid').'/bill/')->with('success', 'Changes Saved!');
 
-            // session()->flash('success', count($this->bills). ' bills are successfully saved as draft.');
-
         }catch(\Exception $e){
-            return back()->with('error','Cannot perform the action. Please try again.');
+
+           return redirect(url()->previous())->with('error', $e->getMessage());
         }
     }
 
@@ -80,9 +80,9 @@ class BillBulkEditComponent extends Component
 
     public function get_bills()
     {
-        return Bill
-        ::where('is_posted', false)
+        return Bill::where('property_uuid', Session::get('property_uuid'))
         ->where('batch_no', $this->batch_no)
+        ->where('is_posted', false)
         ->get();
     }
 

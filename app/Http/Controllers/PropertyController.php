@@ -516,7 +516,7 @@ class PropertyController extends Controller
     }
 
     public function storePropertySession($property_uuid)
-    {
+    {   
         Session::put('property_uuid', Property::find($property_uuid)->uuid);
 
         Session::put('property', Property::find($property_uuid)->property);

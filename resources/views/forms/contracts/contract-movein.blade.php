@@ -5,37 +5,37 @@
                 <div class="grid grid-cols-2 gap-6">
                     <div class="col-span-1">
                         <label for="start" class="block text-sm font-medium text-gray-700">Start of the contract</label>
-                        <input type="date" wire:model.lazy="start" autocomplete="start"
+                        <input type="date" wire:model="start" autocomplete="start"
                             class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                     <x-validation-error-component name='start' />
+                        <x-validation-error-component name='start' />
                     </div>
 
                     <div class="col-span-1">
                         <label for="end" class="block text-sm font-medium text-gray-700">End of the contract</label>
-                        <input type="date" wire:model.lazy="end" autocomplete="end"
+                        <input type="date" wire:model="end" autocomplete="end"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                     <x-validation-error-component name='end' />
+                        <x-validation-error-component name='end' />
 
                     </div>
 
                     <div class="col-span-1">
                         <label for="rent" class="block text-sm font-medium text-gray-700">Rent/month/tenant</label>
-                        <input type="number" wire:model.lazy="rent" autocomplete="rent" readonly step="0.001"
+                        <input type="number" wire:model="rent" autocomplete="rent" readonly step="0.001"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                     <x-validation-error-component name='rent' />
+                        <x-validation-error-component name='rent' />
                     </div>
 
                     <div class="col-span-1">
                         <label for="discount" class="block text-sm font-medium text-gray-700">Discount</label>
-                        <input type="number" wire:model.lazy="discount" autocomplete="discount" readonly step="0.001"
+                        <input type="number" wire:model="discount" autocomplete="discount" readonly step="0.001"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                      <x-validation-error-component name='discount' />
+                        <x-validation-error-component name='discount' />
                     </div>
 
                     <div class="col-span-2">
                         <label for="interaction_id" class="block text-sm font-medium text-gray-700">How did you acquire
                             the tenant?</label>
-                        <select wire:model.lazy="interaction_id" autocomplete="interaction_id"
+                        <select wire:model="interaction_id" autocomplete="interaction_id"
                             class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
 
                             @foreach ($interactions as $interaction)
@@ -44,16 +44,16 @@
                                 }}>{{ $interaction->interaction }}</option>
                             @endforeach
                         </select>
-                       <x-validation-error-component name='interaction_id' />
+                        <x-validation-error-component name='interaction_id' />
                     </div>
 
                     @if($this->interaction_id == 10)
                     <div class="col-span-2">
                         <label for="referral" class="block text-sm font-medium text-gray-700">Name of the referral<span
                                 class="text-xs"></label>
-                        <input type="text" wire:model.lazy="referral" autocomplete="referral"
+                        <input type="text" wire:model="referral" autocomplete="referral"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                     <x-validation-error-component name='referral' />
+                        <x-validation-error-component name='referral' />
                     </div>
                     @endif
 

@@ -92,15 +92,4 @@ class Owner extends Model
     //   ->orWhere('email','like', '%'.$search.'%')
       ;
     }
-
-    public function scopeGetAll($query, $propertyUuid, $groupBy){
-       $results = $query->when($propertyUuid, function($query, $propertyUuid){
-                $query->where('property_uuid', $propertyUuid);
-            })
-            ->when($groupBy, function($query, $groupBy){
-                $query->groupBy($groupBy);
-            })->get();
-
-        return $results;
-    }
 }

@@ -4,30 +4,30 @@
             <label for="name" class="block text-sm font-medium text-gray-700">Full Name
             </label>
             <div class="mt-1">
-                <input type="text" wire:model.lazy="name" autocomplete="name" readonly
+                <input type="text" wire:model="name" autocomplete="name" readonly
                     class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
-          <x-validation-error-component name='name' />
+            <x-validation-error-component name='name' />
         </div>
 
         <div class="col-span-full">
             <label for="email" class="block text-sm font-medium text-gray-700">Email Address
             </label>
             <div class="mt-1">
-                <input type="email" wire:model.lazy="email" autocomplete="email" readonly
+                <input type="email" wire:model="email" autocomplete="email" readonly
                     class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
-          <x-validation-error-component name='email' />
+            <x-validation-error-component name='email' />
         </div>
 
         <div class="col-span-full">
             <label for="mobile_number" class="block text-sm font-medium text-gray-700">Mobile Number
             </label>
             <div class="mt-1">
-                <input type="text" wire:model.lazy="mobile_number" autocomplete="mobile_number" readonly
+                <input type="text" wire:model="mobile_number" autocomplete="mobile_number" readonly
                     class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
-           <x-validation-error-component name='mobile_number' />
+            <x-validation-error-component name='mobile_number' />
         </div>
 
         <div class="col-span-full">
@@ -76,7 +76,7 @@
             </div>
         </div>
     </div>
-   <x-validation-error-component name='unit_uuid' />
+    <x-validation-error-component name='unit_uuid' />
     <button type="submit"
         class="w-full mt-6 bg-purple-600 border border-transparent rounded-md shadow-sm py-2 px-4 text-sm font-medium text-white hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Pay
         ₱{{

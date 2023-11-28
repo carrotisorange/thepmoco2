@@ -8,7 +8,7 @@
                         <div class="col-span-6">
                             <label for="last-name" class="block text-sm font-medium text-gray-700">Please a deposit you
                                 want to add</label>
-                            <select wire:model.lazy="description" autocomplete="deposit_type"
+                            <select wire:model="description" autocomplete="deposit_type"
                                 class="mt-1 block w-full px-3 border border-gray-700 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option value="">Select one</option>
                                 <option value="Security Deposit">Security Deposit</option>
@@ -22,9 +22,9 @@
                         <div class="col-span-2">
                             <label for="amount" class="block text-sm font-medium text-gray-700">Amount of the
                                 deposit</label>
-                            <input type="numnber" step="0.01" wire:model.lazy="amount" autocomplete="amount"
+                            <input type="numnber" step="0.01" wire:model="amount" autocomplete="amount"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                         <x-validation-error-component name='amount' />
+                            <x-validation-error-component name='amount' />
                         </div>
 
 

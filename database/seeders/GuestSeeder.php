@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Guest;
 
 class GuestSeeder extends Seeder
 {
@@ -13,6 +14,6 @@ class GuestSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Guest::factory(100)->create();
     }
 }

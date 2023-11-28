@@ -3,9 +3,6 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use DB;
-use Session;
-use App\Models\Concern;
 
 class DashboardIndexComponent extends Component
 {
@@ -27,7 +24,8 @@ class DashboardIndexComponent extends Component
         $vacantUnits = app('App\Http\Controllers\Features\UnitController')->get(1); //1 means vacant
         $reservedUnits = app('App\Http\Controllers\Features\UnitController')->get(4); //4 means reserved
 
-        $allOwners = app('App\Http\Controllers\Features\OwnerController')->get();
+        $allOwners = app('App\Http\Controllers\Features\OwnerController')->get('active');
+
         $allVerifiedOwners = app('App\Http\Controllers\Features\OwnerController')->getVerifiedOwners()->whereNotNull('email_verified_at');
 
         $allPersonnels = app('App\Http\Controllers\Features\PersonnelController')->get();
@@ -39,11 +37,7 @@ class DashboardIndexComponent extends Component
         $occupancyPieChartLabels = json_encode($occupancyPieChartValues->pluck('status'));
         $occupancyPieChartValues = json_encode($occupancyPieChartValues->pluck('unit_count'));
 
-        if($allUnits->count() > 0){
-             $occupancyRate = number_format(($occupiedUnits->count()/$allUnits->count())*100,2).'%';
-        }else{
-             $occupancyRate = 100;
-        }
+        $occupancyRate = number_format((fdiv($occupiedUnits->count(),$allUnits->count()))*100,2).'%';
 
         $allGuests = app('App\Http\Controllers\Features\GuestController')->get('checked-out');
         $averageNumberOfDaysGuestsStayed = app('App\Http\Controllers\Features\GuestController')->getAverageNumberOfDaysGuestsStayed();
@@ -68,14 +62,9 @@ class DashboardIndexComponent extends Component
         $expenseBarLabels = json_encode($expenseBar->pluck('month_name'));
         $expenseBarValues = json_encode($expenseBar->pluck('total_expense'));
 
-        if($postedUnpaidBills > 0){
-            $collectionRate = number_format(($postedPaidBills/$postedBills)*100,2).'%';
-        }else{
-            $collectionRate = "NA";
-        }
+        $collectionRate = number_format((fdiv($postedPaidBills,$postedBills))*100,2).'%';
 
         $billPieChartValues = app('App\Http\Controllers\Features\UnitController')->getBillPieChartValues();
-
         $delinquentTenants =app('App\Http\Controllers\Features\BillController')->getDelinquentTenants();
 
         $waterConsumption = app('App\Http\Controllers\Features\UtilityController')->get('water',1)->sum('current_consumption');
@@ -91,13 +80,7 @@ class DashboardIndexComponent extends Component
         $pendingConcerns =app('App\Http\Controllers\Features\ConcernController')->get('pending');
         $activeConcerns =app('App\Http\Controllers\Features\ConcernController')->get('active');
 
-
-        $concernBar = Concern::select(DB::raw('monthname(created_at) as month_name, count(*) as total_concern'))
-        ->where('property_uuid', Session::get('property_uuid'))
-        // ->where('status', 'closed')
-        ->groupBy(DB::raw('month(created_at)+"-"+year(created_at)'))
-        ->limit(5);
-
+        $concernBar = app('App\Http\Controllers\Features\ConcernController')->getJsonEncodedConcernBarForDashboard();
         $concernBarLabels = json_encode($concernBar->pluck('month_name'));
         $concernBarValues = json_encode($concernBar->pluck('total_concern'));
 
@@ -105,12 +88,7 @@ class DashboardIndexComponent extends Component
 
         $averageNumberOfDaysForConcernsToBeResolved = app('App\Http\Controllers\Features\ConcernController')->getAverageNumberOfDaysForConcernsToBeResolved();
 
-        $concernPie = Concern::select(DB::raw('category, count(*) as total_concern'))
-        ->join('concern_categories', 'concerns.category_id', 'concern_categories.id')
-        ->where('property_uuid', Session::get('property_uuid'))
-        ->groupBy('category')
-        ->get();
-
+        $concernPie = app('App\Http\Controllers\Features\ConcernController')->getJsonEncodedConcernPieForDashboard();
         $concernPieLabels = $concernPie->pluck('category');
         $concernPieValues = $concernPie->pluck('total_concern');
 

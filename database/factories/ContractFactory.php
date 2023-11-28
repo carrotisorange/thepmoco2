@@ -5,9 +5,8 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
-use App\Models\Tenant;
-use App\Models\Unit;
-use App\Models\User;
+use Session;
+use App\Models\{Tenant,Unit, User,Interaction};
 
 class ContractFactory extends Factory
 {
@@ -18,18 +17,21 @@ class ContractFactory extends Factory
      */
     public function definition()
     {
+        $propertyUuid = '337f54e6-d6a4-4247-9b04-7626753e1825';
+
         return [
-             'uuid' => Str::uuid(),
-             'unit_uuid'=> Unit::all()->random()->uuid,
-             'user_id'=> User::all()->random()->id,
-             'tenant_uuid'=> Tenant::all()->random()->uuid,
-             'start' => now(),
-             'end' =>now()->addMonth([rand(1,10)]),
-             'rent' => rand(1000,10000),
-             'status' => Arr::random(['active','pending', 'inactive']),
-             'interaction' => Arr::random(['facebook','walk-in', 'referral']),
-             'moveout_reason' => Arr::random(['delinquent','end of contract', 'force majeure']),
-             'discount' => rand(100,1000)
+            'uuid' => Str::uuid(),
+            'unit_uuid'=> Unit::where('property_uuid', $propertyUuid)->get()->random()->uuid,
+            'user_id'=> User::all()->random()->id,
+            'tenant_uuid'=> Tenant::where('property_uuid', $propertyUuid)->get()->random()->uuid,
+            'property_uuid' => $propertyUuid,
+            'start' => $this->faker->dateTimeThisDecade($max = 'now', $timezone = null),
+            'end' =>$this->faker->dateTimeThisDecade($max = 'now', $timezone = null),
+            'rent' => Unit::where('property_uuid', $propertyUuid)->get()->random()->rent,
+            'status' => Arr::random(['active','pending', 'inactive']),
+            'interaction_id' => Interaction::all()->random()->id,
+            'moveout_reason' => Arr::random(['','delinquent','end of contract', 'force majeure']),
+            'discount' => rand(100,1000)
         ];
     }
 }

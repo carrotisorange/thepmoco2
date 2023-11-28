@@ -7,7 +7,7 @@ use Session;
 
 class ContractIndexComponent extends Component
 {
-    public $status = 'active';
+    public $status;
 
     public function redirectToUnitSelectionPage(){
 

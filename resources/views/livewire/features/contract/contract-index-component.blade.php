@@ -17,7 +17,7 @@
                 <x-form-select name="status" wire:model="status">
                     <option selected>Filter status</option>
                     @foreach ($statuses as $status)
-                    <option value="{{ $status->status }}">{{ $status->status }}</option>
+                    <option value="{{ $status->status }}" {{ old('status')==$status->status?'selected': 'Select one' }}>{{ $status->status }}</option>
                     @endforeach
                 </x-form-select>
             </div>

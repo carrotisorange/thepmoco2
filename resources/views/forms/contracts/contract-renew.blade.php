@@ -5,37 +5,37 @@
                 <div class="grid grid-cols-2 gap-6">
                     <div class="col-span-2">
                         <label for="unit" class="block text-sm font-medium text-gray-700">Unit</label>
-                        <input type="text" wire:model.lazy="unit" autocomplete="unit" readonly
+                        <input type="text" wire:model="unit" autocomplete="unit" readonly
                             class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                     <x-validation-error-component name='unit' />
+                        <x-validation-error-component name='unit' />
                     </div>
                     <div class="col-span-1">
                         <label for="start" class="block text-sm font-medium text-gray-700">Start of the contract</label>
-                        <input type="date" wire:model.lazy="start" autocomplete="start"
+                        <input type="date" wire:model="start" autocomplete="start"
                             class="mt-1  focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                      <x-validation-error-component name='start' />
+                        <x-validation-error-component name='start' />
                     </div>
 
                     <div class="col-span-1">
                         <label for="end" class="block text-sm font-medium text-gray-700">End of the contract</label>
-                        <input type="date" wire:model.lazy="end" autocomplete="end"
+                        <input type="date" wire:model="end" autocomplete="end"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                      <x-validation-error-component name='end' />
+                        <x-validation-error-component name='end' />
 
                     </div>
 
                     <div class="col-span-1">
                         <label for="rent" class="block text-sm font-medium text-gray-700">Rent/month/tenant</label>
-                        <input type="number" wire:model.lazy="rent" autocomplete="rent" step="0.001"
+                        <input type="number" wire:model="rent" autocomplete="rent" step="0.001"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                       <x-validation-error-component name='rent' />
+                        <x-validation-error-component name='rent' />
                     </div>
 
                     <div class="col-span-1">
                         <label for="discount" class="block text-sm font-medium text-gray-700">Discount </label>
-                        <input type="number" wire:model.lazy="discount" autocomplete="discount" step="0.001"
+                        <input type="number" wire:model="discount" autocomplete="discount" step="0.001"
                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border border-gray-700 rounded-md">
-                      <x-validation-error-component name='discount' />
+                        <x-validation-error-component name='discount' />
                     </div>
 
                     <div class="col-span-2">

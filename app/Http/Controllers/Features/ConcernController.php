@@ -42,6 +42,22 @@ class ConcernController extends Controller
         ->value('total_number_of_days_to_be_resolved');
     }
 
+
+    public function getJsonEncodedConcernBarForDashboard(){
+        return Concern::select(DB::raw('monthname(created_at) as month_name, count(*) as total_concern'))
+        ->where('property_uuid', Session::get('property_uuid'))
+        ->groupBy(DB::raw('month(created_at)+"-"+year(created_at)'))
+        ->limit(5);
+    }
+
+     public function getJsonEncodedConcernPieForDashboard(){
+        return Concern::select(DB::raw('category, count(*) as total_concern'))
+        ->join('concern_categories', 'concerns.category_id', 'concern_categories.id')
+        ->where('property_uuid', Session::get('property_uuid'))
+        ->groupBy('category')
+        ->get();
+     }
+
     public function destroy($unit_uuid){
 
         Concern::where('unit_uuid', $unit_uuid)->delete();

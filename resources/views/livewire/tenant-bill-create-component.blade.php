@@ -11,7 +11,8 @@
                                 aria-hidden="true">
                                 <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
                             </svg>
-                            <button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant->uuid }}'"
+                            <button
+                                onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant->uuid }}'"
                                 class="ml-4 text-lg font-medium text-gray-500 hover:text-gray-700 ">
                                 {{ $tenant->tenant }}
                             </button>
@@ -45,7 +46,7 @@
         <div class="sm:col-span-3">
             @if($bills)
             <x-label for="status">Filter status</x-label>
-            <x-form-select wire:model.lazy="status" autocomplete="status">
+            <x-form-select wire:model="status" autocomplete="status">
                 <option value="all" {{ $status=='' ? 'selected' : 'selected' }}> all </option>
                 <option value="paid" {{ $status=='paid' ? 'selected' : 'selected' }}> paid </option>
 
@@ -57,7 +58,7 @@
         <div class="sm:col-span-3">
             @if($bills)
             <x-label for="particular">Filter particulars</x-label>
-            <x-form-select wire:model.lazy="particular" autocomplete="particular">
+            <x-form-select wire:model="particular" autocomplete="particular">
 
                 <option value="">Filter bill particulars</option>
                 @foreach ($particulars as $item)

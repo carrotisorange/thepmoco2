@@ -55,7 +55,7 @@
                         }})</a></x-button>
 
                     <x-button data-modal-toggle="send-owner-bill">
-                       Send Bills ({{ App\Models\Owner::find($owner->uuid)->bills()->posted()->where('status',
+                        Send Bills ({{ App\Models\Owner::find($owner->uuid)->bills()->posted()->where('status',
                         '!=', 'paid')->count() }})</a></x-button>
                     @endif
 
@@ -76,7 +76,7 @@
         <div class="sm:col-span-3">
             @if($bills)
             <label for="status" class="block text-sm font-medium text-gray-700">Filter status</label>
-            <x-form-select wire:model.lazy="status" autocomplete="status">
+            <x-form-select wire:model="status" autocomplete="status">
                 <option value="all" {{ $status=='' ? 'selected' : 'selected' }}> all </option>
                 <option value="paid" {{ $status=='paid' ? 'selected' : 'selected' }}> paid </option>
                 <option value="unpaid" {{ $status=='unpaid' ? 'selected' : 'selected' }}> unpaid </option>
@@ -90,7 +90,7 @@
         <div class="sm:col-span-3">
             @if($bills)
             <label for="particular" class="block text-sm font-medium text-gray-700">Filter particulars</label>
-            <x-form-select wire:model.lazy="particular" autocomplete="particular">
+            <x-form-select wire:model="particular" autocomplete="particular">
                 <option value="">Filter bill particulars</option>
                 @foreach ($particulars as $item)
                 <option value="{{ $item->particular_id }}">{{ $item->particular }}</option>
@@ -172,5 +172,5 @@
     @include('modals.create-bill-modal')
     @include('modals.export-owner-bill')
     @include('modals.send-owner-bill')
-@livewire('create-particular-component')
+    @livewire('create-particular-component')
 </div>
