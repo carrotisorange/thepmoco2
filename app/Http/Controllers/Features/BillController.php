@@ -86,6 +86,7 @@ class BillController extends Controller
         ->where('bills.property_uuid',Session::get('property_uuid'))
         ->whereMonth('bills.start','<=', Carbon::now()->subMonth()->month)
         ->where('bills.status', 'unpaid')
+        ->where('bill','>',0)
         ->groupBy('bills.tenant_uuid')
         ->orderBy('totalBill', 'desc')
         ->get();

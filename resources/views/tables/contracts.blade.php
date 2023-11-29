@@ -21,7 +21,7 @@
                     <x-link-component link="/property/{{ Session::get('property_uuid') }}/unit/{{ $contract->unit->uuid }}">
                        {{ $contract->unit->unit }}
                     </x-link-component>
-                </x-td>k
+                </x-td>
                 <x-td>
                         @if(auth()->user()->role_id == '8')
                         {{ $contract->tenant->tenant }}

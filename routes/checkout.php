@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\Subfeatures\CheckoutController;
 
 Route::middleware('auth')->group(function () {
