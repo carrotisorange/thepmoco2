@@ -10,6 +10,7 @@
             <x-th>Status</x-th>
             <x-th>Agent</x-th>
             <x-th></x-th>
+
         </tr>
     </x-table-head-component>
     <x-table-body-component>
@@ -31,18 +32,16 @@
             <x-td>{{Carbon\Carbon::parse($booking->movein_at)->format('M d, Y')}}</x-td>
             <x-td>{{Carbon\Carbon::parse($booking->moveout_at)->format('M d, Y')}}</x-td>
             <x-td>{{ $booking->status }}</x-td>
-            <x-td>
-                @if($booking->agent_id)
-                {{ $booking->agent->agent }}
-                @else
-                NA
-                @endif
-            </x-td>
+            <x-td> {{ $booking->agent->agent }} </x-td>
             <x-td>
                 <x-button data-modal-toggle="edit-booking-modal-{{$booking->uuid}}">
                     Edit
                 </x-button>
+                {{-- <x-button data-modal-toggle="checkout-booking-modal-{{$booking->uuid}}">
+                    Checkout
+                </x-button> --}}
             </x-td>
+
         </tr>
 
         @livewire('edit-booking-component',['property' => App\Models\Property::find(Session::get('property_uuid')), 'booking'=> $booking], key(Carbon\Carbon::now()->timestamp.''.$booking->id))

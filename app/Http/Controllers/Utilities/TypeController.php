@@ -23,6 +23,7 @@ class TypeController extends Controller
         ->join('properties', 'property_uuid', 'properties.uuid')
         ->join('types', 'properties.type_id', 'types.id')
         ->select('*', DB::raw('count(*) as count'))
+        // ->where('users.is_approved', 1)
         ->where('user_id', auth()->user()->id)
         ->where('properties.status', 'active')
         ->groupBy('type_id')

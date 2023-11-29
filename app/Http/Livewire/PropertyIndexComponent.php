@@ -29,7 +29,7 @@ class PropertyIndexComponent extends Component
     {
         $properties  = app('App\Http\Controllers\PropertyController')->getPersonnelProperties($this->search,$this->sortBy, $this->filterByPropertyType, $this->limitDisplayTo);
         $propertyTypes = app('App\Http\Controllers\Utilities\TypeController')->getPropertyTypes();
-        $userPropertyCount = UserProperty::where('user_id', auth()->user()->id)->count();
+        $userPropertyCount = UserProperty::where('user_id', auth()->user()->id)->where('is_approved',1)->count();
 
         $featureId = 19; //pleaser refer to the features table
 
