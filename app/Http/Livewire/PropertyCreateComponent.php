@@ -81,7 +81,7 @@ class PropertyCreateComponent extends Component
                app('App\Http\Controllers\Utilities\PointController')->store(50, 6);
 
                app('App\Http\Controllers\PropertyController')->storePropertySession($new_property->uuid->toString());
-
+             
                return redirect('/property/'.$new_property->uuid->toString().'/success')->with('success', 'Changes Saved!');
 
             });

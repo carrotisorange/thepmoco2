@@ -1,9 +1,6 @@
 <div>
-
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
-
-
 
             <div class=" p-4 purple" id="remittance-summary" role="tabpanel" aria-labelledby="remittance-summary-tab">
 
@@ -20,20 +17,15 @@
                         <x-form-select id="small" wire:model="remittanceDate">
 
                             @foreach ($dates as $date)
-                            {{-- @if(Carbon\Carbon::parse($date->created_at)->format('M, Y') !=
-                            Carbon\Carbon::parse($remittance_date)->format('M, Y')) --}}
-
                             <option value="{{ $date->created_at }}">{{
                                 Carbon\Carbon::parse($date->created_at)->format('M, Y') }}</option>
-                            {{-- @endif --}}
                             @endforeach
                         </x-form-select>
                     </div>
 
                     <form wire:submit.prevent="sendRemittanceToOwner">
-                        <x-button type="submit">Send to
-                            Owner</x-button>
-
+                        <x-button type="submit">Send </x-button>
+                    </form>
                 </div>
 
 
