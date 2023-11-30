@@ -47,8 +47,9 @@ class CollectionController extends Controller
         return Collection::select(DB::raw('monthname(created_at) as month_name, sum(collection) as total_collection'))
         ->where('collections.property_uuid', Session::get('property_uuid'))
         ->posted()
+
         ->groupBy(DB::raw('month(created_at)+"-"+year(created_at)'))
-        ->limit(5);
+        ->limit(6);
 
     }
 

@@ -1,37 +1,4 @@
 <div>
-    <style>
-        li>ul {
-            transform: translatex(100%) scale(0)
-        }
-
-        li:hover>ul {
-            transform: translatex(50%) scale(1)
-        }
-
-        li>button svg {
-            transform: rotate(-90deg)
-        }
-
-        li:hover>button svg {
-            transform: rotate(-270deg)
-        }
-
-        .group:hover .group-hover\:scale-100 {
-            transform: scale(1)
-        }
-
-        .group:hover .group-hover\:-rotate-180 {
-            transform: rotate(180deg)
-        }
-
-        .scale-0 {
-            transform: scale(0)
-        }
-
-        .min-w-32 {
-            min-width: 8rem
-        }
-    </style>
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
@@ -40,39 +7,11 @@
                 </h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-
-                <div class="group inline-block">
-                    <x-button
-                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                        <span class="pr-1 font-semibold flex-1"> New concern</span>
-                        <span>
-                            <svg class="fill-current h-4 w-4 transform group-hover:-rotate-180
-                                            transition duration-150 ease-in-out" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 20 20">
-                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                            </svg>
-                        </span>
-                    </x-button>
-
-                    <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute
-                                      transition duration-150 ease-in-out origin-top min-w-32">
-
-                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a
-                                href="/property/{{ Session::get('property_uuid') }}/tenant"
-                                data-modal-toggle="create-particular-modal">to tenant</a>
-                        </li>
-                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="/property/{{ Session::get("
-                                property") }}/unit" data-modal-toggle="create-particular-modal">to unit</a>
-                        </li>
-                    </ul>
-                </div>
+               <x-button data-modal-toggle="create-concern-component">New concern </x-button>
             </div>
         </div>
         <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                <div class="mt-3">
-                    {{ $concerns->links() }}
-                </div>
                 @if($propertyConcernsCount)
                 <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                     <div class="sm:col-span-6">
@@ -101,6 +40,9 @@
                         </x-form-select>
                     </div>
                 </div>
+                <div class="mt-3">
+                    {{ $concerns->links() }}
+                </div>
                 @endif
                 <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                     @if($concerns->count())
@@ -117,25 +59,7 @@
                             <h3 class="mt-2 text-sm font-medium text-gray-900">No Concerns</h3>
                             <p class="mt-1 text-sm text-gray-500">Get started by creating a new concern</p>
                             <div class="mt-6">
-                                <div class="group inline-block">
-                                    <x-button
-                                        class="inline-flex items-center justify-center rounded-md border border-transparent bg-purple-500 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:w-auto">
-                                        <span class="pr-1 font-semibold flex-1"> New concern</span>
-                                        <span>
-                                            <svg class="fill-current h-4 w-4 transform group-hover:-rotate-180
-                                                                            transition duration-150 ease-in-out"
-                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                                <path
-                                                    d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                            </svg>
-                                        </span>
-                                    </x-button>
-                                    <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute transition duration-150 ease-in-out origin-top min-w-32">
-                                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="/property/{{ Session::get('property_uuid') }}/tenant" data-modal-toggle="create-particular-modal">to tenant</a></li>
-                                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100"><a href="/property/{{ Session::get(" property") }}/unit" data-modal-toggle="create-particular-modal">to unit</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                  <x-button data-modal-toggle="create-concern-component">New concern </x-button>
                             </div>
                         </div>
                     </div>
@@ -144,4 +68,5 @@
             </div>
         </div>
     </div>
+    @livewire('concern-create-component')
 </div>
