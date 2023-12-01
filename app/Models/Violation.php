@@ -12,7 +12,7 @@ class Violation extends Model
     protected $table = 'violations';
 
     public function type(){
-        return $this->belongsTo(Violation::class)->withDefault();
+        return $this->belongsTo(ViolationType::class)->withDefault();
     }
 
     public function property(){

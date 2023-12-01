@@ -6,16 +6,13 @@
                     {{ucfirst(Route::current()->getName())}}
                 </h1>
             </div>
-            <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-
+           <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+                <x-button data-modal-toggle="violation-create-component">New violation </x-button>
             </div>
         </div>
         <div class="mt-3">
-                @include('layouts.under-construction-general')
-                    {{-- @include('tables.violations') --}}
-
-            </div>
+            @include('tables.violations')
         </div>
-        @include('modals.instructions.create-tenant-modal')
+        </div>
+        @livewire('violation-create-component')
     </div>
-</div>
