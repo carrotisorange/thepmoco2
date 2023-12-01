@@ -93,9 +93,7 @@
         <div class="relative bg-gray-700">
             <div class="px-6 py-32 relative bg-gray-600 md:absolute md:left-0 md:h-full md:w-1/2">
                 <p class="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">Our Mission</p>
-                <p class="mt-3 text-lg text-gray-300">To provide a transformative but easy digital solution to improve
-                    rental
-                    property experiences between customers and real property rentals.</p>
+                <p class="mt-3 text-lg text-gray-300">To create new opportunities through digitalization of community management systems.</p>
                 <div class="mt-8">
                     <div class="inline-flex rounded-md shadow">
 
@@ -107,8 +105,7 @@
                 <div class="md:ml-auto md:w-1/2 md:pl-10">
 
                     <p class="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">Our Vision</p>
-                    <p class="mt-3 text-lg text-gray-300">Thriving rental property communities thru technology
-                        enablement.</p>
+                    <p class="mt-3 text-lg text-gray-300">Tech Enabled Communities</p>
                     <div class="mt-8">
                         <div class="inline-flex rounded-md shadow">
 
@@ -176,7 +173,7 @@
                             <span class="block text-2xl font-bold text-white">V</span>
                             <span class="mt-1 block text-base text-gray-300"><span
                                     class="font-medium text-white">Vital</span> and
-                                Harmonious Tenant-Landlord Relationship</span>
+                                Harmonious Community Relationship</span>
                         </p>
 
                         <p>
@@ -217,15 +214,13 @@
                                 Our team members have worked or belong to the industry of real estate management and
                                 Information Technology industry. We believe that a transformative digital system is what
                                 the
-                                real estate management need to reduce and even eliminate many pain points of a rental
-                                property business.</p>
+                                real estate management need to reduce and even eliminate many pain points in community management.</p>
 
                             <p class="text-base text-gray-500 mt-5 ">
-                                {{ env('APP_NAME') }} Team is establishing harmonious relationships between business owners,
-                                managers, and tenants to make thriving rental property communities. With a
+                                {{ env('APP_NAME') }} Team is establishing harmonious relationships between management and
+                                community members to make thriving property communities. With a
                                 transformative
-                                digital system, there will be transparency in business transactions, and efficiency in
-                                operations.</p>
+                                digital system, there will be improved communication, convenience, and better community services.</p>
                         </div>
 
                     </blockquote>
