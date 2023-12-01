@@ -651,13 +651,7 @@
                         </div>
                         <div class="flex-col pt-3">
                             <p class="text-gray-500 dark:text-gray-400 text-base text-justify"><span
-                                    class="font-bold">PropSuite Daily</span> as a service that provides a transformative digital
-                                solution to simplify
-                                operations of long term or short term rental properties. Unlike manual processes, our
-                                online system
-                                provides real-time, reliable and accessible information to landlords and managers to
-                                increase
-                                transparency and efficiency of operations. </p>
+                                    class="font-bold">PropSuite Daily</span> is ideal for daily rental properties like guest houses, transient homes, airbnb properties, or Mabuhay Accommodations to manage arrival and departure of guests to avoid double bookings.</p>
                             <div class="flex items-center justify-end mt-5">
                                 <a href="/propsuite-daily"><button
                                         class="bg-yellow-200 hover:bg-yellow-400 p-2 rounded-md text-sm font-bold">Learn
