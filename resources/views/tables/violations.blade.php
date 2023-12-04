@@ -7,7 +7,7 @@
             <x-th>OWNER</x-th>
             <x-th>TYPE</x-th>
             <x-th>VIOLATION</x-th>
-            <x-th></x-th>
+
         </tr>
     </x-table-head-component>
     <x-table-body-component>

@@ -34,8 +34,6 @@ class WelcomeMailToMember extends Mailable
         return $this->subject(Session::get('property'))
             ->from(auth()->user()->email)
             ->from($this->details['email'])
-            ->markdown('emails.welcomemailtomember', [
-                'url' => env('APP_URL'),
-            ]);
+            ->markdown('emails.welcomemailtomember');
     }
 }

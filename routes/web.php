@@ -28,17 +28,34 @@ Route::fallback(function () {
 Route::get('/', function(){
      return view('landing.landingpage');});
 
-Route::get('/landing-propsuite', function(){
-     return view('landing.landingpage-propsuite');});
+    //  DO NOT DELETE!!!!!!
+Route::get('/propsuite', function(){
+     return view('landing.propsuite.propsuite');});
 
-     Route::get('/landing-pmo', function(){
-        return view('landing.landingpage-pmo');});
+     Route::get('/propsuite', function(){
+        return view('landing.propsuite.propsuite');});
 
-     Route::get('/landingpagecopy', function(){
-        return view('landing.landingpagecopy');});
+        Route::get('/propsuite-lite', function(){
+            return view('landing.propsuite.propsuite-lite');});
 
-        Route::get('/landinglanding', function(){
-            return view('landing.landinglanding');});
+            Route::get('/propsuite-daily', function(){
+                return view('landing.propsuite.propsuite-daily');});
+
+                Route::get('/propsuite-hoa', function(){
+                    return view('landing.propsuite.propsuite-hoa');});
+
+                    Route::get('/propsuite-condo', function(){
+                        return view('landing.propsuite.propsuite-condo');});
+
+                        Route::get('/pricing', function(){
+                            return view('landing.pricing');});
+
+                            Route::get('/resources', function(){
+                                return view('landing.resources');});
+
+                        
+
+
 
 
 Route::controller(ArticleController::class)->group(function () {
@@ -109,13 +126,6 @@ Route::get('/profile-setup', function(){
     return view('HOA.homeowner.profile-setup');
 });
 
-Route::get('/propsuite', function(){
-    return view('propsuite.propsuite');
-});
-
-Route::get('/propsuite2', function(){
-    return view('propsuite.propsuite2');
-});
 
 Route::get('/proprent', function(){
     return view('proprent.proprent');

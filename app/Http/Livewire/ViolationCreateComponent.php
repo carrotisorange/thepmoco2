@@ -6,27 +6,29 @@ use Livewire\Component;
 use Session;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
-use App\Models\{ConcernCategory, Unit, Concern, Contract};
+use App\Models\{Unit, Violation, Contract, ViolationType, DeedOfSale};
 
-class ConcernCreateComponent extends Component
+class ViolationCreateComponent extends Component
 {
     use WithFileUploads;
 
-    public $subject;
-    public $category_id;
+    public $violation;
+    public $type_id;
     public $unit_uuid;
     public $tenant_uuid;
-    public $concern;
+    public $owner_uuid;
     public $image;
+    public $details;
 
     protected function rules()
     {
         return [
-            'subject' => 'required',
-            'category_id' => ['required', Rule::exists('concern_categories', 'id')],
+            'violation' => 'required',
+            'type_id' => ['required', Rule::exists('violation_types', 'id')],
             'unit_uuid' => ['required', Rule::exists('units', 'uuid')],
             'tenant_uuid' => ['nullable', Rule::exists('tenants', 'uuid')],
-            'concern' => 'required',
+             'owner_uuid' => ['nullable', Rule::exists('owners', 'uuid')],
+            'details' => 'required',
             'image' => 'required | mimes:jpg,bmp,png,pdf,docx|max:10240',
             ];
     }
@@ -40,26 +42,31 @@ class ConcernCreateComponent extends Component
         $validatedInputs = $this->validate();
 
         $validatedInputs['property_uuid'] = Session::get('property_uuid');
-        $validatedInputs['image'] = $this->image->store('concerns');
+        $validatedInputs['image'] = $this->image->store('violations');
+        $validatedInputs['user_id'] = auth()->user()->id;
 
-        $concern = Concern::create($validatedInputs);
+        $violation = Violation::create($validatedInputs);
 
-        return redirect('/property/'.Session::get('property_uuid').'/concern/'.$concern->id.'/edit')->with('success', 'Changes Saved!');
+        return redirect('/property/'.Session::get('property_uuid').'/violation/')->with('success', 'Changes Saved!');
     }
 
 
     public function render()
     {
-        $categories = ConcernCategory::all();
+        $types = ViolationType::all();
         $units = Unit::where('property_uuid', Session::get('property_uuid'))->get();
         $tenants = Contract::where('property_uuid',Session::get('property_uuid'))
         ->when($this->unit_uuid, function($query){
         $query->where('unit_uuid', $this->unit_uuid);
         })->groupBy('tenant_uuid')->get();
-      
 
-        return view('livewire.concern-create-component',compact(
-            'categories','units','tenants'
+        $owners = DeedOfSale::where('property_uuid',Session::get('property_uuid'))
+        ->when($this->unit_uuid, function($query){
+        $query->where('unit_uuid', $this->unit_uuid);
+        })->groupBy('owner_uuid')->get();
+
+        return view('livewire.violation-create-component',compact(
+            'types','units','tenants','owners'
         ));
     }
 }
