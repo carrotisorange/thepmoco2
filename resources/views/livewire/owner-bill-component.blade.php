@@ -2,10 +2,8 @@
 
     <div class="my-5 px-4 sm:px-6 lg:px-8">
         <div class="sm:grid grid-cols-1 lg:grid-cols-4 sm:items-center">
-
             <nav class="mt-5 border-b flex col-start-1" aria-label="Breadcrumb">
                 <ol role="list" class="mx-auto flex w-full max-w-screen-xl space-x-4 px-4 sm:px-6">
-
                     <li class="flex">
                         <div class="flex items-center">
                             <button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/owner'"
@@ -47,65 +45,55 @@
 
 
             <div class="col-span-3 flex sm:justify-center lg:justify-end items-end">
-                <div class="sm:my-10 md:my-5 lg:my-0">
-
-                    @if($total_unpaid_bills->count())
-                    <x-button data-modal-toggle="export-owner-bill"> Export Bills ({{
-                        App\Models\Owner::find($owner->uuid)->bills()->posted()->where('status', '!=','paid')->count()
-                        }})</a></x-button>
-
-                    <x-button data-modal-toggle="send-owner-bill">
-                        Send Bills ({{ App\Models\Owner::find($owner->uuid)->bills()->posted()->where('status',
-                        '!=', 'paid')->count() }})</a></x-button>
-                    @endif
-
-
-                    <x-button data-modal-toggle="create-bill-modal">Create Bill</a></x-button>
-
-                    <x-button data-modal-toggle="create-particular-modal"> Create Particular</a></x-button>
+                <div class="group inline-block">
+                    <x-button>Bill &nbsp; <i class="fa-solid fa-caret-down"></i></x-button>
+                    <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute  transition duration-150 ease-in-out origin-top min-w-32">
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                            <a href="#/" data-modal-toggle="create-bill-modal"> Create</a>
+                        </li>
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                            <a href="#/"  data-modal-toggle="export-owner-bill"> Export</a>
+                        </li>
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                            <a href="#/" data-modal-toggle="send-owner-bill"> Send</a>
+                        </li>
+                    </ul>
                 </div>
+
             </div>
 
 
         </div>
     </div>
-    {{-- Reference # : <b> {{ $owner->bill_reference_no }}</b>, Security Deposit: <b> {{
-        number_format(App\Models\Owner::find($owner->uuid)->wallets()->sum('amount'), 2) }}</b> --}}
 
     <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
         <div class="sm:col-span-3">
             @if($bills)
-            <label for="status" class="block text-sm font-medium text-gray-700">Filter status</label>
+            <x-label for="status" >Filter status</x-label>
             <x-form-select wire:model="status" autocomplete="status">
                 <option value="all" {{ $status=='' ? 'selected' : 'selected' }}> all </option>
                 <option value="paid" {{ $status=='paid' ? 'selected' : 'selected' }}> paid </option>
                 <option value="unpaid" {{ $status=='unpaid' ? 'selected' : 'selected' }}> unpaid </option>
-
             </x-form-select>
-
             @endif
-
         </div>
 
         <div class="sm:col-span-3">
             @if($bills)
-            <label for="particular" class="block text-sm font-medium text-gray-700">Filter particulars</label>
+            <x-label for="particular" >Filter particulars</x-label>
             <x-form-select wire:model="particular" autocomplete="particular">
                 <option value="">Filter bill particulars</option>
                 @foreach ($particulars as $item)
                 <option value="{{ $item->particular_id }}">{{ $item->particular }}</option>
                 @endforeach
             </x-form-select>
-
             @endif
-
         </div>
 
     </div>
     <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
         <div class="sm:col-span-3">
             @if($selectedBills)
-
             <div class="mt-5">
                 <span>You've selected <b>{{ count($selectedBills) }}</b> {{ Str::plural('bill',
                     count($selectedBills))}}
@@ -121,41 +109,16 @@
 
         <div class="sm:col-span-3 text-right">
             @if($selectedBills)
-            <x-button wire:click="payBills">
-                Pay Bills
-            </x-button>
+                @can('treasury')
+                    <x-button wire:click="payBills">
+                        Pay Bills
+                    </x-button>
+                @endcan
             @endif
         </div>
 
     </div>
 
-    {{-- <div class="mt-5">
-        <div class="flex flex-row">
-            <div class="basis-3/4">
-
-
-                @if($selectedBills)
-                <x-button type="button" wire:click="payBills">
-                    Pay Bills
-                </x-button>
-
-                <div class="mt-5">
-                    <span>You've selected <b>{{ count($selectedBills) }}</b> {{ Str::plural('bill',
-                        count($selectedBills))}}
-                        amounting to <b>{{ number_format($total, 2) }}</b></span>
-                </div>
-                @else
-                <div class="mt-1">
-                    <b>Please check the bill you want to pay</b>
-                </div>
-                @endif
-
-
-            </div>
-
-        </div>
-    </div> --}}
-    {{-- {{ $bills->links() }} --}}
     <div class="mt-5 bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="bg-white border-b border-gray-200">
             <div class="flex flex-col">
@@ -172,5 +135,5 @@
     @include('modals.create-bill-modal')
     @include('modals.export-owner-bill')
     @include('modals.send-owner-bill')
-    @livewire('create-particular-component')
+    @livewire('particular-create-component')
 </div>

@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Session;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
-use App\Models\{Unit,Bill};
+use App\Models\Bill;
 
 class CreateBulkBillComponent extends Component
 {
@@ -14,7 +14,7 @@ class CreateBulkBillComponent extends Component
     public $end;
     public $particular_id;
     public $bill;
-    public $recipient;
+    public $billTo;
 
     public $activeTenantContracts;
     public $activeOwnersDeedOfSales;
@@ -48,7 +48,7 @@ class CreateBulkBillComponent extends Component
 
     public function storeBills(){
       $this->validate([
-        'recipient' => 'required'
+        'billTo' => 'required'
       ]);
 
       $validatedInputs = $this->validate();
@@ -57,7 +57,7 @@ class CreateBulkBillComponent extends Component
       $billBatchNo = app('App\Http\Controllers\Features\BillController')->generateBillBatchNo($billNo);
 
       try{
-        if($this->recipient == 'tenant'){
+        if($this->billTo == 'tenant'){
             foreach($this->activeTenantContracts as $item){
                   if($this->particular_id == '8'){ //check if particular is discount and convert it to negative
                     $validatedInputs['bill'] = -($this->bill);
@@ -103,7 +103,8 @@ class CreateBulkBillComponent extends Component
                     Bill::create($validatedInputs);
             }
         }
-
+            Session::put('billTo', $this->billTo);
+;
             return redirect('/property/'.Session::get('property_uuid').'/bill/'.'customized'.'/'.$billBatchNo)->with('success', 'Changes Saved!');
 
         }catch(\Exception $e)

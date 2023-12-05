@@ -24,12 +24,12 @@
                                 $unit_details->contracts()->where('status','active')->count())
                                 <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit_details->uuid }}/tenant/{{ Str::random(8) }}/create"
                                     class="{{ $addAnchorClass }}">
-                                    New tenant
+                                     Tenant
                                 </a>
                                 @else
                                 <a href="#/" data-modal-toggle="warning-create-tenant-modal"
                                     class="{{ $addAnchorClass }}">
-                                    New tenant
+                                     Tenant
                                 </a>
                                 @endif
                             </li>
@@ -38,19 +38,19 @@
                             <li>
                                 <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit_details->uuid }}/owner/{{ Str::random(8) }}/create"
                                     class="{{ $addAnchorClass }}">
-                                    New owner
+                                    Owner
                                 </a>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit_details->uuid }}/guest/{{ Str::random(8) }}/create"
                                     class="{{ $addAnchorClass }}">
-                                    New guest
+                                     Guest
                                 </a>
-                            </li>
+                            </li> --}}
                             <li>
                                 <a href="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit_details->uuid }}/concern/{{ Str::random(8) }}/create"
                                     class="{{ $addAnchorClass }}">
-                                    New concern
+                                     Concern
                                 </a>
                             </li>
                         </ul>
@@ -63,14 +63,9 @@
             <div class="mt-8 lg:mt-0 lg:col-start-1 lg:col-span-3 lg:row-start-1 lg:row-span-3">
                 <h2 class="sr-only">Images</h2>
                 <div class="grid grid-cols-2 lg:gap-6">
-                    <img src="{{ asset('/brands/'.$statusIcon) }}" alt="door"
-                        class="lg:col-span-2 md:row-span-2 rounded-md" />
-
+                    <img src="{{ asset('/brands/'.$statusIcon) }}" alt="door" class="lg:col-span-2 md:row-span-2 rounded-md" />
                     <div class="flex items-center justify-center ml-5">
-                        {{-- <a href="#"
-                            class="relative inline-flex items-center px-4 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:purple">Upload
 
-                        </a> --}}
                     </div>
                 </div>
             </div>
@@ -220,9 +215,11 @@
                                     @include('features.units.tables.financials')
                                     @elseif($subfeature == 'remittance')
                                     <div class="flex justify-end items-center ">
+                                       @if($remittances->count() > 0)
                                         <x-button
                                             onclick="window.location.href='/property/{{ $unit_details->property_uuid }}/unit/{{ $unit_details->uuid }}/remittances'">
                                             See More Remittance</x-button>
+                                       @endif
                                     </div>
                                     <div>
 

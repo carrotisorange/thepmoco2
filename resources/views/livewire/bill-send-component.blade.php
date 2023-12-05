@@ -1,6 +1,6 @@
 <x-modal-component>
     <x-slot name="id">
-       send-bill-modal
+       bill-send-component
     </x-slot>
     <h1 class="text-center font-medium">Send Bills</h1>
     <div class="p-5">

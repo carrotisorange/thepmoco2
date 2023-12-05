@@ -19,43 +19,45 @@
                             <li>
                                 <a href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant_details->uuid }}/bills"
                                     class="{{ $addAnchorClass }}">
-                                    New bill
+                                     Bill
                                 </a>
                             </li>
 
                             <li>
                                 <a href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant_details->uuid }}/bills"
                                     class="{{ $addAnchorClass }}">
-                                    New collection
+                                     Collection
                                 </a>
                             </li>
 
                             @if($username)
                             <li>
+                                @can('treasury')
                                 <a href="/8/tenant/{{ $username }}/bill" class="{{$addAnchorClass}}">
-                                    New payment request
+                                     Payment Request
                                 </a>
+                                @endcan
                             </li>
                             @endif
                             <li>
                                 <a href="#/" data-modal-toggle="create-concern-modal" class="{{ $addAnchorClass }}">
-                                    New concern
+                                     Concern
                                 </a>
                             </li>
                             <li>
                                 <a href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant_details->uuid }}/units"
                                     class="{{ $addAnchorClass }}">
-                                    New contract
+                                     Contract
                                 </a>
                             </li>
                             <li>
                                 <a href="#/" data-modal-toggle="create-guardian-modal" class="{{ $addAnchorClass }}">
-                                    New guardian
+                                     Guardian
                                 </a>
                             </li>
                             <li>
                                 <a href="#/" data-modal-toggle="create-reference-modal" class="{{ $addAnchorClass }}">
-                                    New reference
+                                     Reference
                                 </a>
                             </li>
                         </ul>

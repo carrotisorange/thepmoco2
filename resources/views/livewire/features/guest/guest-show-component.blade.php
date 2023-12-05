@@ -1,7 +1,5 @@
 <?php
-    $addAnchorClass = 'block py-2 px-4 text-sm
-                                                    text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600
-                                                    dark:text-gray-200 dark:hover:text-white';
+    $addAnchorClass = 'block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white';
 ?>
 <div>
 
@@ -21,19 +19,18 @@
                         <ul class="py-1" aria-labelledby="dropdownButton">
                             <li>
                                 <a href="#/" data-modal-toggle="create-bill-modal" class="{{ $addAnchorClass }}">
-                                    New bill
+                                    Bill
                                 </a>
                             </li>
-
                             <li>
                                 <a href="#/" data-modal-toggle="create-booking-modal" class="{{ $addAnchorClass }}">
-                                    New booking
+                                    Booking
                                 </a>
                             </li>
                             <li>
                                 <a href="/property/{{ $this->guest_details->property_uuid }}/guest/{{ $guest_details->uuid }}/bills"
                                     class="{{$addAnchorClass}}">
-                                    New collection
+                                    Collection
                                 </a>
                             </li>
 
@@ -111,7 +108,6 @@
                                     @if($bills->count())
                                     <x-button
                                         onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/guest/{{ $guest_details->uuid }}/bills'">
-
                                         Pay Bills
                                     </x-button>
 
@@ -154,6 +150,6 @@
     @include('modals.create-additional-guest-modal')
     @include('modals.create-booking-modal')
     @include('modals.warnings.destroy-guest-modal')
-    @livewire('create-particular-component', [ 'guest' => $guest_details])
-    @livewire('create-bill-component', ['bill_to' => $guest_details])
+    @livewire('particular-create-component')
+    @livewire('create-bill-component', ['billTo' => $guest_details])
 </div>

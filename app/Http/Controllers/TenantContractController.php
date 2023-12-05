@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Session;
 use App\Models\{Tenant,Unit,Property};
 
 class TenantContractController extends Controller

@@ -6,7 +6,7 @@ use Session;
 use Livewire\Component;
 use App\Models\{PropertyParticular,Particular};
 
-class CreateParticularComponent extends Component
+class ParticularCreateComponent extends Component
 {
     public $guest;
 
@@ -57,6 +57,6 @@ class CreateParticularComponent extends Component
 
     public function render()
     {
-        return view('livewire.create-particular-component');
+        return view('livewire.particular-create-component');
     }
 }

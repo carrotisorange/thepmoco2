@@ -12,7 +12,7 @@
     </x-table-head-component>
     <x-table-body-component>
         @foreach ($contracts as $index => $contract)
-        <div wire:key="contract-field-{{ $contract->uuid }}" wire:ignore.self>
+        <div wire:key="contract-field-{{ $contract->uuid }}">
             <tr>
                 <div style="width: 10px">
                     <x-td>{{ $index+1 }} </x-td>

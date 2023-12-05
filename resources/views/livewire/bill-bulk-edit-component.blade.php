@@ -6,11 +6,9 @@
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                 @if($bills->count())
-                <form wire:submit.prevent="postBills">
-                <x-button type="submit">
-                    Post Bills
-                </x-button>
-                </form>
+                {{-- <form wire:submit.prevent="postBills"> --}}
+                <x-button data-modal-toggle="bill-post-component">Post Bills</a></x-button>
+                {{-- </form> --}}
                 @endif
             </div>
         </div>
@@ -22,9 +20,8 @@
                                 <x-table-head-component>
                                     <tr>
                                         <x-th># </x-th>
-                                        <x-th>Reference #</x-th>
-                                        <x-th>Tenant</x-th>
-                                        <x-th>Owner</x-th>
+                                        <x-th>Bill #</x-th>
+                                        <x-th>Bill To</x-th>
                                         <x-th>Unit</x-th>
                                         <x-th>Start</x-th>
                                         <x-th>End</x-th>
@@ -43,13 +40,11 @@
                                                     link="/property/{{ Session::get('property_uuid') }}/tenant/{{ $bill->tenant_uuid }}/bills">
                                                     {{ $bill->tenant->tenant }}
                                                 </x-link-component>
-                                            </x-td>
-                                            <x-td>
-                                                <x-link-component
-                                                    link="/property/{{ Session::get('property_uuid') }}/owner/{{ $bill->owner_uuid }}/bills">
+                                                <x-link-component link="/property/{{ Session::get('property_uuid') }}/owner/{{ $bill->owner_uuid }}/bills">
                                                     {{ $bill->owner->owner }}
                                                 </x-link-component>
                                             </x-td>
+
                                             <x-td>
                                                 <x-link-component
                                                     link="/property/{{ Session::get('property_uuid') }}/unit/{{ $bill->unit_uuid }}/bills">
@@ -89,4 +84,5 @@
             </div>
         </div>
     </div>
+    @livewire('bill-post-component',['batch_no' => $batch_no, 'billTo' => $billTo])
 </div>

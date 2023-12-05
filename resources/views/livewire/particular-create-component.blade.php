@@ -1,6 +1,6 @@
 <x-modal-component>
     <x-slot name="id">
-        create-particular-modal
+        particular-create-component
     </x-slot>
     <h1 class="text-center font-medium">Create A Particular</h1>
     <div class="p-5">
