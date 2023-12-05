@@ -6,7 +6,7 @@
     <div class="p-5">
         <form wire:submit.prevent="storeBills">
             <div class="mt-2 text-center sm:mt-5">
-              @if($recipient == 'tenant')
+              @if($billTo == 'tenant')
                     @if($activeTenantContracts->count())
                     <p class="text-sm text-gray-500">You're about to create <b class="font-bold text-lg text-red-500">{{
                             $activeTenantContracts->count() }}</b> bills for <b class="font-bold text-lg text-red-500">{{
@@ -18,7 +18,7 @@
                     </p>
 
                     @endif
-                @elseif($recipient == 'owner')
+                @elseif($billTo == 'owner')
                     @if($activeOwnersDeedOfSales->count())
                     <p class="text-sm text-gray-500">You're about to create <b class="font-bold text-lg text-red-500">{{
                             $activeOwnersDeedOfSales->count() }}</b> bills for <b class="font-bold text-lg text-red-500">{{
@@ -34,13 +34,13 @@
             </div>
             <div class="mt-5 sm:mt-6">
                 <x-label for="">Select a recipient</x-label>
-                <x-form-select wire:model="recipient">
+                <x-form-select wire:model="billTo">
                     <option value="">Please select one</option>
                     <option value="tenant">Tenant</option>
                     <option value="owner">Owner</option>
                 </x-form-select>
-                <x-validation-error-component name='recipient' />
-                @if($recipient == 'tenant')
+                <x-validation-error-component name='billTo' />
+                @if($billTo == 'tenant')
                     @if(!$activeTenantContracts->count())
                         <p class="text-sm text-gray-500">
                             There are no active tenants found. To continue adding bills, please add a tenant using
@@ -48,7 +48,7 @@
                             button below.
                         </p>
                     @endif
-                @elseif ($recipient == 'owner')
+                @elseif ($billTo == 'owner')
                     @if(!$activeOwnersDeedOfSales->count())
                     <p class="text-sm text-gray-500">
                         There are no active owners found. To continue adding bills, please add an owner using the
@@ -106,9 +106,9 @@
             @else
             <div class="mt-5 sm:mt-6">
                 <x-button class="w-full" wire:click="redirectToUnitsPage">
-                   @if($recipient == 'tenant')
+                   @if($billTo == 'tenant')
                     Add Tenant
-                   @elseif($recipient == 'owner')
+                   @elseif($billTo == 'owner')
                     Add Owner
                    @endif
                 </x-button>

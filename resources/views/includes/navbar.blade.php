@@ -1,4 +1,9 @@
-<?php $availableFeatures = App\Models\UserRestriction::where('user_id',auth()->user()->id)->where('property_uuid', Session::get('property_uuid'))->where('restriction_id', 2)->where('is_approved',1)->groupBy('feature_id')->orderBy('feature_id', 'asc')->get(); ?>
+<?php $availableFeatures = App\Models\UserRestriction::where('user_id',auth()->user()->id)
+->where('property_uuid', Session::get('property_uuid'))
+->where('restriction_id', 2)->where('is_approved',1)
+->groupBy('feature_id')
+->orderBy('feature_id')
+->get(); ?>
 <nav aria-label="Sidebar" class="hidden md:block md:flex-shrink-0 md:bg-white overflow-auto h-screen pb-32 text-center">
     <div class="relative flex w-22 flex-col space-y-3 p-3">
         @foreach($availableFeatures as $feature)
@@ -16,11 +21,7 @@
                 </x-nav-link>
 
                 <p class="font-medium leading-3 ml-0 text-xs text-gray-900 mt-10">
-                    @if(Session::get("property_type") === 'HOA' && $feature->feature->id == 3)
-                        House
-                    @else
-                        {{ $feature->feature->feature }}
-                    @endif
+                    {{ $feature->feature->feature }}
                 </p>
             @endif
         @endforeach

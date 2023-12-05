@@ -53,17 +53,12 @@ Route::get('/propsuite', function(){
                             Route::get('/resources', function(){
                                 return view('landing.resources');});
 
-                        
-
-
 
 
 Route::controller(ArticleController::class)->group(function () {
     Route::get('articles', 'index')->name('articles');
     Route::get('article/{id}', 'show')->name('articles');
 });
-
-Route::get('/portfolio', [PortfolioController::class, 'index'])->name('charts.portfolio');
 
 Route::get('/dashboard', function(){
     return view('dashboard.dashboard');
@@ -176,7 +171,7 @@ Route::get('/soa', function(){
 
 Route::get('/server-maintenance', function(){
     return view('properties.server-maintenance');
-});    
+});
 
 Route::get('/unit-calendar', function(){
     return view('features.calendar.unit-calendar');

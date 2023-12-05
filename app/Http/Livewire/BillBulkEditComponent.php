@@ -9,6 +9,7 @@ use App\Models\Bill;
 class BillBulkEditComponent extends Component
 {
     public $batch_no;
+    public $billTo;
     public $bills;
     public $selectedBills = [];
     public $selectAll = false;
@@ -31,27 +32,6 @@ class BillBulkEditComponent extends Component
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
-    }
-
-    public function postBills()
-    {
-        $validatedData = $this->validate();
-
-        try{
-
-            Bill::where('property_uuid', Session::get('property_uuid'))
-            ->where('is_posted', false)
-            ->where('batch_no', $this->batch_no)
-            ->update([
-                'is_posted' => true,
-            ]);
-
-            return redirect('/property/'.Session::get('property_uuid').'/bill/')->with('success', 'Changes Saved!');
-
-        }catch(\Exception $e){
-
-           return redirect(url()->previous())->with('error', $e->getMessage());
-        }
     }
 
     public function updateBill($id)
