@@ -24,7 +24,7 @@
             <div class="mt-5 sm:mt-6">
                 <x-label for="">Select a month and year</x-label>
                 <x-form-select wire:model="date">
-                    <option>Select one</option>
+                    <option value="">Select one</option>
                     @foreach ($dates as $item)
                     <option value="{{ $item->created_at }}">{{ Carbon\Carbon::parse($item->created_at)->format('M, Y') }}</option>
                     @endforeach

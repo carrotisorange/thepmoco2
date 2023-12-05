@@ -1,10 +1,8 @@
 <div>
     <div class="my-5 px-4 sm:px-6 lg:px-8">
         <div class="sm:grid grid-cols-1 lg:grid-cols-4 sm:items-center">
-
             <nav class="mt-5 border-b flex col-start-1" aria-label="Breadcrumb">
                 <ol role="list" class="mx-auto flex w-full max-w-screen-xl space-x-4 px-4 sm:px-6">
-
                     <li class="flex">
                         <div class="flex items-center">
                             <button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/guest'"
@@ -12,7 +10,6 @@
                                 Guests</button>
                         </div>
                     </li>
-
                     <li class="flex">
                         <div class="flex items-center">
                             <svg class="h-full w-6 flex-shrink-0 text-gray-200" viewBox="0 0 24 44"
@@ -45,29 +42,25 @@
             </nav>
 
             <div class="col-span-3 flex sm:justify-center lg:justify-end items-end">
-                <div class="sm:my-10 md:my-5 lg:my-0">
-
-                    @if($total_unpaid_bills->count())
-                    <x-button data-modal-toggle="export-guest-bill"> Export Bills ({{
-                        App\Models\Guest::find($guest->uuid)->bills()->posted()->where('status', '!=','paid')->count()
-                        }})</a></x-button>
-
-                    @endif
-
-                    <x-button data-modal-toggle="create-bill-modal">
-                        Create Bill</x-button>
-
+                <div class="group inline-block">
+                    <x-button>Bill &nbsp; <i class="fa-solid fa-caret-down"></i></x-button>
+                    <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute  transition duration-150 ease-in-out origin-top min-w-32">
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                            <a href="#/" data-modal-toggle="create-bill-modal"> Create</a>
+                        </li>
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                            <a href="#/" data-modal-toggle="export-guest-bill"> Export</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-
-
         </div>
     </div>
 
     <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
         <div class="sm:col-span-3">
             @if($bills)
-            <label for="status" class="block text-sm font-medium text-gray-700">Filter status</label>
+            <x-label for="status" >Filter status</x-label>
             <x-form-select wire:model="status" autocomplete="status">
                 <option value="all" {{ $status=='' ? 'selected' : 'selected' }}> all </option>
                 <option value="paid" {{ $status=='paid' ? 'selected' : 'selected' }}> paid </option>
@@ -78,7 +71,7 @@
 
         <div class="sm:col-span-3">
             @if($bills)
-            <label for="particular" class="block text-sm font-medium text-gray-700">Filter particulars</label>
+            <x-label for="particular" >Filter particulars</x-label>
             <x-form-select wire:model="particular" autocomplete="particular">
                 <option value="">Filter bill particulars</option>
                 @foreach ($particulars as $item)
@@ -92,7 +85,6 @@
     <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
         <div class="sm:col-span-3">
             @if($selectedBills)
-
             <div class="mt-5">
                 <span>You've selected <b>{{ count($selectedBills) }}</b> {{ Str::plural('bill',
                     count($selectedBills))}}
@@ -107,9 +99,11 @@
 
         <div class="sm:col-span-3 text-right">
             @if($selectedBills)
-            <x-button wire:click="payBills">
-                Pay Bills
-            </x-button>
+                @can('treasury')
+                <x-button wire:click="payBills">
+                    Pay Bills
+                </x-button>
+                @endcan
             @endif
         </div>
 
@@ -131,7 +125,5 @@
     @include('modals.create-bill-modal')
     @include('modals.export-guest-bill')
     @include('modals.send-guest-bill')
-    @livewire('create-particular-component')
-</div>
-<div>
+    @livewire('particular-create-component')
 </div>

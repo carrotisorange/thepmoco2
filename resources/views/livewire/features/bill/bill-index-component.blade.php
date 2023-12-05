@@ -107,6 +107,6 @@
             </div>
         </div>
         @livewire('create-bulk-bill-component')
-        @livewire('create-particular-component')
+        @livewire('particular-create-component')
     </div>
 </div>

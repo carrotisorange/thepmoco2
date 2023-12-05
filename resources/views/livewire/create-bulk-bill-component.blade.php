@@ -73,7 +73,7 @@
                 <x-validation-error-component name='particular_id' />
               <span class="text-xs">Can't find your desired particular? Add one <a
                     class="text-blue-500 text-xs text-decoration-line: underline" href="#/"
-                    data-modal-toggle="create-particular-modal">
+                    data-modal-toggle="particular-create-component">
                     here
                 </a>.</span>
             </div>

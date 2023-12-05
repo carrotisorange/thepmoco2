@@ -1,47 +1,38 @@
 <div>
     <div class="my-5 px-4 sm:px-6 lg:px-8">
         <div class="sm:grid grid-cols-1 lg:grid-cols-4 sm:items-center">
-            <nav class="mt-5 border-b flex col-start-1" aria-label="Breadcrumb">
+        <nav class="mt-5 border-b flex col-start-1" aria-label="Breadcrumb">
                 <ol role="list" class="mx-auto flex w-full max-w-screen-xl space-x-4 px-4 sm:px-6">
-
                     <li class="flex">
                         <div class="flex items-center">
-                            <svg class="h-full w-6 flex-shrink-0 text-gray-200" viewBox="0 0 24 44"
-                                preserveAspectRatio="none" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
-                                aria-hidden="true">
-                                <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
-                            </svg>
+                            @include('layouts.separator')
                             <button
-                                onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant->uuid }}'"
+                                onclick="window.location.href=''"
                                 class="ml-4 text-lg font-medium text-gray-500 hover:text-gray-700 ">
                                 {{ $tenant->tenant }}
                             </button>
                         </div>
                     </li>
-
                 </ol>
             </nav>
             <div class="col-span-3 flex sm:justify-center lg:justify-end items-end">
-                <div class="sm:my-10 md:my-5 lg:my-0">
-                    @if($total_unpaid_bills->count())
-                    <x-button data-modal-toggle="export-tenant-bill">Export
-                        Bill ({{
-                        App\Models\Tenant::find($tenant->uuid)->bills()->posted()->where('status', '!=','paid')->count()
-                        }})</a></x-button>
-
-                    <x-button data-modal-toggle="send-bill-modal">Send
-                        Bill ({{ App\Models\Tenant::find($tenant->uuid)->bills()->posted()->where('status',
-                        '!=', 'paid')->count() }})</a></x-button>
-                    @endif
-
-                    <x-button data-modal-toggle="create-bill-modal">Create Bill</a></x-button>
-
-                    <x-button data-modal-toggle="create-particular-modal">Create Particular</a></x-button>
+                <div class="group inline-block">
+                    <x-button>Bill &nbsp; <i class="fa-solid fa-caret-down"></i></x-button>
+                    <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute  transition duration-150 ease-in-out origin-top min-w-32">
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                            <a href="#/" data-modal-toggle="create-bill-modal"> Create</a>
+                        </li>
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                            <a href="#/"  data-modal-toggle="bill-export-component"> Export</a>
+                        </li>
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                            <a href="#/" data-modal-toggle="bill-send-component"> Send</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
-
     <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
         <div class="sm:col-span-3">
             @if($bills)
@@ -49,7 +40,6 @@
             <x-form-select wire:model="status" autocomplete="status">
                 <option value="all" {{ $status=='' ? 'selected' : 'selected' }}> all </option>
                 <option value="paid" {{ $status=='paid' ? 'selected' : 'selected' }}> paid </option>
-
                 <option value="unpaid" {{ $status=='unpaid' ? 'selected' : 'selected' }}> unpaid </option>
             </x-form-select>
             @endif
@@ -59,7 +49,6 @@
             @if($bills)
             <x-label for="particular">Filter particulars</x-label>
             <x-form-select wire:model="particular" autocomplete="particular">
-
                 <option value="">Filter bill particulars</option>
                 @foreach ($particulars as $item)
                 <option value="{{ $item->particular_id }}">{{ $item->particular }}</option>
@@ -86,9 +75,11 @@
 
         <div class="sm:col-span-3 text-right">
             @if($selectedBills)
-            <x-button wire:click="payBills">
-                Pay Bills
-            </x-button>
+                @can('treasury')
+                    <x-button wire:click="payBills">
+                        Pay Bills
+                    </x-button>
+                @endcan
             @endif
         </div>
     </div>
@@ -107,7 +98,7 @@
         </div>
     </div>
     @include('modals.create-bill-modal')
-    @include('modals.export-tenant-bill')
-    @livewire('send-bill-component',['tenant' => $tenant])
-    @livewire('create-particular-component')
+    @livewire('bill-export-component', ['tenant' => $tenant])
+    @livewire('bill-send-component',['billTo'=> 'tenant','tenant' => $tenant])
+    @livewire('particular-create-component')
 </div>

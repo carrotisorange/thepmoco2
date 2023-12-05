@@ -22,18 +22,12 @@
                     <div>
                         <a href="/tenant/{{ $tenant->uuid }}/edit">Tenant
                         </a>
-                      
+
                         <a href="/tenant/{{ $tenant->uuid }}/bills">Bills
                         </a>
                     </div>
-
-
-
                 </div>
-
-
             </form>
-
         </div>
     </div>
 </div>

@@ -3,23 +3,16 @@
         create-bill-modal
     </x-slot>
     <h1 class="text-center font-medium">Create A Bill</h1>
-   <div class="p-5">
+    <div class="p-5">
     <form wire:submit.prevent="storeBill">
     <div class="mt-5 sm:mt-6">
         <x-label  for="">Select a unit</x-label>
         <x-form-select wire:model="unit_uuid">
             <option value="">Please select one</option>
             @foreach ($units as $unit)
-            @if($units->count() == 1)
-            <option value="{{ $unit->unit->uuid }}" {{ old('unit_uuid')==$unit->unit->uuid?
-                'selected': 'Select one'
-                }}>{{ $unit->unit->unit }}</option>
-            @else
-
-            <option value="{{ $unit->unit->uuid }}" {{ old('unit_uuid')==$unit->unit->uuid?
-                'selected': 'Select one'
-                }}>{{ $unit->unit->unit }}</option>
-            @endif
+            <option value="{{ $unit->unit->uuid }}" {{ old('unit_uuid')==$unit->unit->uuid? 'selected': 'Select one' }}>
+                {{ $unit->unit->unit }}
+            </option>
             @endforeach
         </x-form-select>
         <x-validation-error-component name='unit_uuid' />
@@ -29,8 +22,9 @@
         <x-form-select wire:model="particular_id">
             <option value="">Please select one</option>
             @foreach ($particulars as $item)
-            <option value="{{ $item->particular_id }}" {{ old('particular_id', $particular_id)==$item->
-                particular_id ? 'selected' : 'se' }}>{{ $item->particular }}</option>
+            <option value="{{ $item->particular_id }}" {{ old('particular_id', $particular_id)==$item->particular_id ? 'selected' : 'selected' }}>
+                {{ $item->particular }}
+            </option>
             @endforeach
         </x-form-select>
        <x-validation-error-component name='particular_id' />
@@ -48,7 +42,7 @@
     <div class="mt-5 sm:mt-6">
         <x-label  for="kwh">Amount</x-label>
         <x-form-input type="number" step="0.001" id="bill" wire:model="bill"/>
-      <x-validation-error-component name='bill' />
+        <x-validation-error-component name='bill' />
     </div>
     <div class="mt-5 sm:mt-6">
         <x-button class="w-full" type="submit">

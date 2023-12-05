@@ -11,7 +11,7 @@
             <div class="lg:col-span-1 mt-2 ml-5">
                 <x-label for="time_limit">Time Limit (In hours)</x-label>
                 <x-form-input wire:model="time_limit" type="number" min="1" name="time_limit" />
-           <x-validation-error-component name='time_limit' />
+                <x-validation-error-component name='time_limit' />
             </div>
 
             <div class="lg:col-span-1 mt-2 ml-5">

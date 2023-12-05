@@ -17,28 +17,28 @@
                             <li>
                                 <a href="/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/unit"
                                     class="{{ $addAnchorClass }}">
-                                    New unit
+                                     Unit
                                 </a>
                             </li>
                             <li>
                                 <a href="/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/representative/create"
                                     class="{{ $addAnchorClass }}">
-                                    New representative
+                                     Representative
                                 </a>
                             </li>
                             <li>
                                 <a href="#/" data-modal-toggle="bank-create-modal" class="{{ $addAnchorClass }}">
-                                    New bank
+                                     Bank
                                 </a>
                             </li>
                             <li>
                                 <a href="/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/bills"  class="{{ $addAnchorClass }}">
-                                    New bill
+                                     Bill
                                 </a>
                             </li>
                             <li>
                                 <a href="/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/bills" class="{{ $addAnchorClass }}">
-                                    New collection
+                                    {{ csrf_field() }}ollection
                                 </a>
                             </li>
                         </ul>
@@ -153,7 +153,7 @@
                                     </div>
                                     @endif
                                     @elseif($subfeature == 'bank')
-                                    @include('tables.banks')        
+                                    @include('tables.banks')
                                     @endif
                                 </div>
                             </div>
