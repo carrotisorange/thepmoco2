@@ -7,7 +7,7 @@ use Illuminate\Validation\Rule;
 use DB;
 use Session;
 use Carbon\Carbon;
-use App\Models\{Utility,AccountPayableLiquidation,AccountPayableLiquidationParticular,AccountPayableParticular,Concern,UnitInventory,Collection,Remittance,DeedOfSale,Feature,Contract,Bill,Unit,Guest,Booking,Tenant};
+use App\Models\{Status,Utility,AccountPayableLiquidation,AccountPayableLiquidationParticular,AccountPayableParticular,Concern,UnitInventory,Collection,Remittance,DeedOfSale,Feature,Contract,Bill,Unit,Guest,Booking,Tenant};
 
 class UnitShowComponent extends Component
 {
@@ -193,7 +193,7 @@ class UnitShowComponent extends Component
             'buildings' => app('App\Http\Controllers\Utilities\PropertyBuildingController')->index($this->unit_details->property_uuid),
             'floors' => app('App\Http\Controllers\Utilities\FloorController')->index(null),
             'categories' => app('App\Http\Controllers\Utilities\CategoryController')->index(null),
-            'statuses' => app('App\Http\Controllers\Utilities\StatusController')->index(null),
+            'statuses' => Status::all(),
             'bookings' => app('App\Http\Controllers\Features\GuestController')->show_unit_guests($this->unit_details->uuid),
             'bills' => app('App\Http\Controllers\Features\BillController')->show_unit_bills($this->unit_details->uuid),
             'deed_of_sales' => app('App\Http\Controllers\Subfeatures\DeedOfSaleController')->show_unit_deed_of_sales($this->unit_details->uuid),

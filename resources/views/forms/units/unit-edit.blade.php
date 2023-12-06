@@ -48,7 +48,7 @@
             <x-label for="status_id">Status</x-label>
             <x-form-select wire:model="status_id">
             @foreach($statuses as $status)
-            <option value="{{ $status->status_id }}" {{ old('status_id', $unit_details->status_id) == $status->status_id ? 'selected' : 'selected' }}>
+            <option value="{{ $status->id }}" {{ old('status_id', $unit_details->status_id) == $status->status_id ? 'selected' : 'selected' }}>
                 {{ $status->status }}
             </option>
             @endforeach
