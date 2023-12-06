@@ -32,11 +32,9 @@
 
                             @if($username)
                             <li>
-                                @can('treasury')
                                 <a href="/8/tenant/{{ $username }}/bill" class="{{$addAnchorClass}}">
                                      Payment Request
                                 </a>
-                                @endcan
                             </li>
                             @endif
                             <li>

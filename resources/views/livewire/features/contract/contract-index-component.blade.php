@@ -7,12 +7,25 @@
                 </h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <x-button onclick="window.location.href='{{ asset('/brands/docs/Contract of Lease TEMPLATE.docx') }}'">
-                    Sample Lease Contract</x-button>
-                <x-button data-modal-toggle="instructions-create-contract-modal"> New Contract</x-button>
+                <div class="group inline-block">
+                    <x-button>Contract &nbsp; <i class="fa-solid fa-caret-down"></i></x-button>
+                    <ul
+                        class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute  transition duration-150 ease-in-out origin-top min-w-32">
+
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                            <a  href="#/" data-modal-toggle="instructions-create-contract-modal">Create</a>
+                        </li>
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                            <a href='{{ asset('/brands/docs/samplecontract.docx') }}'
+                               >Sample Contract</a>
+                        </li>
+                    </ul>
+
+                </div>
             </div>
         </div>
         <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+
             <div class="sm:col-span-6">
                 <x-form-select name="status" wire:model="status">
                     <option selected>Filter status</option>

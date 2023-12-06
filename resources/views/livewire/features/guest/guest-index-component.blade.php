@@ -7,9 +7,19 @@
                 </h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/calendar'">
-                    View Guests in Calendar
-                </x-button>
+                <div class="group inline-block">
+                    <x-button>Guest &nbsp; <i class="fa-solid fa-caret-down"></i></x-button>
+                    <ul
+                        class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute  transition duration-150 ease-in-out origin-top min-w-32">
+
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                            <a href="/property/{{ Session::get('property_uuid') }}/calendar"
+                                >View in Calendar</a>
+                        </li>
+
+                    </ul>
+
+                </div>
             </div>
         </div>
         @if($propertyBookingsCount)
