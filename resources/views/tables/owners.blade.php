@@ -29,21 +29,17 @@
            </x-td>
            <x-td>
             <?php $deed_of_sales = App\Models\DeedOfSale::where('owner_uuid', $owner->uuid)->get(); ?>
-            @if($deed_of_sales->count())
                 @foreach ($deed_of_sales->take(1) as $item)
                 <?php $unit = App\Models\Unit::where('uuid', $item->unit_uuid) ;?>
                 <x-link-component link="/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->pluck('uuid')->first() }}">
                     {{$unit->pluck('unit')->first() }}
                 </x-link-component>
                 @endforeach
-            @else
-                NA
-            @endif
         </x-td>
 
            <x-td>{{ $owner->mobile_number   }}</x-td>
            <x-td>
-            {{ $owner->country->country.', '.$owner->province->province.', '.$owner->city->city.','.$owner->barangay }}
+            {{ Str::limit($owner->country->country.', '.$owner->province->province.', '.$owner->city->city.','.$owner->barangay,20) }}
             </x-td>
         </tr>
         @endforeach

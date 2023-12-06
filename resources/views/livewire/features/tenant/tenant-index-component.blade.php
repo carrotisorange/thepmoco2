@@ -7,9 +7,17 @@
                 </h1>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                @if($propertyTenantsCount)
-                <x-button data-modal-toggle="instructions-create-tenant-modal"> New tenant  </x-button>
-                @endif
+                <div class="group inline-block">
+                    @if($propertyTenantsCount)
+                    <x-button>Tenant &nbsp; <i class="fa-solid fa-caret-down"></i></x-button>
+                    <ul
+                        class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute  transition duration-150 ease-in-out origin-top min-w-32">
+                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                            <a href="#/" data-modal-toggle="instructions-create-tenant-modal">Create</a>
+                        </li>
+                    </ul>
+                    @endif
+                </div>
             </div>
         </div>
         <div class="mt-3">
@@ -50,7 +58,7 @@
             </div>
             {{ $tenants->links() }}
             @endif
-           
+
         </div>
         <div class="-my-2 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
