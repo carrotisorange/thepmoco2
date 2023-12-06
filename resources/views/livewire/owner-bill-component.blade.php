@@ -109,11 +109,11 @@
 
         <div class="sm:col-span-3 text-right">
             @if($selectedBills)
-                @can('treasury')
+
                     <x-button wire:click="payBills">
                         Pay Bills
                     </x-button>
-                @endcan
+               
             @endif
         </div>
 
