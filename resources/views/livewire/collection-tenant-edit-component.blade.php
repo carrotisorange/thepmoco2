@@ -211,12 +211,9 @@
                                 </x-td>
                                 <x-td>{{$bill->particular->particular }}</x-td>
                                 <x-td>{{ App\Models\Unit::find($bill->unit_uuid)->unit }}</x-td>
-                                <x-td>{{Carbon\Carbon::parse($bill->start)->format('M d,
-                                    Y').'-'.Carbon\Carbon::parse($bill->end)->format('M d, Y') }}
+                                <x-td>{{Carbon\Carbon::parse($bill->start)->format('M d, Y').'-'.Carbon\Carbon::parse($bill->end)->format('M d, Y') }}
                                 </x-td>
-                                <x-td>{{
-                                    number_format(($bill->bill-App\Models\Collection::where('bill_id',$bill->id)->posted()->sum('collection')),
-                                    2) }}
+                                <x-td>{{number_format(($bill->bill-App\Models\Collection::where('bill_id',$bill->id)->posted()->sum('collection')), 2) }}
                                 </x-td>
                                 <x-td>
                                     <x-table-input form="edit-form" name="bill_id_{{ $index }}" type="hidden"

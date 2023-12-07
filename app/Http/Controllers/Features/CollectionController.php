@@ -197,6 +197,7 @@ class CollectionController extends Controller
 
      public function update_collections(Request $request, Property $property, Tenant $tenant, $batch_no)
      {
+
          PaymentRequest::where('id', Session::get('payment_request_id'))->update([
             'status' => 'approved'
          ]);
@@ -207,7 +208,7 @@ class CollectionController extends Controller
          //generate collection acknowledgement receipt no
          $ar_no = app('App\Http\Controllers\Features\CollectionController')->getLatestAr();
 
-         $counter = $this->get_selected_bills_count($batch_no, $tenant->uuid, $property->uuid);
+         $counter = $this->get_selected_bills_count($batch_no, $tenant->uuid, Session::get('property_uuid'));
 
          for($i=0; $i< $counter; $i++)
          {
@@ -350,7 +351,7 @@ class CollectionController extends Controller
         if($bill->particular_id == 2 || $bill->particular_id == 3){
             Bill::where('id', $bill_id)
             ->update([
-                'bill' => -$bill->bill
+                'bill' => $bill->bill
             ]);
         }
 

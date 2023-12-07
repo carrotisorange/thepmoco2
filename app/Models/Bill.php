@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 
 class Bill extends Model
 {
@@ -76,7 +77,7 @@ class Bill extends Model
          : static::where('reference_no','like', '%'.$search.'%');
     }
 
-    public function scopeGetAll($query, $propertyUuid, $isPosted, $status, $groupBy){
+    public function scopeGetAll($query, $propertyUuid, $isPosted, $status, $groupBy, $createdAt, $particularId){
        $results =
             $query->when($propertyUuid, function($query, $propertyUuid){
                 $query->where('property_uuid', $propertyUuid);
@@ -89,7 +90,17 @@ class Bill extends Model
             })
             ->when($groupBy, function($query, $groupBy){
                 $query->groupBy($groupBy);
-            })->get();
+            })
+            ->when($createdAt, function($query, $createdAt){
+                $query->whereMonth('created_at', Carbon::parse($createdAt)->month);
+            })
+            ->when($createdAt, function($query, $createdAt){
+                $query->whereYear('created_at', Carbon::parse($createdAt)->year);
+            })
+            ->when($particularId, function($query, $particularId){
+                $query->where('particular_id', $particularId);
+            })
+            ->get();
 
         return $results;
     }

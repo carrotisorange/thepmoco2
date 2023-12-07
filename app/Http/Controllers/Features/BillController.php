@@ -43,9 +43,9 @@ class BillController extends Controller
         ]);
     }
 
-    public function get($isPosted=null, $status=null, $groupBy=null)
+    public function get($isPosted=null, $status=null, $groupBy=null, $createdAt=null, $particularId=null)
     {
-        return Bill::getAll(Session::get('property_uuid'), $isPosted, $status, $groupBy);
+        return Bill::getAll(Session::get('property_uuid'), $isPosted, $status, $groupBy, $createdAt, $particularId);
     }
 
     public function getJsonEncodedBillForDashboard($status=null){
@@ -96,7 +96,7 @@ class BillController extends Controller
 
         if($format == 'pdf'){
             $data = [
-                'bills' => app('App\Http\Controllers\Features\BillController')->get(1, 'unpaid')
+                'bills' => app('App\Http\Controllers\Features\BillController')->get(1, 'unpaid', null, Session::get('billCreatedAt'), Session::get('billParticularId'))
             ];
 
             $folder_path = 'features.bills.export';
@@ -253,12 +253,12 @@ class BillController extends Controller
 
     public function show_tenant_bills($tenant_uuid)
     {
-       return Bill::where('tenant_uuid', $tenant_uuid)->posted()->where('bill','>',0)->orderBy('created_at','desc')->get();
+       return Bill::where('tenant_uuid', $tenant_uuid)->posted()->orderBy('created_at','desc')->get();
     }
 
     public function get_bill_balance($bill_id)
     {
-        return Bill::where('id',$bill_id)->sum('bill') - Bill::where('id',$bill_id)->sum('initial_payment');
+        return Bill::where('id',$bill_id)->sum('bill');
     }
 
     public function get_tenant_balance($tenant_uuid)
