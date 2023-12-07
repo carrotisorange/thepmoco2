@@ -44,7 +44,7 @@ class ConcernController extends Controller
 
 
     public function getJsonEncodedConcernBarForDashboard(){
-        return Concern::select(DB::raw('monthname(created_at) as month_name, count(*) as total_concern'))
+        return Concern::select(DB::raw('DATE_FORMAT(created_at,"%M,%Y") as month_name, count(*) as total_concern'))
         ->where('property_uuid', Session::get('property_uuid'))
         ->groupBy(DB::raw('month(created_at)+"-"+year(created_at)'))
         ->limit(5);

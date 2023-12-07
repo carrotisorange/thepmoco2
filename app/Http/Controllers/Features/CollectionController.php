@@ -44,7 +44,8 @@ class CollectionController extends Controller
     }
 
     public function getCollectionBar(){
-        return Collection::select(DB::raw('monthname(created_at) as month_name, sum(collection) as total_collection'))
+        return Collection::select(DB::raw('DATE_FORMAT(created_at,"%M, %Y") as month_name, sum(collection) as
+        total_collection'))
         ->where('collections.property_uuid', Session::get('property_uuid'))
         ->posted()
 
