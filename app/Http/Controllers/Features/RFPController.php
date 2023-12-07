@@ -46,7 +46,7 @@ class RFPController extends Controller
 
     public function getExpenseBar(){
         return DB::table('account_payable_liquidations')
-        ->select(DB::raw("SUM(account_payable_liquidation_particulars.total) as expense"), DB::raw('monthname(account_payable_liquidations.created_at) as month_name, sum(amount) as total_expense'),
+        ->select(DB::raw("SUM(account_payable_liquidation_particulars.total) as expense"), DB::raw('DATE_FORMAT(account_payable_liquidations.created_at,"%M, %Y") as month_name, sum(amount) as total_expense'),
         'account_payable_liquidation_particulars.item as particular')
         ->join('account_payable_liquidation_particulars','account_payable_liquidations.batch_no',
         'account_payable_liquidation_particulars.batch_no')
