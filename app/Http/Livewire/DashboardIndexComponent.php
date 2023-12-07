@@ -21,6 +21,7 @@ class DashboardIndexComponent extends Component
 
         $allUnits = app('App\Http\Controllers\Features\UnitController')->get();
         $occupiedUnits = app('App\Http\Controllers\Features\UnitController')->get(2); //2 means occupied
+        $transientUnits = app('App\Http\Controllers\Features\UnitController')->get(9); // means transient
         $vacantUnits = app('App\Http\Controllers\Features\UnitController')->get(1); //1 means vacant
         $reservedUnits = app('App\Http\Controllers\Features\UnitController')->get(4); //4 means reserved
 
@@ -37,14 +38,14 @@ class DashboardIndexComponent extends Component
         $occupancyPieChartLabels = json_encode($occupancyPieChartValues->pluck('status'));
         $occupancyPieChartValues = json_encode($occupancyPieChartValues->pluck('unit_count'));
 
-        $occupancyRate = number_format((fdiv($occupiedUnits->count(),$allUnits->count()))*100,2).'%';
+        $occupancyRate = number_format((fdiv($occupiedUnits->count()+$transientUnits->count(),$allUnits->count()))*100,2).'%';
 
         $allGuests = app('App\Http\Controllers\Features\GuestController')->get('checked-out');
         $averageNumberOfDaysGuestsStayed = app('App\Http\Controllers\Features\GuestController')->getAverageNumberOfDaysGuestsStayed();
 
         $postedCollections = app('App\Http\Controllers\Features\CollectionController')->get(1)->sum('collection');
 
-        $completedRFPs =app('App\Http\Controllers\Features\RFPController')->get('completed')->sum('amount');
+        $completedRFPs = app('App\Http\Controllers\Features\RFPController')->getExpenseBar()->sum('expense');
 
         $postedBills = app('App\Http\Controllers\Features\BillController')->get(1)->sum('bill');
         $postedPaidBills =app('App\Http\Controllers\Features\BillController')->get(1, 'paid')->sum('bill');
@@ -60,7 +61,7 @@ class DashboardIndexComponent extends Component
 
         $expenseBar = app('App\Http\Controllers\Features\RFPController')->getExpenseBar();
         $expenseBarLabels = json_encode($expenseBar->pluck('month_name'));
-        $expenseBarValues = json_encode($expenseBar->pluck('total_expense'));
+        $expenseBarValues = json_encode($expenseBar->pluck('expense'));
 
         $collectionRate = number_format((fdiv($postedPaidBills,$postedBills))*100,2).'%';
 
@@ -99,6 +100,7 @@ class DashboardIndexComponent extends Component
            'allVerifiedTenants' ,
            'allUnits',
            'occupiedUnits',
+           'transientUnits',
            'vacantUnits',
            'reservedUnits',
            'allOwners' ,

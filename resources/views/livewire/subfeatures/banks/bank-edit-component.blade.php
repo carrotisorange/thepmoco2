@@ -12,7 +12,7 @@
             </div>
             <div class="mt-5 sm:mt-6">
                 <x-label for="account_name">Account Name </x-label>
-                <x-form-input type="text" wire:model="account_name" readonly />
+                <x-form-input type="text" wire:model="account_name" />
                 <x-validation-error-component name='account_name' />
             </div>
             <div class="mt-5 sm:mt-6">

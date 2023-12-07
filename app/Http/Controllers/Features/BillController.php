@@ -57,8 +57,7 @@ class BillController extends Controller
             $query->where('status', $status);
         })
         ->groupBy(DB::raw('month(created_at)+"-"+year(created_at)'))
-        ->orderBy(DB::raw('month(created_at)'))
-        ->limit(6);
+        ->orderBy(DB::raw('month(created_at)'));
 
         $jsonString = $data->get('month_name','total');
 

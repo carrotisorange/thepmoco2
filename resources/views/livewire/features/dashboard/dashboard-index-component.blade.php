@@ -502,6 +502,7 @@
                                 {{ $occupiedUnits->count() }}</dt>
                             <dd class="text-sm font-medium">Occupied</dd>
                         </dl>
+
                         <dl class=" rounded-lg flex flex-col items-center justify-center h-[78px]">
                             <dt
                                 class="w-8 h-8 rounded-full bg-indigo-200 text-sm font-medium flex items-center justify-center mb-1">
@@ -2457,7 +2458,7 @@
                     yaxis: {
                     labels: {
                         formatter: function (value) {
-                        return value + "%"
+                        return value 
                         },
                     },
                     },

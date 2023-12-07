@@ -49,7 +49,7 @@ class CollectionController extends Controller
         ->posted()
 
         ->groupBy(DB::raw('month(created_at)+"-"+year(created_at)'))
-        ->limit(6);
+        ->get();
 
     }
 
