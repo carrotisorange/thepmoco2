@@ -45,12 +45,17 @@ class RFPController extends Controller
     }
 
     public function getExpenseBar(){
-        return AccountPayable::select(DB::raw('monthname(created_at) as month_name, sum(amount) as total_expense'))
+        return DB::table('account_payable_liquidations')
+        ->select(DB::raw("SUM(account_payable_liquidation_particulars.total) as expense"), DB::raw('monthname(account_payable_liquidations.created_at) as month_name, sum(amount) as total_expense'),
+        'account_payable_liquidation_particulars.item as particular')
+        ->join('account_payable_liquidation_particulars','account_payable_liquidations.batch_no',
+        'account_payable_liquidation_particulars.batch_no')
+        ->join('account_payables','account_payable_liquidations.batch_no', 'account_payables.batch_no')
         ->where('account_payables.property_uuid', Session::get('property_uuid'))
-        ->where('status', 'completed')
-        ->groupBy(DB::raw('month(created_at)+"-"+year(created_at)'))
-        ->limit(5);
-
+        ->groupBy(DB::raw('month(account_payable_liquidations.created_at)+"-"+year(account_payable_liquidations.created_at)'))
+        ->orderBy('expense', 'desc')
+        ->where('account_payables.status', 'completed')
+        ->get();
     }
 
     public function getAccountPayables($property_uuid){
