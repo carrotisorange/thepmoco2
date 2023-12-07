@@ -45,7 +45,7 @@
         <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
             <div class="sm:col-span-3">
                 <x-form-select name="bill_type" wire:model="bill_type">
-                    <option value="">Filter bill to</option>
+                    <option value="">Bill To</option>
                     <option value="guest_uuid">Guest</option>
                     <option value="owner_uuid">Owner</option>
                     <option value="tenant_uuid">Tenant</option>
@@ -53,7 +53,7 @@
             </div>
             <div class="sm:col-span-3">
                 <x-form-select name="status" wire:model="status">
-                    <option value="">Filter bill status</option>
+                    <option value="">Status</option>
                     @foreach ($statuses as $item)
                     <option value="{{ $item->status }}">{{ $item->status }}</option>
                     @endforeach
@@ -61,20 +61,29 @@
             </div>
             <div class="sm:col-span-3">
                 <x-form-select name="particular_id" wire:model="particular_id">
-                    <option value="">Filter bill particulars</option>
+                    <option value="">Particulars</option>
                     @foreach ($particulars as $item)
                     <option value="{{ $item->particular_id }}">{{ $item->particular }}</option>
                     @endforeach
                 </x-form-select>
             </div>
-            <div class="sm:col-span-3">
+          <div class="sm:col-span-3">
+                <x-form-select name="created_at" wire:model="created_at">
+
+                    <option value="">Date posted</option>
+                   @foreach ($dates_posted as $item)
+                  <option value="{{ $item->created_at }}">{{ Carbon\Carbon::parse($item->created_at)->format('M, Y')}}</option>
+                    @endforeach
+                </x-form-select>
+            </div>
+            {{-- <div class="sm:col-span-3">
                 <x-form-select name="posted_dates" wire:model="posted_dates">
                     <option value="">Filter bill dates</option>
                     <option value="monthly">1-30 days</option>
                     <option value="quaterly">1-90 days</option>
                     <option value="alltime">90 days and over</option>
                 </x-form-select>
-            </div>
+            </div> --}}
         </div>
         @endif
         <div class="mt-3">

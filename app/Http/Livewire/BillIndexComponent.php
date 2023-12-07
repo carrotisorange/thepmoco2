@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use DB;
 use Session;
+use Carbon\Carbon;
 
 use Livewire\WithPagination;
 use App\Models\{Particular,PropertyParticular,Bill,Collection,Property};
@@ -24,6 +25,7 @@ class BillIndexComponent extends Component
    public $batch_no;
    public $bill_type;
    public $isIndividualView = false;
+   public $created_at;
 
    public function updatedSelectAllBills($value)
    {
@@ -56,18 +58,43 @@ class BillIndexComponent extends Component
             ->paginate(10);
    }
 
-   public function get_bills()
-   {
-      $bills = '';
-         if($this->posted_dates === 'monthly'){
-            $bills = $this->get_bills_per_period(now()->subdays(30));
-         }elseif($this->posted_dates === 'quarterly'){
-            $bills = $this->get_bills_per_period(now()->subdays(90));
-         }else{
-            $bills = $this->get_bills_per_period('');
-         }
-       return $bills;
-   }
+//    public function get_bills()
+//    {
+//       $bills = '';
+//          if($this->posted_dates === 'monthly'){
+//             $bills = $this->get_bills_per_period(now()->subdays(30));
+//          }elseif($this->posted_dates === 'quarterly'){
+//             $bills = $this->get_bills_per_period(now()->subdays(90));
+//          }else{
+//             $bills = $this->get_bills_per_period('');
+//          }
+//        return $bills;
+//    }
+
+public function get_bills(){
+    return Bill::orderBy('bill_no', 'desc')
+    ->where('property_uuid', Session::get('property_uuid'))
+    ->posted()
+    ->when($this->status, function($query){
+        $query->whereIn('status', [$this->status]);
+    })
+    ->when($this->bill_type, function($query){
+        $query->whereNotNull($this->bill_type);
+    })
+    ->when($this->batch_no, function($query){
+        $query->where('batch_no', $this->batch_no);
+    })
+    ->when($this->particular_id, function($query){
+        $query->where('particular_id', $this->particular_id);
+    })
+     ->when($this->created_at, function($query){
+        $query->whereMonth('created_at', Carbon::parse($this->created_at)->month);
+     })
+    ->when($this->created_at, function($query){
+        $query->whereYear('created_at', Carbon::parse($this->created_at)->year);
+     })
+    ->paginate(10);
+}
 
    public function changeView($view)
     {
@@ -78,7 +105,7 @@ class BillIndexComponent extends Component
    {
       return Bill::where('property_uuid', Session::get('property_uuid'))
       ->select('*',DB::raw("(DATE_FORMAT(created_at,'%M %d, %Y')) as date_posted"), DB::raw('count(*) as count'))
-      ->groupBy('date_posted')
+      ->groupBy(DB::raw('month(created_at)+"-"+year(created_at)'))
       ->orderBy('created_at')
       ->get();
    }
@@ -103,6 +130,9 @@ class BillIndexComponent extends Component
 
     public function render()
    {
+        Session::put('billCreatedAt', $this->created_at);
+        Session::put('billParticularId', $this->particular_id);
+
         $bills = $this->get_bills();
         $collections = app('App\Http\Controllers\Features\CollectionController')->get(1);
         $particulars = app('App\Http\Controllers\Utilities\PropertyParticularController')->index(Session::get('property_uuid'));
@@ -111,7 +141,8 @@ class BillIndexComponent extends Component
         $period_covered_ends = $this->get_period_covered_ends();
         $propertyBillsCount = app('App\Http\Controllers\Features\BillController')->get(1)->count();
         $statuses = app('App\Http\Controllers\Features\BillController')->get(1,null,'status');
-      return view('livewire.features.bill.bill-index-component', compact(
+
+        return view('livewire.features.bill.bill-index-component', compact(
          'bills',
          'collections',
          'statuses',

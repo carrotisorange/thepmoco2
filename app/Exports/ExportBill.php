@@ -6,6 +6,7 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use App\Models\Bill;
 use Session;
+use Carbon\Carbon;
 
 class ExportBill implements FromCollection, WithHeadings {
 
@@ -55,6 +56,9 @@ class ExportBill implements FromCollection, WithHeadings {
       ->leftJoin('guests', 'bills.guest_uuid', 'guests.uuid')
       ->leftJoin('units', 'bills.unit_uuid', 'units.uuid')
       ->where('bills.property_uuid', Session::get('property_uuid'))
+      ->where('bills.particular_id', Session::get('billParticularId'))
+      ->whereMonth('bills.created_at', Carbon::parse(Session::get('billCreatedAt'))->month)
+      ->whereYear('bills.created_at', Carbon::parse(Session::get('billCreatedAt'))->year)
       ->where('bills.is_posted',1)
       ->where('bills.status', 'unpaid')
       ->orderBy('bills.bill_no')
