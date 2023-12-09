@@ -59,6 +59,7 @@ class ExportBill implements FromCollection, WithHeadings {
       ->where('bills.particular_id', Session::get('billParticularId'))
       ->whereMonth('bills.created_at', Carbon::parse(Session::get('billCreatedAt'))->month)
       ->whereYear('bills.created_at', Carbon::parse(Session::get('billCreatedAt'))->year)
+      ->whereNotNull(Session::get('billType'))
       ->where('bills.is_posted',1)
       ->where('bills.status', 'unpaid')
       ->orderBy('bills.bill_no')
