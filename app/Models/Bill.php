@@ -77,8 +77,8 @@ class Bill extends Model
          : static::where('reference_no','like', '%'.$search.'%');
     }
 
-    public function scopeGetAll($query, $propertyUuid, $isPosted, $status, $groupBy, $createdAt, $particularId){
-       $results =
+    public function scopeGetAll($query, $propertyUuid, $isPosted, $status, $groupBy, $createdAt, $particularId, $billTo){
+        $results =
             $query->when($propertyUuid, function($query, $propertyUuid){
                 $query->where('property_uuid', $propertyUuid);
             })
@@ -99,6 +99,9 @@ class Bill extends Model
             })
             ->when($particularId, function($query, $particularId){
                 $query->where('particular_id', $particularId);
+            })
+            ->when($billTo, function($query, $billTo){
+              $query->whereNotNull($billTo);
             })
             ->get();
 

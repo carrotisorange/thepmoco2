@@ -43,9 +43,9 @@ class BillController extends Controller
         ]);
     }
 
-    public function get($isPosted=null, $status=null, $groupBy=null, $createdAt=null, $particularId=null)
+    public function get($isPosted=null, $status=null, $groupBy=null, $createdAt=null, $particularId=null, $billTo=null)
     {
-        return Bill::getAll(Session::get('property_uuid'), $isPosted, $status, $groupBy, $createdAt, $particularId);
+        return Bill::getAll(Session::get('property_uuid'), $isPosted, $status, $groupBy, $createdAt, $particularId, $billTo);
     }
 
     public function getJsonEncodedBillForDashboard($status=null){
@@ -95,7 +95,7 @@ class BillController extends Controller
 
         if($format == 'pdf'){
             $data = [
-                'bills' => app('App\Http\Controllers\Features\BillController')->get(1, 'unpaid', null, Session::get('billCreatedAt'), Session::get('billParticularId'))
+                'bills' => app('App\Http\Controllers\Features\BillController')->get(1, 'unpaid', null, Session::get('billCreatedAt'), Session::get('billParticularId'),Session::get('billType'))
             ];
 
             $folder_path = 'features.bills.export';

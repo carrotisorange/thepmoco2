@@ -132,6 +132,7 @@ public function get_bills(){
    {
         Session::put('billCreatedAt', $this->created_at);
         Session::put('billParticularId', $this->particular_id);
+        Session::put('billType', $this->bill_type);
 
         $bills = $this->get_bills();
         $collections = app('App\Http\Controllers\Features\CollectionController')->get(1);
