@@ -58,8 +58,6 @@ class CollectionIndexComponent extends Component
     {
         $collections = $this->get_ars();
 
-        ddd(Session::get('property_uuid'));
-
         $mode_of_payments = Collection::where('property_uuid', Session::get('property_uuid'))
         ->groupBy('form')
         ->get();
