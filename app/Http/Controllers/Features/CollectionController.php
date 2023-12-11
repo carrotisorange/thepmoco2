@@ -100,7 +100,6 @@ class CollectionController extends Controller
     public function get_tenant_collections($property_uuid, $tenant_uuid){
         return Collection::
         select('*', DB::raw("SUM(collection) as collection"),DB::raw("count(collection) as count") )
-        ->where('property_uuid', $property_uuid)
         ->where('tenant_uuid', $tenant_uuid)
         ->posted()
         ->groupBy('ar_no')
