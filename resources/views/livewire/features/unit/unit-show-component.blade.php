@@ -211,6 +211,15 @@
                                         <h3 class="mt-2 text-sm font-medium text-gray-900">No collections</h3>
                                     </div>
                                     @endif
+                                    @elseif($subfeature == 'violation')
+                                    @if($violations->count())
+                                    @include('tables.violations')
+                                    @else
+                                    <div class="mt-10 text-center mb-10">
+                                        <i class="fa-solid fa-circle-plus"></i>
+                                        <h3 class="mt-2 text-sm font-medium text-gray-900">No violations</h3>
+                                    </div>
+                                    @endif
                                     @elseif($subfeature == 'financial')
                                     @include('features.units.tables.financials')
                                     @elseif($subfeature == 'remittance')

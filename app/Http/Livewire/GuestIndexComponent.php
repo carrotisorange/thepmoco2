@@ -32,7 +32,7 @@ class GuestIndexComponent extends Component
 
         return view('livewire.features.guest.guest-index-component', compact (
             'bookings',
-            'propertyBookingsCount' 
+            'propertyBookingsCount'
         ));
     }
 }

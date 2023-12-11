@@ -153,7 +153,10 @@
                                     </div>
                                     @endif
                                     @elseif($subfeature == 'bank')
-                                    @include('tables.banks')
+                                        @include('tables.banks')
+                                
+                                    @elseif($subfeature == 'violation')
+                                        @include('tables.violations')
                                     @endif
                                 </div>
                             </div>

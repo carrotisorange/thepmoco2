@@ -252,6 +252,24 @@
                                         </div>
                                     </div>
                                     @endif
+
+                                    @elseif($subfeature == 'violation')
+
+                                    @if($violations->count())
+                                    @include('tables.violations')
+                                    @else
+                                    <div class=" mt-10 text-center mb-10">
+                                        <i class="fa-solid fa-circle-plus"></i>
+                                        <h3 class="mt-2 text-sm font-medium text-gray-900">No violations</h3>
+                                        <p class="mt-1 text-sm text-gray-500">You're almost there!</p>
+                                        <div class="mt-6">
+                                            <x-button
+                                                onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/violation/'">
+                                                New violation
+                                            </x-button>
+                                        </div>
+                                    </div>
+                                    @endif
                                     @endif
                                 </div>
                             </div>
