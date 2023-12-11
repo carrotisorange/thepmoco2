@@ -18,7 +18,6 @@ class OwnerCollectionController extends Controller
     public function get_owner_collections($property_uuid, $owner_uuid){
         return Collection::
         select('*', DB::raw("SUM(collection) as collection"),DB::raw("count(collection) as count") )
-        ->where('property_uuid', $property_uuid)
         ->where('owner_uuid', $owner_uuid)
         ->posted()
         ->groupBy('ar_no')

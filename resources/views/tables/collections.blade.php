@@ -41,21 +41,17 @@
                 @endforeach
             </x-td>
             <x-td>
-                @if($item->tenant_uuid)
                     <x-link-component link="/property/{{ $item->property_uuid }}/tenant/{{ $item->tenant_uuid }}">
                     {{ $item->tenant->tenant }}
                     </x-link-component>
-                @elseif($item->owner_uuid)
+
                     <x-link-component link="/property/{{ $item->property_uuid }}/owner/{{ $item->owner_uuid }}">
                        {{ $item->owner->owner }}
                     </x-link-component>
-                @elseif($item->guest_uuid)
+
                     <x-link-component link="/property/{{ $item->property_uuid }}/guest/{{ $item->guest_uuid }}">
                         {{ $item->guest->guest }}
                     </x-link-component>
-                @else
-                    NA
-                @endif
             </x-td>
             <x-td> {{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }} </x-td>
             <x-td> {{ $item->form }} </x-td>
