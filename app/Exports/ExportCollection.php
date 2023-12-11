@@ -55,13 +55,14 @@ class ExportCollection implements FromCollection, WithHeadings {
       ->leftJoin('bills', 'collections.bill_id', 'bills.id')
       ->leftJoin('particulars', 'bills.particular_id', 'particulars.id')
       ->leftJoin('tenants', 'collections.tenant_uuid', 'tenants.uuid')
-      ->leftJoin('owners', 'collections.owner_uuid', 'owners.uuid')
+          ->leftJoin('deed_of_sales', 'collections.unit_uuid', 'deed_of_sales.unit_uuid')
+      ->leftJoin('owners', 'deed_of_sales.owner_uuid', 'owners.uuid')
       ->leftJoin('guests', 'collections.guest_uuid', 'guests.uuid')
       ->leftJoin('units', 'collections.unit_uuid', 'units.uuid')
       ->where('collections.property_uuid', Session::get('property_uuid'))
       ->whereBetween('collections.created_at',[Session::get('export_dcr_start_date'), Session::get('export_dcr_end_date')])
       ->where('collections.is_posted',1)
-      ->orderBy('collections.ar_no', 'desc')
+      ->orderBy('collections.ar_no', 'asc')
       ->get();
 
        return collect($collections);
