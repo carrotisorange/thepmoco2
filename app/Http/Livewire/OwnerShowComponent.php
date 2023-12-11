@@ -9,7 +9,7 @@ use Illuminate\Validation\Rule;
 use DB;
 use Session;
 use Carbon\Carbon;
-use App\Models\{AcknowledgementReceipt,User,Representative,Owner,Bill,DeedOfSale,Spouse,Collection,Feature};
+use App\Models\{AcknowledgementReceipt,User,Representative,Owner,Bill,DeedOfSale,Spouse,Collection,Feature, Violation};
 
 class OwnerShowComponent extends Component
 {
@@ -274,7 +274,8 @@ class OwnerShowComponent extends Component
             'email_cred' => User::where('email', $this->owner_details->email)->value('email'),
             'spouse' => Spouse::where('owner_uuid', $this->owner_details->uuid)->get(),
             'ownerSubfeaturesArray' => $ownerSubfeaturesArray,
-            'sessions' => DB::table('sessions')->where('user_id', User::where('owner_uuid', $this->owner_details->uuid)->value('id'))->orderBy('created_at', 'desc')->limit(5)->get()
+            'sessions' => DB::table('sessions')->where('user_id', User::where('owner_uuid', $this->owner_details->uuid)->value('id'))->orderBy('created_at', 'desc')->limit(5)->get(),
+            'violations' => Violation::where('owner_uuid', $this->owner_details->uuid)->get()
         ]);
     }
 }

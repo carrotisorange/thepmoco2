@@ -78,7 +78,7 @@
                                 <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
                                 @if($image)
                                 <span class="text-red-500 text-xs mt-2">
-                                    <a href="#/" wire:click="removeAttachment('image')">Remove the attachment
+                                    <a href="#/" wire:click="removeAttachment()">Remove the attachment
                                     </a></span>
                                 @endif
                             </label>

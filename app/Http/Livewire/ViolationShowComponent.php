@@ -5,14 +5,16 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Session;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Str;
 use Carbon\Carbon;
+use DB;
 use Livewire\WithFileUploads;
 use App\Models\{Unit, Violation, Contract, ViolationType, DeedOfSale};
 
-class ViolationCreateComponent extends Component
+class ViolationShowComponent extends Component
 {
     use WithFileUploads;
+
+    public $violation_details;
 
     public $violation;
     public $type_id;
@@ -22,6 +24,16 @@ class ViolationCreateComponent extends Component
     public $image;
     public $details;
 
+    public function mount($violation_details){
+        $this->violation = $violation_details->violation;
+        $this->type_id = $violation_details->type_id;
+        $this->unit_uuid = $violation_details->unit_uuid;
+        $this->tenant_uuid = $violation_details->tenant_uuid;
+        $this->owner_uuid = $violation_details->owner_uuid;
+        $this->image = $violation_details->image;
+        $this->details = $violation_details->details;
+    }
+
     protected function rules()
     {
         return [
@@ -29,9 +41,9 @@ class ViolationCreateComponent extends Component
             'type_id' => ['required', Rule::exists('violation_types', 'id')],
             'unit_uuid' => ['required', Rule::exists('units', 'uuid')],
             'tenant_uuid' => ['nullable', Rule::exists('tenants', 'uuid')],
-             'owner_uuid' => ['nullable', Rule::exists('owners', 'uuid')],
+            'owner_uuid' => ['nullable', Rule::exists('owners', 'uuid')],
             'details' => 'required',
-            'image' => 'required | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            // 'image' => 'required | mimes:jpg,bmp,png,pdf,docx| max:10240',
             ];
     }
 
@@ -40,17 +52,22 @@ class ViolationCreateComponent extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function submit(){
+    public function update(){
+
         $validatedInputs = $this->validate();
 
-        $validatedInputs['reference_no'] = (Violation::where('property_uuid', Session::get('property_uuid'))->count()+1).'-'.Carbon::now()->format('mdyHms').'-'.auth()->user()->id;
-        $validatedInputs['property_uuid'] = Session::get('property_uuid');
-        $validatedInputs['image'] = $this->image->store('violations');
-        $validatedInputs['user_id'] = auth()->user()->id;
+        try {
 
-        $violation = Violation::create($validatedInputs);
+            DB::transaction(function () use ($validatedInputs){
+                Violation::where('id', $this->violation_details->id)
+                ->update($validatedInputs);
 
-        return redirect('/property/'.Session::get('property_uuid').'/violation/')->with('success', 'Changes Saved!');
+                return redirect('/property/'.Session::get('property_uuid').'/violation/'.$this->violation_details->reference_no)->with('success', 'Changes Saved!');
+            });
+
+            }catch (\Exception $e) {
+                return redirect(url()->previous())->with('error', $e);
+        }
     }
 
 
@@ -72,7 +89,7 @@ class ViolationCreateComponent extends Component
         $query->where('unit_uuid', $this->unit_uuid);
         })->groupBy('owner_uuid')->get();
 
-        return view('livewire.violation-create-component',compact(
+        return view('livewire.violation-show-component',compact(
             'types','units','tenants','owners'
         ));
     }

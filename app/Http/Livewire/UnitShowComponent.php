@@ -7,7 +7,7 @@ use Illuminate\Validation\Rule;
 use DB;
 use Session;
 use Carbon\Carbon;
-use App\Models\{Status,Utility,AccountPayableLiquidation,AccountPayableLiquidationParticular,AccountPayableParticular,Concern,UnitInventory,Collection,Remittance,DeedOfSale,Feature,Contract,Bill,Unit,Guest,Booking,Tenant};
+use App\Models\{Violation, Status,Utility,AccountPayableLiquidation,AccountPayableLiquidationParticular,AccountPayableParticular,Concern,UnitInventory,Collection,Remittance,DeedOfSale,Feature,Contract,Bill,Unit,Guest,Booking,Tenant};
 
 class UnitShowComponent extends Component
 {
@@ -209,7 +209,8 @@ class UnitShowComponent extends Component
             'remittances' => Remittance::where('unit_uuid', $this->unit_details->uuid)
             // ->whereMonth('created_at', Carbon::parse($this->remittance_date)->month)
             ->get(),
-            'unitSubfeaturesArray' => $unitSubfeaturesArray
+            'unitSubfeaturesArray' => $unitSubfeaturesArray,
+            'violations' => Violation::where('unit_uuid', $this->unit_details->uuid)->get()
 
         ]);
     }

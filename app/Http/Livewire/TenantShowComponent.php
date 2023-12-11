@@ -10,7 +10,7 @@ use DB;
 use Illuminate\Validation\Rule;
 use Livewire\WithPagination;
 use Session;
-use App\Models\{Wallet,User,Collection,Feature};
+use App\Models\{Wallet,User,Collection,Feature, Violation};
 
 class TenantShowComponent extends Component
 {
@@ -249,7 +249,8 @@ class TenantShowComponent extends Component
             'username' => User::where('email', $this->tenant_details->email)->value('username'),
             'email_cred' => User::where('email', $this->tenant_details->email)->value('email'),
             'tenantSubfeaturesArray' => $tenantSubfeaturesArray,
-            'sessions' => DB::table('sessions')->where('user_id', User::where('tenant_uuid', $this->tenant_details->uuid)->value('id'))->orderBy('created_at', 'desc')->limit(5)->get()
+            'sessions' => DB::table('sessions')->where('user_id', User::where('tenant_uuid', $this->tenant_details->uuid)->value('id'))->orderBy('created_at', 'desc')->limit(5)->get(),
+             'violations' => Violation::where('tenant_uuid', $this->tenant_details->uuid)->get()
          ]);
     }
 }
