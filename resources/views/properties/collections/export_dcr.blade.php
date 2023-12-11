@@ -10,8 +10,8 @@
                 <x-th>AR #</x-th>
                 <x-th>Bill #</x-th>
                 <x-th>Unit</x-th>
-                {{-- <x-th>Date</x-th> --}}
                 <x-th>Bill To</x-th>
+                <x-th>Owner</x-th>
                 <x-th>Particular</x-th>
                 <x-th>Period Covered</x-th>
                 <x-th>Amount</x-th>
@@ -31,6 +31,15 @@
                     {{ $item->owner->owner}} (O)
                     @elseif($item->guest_uuid)
                     {{ $item->guest->guest}} (G)
+                    @else
+                    NA
+                    @endif
+                </x-td>
+                <x-td>
+                    @if($item->unit->deed_of_sales->count())
+                    @foreach ($item->unit->deed_of_sales->where('status','!=','inactive')->take(1) as $owner)
+                    {{ $owner->owner->owner }}
+                    @endforeach
                     @else
                     NA
                     @endif
