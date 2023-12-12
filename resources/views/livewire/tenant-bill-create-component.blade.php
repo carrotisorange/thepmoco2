@@ -23,7 +23,7 @@
                             <a href="#/" data-modal-toggle="create-bill-modal"> Create</a>
                         </li>
                         <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
-                            <a href="#/"  data-modal-toggle="bill-export-component"> Export</a>
+                            <a href="#/" data-modal-toggle="bill-export-component"> Export</a>
                         </li>
                         <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
                             <a href="#/" data-modal-toggle="bill-send-component"> Send</a>

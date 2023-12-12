@@ -27,9 +27,9 @@
             </div>
             <div class="mt-5 flex flex-wrap -mx-3 mb-6">
                 <div class="w-full md:w-full px-3">
-                    <x-label for="noteToBill"> Note </x-label>
-                    <x-form-textarea wire:model="noteToBill"></x-form-textarea>
-                    <x-validation-error-component name='noteToBill' />
+                    <x-label for="note_to_bill"> Note </x-label>
+                    <x-form-textarea wire:model="note_to_bill"></x-form-textarea>
+                    <x-validation-error-component name='note_to_bill' />
                 </div>
             </div>
             <div class="mt-5">

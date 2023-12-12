@@ -15,15 +15,23 @@ class BillExportComponent extends Component
     public $email;
     public $due_date;
     public $penalty;
-    public $noteToBill;
+    public $note_to_bill;
     public $totalUnpaidBills;
 
     public function mount($tenant){
         $this->email = $tenant->email;
         $this->due_date = Carbon::now()->addDays(7)->format('Y-m-d');
-        $this->noteToBill = Property::find(Session::get('property_uuid'))->note_to_bill;
+        $this->note_to_bill = Property::find(Session::get('property_uuid'))->note_to_bill;
         $this->totalUnpaidBills = Bill::postedBills('tenant_uuid',$this->tenant->uuid) - Collection::postedCollections('tenant_uuid',$this->tenant->uuid);
         $this->penalty = (Bill::postedBills('tenant_uuid',$this->tenant->uuid) - Collection::postedCollections('tenant_uuid',$this->tenant->uuid))*.1;
+    }
+
+    protected function rules()
+    {
+        return [
+            'due_date' => 'required',
+            'note_to_bill' => 'required'
+        ];
     }
 
     public function updated($propertyName)

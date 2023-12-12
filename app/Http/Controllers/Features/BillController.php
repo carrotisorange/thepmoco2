@@ -205,7 +205,9 @@ class BillController extends Controller
 
         $data = $this->get_bill_data($tenant, $request->due_date, $request->penalty, $request->note_to_bill);
 
-        $folder_path = 'features.tenants.bills.export';
+        // $folder_path = 'features.tenants.bills.export';
+
+        $folder_path = 'export.soa';
 
         $perspective = 'portrait';
 
@@ -213,7 +215,7 @@ class BillController extends Controller
 
         $pdf_name = str_replace(' ', '_', $property->property).'_SOA.pdf';
 
-        return $pdf->stream($pdf_name);
+        return $pdf->download($pdf_name);
     }
 
     public function get_bill_data($tenant, $due_date, $penalty, $note)
