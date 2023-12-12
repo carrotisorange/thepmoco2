@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PortfolioController;
+ use Barryvdh\DomPDF\Facade\Pdf;
 
 require __DIR__.'/auth.php';
 
@@ -166,7 +166,11 @@ Route::get('/liquidation', function(){
 });
 
 Route::get('/soa', function(){
-    return view('export.soa');
+
+ $pdf = Pdf::loadView('export.soa');
+ return $pdf->stream('invoice.pdf');
+
+    // return view('export.soa');
 });
 
 Route::get('/server-maintenance', function(){

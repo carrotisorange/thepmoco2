@@ -205,7 +205,9 @@ class BillController extends Controller
 
         $data = $this->get_bill_data($tenant, $request->due_date, $request->penalty, $request->note_to_bill);
 
-        $folder_path = 'features.tenants.bills.export';
+        // $folder_path = 'features.tenants.bills.export';
+
+        $folder_path = 'export.soa';
 
         $perspective = 'portrait';
 
