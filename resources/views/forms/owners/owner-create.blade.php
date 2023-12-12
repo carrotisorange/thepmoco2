@@ -1,4 +1,4 @@
-<form class="space-y-6" wire:submit.prevent="submitForm()">
+<form class="space-y-6" wire:submit.prevent="submitForm()" wire:ignore.self>
             <div class="mt-5 md:mt-0 md:col-span-3">
                 <div class="grid grid-cols-6 gap-6">
 
@@ -36,7 +36,7 @@
                         <x-form-select wire:model="province_id" >
                             <option value="">Select one</option>
                             @foreach ($provinces as $province)
-                            <option value="{{ $province->id }}" {{ old('province_id')==$province->id? 'selected': 'Select one' }}>\
+                            <option value="{{ $province->id }}" {{ old('province_id')==$province->id? 'selected': 'Select one' }}>
                                 {{ $province->province }}
                             </option>
                             @endforeach
@@ -49,36 +49,35 @@
                         <x-form-input type="text" wire:model="barangay" value="{{ old('barangay') }}"/>
                     </div>
 
-                    <div class="col-span-6">
-                        <x-label > Attach a valid ID of the owner (i.e., Driver's license, UMID/SSS, Passport) </x-label>
-                        <div class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
-                            <div class="space-y-1 text-center">
-                                <div class="flex text-sm text-gray-600">
-                                    <label for="photo_id"
-                                        class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                                        <span>Upload a file</span>
-                                        <span wire:loading>Loading...</span>
-                                        <input id="photo_id" name="photo_id" type="file" class="sr-only"
-                                            wire:model="photo_id">
-                                    </label>
-                                </div>
-                                <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
-                                @if($photo_id)
-                                <span class="text-red-500 text-xs mt-2">
-                                    <a href="#/" wire:click="removePhotoId()">Remove the attachment.</a></span>
-                                @endif
-                            </div>
-                        </div>
-                        @error('photo_id')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @else
-                        @if ($photo_id)
-                        <p class="text-green-500 text-xs mt-2">File has been attached. <i
-                                class="fa-solid fa-circle-check"></i></p>
-                        @endif
-                        @enderror
+                <div class="col-span-6">
+                    <x-label>Upload ID</x-label>
+                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                        <div class="space-y-1 text-center">
+                            <div class="flex text-sm text-gray-600">
+                                <label for="photo_id"
+                                    class="relative cursor-pointer bg-white rounded-md font-medium text-purple-600 hover:text-purple-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-purple-500">
+                                    <span wire:loading.remove>Upload a file</span>
 
+                                    <span wire:loading>Loading...</span>
+                                    <input id="photo_id" wire:model="photo_id" type="file" class="sr-only">
+                                    <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
+                                    @if($photo_id)
+                                    <span class="text-red-500 text-xs mt-2">
+                                        <a href="#/" wire:click="removeAttachment()">Remove the attachment
+                                        </a></span>
+                                    @endif
+                                </label>
+                            </div>
+                            @error('photo_id')
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @enderror
+                            @if ($photo_id)
+                            <p class="text-green-500 text-xs mt-2">File has been attached. <i class="fa-solid fa-circle-check"></i>
+                            </p>
+                            @endif
+                        </div>
                     </div>
+                </div>
 
                     <div class="col-span-2">
                         <x-label for="occupation" >Occupation</x-label>

@@ -17,7 +17,7 @@
                             <div class="sm:col-span-6">
                                <x-label>Unit</x-label>
                                 <div class="mt-2">
-                                     <x-form-select name="unit_uuid" wire:model="unit_uuid">
+                                    <x-form-select name="unit_uuid" wire:model="unit_uuid">
                                         <option value="{{ $unit_uuid }}" {{ old('unit_uuid')==$unit_uuid ? 'selected' : 'Select one'}}> {{ App\Models\Unit::where('uuid',$unit_uuid)->value('unit') }} </option>
                                     </x-form-select>
                                 </div>

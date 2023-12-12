@@ -88,6 +88,7 @@ class OwnerCreateComponent extends Component
             $validatedData = $this->validate();
 
             try{
+
                 DB::transaction(function () use ($validatedData){
                      //method to create a new owner
                 $owner_uuid = $this->store_owner($validatedData);
@@ -123,8 +124,7 @@ class OwnerCreateComponent extends Component
                 //method to create a new point
                 app('App\Http\Controllers\Utilities\PointController')->store(4, 1);
 
-                return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/owner/'.$owner_uuid.'/deed_of_sale/create')
-                ->with('success', 'Changes Saved!');
+                return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/owner/'.$owner_uuid.'/deed_of_sale/create')->with('success', 'Changes Saved!');
 
                 });
 
@@ -167,34 +167,28 @@ class OwnerCreateComponent extends Component
         {
             if($this->photo_id)
             {
-                        // $validatedData['photo_id'] = $this->photo_id->store('owners');
                 $this->photo_id = $this->photo_id->store('owners');
             }
             else
             {
-                        //$validatedData['photo_id'] = 'avatars/avatar.png';
                 $this->photo_id = 'avatars/avatar.png';
             }
 
             if(!$this->country_id)
             {
-                //$validatedData['country_id'] = '247';
                 $this->country_id = '247';
             }
 
             if(!$this->province_id)
             {
-                //$validatedData['province_id'] = '4121';
                  $this->province_id = '4121';
             }
 
             if(!$this->city_id)
             {
                 $this->city_id = '48315';
-                        //$validatedData['city_id'] = '48315';
             }
 
-            //$owner_uuid = Owner::create($validatedData)->uuid;
             $bill_no = app('App\Http\Controllers\Features\BillController')->getLatestBillNo();
 
             $owner_uuid = Owner::create([
@@ -219,7 +213,7 @@ class OwnerCreateComponent extends Component
             return $owner_uuid;
         }
 
-        public function removePhotoId()
+        public function removeAttachment()
         {
             $this->photo_id = '';
         }
