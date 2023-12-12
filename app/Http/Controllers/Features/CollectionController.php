@@ -372,7 +372,9 @@ class CollectionController extends Controller
             $collection,
          );
 
-        $folder_path = 'features.tenants.collections.export';
+        // $folder_path = 'features.tenants.collections.export';
+
+         $folder_path = 'export.ar';
 
         $perspective = 'portrait';
 

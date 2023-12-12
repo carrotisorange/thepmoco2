@@ -215,7 +215,7 @@ class BillController extends Controller
 
         $pdf_name = str_replace(' ', '_', $property->property).'_SOA.pdf';
 
-        return $pdf->download($pdf_name);
+        return $pdf->stream($pdf_name);
     }
 
     public function get_bill_data($tenant, $due_date, $penalty, $note)

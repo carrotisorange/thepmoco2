@@ -142,12 +142,8 @@
     </main>
 
     <footer class="mx-auto max-w-4xl bg-purple-800">
-
             <p class="pt-2 text-center text-xs leading-5 text-gray-100">Powered by: {{ env('APP_NAME') }}</p>
-
     </footer>
-
-
 </body>
 
 </html>
