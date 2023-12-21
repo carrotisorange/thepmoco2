@@ -81,11 +81,11 @@
                         </fieldset>
                      </div>
 
-                     <div class="sm:col-span-2">
+                     <div class="sm:col-span-3">
                         <x-label for="category_id">Category </x-label>
                         <x-form-select id="category_id" wire:model="category_id">
                            @foreach ($categories as $item)
-                           <option value="{{ $item->id }}" {{ old('type_id', $concern_details->category_id)
+                           <option value="{{ $item->id }}" {{ old('category_id', $concern_details->category_id)
                               ==$item->id
                               ?'selected' : ''}}>
                               {{ $item->category }}
@@ -95,7 +95,19 @@
                       <x-validation-error-component name='category_id' />
                      </div>
 
-                     <div class="sm:col-span-2">
+                     <div class="sm:col-span-3">
+                        <x-label for="subcategory_id">Subcategory </x-label>
+                        <x-form-select id="subcategory_id" wire:model="subcategory_id">
+                            @foreach ($subcategories as $item)
+                            <option value="{{ $item->id }}" {{ old('subcategory_id', $concern_details->subcategory_id) ==$item->id ?'selected' : ''}}>
+                                {{ $item->subcategory }}
+                            </option>
+                            @endforeach
+                        </x-form-select>
+                        <x-validation-error-component name='subcategory_id' />
+                    </div>
+
+                     <div class="sm:col-span-3">
                         <x-label for="status">Status </x-label>
                         <x-form-select wire:model="status">
                            <option value="active" {{ old('status', $status)=='active' ?'selected' : '' }}> active  </option>
@@ -105,7 +117,7 @@
                        <x-validation-error-component name='status' />
                      </div>
 
-                     <div class="sm:col-span-2">
+                     <div class="sm:col-span-3">
                         <x-label for="urgency">Is Urgent?  </x-label>
                         <x-form-select wire:model="urgency">
                            <option value="no" {{ $urgency=='no' ?'selected' : 'Select one' }}>  no   </option>
@@ -120,6 +132,40 @@
                               {{ $concern_details->concern }}
                            </x-form-textarea>
                          <x-validation-error-component name='concern' />
+                     </div>
+
+                      <div class="col-span-3 sm:col-span-6">
+                        <fieldset>
+                           <div>
+                              <x-label for="proof_of_payment">Proof of payment
+
+                              </x-label>
+                              <div
+                                 class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
+                                 <div class="space-y-1 text-center">
+
+                                    <div class="flex text-sm text-gray-600">
+                                       <label for="image"
+                                          class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+
+                                       </label>
+                                       @if(!$concern_details->proof_of_payment == null)
+                                       &nbsp;
+
+                                       <a href="{{ asset('/storage/'.$concern_details->proof_of_payment) }}" target="_blank"
+                                          class="text-indigo-600 hover:text-indigo-900">View
+                                          Attachment</a>
+
+                                       @else
+                                       <span>No attachment</span>
+                                       @endif
+
+                                    </div>
+                                    <p class="text-xs text-gray-500">PNG, JPG, DOCX, PDF up to 10MB</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </fieldset>
                      </div>
 
                      <div class="col-span-3 sm:col-span-3">
@@ -172,14 +218,12 @@
 
 
                      <div class="col-span-6 sm:col-span-2">
-                           <x-label for="assigned_to_id">Assign to   </x-label>
+                           <x-label for="assigned_to_id">Assign to </x-label>
                               @cannot('tenant')
                               <x-form-select id="assigned_to_id" wire:model="assigned_to_id">
                                  <option value="">Select one</option>
                                  @foreach ($users as $item)
-                                 <option value="{{ $item->user_id }}" {{ old('assigned_to_id', $assigned_to_id)==$item->
-                                    user_id
-                                    ?'selected' : ''}}>
+                                 <option value="{{ $item->user_id }}" {{ old('assigned_to_id', $assigned_to_id)==$item->user_id  ?'selected' : ''}}>
                                     {{ $item->user->name.'-'.$item->user->role->role }}
                                  </option>
                                  @endforeach
@@ -209,7 +253,7 @@
 
 
                      <div class="col-span-3 sm:col-span-6">
-                              <x-label for="action_taken_image">Personnel  Attachment  </x-label>
+                              <x-label for="action_taken_image">Proof of work </x-label>
                               <div
                                  class="bg-white mt-1 flex justify-center  border border-gray-700 border-dashed rounded-md">
                                  <div class="space-y-1 text-center">
@@ -220,9 +264,6 @@
 
                                           <input id="action_taken_image" type="file" class="sr-only"
                                              wire:model="action_taken_image">
-
-
-
                                        </label>
                                        @if(!$concern_details->action_taken_image == null)
                                        &nbsp; or &nbsp;
@@ -248,6 +289,8 @@
                               @endif
                               @enderror
                      </div>
+
+
                   </div>
                </div>
 

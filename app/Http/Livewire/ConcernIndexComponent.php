@@ -19,7 +19,7 @@ class ConcernIndexComponent extends Component
     {
         $propertyConcernsCount = app('App\Http\Controllers\Features\ConcernController')->get()->count();
 
-        $concerns = Concern::search(Session::get('property_uuid'))
+        $concerns = Concern::search($this->search)
         ->orderBy('created_at', 'desc')
         ->where('property_uuid', Session::get('property_uuid'))
         ->when($this->status, function($query){

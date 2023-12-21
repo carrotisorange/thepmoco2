@@ -60,6 +60,26 @@ Route::controller(ArticleController::class)->group(function () {
     Route::get('article/{id}', 'show')->name('articles');
 });
 
+Route::get('/calendar-demo', function(){
+    return view('help.calendar-demo');
+});
+
+Route::get('/guest-demo', function(){
+    return view('help.guest-demo');
+});
+
+Route::get('/utilities-demo', function(){
+    return view('help.utilities-demo');
+});
+
+Route::get('/personnel-demo', function(){
+    return view('help.personnel-demo');
+});
+
+Route::get('/bill-delete-demo', function(){
+    return view('help.bill-delete-demo');
+});
+
 Route::get('/dashboard', function(){
     return view('dashboard.dashboard');
 });

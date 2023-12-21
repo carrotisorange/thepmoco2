@@ -28,7 +28,7 @@ class PersonnelController extends Controller
         app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($restrictionId, $featureId);
 
         return view('features.personnels.index',[
-            'users' => app('App\Http\Controllers\Utilities\UserPropertyController')->getPersonnels($property->uuid,auth()->user()->id),
+            'users' => app('App\Http\Controllers\Utilities\UserPropertyController')->getPersonnels($property->uuid),
             'properties' => app('App\Http\Controllers\Utilities\UserPropertyController')->get_user_properties($property->uuid,auth()->user()->id),
             'property' => $property
         ]);

@@ -24,6 +24,11 @@ class Concern extends Model
         return $this->belongsTo(Tenant::class)->withDefault();
     }
 
+    public function owner()
+    {
+        return $this->belongsTo(Owner::class)->withDefault();
+    }
+
     public function unit()
     {
         return $this->belongsTo(Unit::class)->withDefault();
@@ -34,10 +39,15 @@ class Concern extends Model
         return $this->belongsTo(ConcernCategory::class)->withDefault();
     }
 
-    public static function search($property_uuid)
+    public function subcategory()
     {
-        return empty($property_uuid)? static::query()
-        : static::where('property_uuid', $property_uuid);
+        return $this->belongsTo(ConcernSubcategory::class, 'subcategory_id')->withDefault();
+    }
+
+    public static function search($search)
+    {
+        return empty($search)? static::query()
+        : static::where('reference_no','like', '%'.$search.'%');
     }
 
     public function scopeGetAll($query, $propertyUuid, $status, $groupBy){

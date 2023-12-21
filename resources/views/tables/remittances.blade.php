@@ -13,8 +13,9 @@
             <td class="sticky-col tenth-col"> </td>
             <td><b>{{ number_format($remittances->sum('monthly_rent'), 2) }}</b></td>
             <td><b>{{ number_format($remittances->sum('net_rent'), 2) }}</b></td>
-            <td><b>{{ number_format($remittances->sum('management_fee'), 2) }}</b></td>
+
             <td><b>{{ number_format($remittances->sum('marketing_fee'), 2) }}</b></td>
+            <td><b>{{ number_format($remittances->sum('management_fee'), 2) }}</b></td>
             <td><b>{{ number_format($remittances->sum('bank_transfer_fee'), 2) }}</b></td>
             <td><b>{{ number_format($remittances->sum('miscellaneous_fee'), 2) }}</b></td>
             <td><b>{{ number_format($remittances->sum('membership_fee'), 2) }}</b></td>
@@ -33,9 +34,9 @@
             <td><b>{{ number_format($remittances->sum('special_assessment'), 2) }}</b></td>
             <td><b>{{ number_format($remittances->sum('materials_recovery_facility'), 2) }}</b></td>
             <td><b>{{ number_format($remittances->sum('recharge_of_fire_extinguisher'), 2) }}</b></td>
-            <td><b>{{ number_format($remittances->sum('environmental_fee'), 2) }}</b></td>
-            <td><b>{{ number_format($remittances->sum('bladder_tank'), 2) }}</b></td>
-            <td><b>{{ number_format($remittances->sum('cause_of_magnet'), 2) }}</b></td>
+             <td><b>{{ number_format($remittances->sum('environmental_fee'), 2) }}</b></td>
+           {{-- <td><b>{{ number_format($remittances->sum('bladder_tank'), 2) }}</b></td>
+            <td><b>{{ number_format($remittances->sum('cause_of_magnet'), 2) }}</b></td> --}}
             <td><b>{{ number_format($remittances->sum('total_deductions'), 2) }}</b></td>
             <td><b>{{ number_format($remittances->sum('remittance'), 2) }}</b></td>
             <td></td>
@@ -55,8 +56,9 @@
         <th>Guest</th>
         <th>Rent</th> <!-- AUTO COMPUTE -->
         <th>Net Rent </th> <!-- MANAGEMENT FEE + NET RENT -->
-        <th>Management Fee</th> <!-- FROM COLLECTION -->
+   <!-- FROM COLLECTION -->
         <th>Marketing Fee</th>
+        <th>Management Fee</th>
         <th class="bg-yellow-300">BANK TRANSFER FEE</th>
         <th class="bg-yellow-300">PURCHASED MATERIALS/UNIT REPAIRS/ETC</th>
         <th class="bg-yellow-300">MEMBERSHIP FEE </th>
@@ -76,8 +78,8 @@
         <th class="bg-yellow-300">MATERIALS RECOVERY FACILITY</th>
         <th class="bg-yellow-300">RECHARGE OF FIRE EXTINGUISHER</th>
         <th class="bg-yellow-300">ENVIRONMENTAL FEE</th>
-        <th class="bg-yellow-300">BLADDER TANK</th>
-        <th class="bg-yellow-300">CAUSE OF MAGNET</th>
+        {{-- <th class="bg-yellow-300">BLADDER TANK</th>
+        <th class="bg-yellow-300">CAUSE OF MAGNET</th> --}}
         <th>TOTAL DEDUCTIONS</th>
         <th>REMITTANCE</th>
         {{-- <th>CV NO.</th> --}}
@@ -116,8 +118,9 @@
             </td>
             <td>{{ number_format($remittance->monthly_rent, 2) }}</td>
             <td>{{ number_format($remittance->net_rent, 2) }}</td>
-            <td>{{ number_format($remittance->management_fee, 2) }}</td>
             <td>{{ number_format($remittance->marketing_fee, 2) }}</td>
+            <td><x-table-input wire:model="remittances.{{ $index }}.management_fee" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></td>
+
             <td><x-table-input wire:model="remittances.{{ $index }}.bank_transfer_fee" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></td>
             <td><x-table-input wire:model="remittances.{{ $index }}.miscellaneous_fee" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></td>
             <td><x-table-input wire:model="remittances.{{ $index }}.membership_fee" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></td>
@@ -137,8 +140,8 @@
              <td><x-table-input wire:model="remittances.{{ $index }}.materials_recovery_facility" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></td>
             <td><x-table-input wire:model="remittances.{{ $index }}.recharge_of_fire_extinguisher" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></td>
             <td><x-table-input wire:model="remittances.{{ $index }}.environmental_fee" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></td>
-            <td><x-table-input wire:model="remittances.{{ $index }}.bladder_tank" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></td>
-            <td><x-table-input wire:model="remittances.{{ $index }}.cause_of_magnet" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></td>
+            {{-- <td><x-table-input wire:model="remittances.{{ $index }}.bladder_tank" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></td>
+            <td><x-table-input wire:model="remittances.{{ $index }}.cause_of_magnet" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></td> --}}
             <td>{{ number_format($remittance->total_deductions, 2) }}</td>
             <td>{{ number_format($remittance->remittance, 2) }}</td>
             {{-- <td><x-table-input wire:model="remittances.{{ $index }}.cv_no" wire:change="updateRemittance({{ $remittance->id }})" type="text"/></td> --}}

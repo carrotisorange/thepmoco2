@@ -36,6 +36,7 @@ Route::group(['middleware'=>['auth', 'web','verified']], function(){
         require __DIR__.'/features/bulletin.php';
         require __DIR__.'/features/contract.php';
         require __DIR__.'/features/violation.php';
+        require __DIR__.'/features/ancillary.php';
     });
 
     Route::get('/unit-calendar', function(){
