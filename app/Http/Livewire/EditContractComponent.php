@@ -81,7 +81,7 @@ class EditContractComponent extends Component
             return redirect(url()->previous())->with('success', 'Changes Saved!');
 
           }catch (\Exception $e) {
-            ddd($e);
+
             return redirect(url()->previous())->with('error', $e);
         }
 

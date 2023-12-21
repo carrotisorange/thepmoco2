@@ -62,7 +62,7 @@ class PortalTenantConcernComponent extends Component
          return redirect('/'.$this->user->role_id.'/tenant/'.auth()->user()->username.'/concerns/'.$concern_id.'/success')->with('success', 'Changes Saved!');
 
        }catch(\Exception $e){
-         ddd($e);
+          return $e;
        }
     }
 
