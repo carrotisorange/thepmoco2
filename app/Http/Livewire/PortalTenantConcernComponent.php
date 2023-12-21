@@ -44,7 +44,7 @@ class PortalTenantConcernComponent extends Component
             'unit_uuid' => ['required', Rule::exists('units', 'uuid')],
             'concern' => 'required',
             'image' => 'required | mimes:jpg,bmp,png,pdf,docx|max:10240',
-            'subcategory_id' => [Rule::exists('concern_subcategories', 'id')],
+            'subcategory_id' => ['nullable', Rule::exists('concern_subcategories', 'id')],
             'availability_date' => 'required',
             'availability_time' => 'required'
             ];
