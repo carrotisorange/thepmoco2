@@ -88,8 +88,9 @@
         @if(Session::get('cause_of_magnet'))
         <x-th>Cause of Magnet</x-th>
         @endif
-
+        @if(Session::get('bank_transfer_fee'))
         <x-th>Remittance</x-th>
+        @endif
     </tr>
     <tr>
         <x-th>Total</x-th>
@@ -167,8 +168,9 @@
         @if(Session::get('cause_of_magnet'))
         <x-td>{{ number_format($remittances->sum('cause_of_magnet'), 2) }}</x-td>
         @endif
-
+        @if(Session::get('bank_transfer_fee'))
         <x-td>{{ number_format($remittances->sum('remittance'), 2) }}</x-td>
+        @endif
     </tr>
     @foreach($remittances as $index=> $item)
     <tr>
@@ -247,8 +249,9 @@
         @if(Session::get('cause_of_magnet'))
         <x-td>{{ number_format($item->cause_of_magnet, 2) }}</x-td>
         @endif
-
+        @if(Session::get('bank_transfer_fee'))
         <x-td>{{ number_format($item->remittance, 2) }}</x-td>
+        @endif
     </tr>
     @endforeach
 </table>

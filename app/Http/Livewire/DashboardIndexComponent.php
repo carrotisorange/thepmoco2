@@ -90,7 +90,7 @@ class DashboardIndexComponent extends Component
         $averageNumberOfDaysForConcernsToBeResolved = app('App\Http\Controllers\Features\ConcernController')->getAverageNumberOfDaysForConcernsToBeResolved();
 
         $concernPie = app('App\Http\Controllers\Features\ConcernController')->getJsonEncodedConcernPieForDashboard();
-        $concernPieLabels = $concernPie->pluck('category');
+        $concernPieLabels = $concernPie->pluck('subcategory');
         $concernPieValues = $concernPie->pluck('total_concern');
 
         return view('livewire.features.dashboard.dashboard-index-component',compact(
