@@ -91,7 +91,7 @@
                             bg-purple-500 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" type="button">
                     Upload a payment
                 </a>
-                @elseif(auth()->user()->id == $accountpayable->requester_id && ($accountpayable->status=='released'))
+                @elseif(auth()->user()->id == $accountpayable->requester_id)
                 <a target="_blank"
                     href="/property/{{ $accountpayable->property->uuid }}/rfp/{{ $accountpayable->id }}/step1/export"
                     class="items-center px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white text-center
