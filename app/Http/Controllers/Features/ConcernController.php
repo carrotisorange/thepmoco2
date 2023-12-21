@@ -51,10 +51,10 @@ class ConcernController extends Controller
     }
 
      public function getJsonEncodedConcernPieForDashboard(){
-        return Concern::select(DB::raw('category, count(*) as total_concern'))
-        ->join('concern_categories', 'concerns.category_id', 'concern_categories.id')
+        return Concern::select(DB::raw('subcategory, count(*) as total_concern'))
+        ->join('concern_subcategories', 'concerns.subcategory_id', 'concern_subcategories.id')
         ->where('property_uuid', Session::get('property_uuid'))
-        ->groupBy('category')
+        ->groupBy('subcategory')
         ->get();
      }
 
