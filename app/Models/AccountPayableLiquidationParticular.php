@@ -15,6 +15,6 @@ class AccountPayableLiquidationParticular extends Model
 
     public function expense()
     {
-        return $this->belongsTo(ExpenseType::class, 'expense_type_id');
+        return $this->belongsTo(ExpenseType::class, 'expense_type_id')->withDefault();
     }
 }

@@ -87,7 +87,7 @@ class Tenant extends Model
 
     public function relationship()
     {
-        return $this->belongsTo(Relationship::class);
+        return $this->belongsTo(Relationship::class)->withDefault();
     }
 
     public function bills()

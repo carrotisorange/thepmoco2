@@ -23,14 +23,12 @@
 
                         </div>
 
-                        <form wire:submit.prevent="submitForm()" enctype="multipart/form-data" method="POST"
-                            class="dropzone">
+                        <form wire:submit.prevent="submitForm()" enctype="multipart/form-data" method="POST" class="dropzone">
                             @csrf
                             <div class="shadow sm:rounded-md sm:overflow-hidden">
                                 <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                                     <div class="grid grid-cols-4 gap-6">
-
-                                        <div class="sm:col-span-6">
+                                        <div class="sm:col-span-3">
                                             <x-label for="subject">
                                                 Subject </x-label>
                                             <div class="mt-1 flex rounded-md shadow-sm">
@@ -39,6 +37,22 @@
                                                     placeholder="Statements of Account is not updated." />
                                             </div>
                                        <x-validation-error-component name='subject' />
+                                        </div>
+
+                                        <div class="sm:col-span-3">
+                                            <x-label for="unit_uuid">Select a unit
+                                            </x-label>
+
+                                            <x-form-select wire:model="unit_uuid">
+                                                <option value="">Select one</option>
+                                                @foreach ($units as $item)
+                                                <option value="{{ $item->unit->uuid }}" {{ old('unit_uuid')==$item->
+                                                    unit->uuid? 'selected': 'Select one'}}>
+                                                    {{ $item->unit->unit }}
+                                                </option>
+                                                @endforeach
+                                            </x-form-select>
+                                            <x-validation-error-component name='unit_uuid' />
                                         </div>
 
                                         <div class="sm:col-span-2">
@@ -58,22 +72,23 @@
                                            <x-validation-error-component name='category_id' />
                                         </div>
 
+                                        <div class="sm:col-span-2">
+                                            <label for="subcategory_id" class="block text-sm font-medium text-gray-700">Select a {{ App\Models\ConcernCategory::where('id',$this->category_id)->value('category') }}
+                                            </label>
 
-                                        <div class="sm:col-span-3">
-                                            <x-label for="unit_uuid">Select a unit
-                                            </x-label>
-
-                                            <x-form-select wire:model="unit_uuid">
-                                                <option value="">Select one</option>
-                                                @foreach ($units as $item)
-                                                <option value="{{ $item->unit->uuid }}" {{ old('unit_uuid')==$item->
-                                                    unit->uuid? 'selected': 'Select one'}}>
-                                                    {{ $item->unit->unit }}
+                                            <x-form-select wire:model="subcategory_id">
+                                                <option value="" selected>Select one</option>
+                                                @foreach ($subcategories as $item)
+                                                <option value="{{ $item->id }}" {{ old('subcategory_id', $subcategory_id)==$item->id? 'selected': 'Select one'}}>
+                                                    {{ $item->subcategory }}
                                                 </option>
                                                 @endforeach
                                             </x-form-select>
-                                          <x-validation-error-component name='unit_uuid' />
+                                            <x-validation-error-component name='subcategory_id' />
                                         </div>
+
+
+
 
 
                                         <div class="sm:col-span-6">

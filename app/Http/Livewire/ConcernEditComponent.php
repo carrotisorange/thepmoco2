@@ -7,7 +7,7 @@ use Session;
 use Livewire\WithFileUploads;
 use Carbon\Carbon;
 use DB;
-use App\Models\{Tenant,Unit,ConcernCategory};
+use App\Models\{Tenant,Unit,ConcernCategory,ConcernSubcategory};
 
 class ConcernEditComponent extends Component
 {
@@ -21,6 +21,7 @@ class ConcernEditComponent extends Component
     public $assessed_at;
     public $assigned_to_id;
     public $category_id;
+    public $subcategory_id;
     public $urgency;
     public $status;
     public $created_at;
@@ -31,6 +32,7 @@ class ConcernEditComponent extends Component
     public $availability_time;
     public $availability_date;
     public $action_taken_image;
+    public $proof_of_payment;
 
     public $email;
     public $mobile_number;
@@ -46,6 +48,7 @@ class ConcernEditComponent extends Component
         $this->assigned_to_id = $concern_details->assigned_to_id;
         $this->assessed_at = $concern_details->assessed_at;
         $this->category_id = $concern_details->category_id;
+        $this->subcategory_id = $concern_details->subcategory_id;
         $this->urgency = $concern_details->urgency;
         $this->status = $concern_details->status;
         $this->concern = $concern_details->concern;
@@ -66,6 +69,7 @@ class ConcernEditComponent extends Component
             'assigned_to_id' => 'nullable',
             'assessed_at' => 'nullable',
             'category_id' => 'nullable',
+            'subcategory_id' => 'nullable',
             'urgency' => 'nullable',
             'status' => 'required',
             'concern' => 'required',
@@ -73,6 +77,7 @@ class ConcernEditComponent extends Component
             'availability_time' => 'nullable',
             'availability_date' => 'nullable',
             'action_taken_image' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            'proof_of_payment' => 'nullable | mimes:jpg,bmp,png,pdf,docx|max:10240',
             'email' => 'nullable',
             'mobile_number' => 'nullable'
         ];
@@ -95,6 +100,11 @@ class ConcernEditComponent extends Component
                 $validatedData['action_taken_image'] = $this->action_taken_image->store('concerns');
             }
 
+            if($this->proof_of_payment)
+            {
+                $validatedData['proof_of_payment'] = $this->proof_of_payment->store('proof_of_payments');
+            }
+
             $this->concern_details->update($validatedData);
         });
 
@@ -113,14 +123,11 @@ class ConcernEditComponent extends Component
 
     public function render()
     {
-        if(auth()->user()->role_id === 8){
-            $users = '';
-        }else{
-            $users = app('App\Http\Controllers\Utilities\UserPropertyController')->getPersonnels(Session::get('property_uuid'));
-        }
+        $users = app('App\Http\Controllers\Utilities\UserPropertyController')->getPersonnels(Session::get('property_uuid'));
 
         return view('livewire.features.concern.concern-edit-component',[
             'categories' => ConcernCategory::all(),
+            'subcategories' => ConcernSubcategory::where('category_id', $this->category_id)->get(),
             'users' => $users
         ]);
     }

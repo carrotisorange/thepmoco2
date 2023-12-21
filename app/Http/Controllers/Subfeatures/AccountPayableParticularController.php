@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Subfeatures;
 
 use App\Http\Controllers\Controller;
-use App\Models\AccountPayableParticular;
+use App\Models\{AccountPayableParticular, Unit};
 
 class AccountPayableParticularController extends Controller
 {
@@ -14,6 +14,6 @@ class AccountPayableParticularController extends Controller
   }
 
   public function unit(){
-    return $this->belongsTo(Unit::class, 'unit_uuid');
+    return $this->belongsTo(Unit::class, 'unit_uuid')->withDefault();
   }
 }

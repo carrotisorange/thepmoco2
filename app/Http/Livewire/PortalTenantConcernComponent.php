@@ -6,10 +6,10 @@ use Livewire\Component;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Notification;
-use Str;
+use Illuminate\Support\Str;
 use Carbon\Carbon;
 use App\Notifications\NotifyAdminOnConcernReportedByTenant;
-use App\Models\{ConcernCategory,Unit,Concern,UserProperty,User,Contract};
+use App\Models\{ConcernCategory,Unit,Concern, ConcernSubcategory, UserProperty,User,Contract, DeedOfSale};
 
 class PortalTenantConcernComponent extends Component
 {
@@ -19,6 +19,7 @@ class PortalTenantConcernComponent extends Component
 
     public $subject;
     public $category_id;
+    public $subcategory_id;
     public $unit_uuid;
     public $concern;
     public $image;
@@ -43,6 +44,7 @@ class PortalTenantConcernComponent extends Component
             'unit_uuid' => ['required', Rule::exists('units', 'uuid')],
             'concern' => 'required',
             'image' => 'required | mimes:jpg,bmp,png,pdf,docx|max:10240',
+            'subcategory_id' => [Rule::exists('concern_subcategories', 'id')],
             'availability_date' => 'required',
             'availability_time' => 'required'
             ];
@@ -50,23 +52,27 @@ class PortalTenantConcernComponent extends Component
 
     public function submitForm()
     {
-        $validatedData = $this->validate();
+       try{
+         $validatedData = $this->validate();
 
-        $concern_id = $this->store_concern($validatedData);
+         $concern_id = $this->store_concern($validatedData);
 
-        $this->store_notification();
+         $this->store_notification();
 
-        return redirect('/'.$this->user->role_id.'/tenant/'. auth()->user()->username.'/concerns/'.$concern_id.'/success')->with('success', 'Changes Saved!');
+         return redirect('/'.$this->user->role_id.'/tenant/'.auth()->user()->username.'/concerns/'.$concern_id.'/success')->with('success', 'Changes Saved!');
+
+       }catch(\Exception $e){
+         ddd($e);
+       }
     }
 
     public function store_concern($validatedData)
     {
         $validatedData['tenant_uuid'] = $this->user->tenant_uuid;
         $validatedData['reference_no'] = auth()->user()->id.'_'.Str::random(8);
-        $validatedData['property_uuid'] = Unit::findOrFail($this->unit_uuid)->property_uuid;
-
+        $validatedData['property_uuid'] = Unit::find($this->unit_uuid)->property_uuid;
+        $validatedData['owner_uuid'] = DeedOfSale::where('unit_uuid',$this->unit_uuid)->value('owner_uuid');
         $validatedData['image'] = $this->image->store('concerns');
-
 
         $concern_id = Concern::create($validatedData)->id;
 
@@ -92,6 +98,7 @@ class PortalTenantConcernComponent extends Component
     {
         return view('livewire.portal-tenant-concern-component',[
             'categories' => ConcernCategory::all(),
+            'subcategories' => ConcernSubcategory::where('category_id', $this->category_id)->get(),
             'units' => Contract::where('tenant_uuid',$this->user->tenant_uuid)->groupBy('unit_uuid')->distinct('unit_uuid')->get()
         ]);
     }

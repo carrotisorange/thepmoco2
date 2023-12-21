@@ -240,11 +240,10 @@
                             </div>
                         </div>
 
-                        <div class="relative flex items-start pb-4 pt-3.5">
+                        {{-- <div class="relative flex items-start pb-4 pt-3.5">
                             <div class="min-w-0 flex-1 text-sm leading-6">
                                 <label for="bladder_tank" class="font-medium text-gray-900">Bladder Tank</label>
-                                {{-- <p id="comments-description" class="text-gray-500">Get notified when someones posts a comment on a
-                                    posting.</p> --}}
+
                             </div>
                             <div class="ml-3 flex h-6 items-center">
                                 <input wire:model="bladder_tank" type="checkbox"
@@ -255,14 +254,13 @@
                         <div class="relative flex items-start pb-4 pt-3.5">
                             <div class="min-w-0 flex-1 text-sm leading-6">
                                 <label for="cause_of_magnet" class="font-medium text-gray-900">Cause of Magnet</label>
-                                {{-- <p id="comments-description" class="text-gray-500">Get notified when someones posts a comment on a
-                                    posting.</p> --}}
+
                             </div>
                             <div class="ml-3 flex h-6 items-center">
                                 <input wire:model="cause_of_magnet" type="checkbox"
                                     class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
                             </div>
-                        </div>
+                        </div> --}}
 
 
                     </div>

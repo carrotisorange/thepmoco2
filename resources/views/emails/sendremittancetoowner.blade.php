@@ -26,7 +26,7 @@ Marketing Fee: {{ number_format($data['marketingFee'], 2) }}
 Miscellaneous Fee: {{ number_format($data['miscellaneousFee'], 2) }} ({{ $data['miscellaneousFeeDescription'] }})
 
 Membership Fee: {{ number_format($data['membershipFee'], 2) }} ({{ $data['membershipFeeDescription'] }})
- 
+
 Condo Dues: {{ number_format($data['condoDues'], 2) }} ({{ $data['condoDuesDescription'] }})
 
 Parking Dues: {{ number_format($data['parkingDues'], 2) }} ({{ $data['parkingDuesDescription'] }})
@@ -59,9 +59,9 @@ Recharge oF Fire Extinguisher: {{ number_format($data['rechargeOfFireExtinguishe
 
 Environmental Fee: {{ number_format($data['environmentalFee'], 2) }} ({{ $data['environmentalFeeDescription'] }})
 
-Bladder Tank: {{ number_format($data['bladderTank'], 2) }} ({{ $data['bladderTankDescription'] }})
+{{-- Bladder Tank: {{ number_format($data['bladderTank'], 2) }} ({{ $data['bladderTankDescription'] }})
 
-Cause of Magnet: {{ number_format($data['causeOfMagnet'], 2) }} ({{ $data['causeOfMagnetDescription'] }})
+Cause of Magnet: {{ number_format($data['causeOfMagnet'], 2) }} ({{ $data['causeOfMagnetDescription'] }}) --}}
 
 --------------------------------------------------------------
 

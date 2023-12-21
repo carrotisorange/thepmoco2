@@ -21,6 +21,7 @@ class RemittanceIndexComponent extends Component
     protected function rules()
     {
         return [
+            'remittances.*.management_fee' => 'nullable',
             'remittances.*.bank_transfer_fee' => 'nullable',
             'remittances.*.miscellaneous_fee' => 'nullable',
             'remittances.*.membership_fee' => 'nullable',
@@ -40,8 +41,8 @@ class RemittanceIndexComponent extends Component
             'remittances.*.materials_recovery_facility' => 'nullable',
             'remittances.*.recharge_of_fire_extinguisher' => 'nullable',
             'remittances.*.environmental_fee' => 'nullable',
-            'remittances.*.bladder_tank' => 'nullable',
-            'remittances.*.cause_of_magnet' => 'nullable',
+            // 'remittances.*.bladder_tank' => 'nullable',
+            // 'remittances.*.cause_of_magnet' => 'nullable',
             'remittances.*.cv_no' => 'nullable',
             'remittances.*.check_no' => 'nullable',
         ];
@@ -61,6 +62,7 @@ class RemittanceIndexComponent extends Component
 
             Remittance::where('id', $id)
             ->update([
+                'management_fee' => $remittance->management_fee,
                 'bank_transfer_fee' => $remittance->bank_transfer_fee,
                 'miscellaneous_fee' => $remittance->miscellaneous_fee,
                 'membership_fee' => $remittance->membership_fee,
@@ -80,18 +82,18 @@ class RemittanceIndexComponent extends Component
                 'materials_recovery_facility' => $remittance->materials_recovery_facility,
                 'recharge_of_fire_extinguisher' => $remittance->recharge_of_fire_extinguisher,
                 'environmental_fee' => $remittance->environmental_fee,
-                'bladder_tank' => $remittance->bladder_tank,
-                'cause_of_magnet' => $remittance->cause_of_magnet,
+                // 'bladder_tank' => $remittance->bladder_tank,
+                // 'cause_of_magnet' => $remittance->cause_of_magnet,
                 'total_deductions' => $remittance->management_fee + $remittance->marketing_fee + $remittance->bank_transfer_fee + $remittance->miscellaneous_fee + $remittance->membership_fee + $remittance->condo_dues
                 + $remittance->parking_dues + $remittance->water + $remittance->electricity + $remittance->surcharges + $remittance->building_insurance
                 + $remittance->real_property_tax + $remittance->housekeeping_fee + $remittance->laundry_fee + $remittance->complimentary + $remittance->internet
                 + $remittance->special_assessment + $remittance->materials_recovery_facility + $remittance->recharge_of_fire_extinguisher + $remittance->recharge_of_fire_extinguisher
-                + $remittance->environmental_fee + $remittance->bladder_tank + $remittance->cause_of_magnet,
+                + $remittance->environmental_fee,
                 'remittance' => $remittance->net_rent - ($remittance->bank_transfer_fee + $remittance->miscellaneous_fee + $remittance->membership_fee + $remittance->condo_dues
                 + $remittance->parking_dues + $remittance->water + $remittance->electricity + $remittance->surcharges + $remittance->building_insurance
                 + $remittance->real_property_tax + $remittance->housekeeping_fee + $remittance->laundry_fee + $remittance->complimentary + $remittance->internet
                 + $remittance->special_assessment + $remittance->materials_recovery_facility + $remittance->recharge_of_fire_extinguisher + $remittance->recharge_of_fire_extinguisher
-                + $remittance->environmental_fee + $remittance->bladder_tank + $remittance->cause_of_magnet),
+                + $remittance->environmental_fee),
                 'cv_no' => $remittance->cv_no,
                 'check_no' => $remittance->check_no
             ]);

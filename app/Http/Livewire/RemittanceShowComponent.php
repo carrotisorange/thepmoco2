@@ -34,8 +34,8 @@ class RemittanceShowComponent extends Component
     public $materialRecoveryFacilityDescription;
     public $rechargeOfFireExtinguisherDescription;
     public $environmentalFeeDescription;
-    public $bladderTankDescription;
-    public $causeOfMagnetDescription;
+    // public $bladderTankDescription;
+    // public $causeOfMagnetDescription;
 
 
     public function mount(){
@@ -57,8 +57,8 @@ class RemittanceShowComponent extends Component
         $this->materialRecoveryFacilityDescription = Remittance::where('id',$this->getRemittanceId())->value('materials_recovery_facility_description');
         $this->rechargeOfFireExtinguisherDescription = Remittance::where('id',$this->getRemittanceId())->value('recharge_of_fire_extinguisher_description');
         $this->environmentalFeeDescription = Remittance::where('id',$this->getRemittanceId())->value('environmental_fee_description');
-        $this->bladderTankDescription = Remittance::where('id',$this->getRemittanceId())->value('bladder_tank_description');
-        $this->causeOfMagnetDescription = Remittance::where('id',$this->getRemittanceId())->value('cause_of_magnet_description');
+        // $this->bladderTankDescription = Remittance::where('id',$this->getRemittanceId())->value('bladder_tank_description');
+        // $this->causeOfMagnetDescription = Remittance::where('id',$this->getRemittanceId())->value('cause_of_magnet_description');
     }
 
     public function updateRemittance($id){
@@ -83,8 +83,8 @@ class RemittanceShowComponent extends Component
             'materials_recovery_facility_description' => $this->materialRecoveryFacilityDescription,
             'recharge_of_fire_extinguisher_description' => $this->rechargeOfFireExtinguisherDescription,
             'environmental_fee_description' => $this->environmentalFeeDescription,
-            'bladder_tank_description' => $this->bladderTankDescription,
-            'cause_of_magnet_description' => $this->causeOfMagnetDescription
+            // 'bladder_tank_description' => $this->bladderTankDescription,
+            // 'cause_of_magnet_description' => $this->causeOfMagnetDescription
         ]);
 
         session()->flash('success', 'Changes Saved!');
@@ -118,8 +118,8 @@ class RemittanceShowComponent extends Component
         $this->materialRecoveryFacilityDescription = Remittance::where('id',$this->getRemittanceId())->value('materials_recovery_facility_description');
         $this->rechargeOfFireExtinguisherDescription = Remittance::where('id',$this->getRemittanceId())->value('recharge_of_fire_extinguisher_description');
         $this->environmentalFeeDescription = Remittance::where('id',$this->getRemittanceId())->value('environmental_fee_description');
-        $this->bladderTankDescription = Remittance::where('id',$this->getRemittanceId())->value('bladder_tank_description');
-        $this->causeOfMagnetDescription = Remittance::where('id',$this->getRemittanceId())->value('cause_of_magnet_description');
+        // $this->bladderTankDescription = Remittance::where('id',$this->getRemittanceId())->value('bladder_tank_description');
+        // $this->causeOfMagnetDescription = Remittance::where('id',$this->getRemittanceId())->value('cause_of_magnet_description');
     }
 
     function sendRemittanceToOwner(){
@@ -178,10 +178,10 @@ class RemittanceShowComponent extends Component
                 'rechargeOfFireExtinguisherDescription' => Remittance::where('id',$this->getRemittanceId())->value('recharge_of_fire_extinguisher_description'),
                 'environmentalFee' => Remittance::where('id',$this->getRemittanceId())->value('environmental_fee'),
                 'environmentalFeeDescription' => Remittance::where('id',$this->getRemittanceId())->value('environmental_fee_description'),
-                'bladderTank' => Remittance::where('id',$this->getRemittanceId())->value('bladder_tank'),
-                'bladderTankDescription' => Remittance::where('id',$this->getRemittanceId())->value('bladder_tank_description'),
-                'causeOfMagnet' => Remittance::where('id',$this->getRemittanceId())->value('cause_of_magnet'),
-                'causeOfMagnetDescription' => Remittance::where('id',$this->getRemittanceId())->value('cause_of_magnet_description'),
+                // 'bladderTank' => Remittance::where('id',$this->getRemittanceId())->value('bladder_tank'),
+                // 'bladderTankDescription' => Remittance::where('id',$this->getRemittanceId())->value('bladder_tank_description'),
+                // 'causeOfMagnet' => Remittance::where('id',$this->getRemittanceId())->value('cause_of_magnet'),
+                // 'causeOfMagnetDescription' => Remittance::where('id',$this->getRemittanceId())->value('cause_of_magnet_description'),
                 'remittance' => Remittance::where('id',$this->getRemittanceId())->value('remittance'),
                 'cv_no' => Remittance::where('id',$this->getRemittanceId())->value('cv_no'),
                 'check_no' => Remittance::where('id',$this->getRemittanceId())->value('condo_dues_description'),

@@ -26,7 +26,14 @@ class UserPropertyController extends Controller
 
     public function getPersonnels($property_uuid)
     {
-        return Property::find($property_uuid)->property_users()->get();
+        $users  = '';
+         if(auth()->user()->role_id == 8){
+             $users = '';
+         }else{
+            $users = Property::find($property_uuid)->property_users()->get();
+         }
+
+        return $users;
     }
 
     public function store($property_uuid, $user_id, $is_account_owner, $is_approved, $role_id)

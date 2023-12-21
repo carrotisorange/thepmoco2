@@ -852,7 +852,7 @@
                     <dl>
                         <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Income</dt>
                         <dd class="leading-none text-3xl font-bold text-gray-900 dark:text-white">₱{{
-                            number_format($postedCollections-$completedRFPs,2) }}</dd>
+                        number_format($postedCollections-$completedRFPs,2) }}</dd>
                     </dl>
                 </div>
 
@@ -2458,7 +2458,7 @@
                     yaxis: {
                     labels: {
                         formatter: function (value) {
-                        return value 
+                        return value
                         },
                     },
                     },

@@ -85,14 +85,7 @@
                                     {{ number_format($remittance->bank_transfer_fee, 2)}}
                                 </p>
 
-                                <p class="flex-col py-2 text-sm font-base text-gray-500">
-                                    Management Fee
-                                </p>
 
-
-                                <p class="col-start-3 px-6 py-2 mt-1 text-sm font-base text-gray-500">
-                                    {{ number_format($remittance->management_fee, 2)}}
-                                </p>
 
                                 <p class="flex-col py-2 text-sm font-base text-gray-500">
                                     Marketing Fee
@@ -101,6 +94,15 @@
 
                                 <p class="col-start-3 px-6 py-2 mt-1 text-sm font-base text-gray-500">
                                     {{ number_format($remittance->marketing_fee, 2)}}
+                                </p>
+
+                                <p class="flex-col py-2 text-sm font-base text-gray-500">
+                                    Management Fee
+                                </p>
+
+
+                                <p class="col-start-3 px-6 py-2 mt-1 text-sm font-base text-gray-500">
+                                    {{ number_format($remittance->management_fee, 2)}}
                                 </p>
 
                                 <p class="flex-col mt-1 text-sm font-base text-gray-500">
@@ -299,7 +301,7 @@
                                 <p class="flex-col mt-1 px-6 py-2 text-sm font-base text-gray-500">
                                     {{ number_format($remittance->environmental_fee, 2)}}
                                 </p>
-
+{{--
                                 <p class="flex-col mt-1 text-sm font-base text-gray-500">
                                     Bladder Tank
                                 </p>
@@ -320,7 +322,7 @@
                                     class="w-full text-xs border border-gray-400 py-2 my-2" />
                                 <p class="flex-col mt-1 px-6 py-2 text-sm font-base text-gray-500">
                                     {{ number_format($remittance->cause_of_magnet, 2)}}
-                                </p>
+                                </p> --}}
 
                             </div>
                         </div>

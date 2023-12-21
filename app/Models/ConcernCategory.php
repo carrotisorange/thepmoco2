@@ -13,4 +13,8 @@ class ConcernCategory extends Model
     {
         return $this->hasMany(Concern::class);
     }
+
+    public function subcategory(){
+        return $this->belongsTo(ConcernSubcategory::class, 'category_id')->withDefault();
+    }
 }
