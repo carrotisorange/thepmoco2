@@ -12,13 +12,14 @@
             <x-td>
                 <b>{{ number_format($collections->sum('collection'), 2) }} ({{ $collections->count() }})</b>
             </x-td>
-            <x-td></x-td>
+            {{-- <x-td></x-td> --}}
         </tr>
     </x-table-body-component>
     <x-table-head-component>
         <tr>
             <x-th>#</x-th>
             <x-th>AR #</x-th>
+            <x-th>OR #</x-th>
             <x-th>BILL #</x-th>
             <x-th> BILL TO</x-th>
             <x-th> DATE APPLIED</x-th>
@@ -26,7 +27,7 @@
             <x-th> CHEQUE NO </x-th>
             <x-th> BANK</x-th>
             <x-th> AMOUNT PAID</x-th>
-            <x-th></x-th>
+            {{-- <x-th></x-th> --}}
         </tr>
     </x-table-head-component>
     <x-table-body-component>
@@ -34,6 +35,7 @@
         <tr>
             <x-td><b>{{ $index+1 }}</b></x-td>
             <x-td>{{ $item->ar_no }}</x-td>
+            <x-td>{{ $item->or_no }}</x-td>
             <x-td>
                 <?php $bill_nos = App\Models\Collection::where('property_uuid', $item->property_uuid)->posted()->where('ar_no', $item->ar_no)->get();?>
                 @foreach ($bill_nos as $bill_no)
@@ -73,9 +75,11 @@
                 $items_count = App\Models\Collection::where('batch_no', $item->collection_batch_no)->posted()->count();
             ?>
             <x-td>
-                {{ number_format(App\Models\Collection::where('property_uuid', $item->property_uuid)->posted()->where('ar_no', $item->ar_no)->sum('collection'),2) }} ({{ $item->count }})
+                <x-link-component link="/property/{{ $item->property_uuid }}/collection/{{ $item->ar_no }}/tenant/{{ $item->tenant_uuid }}/edit">
+                     {{ number_format(App\Models\Collection::where('property_uuid', $item->property_uuid)->posted()->where('ar_no', $item->ar_no)->sum('collection'),2) }} ({{ $item->count }})
+                </x-link-component>
             </x-td>
-            <x-td>
+            {{-- <x-td>
                 <x-button id="dropdownDefaultButton({{ $item->id }})" data-dropdown-placement="left-end"
                     data-dropdown-toggle="dropdown({{ $item->id }})">View
                   &nbsp; <i class="fa-solid fa-caret-down"></i>
@@ -131,9 +135,9 @@
                     Delete
                 </x-button>
                  @endcannot
-            </x-td>
+            </x-td> --}}
         </tr>
-        @livewire('delete-collection-component', ['collection' => $item], key(Carbon\Carbon::now()->timestamp.''.$item->id))
+        {{-- @livewire('delete-collection-component', ['collection' => $item], key(Carbon\Carbon::now()->timestamp.''.$item->id)) --}}
         @endforeach
     </x-table-body-component>
 </x-table-component>

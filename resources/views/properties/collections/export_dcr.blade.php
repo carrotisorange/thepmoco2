@@ -8,6 +8,7 @@
             <tr>
                 <x-th>#</x-th>
                 <x-th>AR #</x-th>
+                <x-th>OR #</x-th>
                 <x-th>Bill #</x-th>
                 <x-th>Unit</x-th>
                 <x-th>Bill To</x-th>
@@ -21,6 +22,7 @@
             <tr>
                 <x-td>{{ $index+1 }}</x-td>
                 <x-td>{{ $item->ar_no }}</x-td>
+                <x-td>{{ $item->or_no }}</x-td>
                 <x-td>{{ $item->bill->bill_no }}</x-td>
                 {{-- <x-td>{{ Carbon\Carbon::parse($item->bill->created_at)->format('M d, Y') }}</x-td> --}}
                 <x-td>{{ $item->unit->unit }}</x-td>

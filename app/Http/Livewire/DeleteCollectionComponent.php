@@ -53,7 +53,7 @@ class DeleteCollectionComponent extends Component
         ->where('ar_no', $this->collection->ar_no)
         ->delete();
 
-        return redirect(url()->previous())->with('success', 'Changes Saved!');
+        return redirect('/property/'.Session::get('property_uuid').'/collection/')->with('success', 'Changes Saved!');
     }
 
     public function render()
