@@ -9,6 +9,7 @@
             <x-td></x-td>
             <x-td></x-td>
             <x-td></x-td>
+            <x-td></x-td>
             <x-td>
                 <b>{{ number_format($collections->sum('collection'), 2) }} ({{ $collections->count() }})</b>
             </x-td>
