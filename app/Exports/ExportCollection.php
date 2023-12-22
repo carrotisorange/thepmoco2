@@ -17,6 +17,8 @@ class ExportCollection implements FromCollection, WithHeadings {
 
         "AR #",
 
+        "OR #",
+
         "Bill #",
 
         "Unit",
@@ -43,6 +45,7 @@ class ExportCollection implements FromCollection, WithHeadings {
       select(
         DB::raw('CAST(collections.created_at AS DATE)'),
         'ar_no',
+        'or_no',
         'bill_no',
         'unit',
          'tenant',

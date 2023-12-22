@@ -6,5 +6,6 @@
 
     Route::prefix('collection')->group(function(){
            Route::get('/', [CollectionController::class, 'index'])->name('collection');
-           Route::get('/{status}', [CollectionController::class, 'paymentVerificationIndex'])->name('collection');;
+           Route::get('/{status}', [CollectionController::class, 'paymentVerificationIndex'])->name('collection');
+           Route::get('/{collection:ar_no}/tenant/{tenant}/edit', [CollectionController::class, 'edit'])->name('collection');
     });

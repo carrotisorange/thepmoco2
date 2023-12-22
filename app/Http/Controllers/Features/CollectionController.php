@@ -114,6 +114,13 @@ class CollectionController extends Controller
         ]);
     }
 
+    public function edit(Property $property, Collection $collection, Tenant $tenant){
+
+        $collections = Collection::where('property_uuid', $property->uuid)->where('tenant_uuid', $tenant->uuid)->where('ar_no', $collection->ar_no)->get();
+
+        return view('features.collections.edit',compact('collection','collections','tenant'));
+    }
+
     public function getPaymentRequests($property_uuid)
     {
         return PaymentRequest::join('tenants', 'payment_requests.tenant_uuid', 'tenants.uuid')

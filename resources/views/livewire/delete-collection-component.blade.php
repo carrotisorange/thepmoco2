@@ -6,7 +6,7 @@
     <div class="p-6 text-center">
 
         <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete
-            this ar_no ({{$collection->ar_no}})?</h3>
+            collection AR # ({{$collection->ar_no}})?</h3>
 
         <div class="mt-5 mb-5 sm:mt-6">
 
