@@ -145,7 +145,7 @@
 
                                                 </li>
                                                 <?php $proof_of_payment = App\Models\AcknowledgementReceipt::where('property_uuid', $item->property_uuid)
-                                                ->where('tenant_uuid', $item->tenant_uuid)
+                                            
                                                 ->where('ar_no', $item->ar_no); ?>
                                                 <li>
                                                     @if($proof_of_payment->pluck('attachment')->first())
