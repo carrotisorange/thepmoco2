@@ -6,7 +6,7 @@
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
                         <h1 class="text-3xl font-bold text-gray-700" wire:ignore>
-                            {{ucfirst(Route::current()->getName())}}/{{ $tenant->tenant }}/AR # {{ $collection->ar_no }}
+                            {{ucfirst(Route::current()->getName())}}/{{ $type }}/AR # {{ $collection->ar_no }}
                         </h1>
                     </div>
                     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">

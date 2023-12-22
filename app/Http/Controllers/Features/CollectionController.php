@@ -114,11 +114,16 @@ class CollectionController extends Controller
         ]);
     }
 
-    public function edit(Property $property, Collection $collection, Tenant $tenant){
+    public function edit(Property $property, Collection $collection, $type, $uuid){
+        if($type=='tenant'){
+            $collections = Collection::where('property_uuid', $property->uuid)->where('tenant_uuid', $uuid)->where('ar_no', $collection->ar_no)->get();
+        }elseif($type == 'owner'){
+            $collections = Collection::where('property_uuid', $property->uuid)->where('owner_uuid', $uuid)->where('ar_no', $collection->ar_no)->get();
+        }else{
+            $collections = Collection::where('property_uuid', $property->uuid)->where('guest_uuid', $uuid)->where('ar_no', $collection->ar_no)->get();
+        }
 
-        $collections = Collection::where('property_uuid', $property->uuid)->where('tenant_uuid', $tenant->uuid)->where('ar_no', $collection->ar_no)->get();
-
-        return view('features.collections.edit',compact('collection','collections','tenant'));
+        return view('features.collections.edit',compact('collection','collections','type'));
     }
 
     public function getPaymentRequests($property_uuid)

@@ -76,9 +76,23 @@
                 $items_count = App\Models\Collection::where('batch_no', $item->collection_batch_no)->posted()->count();
             ?>
             <x-td>
-                <x-link-component link="/property/{{ $item->property_uuid }}/collection/{{ $item->ar_no }}/tenant/{{ $item->tenant_uuid }}/edit">
-                     {{ number_format(App\Models\Collection::where('property_uuid', $item->property_uuid)->posted()->where('ar_no', $item->ar_no)->sum('collection'),2) }} ({{ $item->count }})
+                @if($item->tenant_uuid)
+                <x-link-component link="/property/{{ $item->property_uuid }}/collection/{{ $item->ar_no }}/{{ 'tenant' }}/{{ $item->tenant_uuid }}/edit">
+                    {{ number_format(App\Models\Collection::where('property_uuid', $item->property_uuid)->posted()->where('ar_no',
+                    $item->ar_no)->sum('collection'),2) }} ({{ $item->count }})
                 </x-link-component>
+                @elseif($item->owner_uuid)
+                <x-link-component link="/property/{{ $item->property_uuid }}/collection/{{ $item->ar_no }}/{{ 'owner' }}/{{ $item->owner_uuid }}/edit">
+                   {{ number_format(App\Models\Collection::where('property_uuid', $item->property_uuid)->posted()->where('ar_no',
+                $item->ar_no)->sum('collection'),2) }} ({{ $item->count }})
+                </x-link-component>
+                @else
+                <x-link-component link="/property/{{ $item->property_uuid }}/collection/{{ $item->ar_no }}/{{ 'guest' }}/{{ $item->guest_uuid }}/edit">
+                  {{ number_format(App\Models\Collection::where('property_uuid', $item->property_uuid)->posted()->where('ar_no',
+                $item->ar_no)->sum('collection'),2) }} ({{ $item->count }})
+                </x-link-component>
+                @endif
+
             </x-td>
             {{-- <x-td>
                 <x-button id="dropdownDefaultButton({{ $item->id }})" data-dropdown-placement="left-end"
