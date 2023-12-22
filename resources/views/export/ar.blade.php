@@ -90,6 +90,10 @@
             <div>
                 <p>AR number: <span class="font-semibold tracking-wider">{{ $ar_no }}</span></p>
             </div>
+            <div>
+                <p>OR number: <span class="font-semibold tracking-wider">{{ $or_no }}</span></p>
+            </div>
+
         </div>
 
         <div class="block text-base pt-8">

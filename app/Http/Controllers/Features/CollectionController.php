@@ -414,6 +414,7 @@ class CollectionController extends Controller
          'mode_of_payment' => $collection->form,
          'user' => $collection->user->name,
          'ar_no' => $collection->ar_no,
+         'or_no' => $collection->or_no,
          'amount' => $aggregated_collection->sum('collection'),
          'cheque_no' => $collection->cheque_no,
          'bank' => $collection->bank,

@@ -109,11 +109,11 @@
                                         $items_count = App\Models\Collection::where('tenant_uuid', $item->tenant_uuid)->where('ar_no', $item->ar_no)->posted()->count();
                                     ?>
                                     <x-td>
-                                        <x-link-component link="/property/{{ $item->property_uuid }}/collection/{{ $item->ar_no }}/edit">
+                                        {{-- <x-link-component link="/property/{{ $item->property_uuid }}/collection/{{ $item->ar_no }}/edit"> --}}
                                             {{ number_format(App\Models\Collection::where('property_uuid',
                                             $item->property_uuid)->posted()->where('ar_no', $item->ar_no)->sum('collection'),2) }} ({{
                                             $items_count }})
-                                        </x-link-component>
+                                        {{-- </x-link-component> --}}
                                     </x-td>
                                     <x-td>
                                         <x-button id="dropdownDefaultButton({{ $item->id }})" data-dropdown-placement="left-end"
@@ -145,7 +145,8 @@
 
                                                 </li>
                                                 <?php $proof_of_payment = App\Models\AcknowledgementReceipt::where('property_uuid', $item->property_uuid)
-                                                    ->where('ar_no', $item->ar_no); ?>
+                                                ->where('tenant_uuid', $item->tenant_uuid)
+                                                ->where('ar_no', $item->ar_no); ?>
                                                 <li>
                                                     @if($proof_of_payment->pluck('attachment')->first())
                                                     <a href="{{ asset('/storage/'.$proof_of_payment->pluck('attachment')->first()) }}"
