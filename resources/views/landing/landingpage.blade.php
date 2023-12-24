@@ -355,53 +355,17 @@
                 </div>
 
                 <div class="slide pb-8 lg:pb-16 py-0 bg-transparent" id="">
-                    <div class="-mt-48 lg:mt-0 mx-auto max-w-2xl px-4 sm:px-6  lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
-                        <!-- Product details -->
-                        <div class="lg:max-w-lg lg:self-end">
-                  
-                        <!-- <div class="">
-                            <img src="{{ asset('/brands/propsuite/limited.png') }}" class="w-36">
-                        </div> -->
-
-                        <div class="-mt-24 flex justify-center items-center">
-                            <img src="{{ asset('/brands/landing/propsuite-hoa.png') }}" class="w-36">
-                        </div>
-
-
-                           
-
-                            <div class=" flex justify-center items-center">
-                            <img src="{{ asset('/brands/propsuite/shelter.png') }}" class="w-72">
-                            </div>
-
+                    <div class="flex justify-center items-center  mx-auto ">
             
-                        </div>
 
-                        <div class="mt-0 lg:mt-20 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
+                        <div class="-mt-16 lg:mt-0 max-w-lg">
                             <div class="overflow-hidden ">
-                                <img src="{{ asset('/brands/propsuite/dhsud-img.png') }}" class="h-48 lg:h-96 w-full object-cover object-center">
+                                <img src="{{ asset('/brands/propsuite/christmas.png') }}" class="h-full w-full object-cover object-center">
                             </div>
                         </div>
 
            
-                        <div>
-                 
-                            <div class="mt-4 flex justify-center items-center">                              
-                                <span class="max-w-sm text-lg lg:text-2xl text-gray-700 font-semibold">
-                                    DHSUD Registered HOA up to 20% discount.
-                                </span>                                
-                            </div>
-   
-                            
-
-                            <div class="mt-10 flex justify-center items-center">
-                                
-                                <a href="https://hoa.propsuite.net" class="flex w-56 items-center justify-center rounded-full border border-transparent bg-yellow-500 px-8 py-3 text-base font-medium text-white hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">Register</a>
-                            </div>
-                          
-                           
                      
-                        </div>
                     </div>
                     </div>
 
@@ -651,7 +615,13 @@
                         </div>
                         <div class="flex-col pt-3">
                             <p class="text-gray-500 dark:text-gray-400 text-base text-justify"><span
-                                    class="font-bold">PropSuite Daily</span> is ideal for daily rental properties like guest houses, transient homes, airbnb properties, or Mabuhay Accommodations to manage arrival and departure of guests to avoid double bookings.</p>
+                                    class="font-bold">PropSuite Daily</span> as a service that provides a transformative digital
+                                solution to simplify
+                                operations of long term or short term rental properties. Unlike manual processes, our
+                                online system
+                                provides real-time, reliable and accessible information to landlords and managers to
+                                increase
+                                transparency and efficiency of operations. </p>
                             <div class="flex items-center justify-end mt-5">
                                 <a href="/propsuite-daily"><button
                                         class="bg-yellow-200 hover:bg-yellow-400 p-2 rounded-md text-sm font-bold">Learn
@@ -1122,7 +1092,7 @@
 
                                                 <script>
                                                     var doc = document.getElementById("background");
-                            var color = ["#4F1964","#DBB132", "#CEBBF6","#DBC054",];
+                            var color = ["#4F1964","#DBB132", "#E6DAFF","#DBC054",];
                             var i = 0;
                             function change() {
                                 doc.style.backgroundColor = color[i];
