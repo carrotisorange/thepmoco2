@@ -11,6 +11,11 @@
                 <div class="group inline-block">
                     <x-button data-modal-toggle="create-bulk-bill-modal"> Bulk bill </x-button>
                 </div>
+                <div class="group inline-block">
+                    <x-button data-modal-toggle="particular-create-component"> Create Particular </x-button>
+                </div>
+
+
                 <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/bill/delinquents'">
                     View Delinquents
                 </x-button>
