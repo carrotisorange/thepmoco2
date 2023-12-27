@@ -33,7 +33,7 @@ class CollectionEditComponent extends Component
 
         $validatedInput = $this->validate();
 
-        Collection::where('ar_no', $this->collection->ar_no)->update($validatedInput);
+        Collection::where('property_uuid', Session::get('property_uuid'))->where('ar_no', $this->collection->ar_no)->update($validatedInput);
 
         return redirect(url()->previous())->with('success', 'Changes Saved!');
     }
