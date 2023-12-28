@@ -92,10 +92,10 @@ class Bill extends Model
                 $query->groupBy($groupBy);
             })
             ->when($createdAt, function($query, $createdAt){
-                $query->whereMonth('created_at', Carbon::parse($createdAt)->month);
+                $query->whereMonth('start', Carbon::parse($createdAt)->month);
             })
             ->when($createdAt, function($query, $createdAt){
-                $query->whereYear('created_at', Carbon::parse($createdAt)->year);
+                $query->whereYear('start', Carbon::parse($createdAt)->year);
             })
             ->when($particularId, function($query, $particularId){
                 $query->where('particular_id', $particularId);

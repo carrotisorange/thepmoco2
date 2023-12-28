@@ -17,7 +17,7 @@ class BillIndexComponent extends Component
    public $search;
    public $selectedBills = [];
    public $selectAllBills = false;
-   public $status = 'unpaid';
+   public $status = '';
    public $view = 'listView';
    public $isPaymentAllowed = false;
    public $particular_id;
@@ -88,10 +88,10 @@ public function get_bills(){
         $query->where('particular_id', $this->particular_id);
     })
      ->when($this->created_at, function($query){
-        $query->whereMonth('created_at', Carbon::parse($this->created_at)->month);
+        $query->whereMonth('start', Carbon::parse($this->created_at)->month);
      })
     ->when($this->created_at, function($query){
-        $query->whereYear('created_at', Carbon::parse($this->created_at)->year);
+        $query->whereYear('start', Carbon::parse($this->created_at)->year);
      })
     ->paginate(10);
 }
@@ -104,9 +104,9 @@ public function get_bills(){
    public function get_posted_dates()
    {
       return Bill::where('property_uuid', Session::get('property_uuid'))
-      ->select('*',DB::raw("(DATE_FORMAT(created_at,'%M %d, %Y')) as date_posted"), DB::raw('count(*) as count'))
-      ->groupBy(DB::raw('month(created_at)+"-"+year(created_at)'))
-      ->orderBy('created_at')
+      ->select('*',DB::raw("(DATE_FORMAT(start,'%M %d, %Y')) as date_posted"), DB::raw('count(*) as count'))
+      ->groupBy(DB::raw('month(start)+"-"+year(start)'))
+      ->orderBy('start')
       ->get();
    }
 
