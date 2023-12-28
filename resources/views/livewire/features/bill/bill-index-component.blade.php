@@ -75,9 +75,9 @@
           <div class="sm:col-span-3">
                 <x-form-select name="created_at" wire:model="created_at">
 
-                    <option value="">Date posted</option>
+                    <option value="">Date started</option>
                    @foreach ($dates_posted as $item)
-                  <option value="{{ $item->created_at }}">{{ Carbon\Carbon::parse($item->created_at)->format('M, Y')}}</option>
+                  <option value="{{ $item->start }}">{{ Carbon\Carbon::parse($item->start)->format('M, Y')}}</option>
                     @endforeach
                 </x-form-select>
             </div>
