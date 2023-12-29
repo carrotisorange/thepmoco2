@@ -60,6 +60,8 @@
                 <x-td></x-td>
                 <x-td></x-td>
                 <x-td></x-td>
+                <x-td></x-td>
+                <x-td></x-td>
                 <x-td><b>{{ number_format($collections->sum('collection'), 2) }}</b> </x-td>
             </tr>
             </tbody>
