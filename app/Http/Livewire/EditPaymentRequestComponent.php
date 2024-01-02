@@ -46,8 +46,6 @@ class EditPaymentRequestComponent extends Component
     }
 
     public function updatePaymentRequest(){
-        sleep(2);
-        
 
         $this->validate();
 
@@ -66,7 +64,6 @@ class EditPaymentRequestComponent extends Component
             return redirect('/property/'.Session::get('property_uuid').'/collection/pending');
         }
 
-      
     }
 
     public function removeAttachment(){

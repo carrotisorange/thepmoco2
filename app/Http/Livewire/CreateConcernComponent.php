@@ -40,8 +40,6 @@ class CreateConcernComponent extends Component
 
     public function submitButton(){
 
-        sleep(2);
-
         $validated = $this->validate();
 
         $validated['tenant_uuid'] = $this->tenant->uuid;

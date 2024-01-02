@@ -1,37 +1,68 @@
 <div>
     <div class="mt-8">
         <div class="max-full mx-auto sm:px-6">
-
             <div class=" p-4 purple" id="remittance-summary" role="tabpanel" aria-labelledby="remittance-summary-tab">
-
                 <div class="sm:flex sm:items-center justify-between space-x-6 pb-8">
                     <div class="underline text-sm text-purple-500"><a
                             href="/property/{{ $unit->property_uuid }}/unit/{{ $unit->uuid }}">Go back to Unit</a></div>
-                    <div class="px-8 text-xl font-medium">
+                    {{-- <div class="px-8 text-xl font-medium">
                         Unit <b>{{ $unit->unit }}</b> Remittance
-                    </div>
+                    </div> --}}
 
-                    <div class="flex justify-end w-full px-10">
+                    <div class="flex justify-end w-1/2 px-8">
                         <p class="text-sm font-light">Filter by Month:</p>
-
                         <x-form-select id="small" wire:model="remittanceDate">
-
                             @foreach ($dates as $date)
-                            <option value="{{ $date->created_at }}">{{
-                                Carbon\Carbon::parse($date->created_at)->format('M, Y') }}</option>
+                            <option value="{{ $date->created_at }}">{{Carbon\Carbon::parse($date->created_at)->format('M, Y') }}</option>
                             @endforeach
                         </x-form-select>
                     </div>
 
-                    <form wire:submit.prevent="sendRemittanceToOwner">
+                    <div class="group inline-block">
+                        <x-button>Select &nbsp; <i class="fa-solid fa-caret-down"></i></x-button>
+                        <ul
+                            class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute  transition duration-150 ease-in-out origin-top min-w-32">
+                            <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                                <a href="#/" wire:click="sendRemittanceToOwner"> Send</a>
+                            </li>
+                            <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                                <a href="#/" wire:click="exportRemittance"> Export</a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    {{-- <form wire:submit.prevent="sendRemittanceToOwner">
                         <x-button type="submit">Send </x-button>
-                    </form>
+                    </form> --}}
                 </div>
 
 
 
                 <div>
 
+                    <div class="flex items-center px-8 py-5 border-b">
+                        <div class="w-0 flex-1 pt-0.5">
+                            <div class="grid grid-cols-2">
+                                <p class="text-sm font-medium text-gray-900">Date
+                                </p>
+                                <p class="mt-1 text-sm font-base text-gray-500">
+                                    {{ Carbon\Carbon::parse($remittanceDate)->format('M d, Y') }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                <div class="flex items-center px-8 py-5 border-b">
+                        <div class="w-0 flex-1 pt-0.5">
+                            <div class="grid grid-cols-2">
+                                <p class="text-sm font-medium text-gray-900">Unit
+                                </p>
+                                <p class="mt-1 text-sm font-base text-gray-500">
+                               {{ $unit->unit }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="flex items-center px-8 py-5 border-b">
                         <div class="w-0 flex-1 pt-0.5">

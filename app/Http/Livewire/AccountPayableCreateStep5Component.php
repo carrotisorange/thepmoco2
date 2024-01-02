@@ -84,7 +84,6 @@ class AccountPayableCreateStep5Component extends Component
     }
 
     public function storeAccountPayableLiquidation(){
-        sleep(2);
 
         $this->validate();
 
@@ -196,7 +195,6 @@ class AccountPayableCreateStep5Component extends Component
     }
 
     public function skipLiquidation(){
-        sleep(2);
 
          AccountPayable::where('id', $this->accountpayable->id)
          ->update([

@@ -17,19 +17,15 @@
                 AMOUNT</x-th>
             <x-th>
                 MODE OF PAYMENT</x-th>
-
             <x-th>
                 STATUS</x-th>
             <x-th>
                 REMARKS</x-th>
             <x-th>
             </x-th>
-
-
         </tr>
     </x-table-head-component>
     <x-table-body-component>
-        <!-- Selected: "bg-gray-50" -->
         @forelse($requests as $index => $item )
         <tr>
             <x-td>
@@ -84,9 +80,6 @@
                     </a>
                     @endif
             </x-td>
-
-
-
         </tr>
         @empty
         <tr>
@@ -96,6 +89,5 @@
                 found.</x-td>
         </tr>
         @endforelse
-
     </x-table-body-component>
 </x-table-component>

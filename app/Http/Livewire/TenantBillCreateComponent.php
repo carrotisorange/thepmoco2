@@ -7,7 +7,7 @@ use Livewire\WithPagination;
 use App\Models\Collection;
 use Illuminate\Validation\Rule;
 use Carbon\Carbon;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Session;
 use App\Models\{Property,Particular,PropertyParticular,Tenant,Bill,Contract};
 
@@ -160,20 +160,21 @@ class TenantBillCreateComponent extends Component
 
          try
          {
-            //begin the transaction
-            DB::transaction(function () use ($i, $collection_ar_no, $collection_batch_no) {
+            $bill = Bill::find($this->selectedBills[$i]);
 
             //get the attributes for collections
-            $particular_id = Bill::find($this->selectedBills[$i])->particular_id;
+            $particular_id = $bill->particular_id;
             $tenant_uuid = $this->tenant->uuid;
-            $unit_uuid = Bill::find($this->selectedBills[$i])->unit_uuid;
-            $property_uuid = Session::get('property_uuid');
+            $unit_uuid = $bill->unit_uuid;
+            $property_uuid = $bill->property_uuid;
 
-            $bill_id = Bill::find($this->selectedBills[$i])->id;
+            $bill_id = $bill->id;
             $bill_reference_no = Tenant::find($this->tenant->uuid)->bill_reference_no;
             $form = 'cash';
-            $collection = Bill::find($this->selectedBills[$i])->bill;
+            $collection = $bill->bill;
             $is_posted = false;
+
+            DB::beginTransaction();
 
             //call the method for storing new collection
             $collection_id =  app('App\Http\Controllers\Features\CollectionController')->store(
@@ -206,14 +207,18 @@ class TenantBillCreateComponent extends Component
                   'is_deposit' => true
                ]);
             }
-            }
-         );
+            DB::commit();
+
+
+
          }
             catch (\Exception $e) {
-            return back()->with('error',$e);
+                DB::rollBack();
+                return back()->with('error',$e);
          }
       }
-         return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant->uuid.'/bills/'.$collection_batch_no.'/pay');
+
+      return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant->uuid.'/bills/'.$collection_batch_no.'/pay');
 
    }
    public function updatedSelectAll($value)

@@ -75,11 +75,9 @@
 
         <div class="sm:col-span-3 text-right">
             @if($selectedBills)
-
-                    <x-button wire:click="payBills">
-                        Pay Bills
-                    </x-button>
-
+                <x-button wire:click="payBills">
+                    Pay Bills
+                </x-button>
             @endif
         </div>
     </div>

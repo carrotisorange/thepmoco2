@@ -60,7 +60,7 @@
         <th>Marketing Fee</th>
         <th>Management Fee</th>
         <th class="bg-yellow-300">BANK TRANSFER FEE</th>
-        <th class="bg-yellow-300">PURCHASED MATERIALS/UNIT REPAIRS/ETC</th>
+        <th class="bg-yellow-300">PURCHASED MATERIALS</th>
         <th class="bg-yellow-300">MEMBERSHIP FEE </th>
         <th class="bg-yellow-300">CONDO DUES</th>
         <th class="bg-yellow-300">PARKING DUES</th>

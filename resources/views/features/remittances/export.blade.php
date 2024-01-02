@@ -19,8 +19,9 @@
         <x-th>AR #</x-th>
         {{-- <x-th>Rent</x-th>
         <x-th>Net Rent</x-th>
-        <x-th>Mgmt Fee</x-th>
+
         <x-th>Marketing Fee</x-th> --}}
+        <x-th>Management Fee</x-th>
         @if(Session::get('bank_transfer_fee'))
         <x-th>Bank Transfer Fee</x-th>
         @endif
@@ -82,12 +83,12 @@
         @if(Session::get('environmental_fee'))
         <x-th>Environmental Fee</x-th>
         @endif
-        @if(Session::get('bladder_tank'))
+        {{-- @if(Session::get('bladder_tank'))
         <x-th>Bladder Tank</x-th>
         @endif
         @if(Session::get('cause_of_magnet'))
         <x-th>Cause of Magnet</x-th>
-        @endif
+        @endif --}}
         @if(Session::get('bank_transfer_fee'))
         <x-th>Remittance</x-th>
         @endif
@@ -99,8 +100,9 @@
         <x-th></x-th>
         {{-- <x-td>{{ number_format($remittances->sum('monthly_rent'), 2) }}</x-td>
         <x-td>{{ number_format($remittances->sum('net_rent'), 2) }}</x-td>
-        <x-td>{{ number_format($remittances->sum('management_fee'), 2) }}</x-td>
+
         <x-td>{{ number_format($remittances->sum('marketing_fee'), 2) }}</x-td> --}}
+        <x-td>{{ number_format($remittances->sum('management_fee'), 2) }}</x-td>
         @if(Session::get('bank_transfer_fee'))
         <x-td>{{ number_format($remittances->sum('bank_transfer_fee'), 2) }}</x-td>
         @endif
@@ -162,12 +164,12 @@
         @if(Session::get('environmental_fee'))
         <x-td>{{ number_format($remittances->sum('environmental_fee'), 2) }}</x-td>
         @endif
-        @if(Session::get('bladder_tank'))
+        {{-- @if(Session::get('bladder_tank'))
         <x-td>{{ number_format($remittances->sum('bladder_tank'), 2) }}</x-td>
         @endif
         @if(Session::get('cause_of_magnet'))
         <x-td>{{ number_format($remittances->sum('cause_of_magnet'), 2) }}</x-td>
-        @endif
+        @endif --}}
         @if(Session::get('bank_transfer_fee'))
         <x-td>{{ number_format($remittances->sum('remittance'), 2) }}</x-td>
         @endif
@@ -180,8 +182,9 @@
         <x-td>{{ $item->ar_no }}</x-td>
         {{-- <x-td>{{ number_format($item->monthly_rent, 2) }}</x-td>
         <x-td>{{ number_format($item->net_rent, 2) }}</x-td>
-        <x-td>{{ number_format($item->management_fee, 2) }}</x-td>
+
         <x-td>{{ number_format($item->marketing_fee, 2) }}</x-td> --}}
+        <x-td>{{ number_format($item->management_fee, 2) }}</x-td>
         @if(Session::get('bank_transfer_fee'))
         <x-td>{{ number_format($item->bank_transfer_fee, 2) }}</x-td>
         @endif
@@ -243,12 +246,12 @@
         @if(Session::get('environmental_fee'))
         <x-td>{{ number_format($item->environmental_fee, 2) }}</x-td>
         @endif
-        @if(Session::get('bladder_tank'))
+        {{-- @if(Session::get('bladder_tank'))
         <x-td>{{ number_format($item->bladder_tank, 2) }}</x-td>
         @endif
         @if(Session::get('cause_of_magnet'))
         <x-td>{{ number_format($item->cause_of_magnet, 2) }}</x-td>
-        @endif
+        @endif --}}
         @if(Session::get('bank_transfer_fee'))
         <x-td>{{ number_format($item->remittance, 2) }}</x-td>
         @endif

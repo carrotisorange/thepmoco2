@@ -75,8 +75,6 @@ class AccountPayableCreateStep7Component extends Component
 
     public function finishChartOfAccount(){
 
-        sleep(2);
-
         AccountPayable::where('id', $this->accountpayable->id)
         ->update([
             'status' => 'completed',
