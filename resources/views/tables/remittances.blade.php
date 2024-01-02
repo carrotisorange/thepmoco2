@@ -59,29 +59,29 @@
    <!-- FROM COLLECTION -->
         <th>Marketing Fee</th>
         <th>Management Fee</th>
-        <th class="bg-yellow-300">BANK TRANSFER FEE</th>
-        <th class="bg-yellow-300">PURCHASED MATERIALS</th>
-        <th class="bg-yellow-300">MEMBERSHIP FEE </th>
-        <th class="bg-yellow-300">CONDO DUES</th>
-        <th class="bg-yellow-300">PARKING DUES</th>
-        <th class="bg-yellow-300">WATER</th>
-        <th class="bg-yellow-300">ELECTRIC</th>
-        <th class="bg-yellow-300">GENERATOR SHARE</th>
-        <th class="bg-yellow-300">SURCHARGES OF UNIT OWNER</th>
-        <th class="bg-yellow-300">BUILDING INSURANCE</th>
-        <th class="bg-yellow-300">REAL PROPERTY TAX - COMMON AREA</th>
-        <th class="bg-yellow-300">HOUSEKEEPING FEE</th>
-        <th class="bg-yellow-300">LAUNDRY FEE</th>
-        <th class="bg-yellow-300">COMPLIMENTARY</th>
-        <th class="bg-yellow-300">INTERNET</th>
-        <th class="bg-yellow-300">SPECIAL ASSESSMENT</th>
-        <th class="bg-yellow-300">MATERIALS RECOVERY FACILITY</th>
-        <th class="bg-yellow-300">RECHARGE OF FIRE EXTINGUISHER</th>
-        <th class="bg-yellow-300">ENVIRONMENTAL FEE</th>
+        <th class="bg-yellow-300">BANK TRANSFER <span title="bank transfer fee"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">PURCHASED MATERIALS <span title="purchase materials"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">MEMBERSHIP <span title="membership fee"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">CONDO DUES <span title="condo dues"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">PARKING DUES <span title="parking dues"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">WATER <span title="water bill"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">ELECTRIC <span title="electric bill"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">GENERATOR SHARE <span title="generator share"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">SURCHARGES <span title="surcharges of the unit owner"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">BUILDING INSURANCE <span title="building insurance"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">REAL PROPERTY TAX <span title="real property tax - common area"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">HOUSEKEEPING <span title="housekeeping"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">LAUNDRY FEE <span title="laundry fee"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">COMPLIMENTARY <span title="complimentary fee"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">INTERNET <span title="internet bill"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">SPECIAL ASSESSMENT <span title="special assessment"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">MRF <span title="materials recovery facility"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">FIRE EXTINGUISHER <span title="recharge of fire extinguisher"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">ENVIRONMENTAL<span title="environmental fee"><i class="fa-solid fa-circle-info"></i> </span></th>
         {{-- <th class="bg-yellow-300">BLADDER TANK</th>
         <th class="bg-yellow-300">CAUSE OF MAGNET</th> --}}
-        <th>TOTAL DEDUCTIONS</th>
-        <th>REMITTANCE</th>
+        <th>Deductions</th>
+        <th>Remittance</th>
         {{-- <th>CV NO.</th> --}}
         <th>Check No</th>
     </x-table-head-component>
