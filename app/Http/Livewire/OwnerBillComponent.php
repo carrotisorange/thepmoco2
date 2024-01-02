@@ -163,13 +163,15 @@ class OwnerBillComponent extends Component
             }
             DB::commit();
 
-             return redirect('/property/'.Session::get('property_uuid').'/owner/'.$this->owner->uuid.'/bills/'.$collection_batch_no.'/pay');
+
          }
             catch (\Exception $e) {
                 DB::rollBack();
                return back()->with('error',$e);
          }
       }
+
+        return redirect('/property/'.Session::get('property_uuid').'/owner/'.$this->owner->uuid.'/bills/'.$collection_batch_no.'/pay');
 
    }
 

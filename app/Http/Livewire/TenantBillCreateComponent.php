@@ -209,7 +209,7 @@ class TenantBillCreateComponent extends Component
             }
             DB::commit();
 
-            return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant->uuid.'/bills/'.$collection_batch_no.'/pay');
+
 
          }
             catch (\Exception $e) {
@@ -218,6 +218,7 @@ class TenantBillCreateComponent extends Component
          }
       }
 
+      return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant->uuid.'/bills/'.$collection_batch_no.'/pay');
 
    }
    public function updatedSelectAll($value)
