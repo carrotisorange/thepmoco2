@@ -7,7 +7,7 @@ use Livewire\WithPagination;
 use Session;
 use Illuminate\Validation\Rule;
 use Carbon\Carbon;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Models\{Collection,Property,Particular,PropertyParticular,Booking,Guest,Bill};
 
 class GuestBillCreateComponent extends Component
@@ -152,33 +152,31 @@ class GuestBillCreateComponent extends Component
          session()->flash('success', 'Changes Saved!');
    }
 
-  public function payBills()
-   {
+    public function payBills()
+    {
       //generate collection acknowledgement receipt no
       $collection_ar_no = Property::find(Session::get('property_uuid'))->acknowledgementreceipts->max('ar_no')+1;
 
       //generate a collection batch no
       $collection_batch_no = Carbon::now()->timestamp.''.$collection_ar_no;
 
-
       for($i=0; $i<count($this->selectedBills); $i++){
-
-         try
-         {
-            //begin the transaction
-            DB::transaction(function () use ($i, $collection_ar_no, $collection_batch_no) {
+        try
+        {
+            $bill = Bill::find($this->selectedBills[$i]);
 
             //get the attributes for collections
-            $particular_id = Bill::find($this->selectedBills[$i])->particular_id;
+            $particular_id = $bill->particular_id;
             $guest_uuid = $this->guest->uuid;
-            $unit_uuid = Bill::find($this->selectedBills[$i])->unit_uuid;
-            $property_uuid = Session::get('property_uuid');
-
-            $bill_id = Bill::find($this->selectedBills[$i])->id;
+            $unit_uuid = $bill->unit_uuid;
+            $property_uuid = $bill->property_uuid;
+            $bill_id = $bill->id;
             $bill_reference_no = Guest::find($this->guest->uuid)->bill_reference_no;
             $form = 'cash';
-            $collection = Bill::find($this->selectedBills[$i])->bill;
+            $collection = $bill->bill;
             $is_posted = false;
+
+            DB::beginTransaction();
 
             //call the method for storing new collection
             $collection_id =  app('App\Http\Controllers\Features\CollectionController')->store(
@@ -211,10 +209,12 @@ class GuestBillCreateComponent extends Component
                   'is_deposit' => true
                ]);
             }
-            }
-         );
+            DB::commit();
          }
+
             catch (\Exception $e) {
+
+            DB::rollBack();
             return back()->with('error',$e);
          }
       }

@@ -6,7 +6,7 @@ use Livewire\Component;
 
 use Livewire\WithPagination;
 use Carbon\Carbon;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Session;
 use Illuminate\Validation\Rule;
 use App\Models\{Property,Collection,DeedOfSale,Owner,Bill};
@@ -102,8 +102,7 @@ class OwnerBillComponent extends Component
       }
     }
 
-
-     public function payBills()
+    public function payBills()
    {
       //generate collection acknowledgement receipt no
       $collection_ar_no = Property::find(Session::get('property_uuid'))->acknowledgementreceipts->max('ar_no')+1;
@@ -111,26 +110,25 @@ class OwnerBillComponent extends Component
       //generate a collection batch no
       $collection_batch_no = Carbon::now()->timestamp.''.$collection_ar_no;
 
-
       for($i=0; $i<count($this->selectedBills); $i++){
-
          try
          {
-            //begin the transaction
-            DB::transaction(function () use ($i, $collection_ar_no, $collection_batch_no) {
+            $bill = Bill::find($this->selectedBills[$i]);
 
             //get the attributes for collections
-            $particular_id = Bill::find($this->selectedBills[$i])->particular_id;
+            $particular_id = $bill->particular_id;
             $owner_uuid = $this->owner->uuid;
-            $unit_uuid = Bill::find($this->selectedBills[$i])->unit_uuid;
-            $property_uuid = Session::get('property_uuid');
+            $unit_uuid = $bill->unit_uuid;
+            $property_uuid = $bill->property_uuid;
 
 
-            $bill_id = Bill::find($this->selectedBills[$i])->id;
+            $bill_id = $bill->id;
             $bill_reference_no = Owner::find($this->owner->uuid)->bill_reference_no;
             $form = 'cash';
-            $collection = Bill::find($this->selectedBills[$i])->bill;
+            $collection = $bill->bill;
             $is_posted = false;
+
+            DB::beginTransaction();
 
             //call the method for storing new collection
             $collection_id =  app('App\Http\Controllers\Features\CollectionController')->store(
@@ -163,14 +161,15 @@ class OwnerBillComponent extends Component
                   'is_deposit' => true
                ]);
             }
-            }
-         );
+            DB::commit();
+
+             return redirect('/property/'.Session::get('property_uuid').'/owner/'.$this->owner->uuid.'/bills/'.$collection_batch_no.'/pay');
          }
             catch (\Exception $e) {
+                DB::rollBack();
                return back()->with('error',$e);
          }
       }
-         return redirect('/property/'.Session::get('property_uuid').'/owner/'.$this->owner->uuid.'/bills/'.$collection_batch_no.'/pay');
 
    }
 

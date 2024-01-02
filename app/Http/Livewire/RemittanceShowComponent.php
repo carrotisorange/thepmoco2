@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendRemittanceToOwner;
 use App\Models\{Remittance,Owner};
+use Session;
 
 class RemittanceShowComponent extends Component
 {
@@ -123,7 +124,6 @@ class RemittanceShowComponent extends Component
     }
 
     function sendRemittanceToOwner(){
-        sleep(2);
 
         $owner_uuid = Remittance::where('id',$this->getRemittanceId())->value('owner_uuid');
         $owner = Owner::find($owner_uuid);
@@ -192,7 +192,11 @@ class RemittanceShowComponent extends Component
             session()->flash('success', 'Changes Saved!');
         }
 
-        return redirect('/property/'.$this->unit->property_uuid.'/unit/'.$this->unit->uuid.'/remittances');
+        return redirect('/property/'.Session::get('property_uuid').'/unit/'.$this->unit->uuid.'/remittances');
+    }
+
+    public function exportRemittance(){
+        return redirect('/property/'.Session::get('property_uuid').'/remittance/unit/'.$this->unit->uuid.'/remittances/'.$this->getRemittanceId());
     }
 
     public function render()

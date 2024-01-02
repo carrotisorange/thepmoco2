@@ -97,4 +97,23 @@ class RemittanceController extends Controller
 
             return $pdf->stream($pdf_name);
     }
+
+    public function exportUnitRemittance($propertyUuid, $unitUuid, $remittanceId){
+
+        $remittance = Remittance::find($remittanceId);
+
+       $data = [
+        'remittance' => $remittance,
+       ];
+
+       $folder_path = 'features.remittances.exportUnitRemittance';
+
+       $perspective = 'landscape';
+
+       $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data, $perspective); ;
+
+       $pdf_name = str_replace(' ', '_', $remittance->unit->unit).'_'.str_replace(' ', '_',Carbon::parse($remittance->created_at)->format('M Y')).'remittance.pdf';
+
+       return $pdf->stream($pdf_name);
+    }
 }
