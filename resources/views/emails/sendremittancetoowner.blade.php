@@ -9,9 +9,9 @@ CV No: {{ $data['cv_no'] }}
 
 Cheque No: {{ $data['check_no'] }}
 
-Amount Collected: {{ number_format($data['amountCollected'], 2) }}
+Amount Collected: {{ number_format($data['rent'], 2) }}
 
-Rent: {{ number_format($data['rent'], 2) }}
+{{-- Rent: {{ number_format($data['rent'], 2) }} --}}
 
 Deductions: {{ number_format($data['deductions'], 2) }}
 

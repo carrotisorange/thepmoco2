@@ -136,7 +136,7 @@ class RemittanceShowComponent extends Component
                 'owner' => $owner->owner,
                 'unit' => $this->unit->unit,
                 'date' => Remittance::find( $this->getRemittanceId())->value('created_at'),
-                'amountCollected' => Remittance::where('id',$this->getRemittanceId())->value('monthly_rent') +Remittance::where('id',$this->getRemittanceId())->value('marketing_fee') +Remittance::where('id',$this->getRemittanceId())->value('management_fee'),
+                'amountCollected' => Remittance::where('id',$this->getRemittanceId())->value('monthly_rent'),
                 'rent' => Remittance::where('id',$this->getRemittanceId())->value('monthly_rent'),
                 'deductions' => Remittance::where('id',$this->getRemittanceId())->value('total_deductions'),
                 'bankTransferFee' => Remittance::where('id',$this->getRemittanceId())->value('bank_transfer_fee'),
