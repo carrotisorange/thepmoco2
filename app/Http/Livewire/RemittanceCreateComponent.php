@@ -24,7 +24,7 @@ class RemittanceCreateComponent extends Component
            ->get();
 
         foreach($collections as $collection){
-             if($collection->bill->particular_id === 1){
+             if($collection->bill->particular_id == 1 || $collection->bill->particular_id == 2 || $collection->bill->particular_id == 3){
                 app('App\Http\Controllers\Features\RemittanceController')->store(
                     $collection->property_uuid,
                     $collection->unit->uuid,
