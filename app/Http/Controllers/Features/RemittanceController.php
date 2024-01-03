@@ -84,7 +84,6 @@ class RemittanceController extends Controller
                 ->get(),
 
                 'date' => $date,
-
             ];
 
             $folder_path = 'features.remittances.export';
