@@ -86,7 +86,7 @@
                 <p class="font-light">Date: <span class="font-semibold tracking-wider">{{ Carbon\Carbon::now()->format('M d, Y') }}</span></p>
             </div>
             <div>
-                <p>Due Date: <span class="ml-2 font-semibold tracking-wider">{{ Carbon\Carbon::parse($due_date)->format('M d, Y') }}</span></p>
+                <p>Due Date: <span class="ml-2 font-semibold tracking-wider">{{ Carbon\Carbon::parse(Session::get('due_date'))->format('M d, Y') }}</span></p>
             </div>
         </div>
 
@@ -127,9 +127,10 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        @if($note_to_bill)
+                        @if(Session::get('property_note_to_bill'))
+                        <br><br>
                         <p class="text-center">
-                            <b>"{{ $note_to_bill }}"</b>
+                            <b>"{{ Session::get('property_note_to_bill') }}"</b>
                         </p>
                         @endif
 

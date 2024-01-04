@@ -40,7 +40,13 @@ class BillExportComponent extends Component
     }
 
     public function exportButton(){
-      return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant->uuid.'/bill/export');
+        app('App\Http\Controllers\PropertyController')->updateNoteToBill($this->note_to_bill);
+
+        Session::put('property_note_to_bill', $this->note_to_bill);
+        Session::put('due_date', $this->due_date);
+        Session::put('penalty', $this->penalty);
+
+        return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant->uuid.'/bill/export');
     }
 
     public function render()

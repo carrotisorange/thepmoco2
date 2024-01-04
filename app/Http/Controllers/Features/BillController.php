@@ -201,11 +201,7 @@ class BillController extends Controller
 
     public function export_soa(Request $request, Property $property, Tenant $tenant)
     {
-        app('App\Http\Controllers\PropertyController')->updateNoteToBill($request->note_to_bill);
-
         $data = $this->get_bill_data($tenant, $request->due_date, $request->penalty, $request->note_to_bill);
-
-        // $folder_path = 'features.tenants.bills.export';
 
         $folder_path = 'export.soa';
 
