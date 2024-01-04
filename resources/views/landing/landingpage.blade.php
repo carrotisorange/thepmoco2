@@ -75,6 +75,14 @@
             background-color: #DBC054;
         }
 
+        .bg-2024{
+            background-image: url('/brands/propsuite/2024.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            height:100%;
+        }
+
+
         #propman-image {
             background-image: url('/brands/propsuite/propbiz-landing-bg.png');
         }
@@ -354,7 +362,7 @@
                     </div>
                 </div>
 
-                <div class="slide pb-8 lg:pb-32 py-16 bg-transparent" id="">
+                <div class="slide pb-8 lg:pb-32 py-16 bg-2024" id="">
                     <div class="flex justify-center items-center  mx-auto ">
             
 
