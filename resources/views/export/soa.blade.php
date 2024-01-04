@@ -129,7 +129,7 @@
                         </table>
                         @if(Session::get('property_note_to_bill'))
                         <br><br>
-                        <p class="text-center">
+                        <p class="text-justify text-xs">
                             <b>"{{ Session::get('property_note_to_bill') }}"</b>
                         </p>
                         @endif
