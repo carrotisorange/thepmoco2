@@ -354,19 +354,25 @@
                     </div>
                 </div>
 
-                <div class="slide pb-8 lg:pb-16 py-0 bg-transparent" id="">
+                <div class="slide pb-8 lg:pb-32 py-16 bg-transparent" id="">
                     <div class="flex justify-center items-center  mx-auto ">
             
 
-                        <div class="-mt-16 lg:mt-0 max-w-lg">
-                            <div class="overflow-hidden ">
-                                <img src="{{ asset('/brands/propsuite/christmas.png') }}" class="h-full w-full object-cover object-center">
+                        <div id="" class="py-16">
+                            <div class="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 lg:grid-cols- lg:gap-8 lg:px-8">
+                                <div class=" text-3xl tracking-tight text-white sm:text-4xl lg:col-span-7">
+                                <p class="text-center mt-6 inline sm:block lg:inline xl:block font-bold text-lg lg:text-5xl text-yellow-300 tracking-wide">DIGITALIZATION</p>
+                                <p class="text-center mt-4 inline sm:block lg:inline xl:block font-light text-lg lg:text-2xl tracking-wide">is your best community management strategy for 2024.</p>
+                                <p class="text-center mt-10 inline sm:block lg:inline xl:block text-lg lg:text-2xl tracking-wide">Let <span class="font-bold text-yellow-300">PropSuite</span> digitalize your community.</p>
                             </div>
+                        
+                        
                         </div>
+                    </div>
 
+                </div>
            
                      
-                    </div>
                     </div>
 
                 </div>
@@ -1092,7 +1098,7 @@
 
                                                 <script>
                                                     var doc = document.getElementById("background");
-                            var color = ["#4F1964","#DBB132", "#E6DAFF","#DBC054",];
+                            var color = ["#4F1964","#DBB132", "#34032B","#DBC054",];
                             var i = 0;
                             function change() {
                                 doc.style.backgroundColor = color[i];
