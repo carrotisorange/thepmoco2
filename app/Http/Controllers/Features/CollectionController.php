@@ -453,7 +453,7 @@ class CollectionController extends Controller
        return $denominator == 0 ? 0 : ($numerator / $denominator);
     }
 
-    public function store($tenant_uuid,$owner_uuid, $guest_uuid, $unit_uuid, $property_uuid, $bill_id, $bill_reference_no, $form, $collection, $collection_batch_no, $collection_ar_no, $is_posted){
+    public function store($tenant_uuid,$owner_uuid, $guest_uuid, $unit_uuid, $property_uuid, $bill_id, $bill_reference_no, $form, $collection, $collection_batch_no, $collection_ar_no, $is_posted, $contractDuration){
 
         return Collection::insertGetId([
             'tenant_uuid' => $tenant_uuid,
@@ -470,6 +470,7 @@ class CollectionController extends Controller
             'ar_no' => $collection_ar_no,
             'is_posted' => $is_posted,
             'created_at' => Carbon::now(),
+            'description' => $contractDuration
         ]);
     }
 

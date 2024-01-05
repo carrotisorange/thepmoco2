@@ -7,12 +7,11 @@
                 </h1>
             </div>
         </div>
-
         <div class="-my-2 mt-5 -mx-4 overflow-auto sm:-mx-6 lg:-mx-8">
             <form wire:submit.prevent="submitForm" class="w-full">
                 <div class="h-full grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-8">
                     <div class="sm:col-span-12">
-                            <x-label for="name">
+                            <x-label for="property">
                                 Property
                             </x-label>
                             <div class="mt-1 sm:mt-0 sm:col-span-12">
@@ -62,7 +61,7 @@
                     </div>
 
                     <div class="sm:col-span-6">
-                            <x-label for="ownership">
+                            <x-label for="type_id">
                                 Type
                             </x-label>
                             <div class="mt-1 sm:mt-0 sm:col-span-12">
@@ -83,7 +82,7 @@
                     </div>
 
                     <div class="sm:col-span-4">
-                            <x-label for="name">
+                            <x-label for="email">
                                 Email
                             </x-label>
                             <div class="mt-1 sm:mt-0 sm:col-span-12">
@@ -138,7 +137,7 @@
                     </div>
 
                     <div class="sm:col-span-3">
-                            <x-label for="ownership">
+                            <x-label for="country_id">
                                 Country
                             </x-label>
                             <div class="mt-1 sm:mt-0 sm:col-span-12">
@@ -156,8 +155,8 @@
                             </div>
                     </div>
 
-                    <div class="sm:col-span-3">
-                            <x-label for="ownership">
+                    <div class="sm:col-span-4">
+                            <x-label for="province_id">
                                 Region
                             </x-label>
                             <div class="mt-1 sm:mt-0 sm:col-span-12">
@@ -177,8 +176,8 @@
                             </div>
                     </div>
 
-                    <div class="sm:col-span-3">
-                            <x-label for="ownership">
+                    <div class="sm:col-span-5">
+                            <x-label for="city_id">
                                 City
                             </x-label>
                             <div class="mt-1 sm:mt-0 sm:col-span-12">
@@ -195,8 +194,8 @@
                               <x-validation-error-component name='ownership' />
                             </div>
                     </div>
-                    <div class="sm:col-span-3">
-                            <x-label for="name">
+                    <div class="sm:col-span-12">
+                            <x-label for="barangay">
                                 Barangay
                             </x-label>
                             <div class="mt-1 sm:mt-0 sm:col-span-12">
@@ -206,6 +205,52 @@
                                 </div>
                               <x-validation-error-component name='barangay' />
                             </div>
+                    </div>
+
+                    <div class="sm:col-span-12">
+                        <x-label for="management_fee">
+                            Management Fee (%)
+                        </x-label>
+                    </div>
+
+                    <div class="sm:col-span-4">
+                        <x-label for="management_fee_long_term">
+                          Long Term
+                        </x-label>
+                        <div class="mt-1 sm:mt-0 sm:col-span-12">
+                            <div class=" flex rounded-md shadow-sm">
+                                <x-form-input type="number" min="0" name="management_fee_long_term" value="{{old('management_fee_long_term', $management_fee_long_term)}}" wire:model="management_fee_long_term" />
+                            </div>
+                            <x-validation-error-component name='management_fee_long_term' />
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-4">
+                        <x-label for="management_fee_short_term">
+                           Short Term
+                        </x-label>
+                        <div class="mt-1 sm:mt-0 sm:col-span-12">
+                            <div class=" flex rounded-md shadow-sm">
+                                <x-form-input  type="number" min="0" name="management_fee_short_term"
+                                    value="{{old('management_fee_short_term', $management_fee_short_term)}}"
+                                    wire:model="management_fee_short_term" />
+                            </div>
+                            <x-validation-error-component name='management_fee_short_term' />
+                        </div>
+                    </div>
+
+                    <div class="sm:col-span-4">
+                        <x-label for="management_fee_transient">
+                           Transient
+                        </x-label>
+                        <div class="mt-1 sm:mt-0 sm:col-span-12">
+                            <div class=" flex rounded-md shadow-sm">
+                                <x-form-input type="number" min="0" name="management_fee_transient"
+                                    value="{{old('management_fee_transient', $management_fee_transient)}}"
+                                    wire:model="management_fee_transient" />
+                            </div>
+                            <x-validation-error-component name='management_fee_transient' />
+                        </div>
                     </div>
 
                     <div class="sm:col-span-12">

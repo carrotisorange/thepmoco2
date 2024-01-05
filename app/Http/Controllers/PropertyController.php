@@ -516,7 +516,7 @@ class PropertyController extends Controller
     }
 
     public function storePropertySession($property_uuid)
-    {   
+    {
         Session::put('property_uuid', Property::find($property_uuid)->uuid);
 
         Session::put('property', Property::find($property_uuid)->property);
@@ -551,7 +551,29 @@ class PropertyController extends Controller
 
         Session::put('property_thumbnail', Property::find($property_uuid)->thumbnail);
 
+        Session::put('property_management_fee_long_term', Property::find($property_uuid)->management_fee_long_term);
+
+        Session::put('property_management_fee_short_term', Property::find($property_uuid)->management_fee_short_term);
+
+        Session::put('property_management_fee_transient', Property::find($property_uuid)->management_fee_transient);
+
         app('App\Http\Controllers\Utilities\UserRestrictionController')->storeOrUpdateFeatureRestrictions($property_uuid);
+
+    }
+
+    public function getManagementFee($rent, $description){
+
+        $managementFee = 0;
+
+        if($description == 'long_term'){
+            $managementFee= $rent * (Session::get('property_management_fee_long_term')/100);
+        }elseif($description == 'long_term'){
+            $managementFee= $rent * (Session::get('property_management_fee_short_term')/100);
+        }else{
+            $managementFee= $rent * (Session::get('management_fee_transient')/100);
+        }
+
+        return $managementFee;
 
     }
 

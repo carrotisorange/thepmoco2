@@ -73,46 +73,18 @@ class TenantBillCreateComponent extends Component
       $this->validateOnly($propertyName);
    }
 
-   public function storeBill(){
+    public function storeBill(){
 
-      $this->validate();
+        $this->validate();
 
-      try {
-
-         $bill_no = app('App\Http\Controllers\Features\BillController')->getLatestBillNo();
-
-         if($this->particular_id === '8'){
-            $this->bill *=-1;
-         }
-         else{
-            $this->bill = $this->bill;
-         }
-
-          Bill::insertGetId([
-            'bill_no' => $bill_no,
-            'unit_uuid' => $this->unit_uuid,
-            'particular_id' => $this->particular_id,
-            'start' => $this->start,
-            'end' => $this->end,
-            'bill' => $this->bill,
-            'reference_no' => $this->tenant->reference_no,
-            'due_date' => Carbon::parse($this->start)->addDays(7),
-            'user_id' => auth()->user()->id,
-            'property_uuid' => Session::get('property_uuid'),
-            'tenant_uuid' => $this->tenant->uuid,
-            'status' => 'unpaid',
-            'created_at' => Carbon::now(),
-            'is_posted' => true
-         ]);
-
-            app('App\Http\Controllers\Utilities\PointController')->store(1, 3);
-
-            return redirect(url()->previous())->with('success', 'Changes Saved!');
-      }
-        catch(\Exception $e)
-        {
-            return redirect(url()->previous())->with('error', $e);
-        }
+        app('App\Http\Controllers\Features\BillController')->storeTenantBill(
+            $this->particular_id,
+            $this->bill,
+            $this->unit_uuid,
+            $this->start,
+            $this->end,
+            $this->tenant
+        );
    }
 
       public function storeParticular(){
@@ -162,6 +134,18 @@ class TenantBillCreateComponent extends Component
          {
             $bill = Bill::find($this->selectedBills[$i]);
 
+            $contract = Contract::where('uuid', $bill->contract_uuid);
+
+            $diffOfContractInMonths = Carbon::parse($contract->pluck('end')->last())->diffInMonths(Carbon::parse($contract->pluck('start')->last()));
+
+            $contractDuration = null;
+
+            if($diffOfContractInMonths>6){
+                $contractDuration = 'long_term';
+            }else{
+                $contractDuration = 'short_term';
+            }
+
             //get the attributes for collections
             $particular_id = $bill->particular_id;
             $tenant_uuid = $this->tenant->uuid;
@@ -190,6 +174,7 @@ class TenantBillCreateComponent extends Component
                $collection_batch_no,
                $collection_ar_no,
                $is_posted,
+               $contractDuration
          );
 
             //update selected bill to the generated collection batch no
@@ -208,8 +193,6 @@ class TenantBillCreateComponent extends Component
                ]);
             }
             DB::commit();
-
-
 
          }
             catch (\Exception $e) {

@@ -28,6 +28,10 @@ class Collection extends Model
         return $this->belongsTo(Tenant::class, 'tenant_uuid')->withDefault();
     }
 
+    public function contract(){
+        return $this->belongsTo(Contract::class, 'contract_uuid')->withDefault();
+    }
+
     public function owner()
     {
         return $this->belongsTo(Owner::class, 'owner_uuid')->withDefault();

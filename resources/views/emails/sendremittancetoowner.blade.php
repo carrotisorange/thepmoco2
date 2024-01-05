@@ -1,7 +1,7 @@
 @component('mail::message')
 # Hi, {{ $data['owner'] }}!
 
-Date: {{ Carbon\Carbon::parse($data['date'])->format('M d, Y') }}
+Date: {{ Carbon\Carbon::parse($data['date'])->format('M, Y') }}
 
 Unit: {{ $data['unit'] }}
 

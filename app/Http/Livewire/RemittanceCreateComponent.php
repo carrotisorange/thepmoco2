@@ -33,7 +33,8 @@ class RemittanceCreateComponent extends Component
                     $collection->tenant_uuid,
                     $collection->guest_uuid,
                     $this->date,
-                    $collection->collection
+                    $collection->collection,
+                    $collection->description
                 );
             }
             continue;
