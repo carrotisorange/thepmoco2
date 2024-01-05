@@ -1,4 +1,4 @@
-<?php
+$<?php
 
 namespace App\Http\Livewire;
 
@@ -135,7 +135,7 @@ class RemittanceShowComponent extends Component
             $data = [
                 'owner' => $owner->owner,
                 'unit' => $this->unit->unit,
-                'date' => Remittance::find( $this->getRemittanceId())->value('created_at'),
+                'date' => $this->remittanceDate,
                 'amountCollected' => Remittance::where('id',$this->getRemittanceId())->value('monthly_rent'),
                 'rent' => Remittance::where('id',$this->getRemittanceId())->value('monthly_rent'),
                 'deductions' => Remittance::where('id',$this->getRemittanceId())->value('total_deductions'),
