@@ -208,7 +208,7 @@
                                     @endif
                                     @elseif($subfeature == 'bill')
                                     @if($bills->count())
-                                    <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant_details->uuid }}/bills'">
+                                    <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/{{ 'tenant' }}/{{ $tenant_details->uuid }}/bills'">
                                         Pay Bills
                                     </x-button>
                                     @include('tables.bills')

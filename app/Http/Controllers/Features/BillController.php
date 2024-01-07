@@ -132,6 +132,16 @@ class BillController extends Controller
         ]);
     }
 
+     public function showBills(Property $property, $type, $uuid)
+    {
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity('opens',10);
+
+        return view('features.bills.type.index',[
+            'type' => $type,
+            'uuid' => $uuid,
+        ]);
+    }
+
     public function bulk_edit(Property $property, $batch_no)
     {
         $particulars = Particular::join('property_particulars', 'particulars.id', 'property_particulars.particular_id')
@@ -193,7 +203,7 @@ class BillController extends Controller
          );
     }
 
-    public function storeTenantBill($particularId, $bill, $unitUuid, $start, $end, $tenant){
+    public function storeTenantBill($particularId, $bill, $unitUuid, $start, $end, $type, $uuid){
         try {
 
             DB::beginTransaction();
@@ -207,7 +217,11 @@ class BillController extends Controller
                 $bill = $bill;
             }
 
-            $contractUuid = Contract::where('unit_uuid', $unitUuid)->where('tenant_uuid', $tenant->uuid)->pluck('uuid')->last();
+            if($type=='tenant'){
+                $contractUuid = Contract::where('unit_uuid', $unitUuid)->where($type.'_uuid', $uuid)->pluck('uuid')->last();
+            }else{
+                $contractUuid = null;
+            }
 
             $newBill = Bill::insertGetId([
                 'bill_no' => $bill_no,
@@ -216,11 +230,10 @@ class BillController extends Controller
                 'start' => $start,
                 'end' => $end,
                 'bill' => $bill,
-                'reference_no' => $tenant->reference_no,
                 'due_date' => Carbon::parse($start)->addDays(7),
                 'user_id' => auth()->user()->id,
                 'property_uuid' => Session::get('property_uuid'),
-                'tenant_uuid' => $tenant->uuid,
+                $type.'_uuid' => $uuid,
                 'status' => 'unpaid',
                 'created_at' => Carbon::now(),
                 'is_posted' => true,

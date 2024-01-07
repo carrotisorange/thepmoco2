@@ -56,6 +56,7 @@
                     </x-form-select>
                 </div>
             </div>
+            <br>
             {{ $tenants->links() }}
             @endif
 

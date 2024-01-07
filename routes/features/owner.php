@@ -27,7 +27,7 @@
                 Route::get('create', [BankController::class, 'create'])->name('owner');
             });
 
-            Route::get('bills', [BillController::class, 'owner_index']);
+            // Route::get('bills', [BillController::class, 'owner_index']);
 
             Route::get('unit', [OwnerDeedOfSalesController::class, 'create']);
 

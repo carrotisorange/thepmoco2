@@ -557,6 +557,8 @@ class PropertyController extends Controller
 
         Session::put('property_management_fee_transient', Property::find($property_uuid)->management_fee_transient);
 
+        Session::put('property_note_to_bill', Property::find($property_uuid)->note_to_bill);
+
         app('App\Http\Controllers\Utilities\UserRestrictionController')->storeOrUpdateFeatureRestrictions($property_uuid);
 
     }

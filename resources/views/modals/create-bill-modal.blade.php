@@ -24,7 +24,7 @@
                 <x-label for="">Select a particular</x-label>
                 <x-form-select wire:model="particular_id">
                     <option value="">Please select one</option>
-                    @foreach ($particulars as $item)
+                    @foreach ($billParticulars as $item)
                     <option value="{{ $item->particular_id }}" {{ old('particular_id', $particular_id)==$item->
                         particular_id ? 'selected' : 'se' }}>{{ $item->particular }}</option>
                     @endforeach

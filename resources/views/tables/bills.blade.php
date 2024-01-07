@@ -15,12 +15,12 @@
             <x-td> </x-td>
             <x-td>
                 <b>
-                    @if($user_type === 'tenant')
+                    @if($user_type == 'tenant')
                    {{ number_format(App\Models\Bill::postedBills('tenant_uuid',$tenant_uuid), 2)}}/{{
                         number_format(App\Models\Collection::postedCollections('tenant_uuid',$tenant_uuid), 2) }}/{{
                         number_format(App\Models\Bill::postedBills('tenant_uuid',$tenant_uuid)-App\Models\Collection::postedCollections('tenant_uuid',$tenant_uuid),
                         2) }}
-                    @elseif($user_type === 'owner')
+                    @elseif($user_type == 'owner')
                     {{ number_format(App\Models\Bill::where('owner_uuid',
                     $owner_uuid)->posted()->sum('bill'), 2) }}/
                     {{ number_format(App\Models\Collection::where('owner_uuid',
@@ -28,7 +28,7 @@
                     {{ number_format((App\Models\Bill::where('owner_uuid',
                     $owner_uuid)->posted()->sum('bill')-App\Models\Collection::where('owner_uuid',
                     $owner_uuid)->posted()->sum('collection')), 2) }}
-                    @elseif($user_type === 'guest')
+                    @elseif($user_type == 'guest')
                     {{ number_format(App\Models\Bill::where('guest_uuid',
                     $guest_uuid)->posted()->sum('bill'), 2) }}/
                     {{ number_format(App\Models\Collection::where('guest_uuid',
