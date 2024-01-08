@@ -5,10 +5,10 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Carbon;
-use App\Models\{Tenant,Owner,Guest,Bill, Property,Contract, Collection, DeedOfSale, Booking, Particular, PropertyParticular};
+use App\Models\{Tenant,Owner,Guest,Bill, Property,Contract, Collection, Particular, PropertyParticular};
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Validation\Rule;
+
 
 class BillReferenceIndexLivewireComponent extends Component
 {
@@ -20,13 +20,6 @@ class BillReferenceIndexLivewireComponent extends Component
     public $billUnitUuid;
 
     public $selectedBills = [];
-
-    public $particular_id;
-    public $unit_uuid;
-    public $start;
-    public $end;
-    public $bill;
-    public $new_particular;
 
     public function updatedSelectAll($value)
     {
@@ -93,7 +86,7 @@ class BillReferenceIndexLivewireComponent extends Component
         return Bill::select('*')->join('particulars', 'bills.particular_id', 'particulars.id')->where($this->type.'_uuid', $this->uuid)->groupBy('particular_id')->posted()->get();
     }
 
-    public function payBills()
+    public function submit()
     {
       //generate collection acknowledgement receipt no
       $collection_ar_no = Property::find(Session::get('property_uuid'))->acknowledgementreceipts->max('ar_no')+1;
@@ -114,11 +107,16 @@ class BillReferenceIndexLivewireComponent extends Component
 
             $contractDuration = null;
 
-            if($diffOfContractInMonths>6){
-                $contractDuration = 'long_term';
+            if($this->type == 'tenant'){
+                if($diffOfContractInMonths>6){
+                    $contractDuration = 'long_term';
+                }else{
+                    $contractDuration = 'short_term';
+                }
             }else{
-                $contractDuration = 'short_term';
+                $contractDuration = 'transient';
             }
+
 
             //get the attributes for collections
             $particular_id = $bill->particular_id;
@@ -192,82 +190,6 @@ class BillReferenceIndexLivewireComponent extends Component
 
     }
 
-    public function getUnits(){
-
-        $units = null;
-
-        if($this->type=='tenant'){
-            $units = app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($this->uuid);
-        }elseif($this->type=='owner'){
-            $units = DeedOfSale::where('owner_uuid', $this->uuid)->get();
-        }else{
-            $units = Booking::where('guest_uuid', $this->uuid)->groupBy('unit_uuid')->get();
-        }
-
-        return $units;
-
-    }
-
-    protected function rules()
-   {
-      return [
-         'particular_id' => ['required', Rule::exists('particulars', 'id')],
-         'start' => 'required|date',
-         'unit_uuid' => ['required', Rule::exists('units', 'uuid')],
-         'end' => 'nullable|date|after:start',
-         'bill' => 'required|numeric|min:1',
-      ];
-   }
-
-
-    public function storeBill(){
-
-        $this->validate();
-
-        app('App\Http\Controllers\Features\BillController')->storeTenantBill(
-            $this->particular_id,
-            $this->bill,
-            $this->unit_uuid,
-            $this->start,
-            $this->end,
-            $this->type,
-            $this->uuid
-        );
-   }
-
-      public function storeParticular(){
-
-      $particular_id = Particular::
-      where('particular', strtolower($this->new_particular))
-      ->pluck('id')
-      ->first();
-
-      Particular::updateOrCreate(
-         [
-            'particular' => $this->new_particular
-         ],
-         [
-            'particular' => $this->new_particular
-         ]
-         );
-
-         if($particular_id){
-         PropertyParticular::updateOrCreate(
-                [
-                'property_uuid' => Session::get('property_uuid'),
-                'particular_id' => $particular_id
-                ],
-                [
-                'property_uuid' => Session::get('property_uuid'),
-                'particular_id' => $particular_id
-                ]
-                );
-         }
-
-         session()->flash('success', 'Changes Saved!');
-   }
-
-
     public function render()
     {
 
@@ -279,10 +201,8 @@ class BillReferenceIndexLivewireComponent extends Component
 
         $total = $this->getBills()->where('status', 'unpaid')->whereIn('id', $this->selectedBills)->sum('bill') - $this->getBills()->where('status', 'paid')->whereIn('id', $this->selectedBills)->sum('bill');
 
-        $units = $this->getUnits();
-
         $email = $this->getBillTo()->email;
 
-        return view('livewire.bill-reference-index-livewire-component',compact('bills', 'billParticulars', 'billTo', 'total', 'units', 'email'));
+        return view('livewire.bill-reference-index-livewire-component',compact('bills', 'billParticulars', 'billTo', 'total', 'email'));
     }
 }

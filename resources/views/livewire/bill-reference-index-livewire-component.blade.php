@@ -12,7 +12,7 @@
                     <ul
                         class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute  transition duration-150 ease-in-out origin-top min-w-32">
                         <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
-                            <a href="#/" data-modal-toggle="create-bill-modal"> Create</a>
+                            <a href="#/" data-modal-toggle="create-bill-livewire-component"> Create</a>
                         </li>
                         <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
                             <a href="#/" data-modal-toggle="bill-export-component"> Export</a>
@@ -69,7 +69,7 @@
 
                 <div class="sm:col-span-3 text-right">
                     @if($selectedBills)
-                    <x-button wire:click="payBills">
+                    <x-button wire:click="submit">
                         Pay Bills
                     </x-button>
                     @endif
@@ -89,14 +89,14 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            @include('modals.create-bill-modal')
+                                            @livewire('bill-create-livewire-component', ['type' => $type, 'uuid' => $uuid])
                                             @livewire('bill-export-component', ['type' => $type, 'uuid' => $uuid])
                                             @livewire('bill-send-component', ['type' => $type, 'uuid' => $uuid, 'email' => $email])
-                                              {{--   @livewire('particular-create-component') --}}
-                              </div>
-                      </div>
-          </div>
-                       </div>
+                                            @livewire('particular-create-livewire-component')
+        </div>
+    </div>
+    </div>
+</div>
 
 
 

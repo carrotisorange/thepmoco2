@@ -18,7 +18,8 @@
                         class="text-left hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
                         <ul class="py-1" aria-labelledby="dropdownButton">
                             <li>
-                                <a href="#/" data-modal-toggle="create-bill-modal" class="{{ $addAnchorClass }}">
+                               <a href="/property/{{ $this->guest_details->property_uuid }}/guest/{{ $guest_details->uuid }}/bills"
+                                    class="{{$addAnchorClass}}">
                                     Bill
                                 </a>
                             </li>
