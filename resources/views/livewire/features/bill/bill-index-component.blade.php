@@ -14,20 +14,14 @@
                 <div class="group inline-block">
                     <x-button data-modal-toggle="particular-create-component"> Create Particular </x-button>
                 </div>
-
-
                 <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/bill/delinquents'">
                     View Delinquents
                 </x-button>
 
                 <div class="group inline-block">
                     <x-button>Export &nbsp; <i class="fa-solid fa-caret-down"></i></x-button>
-                    <ul
-                        class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute  transition duration-150 ease-in-out origin-top min-w-32">
-                        {{-- <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
-                            <a href="/property/{{ Session::get('property_uuid') }}/bill/export/{{ 'excel' }}"
-                                target="_blank">as Excel</a>
-                        </li> --}}
+                    <ul class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute  transition duration-150 ease-in-out origin-top min-w-32">
+
                         <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
                             <a href="/property/{{ Session::get('property_uuid') }}/bill/export/{{ 'pdf' }}"
                                 target="_blank">as PDF</a>

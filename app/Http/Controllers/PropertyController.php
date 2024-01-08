@@ -572,7 +572,7 @@ class PropertyController extends Controller
         }elseif($description == 'short_term'){
             $managementFee= $rent * (Session::get('property_management_fee_short_term')/100);
         }else{
-            $managementFee= $rent * (Session::get('management_fee_transient')/100);
+            $managementFee= $rent * (Session::get('property_management_fee_transient')/100);
         }
 
         return $managementFee;

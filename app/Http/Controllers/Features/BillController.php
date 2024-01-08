@@ -304,12 +304,14 @@ class BillController extends Controller
     public function create_new(Property $property, Unit $unit, Tenant $tenant, Contract $contract){
         return view('features.bills.create-new',[
             'property' => $property,
-          'unit' => Unit::find($unit->uuid),
-          'tenant' => $tenant,
-          'particulars' => app('App\Http\Controllers\Utilities\PropertyParticularController')->index($property->uuid),
+            'unit' => Unit::find($unit->uuid),
+            'tenant' => $tenant,
+            'particulars' => app('App\Http\Controllers\Utilities\PropertyParticularController')->index($property->uuid),
             'units' => app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($tenant->uuid),
             'bills' => app('App\Http\Controllers\Features\BillController')->show_tenant_bills($tenant->uuid),
-            'contract' => $contract
+            'contract' => $contract,
+            'type' => 'tenant',
+            'uuid' => $tenant->uuid
         ]);
     }
 

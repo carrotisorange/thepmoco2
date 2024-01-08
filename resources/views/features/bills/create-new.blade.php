@@ -1,10 +1,7 @@
 <x-new-layout>
-
     <div class="mx-auto px-4 sm:px-6 lg:px-8 mb-10">
-
         <div class="pt-6 sm:pb-5">
             <div class="lg:border-t lg:border-b lg:border-gray-200">
-
                 <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Progress">
                     <ol role="list"
                         class="rounded-md overflow-hidden lg:flex lg:border-l lg:border-r lg:border-gray-200 lg:rounded-none">
@@ -68,16 +65,8 @@
                                         </span>
                                     </span>
                                 </a>
-
-
                                 <!-- Separator -->
-                                <div class="hidden absolute top-0 left-0 w-3 inset-0 lg:block" aria-hidden="true">
-                                    <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none"
-                                        preserveAspectRatio="none">
-                                        <path d="M0.5 0V31L10.5 41L0.5 51V82" stroke="currentcolor"
-                                            vector-effect="non-scaling-stroke" />
-                                    </svg>
-                                </div>
+                             @include('layouts.separator')
                             </div>
                         </li>
 
@@ -110,13 +99,7 @@
                                 </a>
 
                                 <!-- Separator -->
-                                <div class="hidden absolute top-0 left-0 w-3 inset-0 lg:block" aria-hidden="true">
-                                    <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none"
-                                        preserveAspectRatio="none">
-                                        <path d="M0.5 0V31L10.5 41L0.5 51V82" stroke="currentcolor"
-                                            vector-effect="non-scaling-stroke" />
-                                    </svg>
-                                </div>
+                              @include('layouts.separator')
                         </li>
 
                         <li class="relative overflow-hidden lg:flex-1">
@@ -147,14 +130,8 @@
                                     </span>
                                 </a>
                             </div>
+                            @include('layouts.separator')
 
-                            <div class="hidden absolute top-0 left-0 w-3 inset-0 lg:block" aria-hidden="true">
-                                <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none"
-                                    preserveAspectRatio="none">
-                                    <path d="M0.5 0V31L10.5 41L0.5 51V82" stroke="currentcolor"
-                                        vector-effect="non-scaling-stroke" />
-                                </svg>
-                            </div>
                         </li>
 
                         <li class="relative overflow-hidden lg:flex-1">
@@ -186,13 +163,7 @@
                                 </a>
                             </div>
 
-                            <div class="hidden absolute top-0 left-0 w-3 inset-0 lg:block" aria-hidden="true">
-                                <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none"
-                                    preserveAspectRatio="none">
-                                    <path d="M0.5 0V31L10.5 41L0.5 51V82" stroke="currentcolor"
-                                        vector-effect="non-scaling-stroke" />
-                                </svg>
-                            </div>
+                        @include('layouts.separator')
                         </li>
 
 
@@ -220,30 +191,39 @@
                                 </a>
                             </div>
 
-                            <div class="hidden absolute top-0 left-0 w-3 inset-0 lg:block" aria-hidden="true">
-                                <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none"
-                                    preserveAspectRatio="none">
-                                    <path d="M0.5 0V31L10.5 41L0.5 51V82" stroke="currentcolor"
-                                        vector-effect="non-scaling-stroke" />
-                                </svg>
-                            </div>
+                             @include('layouts.separator')
                         </li>
                     </ol>
                 </nav>
 
+            </div>
+            <div>
+                <div class="mt-5 mb-10">
+                    <p class="text-right">
+                        <x-button data-modal-toggle="create-bill-livewire-component">
+                            New Bill
+                        </x-button>
+
+
+                        <x-button  onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/unit/{{ $unit->uuid }}'">
+                            Finish
+                        </x-button>
+                    </p>
+                    <div class="mb-5 mt-2 relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                        @if($bills->count())
+                        <div class="mb-5 mt-2 relative overflow-auto ring-opacity-5 md:rounded-lg">
+                            @include('features.bills.type.table')
+                        </div>
+                        @endif
+                    </div>
+                </div>
+
 
             </div>
-
-
-            @livewire('bill-create-component', [ 'property' => $property, 'unit' => $unit,'tenant' => $tenant,
-            'contract'=> $contract])
         </div>
-
-
     </div>
-
-
     </div>
-    @include('modals.create-particular')
-
+                @livewire('bill-create-livewire-component', ['type' => $type, 'uuid' => $uuid])
+                @livewire('bill-export-component', ['type' => $type, 'uuid' => $uuid])
+                @livewire('particular-create-livewire-component')
 </x-new-layout>

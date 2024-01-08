@@ -72,7 +72,7 @@ class CreateBillComponent extends Component
     public function render()
     {
       if(Guest::where('uuid', $this->billTo->uuid)->count()){
-       $units = Booking::where('guest_uuid', $this->billTo->uuid)->get();
+        $units = Booking::where('guest_uuid', $this->billTo->uuid)->get();
       }
       else{
         $units = Contract::where('tenant_uuid', $this->billTo->uuid)->get();

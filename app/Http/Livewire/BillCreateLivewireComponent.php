@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Illuminate\Validation\Rule;
-use App\Models\{PropertyParticular, DeedOfSale, Booking};
+use App\Models\{PropertyParticular, DeedOfSale, Booking,UserProperty};
 use Illuminate\Support\Facades\Session;
 
 class BillCreateLivewireComponent extends Component
@@ -68,7 +68,6 @@ class BillCreateLivewireComponent extends Component
         return $units;
 
     }
-
 
     public function render()
     {
