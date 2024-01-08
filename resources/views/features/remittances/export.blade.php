@@ -16,6 +16,7 @@
         <x-th>#</x-th>
         <x-th>Owner</x-th>
         <x-th>Tenant</x-th>
+        <x-th>Guest</x-th>
         <x-th>Unit #</x-th>
         <x-th>AR #</x-th>
         {{-- <x-th>Rent</x-th>
@@ -97,6 +98,7 @@
     </tr>
     <tr>
         <x-th>Total</x-th>
+        <x-th></x-th>
         <x-th></x-th>
         <x-th></x-th>
         <x-th></x-th>
@@ -183,6 +185,7 @@
         <x-td>{{ $index+1 }}</x-td>
         <x-td>{{ Str::limit($item->owner->owner,15) }}</x-td>
         <x-td>{{ Str::limit($item->tenant->tenant,15) }}</x-td>
+        <x-td>{{ Str::limit($item->guest->guest,15) }}</x-td>
         <x-td>{{ Str::limit($item->unit->unit, 15) }}</x-td>
         <x-td>{{ $item->ar_no }}</x-td>
         {{-- </x-td>

@@ -7,6 +7,14 @@
         <x-td>{{ $remittance->owner->owner }}</x-td>
     </tr>
     <tr>
+        <x-th>Tenant</x-th>
+        <x-td>{{ $remittance->tenant->tenant }}</x-td>
+    </tr>
+    <tr>
+        <x-th>Guest</x-th>
+        <x-td>{{ $remittance->guest->guest }}</x-td>
+    </tr>
+    <tr>
         <x-th>Date</x-th>
         <x-td>{{ Carbon\Carbon::parse($remittance->created_at)->format('M, Y') }}</x-td>
     </tr>
