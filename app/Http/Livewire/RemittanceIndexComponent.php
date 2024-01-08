@@ -98,16 +98,22 @@ class RemittanceIndexComponent extends Component
                 'check_no' => $remittance->check_no
             ]);
 
-            $this->remittances = $this->get_remittances();
+                  $this->remittances = $this->get_remittances();
+
+                  session()->flash('success', 'Changes Saved!');
             }
 
-            session()->flash('success', 'Changes Saved!');
+
+
 
         }catch(\Exception $e){
 
             return back()->with('error','Cannot perform the action. Please try again.');
        }
+
+
     }
+
 
     public function get_remittances(){
         return Remittance::where('property_uuid', Session::get('property_uuid'))

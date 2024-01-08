@@ -93,7 +93,7 @@
         @foreach ($remittances as $index => $remittance)
         <div wire:key="remittance-field-{{ $remittance->id }}">
         <tr>
-            <x-th>{{ $remittance->id }}</x-th>
+            <x-th>{{ $index+1 }}</x-th>
             <x-td class="sticky-col first-col">
                 <x-link-component link="/property/{{ $remittance->property_uuid }}/unit/{{ $remittance->unit_uuid }}/remittances">
                    {{ $remittance->unit->unit }}

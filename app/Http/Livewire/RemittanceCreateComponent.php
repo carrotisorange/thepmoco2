@@ -32,7 +32,7 @@ class RemittanceCreateComponent extends Component
                     $collection->bill->particular_id,
                     $collection->tenant_uuid,
                     $collection->guest_uuid,
-                    $this->date,
+                    $collection->created_at,
                     $collection->collection,
                     $collection->description
                 );
