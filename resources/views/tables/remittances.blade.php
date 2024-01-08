@@ -18,9 +18,9 @@
             <x-td>{{ number_format($remittances->sum('marketing_fee'), 2) }}</x-td>
             <x-td>{{ number_format($remittances->sum('management_fee'), 2) }}</x-td>
             <x-td>{{ number_format($remittances->sum('bank_transfer_fee'), 2) }}</x-td>
-            <x-td>{{ number_format($remittances->sum('miscellaneous_fee'), 2) }}</x-td>
-            <x-td>{{ number_format($remittances->sum('membership_fee'), 2) }}</x-td>
             <x-td>{{ number_format($remittances->sum('condo_dues'), 2) }}</x-td>
+            <x-td>{{ number_format($remittances->sum('membership_fee'), 2) }}</x-td>
+            <x-td>{{ number_format($remittances->sum('miscellaneous_fee'), 2) }}</x-td>
             <x-td>{{ number_format($remittances->sum('parking_dues'), 2) }}</x-td>
             <x-td>{{ number_format($remittances->sum('water'), 2) }}</x-td>
             <x-td>{{ number_format($remittances->sum('electricity'), 2) }}</x-td>
@@ -63,9 +63,10 @@
         <x-th>Marketing Fee</x-th>
         <th class="bg-yellow-300">MANAGEMENT FEE <span title="management fee"><i class="fa-solid fa-circle-info"></i> </span></th>
         <th class="bg-yellow-300">BANK TRANSFER <span title="bank transfer fee"><i class="fa-solid fa-circle-info"></i> </span></th>
-        <th class="bg-yellow-300">PURCHASED MATERIALS <span title="purchase materials"><i class="fa-solid fa-circle-info"></i> </span></th>
-        <th class="bg-yellow-300">MEMBERSHIP <span title="membership fee"><i class="fa-solid fa-circle-info"></i> </span></th>
         <th class="bg-yellow-300">CONDO DUES <span title="condo dues"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">MEMBERSHIP <span title="membership fee"><i class="fa-solid fa-circle-info"></i> </span></th>
+
+        <th class="bg-yellow-300">PURCHASED MATERIALS <span title="purchase materials"><i class="fa-solid fa-circle-info"></i> </span></th>
         <th class="bg-yellow-300">PARKING DUES <span title="parking dues"><i class="fa-solid fa-circle-info"></i> </span></th>
         <th class="bg-yellow-300">WATER <span title="water bill"><i class="fa-solid fa-circle-info"></i> </span></th>
         <th class="bg-yellow-300">ELECTRIC <span title="electric bill"><i class="fa-solid fa-circle-info"></i> </span></th>
@@ -126,9 +127,9 @@
             <x-td>{{ number_format($remittance->marketing_fee, 2) }}</x-td>
             <x-td><x-table-input wire:model="remittances.{{ $index }}.management_fee" wire:change="updateRemittance({{ $remittance->id }})"  type="number" step="0.001"/></x-td>
             <x-td><x-table-input wire:model="remittances.{{ $index }}.bank_transfer_fee" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></x-td>
-            <x-td><x-table-input wire:model="remittances.{{ $index }}.miscellaneous_fee" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></x-td>
-            <x-td><x-table-input wire:model="remittances.{{ $index }}.membership_fee" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></x-td>
             <x-td><x-table-input wire:model="remittances.{{ $index }}.condo_dues" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></x-td>
+            <x-td><x-table-input wire:model="remittances.{{ $index }}.membership_fee" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></x-td>
+            <x-td><x-table-input wire:model="remittances.{{ $index }}.miscellaneous_fee" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></x-td>
              <x-td><x-table-input wire:model="remittances.{{ $index }}.parking_dues" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></x-td>
              <x-td><x-table-input wire:model="remittances.{{ $index }}.water" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></x-td>
              <x-td><x-table-input wire:model="remittances.{{ $index }}.electricity" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></x-td>
