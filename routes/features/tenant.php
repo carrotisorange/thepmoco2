@@ -44,7 +44,7 @@ use App\Http\Controllers\TenantWalletController;
             Route::get('ledger', [TenantLedgerController::class, 'index']);
 
             Route::controller(BillController::class)->group(function() {
-                Route::get('bills', 'tenant_index')->name('tenant');
+                // Route::get('bills', 'tenant_index')->name('tenant');
                 Route::get('bill/export', 'export_soa');
                 Route::get('bill/send', 'send_bills');
             });

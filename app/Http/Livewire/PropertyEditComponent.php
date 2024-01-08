@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Illuminate\Validation\Rule;
 use Livewire\WithFileUploads;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Models\{Country,Province,City,Type};
 
 class PropertyEditComponent extends Component
@@ -36,13 +36,17 @@ class PropertyEditComponent extends Component
     public $business_permit;
     public $registered_tin;
 
-    public $doc1;
-    public $doc2;
-    public $doc3;
-    public $doc4;
-    public $doc5;
-    public $doc6;
-    public $doc7;
+    // public $doc1;
+    // public $doc2;
+    // public $doc3;
+    // public $doc4;
+    // public $doc5;
+    // public $doc6;
+    // public $doc7;
+
+    public $management_fee_long_term;
+    public $management_fee_short_term;
+    public $management_fee_transient;
 
 
     public function mount($property_details)
@@ -62,7 +66,9 @@ class PropertyEditComponent extends Component
         $this->note_to_bill = $property_details->note_to_bill;
         $this->note_to_transient = $property_details->note_to_transient;
         $this->registered_tin = $property_details->registered_tin;
-
+        $this->management_fee_long_term = $property_details->management_fee_long_term;
+        $this->management_fee_short_term = $property_details->management_fee_short_term;
+        $this->management_fee_transient = $property_details->management_fee_transient;
     }
 
     protected function rules()
@@ -85,7 +91,9 @@ class PropertyEditComponent extends Component
             'note_to_bill' => 'nullable',
             'note_to_transient' => 'nullable',
             'registered_tin' => 'nullable',
-
+            'management_fee_long_term' => 'nullable|max:100',
+            'management_fee_short_term' => 'nullable|max:100',
+            'management_fee_transient' => 'nullable|max:100'
         ];
     }
 
@@ -97,9 +105,9 @@ class PropertyEditComponent extends Component
     public function submitForm()
     {
         try{
-            DB::transaction(function (){
-                $this->property_details->update($this->validate());
-            });
+            DB::beginTransaction();
+
+            $this->property_details->update($this->validate());
 
             $featureId = 20;
 
@@ -107,9 +115,12 @@ class PropertyEditComponent extends Component
 
             app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity($featureId,$restrictionId);
 
+            DB::commit();
+
          return redirect(url()->previous())->with('success', 'Changes Saved!');
 
         }catch(\Exception $e){
+            DB::rollBack();
            return redirect(url()->previous())->with('error', $e);
         }
     }
@@ -122,57 +133,57 @@ class PropertyEditComponent extends Component
             $thumbnail = $this->thumbnail->store('thumbnails');
         }
 
-        if ($this->doc1 === null) {
-            $doc1 = $this->property_details->doc1;
-        }else{
-            $doc1 = $this->doc1->store('doc1');
-        }
+        // if ($this->doc1 === null) {
+        //     $doc1 = $this->property_details->doc1;
+        // }else{
+        //     $doc1 = $this->doc1->store('doc1');
+        // }
 
-        if ($this->doc2 === null) {
-            $doc2 = $this->property_details->doc2;
-        }else{
-            $doc2 = $this->doc2->store('doc2');
-        }
+        // if ($this->doc2 === null) {
+        //     $doc2 = $this->property_details->doc2;
+        // }else{
+        //     $doc2 = $this->doc2->store('doc2');
+        // }
 
-        if ($this->doc3 === null) {
-            $doc3 = $this->property_details->doc3;
-        }else{
-            $doc3 = $this->doc3->store('doc3');
-        }
+        // if ($this->doc3 === null) {
+        //     $doc3 = $this->property_details->doc3;
+        // }else{
+        //     $doc3 = $this->doc3->store('doc3');
+        // }
 
-        if ($this->doc4 === null) {
-            $doc4 = $this->property_details->doc4;
-        }else{
-            $doc4 = $this->doc4->store('doc4');
-        }
+        // if ($this->doc4 === null) {
+        //     $doc4 = $this->property_details->doc4;
+        // }else{
+        //     $doc4 = $this->doc4->store('doc4');
+        // }
 
-        if ($this->doc5 === null) {
-            $doc5 = $this->property_details->doc5;
-        }else{
-            $doc5 = $this->doc4->store('doc5');
-        }
+        // if ($this->doc5 === null) {
+        //     $doc5 = $this->property_details->doc5;
+        // }else{
+        //     $doc5 = $this->doc4->store('doc5');
+        // }
 
-        if ($this->doc6 === null) {
-            $doc6 = $this->property_details->doc6;
-        }else{
-            $doc6 = $this->doc6->store('doc6');
-        }
+        // if ($this->doc6 === null) {
+        //     $doc6 = $this->property_details->doc6;
+        // }else{
+        //     $doc6 = $this->doc6->store('doc6');
+        // }
 
-        if ($this->doc7 === null) {
-            $doc7 = $this->property_details->doc7;
-        }else{
-            $doc7 = $this->doc7->store('doc7');
-        }
+        // if ($this->doc7 === null) {
+        //     $doc7 = $this->property_details->doc7;
+        // }else{
+        //     $doc7 = $this->doc7->store('doc7');
+        // }
 
 
         $validated['thumbnail'] = $thumbnail;
-        $validated['doc1'] = $doc1;
-        $validated['doc2'] = $doc2;
-        $validated['doc3'] = $doc3;
-        $validated['doc4'] = $doc4;
-        $validated['doc5'] = $doc5;
-        $validated['doc6'] = $doc6;
-        $validated['doc7'] = $doc7;
+        // $validated['doc1'] = $doc1;
+        // $validated['doc2'] = $doc2;
+        // $validated['doc3'] = $doc3;
+        // $validated['doc4'] = $doc4;
+        // $validated['doc5'] = $doc5;
+        // $validated['doc6'] = $doc6;
+        // $validated['doc7'] = $doc7;
 
         $this->property_details->update($validated);
     }

@@ -1,5 +1,5 @@
 @component('mail::message')
-Hi, {{ $data['tenant'] }}!
+Hi, {{ $data['recipient'] }}!
 
 Date: {{ Carbon\Carbon::now()->format('M d, Y') }}
 

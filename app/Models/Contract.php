@@ -55,6 +55,10 @@ class Contract extends Model
         return $this->hasMany(Wallet::class);
     }
 
+    public function collections(){
+        return $this->hasMany(Collection::class);
+    }
+
     public function scopeGetAll($query, $propertyUuid, $status, $groupBy){
        $results = $query->when($propertyUuid, function($query, $propertyUuid){
                 $query->where('property_uuid', $propertyUuid);

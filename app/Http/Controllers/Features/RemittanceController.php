@@ -32,12 +32,13 @@ class RemittanceController extends Controller
         ]);
     }
 
-    public function store($property_uuid, $unit_uuid, $ar_no, $particular_id, $tenant_uuid, $guest_uuid, $date, $rent){
-        $unit = Unit::find($unit_uuid);
+    public function store($property_uuid, $unit_uuid, $ar_no, $particular_id, $tenant_uuid, $guest_uuid, $date, $rent, $description){
+        $unit = Unit::where('unit',$unit_uuid);
         $owner_uuid = DeedOfSale::where('unit_uuid', $unit_uuid)->value('owner_uuid');
         $bank_name = Bank::where('owner_uuid', $owner_uuid)->value('bank_name');
         $account_number = Bank::where('owner_uuid', $owner_uuid)->value('account_number');
         $account_name = Bank::where('owner_uuid', $owner_uuid)->value('account_name');
+        $managementFee =  app('App\Http\Controllers\PropertyController')->getManagementFee($rent, $description);
 
         Remittance::updateOrCreate(
             [
@@ -54,11 +55,11 @@ class RemittanceController extends Controller
             'particular_id' => $particular_id,
             'owner_uuid' => $owner_uuid,
             'monthly_rent' => $rent,
-            'net_rent' => $rent - ($unit->management_fee + $unit->marketing_fee),
-            'management_fee' => $unit->management_fee,
-            'marketing_fee' => $unit->marketing_fee,
-            'total_deductions' => $unit->management_fee + $unit->marketing_fee,
-            'remittance' => $rent - ($unit->management_fee + $unit->marketing_fee),
+            'net_rent' => $rent - ($managementFee + $unit->value('marketing_fee')),
+            'management_fee' => $managementFee,
+            'marketing_fee' => $unit->value('marketing_fee'),
+            'total_deductions' => $managementFee + $unit->value('marketing_fee'),
+            'remittance' => $rent - ($managementFee + $unit->value('marketing_fee')),
             'tenant_uuid' => $tenant_uuid,
             'guest_uuid' => $guest_uuid,
             'created_at' => $date,

@@ -9,9 +9,8 @@ use App\Models\Bill;
 
 class EditBillComponent extends Component
 {
-    public $bill_details;
-
     //input variables
+    public $bill_details;
     public $bill;
     public $start;
     public $end;

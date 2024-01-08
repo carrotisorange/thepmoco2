@@ -1,3 +1,4 @@
+
 <div>
     <div class="mt-10 px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
@@ -58,6 +59,7 @@
             </div>
         </div>
     </div>
+    @include('layouts.notifications')
     @livewire('remittance-create-component')
     @livewire('remittance-export-component',['date' => $this->created_at])
 </div>

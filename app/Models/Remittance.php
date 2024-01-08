@@ -33,7 +33,7 @@ class Remittance extends Model
         return $this->belongsTo(Guest::class)->withDefault();
     }
 
-    public function remittance(){
-        return $this->belongsTo(Remittance::class)->withDefault();
+    public function collection(){
+        return $this->belongsTo(Collection::class, 'ar_no')->withDefault();
     }
 }

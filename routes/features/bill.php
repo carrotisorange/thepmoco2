@@ -11,4 +11,8 @@
             Route::get('customized/{batch_no}/edit','bulk_edit')->name('bill');
             Route::get('/batch/{batch_no}/drafts','drafts')->name('bill');
         });
+
+        Route::prefix('{type}')->group(function(){
+            Route::get('{uuid}/bills','showBills')->name('bill');
+        });
     });

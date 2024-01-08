@@ -70,13 +70,7 @@
 
 
                                 <!-- Separator -->
-                                <div class="hidden absolute top-0 left-0 w-3 inset-0 lg:block" aria-hidden="true">
-                                    <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none"
-                                        preserveAspectRatio="none">
-                                        <path d="M0.5 0V31L10.5 41L0.5 51V82" stroke="currentcolor"
-                                            vector-effect="non-scaling-stroke" />
-                                    </svg>
-                                </div>
+                               @include('layouts.separator')
                             </div>
                         </li>
 
@@ -103,13 +97,7 @@
                                 </a>
 
                                 <!-- Separator -->
-                                <div class="hidden absolute top-0 left-0 w-3 inset-0 lg:block" aria-hidden="true">
-                                    <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none"
-                                        preserveAspectRatio="none">
-                                        <path d="M0.5 0V31L10.5 41L0.5 51V82" stroke="currentcolor"
-                                            vector-effect="non-scaling-stroke" />
-                                    </svg>
-                                </div>
+                               @include('layouts.separator')
                         </li>
 
                         <li class="relative overflow-hidden lg:flex-1">
@@ -136,13 +124,7 @@
                                 </a>
                             </div>
 
-                            <div class="hidden absolute top-0 left-0 w-3 inset-0 lg:block" aria-hidden="true">
-                                <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none"
-                                    preserveAspectRatio="none">
-                                    <path d="M0.5 0V31L10.5 41L0.5 51V82" stroke="currentcolor"
-                                        vector-effect="non-scaling-stroke" />
-                                </svg>
-                            </div>
+                           @include('layouts.separator')
                         </li>
                         <li class="relative overflow-hidden lg:flex-1">
                             <div class="border border-gray-200 overflow-hidden lg:border-0">
@@ -169,13 +151,7 @@
                                 </a>
                             </div>
 
-                            <div class="hidden absolute top-0 left-0 w-3 inset-0 lg:block" aria-hidden="true">
-                                <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none"
-                                    preserveAspectRatio="none">
-                                    <path d="M0.5 0V31L10.5 41L0.5 51V82" stroke="currentcolor"
-                                        vector-effect="non-scaling-stroke" />
-                                </svg>
-                            </div>
+                           @include('layouts.separator')
                         </li>
 
 
@@ -202,13 +178,7 @@
                                 </a>
                             </div>
 
-                            <div class="hidden absolute top-0 left-0 w-3 inset-0 lg:block" aria-hidden="true">
-                                <svg class="h-full w-full text-gray-300" viewBox="0 0 12 82" fill="none"
-                                    preserveAspectRatio="none">
-                                    <path d="M0.5 0V31L10.5 41L0.5 51V82" stroke="currentcolor"
-                                        vector-effect="non-scaling-stroke" />
-                                </svg>
-                            </div>
+                           @include('layouts.separator')
                         </li>
                     </ol>
                 </nav>

@@ -13,10 +13,10 @@
                 <x-label for="tenant">Bill to</x-label>
                 <x-form-input type="text" value="{{ $bill_details->tenant->tenant }} {{ $bill_details->owner->owner }} {{ $bill_details->guest->guest }}" readonly />
             </div>
-            <div class="mt-5 sm:mt-6">
+            {{-- <div class="mt-5 sm:mt-6">
                 <x-label  for="status">Status</x-label>
                 <x-form-input type="text" readonly value="{{ $bill_details->status}}" />
-            </div>
+            </div> --}}
             <div class="mt-5 sm:mt-6">
                 <x-label  for="particular_id">Particular</x-label>
                 <x-form-select name="particular_id" wire:model="particular_id">

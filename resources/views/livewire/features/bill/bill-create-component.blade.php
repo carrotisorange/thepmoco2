@@ -1,5 +1,5 @@
 <div>
-    @livewire('create-bill-component', [ 'bill_to' => $tenant])
+    {{-- @livewire('create-bill-component', [ 'bill_to' => $tenant]) --}}
     <div class="mt-5 mb-10">
         <p class="text-right">
             <x-button data-modal-toggle="create-bill-modal">

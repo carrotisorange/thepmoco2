@@ -127,11 +127,34 @@
         </div>
         @endif
         @endif
-        <div class="sm:col-span-3">
+        <div class="sm:col-span-6">
             <x-label for="management_fee">Management Fee</x-label>
-            <x-form-input type="number" wire:model="management_fee" step="0.001" />
-            <x-validation-error-component name='management_fee' />
+
         </div>
+        <div class="sm:col-span-2">
+            <x-label for="management_fee_long_term">Long Term (%) <a class="mt-2 inline-block" href="/property/{{ Session::get('property_uuid') }}/edit" title="Edit management fee">
+                <i class="fa-solid fa-pen-to-square"></i>
+            </a></x-label>
+            <x-form-input type="number" value="{{ Session::get('property_management_fee_long_term') }}" readonly />
+            <x-validation-error-component name='management_fee_long_term' />
+        </div>
+        <div class="sm:col-span-2">
+            <x-label for="management_fee_short_term">Short Term (%) <a class="mt-2 inline-block"
+                    href="/property/{{ Session::get('property_uuid') }}/edit" title="Edit management fee">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </a></x-label>
+            <x-form-input type="number" value="{{ Session::get('property_management_fee_short_term') }}" readonly />
+            <x-validation-error-component name='management_fee_short_term' />
+        </div>
+        <div class="sm:col-span-2">
+            <x-label for="management_fee_transient">Transient (%) <a class="mt-2 inline-block"
+                    href="/property/{{ Session::get('property_uuid') }}/edit" title="Edit management fee">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </a></x-label>
+            <x-form-input type="number" value="{{ Session::get('property_management_fee_transient') }}" readonly />
+            <x-validation-error-component name='management_fee_transient' />
+        </div>
+
 
         <div class="sm:col-span-3">
             <x-label for="marketing_fee">Marketing Fee</x-label>

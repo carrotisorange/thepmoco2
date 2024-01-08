@@ -5,25 +5,23 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Session;
 use Carbon\Carbon;
-use App\Models\{Property,Bill,Collection};
+use App\Models\{Property,Bill};
 
 class BillExportComponent extends Component
 {
-    public $billTo;
-    public $tenant;
+    public $type;
+    public $uuid;
 
-    public $email;
     public $due_date;
     public $penalty;
     public $note_to_bill;
     public $totalUnpaidBills;
 
-    public function mount($tenant){
-        $this->email = $tenant->email;
+    public function mount(){
         $this->due_date = Carbon::now()->addDays(7)->format('Y-m-d');
         $this->note_to_bill = Property::find(Session::get('property_uuid'))->note_to_bill;
-        $this->totalUnpaidBills = Bill::postedBills('tenant_uuid',$this->tenant->uuid) - Collection::postedCollections('tenant_uuid',$this->tenant->uuid);
-        $this->penalty = (Bill::postedBills('tenant_uuid',$this->tenant->uuid) - Collection::postedCollections('tenant_uuid',$this->tenant->uuid))*.1;
+        $this->totalUnpaidBills = Bill::where('status', 'unpaid')->postedBills($this->type.'_uuid',$this->uuid);
+        $this->penalty = Bill::where('status', 'unpaid')->postedBills($this->type.'_uuid',$this->uuid) * .1;
     }
 
     protected function rules()
@@ -46,7 +44,7 @@ class BillExportComponent extends Component
         Session::put('due_date', $this->due_date);
         Session::put('penalty', $this->penalty);
 
-        return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant->uuid.'/bill/export');
+        return redirect('/property/'.Session::get('property_uuid').'/'.$this->type.'/'.$this->uuid.'/bill/export');
     }
 
     public function render()

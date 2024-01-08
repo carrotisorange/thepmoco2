@@ -10,8 +10,9 @@ use App\Mail\SendBillToTenant;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ExportBill;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Models\{Bill, Property, Unit, Tenant, Contract, Collection, User, Owner, Guest, Particular};
+use Illuminate\Support\Facades\Log;
 
 class BillController extends Controller
 {
@@ -131,6 +132,16 @@ class BillController extends Controller
         ]);
     }
 
+     public function showBills(Property $property, $type, $uuid)
+    {
+        app('App\Http\Controllers\Utilities\ActivityController')->storeUserActivity('opens',10);
+
+        return view('features.bills.type.index',[
+            'type' => $type,
+            'uuid' => $uuid,
+        ]);
+    }
+
     public function bulk_edit(Property $property, $batch_no)
     {
         $particulars = Particular::join('property_particulars', 'particulars.id', 'property_particulars.particular_id')
@@ -172,6 +183,7 @@ class BillController extends Controller
     }
 
     public function store($property_uuid, $unit_uuid, $tenant_uuid, $owner_uuid, $particular_id, $start_date, $end_date, $total_amount_due, $batch_no, $posted){
+
         Bill::create(
         [
             'unit_uuid' => $unit_uuid,
@@ -189,6 +201,59 @@ class BillController extends Controller
             'owner_uuid' => $owner_uuid
          ]
          );
+    }
+
+    public function storeTenantBill($particularId, $bill, $unitUuid, $start, $end, $type, $uuid){
+        try {
+
+            DB::beginTransaction();
+
+            $bill_no = app('App\Http\Controllers\Features\BillController')->getLatestBillNo();
+
+            if($particularId === '8'){
+                $bill *=-1;
+            }
+            else{
+                $bill = $bill;
+            }
+
+            if($type=='tenant'){
+                $contractUuid = Contract::where('unit_uuid', $unitUuid)->where($type.'_uuid', $uuid)->pluck('uuid')->last();
+            }else{
+                $contractUuid = null;
+            }
+
+            $newBill = Bill::insertGetId([
+                'bill_no' => $bill_no,
+                'unit_uuid' => $unitUuid,
+                'particular_id' => $particularId,
+                'start' => $start,
+                'end' => $end,
+                'bill' => $bill,
+                'due_date' => Carbon::parse($start)->addDays(7),
+                'user_id' => auth()->user()->id,
+                'property_uuid' => Session::get('property_uuid'),
+                $type.'_uuid' => $uuid,
+                'status' => 'unpaid',
+                'created_at' => Carbon::now(),
+                'is_posted' => true,
+                'contract_uuid' => $contractUuid,
+            ]);
+
+            Log::info('Inserted bill id '. $newBill);
+
+            app('App\Http\Controllers\Utilities\PointController')->store(1, 3);
+
+            DB::commit();
+
+            return redirect(url()->previous())->with('success', 'Changes Saved!');
+        }
+        catch(\Exception $e)
+        {
+            DB::rollBack();
+            Log::error($e);
+            return redirect(url()->previous())->with('error', $e);
+        }
     }
 
     public function drafts($property_uuid,$batch_no){
@@ -239,12 +304,14 @@ class BillController extends Controller
     public function create_new(Property $property, Unit $unit, Tenant $tenant, Contract $contract){
         return view('features.bills.create-new',[
             'property' => $property,
-          'unit' => Unit::find($unit->uuid),
-          'tenant' => $tenant,
-          'particulars' => app('App\Http\Controllers\Utilities\PropertyParticularController')->index($property->uuid),
+            'unit' => Unit::find($unit->uuid),
+            'tenant' => $tenant,
+            'particulars' => app('App\Http\Controllers\Utilities\PropertyParticularController')->index($property->uuid),
             'units' => app('App\Http\Controllers\TenantContractController')->show_tenant_contracts($tenant->uuid),
             'bills' => app('App\Http\Controllers\Features\BillController')->show_tenant_bills($tenant->uuid),
-            'contract' => $contract
+            'contract' => $contract,
+            'type' => 'tenant',
+            'uuid' => $tenant->uuid
         ]);
     }
 
