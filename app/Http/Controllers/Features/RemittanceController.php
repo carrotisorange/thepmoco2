@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Session;
 use App\Models\{Property,Remittance,DeedOfSale,Unit,Bank};
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class RemittanceController extends Controller
 {
@@ -33,6 +35,7 @@ class RemittanceController extends Controller
     }
 
     public function store($property_uuid, $unit_uuid, $ar_no, $particular_id, $tenant_uuid, $guest_uuid, $date, $rent, $description){
+
         $unit = Unit::where('unit',$unit_uuid);
         $owner_uuid = DeedOfSale::where('unit_uuid', $unit_uuid)->value('owner_uuid');
         $bank_name = Bank::where('owner_uuid', $owner_uuid)->value('bank_name');
@@ -40,7 +43,10 @@ class RemittanceController extends Controller
         $account_name = Bank::where('owner_uuid', $owner_uuid)->value('account_name');
         $managementFee =  app('App\Http\Controllers\PropertyController')->getManagementFee($rent, $description);
 
-        Remittance::updateOrCreate(
+        try{
+            DB::beginTransaction();
+
+            $remittance = Remittance::updateOrCreate(
             [
                 'property_uuid' => $property_uuid,
                 'unit_uuid' => $unit_uuid,
@@ -62,11 +68,21 @@ class RemittanceController extends Controller
             'remittance' => $rent - ($managementFee + $unit->value('marketing_fee')),
             'tenant_uuid' => $tenant_uuid,
             'guest_uuid' => $guest_uuid,
-            'created_at' => $date,
+            // 'created_at' => $date,
             'account_name' => $account_name,
             'account_number' => $account_number,
             'bank_name' => $bank_name
         ]);
+
+            DB::commit();
+            Log::info('inserted remittance id: '. $remittance->id);
+
+        }catch(\Exception $e)
+        {
+            DB::rollBack();
+            Log::error($e);
+            return redirect(url()->previous())->with('error', $e);
+        }
     }
 
     public function show(Property $property, Unit $unit){
