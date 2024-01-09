@@ -6,6 +6,7 @@
             <x-td class="sticky-col second-col"></x-td>
             <x-td class="sticky-col third-col"></x-td>
             <x-td class="sticky-col fourth-col"></x-td>
+            <x-td></x-td>
             <x-td class="sticky-col fifth-col"></x-td>
             <x-td class="sticky-col sixth-col"> </x-td>
             <x-td class="sticky-col seventh-col"> </x-td>
@@ -49,7 +50,7 @@
         <x-th>Unit #</x-th>
         <x-th>Date Paid</x-th>
         <x-th>AR #</x-th>
-
+        <x-th>Period Covered</x-th>
         <x-th>Owner</x-th>
         <x-th>Bank Name</x-th>
         <x-th>Account Name</x-th>
@@ -99,8 +100,13 @@
                    {{ $remittance->unit->unit }}
                 </x-link-component>
             </x-td>
-            <x-td class="sticky-col second-col">{{ Carbon\Carbon::parse($remittance->created_at)->format('M d, Y') }}</x-td>
+            <?php
+                $collection = App\Models\Collection::where('property_uuid', $remittance->property_uuid)->where('ar_no', $remittance->ar_no);
+                $bill  = App\Models\Bill::where('id', $collection->value('bill_id'));
+            ;?>
+            <x-td class="sticky-col second-col">{{ Carbon\Carbon::parse($collection->value('created_at'))->format('M d, Y') }}</x-td>
             <x-td class="sticky-col third-col">{{ $remittance->ar_no }}</x-td>
+            <x-td >{{ Carbon\Carbon::parse($bill->value('start'))->format('M d, Y') }} - {{ Carbon\Carbon::parse($bill->value('end'))->format('M d, Y') }}</x-td>
 
 
             <x-td class="sticky-col fifth-col">

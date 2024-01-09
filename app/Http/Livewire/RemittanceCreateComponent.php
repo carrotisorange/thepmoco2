@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 use Session;
 use DB;
 use App\Models\Collection;
@@ -12,16 +12,27 @@ class RemittanceCreateComponent extends Component
 {
     public $date;
 
+    protected function rules()
+      {
+        return [
+            'date' => 'required|date'
+        ];
+    }
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
+
     public function storeRemittance(){
 
-        $this->validate([
-            'date' => 'required|date'
-        ]);
+        $this->validate();
 
         $collections = Collection::where('property_uuid', Session::get('property_uuid'))
-           ->posted()
-           ->whereMonth('created_at', Carbon::parse($this->date)->month)
-           ->get();
+        ->posted()
+        ->whereMonth('created_at', Carbon::parse($this->date)->month)
+        ->whereYear('created_at', Carbon::parse($this->date)->year)
+        ->get();
 
         foreach($collections as $collection){
              if($collection->bill->particular_id == 1 || $collection->bill->particular_id == 2){
@@ -49,7 +60,6 @@ class RemittanceCreateComponent extends Component
     }
     public function render()
     {
-
         return view('livewire.remittance-create-component',[
         'collectionsCount' => Collection::where('collections.property_uuid', Session::get('property_uuid'))
             ->join('bills', 'collections.bill_id', 'bills.id')
