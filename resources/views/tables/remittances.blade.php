@@ -1,5 +1,152 @@
-<x-table-component style="overflow: scroll;">
-    <x-table-body-component>
+<style>
+.div1 {
+    width: 1280px;
+    height: 400px;
+    overflow: scroll;
+    border: 1px solid #777777;
+}
+
+.div1 table {
+    border-spacing: 0;
+}
+
+.div1 th {
+    border-left: none;
+    border-right: 1px solid #bbbbbb;
+    padding: 5px;
+    width: 80px;
+    min-width: 80px;
+    position: sticky;
+    top: 0;
+    font-weight: normal;
+}
+
+.div1 td {
+    border-left: none;
+    border-right: 1px solid #bbbbbb;
+    border-bottom: 1px solid #bbbbbb;
+    padding: 5px;
+    width: 80px;
+    min-width: 80px;
+}
+
+.div1 th:nth-child(1),
+.div1 td:nth-child(1) {
+    position: sticky;
+    left: 0;
+    width: 50px;
+    min-width: 50px;
+}
+
+.div1 th:nth-child(2),
+.div1 td:nth-child(2) {
+    position: sticky;
+
+    left:50px;
+    width: 100px;
+    min-width: 100px;
+}
+
+.div1 th:nth-child(3),
+.div1 td:nth-child(3) {
+    position: sticky;
+    left:150px;
+    width: 100px;
+    min-width: 100px;
+}
+
+.div1 th:nth-child(4),
+.div1 td:nth-child(4) {
+    position: sticky;
+    left:250px;
+    width: 100px;
+    min-width: 100px;
+}
+
+.div1 th:nth-child(5),
+.div1 td:nth-child(5) {
+    position: sticky;
+    left:350px;
+    width: 250px;
+    min-width: 250px;
+}
+
+.div1 th:nth-child(6),
+.div1 td:nth-child(6) {
+    position: sticky;
+    left:550px;
+    width: 100px;
+    min-width: 100px;
+}
+
+.div1 td:nth-child(1),
+.div1 td:nth-child(2),
+.div1 td:nth-child(3),
+.div1 td:nth-child(4), 
+.div1 td:nth-child(5),
+.div1 td:nth-child(6) {
+    background: #ececec;
+}
+
+
+.div1 th:nth-child(1),
+.div1 th:nth-child(2),
+.div1 th:nth-child(3),
+.div1 th:nth-child(4), 
+.div1 th:nth-child(5),
+.div1 th:nth-child(6), {
+    z-index: 2;
+}
+</style>
+
+<body>
+<div class="div1">
+    <table>
+        <tr>
+        <x-th>#</x-th>
+        <x-th>Unit #</x-th>
+        <x-th>Date Paid</x-th>
+        <x-th>AR #</x-th>
+        <x-th>Period Covered</x-th>
+        <x-th>Owner</x-th>
+        <x-th>Bank Name</x-th>
+        <x-th>Account Name</x-th>
+        <x-th>Account #</x-th>
+        <x-th>Tenant</x-th>
+        <x-th>Guest</x-th>
+        <x-th>Particular</x-th>
+        <x-th>Rent</x-th> <!-- AUTO COMPUTE -->
+        {{-- <x-th>Net Rent </x-th> <!-- MANAGEMENT FEE + NET RENT --> --}}
+   <!-- FROM COLLECTION -->
+        <x-th>Marketing Fee</x-th>
+        <th class="bg-yellow-300">MANAGEMENT FEE <span title="management fee"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">BANK TRANSFER <span title="bank transfer fee"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">CONDO DUES <span title="condo dues"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">MEMBERSHIP <span title="membership fee"><i class="fa-solid fa-circle-info"></i> </span></th>
+
+        <th class="bg-yellow-300">PURCHASED MATERIALS <span title="purchase materials"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">PARKING DUES <span title="parking dues"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">WATER <span title="water bill"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">ELECTRIC <span title="electric bill"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">GENERATOR SHARE <span title="generator share"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">SURCHARGES <span title="surcharges of the unit owner"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">BUILDING INSURANCE <span title="building insurance"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">REAL PROPERTY TAX <span title="real property tax - common area"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">HOUSEKEEPING <span title="housekeeping"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">LAUNDRY FEE <span title="laundry fee"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">COMPLIMENTARY <span title="complimentary fee"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">INTERNET <span title="internet bill"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">SPECIAL ASSESSMENT <span title="special assessment"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">MRF <span title="materials recovery facility"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">FIRE EXTINGUISHER <span title="recharge of fire extinguisher"><i class="fa-solid fa-circle-info"></i> </span></th>
+        <th class="bg-yellow-300">ENVIRONMENTAL<span title="environmental fee"><i class="fa-solid fa-circle-info"></i> </span></th>
+        {{-- <th class="bg-yellow-300">BLADDER TANK</th>
+        <th class="bg-yellow-300">CAUSE OF MAGNET</th> --}}
+        <x-th>Deductions</x-th>
+        <x-th>Remittance</x-th>
+        {{-- <th>CV NO.</th> --}}
+        <x-th>Check No</x-th>
+        </tr>
         <tr>
             <x-td></x-td>
             <x-td class="sticky-col first-col">Total</x-td>
@@ -44,53 +191,6 @@
             <x-td></x-td>
             {{-- <td></td> --}}
         </tr>
-    </x-table-body-component>
-    <x-table-head-component>
-        <x-th>#</x-th>
-        <x-th>Unit #</x-th>
-        <x-th>Date Paid</x-th>
-        <x-th>AR #</x-th>
-        <x-th>Period Covered</x-th>
-        <x-th>Owner</x-th>
-        <x-th>Bank Name</x-th>
-        <x-th>Account Name</x-th>
-        <x-th>Account #</x-th>
-        <x-th>Tenant</x-th>
-        <x-th>Guest</x-th>
-        <x-th>Particular</x-th>
-        <x-th>Rent</x-th> <!-- AUTO COMPUTE -->
-        {{-- <x-th>Net Rent </x-th> <!-- MANAGEMENT FEE + NET RENT --> --}}
-   <!-- FROM COLLECTION -->
-        <x-th>Marketing Fee</x-th>
-        <th class="bg-yellow-300">MANAGEMENT FEE <span title="management fee"><i class="fa-solid fa-circle-info"></i> </span></th>
-        <th class="bg-yellow-300">BANK TRANSFER <span title="bank transfer fee"><i class="fa-solid fa-circle-info"></i> </span></th>
-        <th class="bg-yellow-300">CONDO DUES <span title="condo dues"><i class="fa-solid fa-circle-info"></i> </span></th>
-        <th class="bg-yellow-300">MEMBERSHIP <span title="membership fee"><i class="fa-solid fa-circle-info"></i> </span></th>
-
-        <th class="bg-yellow-300">PURCHASED MATERIALS <span title="purchase materials"><i class="fa-solid fa-circle-info"></i> </span></th>
-        <th class="bg-yellow-300">PARKING DUES <span title="parking dues"><i class="fa-solid fa-circle-info"></i> </span></th>
-        <th class="bg-yellow-300">WATER <span title="water bill"><i class="fa-solid fa-circle-info"></i> </span></th>
-        <th class="bg-yellow-300">ELECTRIC <span title="electric bill"><i class="fa-solid fa-circle-info"></i> </span></th>
-        <th class="bg-yellow-300">GENERATOR SHARE <span title="generator share"><i class="fa-solid fa-circle-info"></i> </span></th>
-        <th class="bg-yellow-300">SURCHARGES <span title="surcharges of the unit owner"><i class="fa-solid fa-circle-info"></i> </span></th>
-        <th class="bg-yellow-300">BUILDING INSURANCE <span title="building insurance"><i class="fa-solid fa-circle-info"></i> </span></th>
-        <th class="bg-yellow-300">REAL PROPERTY TAX <span title="real property tax - common area"><i class="fa-solid fa-circle-info"></i> </span></th>
-        <th class="bg-yellow-300">HOUSEKEEPING <span title="housekeeping"><i class="fa-solid fa-circle-info"></i> </span></th>
-        <th class="bg-yellow-300">LAUNDRY FEE <span title="laundry fee"><i class="fa-solid fa-circle-info"></i> </span></th>
-        <th class="bg-yellow-300">COMPLIMENTARY <span title="complimentary fee"><i class="fa-solid fa-circle-info"></i> </span></th>
-        <th class="bg-yellow-300">INTERNET <span title="internet bill"><i class="fa-solid fa-circle-info"></i> </span></th>
-        <th class="bg-yellow-300">SPECIAL ASSESSMENT <span title="special assessment"><i class="fa-solid fa-circle-info"></i> </span></th>
-        <th class="bg-yellow-300">MRF <span title="materials recovery facility"><i class="fa-solid fa-circle-info"></i> </span></th>
-        <th class="bg-yellow-300">FIRE EXTINGUISHER <span title="recharge of fire extinguisher"><i class="fa-solid fa-circle-info"></i> </span></th>
-        <th class="bg-yellow-300">ENVIRONMENTAL<span title="environmental fee"><i class="fa-solid fa-circle-info"></i> </span></th>
-        {{-- <th class="bg-yellow-300">BLADDER TANK</th>
-        <th class="bg-yellow-300">CAUSE OF MAGNET</th> --}}
-        <x-th>Deductions</x-th>
-        <x-th>Remittance</x-th>
-        {{-- <th>CV NO.</th> --}}
-        <x-th>Check No</x-th>
-    </x-table-head-component>
-    <x-table-body-component>
         @foreach ($remittances as $index => $remittance)
         <div wire:key="remittance-field-{{ $remittance->id }}">
         <tr>
@@ -160,5 +260,7 @@
         </tr>
         </div>
         @endforeach
-    </x-table-body-component>
-</x-table-component>
+
+    </table>
+</div>
+
