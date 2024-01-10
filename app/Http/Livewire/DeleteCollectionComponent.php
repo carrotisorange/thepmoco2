@@ -4,7 +4,9 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Session;
-use App\Models\{AcknowledgementReceipt,Bill,Collection};
+use App\Models\{AcknowledgementReceipt,Bill,Collection, Remittance};
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class DeleteCollectionComponent extends Component
 {
@@ -29,29 +31,45 @@ class DeleteCollectionComponent extends Component
 
         $this->validate();
 
-        Collection::where('property_uuid', Session::get('property_uuid'))
-        ->where('ar_no', $this->collection->ar_no)
-        ->update([
-            'description' => $this->description
-        ]);
+        try{
+            DB::beginTransaction();
 
-        $billIds = Collection::where('property_uuid', Session::get('property_uuid'))
-          ->where('ar_no', $this->collection->ar_no)
-          ->pluck('bill_id');
+              Collection::where('property_uuid', Session::get('property_uuid'))
+              ->where('ar_no', $this->collection->ar_no)
+              ->update([
+              'description' => $this->description
+              ]);
 
-        $collectionBatchNo = Collection::where('property_uuid', Session::get('property_uuid'))
-          ->where('ar_no', $this->collection->ar_no)
-          ->value('batch_no');
+              $billIds = Collection::where('property_uuid', Session::get('property_uuid'))
+              ->where('ar_no', $this->collection->ar_no)
+              ->pluck('bill_id');
 
-        Bill::whereIn('id', $billIds)->update([
-            'status'=> 'unpaid'
-        ]);
+              $collectionBatchNo = Collection::where('property_uuid', Session::get('property_uuid'))
+              ->where('ar_no', $this->collection->ar_no)
+              ->value('batch_no');
 
-        AcknowledgementReceipt::where('collection_batch_no', $collectionBatchNo)->delete();
+              Bill::whereIn('id', $billIds)->update([
+              'status'=> 'unpaid'
+              ]);
 
-        Collection::where('property_uuid', Session::get('property_uuid'))
-        ->where('ar_no', $this->collection->ar_no)
-        ->delete();
+              AcknowledgementReceipt::where('collection_batch_no', $collectionBatchNo)->delete();
+
+              Collection::where('property_uuid', Session::get('property_uuid'))
+              ->where('ar_no', $this->collection->ar_no)
+              ->delete();
+
+              Remittance::where('property_uuid', Session::get('property_uuid'))
+              ->where('ar_no', $this->collection->ar_no)
+              ->delete();
+
+               DB::commit();
+               Log::info('deleted collection id: '. $this->collection->id);
+
+        }catch(\Exception $e){
+              DB::rollBack();
+              Log::error($e);
+              return redirect(url()->previous())->with('error', $e);
+        }
 
         return redirect('/property/'.Session::get('property_uuid').'/collection/')->with('success', 'Changes Saved!');
     }
