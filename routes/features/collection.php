@@ -5,6 +5,7 @@
 
     Route::controller(CollectionController::class)->group(function () {
         Route::prefix('collection')->group(function(){
+            Route::get('collection/{collection}/view','export_ar');
             Route::get('export/{start_date}/{end_date}/{format}','export_dcr');
             Route::get('/', 'index')->name('collection');
             Route::get('{status}',  'paymentVerificationIndex')->name('collection');

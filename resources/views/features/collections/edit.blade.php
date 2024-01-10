@@ -11,17 +11,7 @@
                     </div>
                     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                         <div class="group inline-block">
-                            {{-- <x-button>Remittance &nbsp; <i class="fa-solid fa-caret-down"></i></x-button>
-                            <ul
-                                class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute  transition duration-150 ease-in-out origin-top min-w-32">
-                                <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
-                                    <a href="#/" data-modal-toggle="instructions-create-remittance-modal"> Create</a>
-                                </li>
-                                <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
-                                    <a href="#/" data-modal-toggle="export-remittance-modal"> Export</a>
-                                </li>
-
-                            </ul> --}}
+                        
                         </div>
                     </div>
                 </div>
@@ -145,7 +135,7 @@
 
                                                 </li>
                                                 <?php $proof_of_payment = App\Models\AcknowledgementReceipt::where('property_uuid', $item->property_uuid)
-                                            
+
                                                 ->where('ar_no', $item->ar_no); ?>
                                                 <li>
                                                     @if($proof_of_payment->pluck('attachment')->first())

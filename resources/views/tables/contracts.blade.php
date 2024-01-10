@@ -7,6 +7,7 @@
             <x-th>Status</x-th>
             <x-th>PERIOD COVERED</x-th>
             <x-th>RENT/MO</x-th>
+            <x-th>Contract</x-th>
             <x-th></x-th>
         </tr>
     </x-table-head-component>
@@ -28,11 +29,8 @@
                         @else
                         <x-link-component link="/property/{{ Session::get('property_uuid') }}/tenant/{{ $contract->tenant->uuid }}">
                           {{ $contract->tenant->tenant }}
-
                         </x-link-component>
                         @endif
-
-
                 </x-td>
                 <x-td>
                     {{ $contract->status }}
@@ -58,6 +56,16 @@
 
 
                 <x-td>{{number_format($contract->rent, 2)}}</x-td>
+                <x-td>
+                   @if($contract->contract == null)
+                        Not available
+                   @else
+                   <x-button onclick="window.location.href='{{ asset('/storage/'.$contract->contract) }}'">
+                        View
+                    </x-button>
+
+                   @endif
+                </x-td>
                 <x-td>
                     @cannot('tenant')
                     <x-button id="dropdownDefaultButton({{ $contract->uuid }})" data-dropdown-placement="right"
