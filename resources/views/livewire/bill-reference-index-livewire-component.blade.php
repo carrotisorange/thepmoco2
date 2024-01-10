@@ -1,32 +1,59 @@
 <div>
-    <div class="mt-10 px-4 sm:px-6 lg:px-8">
-        <div class="sm:flex sm:items-center">
-            <div class="sm:flex-auto">
-                <h1 class="text-3xl font-bold text-gray-500" wire:ignore>
-                  {{ $billTo }}
-                </h1>
-            </div>
-            <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <div class="group inline-block">
-                    <x-button>Bill &nbsp; <i class="fa-solid fa-caret-down"></i></x-button>
-                    <ul
-                        class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute  transition duration-150 ease-in-out origin-top min-w-32">
-                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
-                            <a href="#/" data-modal-toggle="create-bill-livewire-component"> Create</a>
-                        </li>
-                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
-                            <a href="#/" data-modal-toggle="bill-export-component"> Export</a>
-                        </li>
-                        <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
-                            <a href="#/" data-modal-toggle="bill-send-component"> Send</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="mt-3">
-          <div>
+   <div class="md:grid md:grid-cols-1 px-10 md:gap-6">
+    <nav class="flex border-b border-gray-200 bg-white" aria-label="Breadcrumb">
+            <ol role="list" class="mx-auto flex w-full max-w-screen-xl space-x-4 px-4 lg:px-8">
+                <li class="flex">
+                    <div class="flex items-center">
+                        <svg class="h-full w-6 flex-shrink-0 text-gray-200" viewBox="0 0 24 44" preserveAspectRatio="none"
+                            fill="currentColor" aria-hidden="true">
+                            <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
+                        </svg>
+                        <a href="/property/{{ Session::get('property_uuid') }}/dashboard"
+                            class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">{{ Session::get('property')
+                            }}</a>
+                    </div>
+                </li>
+                <li class="flex">
+                    <div class="flex items-center">
+                        <svg class="h-full w-6 flex-shrink-0 text-gray-200" viewBox="0 0 24 44" preserveAspectRatio="none"
+                            fill="currentColor" aria-hidden="true">
+                            <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
+                        </svg>
+                        <a href="/property/{{ Session::get('property_uuid') }}/{{ $type }}/{{ $uuid }}"
+                            class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">{{ $billTo }}</a>
+                    </div>
+                </li>
 
+
+                <li class="flex">
+                    <div class="flex items-center">
+                        <svg class="h-full w-6 flex-shrink-0 text-gray-200" viewBox="0 0 24 44" preserveAspectRatio="none"
+                            fill="currentColor" aria-hidden="true">
+                            <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
+                        </svg>
+                        <a href="#/" class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
+                            aria-current="page">Statements of Account</a>
+                    </div>
+                </li>
+            </ol>
+            <div class="group inline-block">
+                <x-button>Bill &nbsp; <i class="fa-solid fa-caret-down"></i></x-button>
+                <ul
+                    class="text-left z-50 bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute  transition duration-150 ease-in-out origin-top min-w-32">
+                    <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                        <a href="#/" data-modal-toggle="create-bill-livewire-component"> Create</a>
+                    </li>
+                    <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                        <a href="#/" data-modal-toggle="bill-export-component"> Export</a>
+                    </li>
+                    <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                        <a href="#/" data-modal-toggle="bill-send-component"> Send</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+     <div class="mt-5 md:mt-0 md:col-span-2">
             <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                 <div class="sm:col-span-3">
                     @if($bills)
@@ -93,7 +120,6 @@
                                             @livewire('bill-export-component', ['type' => $type, 'uuid' => $uuid])
                                             @livewire('bill-send-component', ['type' => $type, 'uuid' => $uuid, 'email' => $email])
                                             @livewire('particular-create-livewire-component')
-        </div>
     </div>
     </div>
 </div>

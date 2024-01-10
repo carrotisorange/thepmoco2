@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use Session;
+use Illuminate\Support\Facades\Session;
 use App\Models\PaymentRequest;
 
 class ShowPaymentRequestComponent extends Component
@@ -16,7 +16,7 @@ class ShowPaymentRequestComponent extends Component
 
        Session::put('payment_request_id', $this->paymentRequest->id);
 
-       return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->paymentRequest->tenant_uuid.'/bills');
+       return redirect('/property/'.Session::get('property_uuid').'/bill/tenant/'.$this->paymentRequest->tenant_uuid.'/bills');
     }
 
     public function declinePayments(){
