@@ -34,43 +34,43 @@ class RemittanceController extends Controller
         ]);
     }
 
-    public function store($property_uuid, $unit_uuid, $ar_no, $particular_id, $tenant_uuid, $guest_uuid, $date, $rent, $description){
+    public function store($collection){
 
-        $unit = Unit::where('unit',$unit_uuid);
-        $owner_uuid = DeedOfSale::where('unit_uuid', $unit_uuid)->value('owner_uuid');
+        $unit = Unit::where('unit',$collection->unit->uuid);
+        $owner_uuid = DeedOfSale::where('unit_uuid', $collection->unit->uuid)->value('owner_uuid');
         $bank_name = Bank::where('owner_uuid', $owner_uuid)->value('bank_name');
         $account_number = Bank::where('owner_uuid', $owner_uuid)->value('account_number');
         $account_name = Bank::where('owner_uuid', $owner_uuid)->value('account_name');
-        $managementFee =  app('App\Http\Controllers\PropertyController')->getManagementFee($rent, $description);
+        $managementFee =  app('App\Http\Controllers\PropertyController')->getManagementFee($collection->collection, $collection->description);
 
         try{
             DB::beginTransaction();
 
             $remittance = Remittance::updateOrCreate(
             [
-                'property_uuid' => $property_uuid,
-                'unit_uuid' => $unit_uuid,
-                'ar_no' => $ar_no,
-                'particular_id' => $particular_id,
+                'property_uuid' => $collection->property_uuid,
+                'unit_uuid' => $collection->unit->uuid,
+                'ar_no' => $collection->ar_no,
+                'particular_id' => $collection->bill->particular_id,
                 'owner_uuid' => $owner_uuid,
             ],
             [
-            'property_uuid' => $property_uuid,
-            'unit_uuid' => $unit_uuid,
-            'ar_no' => $ar_no,
-            'particular_id' => $particular_id,
+            'property_uuid' => $collection->property_uuid,
+            'unit_uuid' => $collection->unit->uuid,
+            'ar_no' => $collection->ar_no,
+            'particular_id' => $collection->bill->particular_id,
             'owner_uuid' => $owner_uuid,
-            'monthly_rent' => $rent,
-            'net_rent' => $rent - ($managementFee + $unit->value('marketing_fee')),
+            'monthly_rent' => $collection->collection,
+            'net_rent' => $collection->collection - ($managementFee + $unit->value('marketing_fee')),
             'management_fee' => $managementFee,
             'marketing_fee' => $unit->value('marketing_fee'),
             'total_deductions' => $managementFee + $unit->value('marketing_fee'),
-            'remittance' => $rent - ($managementFee + $unit->value('marketing_fee')),
-            'tenant_uuid' => $tenant_uuid,
-            'guest_uuid' => $guest_uuid,
-            // 'created_at' => $date,
+            'remittance' => $collection->rent - ($managementFee + $unit->value('marketing_fee')),
+            'tenant_uuid' => $collection->tenant_uuid,
+            'guest_uuid' => $collection->guest_uuid,
             'account_name' => $account_name,
             'account_number' => $account_number,
+            'created_at' => $collection->created_at,
             'bank_name' => $bank_name
         ]);
 
@@ -90,6 +90,59 @@ class RemittanceController extends Controller
         return view('properties.remittances.show', [
             'unit' => $unit
         ]);
+    }
+
+    public function update($id, $remittance){
+
+        try{
+            DB::beginTransaction();
+
+            Remittance::where('id', $id)
+            ->update([
+                'management_fee' => $remittance->management_fee,
+                'bank_transfer_fee' => $remittance->bank_transfer_fee,
+                'miscellaneous_fee' => $remittance->miscellaneous_fee,
+                'membership_fee' => $remittance->membership_fee,
+                'condo_dues' => $remittance->condo_dues,
+                'parking_dues' => $remittance->parking_dues,
+                'water' => $remittance->water,
+                'electricity' => $remittance->electricity,
+                'surcharges' => $remittance->surcharges,
+                'building_insurance' => $remittance->building_insurance,
+                'real_property_tax' => $remittance->real_property_tax,
+                'generator_share' => $remittance->generator_share,
+                'housekeeping_fee' => $remittance->housekeeping_fee,
+                'laundry_fee' => $remittance->laundry_fee,
+                'complimentary' => $remittance->complimentary,
+                'internet' => $remittance->internet,
+                'special_assessment' => $remittance->special_assessment,
+                'materials_recovery_facility' => $remittance->materials_recovery_facility,
+                'recharge_of_fire_extinguisher' => $remittance->recharge_of_fire_extinguisher,
+                'environmental_fee' => $remittance->environmental_fee,
+                // 'bladder_tank' => $remittance->bladder_tank,
+                // 'cause_of_magnet' => $remittance->cause_of_magnet,
+                'total_deductions' => $remittance->management_fee + $remittance->marketing_fee + $remittance->bank_transfer_fee + $remittance->miscellaneous_fee + $remittance->membership_fee + $remittance->condo_dues
+                + $remittance->parking_dues + $remittance->water + $remittance->electricity + $remittance->surcharges + $remittance->building_insurance
+                + $remittance->real_property_tax + $remittance->housekeeping_fee + $remittance->laundry_fee + $remittance->complimentary + $remittance->internet
+                + $remittance->special_assessment + $remittance->materials_recovery_facility + $remittance->recharge_of_fire_extinguisher + $remittance->recharge_of_fire_extinguisher
+                + $remittance->environmental_fee,
+                'remittance' => $remittance->monthly_rent - ($remittance->management_fee + $remittance->marketing_fee + $remittance->bank_transfer_fee + $remittance->miscellaneous_fee + $remittance->membership_fee + $remittance->condo_dues
+                + $remittance->parking_dues + $remittance->water + $remittance->electricity + $remittance->surcharges + $remittance->building_insurance
+                + $remittance->real_property_tax + $remittance->housekeeping_fee + $remittance->laundry_fee + $remittance->complimentary + $remittance->internet
+                + $remittance->special_assessment + $remittance->materials_recovery_facility + $remittance->recharge_of_fire_extinguisher + $remittance->recharge_of_fire_extinguisher
+                + $remittance->environmental_fee),
+                'cv_no' => $remittance->cv_no,
+                'check_no' => $remittance->check_no
+            ]);
+
+            DB::commit();
+            Log::info('updated remittance id: '. $remittance->id);
+
+        }catch(\Exception $e){
+            DB::rollBack();
+            Log::error($e);
+            return redirect(url()->previous())->with('error', $e);
+        }
     }
 
     public function export($propertyUuid, $date, $bank_transfer_fee=null){
@@ -118,18 +171,18 @@ class RemittanceController extends Controller
 
         $remittance = Remittance::find($remittanceId);
 
-       $data = [
-        'remittance' => $remittance,
-       ];
+        $data = [
+            'remittance' => $remittance,
+        ];
 
-       $folder_path = 'features.remittances.exportUnitRemittance';
+        $folder_path = 'features.remittances.exportUnitRemittance';
 
-       $perspective = 'landscape';
+        $perspective = 'landscape';
 
-       $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data, $perspective); ;
+        $pdf = app('App\Http\Controllers\Utilities\ExportController')->generatePDF($folder_path, $data, $perspective); ;
 
-       $pdf_name = str_replace(' ', '_', $remittance->unit->unit).'_'.str_replace(' ', '_',Carbon::parse($remittance->created_at)->format('M Y')).'remittance.pdf';
+        $pdf_name = str_replace(' ', '_', $remittance->unit->unit).'_'.str_replace(' ', '_',Carbon::parse($remittance->created_at)->format('M Y')).'_remittance.pdf';
 
-       return $pdf->stream($pdf_name);
+        return $pdf->stream($pdf_name);
     }
 }

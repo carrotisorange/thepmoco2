@@ -82,7 +82,7 @@
 .div1 td:nth-child(1),
 .div1 td:nth-child(2),
 .div1 td:nth-child(3),
-.div1 td:nth-child(4), 
+.div1 td:nth-child(4),
 .div1 td:nth-child(5),
 .div1 td:nth-child(6) {
     background: #ececec;
@@ -92,7 +92,7 @@
 .div1 th:nth-child(1),
 .div1 th:nth-child(2),
 .div1 th:nth-child(3),
-.div1 th:nth-child(4), 
+.div1 th:nth-child(4),
 .div1 th:nth-child(5),
 .div1 th:nth-child(6), {
     z-index: 2;
@@ -231,32 +231,32 @@
             <x-td>{{ number_format($remittance->monthly_rent, 2) }}</x-td>
             {{-- <x-td>{{ number_format($remittance->net_rent, 2) }}</x-td> --}}
             <x-td>{{ number_format($remittance->marketing_fee, 2) }}</x-td>
-            <x-td><x-table-input wire:model="remittances.{{ $index }}.management_fee" wire:change="updateRemittance({{ $remittance->id }})"  type="number" step="0.001"/></x-td>
-            <x-td><x-table-input wire:model="remittances.{{ $index }}.bank_transfer_fee" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></x-td>
-            <x-td><x-table-input wire:model="remittances.{{ $index }}.condo_dues" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></x-td>
-            <x-td><x-table-input wire:model="remittances.{{ $index }}.membership_fee" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></x-td>
-            <x-td><x-table-input wire:model="remittances.{{ $index }}.miscellaneous_fee" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></x-td>
-             <x-td><x-table-input wire:model="remittances.{{ $index }}.parking_dues" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></x-td>
-             <x-td><x-table-input wire:model="remittances.{{ $index }}.water" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></x-td>
-             <x-td><x-table-input wire:model="remittances.{{ $index }}.electricity" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></x-td>
-             <x-td><x-table-input wire:model="remittances.{{ $index }}.generator_share" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></x-td>
-            <x-td><x-table-input wire:model="remittances.{{ $index }}.surcharges" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></x-td>
-            <x-td><x-table-input wire:model="remittances.{{ $index }}.building_insurance" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></x-td>
-            <x-td><x-table-input wire:model="remittances.{{ $index }}.real_property_tax" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></x-td>
-             <x-td><x-table-input wire:model="remittances.{{ $index }}.housekeeping_fee" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></x-td>
-            <x-td><x-table-input wire:model="remittances.{{ $index }}.laundry_fee" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></x-td>
-            <x-td><x-table-input wire:model="remittances.{{ $index }}.complimentary" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></x-td>
-             <x-td><x-table-input wire:model="remittances.{{ $index }}.internet" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></x-td>
-             <x-td><x-table-input wire:model="remittances.{{ $index }}.special_assessment" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></x-td>
-             <x-td><x-table-input wire:model="remittances.{{ $index }}.materials_recovery_facility" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></x-td>
-            <x-td><x-table-input wire:model="remittances.{{ $index }}.recharge_of_fire_extinguisher" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></x-td>
-            <x-td><x-table-input wire:model="remittances.{{ $index }}.environmental_fee" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></x-td>
-            {{-- <td><x-table-input wire:model="remittances.{{ $index }}.bladder_tank" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></td>
-            <td><x-table-input wire:model="remittances.{{ $index }}.cause_of_magnet" wire:change="updateRemittance({{ $remittance->id }})" type="number" step="0.001"/></td> --}}
+            <x-td><x-table-input wire:model="remittances.{{ $index }}.management_fee" wire:change="update({{ $remittance->id }})"  type="number" step="0.001"/></x-td>
+            <x-td><x-table-input wire:model="remittances.{{ $index }}.bank_transfer_fee" wire:change="update({{ $remittance->id }})" type="number" step="0.001"/></x-td>
+            <x-td><x-table-input wire:model="remittances.{{ $index }}.condo_dues" wire:change="update({{ $remittance->id }})" type="number" step="0.001"/></x-td>
+            <x-td><x-table-input wire:model="remittances.{{ $index }}.membership_fee" wire:change="update({{ $remittance->id }})" type="number" step="0.001"/></x-td>
+            <x-td><x-table-input wire:model="remittances.{{ $index }}.miscellaneous_fee" wire:change="update({{ $remittance->id }})" type="number" step="0.001"/></x-td>
+             <x-td><x-table-input wire:model="remittances.{{ $index }}.parking_dues" wire:change="update({{ $remittance->id }})" type="number" step="0.001"/></x-td>
+             <x-td><x-table-input wire:model="remittances.{{ $index }}.water" wire:change="update({{ $remittance->id }})" type="number" step="0.001"/></x-td>
+             <x-td><x-table-input wire:model="remittances.{{ $index }}.electricity" wire:change="update({{ $remittance->id }})" type="number" step="0.001"/></x-td>
+             <x-td><x-table-input wire:model="remittances.{{ $index }}.generator_share" wire:change="update({{ $remittance->id }})" type="number" step="0.001"/></x-td>
+            <x-td><x-table-input wire:model="remittances.{{ $index }}.surcharges" wire:change="update({{ $remittance->id }})" type="number" step="0.001"/></x-td>
+            <x-td><x-table-input wire:model="remittances.{{ $index }}.building_insurance" wire:change="update({{ $remittance->id }})" type="number" step="0.001"/></x-td>
+            <x-td><x-table-input wire:model="remittances.{{ $index }}.real_property_tax" wire:change="update({{ $remittance->id }})" type="number" step="0.001"/></x-td>
+             <x-td><x-table-input wire:model="remittances.{{ $index }}.housekeeping_fee" wire:change="update({{ $remittance->id }})" type="number" step="0.001"/></x-td>
+            <x-td><x-table-input wire:model="remittances.{{ $index }}.laundry_fee" wire:change="update({{ $remittance->id }})" type="number" step="0.001"/></x-td>
+            <x-td><x-table-input wire:model="remittances.{{ $index }}.complimentary" wire:change="update({{ $remittance->id }})" type="number" step="0.001"/></x-td>
+             <x-td><x-table-input wire:model="remittances.{{ $index }}.internet" wire:change="update({{ $remittance->id }})" type="number" step="0.001"/></x-td>
+             <x-td><x-table-input wire:model="remittances.{{ $index }}.special_assessment" wire:change="update({{ $remittance->id }})" type="number" step="0.001"/></x-td>
+             <x-td><x-table-input wire:model="remittances.{{ $index }}.materials_recovery_facility" wire:change="update({{ $remittance->id }})" type="number" step="0.001"/></x-td>
+            <x-td><x-table-input wire:model="remittances.{{ $index }}.recharge_of_fire_extinguisher" wire:change="update({{ $remittance->id }})" type="number" step="0.001"/></x-td>
+            <x-td><x-table-input wire:model="remittances.{{ $index }}.environmental_fee" wire:change="update({{ $remittance->id }})" type="number" step="0.001"/></x-td>
+            {{-- <td><x-table-input wire:model="remittances.{{ $index }}.bladder_tank" wire:change="update({{ $remittance->id }})" type="number" step="0.001"/></td>
+            <td><x-table-input wire:model="remittances.{{ $index }}.cause_of_magnet" wire:change="update({{ $remittance->id }})" type="number" step="0.001"/></td> --}}
             <x-td>{{ number_format($remittance->total_deductions, 2) }}</x-td>
             <x-td>{{ number_format($remittance->remittance, 2) }}</x-td>
-            {{-- <td><x-table-input wire:model="remittances.{{ $index }}.cv_no" wire:change="updateRemittance({{ $remittance->id }})" type="text"/></td> --}}
-            <x-td><x-table-input wire:model="remittances.{{ $index }}.check_no" wire:change="updateRemittance({{ $remittance->id }})" type="text"/></x-td>
+            {{-- <td><x-table-input wire:model="remittances.{{ $index }}.cv_no" wire:change="update({{ $remittance->id }})" type="text"/></td> --}}
+            <x-td><x-table-input wire:model="remittances.{{ $index }}.check_no" wire:change="update({{ $remittance->id }})" type="text"/></x-td>
         </tr>
         </div>
         @endforeach
