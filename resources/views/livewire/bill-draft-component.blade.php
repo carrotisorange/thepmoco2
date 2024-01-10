@@ -12,7 +12,6 @@
                         type="button">Back
                     </button>
                     <x-button type="submit" wire:click="postBills">
-
                         Post Bills
                     </x-button>
 
