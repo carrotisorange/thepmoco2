@@ -26,7 +26,7 @@
 
                         <div class="relative flex items-start pb-4 pt-3.5">
                             <div class="min-w-0 flex-1 text-sm leading-6">
-                                <label for="miscellaneous_fee" class="font-medium text-gray-900">Miscellaneous Fee</label>
+                                <label for="miscellaneous_fee" class="font-medium text-gray-900">Purchased Materials</label>
                                 {{-- <p id="comments-description" class="text-gray-500">Get notified when someones posts a comment on a
                                     posting.</p> --}}
                             </div>

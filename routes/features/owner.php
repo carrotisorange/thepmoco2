@@ -47,8 +47,8 @@
                 Route::get('collection/{collection}/attachment','attachment');
                 Route::get('collection/{collection}/proof_of_payment', 'proof_of_payment');
                 Route::get('collection/{batch_no?}','destroy');
-                Route::get('bills/{batch_no}/pay', 'edit');
-                Route::patch('bills/{batch_no}/pay/update','update');
+                // Route::get('bills/{batch_no}/pay', 'edit');
+                // Route::patch('bills/{batch_no}/pay/update','update');
             });
         });
     });

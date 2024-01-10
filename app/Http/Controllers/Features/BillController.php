@@ -443,12 +443,6 @@ class BillController extends Controller
          ]);
     }
 
-    public function update_bill_initial_payment($bill_id,$amount)
-    {
-        Bill::where('id', $bill_id)->increment('initial_payment', $amount);
-    }
-
-
     public function delete_bills($tenant_uuid){
         Bill::where('tenant_uuid', $tenant_uuid)->delete();
     }
@@ -481,14 +475,6 @@ class BillController extends Controller
             'isPaymentAllowed' => false,
             'isIndividualView' => false,
 
-        ]);
-    }
-
-    public function edit_bill(Property $property, Guest $guest, Bill $bill){
-
-        return view('properties.bills.edit', [
-            'property' => $property,
-            'bill' => $bill
         ]);
     }
 }

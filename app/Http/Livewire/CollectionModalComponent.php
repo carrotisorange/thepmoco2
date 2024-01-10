@@ -61,8 +61,6 @@ class CollectionModalComponent extends ModalComponent
 
     public function payBill()
     {
-
-
         try{
             DB::beginTransaction();
 
@@ -90,19 +88,6 @@ class CollectionModalComponent extends ModalComponent
 
            return back()->with('error','Cannot perform your action.');
        }
-    }
-
-    public function export_ar($ar)
-    {
-        if($this->exportCollection)
-        {
-            return redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant.'/ar/'.$ar->id.'/export/')->with('success','Changes Saved!');
-        }
-         else
-        {
-            return
-            redirect('/property/'.Session::get('property_uuid').'/tenant/'.$this->tenant.'/bills')->with('success','Changes Saved!');
-        }
     }
 
     public function store_ar($collection_ar_no , $collection_batch_no)

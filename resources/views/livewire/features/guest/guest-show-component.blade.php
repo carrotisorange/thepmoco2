@@ -18,7 +18,7 @@
                         class="text-left hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
                         <ul class="py-1" aria-labelledby="dropdownButton">
                             <li>
-                               <a href="/property/{{ $this->guest_details->property_uuid }}/guest/{{ $guest_details->uuid }}/bills"
+                               <a href="/property/{{ $this->guest_details->property_uuid }}/bill/guest/{{ $guest_details->uuid }}/bills"
                                     class="{{$addAnchorClass}}">
                                     Bill
                                 </a>
@@ -29,7 +29,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/property/{{ $this->guest_details->property_uuid }}/guest/{{ $guest_details->uuid }}/bills"
+                                <a href="/property/{{ $this->guest_details->property_uuid }}/bill/guest/{{ $guest_details->uuid }}/bills"
                                     class="{{$addAnchorClass}}">
                                     Collection
                                 </a>
@@ -108,7 +108,7 @@
                                     @elseif($subfeature == 'bill')
                                     @if($bills->count())
                                     <x-button
-                                        onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/guest/{{ $guest_details->uuid }}/bills'">
+                                        onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/bill/guest/{{ $guest_details->uuid }}/bills'">
                                         Pay Bills
                                     </x-button>
 

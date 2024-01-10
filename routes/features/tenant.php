@@ -30,8 +30,6 @@ use App\Http\Controllers\TenantWalletController;
             Route::get('wallet/{random_str}/create', [TenantWalletController::class, 'create']);
 
             Route::controller(CollectionController::class)->group(function() {
-                Route::get('bills/{batch_no}/pay', 'edit_collections')->name('tenant');
-                Route::patch('bills/{batch_no}/pay/update','update_collections');
                 Route::get('collections','tenant_collection_index')->name('tenant');
                 Route::get('payment_requests/{payment_request}', 'show_payment_request')->name('tenant');
                 Route::get('collection/{collection}/view','export_ar');
@@ -44,7 +42,6 @@ use App\Http\Controllers\TenantWalletController;
             Route::get('ledger', [TenantLedgerController::class, 'index']);
 
             Route::controller(BillController::class)->group(function() {
-                // Route::get('bills', 'tenant_index')->name('tenant');
                 Route::get('bill/export', 'export_soa');
                 Route::get('bill/send', 'send_bills');
             });

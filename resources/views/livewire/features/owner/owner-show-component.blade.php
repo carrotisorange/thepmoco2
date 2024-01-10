@@ -32,12 +32,12 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/bills"  class="{{ $addAnchorClass }}">
+                                <a href="/property/{{ Session::get('property_uuid') }}/bill/owner/{{ $owner_details->uuid }}/bills"  class="{{ $addAnchorClass }}">
                                      Bill
                                 </a>
                             </li>
                             <li>
-                                <a href="/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/bills" class="{{ $addAnchorClass }}">
+                                <a href="/property/{{ Session::get('property_uuid') }}/bill/owner/{{ $owner_details->uuid }}/bills" class="{{ $addAnchorClass }}">
                                     {{ csrf_field() }}ollection
                                 </a>
                             </li>
@@ -140,7 +140,7 @@
                                     </div>
                                     @endif
                                     @elseif($subfeature == 'bill')
-                                    <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/owner/{{ $owner_details->uuid }}/bills'">
+                                    <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/bill/owner/{{ $owner_details->uuid }}/bills'">
                                         Pay Bills
                                     </x-button>
                                     @include('tables.bills')
@@ -154,7 +154,7 @@
                                     @endif
                                     @elseif($subfeature == 'bank')
                                         @include('tables.banks')
-                                
+
                                     @elseif($subfeature == 'violation')
                                         @include('tables.violations')
                                     @endif

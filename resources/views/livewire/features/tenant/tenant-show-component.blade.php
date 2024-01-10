@@ -17,14 +17,14 @@
                         class="text-left hidden z-10 w-30 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
                         <ul class="py-1" aria-labelledby="dropdownButton">
                             <li>
-                                <a href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant_details->uuid }}/bills"
+                                <a href="/property/{{ Session::get('property_uuid') }}/bill/tenant/{{ $tenant_details->uuid }}/bills"
                                     class="{{ $addAnchorClass }}">
                                      Bill
                                 </a>
                             </li>
 
                             <li>
-                                <a href="/property/{{ Session::get('property_uuid') }}/tenant/{{ $tenant_details->uuid }}/bills"
+                                <a href="/property/{{ Session::get('property_uuid') }}/bill/tenant/{{ $tenant_details->uuid }}/bills"
                                     class="{{ $addAnchorClass }}">
                                      Collection
                                 </a>
@@ -208,7 +208,7 @@
                                     @endif
                                     @elseif($subfeature == 'bill')
                                     @if($bills->count())
-                                    <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/{{ 'tenant' }}/{{ $tenant_details->uuid }}/bills'">
+                                    <x-button onclick="window.location.href='/property/{{ Session::get('property_uuid') }}/bill/{{ 'tenant' }}/{{ $tenant_details->uuid }}/bills'">
                                         Pay Bills
                                     </x-button>
                                     @include('tables.bills')

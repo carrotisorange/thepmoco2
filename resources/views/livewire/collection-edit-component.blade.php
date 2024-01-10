@@ -5,7 +5,7 @@
     <div class="p-6 text-center">
         <form wire:submit.prevent="update">
         <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to update
-            collection AR # ({{$collection->ar_no}})?</h3>
+            collection AR # ({{$collection->ar_no}})'s OR #?</h3>
 
         <div class="mt-5 mb-5 sm:mt-6">
             <x-form-input id="or_no" rows="4" wire:model="or_no"  />

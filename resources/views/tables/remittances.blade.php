@@ -123,7 +123,6 @@
         <th class="bg-yellow-300">BANK TRANSFER <span title="bank transfer fee"><i class="fa-solid fa-circle-info"></i> </span></th>
         <th class="bg-yellow-300">CONDO DUES <span title="condo dues"><i class="fa-solid fa-circle-info"></i> </span></th>
         <th class="bg-yellow-300">MEMBERSHIP <span title="membership fee"><i class="fa-solid fa-circle-info"></i> </span></th>
-
         <th class="bg-yellow-300">PURCHASED MATERIALS <span title="purchase materials"><i class="fa-solid fa-circle-info"></i> </span></th>
         <th class="bg-yellow-300">PARKING DUES <span title="parking dues"><i class="fa-solid fa-circle-info"></i> </span></th>
         <th class="bg-yellow-300">WATER <span title="water bill"><i class="fa-solid fa-circle-info"></i> </span></th>

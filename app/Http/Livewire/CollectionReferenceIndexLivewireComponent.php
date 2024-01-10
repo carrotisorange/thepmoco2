@@ -6,14 +6,16 @@ use Livewire\Component;
 use Session;
 use Carbon\Carbon;
 use Livewire\WithFileUploads;
-use App\Models\{Bill,PaymentRequest};
+use App\Models\{Bill,PaymentRequest, Tenant, Owner, Guest};
 
-class CollectionTenantEditComponent extends Component
+class CollectionReferenceIndexLivewireComponent extends Component
 {
     use WithFileUploads;
 
+    public $type;
+    public $uuid;
+
     public $batch_no;
-    public $tenant;
     public $attachment;
     public $proof_of_payment;
     public $form;
@@ -23,12 +25,12 @@ class CollectionTenantEditComponent extends Component
     public $date_deposited;
     public $description;
     public $sendPayment = false;
+    public $payer;
 
 
-    public function mount( $tenant, $batch_no)
+    public function mount()
     {
-        $this->batch_no = $batch_no;
-        $this->tenant = $tenant;
+        $this->payer = $this->getBillToName();
         $this->created_at = Carbon::now()->format('Y-m-d');
         $this->proof_of_payment = PaymentRequest::where('id',Session::get('payment_request_id'))->pluck('proof_of_payment')->first();
         $this->bank = PaymentRequest::where('id',Session::get('payment_request_id'))->pluck('bank_name')->first();
@@ -58,17 +60,31 @@ class CollectionTenantEditComponent extends Component
 
     public function get_collections()
     {
-      return Bill::where('tenant_uuid', $this->tenant->uuid)
+      return Bill::where($this->type.'_uuid', $this->uuid)
       ->where('batch_no', $this->batch_no)
       ->where('status', 'unpaid')
       ->posted()
       ->get();
     }
 
+    public function getBillToName(){
+        $billToName = null;
+
+        if($this->type == 'tenant'){
+            $billToName = Tenant::find($this->uuid)->tenant;
+        }elseif($this->type == 'owner'){
+            $billToName = Owner::find($this->uuid)->owner;
+        }else{
+            $billToName = Guest::find($this->uuid)->guest;
+        }
+        return $billToName;
+
+    }
+
     public function render()
     {
-        return view('livewire.collection-tenant-edit-component',[
-            'collections' => $this->get_collections()
-        ]);
+        $collections = $this->get_collections();
+        
+        return view('livewire.collection-reference-index-livewire-component',compact('collections'));
     }
 }

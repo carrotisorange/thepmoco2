@@ -4,7 +4,7 @@
     </x-slot>
     <h1 class="text-center font-medium">Create Bill</h1>
     <div class="p-5">
-        <form wire:submit.prevent="submit">
+        <form wire:submit.prevent="store">
             <div class="mt-5 sm:mt-6">
                 <x-label for="">Select a unit</x-label>
                 <x-form-select wire:model="unit_uuid">

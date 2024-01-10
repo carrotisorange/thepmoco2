@@ -29,7 +29,7 @@
         <x-th>Bank Transfer Fee</x-th>
         @endif
         @if(Session::get('miscellaneous_fee'))
-        <x-th>Miscallenous Fee</x-th>
+        <x-th>Purchased Materials</x-th>
         @endif
         @if(Session::get('membership_fee'))
         <x-th>Membership Fee</x-th>
