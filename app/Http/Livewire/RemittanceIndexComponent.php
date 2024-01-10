@@ -73,18 +73,18 @@ class RemittanceIndexComponent extends Component
         ->get();
     }
 
-    // public function updatedCreatedAt(){
-    //     $this->remittances = $this->get_remittances();
-    // }
+    public function updatedCreatedAt(){
+        $this->remittances = $this->get_remittances();
+    }
 
     public function render()
     {
-        return view('livewire.features.remittance.remittance-index-component',[
+        $filterDates = Remittance::where('property_uuid', Session::get('property_uuid'))
+        ->groupBy(DB::raw('date_format(created_at,"%m-%Y")'))
+        ->orderBy(DB::raw('date_format(created_at,"%Y")'), 'desc')
+        ->orderBy(DB::raw('date_format(created_at,"%m")'), 'desc')
+        ->get();
 
-            'filterDates' => Remittance::where('property_uuid', Session::get('property_uuid'))
-            ->groupBy(DB::raw('month(created_at)+"-"+year(created_at)'))
-            ->get(),
-
-        ]);
+        return view('livewire.features.remittance.remittance-index-component',compact('filterDates'));
     }
 }

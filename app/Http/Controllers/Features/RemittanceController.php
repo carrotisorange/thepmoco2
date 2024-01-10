@@ -70,6 +70,7 @@ class RemittanceController extends Controller
             'guest_uuid' => $collection->guest_uuid,
             'account_name' => $account_name,
             'account_number' => $account_number,
+            'created_at' => $collection->created_at,
             'bank_name' => $bank_name
         ]);
 
