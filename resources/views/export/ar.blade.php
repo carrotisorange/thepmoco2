@@ -69,7 +69,7 @@
             </div>
             <div class="-mt-8 flex justify-end text-sm font-medium ">
                 <div class="bg-gray-200 inline-flex py-2 px-12">
-                    <img width="20" height="20" src="https://img.icons8.com/metro/26/737373/geography.png" alt="geography"/>
+                    {{-- <img width="20" height="20" src="https://img.icons8.com/metro/26/737373/geography.png" alt="geography"/> --}}
                     <p class="ml-2 text-gray-500 text-xs font-light">{{env('APP_NAME')}}</p>
                 </div>
             </div>
@@ -88,10 +88,10 @@
                 <p class="font-light">Tenant: <span class="font-semibold tracking-wider">{{ $tenant }}</span></p>
             </div>
             <div>
-                <p>AR number: <span class="font-semibold tracking-wider">{{ $ar_no }}</span></p>
+               <p class="font-light">AR Number: <span class="font-semibold tracking-wider">{{ $ar_no }}</span></p>
             </div>
             <div>
-                <p>OR number: <span class="font-semibold tracking-wider">{{ $or_no }}</span></p>
+               <p class="font-light">OR Number: <span class="font-semibold tracking-wider">{{ $or_no }}</span></p>
             </div>
 
         </div>
@@ -150,10 +150,10 @@
     </main>
 
     <footer class="mx-auto max-w-4xl bg-purple-800">
-
+{{--
             <div class="pt-4 mx-auto flex justify-center items-center grid grid-cols-3">
                 <div class="inline-flex justify-center items-center col-span-1">
-                    <img width="20" height="20" src="https://img.icons8.com/metro/26/FFFFFF/phone.png" alt="phone"/>
+                   Session
                     <p class="w-32 p-2 text-white text-xs"> Property Number</p>
                 </div>
                 <div class="inline-flex justify-center items-center col-span-1">
@@ -167,7 +167,7 @@
                 </div>
 
 
-            </div>
+            </div> --}}
             <p class="pt-2 text-center text-xs leading-5 text-gray-100">Powered by: {{ env('APP_NAME') }}</p>
 
     </footer>
