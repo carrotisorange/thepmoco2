@@ -3,10 +3,10 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use Carbon\Carbon;
-use Session;
-use DB;
-use App\Models\{Collection,Remittance};
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+use App\Models\{Remittance};
 
 class RemittanceIndexComponent extends Component
 {
@@ -41,8 +41,6 @@ class RemittanceIndexComponent extends Component
             'remittances.*.materials_recovery_facility' => 'nullable',
             'remittances.*.recharge_of_fire_extinguisher' => 'nullable',
             'remittances.*.environmental_fee' => 'nullable',
-            // 'remittances.*.bladder_tank' => 'nullable',
-            // 'remittances.*.cause_of_magnet' => 'nullable',
             'remittances.*.cv_no' => 'nullable',
             'remittances.*.check_no' => 'nullable',
         ];
@@ -53,67 +51,20 @@ class RemittanceIndexComponent extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function updateRemittance($id){
+    public function update($id){
 
         $this->validate();
 
-        try{
-            foreach ($this->remittances->where('id', $id) as $remittance) {
+        foreach ($this->remittances->where('id', $id) as $remittance) {
 
-            Remittance::where('id', $id)
-            ->update([
-                'management_fee' => $remittance->management_fee,
-                'bank_transfer_fee' => $remittance->bank_transfer_fee,
-                'miscellaneous_fee' => $remittance->miscellaneous_fee,
-                'membership_fee' => $remittance->membership_fee,
-                'condo_dues' => $remittance->condo_dues,
-                'parking_dues' => $remittance->parking_dues,
-                'water' => $remittance->water,
-                'electricity' => $remittance->electricity,
-                'surcharges' => $remittance->surcharges,
-                'building_insurance' => $remittance->building_insurance,
-                'real_property_tax' => $remittance->real_property_tax,
-                'generator_share' => $remittance->generator_share,
-                'housekeeping_fee' => $remittance->housekeeping_fee,
-                'laundry_fee' => $remittance->laundry_fee,
-                'complimentary' => $remittance->complimentary,
-                'internet' => $remittance->internet,
-                'special_assessment' => $remittance->special_assessment,
-                'materials_recovery_facility' => $remittance->materials_recovery_facility,
-                'recharge_of_fire_extinguisher' => $remittance->recharge_of_fire_extinguisher,
-                'environmental_fee' => $remittance->environmental_fee,
-                // 'bladder_tank' => $remittance->bladder_tank,
-                // 'cause_of_magnet' => $remittance->cause_of_magnet,
-                'total_deductions' => $remittance->management_fee + $remittance->marketing_fee + $remittance->bank_transfer_fee + $remittance->miscellaneous_fee + $remittance->membership_fee + $remittance->condo_dues
-                + $remittance->parking_dues + $remittance->water + $remittance->electricity + $remittance->surcharges + $remittance->building_insurance
-                + $remittance->real_property_tax + $remittance->housekeeping_fee + $remittance->laundry_fee + $remittance->complimentary + $remittance->internet
-                + $remittance->special_assessment + $remittance->materials_recovery_facility + $remittance->recharge_of_fire_extinguisher + $remittance->recharge_of_fire_extinguisher
-                + $remittance->environmental_fee,
-                'remittance' => $remittance->monthly_rent - ($remittance->management_fee + $remittance->marketing_fee + $remittance->bank_transfer_fee + $remittance->miscellaneous_fee + $remittance->membership_fee + $remittance->condo_dues
-                + $remittance->parking_dues + $remittance->water + $remittance->electricity + $remittance->surcharges + $remittance->building_insurance
-                + $remittance->real_property_tax + $remittance->housekeeping_fee + $remittance->laundry_fee + $remittance->complimentary + $remittance->internet
-                + $remittance->special_assessment + $remittance->materials_recovery_facility + $remittance->recharge_of_fire_extinguisher + $remittance->recharge_of_fire_extinguisher
-                + $remittance->environmental_fee),
-                'cv_no' => $remittance->cv_no,
-                'check_no' => $remittance->check_no
-            ]);
+            app('App\Http\Controllers\Features\RemittanceController')->update($id, $remittance);
 
-                  $this->remittances = $this->get_remittances();
+            $this->remittances = $this->get_remittances();
 
-                  session()->flash('success', 'Changes Saved!');
-            }
-
-
-
-
-        }catch(\Exception $e){
-
-            return back()->with('error','Cannot perform the action. Please try again.');
-       }
-
+            session()->flash('success', 'Changes Saved!');
+        }
 
     }
-
 
     public function get_remittances(){
         return Remittance::where('property_uuid', Session::get('property_uuid'))
@@ -122,9 +73,9 @@ class RemittanceIndexComponent extends Component
         ->get();
     }
 
-    public function updatedCreatedAt(){
-        $this->remittances = $this->get_remittances();
-    }
+    // public function updatedCreatedAt(){
+    //     $this->remittances = $this->get_remittances();
+    // }
 
     public function render()
     {
