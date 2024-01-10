@@ -1,7 +1,7 @@
 <x-modal-component>
 
     <x-slot name="id">
-        delete-collection-modal-{{$collection->id}}
+        delete-collection-component-{{$collection->id}}
     </x-slot>
     <div class="p-6 text-center">
 
