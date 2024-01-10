@@ -13,6 +13,7 @@ use App\Http\Controllers\UnitConcernController;
 use App\Http\Controllers\UnitInventoryController;
 use App\Http\Controllers\Subfeatures\GuardianController;
 use App\Http\Controllers\Subfeatures\ReferenceController;
+use App\Http\Controllers\Subfeatures\RepresentativeController;
 
 use App\Http\Controllers\Features\UnitController;
 use App\Http\Controllers\Features\RemittanceController;
@@ -20,8 +21,8 @@ use App\Http\Controllers\Features\GuestController;
 use App\Http\Controllers\Features\OwnerController;
 use App\Http\Controllers\Features\BillController;
 use App\Http\Controllers\Features\ContractController;
-use App\Http\Controllers\Features\UnitBillController;
-use App\Http\Controllers\Features\WalletController;
+use App\Http\Controllers\UnitBillController;
+use App\Http\Controllers\WalletController;
 
         Route::prefix('unit')->group(function(){
             Route::controller(UnitController::class)->group(function(){
@@ -115,6 +116,6 @@ use App\Http\Controllers\Features\WalletController;
                     });
                 });
                 Route::get('deed_of_sales', [UnitDeedOfSalesController::class, 'index']);
-                Route::get('bills', [UnitBillController::class, 'index'])->name('unit');
+
             });
         });

@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Illuminate\Validation\Rule;
-use App\Models\{PropertyParticular, DeedOfSale, Booking,UserProperty};
+use App\Models\{PropertyParticular, DeedOfSale, Booking};
 use Illuminate\Support\Facades\Session;
 
 class BillCreateLivewireComponent extends Component
@@ -31,7 +31,7 @@ class BillCreateLivewireComponent extends Component
       ];
     }
 
-    public function submit(){
+    public function store(){
 
         $this->validate();
 
