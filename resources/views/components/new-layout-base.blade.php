@@ -20,7 +20,7 @@
                                 <img class="h-24 w-15" src="{{ asset('/brands/'.env('APP_LOGO')) }}" />
                             </a>
                         </div>
-                            {{ env('APP_NAME') }}
+                           
                     </div>
 
                     <div class="hidden sm:flex sm:items-center sm:ml-6">

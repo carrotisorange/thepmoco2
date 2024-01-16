@@ -10,24 +10,38 @@
             background-image: url('/brands/propsuite/propsuite-bg.png');
         }
 
+        .gradient-purple{
+            background-image: url('/brands/propsuite/gradient-purple.png');
+        }
+
+        .vision{
+            background-image: url('/brands/propsuite/vision.png');
+        }
+
+        .team-bg{
+            background-image: url('/brands/propsuite/team-bg.png');
+        }
+
         .purple {
             background-color: #4F3F6D;
         }
 
-        .darkPurple {
-            color: #4F3F6D;
+        .lightPurple{
+            background-color: #D9D9D9;
+        }
+
+        .yellow {
+            color: #FCD34D;
         }
     </style>
 
     <body class="purple">
-        <div class="propsuite-bg mt-0 lg:-mt-4 pb-16 sm:pb-20">
+        <div class="propsuite-bg min-h-screen mt-0 lg:-mt-4 pb-16 sm:pb-20">
             <div class="mx-auto max-w-7xl px-6 lg:px-8">
                 <div class="mx-auto py-48 sm:py-48 lg:py-48">
                     <div class="text-center">
-                        <h1 class="text-2xl font-bold tracking-wide text-white sm:text-5xl leading-8">We provide <span
-                                class="darkPurple">full suite digital</span> solution <br> for rental property
-                            communities <br>and home
-                            owners associations.</h1>
+                        <h1 class="text-2xl font-bold tracking-wide text-white sm:text-5xl leading-8">We provide <br><span
+                                class="yellow">full suite digital solution</span><br> for developed communities.</h1>
                     </div>
                 </div>
 
@@ -45,83 +59,57 @@
 
         <x-partner></x-partner>
 
-        <!-- value  -->
 
-        <div class="min-h-fit" id="about">
-            <style>
-                #about {
-                    background-color: #5D5270;
-                }
-            </style>
-            <div class=" lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-8 lg:px-8">
-
-
-                <div class="mt-12 lg:col-start-1 lg:m-0 lg:pl-20">
-                    <div class="py-20 mx-auto px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0 lg:py-20">
-                        <blockquote>
-                            <div>
-
-                                <span class="text-4xl font-bold text-indigo-100">{{ env('APP_NAME') }}</span>
-                                <p class="mt-6 text-base font-light text-gray-300 tracking-wide">is a system as a
-                                    service
-                                    company that gives real-time, reliable, easy digital
-                                    solution to long-term rental property owners, and
-                                    managers to improve transparency and efficiency in
-                                    business operations.
-
-                                    Unlike manual processes, we provide a full-suite solution
-                                    that allows business owners to run their operations
-                                    seamlessly and harmoniously with their tenants.</p>
-                            </div>
-                            <footer class="mt-6">
-
-
-                            </footer>
-                        </blockquote>
+        <div class="gradient-purple mt-0 lg:-mt-4 pb-16 sm:pb-20">
+            <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                <div class="mx-auto pt-24 pb-16">
+                    <div class="">
+                        <h1 class="text-lg lg:text-2xl tracking-wide text-white sm:text-xl leading-8"><span
+                                class="yellow font-bold">{{ env('APP_NAME') }}</span> is a full suite digital community management system as a service provider for developed communities to improve communication and the facilitation of community services.</h1>
                     </div>
                 </div>
 
-                <div class="lg:mt-20 sm:mt-0  lg:col-start-2 sm:pl-5 lg:pl-32">
-                    <div class="flex justify-center items-center">
-                        <img class="h-72 w-fit" src="{{ asset('/brands/landing/about.webp') }}"
-                            alt="a laptop mockup showing pmo dashboard">
+
+                <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+                    aria-hidden="true">
+                    <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+                        style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
                     </div>
                 </div>
             </div>
+
+
         </div>
 
-        <div class="relative bg-gray-700">
-            <div class="px-6 py-32 relative bg-gray-600 md:absolute md:left-0 md:h-full md:w-1/2">
-                <p class="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">Our Mission</p>
-                <p class="mt-3 text-lg text-gray-300">To create new opportunities through digitalization of community management systems.</p>
-                <div class="mt-8">
-                    <div class="inline-flex rounded-md shadow">
+        <div class="vision min-h-screen mt-0 lg:-mt-4 sm:pb-20">
+            <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="grid grid-cols-1 py-10 lg:py-36 gap-y-5 gap-x-16 sm:grid-cols-3">
+                        <p>
+                            <span class="block text-3xl lg:text-5xl font-bold text-white">Our Mission <br> & Vision</span>
+                           
+                        </p>
 
+                        <p class="ml-0 lg:ml-10">
+                            <span class="mt-10 lg:mt-24 yellow block text-3xl font-bold text-white">Vision</span>
+                            <span class="mt-1 block text-lg text-gray-300"><span
+                                    class="font-medium text-white">To Improve Processes and <br>create new opportunities</span>
+                        </p>
+
+                        <p class="ml-0 lg:ml-10">
+                            <span class="mt-10 lg:mt-24 yellow block text-3xl font-bold text-white">Mission</span>
+                            <span class="mt-1 block text-lg text-gray-300"><span
+                                    class="font-medium text-white">Tech Enabled Communities</span>
+                        </p>
+
+                       
                     </div>
-                </div>
             </div>
-            <div class="relative mx-auto max-w-md px-4 py-12 sm:max-w-7xl sm:px-6 sm:py-20 md:py-28 lg:px-8 lg:py-32">
 
-                <div class="md:ml-auto md:w-1/2 md:pl-10">
 
-                    <p class="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">Our Vision</p>
-                    <p class="mt-3 text-lg text-gray-300">Tech Enabled Communities</p>
-                    <div class="mt-8">
-                        <div class="inline-flex rounded-md shadow">
-
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
-
-
-
-
-
 
         <!-- thrive -->
-        <div class="relative bg-gray-900">
+        <div class="relative bg-black">
             <div class="absolute inset-x-0 bottom-0 h-80 xl:top-0 xl:h-full">
                 <div class="h-full w-full xl:grid xl:grid-cols-2">
                     <div class="h-full xl:relative xl:col-start-2">
@@ -129,7 +117,7 @@
                             src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2830&q=80&sat=-100"
                             alt="People working on laptops">
                         <div aria-hidden="true"
-                            class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-gray-900 xl:inset-y-0 xl:left-0 xl:h-full xl:w-32 xl:bg-gradient-to-r">
+                            class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black xl:inset-y-0 xl:left-0 xl:h-full xl:w-32 xl:bg-gradient-to-r">
                         </div>
                     </div>
                 </div>
@@ -138,7 +126,7 @@
                 class="py-20 mx-auto max-w-4xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 xl:grid xl:grid-flow-col-dense xl:grid-cols-2 xl:gap-x-8">
                 <div class="relative pt-12 xl:col-span-2 xl:pb-24">
 
-                    <p class="mt-3 text-3xl font-bold tracking-tight text-white">{{ env('APP_NAME') }} Values</p>
+                    <p class="text-3xl font-bold tracking-tight text-white text-center">{{ env('APP_NAME') }} Values</p>
 
                     <div class="mt-10 grid grid-cols-1 gap-y-5 gap-x-6 sm:grid-cols-6">
                         <p>
@@ -188,51 +176,91 @@
             </div>
         </div>
 
-        <!-- team section -->
+        <!-- stats -->
+        <div class="relative lightPurple">
+            <div class="absolute inset-x-0 bottom-0 h-80 xl:top-0 xl:h-full">
+                <div class="h-full w-full xl:grid xl:grid-cols-2">
+                    <div class="h-full xl:relative xl:col-start-2">
+                        <img class="h-full w-full object-cover xl:absolute xl:inset-0"
+                        src="{{ asset('/brands/propsuite/stats-bg.png') }}">
+                       
+                    </div>
+                </div>
+            </div>
+            <div
+                class="py-20 mx-auto max-w-4xl px-4 sm:px-6 lg:max-w-7xl lg:px-8 xl:grid xl:grid-flow-col-dense xl:grid-cols-2 xl:gap-x-8">
+                <div class="relative pt-12 xl:col-span-2 xl:pb-24">
 
-        <div class="bg-white min-h-fit">
-            <div class=" lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-8 lg:px-8">
+                    <p class="text-3xl font-semibold tracking-tight text-gray-500 ">Current Customers being Served</p>
 
+                    <div class="mt-10 grid grid-cols-1 gap-y-5 gap-x-6 sm:grid-cols-3">
+                        <p>
+                            <span class="block text-3xl font-bold text-purple-600">98</span>
+                            <span class="mt-1 block text-base text-gray-300"><span
+                                    class="font-medium text-gray-700">Buildings</span>
+                                
+                        </p>
 
-                <div class="mt-12 lg:col-start-1 lg:m-0 lg:pl-20">
-                    <div class="flex justify-center items-center">
-                        <img class="mt-10 h-full lg:w-full md:w-auto sm:w-auto"
-                            src="{{ asset('/brands/landing/about-team.webp') }}" alt="a vector, 4 people working">
+                        <p>
+                            <span class="block text-3xl font-bold text-purple-600">3395</span>
+                            <span class="mt-1 block text-base text-gray-300"><span
+                                    class="font-medium text-gray-700">Units/Houses</span>
+                                
+                        </p>
+
+                        <p>
+                            <span class="block text-3xl font-bold text-purple-600">126</span>
+                            <span class="mt-1 block text-base text-gray-300"><span
+                                    class="font-medium text-gray-700">Signed up Users</span>
+                               
+                        </p>
+
+                        <p>
+                            <span class="block text-3xl font-bold text-purple-600">817</span>
+                            <span class="mt-1 block text-base text-gray-300"><span
+                                    class="font-medium text-gray-700">Property Owners</span>
+                        </p>
+
+                        <p>
+                            <span class="block text-3xl font-bold text-purple-600">865</span>
+                            <span class="mt-1 block text-base text-gray-300"><span
+                                    class="font-medium text-gray-700">Tenants</span>
+                        </p>
+
+                        <p>
+                            <span class="block text-3xl font-bold text-purple-600">44</span>
+                            <span class="mt-1 block text-base text-gray-300"><span
+                                    class="font-medium text-gray-700">Personnel</span>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="team-bg min-h-full mt-0 lg:-mt-4 pb-16 sm:pb-20">
+            <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                <div class="mx-auto pt-24 pb-6">
+                <span class="text-white text-4xl font-bold">The Team</span> 
+                    <div class="">
+                        <h1 class="mt-10 tracking-wide text-white sm:text-base leading-8"><br> Behind {{ env('APP_NAME') }} is a team of real estate lessors and real estate managers, IT professionals, programmers, technical support specialists, and UI/UX designers. Our team members have worked or belong to the industry of real estate management and Information Technology industry. We believe that a transformative digital system is what the real estate management need to reduce and even eliminate many pain points in community management.</h1>
+                    </div>
+                    <div class="">
+                        <h1 class="mt-10 tracking-wide text-white sm:text-base leading-8">{{ env('APP_NAME') }} Team is establishing harmonious relationships between management and community members to make thriving property communities. With a transformative digital system, there will be improved communication, convenience, and better community services.</h1>
                     </div>
                 </div>
 
-                <div class="mx-7 mt-12 mb-12 lg:col-start-2">
 
-                    <blockquote>
-                        <div>
-
-                            <p class="mt-6 tracking-wide  text-3xl font-bold text-purple-900">The Team </p>
-                            <p class="text-base text-gray-500 mt-5 ">Behind {{ env('APP_NAME') }} is a team of real estate lessors
-                                and real estate
-                                managers, IT professionals, programmers, technical support specialists, and UI/UX
-                                designers.
-                                Our team members have worked or belong to the industry of real estate management and
-                                Information Technology industry. We believe that a transformative digital system is what
-                                the
-                                real estate management need to reduce and even eliminate many pain points in community management.</p>
-
-                            <p class="text-base text-gray-500 mt-5 ">
-                                {{ env('APP_NAME') }} Team is establishing harmonious relationships between management and
-                                community members to make thriving property communities. With a
-                                transformative
-                                digital system, there will be improved communication, convenience, and better community services.</p>
-                        </div>
-
-                    </blockquote>
-
-                </div>
+              
             </div>
+
+
         </div>
 
         <div class="bg-purple-50">
             <div
                 class="mx-auto max-w-4xl py-16 px-4 sm:px-6 sm:py-24 lg:flex lg:max-w-7xl lg:items-center lg:justify-between lg:px-8">
-                <h2 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                <h2 class="text-lg lg:text-4xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                     <span class="block">Register and start your journey with us now!</span>
                     <span
                         class="-mb-1 block bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text pb-1 text-transparent">Get
@@ -247,6 +275,9 @@
                 </div>
             </div>
         </div>
+
+        
+        
 
         
 

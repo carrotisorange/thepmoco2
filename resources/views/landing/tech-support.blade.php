@@ -14,7 +14,7 @@
                   <!-- Contact form -->
                   <div class="py-10 px-6 sm:px-10">
 
-                    <form action="https://formsubmit.co/techsupport@propsuite.net" method="POST" class="mt-6 gap-y-6 grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 sm:gap-x-8">
+                    <form action="https://formsubmit.co/help@propsuite.net" method="POST" class="mt-6 gap-y-6 grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 sm:gap-x-8">
 
                         <div class="col-span-3 sm:col-span-3 lg:col-span-1">
                             <label for="first-name" class="block text-sm font-medium text-gray-300">First name</label>
@@ -90,7 +90,7 @@
                             <div
                                 class="mx-auto max-w-4xl  px-4 sm:px-6 py-8 lg:flex lg:max-w-7xl lg:items-center lg:justify-between lg:px-8">
                                 <h2 class="text-lg font-bold tracking-tight text-gray-900 sm:text-2xl">
-                                    <span class="block">Includes Site Seal</span>
+                                    
                                     <span
                                         class="max-w-lg py-5 -mb-1 block  bg-clip-text pb-1 text-gray-700 text-base font-light">Your data security and privacy is important to us. With Comodo SSL, communication exchanged between our servers and our users are encrypted. This effectively protects against data theft and bolsters overall trust and security in our website.</span>
                                 </h2>
